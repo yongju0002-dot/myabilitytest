@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="zh">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>시간 정지 게임 | 능력 테스트</title>
-<meta name="description" content="시계를 보지 않고 목표 시간에 딱 맞춰 정지하세요! 여러 명이 함께 즐기는 무료 시간 감각 게임.">
-<link rel="canonical" href="https://myabilitytest.com/skill-test/games/time-stop.html">
+<title>时间停止游戏 | 能力测试</title>
+<meta name="description" content="不看时钟,准确在目标时间停止!多人同乐的免费时间感知游戏。">
+<link rel="canonical" href="https://myabilitytest.com/zh/skill-test/games/time-stop.html">
 <link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/time-stop.html">
 <link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/time-stop.html">
 <link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/time-stop.html">
@@ -15,84 +15,84 @@
 </head>
 <body>
   <div class="wrap">
-    <a class="back-link" href="../../index.html">← 메인으로</a>
+    <a class="back-link" href="/zh/index.html">← 返回主页</a>
     <div class="lang-switch">
-      <a class="active" href="/skill-test/games/time-stop.html">한국어</a>
+      <a href="/skill-test/games/time-stop.html">한국어</a>
       <a href="/en/skill-test/games/time-stop.html">English</a>
       <a href="/ja/skill-test/games/time-stop.html">日本語</a>
-      <a href="/zh/skill-test/games/time-stop.html">中文</a>
+      <a class="active" href="/zh/skill-test/games/time-stop.html">中文</a>
     </div>
-    <h1>⏱️ 시간 정지 게임</h1>
-    <p class="sub">시계를 보지 않고, 목표 시간이 되었다고 생각하는 순간 눌러보세요!</p>
+    <h1>⏱️ 时间停止游戏</h1>
+    <p class="sub">不看时钟,在你认为达到目标时间的瞬间按下按钮!</p>
 
     <div id="setupScreen">
       <div class="level-card" style="text-align:left;">
-        <div class="label" style="text-align:center; margin-bottom:10px;">참가 인원</div>
+        <div class="label" style="text-align:center; margin-bottom:10px;">参与人数</div>
         <div class="duration-select" id="playerSelect">
-          <button data-v="1" class="active">1인</button>
-          <button data-v="2">2인</button>
-          <button data-v="3">3인</button>
-          <button data-v="4">4인</button>
-          <button data-v="6">6인</button>
-          <button data-v="8">8인</button>
+          <button data-v="1" class="active">1人</button>
+          <button data-v="2">2人</button>
+          <button data-v="3">3人</button>
+          <button data-v="4">4人</button>
+          <button data-v="6">6人</button>
+          <button data-v="8">8人</button>
         </div>
-        <div class="label" style="text-align:center; margin:16px 0 10px;">목표 시간</div>
+        <div class="label" style="text-align:center; margin:16px 0 10px;">目标时间</div>
         <div class="duration-select" id="targetSelect">
-          <button data-v="5">5초</button>
-          <button data-v="10" class="active">10초</button>
-          <button data-v="15">15초</button>
-          <button data-v="20">20초</button>
-          <button data-v="30">30초</button>
+          <button data-v="5">5秒</button>
+          <button data-v="10" class="active">10秒</button>
+          <button data-v="15">15秒</button>
+          <button data-v="20">20秒</button>
+          <button data-v="30">30秒</button>
         </div>
         <div class="setup-toggle">
-          <label><input type="checkbox" id="blindToggle" checked> 결과 가리기 (모두 끝난 뒤 한번에 공개)</label>
+          <label><input type="checkbox" id="blindToggle" checked> 隐藏结果(全部结束后一次性公开)</label>
         </div>
       </div>
       <div class="btn-row">
-        <button class="btn" id="startGameBtn">게임 시작</button>
+        <button class="btn" id="startGameBtn">开始游戏</button>
       </div>
     </div>
 
     <div id="playScreen" style="display:none;">
       <div class="player-badge">
-        <div class="who">참가자</div>
+        <div class="who">参与者</div>
         <div class="num" id="playerNum">1</div>
-        <div class="who" id="playerSub">/ 1 · 목표 10초</div>
+        <div class="who" id="playerSub">/ 1 · 目标10秒</div>
       </div>
 
-      <div class="timer-orb" id="timerOrb">시작</div>
+      <div class="timer-orb" id="timerOrb">开始</div>
 
       <div id="turnResult" class="result-panel">
         <div class="emoji">⏱️</div>
         <h2 id="turnTitle"></h2>
         <div class="desc" id="turnDesc"></div>
         <div class="btn-row">
-          <button class="btn" id="nextPlayerBtn">다음 참가자</button>
+          <button class="btn" id="nextPlayerBtn">下一位参与者</button>
         </div>
       </div>
     </div>
 
     <div id="resultPanel" class="result-panel">
       <div class="emoji">🏆</div>
-      <h2>최종 결과</h2>
+      <h2>最终结果</h2>
       <ul class="leaderboard" id="leaderboard"></ul>
       <div class="btn-row">
-        <button class="btn" id="retryBtn">다시 하기</button>
-        <button class="btn share" id="shareBtn">결과 공유하기</button>
+        <button class="btn" id="retryBtn">再玩一次</button>
+        <button class="btn share" id="shareBtn">分享结果</button>
       </div>
     </div>
 
     <div class="stats">
       <div class="stat-box">
-        <div class="label">도전 횟수</div>
+        <div class="label">挑战次数</div>
         <div class="value" id="statCount">0</div>
       </div>
       <div class="stat-box">
-        <div class="label">최소 오차</div>
+        <div class="label">最小误差</div>
         <div class="value" id="statBest">-</div>
       </div>
       <div class="stat-box">
-        <div class="label">평균 오차</div>
+        <div class="label">平均误差</div>
         <div class="value" id="statAvg">-</div>
       </div>
     </div>
@@ -135,8 +135,8 @@
 
   function renderStats() {
     document.getElementById('statCount').textContent = stats.count;
-    document.getElementById('statBest').textContent = stats.best !== null ? stats.best.toFixed(2) + '초' : '-';
-    document.getElementById('statAvg').textContent = stats.count ? (stats.sum / stats.count).toFixed(2) + '초' : '-';
+    document.getElementById('statBest').textContent = stats.best !== null ? stats.best.toFixed(2) + '秒' : '-';
+    document.getElementById('statAvg').textContent = stats.count ? (stats.sum / stats.count).toFixed(2) + '秒' : '-';
   }
 
   function startGame() {
@@ -153,9 +153,9 @@
     running = false;
     turnDone = false;
     timerOrb.classList.remove('running', 'disabled');
-    timerOrb.textContent = '시작';
+    timerOrb.textContent = '开始';
     document.getElementById('playerNum').textContent = currentPlayer + 1;
-    document.getElementById('playerSub').textContent = `/ ${playerCount} · 목표 ${targetTime}초`;
+    document.getElementById('playerSub').textContent = `/ ${playerCount} · 目标${targetTime}秒`;
     turnResult.classList.remove('show');
   }
 
@@ -165,7 +165,7 @@
       running = true;
       startTime = performance.now();
       timerOrb.classList.add('running');
-      timerOrb.textContent = '정지!';
+      timerOrb.textContent = '停止!';
       playStartSound();
       return;
     }
@@ -178,10 +178,10 @@
     const diff = Math.abs(elapsed - targetTime);
     results.push({ player: currentPlayer + 1, elapsed, diff });
 
-    document.getElementById('turnTitle').textContent = blind ? '기록 완료!' : elapsed.toFixed(2) + '초';
+    document.getElementById('turnTitle').textContent = blind ? '记录完成!' : elapsed.toFixed(2) + '秒';
     document.getElementById('turnDesc').textContent = blind
-      ? '결과는 모든 참가자가 끝난 뒤 공개됩니다.'
-      : `목표 ${targetTime}초 — 오차 ${diff.toFixed(2)}초`;
+      ? '结果将在全部参与者结束后公开。'
+      : `目标${targetTime}秒 — 误差${diff.toFixed(2)}秒`;
     turnResult.classList.add('show');
   });
 
@@ -210,15 +210,15 @@
       const medal = ['🥇', '🥈', '🥉'][i] || (i + 1) + '.';
       return `<li class="${i === 0 ? 'winner' : ''}">
         <span class="rank">${medal}</span>
-        <span class="lb-name">참가자 ${r.player}</span>
-        <span class="lb-detail">${r.elapsed.toFixed(2)}초 (오차 ${r.diff.toFixed(2)}초)</span>
+        <span class="lb-name">参与者 ${r.player}</span>
+        <span class="lb-detail">${r.elapsed.toFixed(2)}秒(误差${r.diff.toFixed(2)}秒)</span>
       </li>`;
     }).join('');
 
     resultPanel.classList.add('show');
     resultPanel.dataset.share = playerCount === 1
-      ? `시간 정지 게임에서 목표 ${targetTime}초 중 오차 ${best.diff.toFixed(2)}초! 너도 해봐 → `
-      : `시간 정지 게임에서 참가자 ${best.player}이(가) 오차 ${best.diff.toFixed(2)}초로 우승! 너도 해봐 → `;
+      ? `在时间停止游戏中,目标${targetTime}秒,误差${best.diff.toFixed(2)}秒!你也来试试 → `
+      : `参与者${best.player}以${best.diff.toFixed(2)}秒的误差在时间停止游戏中获胜!你也来试试 → `;
   }
 
   document.getElementById('startGameBtn').addEventListener('click', startGame);

@@ -33,13 +33,22 @@ function showToast(msg) {
   showToast._t = setTimeout(() => toast.classList.remove('show'), 1800);
 }
 
+const COPY_TOAST = {
+  ko: '결과가 복사되었습니다',
+  en: 'Result copied',
+  ja: '結果をコピーしました',
+  zh: '结果已复制',
+};
+
 function shareResult(text) {
   if (navigator.share) {
     navigator.share({ text }).catch(() => {});
     return;
   }
+  const lang = (document.documentElement.lang || 'ko').split('-')[0];
+  const copiedMsg = COPY_TOAST[lang] || COPY_TOAST.ko;
   if (navigator.clipboard) {
-    navigator.clipboard.writeText(text).then(() => showToast('결과가 복사되었습니다')).catch(() => showToast(text));
+    navigator.clipboard.writeText(text).then(() => showToast(copiedMsg)).catch(() => showToast(text));
   } else {
     showToast(text);
   }

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="zh">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>반응 속도 테스트 | 능력 테스트</title>
-<meta name="description" content="화면 색이 바뀌는 순간 클릭! 내 반응 속도는 몇 ms일까? 무료 반응 속도 테스트.">
-<link rel="canonical" href="https://myabilitytest.com/ability-test/index.html">
+<title>反应速度测试 | 能力测试</title>
+<meta name="description" content="画面颜色变化的瞬间点击!你的反应速度是多少毫秒?免费反应速度测试。">
+<link rel="canonical" href="https://myabilitytest.com/zh/ability-test/index.html">
 <link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ability-test/index.html">
 <link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/ability-test/index.html">
 <link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/ability-test/index.html">
@@ -253,13 +253,6 @@
     text-align: left;
   }
   .info th { background: var(--card-bg); }
-  .info details {
-    background: var(--card-bg);
-    border-radius: 10px;
-    padding: 10px 14px;
-    margin-bottom: 8px;
-  }
-  .info summary { cursor: pointer; font-weight: 600; }
 
   footer.note {
     text-align: center;
@@ -271,26 +264,26 @@
 </head>
 <body>
   <div class="wrap">
-    <a class="back-link" href="../index.html">← 메인으로</a>
+    <a class="back-link" href="../../index.html">← 返回主页</a>
     <div class="lang-switch">
-      <a class="active" href="/ability-test/index.html">한국어</a>
+      <a href="/ability-test/index.html">한국어</a>
       <a href="/en/ability-test/index.html">English</a>
       <a href="/ja/ability-test/index.html">日本語</a>
-      <a href="/zh/ability-test/index.html">中文</a>
+      <a class="active" href="/zh/ability-test/index.html">中文</a>
     </div>
-    <h1>⚡ 반응 속도 테스트</h1>
-    <p class="sub">화면 색이 바뀌는 순간 바로 클릭하세요</p>
+    <h1>⚡ 反应速度测试</h1>
+    <p class="sub">画面颜色变化的瞬间立刻点击</p>
 
     <div class="toolbar">
-      <label><input type="checkbox" id="colorblindToggle"> 색약 모드 (파랑/주황)</label>
+      <label><input type="checkbox" id="colorblindToggle"> 色盲模式(蓝色/橙色)</label>
     </div>
 
     <div id="stage" class="stage state-idle">
-      <div class="big">라운드 수를 선택하세요</div>
+      <div class="big">请选择轮数</div>
       <div class="round-select">
-        <button data-rounds="3">3회</button>
-        <button data-rounds="5">5회</button>
-        <button data-rounds="10">10회</button>
+        <button data-rounds="3">3轮</button>
+        <button data-rounds="5">5轮</button>
+        <button data-rounds="10">10轮</button>
       </div>
     </div>
 
@@ -298,40 +291,39 @@
 
     <div class="stats">
       <div class="stat-box">
-        <div class="label">총 시도 횟수</div>
+        <div class="label">总尝试次数</div>
         <div class="value" id="statCount">0</div>
       </div>
       <div class="stat-box">
-        <div class="label">전체 평균</div>
+        <div class="label">整体平均</div>
         <div class="value" id="statAvg">- ms</div>
       </div>
       <div class="stat-box">
-        <div class="label">최고 기록</div>
+        <div class="label">最佳记录</div>
         <div class="value" id="statBest">- ms</div>
       </div>
     </div>
 
-    <footer class="note">예측 클릭(초록색이 되기 전 클릭)은 기록으로 인정되지 않습니다</footer>
+    <footer class="note">变绿之前的点击(预测点击)不计入记录</footer>
 
     <section class="info">
-      <h2>반응속도 테스트란?</h2>
-      <p>반응속도 테스트는 화면의 색이 바뀌는 순간을 눈으로 확인하고 얼마나 빠르게 클릭하는지를 밀리초(ms) 단위로 측정하는 테스트입니다. 숫자가 낮을수록 반응 속도가 빠르다는 뜻이며, 게임·운동처럼 순간적인 판단이 필요한 상황에서의 순발력을 가늠하는 지표로 흔히 쓰입니다.</p>
+      <h2>什么是反应速度测试?</h2>
+      <p>反应速度测试是通过肉眼确认屏幕颜色变化的瞬间,并以毫秒(ms)为单位测量点击速度的测试。数值越低表示反应速度越快,常用于游戏、运动等需要瞬间判断的场合,衡量敏捷程度的指标。</p>
 
-      <h2>평균 반응 속도는 몇 ms일까?</h2>
-      <p>일반적으로 시각 자극에 대한 반응 속도는 250~300ms 정도가 평균적인 범위로 알려져 있습니다. 200ms 초반이면 평균보다 빠른 편이고, 150~200ms 구간은 꽤 훈련된 수준입니다. 다만 사용 중인 기기, 모니터 주사율, 터치스크린 지연 등에 따라 결과가 10~50ms가량 달라질 수 있습니다.</p>
+      <h2>平均反应速度是多少毫秒?</h2>
+      <p>一般来说,对视觉刺激的反应速度平均范围在250~300ms左右。200ms初段属于比平均快,150~200ms区间属于相当训练有素的水平。不过根据使用的设备、显示器刷新率、触屏延迟等,结果可能有10~50ms的差异。</p>
 
-      <h2>결과 해석표</h2>
+      <h2>结果解读表</h2>
       <table>
-        <tr><th>평균 기록</th><th>해석</th></tr>
-        <tr><td>150ms 이하</td><td>매우 빠른 편 (세계기록은 약 120ms)</td></tr>
-        <tr><td>150 ~ 220ms</td><td>빠른 편, 게임·스포츠에서 좋은 순발력</td></tr>
-        <tr><td>220 ~ 300ms</td><td>일반적인 평균 범위</td></tr>
-        <tr><td>300ms 이상</td><td>피로·집중력 저하·기기 지연의 영향일 수 있음</td></tr>
+        <tr><th>平均记录</th><th>解读</th></tr>
+        <tr><td>150ms以下</td><td>非常快(世界纪录约为120ms)</td></tr>
+        <tr><td>150~220ms</td><td>较快,游戏·运动中反应敏捷</td></tr>
+        <tr><td>220~300ms</td><td>一般平均范围</td></tr>
+        <tr><td>300ms以上</td><td>可能受疲劳、注意力下降、设备延迟影响</td></tr>
       </table>
 
-      <h2>정확하게 측정하는 방법</h2>
-      <p>한 번의 기록보다 5회 이상 측정한 평균값을 보는 것이 정확합니다. 손이 차갑거나 졸릴 때, 무선 마우스나 모바일 터치로 측정할 때는 지연이 더해질 수 있으니 같은 기기·환경에서 여러 번 반복해 비교해보세요. 화면이 바뀌기 전에 미리 예측해서 누르면 정확한 반응속도로 볼 수 없습니다.</p>
-
+      <h2>如何准确测量</h2>
+      <p>比起一次记录,查看5次以上测量的平均值更准确。手冷或困倦时,使用无线鼠标或手机触屏测量时可能会增加延迟,请在相同设备·环境下多次重复比较。如果在画面变化前提前预测点击,就无法得到准确的反应速度。</p>
     </section>
   </div>
 
@@ -391,11 +383,11 @@
   function showSetup() {
     state = STATE.SETUP;
     setStage('idle', `
-      <div class="big">라운드 수를 선택하세요</div>
+      <div class="big">请选择轮数</div>
       <div class="round-select">
-        <button data-rounds="3">3회</button>
-        <button data-rounds="5">5회</button>
-        <button data-rounds="10">10회</button>
+        <button data-rounds="3">3轮</button>
+        <button data-rounds="5">5轮</button>
+        <button data-rounds="10">10轮</button>
       </div>
     `);
     stage.querySelectorAll('[data-rounds]').forEach(btn => {
@@ -422,31 +414,31 @@
   function startWaiting() {
     state = STATE.WAIT;
     setStage('wait', `
-      <div class="big">기다리세요...</div>
-      <div class="small">라운드 ${currentRound} / ${totalRounds} — 색이 바뀌면 바로 클릭!</div>
+      <div class="big">请等待...</div>
+      <div class="small">第 ${currentRound} / ${totalRounds} 轮 — 颜色一变就立刻点击!</div>
     `);
     renderDots();
     const delay = 1200 + Math.random() * 2800;
     timeoutId = setTimeout(() => {
       state = STATE.GO;
       startTime = performance.now();
-      setStage('go', `<div class="big">지금 클릭!</div>`);
+      setStage('go', `<div class="big">现在点击!</div>`);
     }, delay);
   }
 
   function rateFeedback(ms) {
-    if (ms < 200) return '엄청 빠름! 🚀';
-    if (ms < 250) return '훌륭해요! 💪';
-    if (ms < 300) return '좋아요 👍';
-    if (ms < 400) return '평균이에요';
-    return '조금 느려요 🐢';
+    if (ms < 200) return '超级快! 🚀';
+    if (ms < 250) return '太棒了! 💪';
+    if (ms < 300) return '不错 👍';
+    if (ms < 400) return '一般般';
+    return '有点慢 🐢';
   }
 
   function gradeFor(avg) {
-    if (avg <= 150) return '매우 빠른 편이에요';
-    if (avg <= 220) return '빠른 편이에요';
-    if (avg <= 300) return '일반적인 평균 범위예요';
-    return '조금 느린 편이에요';
+    if (avg <= 150) return '非常快';
+    if (avg <= 220) return '比较快';
+    if (avg <= 300) return '一般平均范围';
+    return '稍微有点慢';
   }
 
   function showSummary() {
@@ -461,15 +453,15 @@
       let cls = 'round-chip';
       if (t === best) cls += ' best';
       if (t === worst && worst !== best) cls += ' worst';
-      return `<div class="${cls}"><div class="r">라운드 ${i + 1}</div>${t} ms</div>`;
+      return `<div class="${cls}"><div class="r">第 ${i + 1} 轮</div>${t} ms</div>`;
     }).join('');
 
     const maxScale = Math.max(avg, 265, 170, 120) * 1.15;
     const barsData = [
-      { label: '당신의 평균', value: avg, cls: 'you' },
-      { label: '일반인 평균', value: 265, cls: '' },
-      { label: '프로게이머 평균', value: 170, cls: '' },
-      { label: '세계 기록', value: 120, cls: '' },
+      { label: '你的平均', value: avg, cls: 'you' },
+      { label: '普通人平均', value: 265, cls: '' },
+      { label: '职业玩家平均', value: 170, cls: '' },
+      { label: '世界纪录', value: 120, cls: '' },
     ];
     const barsHtml = barsData.map(b => `
       <div class="bar-row">
@@ -480,13 +472,13 @@
 
     setStage('round', `
       <div class="summary">
-        <h2>테스트 완료 🎉 평균 ${avg} ms</h2>
+        <h2>测试完成 🎉 平均 ${avg} ms</h2>
         <div class="grade">${gradeFor(avg)}</div>
         <div class="round-table">${roundTableHtml}</div>
         <div class="bars">${barsHtml}</div>
         <div class="summary-actions">
-          <button id="retryBtn">다시 도전</button>
-          <button id="changeRoundsBtn" class="secondary">라운드 수 변경</button>
+          <button id="retryBtn">再次挑战</button>
+          <button id="changeRoundsBtn" class="secondary">更改轮数</button>
         </div>
       </div>
     `);
@@ -507,7 +499,7 @@
     if (state === STATE.WAIT) {
       clearTimeout(timeoutId);
       state = STATE.EARLY;
-      setStage('early', `<div class="big">너무 빨랐어요!</div><div class="small">다시 클릭하면 이번 라운드를 재시도합니다</div>`);
+      setStage('early', `<div class="big">太早了!</div><div class="small">再次点击可重试本轮</div>`);
       return;
     }
 

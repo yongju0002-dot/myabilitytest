@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CPS 클릭 속도 테스트 | 능력 테스트</title>
-<meta name="description" content="제한 시간 안에 얼마나 빠르게 클릭할 수 있나요? 무료 CPS(초당 클릭 수) 테스트, 실시간 그래프로 확인하세요.">
-<link rel="canonical" href="https://myabilitytest.com/skill-test/games/cps.html">
+<title>CPS Click Speed Test | Ability Test</title>
+<meta name="description" content="How fast can you click within the time limit? Free CPS (clicks per second) test with a real-time graph.">
+<link rel="canonical" href="https://myabilitytest.com/en/skill-test/games/cps.html">
 <link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/cps.html">
 <link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/cps.html">
 <link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/cps.html">
@@ -15,22 +15,22 @@
 </head>
 <body>
   <div class="wrap">
-    <a class="back-link" href="../../index.html">← 메인으로</a>
+    <a class="back-link" href="/en/index.html">← Back to Main</a>
     <div class="lang-switch">
-      <a class="active" href="/skill-test/games/cps.html">한국어</a>
-      <a href="/en/skill-test/games/cps.html">English</a>
+      <a href="/skill-test/games/cps.html">한국어</a>
+      <a class="active" href="/en/skill-test/games/cps.html">English</a>
       <a href="/ja/skill-test/games/cps.html">日本語</a>
       <a href="/zh/skill-test/games/cps.html">中文</a>
     </div>
-    <h1>🖱️ CPS 클릭 속도 테스트</h1>
-    <p class="sub">제한 시간 동안 최대한 빠르게 클릭하세요!</p>
+    <h1>🖱️ CPS Click Speed Test</h1>
+    <p class="sub">Click as fast as you can within the time limit!</p>
 
     <div class="duration-select" id="durationSelect"></div>
 
     <div class="level-card">
-      <div class="label">남은 시간</div>
+      <div class="label">Time left</div>
       <div class="countdown-num" id="timeLeft">5.0</div>
-      <div class="sub" id="clickCountLine">클릭 수: 0 · 실시간 CPS: 0.0</div>
+      <div class="sub" id="clickCountLine">Clicks: 0 · Live CPS: 0.0</div>
       <canvas class="cps-graph" id="cpsGraph"></canvas>
     </div>
 
@@ -43,28 +43,28 @@
       <div class="desc" id="resultDesc"></div>
       <table class="grade-table" id="gradeTable"></table>
       <div class="btn-row">
-        <button class="btn" id="retryBtn">다시 하기</button>
-        <button class="btn share" id="shareBtn">결과 공유하기</button>
+        <button class="btn" id="retryBtn">Try again</button>
+        <button class="btn share" id="shareBtn">Share result</button>
       </div>
     </div>
 
     <div class="stats">
       <div class="stat-box">
-        <div class="label" id="statCountLabel">이 시간 플레이</div>
+        <div class="label" id="statCountLabel">Plays at this duration</div>
         <div class="value" id="statCount">0</div>
       </div>
       <div class="stat-box">
-        <div class="label">이 시간 최고 CPS</div>
+        <div class="label">Best CPS at this duration</div>
         <div class="value" id="statBest">-</div>
       </div>
       <div class="stat-box">
-        <div class="label">이 시간 최고 클릭</div>
+        <div class="label">Best clicks at this duration</div>
         <div class="value" id="statBestClicks">-</div>
       </div>
     </div>
 
     <div class="info-box">
-      CPS = 클릭 수 ÷ 시간(초). 1~3초처럼 짧은 테스트는 순간 폭발력이라 CPS가 더 높게 나오는 경향이 있어요.
+      CPS = clicks ÷ time (seconds). Shorter tests like 1–3s tend to show higher CPS due to burst speed.
     </div>
   </div>
 
@@ -91,13 +91,13 @@
   let samples = [];
 
   const GRADES = [
-    { key: 'SS', min: 12, label: 'SS · 초고속' },
-    { key: 'S', min: 10, label: 'S · 매우 빠름' },
-    { key: 'A', min: 8, label: 'A · 빠름' },
-    { key: 'B', min: 6, label: 'B · 평균 이상' },
-    { key: 'C', min: 4, label: 'C · 평균' },
-    { key: 'D', min: 2, label: 'D · 느긋함' },
-    { key: 'F', min: 0, label: 'F · 매우 느긋함' },
+    { key: 'SS', min: 12, label: 'SS · Ultra fast' },
+    { key: 'S', min: 10, label: 'S · Very fast' },
+    { key: 'A', min: 8, label: 'A · Fast' },
+    { key: 'B', min: 6, label: 'B · Above average' },
+    { key: 'C', min: 4, label: 'C · Average' },
+    { key: 'D', min: 2, label: 'D · Relaxed' },
+    { key: 'F', min: 0, label: 'F · Very relaxed' },
   ];
 
   function getDurStats(d) {
@@ -134,7 +134,7 @@
       const btn = document.createElement('button');
       btn.dataset.d = d;
       if (d === duration) btn.classList.add('active');
-      btn.innerHTML = `<span>${d}초</span><span class="d-best">${ds.plays ? ds.bestCps.toFixed(1) + ' CPS' : '-'}</span>`;
+      btn.innerHTML = `<span>${d}s</span><span class="d-best">${ds.plays ? ds.bestCps.toFixed(1) + ' CPS' : '-'}</span>`;
       btn.addEventListener('click', () => {
         if (running) return;
         duration = d;
@@ -148,7 +148,7 @@
 
   function renderStats() {
     const ds = getDurStats(duration);
-    document.getElementById('statCountLabel').textContent = duration + '초 플레이';
+    document.getElementById('statCountLabel').textContent = duration + 's plays';
     document.getElementById('statCount').textContent = ds.plays;
     document.getElementById('statBest').textContent = ds.plays ? ds.bestCps.toFixed(1) : '-';
     document.getElementById('statBestClicks').textContent = ds.plays ? ds.bestClicks : '-';
@@ -181,7 +181,7 @@
     const left = Math.max(0, duration - elapsed);
     timeLeftEl.textContent = left.toFixed(1);
     const liveCps = elapsed > 0 ? clicks / elapsed : 0;
-    clickCountLine.textContent = `클릭 수: ${clicks} · 실시간 CPS: ${liveCps.toFixed(1)}`;
+    clickCountLine.textContent = `Clicks: ${clicks} · Live CPS: ${liveCps.toFixed(1)}`;
     if (elapsed > 0.03) samples.push({ t: Math.min(elapsed, duration), cps: liveCps });
     drawGraph();
     if (left <= 0) {
@@ -198,16 +198,16 @@
     samples = [];
     startTime = performance.now();
     resizeGraph();
-    clickCountLine.textContent = '클릭 수: 1 · 실시간 CPS: 0.0';
+    clickCountLine.textContent = 'Clicks: 1 · Live CPS: 0.0';
     resultPanel.classList.remove('show');
-    clickPad.textContent = '클릭! 클릭! 클릭!';
+    clickPad.textContent = 'CLICK! CLICK! CLICK!';
     rafId = requestAnimationFrame(tick);
   }
 
   function renderGradeTable(cps) {
     const grade = gradeFor(cps);
     const table = document.getElementById('gradeTable');
-    table.innerHTML = '<tr><th>등급</th><th>기준 CPS</th></tr>' +
+    table.innerHTML = '<tr><th>Grade</th><th>CPS threshold</th></tr>' +
       GRADES.map(g => `<tr class="${g.key === grade.key ? 'current-row' : ''}"><td>${g.label}</td><td>${g.min}+</td></tr>`).join('');
   }
 
@@ -216,7 +216,7 @@
     finished = true;
     cancelAnimationFrame(rafId);
     timeLeftEl.textContent = '0.0';
-    clickPad.textContent = '다시 시작하려면 아래 버튼';
+    clickPad.textContent = 'Press the button below to restart';
 
     const cps = clicks / duration;
     const ds = getDurStats(duration);
@@ -232,10 +232,10 @@
     const stars = starsFor(cps);
     document.getElementById('resultTitle').textContent = cps.toFixed(1) + ' CPS';
     document.getElementById('resultStars').textContent = '★'.repeat(stars) + '☆'.repeat(5 - stars);
-    document.getElementById('resultDesc').textContent = `총 클릭 ${clicks}회 / ${duration}초 — ${grade.label}`;
+    document.getElementById('resultDesc').textContent = `${clicks} clicks / ${duration}s — ${grade.label}`;
     renderGradeTable(cps);
     resultPanel.classList.add('show');
-    resultPanel.dataset.share = `CPS 테스트에서 ${cps.toFixed(1)} CPS (${clicks}클릭/${duration}초, ${grade.key}등급) 기록! 너도 해봐 → `;
+    resultPanel.dataset.share = `I got ${cps.toFixed(1)} CPS (${clicks} clicks/${duration}s, grade ${grade.key}) on the CPS test! Try it yourself → `;
   }
 
   clickPad.addEventListener('click', (e) => {
@@ -255,7 +255,7 @@
     resultPanel.classList.remove('show');
     clickPad.textContent = 'START';
     timeLeftEl.textContent = duration.toFixed(1);
-    clickCountLine.textContent = '클릭 수: 0 · 실시간 CPS: 0.0';
+    clickCountLine.textContent = 'Clicks: 0 · Live CPS: 0.0';
     graphCtx.clearRect(0, 0, graphCanvas.width, graphCanvas.height);
   });
 

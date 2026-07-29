@@ -96,11 +96,15 @@
         <div class="value" id="statAvg">-</div>
       </div>
     </div>
+
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 历代记录排行(最多30位)</h2>
+    <div id="topLeaderboard"></div>
   </div>
 
 <script src="/skill-test/common.js"></script>
 <script>
   const STORE_KEY = 'skillTimeStopStats';
+  const LB_KEY = 'skillTimeStopLeaderboardV1';
   let stats = loadStats(STORE_KEY, { count: 0, best: null, sum: 0 });
 
   const playerSelect = document.getElementById('playerSelect');
@@ -219,6 +223,17 @@
     resultPanel.dataset.share = playerCount === 1
       ? `在时间停止游戏中,目标${targetTime}秒,误差${best.diff.toFixed(2)}秒!你也来试试 → `
       : `参与者${best.player}以${best.diff.toFixed(2)}秒的误差在时间停止游戏中获胜!你也来试试 → `;
+
+    const lbList = addToLeaderboard(LB_KEY, { value: best.diff, targetTime, playerCount, date: Date.now() }, true);
+    renderTopLeaderboard(lbList);
+  }
+
+  function renderTopLeaderboard(list) {
+    renderLeaderboard('topLeaderboard', list, (entry) => {
+      const d = new Date(entry.date);
+      const dateStr = `${d.getMonth() + 1}/${d.getDate()}`;
+      return `<span class="lb-name">误差${entry.value.toFixed(2)}秒</span><span class="lb-detail">目标${entry.targetTime}秒 · ${entry.playerCount}人 · ${dateStr}</span>`;
+    }, '还没有记录。快来挑战第一次吧!');
   }
 
   document.getElementById('startGameBtn').addEventListener('click', startGame);
@@ -231,6 +246,7 @@
   });
 
   renderStats();
+  renderTopLeaderboard(loadStats(LB_KEY, []));
 </script>
 </body>
 </html>

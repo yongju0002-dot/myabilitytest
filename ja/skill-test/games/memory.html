@@ -64,11 +64,15 @@
         <div class="value" id="statBestTiles">-</div>
       </div>
     </div>
+
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 歴代記録ランキング(最大30位)</h2>
+    <div id="topLeaderboard"></div>
   </div>
 
 <script src="/skill-test/common.js"></script>
 <script>
   const STORE_KEY = 'skillMemoryStats';
+  const LB_KEY = 'skillMemoryLeaderboardV1';
   let stats = loadStats(STORE_KEY, { count: 0, best: 0 });
   const grid = document.getElementById('memoryGrid');
   const resultPanel = document.getElementById('resultPanel');
@@ -204,6 +208,17 @@
     renderGradeTable(reached);
     resultPanel.classList.add('show');
     resultPanel.dataset.share = `瞬間記憶力テストでレベル${reached}達成!(${grade.key}ランク)あなたもどうぞ → `;
+
+    const lbList = addToLeaderboard(LB_KEY, { value: reached, date: Date.now() }, false);
+    renderTopLeaderboard(lbList);
+  }
+
+  function renderTopLeaderboard(list) {
+    renderLeaderboard('topLeaderboard', list, (entry) => {
+      const d = new Date(entry.date);
+      const dateStr = `${d.getMonth() + 1}/${d.getDate()}`;
+      return `<span class="lb-name">レベル${entry.value}</span><span class="lb-detail">${dateStr}</span>`;
+    }, 'まだ記録がありません。最初の挑戦をしてみましょう!');
   }
 
   function reset() {
@@ -226,6 +241,7 @@
   });
 
   renderStats();
+  renderTopLeaderboard(loadStats(LB_KEY, []));
 </script>
 </body>
 </html>

@@ -66,12 +66,16 @@
     <div class="info-box">
       CPS = 点击数 ÷ 时间(秒)。像1~3秒这样的短测试,因为是爆发力所以CPS往往更高。
     </div>
+
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 历代记录排行(最多30位)</h2>
+    <div id="topLeaderboard"></div>
   </div>
 
 <script src="/skill-test/common.js"></script>
 <script>
   const DURATIONS = [1, 3, 5, 10, 15, 30, 60];
   const STORE_KEY = 'skillCpsStatsV2';
+  const LB_KEY = 'skillCpsLeaderboardV1';
   let allStats = loadStats(STORE_KEY, {});
 
   const durationSelect = document.getElementById('durationSelect');
@@ -236,6 +240,17 @@
     renderGradeTable(cps);
     resultPanel.classList.add('show');
     resultPanel.dataset.share = `我在CPS测试中获得了${cps.toFixed(1)} CPS(${clicks}次点击/${duration}秒,${grade.key}等级)!你也来试试 → `;
+
+    const lbList = addToLeaderboard(LB_KEY, { value: cps, duration, date: Date.now() }, false);
+    renderTopLeaderboard(lbList);
+  }
+
+  function renderTopLeaderboard(list) {
+    renderLeaderboard('topLeaderboard', list, (entry) => {
+      const d = new Date(entry.date);
+      const dateStr = `${d.getMonth() + 1}/${d.getDate()}`;
+      return `<span class="lb-name">${entry.value.toFixed(1)} CPS</span><span class="lb-detail">${entry.duration}秒 · ${dateStr}</span>`;
+    }, '还没有记录。快来挑战第一次吧!');
   }
 
   clickPad.addEventListener('click', (e) => {
@@ -268,6 +283,7 @@
   renderDurationButtons();
   renderStats();
   resizeGraph();
+  renderTopLeaderboard(loadStats(LB_KEY, []));
 </script>
 </body>
 </html>

@@ -96,11 +96,15 @@
         <div class="value" id="statAvg">-</div>
       </div>
     </div>
+
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 역대 기록 순위 (최대 30위)</h2>
+    <div id="topLeaderboard"></div>
   </div>
 
 <script src="/skill-test/common.js"></script>
 <script>
   const STORE_KEY = 'skillTimeStopStats';
+  const LB_KEY = 'skillTimeStopLeaderboardV1';
   let stats = loadStats(STORE_KEY, { count: 0, best: null, sum: 0 });
 
   const playerSelect = document.getElementById('playerSelect');
@@ -219,6 +223,17 @@
     resultPanel.dataset.share = playerCount === 1
       ? `시간 정지 게임에서 목표 ${targetTime}초 중 오차 ${best.diff.toFixed(2)}초! 너도 해봐 → `
       : `시간 정지 게임에서 참가자 ${best.player}이(가) 오차 ${best.diff.toFixed(2)}초로 우승! 너도 해봐 → `;
+
+    const lbList = addToLeaderboard(LB_KEY, { value: best.diff, targetTime, playerCount, date: Date.now() }, true);
+    renderTopLeaderboard(lbList);
+  }
+
+  function renderTopLeaderboard(list) {
+    renderLeaderboard('topLeaderboard', list, (entry) => {
+      const d = new Date(entry.date);
+      const dateStr = `${d.getMonth() + 1}/${d.getDate()}`;
+      return `<span class="lb-name">오차 ${entry.value.toFixed(2)}초</span><span class="lb-detail">목표 ${entry.targetTime}초 · ${entry.playerCount}인 · ${dateStr}</span>`;
+    }, '아직 기록이 없어요. 첫 도전을 해보세요!');
   }
 
   document.getElementById('startGameBtn').addEventListener('click', startGame);
@@ -231,6 +246,7 @@
   });
 
   renderStats();
+  renderTopLeaderboard(loadStats(LB_KEY, []));
 </script>
 </body>
 </html>

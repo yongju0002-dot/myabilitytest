@@ -267,6 +267,21 @@
     font-size: 12px;
     margin-top: 24px;
   }
+
+  .leaderboard { list-style: none; padding: 0; margin: 16px 0; }
+  .leaderboard li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--card-bg-2);
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+  }
+  .leaderboard li.winner { outline: 2px solid #fbbf24; background: rgba(251,191,36,0.12); }
+  .leaderboard .rank { font-size: 20px; width: 28px; text-align: center; }
+  .leaderboard .lb-name { flex: 1; font-weight: 700; }
+  .leaderboard .lb-detail { font-size: 13px; color: var(--text-dim); text-align: right; }
 </style>
 </head>
 <body>
@@ -333,6 +348,9 @@
       <p>한 번의 기록보다 5회 이상 측정한 평균값을 보는 것이 정확합니다. 손이 차갑거나 졸릴 때, 무선 마우스나 모바일 터치로 측정할 때는 지연이 더해질 수 있으니 같은 기기·환경에서 여러 번 반복해 비교해보세요. 화면이 바뀌기 전에 미리 예측해서 누르면 정확한 반응속도로 볼 수 없습니다.</p>
 
     </section>
+
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 역대 기록 순위 (최대 30위)</h2>
+    <div id="topLeaderboard"></div>
   </div>
 
 <script>
@@ -352,7 +370,35 @@
   let roundTimes = [];
 
   const STORE_KEY = 'reactionStatsV2';
+  const LB_KEY = 'reactionLeaderboardV1';
   let stats = JSON.parse(localStorage.getItem(STORE_KEY) || 'null') || { count: 0, sum: 0, best: null };
+
+  function loadLB() {
+    try { return JSON.parse(localStorage.getItem(LB_KEY) || '[]'); } catch (e) { return []; }
+  }
+
+  function addToLeaderboard(value) {
+    let list = loadLB();
+    list.push({ value, date: Date.now() });
+    list.sort((a, b) => a.value - b.value);
+    list = list.slice(0, 30);
+    localStorage.setItem(LB_KEY, JSON.stringify(list));
+    return list;
+  }
+
+  function renderTopLeaderboard(list) {
+    const el = document.getElementById('topLeaderboard');
+    if (!list.length) {
+      el.innerHTML = '<p style="text-align:center;color:var(--text-dim);font-size:13px;">아직 기록이 없어요. 첫 도전을 해보세요!</p>';
+      return;
+    }
+    el.innerHTML = '<ul class="leaderboard">' + list.map((entry, i) => {
+      const medal = ['🥇', '🥈', '🥉'][i] || (i + 1) + '.';
+      const d = new Date(entry.date);
+      const dateStr = `${d.getMonth() + 1}/${d.getDate()}`;
+      return `<li class="${i === 0 ? 'winner' : ''}"><span class="rank">${medal}</span><span class="lb-name">${entry.value} ms</span><span class="lb-detail">${dateStr}</span></li>`;
+    }).join('') + '</ul>';
+  }
 
   function saveStats(ms) {
     stats.count += 1;
@@ -501,6 +547,9 @@
       e.stopPropagation();
       showSetup();
     });
+
+    const lbList = addToLeaderboard(avg);
+    renderTopLeaderboard(lbList);
   }
 
   function handleClick() {
@@ -539,6 +588,7 @@
 
   renderStats();
   showSetup();
+  renderTopLeaderboard(loadLB());
 </script>
 </body>
 </html>

@@ -66,6 +66,28 @@ function saveStats(key, obj) {
   localStorage.setItem(key, JSON.stringify(obj));
 }
 
+function addToLeaderboard(key, entry, betterIsLower, max = 30) {
+  let list = loadStats(key, []);
+  list.push(entry);
+  list.sort((a, b) => betterIsLower ? a.value - b.value : b.value - a.value);
+  list = list.slice(0, max);
+  saveStats(key, list);
+  return list;
+}
+
+function renderLeaderboard(containerId, list, formatRow, emptyText) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  if (!list || !list.length) {
+    el.innerHTML = `<p style="text-align:center;color:var(--text-dim);font-size:13px;">${emptyText}</p>`;
+    return;
+  }
+  el.innerHTML = '<ul class="leaderboard">' + list.map((entry, i) => {
+    const medal = ['🥇', '🥈', '🥉'][i] || (i + 1) + '.';
+    return `<li class="${i === 0 ? 'winner' : ''}"><span class="rank">${medal}</span>${formatRow(entry, i)}</li>`;
+  }).join('') + '</ul>';
+}
+
 let _audioCtx = null;
 function getAudioCtx() {
   if (!_audioCtx) _audioCtx = new (window.AudioContext || window.webkitAudioContext)();

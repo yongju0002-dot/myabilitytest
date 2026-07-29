@@ -64,11 +64,15 @@
         <div class="value" id="statBestTiles">-</div>
       </div>
     </div>
+
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 역대 기록 순위 (최대 30위)</h2>
+    <div id="topLeaderboard"></div>
   </div>
 
 <script src="/skill-test/common.js"></script>
 <script>
   const STORE_KEY = 'skillMemoryStats';
+  const LB_KEY = 'skillMemoryLeaderboardV1';
   let stats = loadStats(STORE_KEY, { count: 0, best: 0 });
   const grid = document.getElementById('memoryGrid');
   const resultPanel = document.getElementById('resultPanel');
@@ -204,6 +208,17 @@
     renderGradeTable(reached);
     resultPanel.classList.add('show');
     resultPanel.dataset.share = `순간 기억력 테스트에서 ${reached}레벨 달성! (${grade.key}등급) 너도 해봐 → `;
+
+    const lbList = addToLeaderboard(LB_KEY, { value: reached, date: Date.now() }, false);
+    renderTopLeaderboard(lbList);
+  }
+
+  function renderTopLeaderboard(list) {
+    renderLeaderboard('topLeaderboard', list, (entry) => {
+      const d = new Date(entry.date);
+      const dateStr = `${d.getMonth() + 1}/${d.getDate()}`;
+      return `<span class="lb-name">${entry.value}레벨</span><span class="lb-detail">${dateStr}</span>`;
+    }, '아직 기록이 없어요. 첫 도전을 해보세요!');
   }
 
   function reset() {
@@ -226,6 +241,7 @@
   });
 
   renderStats();
+  renderTopLeaderboard(loadStats(LB_KEY, []));
 </script>
 </body>
 </html>

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Time Sense Test | Ability Test</title>
-<meta name="description" content="Guess how much time passed without seeing any numbers. Between 0.5s and 10s — how accurate is your time sense? Free test.">
+<meta name="description" content="Guess how much time passed without seeing any numbers. How accurate is your time sense? Free test.">
 <link rel="canonical" href="https://myabilitytest.com/en/skill-test/games/time-guess.html">
 <link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/time-guess.html">
 <link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/time-guess.html">
@@ -23,7 +23,7 @@
       <a href="/zh/skill-test/games/time-guess.html">中文</a>
     </div>
     <h1>🧭 Time Sense Test</h1>
-    <p class="sub">A hidden amount of time between 0.5s and 10.0s passes without showing you how long. Once it stops, guess the time!</p>
+    <p class="sub">A hidden amount of time passes without showing you how long. Once it stops, guess the time!</p>
 
     <div id="setupScreen">
       <div class="level-card" style="text-align:left;">
@@ -120,7 +120,7 @@
   }
 
   function startGame() {
-    actualTime = Math.round((0.5 + Math.random() * 9.5) * 10) / 10;
+    actualTime = Math.round((1 + Math.random() * 9) * 10) / 10;
     setupScreen.style.display = 'none';
     resultPanel.classList.remove('show');
     playScreen.style.display = '';

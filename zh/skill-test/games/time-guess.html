@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>时间感知测试 | 能力测试</title>
-<meta name="description" content="不看数字,猜猜流逝的时间。0.5秒~10秒之间,你的时间感知有多准确?免费测试。">
+<meta name="description" content="不看数字,猜猜流逝的时间。你的时间感知有多准确?免费测试。">
 <link rel="canonical" href="https://myabilitytest.com/zh/skill-test/games/time-guess.html">
 <link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/time-guess.html">
 <link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/time-guess.html">
@@ -23,7 +23,7 @@
       <a class="active" href="/zh/skill-test/games/time-guess.html">中文</a>
     </div>
     <h1>🧭 时间感知测试</h1>
-    <p class="sub">0.5秒~10.0秒之间,不显示流逝了多久。停止后猜猜时间吧!</p>
+    <p class="sub">不显示流逝了多久时间。停止后猜猜时间吧!</p>
 
     <div id="setupScreen">
       <div class="level-card" style="text-align:left;">
@@ -120,7 +120,7 @@
   }
 
   function startGame() {
-    actualTime = Math.round((0.5 + Math.random() * 9.5) * 10) / 10;
+    actualTime = Math.round((1 + Math.random() * 9) * 10) / 10;
     setupScreen.style.display = 'none';
     resultPanel.classList.remove('show');
     playScreen.style.display = '';

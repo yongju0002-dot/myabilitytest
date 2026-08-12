@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>時間感覚テスト | 能力テスト</title>
-<meta name="description" content="数字を見ずに経過した時間を当ててみましょう。0.5秒〜10秒の間、あなたの時間感覚はどれくらい正確?無料テスト。">
+<meta name="description" content="数字を見ずに経過した時間を当ててみましょう。あなたの時間感覚はどれくらい正確?無料テスト。">
 <link rel="canonical" href="https://myabilitytest.com/ja/skill-test/games/time-guess.html">
 <link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/time-guess.html">
 <link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/time-guess.html">
@@ -23,7 +23,7 @@
       <a href="/zh/skill-test/games/time-guess.html">中文</a>
     </div>
     <h1>🧭 時間感覚テスト</h1>
-    <p class="sub">0.5秒〜10.0秒の間、どれくらい経ったか見えないまま時間が流れます。止まったら時間を当ててみましょう!</p>
+    <p class="sub">どれくらい経ったか見えないまま時間が流れます。止まったら時間を当ててみましょう!</p>
 
     <div id="setupScreen">
       <div class="level-card" style="text-align:left;">
@@ -120,7 +120,7 @@
   }
 
   function startGame() {
-    actualTime = Math.round((0.5 + Math.random() * 9.5) * 10) / 10;
+    actualTime = Math.round((1 + Math.random() * 9) * 10) / 10;
     setupScreen.style.display = 'none';
     resultPanel.classList.remove('show');
     playScreen.style.display = '';

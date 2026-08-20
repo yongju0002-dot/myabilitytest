@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>黑猩猩测试 | 能力测试</title>
+<meta name="description" content="按顺序记住数字并点击。免费测试,挑战黑猩猩阿汤的瞬间记忆力。">
+<link rel="canonical" href="https://myabilitytest.com/zh/skill-test/games/chimp-test.html">
+<link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/chimp-test.html">
+<link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/chimp-test.html">
+<link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/chimp-test.html">
+<link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/chimp-test.html">
+<link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/skill-test/games/chimp-test.html">
+<link rel="stylesheet" href="/skill-test/style.css">
+<style>
+  .pick-cell { touch-action: manipulation; font-weight: 700; font-size: 15px; }
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back-link" href="/zh/index.html">← 返回主页</a>
+    <div class="lang-switch">
+      <a href="/skill-test/games/chimp-test.html">한국어</a>
+      <a href="/en/skill-test/games/chimp-test.html">English</a>
+      <a href="/ja/skill-test/games/chimp-test.html">日本語</a>
+      <a class="active" href="/zh/skill-test/games/chimp-test.html">中文</a>
+    </div>
+    <h1>🐵 黑猩猩测试</h1>
+    <p class="sub">数字会同时出现,点击第一个数字的瞬间其余数字全部隐藏。请按顺序点击。</p>
+
+    <div id="introScreen">
+      <div class="note-box" style="text-align:center;">
+        从1开始的数字会同时出现在格子上。点击"1"的瞬间,其余数字会全部隐藏,你需要记住
+        位置并按顺序点击。共有3条生命,答错可以重新挑战同一关。
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="startBtn">开始</button>
+      </div>
+    </div>
+
+    <div id="playScreen" style="display:none;">
+      <div class="level-card">
+        <div class="label">要记住的数字个数</div>
+        <div class="num" id="levelNum">4</div>
+        <div class="sub" id="livesSub">❤️❤️❤️</div>
+      </div>
+      <div class="pick-grid" id="chimpGrid"></div>
+    </div>
+
+    <div id="resultPanel" class="result-panel">
+      <div class="emoji">🐵</div>
+      <h2 id="resultTitle"></h2>
+      <div class="desc" id="resultDesc"></div>
+      <div class="percentile" id="resultCompare">黑猩猩阿汤以80%的正确率记住了9个数字。</div>
+      <table class="grade-table" id="gradeTable"></table>
+      <div class="btn-row">
+        <button class="btn" id="retryBtn">再挑战一次</button>
+        <button class="btn share" id="shareBtn">分享结果</button>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat-box">
+        <div class="label">挑战次数</div>
+        <div class="value" id="statCount">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">最佳记录</div>
+        <div class="value" id="statBest">-</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">平均记录</div>
+        <div class="value" id="statAvg">-</div>
+      </div>
+    </div>
+
+    <section class="note-box">
+      <p><strong>什么是阿汤实验?</strong> 京都大学灵长类研究所松沢哲郎研究团队,以黑猩猩
+      阿汤为对象进行的瞬间记忆力实验。屏幕上短暂显示1~9的数字后被白色方块遮住,阿汤能够
+      按顺序准确地点出数字曾经出现的位置,速度和准确率甚至超过受过训练的大学生,当时引起
+      了很大关注。</p>
+      <p>这个实验常被作为展示人类和黑猩猩工作记忆(短暂保持并处理刚看到的信息的能力)
+      差异的代表性案例。瞬间记忆力是指短时间内保持并运用视觉信息的能力,广泛应用于心算、
+      对话、学习等日常生活的各个方面。</p>
+    </section>
+
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 历代记录排行(最多30位)</h2>
+    <div id="topLeaderboard"></div>
+  </div>
+
+<script src="/skill-test/common.js"></script>
+<script>
+  const STORE_KEY = 'skillChimpStats';
+  const LB_KEY = 'skillChimpLeaderboardV1';
+  let stats = loadStats(STORE_KEY, { count: 0, best: 0, sum: 0 });
+
+  const GRADES = [
+    { key: 'TOP1', min: 12, label: '前1%' },
+    { key: 'GREAT', min: 10, label: '优秀' },
+    { key: 'CHIMP', min: 9, label: '黑猩猩级' },
+    { key: 'AVG', min: 7, label: '平均水平' },
+    { key: 'BELOW', min: 0, label: '低于平均' },
+  ];
+
+  function gradeFor(score) {
+    return GRADES.find(g => score >= g.min) || GRADES[GRADES.length - 1];
+  }
+
+  const introScreen = document.getElementById('introScreen');
+  const playScreen = document.getElementById('playScreen');
+  const resultPanel = document.getElementById('resultPanel');
+  const grid = document.getElementById('chimpGrid');
+  const levelNum = document.getElementById('levelNum');
+  const livesSub = document.getElementById('livesSub');
+
+  let cellsEls = [];
+  let totalCells = 0;
+  let currentN = 4;
+  let lives = 3;
+  let cellToNumber = {};
+  let nextExpected = 1;
+  let locked = false;
+
+  function renderStats() {
+    document.getElementById('statCount').textContent = stats.count;
+    document.getElementById('statBest').textContent = stats.best || '-';
+    document.getElementById('statAvg').textContent = stats.count ? (stats.sum / stats.count).toFixed(1) : '-';
+  }
+
+  function buildGrid() {
+    const isMobile = window.innerWidth < 768;
+    const cols = 5;
+    const rows = isMobile ? 6 : 8;
+    totalCells = cols * rows;
+    grid.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+    grid.innerHTML = '';
+    for (let i = 0; i < totalCells; i++) {
+      const cell = document.createElement('div');
+      cell.className = 'pick-cell';
+      cell.dataset.i = i;
+      cell.addEventListener('pointerdown', (e) => {
+        e.preventDefault();
+        pick(i, cell);
+      });
+      grid.appendChild(cell);
+    }
+    cellsEls = [...grid.children];
+  }
+
+  function newRound() {
+    if (currentN > totalCells) {
+      finish();
+      return;
+    }
+    locked = false;
+    nextExpected = 1;
+    cellToNumber = {};
+    const positions = new Set();
+    while (positions.size < currentN) positions.add(Math.floor(Math.random() * totalCells));
+    const posArr = shuffle([...positions]);
+    posArr.forEach((cellIdx, idx) => { cellToNumber[cellIdx] = idx + 1; });
+
+    cellsEls.forEach((cell, i) => {
+      cell.className = 'pick-cell';
+      cell.textContent = cellToNumber[i] !== undefined ? cellToNumber[i] : '';
+    });
+
+    levelNum.textContent = currentN;
+    livesSub.textContent = '❤️'.repeat(lives) + '🤍'.repeat(3 - lives);
+  }
+
+  function pick(i, cell) {
+    if (locked) return;
+    const num = cellToNumber[i];
+
+    if (num === nextExpected) {
+      cell.classList.add('tier-common');
+      cell.textContent = num;
+      if (num === 1) {
+        cellsEls.forEach((c, idx) => { if (idx !== i) c.textContent = ''; });
+      }
+      nextExpected += 1;
+      if (nextExpected > currentN) {
+        locked = true;
+        setTimeout(() => {
+          currentN += 1;
+          newRound();
+        }, 500);
+      }
+      return;
+    }
+
+    locked = true;
+    cell.classList.add('tier-bomb');
+    cell.textContent = num !== undefined ? num : '✕';
+    const correctCellIdx = Object.keys(cellToNumber).find(k => cellToNumber[k] === nextExpected);
+    if (correctCellIdx !== undefined && parseInt(correctCellIdx, 10) !== i) {
+      const correctCell = cellsEls[parseInt(correctCellIdx, 10)];
+      correctCell.classList.add('tier-jackpot');
+      correctCell.textContent = nextExpected;
+    }
+    lives -= 1;
+    livesSub.textContent = '❤️'.repeat(Math.max(lives, 0)) + '🤍'.repeat(3 - Math.max(lives, 0));
+
+    setTimeout(() => {
+      if (lives <= 0) {
+        finish();
+      } else {
+        newRound();
+      }
+    }, 900);
+  }
+
+  function renderGradeTable(score) {
+    const grade = gradeFor(score);
+    const table = document.getElementById('gradeTable');
+    table.innerHTML = '<tr><th>等级</th><th>标准</th></tr>' +
+      GRADES.slice().reverse().map(g => `<tr class="${g.key === grade.key ? 'current-row' : ''}"><td>${g.label}</td><td>${g.min}个以上</td></tr>`).join('');
+  }
+
+  function finish() {
+    playScreen.style.display = 'none';
+    const score = Math.min(currentN, totalCells);
+
+    stats.count += 1;
+    if (score > stats.best) stats.best = score;
+    stats.sum += score;
+    saveStats(STORE_KEY, stats);
+    renderStats();
+
+    const grade = gradeFor(score);
+    document.getElementById('resultTitle').textContent = `记住了${score}个数字!`;
+    document.getElementById('resultDesc').textContent = `${grade.label}。`;
+    renderGradeTable(score);
+    resultPanel.classList.add('show');
+    resultPanel.dataset.share = `我在黑猩猩测试中记住了${score}个数字!(${grade.label}) 黑猩猩阿汤以80%的正确率记住了9个数字。你也来试试 → `;
+
+    const lbList = addToLeaderboard(LB_KEY, { value: score, date: Date.now() }, false);
+    renderTopLeaderboard(lbList);
+  }
+
+  function renderTopLeaderboard(list) {
+    renderLeaderboard('topLeaderboard', list, (entry) => {
+      const d = new Date(entry.date);
+      const dateStr = `${d.getMonth() + 1}/${d.getDate()}`;
+      return `<span class="lb-name">${entry.value}个</span><span class="lb-detail">${dateStr}</span>`;
+    }, '还没有记录。快来挑战第一次吧!');
+  }
+
+  document.getElementById('startBtn').addEventListener('click', () => {
+    currentN = 4;
+    lives = 3;
+    buildGrid();
+    introScreen.style.display = 'none';
+    resultPanel.classList.remove('show');
+    playScreen.style.display = '';
+    newRound();
+  });
+
+  document.getElementById('retryBtn').addEventListener('click', () => {
+    resultPanel.classList.remove('show');
+    introScreen.style.display = '';
+  });
+
+  document.getElementById('shareBtn').addEventListener('click', () => {
+    shareResult((resultPanel.dataset.share || '') + location.href.replace('games/chimp-test.html', ''));
+  });
+
+  renderStats();
+  renderTopLeaderboard(loadStats(LB_KEY, []));
+</script>
+</body>
+</html>

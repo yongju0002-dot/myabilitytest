@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>聴力年齢テスト | 能力テスト</title>
+<meta name="description" content="どこまで高い音が聞こえるかで聴力年齢を推定してみましょう。イヤホン必須、無料の聴力年齢テスト。">
+<link rel="canonical" href="https://myabilitytest.com/ja/skill-test/games/hearing-age.html">
+<link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/hearing-age.html">
+<link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/hearing-age.html">
+<link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/hearing-age.html">
+<link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/hearing-age.html">
+<link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/skill-test/games/hearing-age.html">
+<link rel="stylesheet" href="/skill-test/style.css">
+<style>
+  .warn-box {
+    background: rgba(239,68,68,0.14);
+    border: 1px solid rgba(239,68,68,0.4);
+    border-radius: 14px;
+    padding: 16px 18px;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 18px 0;
+  }
+  .warn-box .warn-title { font-weight: 800; font-size: 16px; margin-bottom: 6px; }
+  .note-box {
+    background: var(--card-bg);
+    border-radius: 14px;
+    padding: 16px 18px;
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin: 14px 0;
+  }
+  .hz-progress {
+    width: 100%;
+    height: 8px;
+    background: var(--card-bg-2);
+    border-radius: 999px;
+    overflow: hidden;
+    margin: 18px 0 6px;
+  }
+  .hz-progress-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 999px;
+    transition: width 0.25s ease;
+    width: 0%;
+  }
+  .hz-progress-label {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+  }
+  .disclaimer {
+    background: var(--card-bg);
+    border-radius: 14px;
+    padding: 14px 16px;
+    font-size: 12px;
+    color: var(--text-dim2);
+    line-height: 1.6;
+    margin-top: 16px;
+  }
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back-link" href="/ja/index.html">← メインへ</a>
+    <div class="lang-switch">
+      <a href="/skill-test/games/hearing-age.html">한국어</a>
+      <a href="/en/skill-test/games/hearing-age.html">English</a>
+      <a class="active" href="/ja/skill-test/games/hearing-age.html">日本語</a>
+      <a href="/zh/skill-test/games/hearing-age.html">中文</a>
+    </div>
+    <h1>👂 聴力年齢テスト</h1>
+    <p class="sub">だんだん高くなる音を聞いて、どこまで聞こえるか確かめてみましょう。</p>
+
+    <div id="introScreen">
+      <div class="warn-box">
+        <div class="warn-title">⚠️ イヤホン・ヘッドホン必須</div>
+        スピーカーでは高音がうまく再生されず、結果が意味をなしません。必ずイヤホンか
+        ヘッドホンを着けてから始めてください。
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="introStartBtn">テストを始める</button>
+      </div>
+    </div>
+
+    <div id="calibScreen" style="display:none;">
+      <div class="level-card">
+        <div class="label">音量を合わせる</div>
+        <div class="num" style="font-size:32px;">🔊 1000Hz</div>
+        <div class="sub">心地よく聞こえるレベルに端末の音量を合わせてください。<br>合わせたら下のボタンを押し、それ以降は音量を変えないでください。</div>
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="calibDoneBtn">聞こえます、始める</button>
+      </div>
+    </div>
+
+    <div id="testScreen" style="display:none;">
+      <div class="hz-progress"><div class="hz-progress-fill" id="hzProgressFill"></div></div>
+      <div class="hz-progress-label" id="hzProgressLabel">1 / 10 段階</div>
+      <div class="level-card">
+        <div class="label">再生中の周波数</div>
+        <div class="num" id="freqNum">8000</div>
+        <div class="sub">Hz</div>
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="heardBtn">聞こえる</button>
+        <button class="btn secondary" id="notHeardBtn">聞こえない</button>
+      </div>
+    </div>
+
+    <div id="resultPanel" class="result-panel">
+      <div class="emoji">👂</div>
+      <h2 id="resultTitle"></h2>
+      <div class="desc" id="resultDesc"></div>
+      <div class="percentile" id="resultComment"></div>
+      <div class="disclaimer">
+        この結果は医学的な診断ではありません。端末・イヤホン・周囲の騒音・ブラウザによって
+        大きく変わることがあります。聴力に不安を感じる場合は耳鼻咽喉科を受診してください。
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="retryBtn">もう一度</button>
+        <button class="btn share" id="shareBtn">結果を共有</button>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat-box">
+        <div class="label">挑戦回数</div>
+        <div class="value" id="statCount">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">最高聴取周波数</div>
+        <div class="value" id="statBest">-</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">平均聴取周波数</div>
+        <div class="value" id="statAvg">-</div>
+      </div>
+    </div>
+
+    <section class="note-box">
+      <p><strong>なぜ年齢を重ねると高音から聞こえにくくなるの?</strong> 耳の奥にある蝸牛には
+      音を神経信号に変える有毛細胞があり、高音を感知する有毛細胞は蝸牛の入り口付近に
+      集まっているため、騒音や加齢の影響を最も早く受けます。そのため加齢性難聴は、
+      高い音から順に聞こえにくくなるのが一般的です。いわゆる「モスキート音」と呼ばれる
+      15~17kHz帯の、ほぼ超音波に近い音が年配の人に聞こえにくいのも同じ仕組みです。</p>
+      <p>ただし、この結果はスピーカー・イヤホンの性能、端末の音量、ブラウザの音声処理、
+      周囲の騒音によって大きく変わるため、あくまで参考程度に楽しんでください。</p>
+    </section>
+
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 歴代記録ランキング(最大30位)</h2>
+    <div id="topLeaderboard"></div>
+  </div>
+
+<script src="/skill-test/common.js"></script>
+<script>
+  const STORE_KEY = 'skillHearingAgeStats';
+  const LB_KEY = 'skillHearingAgeLeaderboardV1';
+  let stats = loadStats(STORE_KEY, { count: 0, best: 0, sum: 0 });
+
+  const FREQS = [8000, 10000, 12000, 14000, 15000, 16000, 17000, 18000, 19000, 20000];
+  const STEP_DURATION = 4;
+
+  const AGE_MAP = [
+    { freq: 20000, age: '18歳以下', comment: '同年代よりも敏感な、とても良い聴力です。' },
+    { freq: 19000, age: '20歳', comment: '若々しく健康的な聴力です。' },
+    { freq: 18000, age: '24歳', comment: 'とても良い方です。' },
+    { freq: 17000, age: '30歳', comment: '平均より良い方です。' },
+    { freq: 16000, age: '35歳', comment: '一般的な範囲です。' },
+    { freq: 15000, age: '40歳', comment: '一般的な範囲です。' },
+    { freq: 14000, age: '45歳', comment: '自然な変化の範囲です。' },
+    { freq: 12000, age: '50歳', comment: '自然な変化の範囲です。' },
+    { freq: 10000, age: '55歳', comment: '高音が少しずつ聞こえにくくなってきている範囲です。' },
+    { freq: 8000, age: '60歳以上', comment: '機器や環境の影響かもしれません。気軽に参考にしてください。' },
+    { freq: 0, age: '60歳以上', comment: '機器や環境の影響かもしれません。気軽に参考にしてください。' },
+  ];
+
+  function ageFor(maxHeard) {
+    return AGE_MAP.find(m => maxHeard >= m.freq) || AGE_MAP[AGE_MAP.length - 1];
+  }
+
+  const introScreen = document.getElementById('introScreen');
+  const calibScreen = document.getElementById('calibScreen');
+  const testScreen = document.getElementById('testScreen');
+  const resultPanel = document.getElementById('resultPanel');
+  const freqNum = document.getElementById('freqNum');
+  const hzProgressFill = document.getElementById('hzProgressFill');
+  const hzProgressLabel = document.getElementById('hzProgressLabel');
+
+  let audioCtx = null;
+  let calibOsc = null, calibGain = null;
+  let stepIndex = 0;
+  let maxHeard = 0;
+
+  function ensureAudioCtx() {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    return audioCtx;
+  }
+
+  function startCalibTone() {
+    const ctx = ensureAudioCtx();
+    calibOsc = ctx.createOscillator();
+    calibGain = ctx.createGain();
+    calibOsc.type = 'sine';
+    calibOsc.frequency.value = 1000;
+    const now = ctx.currentTime;
+    calibGain.gain.setValueAtTime(0, now);
+    calibGain.gain.linearRampToValueAtTime(0.2, now + 0.06);
+    calibOsc.connect(calibGain);
+    calibGain.connect(ctx.destination);
+    calibOsc.start(now);
+  }
+
+  function stopCalibTone() {
+    if (!calibOsc) return;
+    const now = audioCtx.currentTime;
+    calibGain.gain.cancelScheduledValues(now);
+    calibGain.gain.setValueAtTime(calibGain.gain.value, now);
+    calibGain.gain.linearRampToValueAtTime(0, now + 0.06);
+    calibOsc.stop(now + 0.08);
+    calibOsc = null;
+    calibGain = null;
+  }
+
+  function playStep(freq, durationSec) {
+    const ctx = ensureAudioCtx();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = 'sine';
+    osc.frequency.value = freq;
+    const now = ctx.currentTime;
+    gain.gain.setValueAtTime(0, now);
+    gain.gain.linearRampToValueAtTime(0.2, now + 0.06);
+    gain.gain.setValueAtTime(0.2, now + durationSec - 0.06);
+    gain.gain.linearRampToValueAtTime(0, now + durationSec);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start(now);
+    osc.stop(now + durationSec + 0.02);
+  }
+
+  function renderStats() {
+    document.getElementById('statCount').textContent = stats.count;
+    document.getElementById('statBest').textContent = stats.best ? stats.best + ' Hz' : '-';
+    document.getElementById('statAvg').textContent = stats.count ? Math.round(stats.sum / stats.count) + ' Hz' : '-';
+  }
+
+  document.getElementById('introStartBtn').addEventListener('click', () => {
+    ensureAudioCtx();
+    introScreen.style.display = 'none';
+    calibScreen.style.display = '';
+    startCalibTone();
+  });
+
+  document.getElementById('calibDoneBtn').addEventListener('click', () => {
+    stopCalibTone();
+    calibScreen.style.display = 'none';
+    testScreen.style.display = '';
+    stepIndex = 0;
+    maxHeard = 0;
+    runStep();
+  });
+
+  function runStep() {
+    const freq = FREQS[stepIndex];
+    freqNum.textContent = freq;
+    hzProgressFill.style.width = (stepIndex / FREQS.length * 100) + '%';
+    hzProgressLabel.textContent = `${stepIndex + 1} / ${FREQS.length} 段階`;
+    playStep(freq, STEP_DURATION);
+  }
+
+  document.getElementById('heardBtn').addEventListener('click', () => {
+    maxHeard = FREQS[stepIndex];
+    stepIndex += 1;
+    if (stepIndex >= FREQS.length) {
+      finishTest();
+      return;
+    }
+    setTimeout(runStep, 400);
+  });
+
+  document.getElementById('notHeardBtn').addEventListener('click', () => {
+    finishTest();
+  });
+
+  function finishTest() {
+    testScreen.style.display = 'none';
+
+    stats.count += 1;
+    if (maxHeard > stats.best) stats.best = maxHeard;
+    stats.sum += maxHeard;
+    saveStats(STORE_KEY, stats);
+    renderStats();
+
+    const result = ageFor(maxHeard);
+    document.getElementById('resultTitle').textContent = `あなたの聴力年齢は${result.age}`;
+    document.getElementById('resultDesc').textContent = maxHeard > 0
+      ? `最高聴取周波数: ${maxHeard} Hz`
+      : '一番低い段階(8000Hz)から聞こえませんでした。';
+    document.getElementById('resultComment').textContent = result.comment;
+    resultPanel.classList.add('show');
+    resultPanel.dataset.share = `聴力年齢テストの結果は${result.age}!(最高${maxHeard || 8000}Hzまで聴取) あなたもどうぞ → `;
+
+    const lbList = addToLeaderboard(LB_KEY, { value: maxHeard, date: Date.now() }, false);
+    renderTopLeaderboard(lbList);
+  }
+
+  function renderTopLeaderboard(list) {
+    renderLeaderboard('topLeaderboard', list, (entry) => {
+      const d = new Date(entry.date);
+      const dateStr = `${d.getMonth() + 1}/${d.getDate()}`;
+      return `<span class="lb-name">${entry.value} Hz</span><span class="lb-detail">${ageFor(entry.value).age} · ${dateStr}</span>`;
+    }, 'まだ記録がありません。最初の挑戦をしてみましょう!');
+  }
+
+  document.getElementById('retryBtn').addEventListener('click', () => {
+    resultPanel.classList.remove('show');
+    introScreen.style.display = '';
+  });
+
+  document.getElementById('shareBtn').addEventListener('click', () => {
+    shareResult((resultPanel.dataset.share || '') + location.href.replace('games/hearing-age.html', ''));
+  });
+
+  renderStats();
+  renderTopLeaderboard(loadStats(LB_KEY, []));
+</script>
+</body>
+</html>

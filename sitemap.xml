@@ -221,4 +221,41 @@
     <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/time-guess.html"/>
     <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/time-guess.html"/>
   </url>
+
+  <url>
+    <loc>https://myabilitytest.com/skill-test/games/hearing-age.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/hearing-age.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/hearing-age.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/hearing-age.html"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/hearing-age.html"/>
+  </url>
+  <url>
+    <loc>https://myabilitytest.com/en/skill-test/games/hearing-age.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/hearing-age.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/hearing-age.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/hearing-age.html"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/hearing-age.html"/>
+  </url>
+  <url>
+    <loc>https://myabilitytest.com/ja/skill-test/games/hearing-age.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/hearing-age.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/hearing-age.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/hearing-age.html"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/hearing-age.html"/>
+  </url>
+  <url>
+    <loc>https://myabilitytest.com/zh/skill-test/games/hearing-age.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/hearing-age.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/hearing-age.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/hearing-age.html"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/hearing-age.html"/>
+  </url>
 </urlset>

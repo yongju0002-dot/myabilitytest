@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>听力年龄测试 | 能力测试</title>
+<meta name="description" content="测测你能听到多高的声音,估算你的听力年龄。必须佩戴耳机,免费听力年龄测试。">
+<link rel="canonical" href="https://myabilitytest.com/zh/skill-test/games/hearing-age.html">
+<link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/hearing-age.html">
+<link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/hearing-age.html">
+<link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/hearing-age.html">
+<link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/hearing-age.html">
+<link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/skill-test/games/hearing-age.html">
+<link rel="stylesheet" href="/skill-test/style.css">
+<style>
+  .warn-box {
+    background: rgba(239,68,68,0.14);
+    border: 1px solid rgba(239,68,68,0.4);
+    border-radius: 14px;
+    padding: 16px 18px;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 18px 0;
+  }
+  .warn-box .warn-title { font-weight: 800; font-size: 16px; margin-bottom: 6px; }
+  .note-box {
+    background: var(--card-bg);
+    border-radius: 14px;
+    padding: 16px 18px;
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin: 14px 0;
+  }
+  .hz-progress {
+    width: 100%;
+    height: 8px;
+    background: var(--card-bg-2);
+    border-radius: 999px;
+    overflow: hidden;
+    margin: 18px 0 6px;
+  }
+  .hz-progress-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 999px;
+    transition: width 0.25s ease;
+    width: 0%;
+  }
+  .hz-progress-label {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+  }
+  .disclaimer {
+    background: var(--card-bg);
+    border-radius: 14px;
+    padding: 14px 16px;
+    font-size: 12px;
+    color: var(--text-dim2);
+    line-height: 1.6;
+    margin-top: 16px;
+  }
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back-link" href="/zh/index.html">← 返回主页</a>
+    <div class="lang-switch">
+      <a href="/skill-test/games/hearing-age.html">한국어</a>
+      <a href="/en/skill-test/games/hearing-age.html">English</a>
+      <a href="/ja/skill-test/games/hearing-age.html">日本語</a>
+      <a class="active" href="/zh/skill-test/games/hearing-age.html">中文</a>
+    </div>
+    <h1>👂 听力年龄测试</h1>
+    <p class="sub">听着音调逐渐升高的声音,看看你能听到多高。</p>
+
+    <div id="introScreen">
+      <div class="warn-box">
+        <div class="warn-title">⚠️ 必须佩戴耳机</div>
+        扬声器无法准确还原高频声音,测试结果会失去意义。请务必佩戴耳机后再开始。
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="introStartBtn">开始测试</button>
+      </div>
+    </div>
+
+    <div id="calibScreen" style="display:none;">
+      <div class="level-card">
+        <div class="label">调整音量</div>
+        <div class="num" style="font-size:32px;">🔊 1000Hz</div>
+        <div class="sub">请将设备音量调整到听起来舒适的水平。<br>调好后按下方按钮,之后请不要再改变音量。</div>
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="calibDoneBtn">能听到,开始吧</button>
+      </div>
+    </div>
+
+    <div id="testScreen" style="display:none;">
+      <div class="hz-progress"><div class="hz-progress-fill" id="hzProgressFill"></div></div>
+      <div class="hz-progress-label" id="hzProgressLabel">第 1 / 10 阶段</div>
+      <div class="level-card">
+        <div class="label">当前播放频率</div>
+        <div class="num" id="freqNum">8000</div>
+        <div class="sub">Hz</div>
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="heardBtn">听得到</button>
+        <button class="btn secondary" id="notHeardBtn">听不到</button>
+      </div>
+    </div>
+
+    <div id="resultPanel" class="result-panel">
+      <div class="emoji">👂</div>
+      <h2 id="resultTitle"></h2>
+      <div class="desc" id="resultDesc"></div>
+      <div class="percentile" id="resultComment"></div>
+      <div class="disclaimer">
+        此结果并非医学诊断。会因设备、耳机、周围噪音和浏览器不同而有很大差异。如果感觉听力
+        有异常,请前往耳鼻喉科检查。
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="retryBtn">再挑战一次</button>
+        <button class="btn share" id="shareBtn">分享结果</button>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat-box">
+        <div class="label">挑战次数</div>
+        <div class="value" id="statCount">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">最高听取频率</div>
+        <div class="value" id="statBest">-</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">平均听取频率</div>
+        <div class="value" id="statAvg">-</div>
+      </div>
+    </div>
+
+    <section class="note-box">
+      <p><strong>为什么年纪越大越听不到高音?</strong> 耳蜗内负责把声音转换成神经信号的毛细胞中,
+      感知高频的毛细胞集中在耳蜗入口附近,因此最容易受到噪音和衰老的损伤。这就是为什么老年性
+      听力下降通常从高音开始。俗称"蚊音"的15~17kHz频段接近超声波的声音,老年人往往难以听到,
+      也是同样的原理。</p>
+      <p>不过,这个测试结果会因扬声器/耳机性能、设备音量、浏览器的音频处理方式以及周围噪音而
+      有很大差异,请仅作为娱乐参考。</p>
+    </section>
+
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 历代记录排行(最多30位)</h2>
+    <div id="topLeaderboard"></div>
+  </div>
+
+<script src="/skill-test/common.js"></script>
+<script>
+  const STORE_KEY = 'skillHearingAgeStats';
+  const LB_KEY = 'skillHearingAgeLeaderboardV1';
+  let stats = loadStats(STORE_KEY, { count: 0, best: 0, sum: 0 });
+
+  const FREQS = [8000, 10000, 12000, 14000, 15000, 16000, 17000, 18000, 19000, 20000];
+  const STEP_DURATION = 4;
+
+  const AGE_MAP = [
+    { freq: 20000, age: '18岁以下', comment: '比同龄人更敏锐,非常好的听力。' },
+    { freq: 19000, age: '20岁', comment: '年轻健康的听力。' },
+    { freq: 18000, age: '24岁', comment: '非常好。' },
+    { freq: 17000, age: '30岁', comment: '优于平均水平。' },
+    { freq: 16000, age: '35岁', comment: '正常范围。' },
+    { freq: 15000, age: '40岁', comment: '正常范围。' },
+    { freq: 14000, age: '45岁', comment: '自然变化范围内。' },
+    { freq: 12000, age: '50岁', comment: '自然变化范围内。' },
+    { freq: 10000, age: '55岁', comment: '高频听力正在逐渐减弱。' },
+    { freq: 8000, age: '60岁以上', comment: '也可能是设备或环境影响,轻松看待就好。' },
+    { freq: 0, age: '60岁以上', comment: '也可能是设备或环境影响,轻松看待就好。' },
+  ];
+
+  function ageFor(maxHeard) {
+    return AGE_MAP.find(m => maxHeard >= m.freq) || AGE_MAP[AGE_MAP.length - 1];
+  }
+
+  const introScreen = document.getElementById('introScreen');
+  const calibScreen = document.getElementById('calibScreen');
+  const testScreen = document.getElementById('testScreen');
+  const resultPanel = document.getElementById('resultPanel');
+  const freqNum = document.getElementById('freqNum');
+  const hzProgressFill = document.getElementById('hzProgressFill');
+  const hzProgressLabel = document.getElementById('hzProgressLabel');
+
+  let audioCtx = null;
+  let calibOsc = null, calibGain = null;
+  let stepIndex = 0;
+  let maxHeard = 0;
+
+  function ensureAudioCtx() {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    return audioCtx;
+  }
+
+  function startCalibTone() {
+    const ctx = ensureAudioCtx();
+    calibOsc = ctx.createOscillator();
+    calibGain = ctx.createGain();
+    calibOsc.type = 'sine';
+    calibOsc.frequency.value = 1000;
+    const now = ctx.currentTime;
+    calibGain.gain.setValueAtTime(0, now);
+    calibGain.gain.linearRampToValueAtTime(0.2, now + 0.06);
+    calibOsc.connect(calibGain);
+    calibGain.connect(ctx.destination);
+    calibOsc.start(now);
+  }
+
+  function stopCalibTone() {
+    if (!calibOsc) return;
+    const now = audioCtx.currentTime;
+    calibGain.gain.cancelScheduledValues(now);
+    calibGain.gain.setValueAtTime(calibGain.gain.value, now);
+    calibGain.gain.linearRampToValueAtTime(0, now + 0.06);
+    calibOsc.stop(now + 0.08);
+    calibOsc = null;
+    calibGain = null;
+  }
+
+  function playStep(freq, durationSec) {
+    const ctx = ensureAudioCtx();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = 'sine';
+    osc.frequency.value = freq;
+    const now = ctx.currentTime;
+    gain.gain.setValueAtTime(0, now);
+    gain.gain.linearRampToValueAtTime(0.2, now + 0.06);
+    gain.gain.setValueAtTime(0.2, now + durationSec - 0.06);
+    gain.gain.linearRampToValueAtTime(0, now + durationSec);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start(now);
+    osc.stop(now + durationSec + 0.02);
+  }
+
+  function renderStats() {
+    document.getElementById('statCount').textContent = stats.count;
+    document.getElementById('statBest').textContent = stats.best ? stats.best + ' Hz' : '-';
+    document.getElementById('statAvg').textContent = stats.count ? Math.round(stats.sum / stats.count) + ' Hz' : '-';
+  }
+
+  document.getElementById('introStartBtn').addEventListener('click', () => {
+    ensureAudioCtx();
+    introScreen.style.display = 'none';
+    calibScreen.style.display = '';
+    startCalibTone();
+  });
+
+  document.getElementById('calibDoneBtn').addEventListener('click', () => {
+    stopCalibTone();
+    calibScreen.style.display = 'none';
+    testScreen.style.display = '';
+    stepIndex = 0;
+    maxHeard = 0;
+    runStep();
+  });
+
+  function runStep() {
+    const freq = FREQS[stepIndex];
+    freqNum.textContent = freq;
+    hzProgressFill.style.width = (stepIndex / FREQS.length * 100) + '%';
+    hzProgressLabel.textContent = `第 ${stepIndex + 1} / ${FREQS.length} 阶段`;
+    playStep(freq, STEP_DURATION);
+  }
+
+  document.getElementById('heardBtn').addEventListener('click', () => {
+    maxHeard = FREQS[stepIndex];
+    stepIndex += 1;
+    if (stepIndex >= FREQS.length) {
+      finishTest();
+      return;
+    }
+    setTimeout(runStep, 400);
+  });
+
+  document.getElementById('notHeardBtn').addEventListener('click', () => {
+    finishTest();
+  });
+
+  function finishTest() {
+    testScreen.style.display = 'none';
+
+    stats.count += 1;
+    if (maxHeard > stats.best) stats.best = maxHeard;
+    stats.sum += maxHeard;
+    saveStats(STORE_KEY, stats);
+    renderStats();
+
+    const result = ageFor(maxHeard);
+    document.getElementById('resultTitle').textContent = `你的听力年龄是${result.age}`;
+    document.getElementById('resultDesc').textContent = maxHeard > 0
+      ? `最高听取频率: ${maxHeard} Hz`
+      : '连最低阶段(8000Hz)都没有听到。';
+    document.getElementById('resultComment').textContent = result.comment;
+    resultPanel.classList.add('show');
+    resultPanel.dataset.share = `我的听力年龄测试结果是${result.age}!(听到了${maxHeard || 8000}Hz)你也来试试 → `;
+
+    const lbList = addToLeaderboard(LB_KEY, { value: maxHeard, date: Date.now() }, false);
+    renderTopLeaderboard(lbList);
+  }
+
+  function renderTopLeaderboard(list) {
+    renderLeaderboard('topLeaderboard', list, (entry) => {
+      const d = new Date(entry.date);
+      const dateStr = `${d.getMonth() + 1}/${d.getDate()}`;
+      return `<span class="lb-name">${entry.value} Hz</span><span class="lb-detail">${ageFor(entry.value).age} · ${dateStr}</span>`;
+    }, '还没有记录。快来挑战第一次吧!');
+  }
+
+  document.getElementById('retryBtn').addEventListener('click', () => {
+    resultPanel.classList.remove('show');
+    introScreen.style.display = '';
+  });
+
+  document.getElementById('shareBtn').addEventListener('click', () => {
+    shareResult((resultPanel.dataset.share || '') + location.href.replace('games/hearing-age.html', ''));
+  });
+
+  renderStats();
+  renderTopLeaderboard(loadStats(LB_KEY, []));
+</script>
+</body>
+</html>

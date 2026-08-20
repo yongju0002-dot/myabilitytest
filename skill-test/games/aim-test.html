@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>에임 테스트 | 능력 테스트</title>
+<meta name="description" content="타겟 30개를 최대한 빠르고 정확하게 클릭하세요. 반응 속도와 정확도를 함께 재는 무료 에임 테스트.">
+<link rel="canonical" href="https://myabilitytest.com/skill-test/games/aim-test.html">
+<link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/aim-test.html">
+<link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/aim-test.html">
+<link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/aim-test.html">
+<link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/aim-test.html">
+<link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/skill-test/games/aim-test.html">
+<link rel="stylesheet" href="/skill-test/style.css">
+<style>
+  .aim-box {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    aspect-ratio: 800 / 500;
+    margin: 16px auto;
+    background: var(--card-bg-2);
+    border-radius: 16px;
+    overflow: hidden;
+    user-select: none;
+    touch-action: none;
+    cursor: crosshair;
+  }
+  .aim-target {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--accent);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    box-shadow: 0 0 14px rgba(99,102,241,0.6);
+  }
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back-link" href="../../index.html">← 메인으로</a>
+    <div class="lang-switch">
+      <a class="active" href="/skill-test/games/aim-test.html">한국어</a>
+      <a href="/en/skill-test/games/aim-test.html">English</a>
+      <a href="/ja/skill-test/games/aim-test.html">日本語</a>
+      <a href="/zh/skill-test/games/aim-test.html">中文</a>
+    </div>
+    <h1>🎯 에임 테스트</h1>
+    <p class="sub">타겟 30개를 최대한 빠르고 정확하게 클릭하세요.</p>
+
+    <div id="introScreen">
+      <div class="info-box">💻 데스크톱・마우스 환경을 권장합니다. 모바일에서도 플레이할 수 있어요.</div>
+      <div class="level-card" style="text-align:left;">
+        <div class="label" style="text-align:center; margin-bottom:10px;">타겟 크기</div>
+        <div class="duration-select" id="sizeSelect">
+          <button data-size="large">큼</button>
+          <button data-size="medium" class="active">보통</button>
+          <button data-size="small">작음</button>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="startBtn">시작하기</button>
+      </div>
+    </div>
+
+    <div id="playScreen" style="display:none;">
+      <div class="level-card">
+        <div class="label">적중</div>
+        <div class="num" id="hitCount">0 / 30</div>
+      </div>
+      <div class="aim-box" id="aimBox">
+        <div class="aim-target" id="aimTarget" style="display:none;"></div>
+      </div>
+    </div>
+
+    <div id="resultPanel" class="result-panel">
+      <div class="emoji">🎯</div>
+      <h2 id="resultTitle"></h2>
+      <div class="desc" id="resultDesc"></div>
+      <div class="percentile" id="resultMobileNote" style="display:none;">터치 기록은 마우스 기록과 별도로 집계됩니다.</div>
+      <div id="chartContainer"></div>
+      <table class="grade-table" id="gradeTable"></table>
+      <div class="btn-row">
+        <button class="btn" id="retryBtn">다시 도전</button>
+        <button class="btn share" id="shareBtn">결과 공유하기</button>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat-box">
+        <div class="label">플레이 횟수</div>
+        <div class="value" id="statCount">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">최고 평균 반응</div>
+        <div class="value" id="statBest">-</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">최고 정확도</div>
+        <div class="value" id="statAcc">-</div>
+      </div>
+    </div>
+
+    <section class="note-box">
+      <p><strong>에임(Aim)이란?</strong> 정지된 대상을 순간적으로 정확히 클릭하는
+      '플리킹(flicking)'과, 움직이는 대상을 따라가며 조준을 유지하는 '트래킹(tracking)'
+      두 가지 요소로 이루어집니다. 이 테스트는 그중 플리킹 능력을 측정합니다. 반응 속도뿐
+      아니라 얼마나 정확하게 목표 중심을 클릭하는지도 함께 봐야 진짜 에임 실력을 알 수
+      있어요.</p>
+      <p>마우스 DPI와 인게임 감도(센시티비티)를 자신의 손 움직임에 맞게 조절하는 것도
+      중요합니다. 감도가 너무 높으면 빠르지만 부정확해지고, 너무 낮으면 정확하지만 느려져요.
+      꾸준히 에임 트레이너로 연습하면 반응 속도와 정확도 모두 점진적으로 개선할 수 있다고
+      알려져 있습니다.</p>
+    </section>
+
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 역대 기록 순위 (최대 30위)</h2>
+    <div id="topLeaderboard"></div>
+  </div>
+
+<script src="/skill-test/common.js"></script>
+<script>
+  const STORE_KEY = 'skillAimStats';
+  const LB_KEY = 'skillAimLeaderboardV1';
+  let allStats = loadStats(STORE_KEY, {});
+
+  const SIZES = [
+    { key: 'large', label: '큼', radius: 24 },
+    { key: 'medium', label: '보통', radius: 16 },
+    { key: 'small', label: '작음', radius: 10 },
+  ];
+  const TARGET_COUNT = 30;
+
+  const GRADES = [
+    { key: 'PRO', label: '프로급' },
+    { key: 'TOP', label: '상위권' },
+    { key: 'SKILLED', label: '숙련' },
+    { key: 'NORMAL', label: '일반' },
+    { key: 'BEGINNER', label: '입문' },
+  ];
+
+  function gradeFor(avgMs, accuracy) {
+    if (avgMs <= 300 && accuracy >= 90) return GRADES[0];
+    if (avgMs <= 350) return GRADES[1];
+    if (avgMs <= 450) return GRADES[2];
+    if (avgMs <= 600) return GRADES[3];
+    return GRADES[4];
+  }
+
+  const introScreen = document.getElementById('introScreen');
+  const playScreen = document.getElementById('playScreen');
+  const resultPanel = document.getElementById('resultPanel');
+  const sizeSelect = document.getElementById('sizeSelect');
+  const aimBox = document.getElementById('aimBox');
+  const aimTarget = document.getElementById('aimTarget');
+  const hitCountEl = document.getElementById('hitCount');
+
+  let selectedSize = 'medium';
+  let running = false;
+  let radius = 16;
+  let inputType = null;
+  let hits = 0;
+  let totalClicks = 0;
+  let invalidClicks = 0;
+  let lastClickTs = 0;
+  let lastTargetTime = 0;
+  let lastTargetPos = null;
+  let reactionTimes = [];
+  let missDistances = [];
+  let gameStartTime = 0;
+
+  function bucketKey(size, input) {
+    return `${size}_${input}`;
+  }
+
+  function getBucketStats(size, input) {
+    const k = bucketKey(size, input);
+    return allStats[k] || { plays: 0, bestAvgMs: null, bestAccuracy: null };
+  }
+
+  function renderStats() {
+    const displayInput = inputType || 'mouse';
+    const bs = getBucketStats(selectedSize, displayInput);
+    document.getElementById('statCount').textContent = bs.plays;
+    document.getElementById('statBest').textContent = bs.bestAvgMs !== null ? Math.round(bs.bestAvgMs) + ' ms' : '-';
+    document.getElementById('statAcc').textContent = bs.bestAccuracy !== null ? bs.bestAccuracy.toFixed(0) + '%' : '-';
+  }
+
+  sizeSelect.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      sizeSelect.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      selectedSize = btn.dataset.size;
+      renderStats();
+      renderTopLeaderboard(loadStats(LB_KEY + '_' + bucketKey(selectedSize, inputType || 'mouse'), []));
+    });
+  });
+
+  function spawnTarget() {
+    const rect = aimBox.getBoundingClientRect();
+    const minSep = Math.min(150, Math.min(rect.width, rect.height) * 0.3);
+    let x, y, tries = 0;
+    do {
+      x = radius + Math.random() * (rect.width - 2 * radius);
+      y = radius + Math.random() * (rect.height - 2 * radius);
+      tries += 1;
+    } while (lastTargetPos && Math.hypot(x - lastTargetPos.x, y - lastTargetPos.y) < minSep && tries < 50);
+    lastTargetPos = { x, y };
+    aimTarget.style.width = (radius * 2) + 'px';
+    aimTarget.style.height = (radius * 2) + 'px';
+    aimTarget.style.left = x + 'px';
+    aimTarget.style.top = y + 'px';
+    aimTarget.style.display = '';
+    lastTargetTime = performance.now();
+  }
+
+  function onPointerDown(e) {
+    if (!running) return;
+    e.preventDefault();
+    const now = performance.now();
+    if (now - lastClickTs < 30) {
+      invalidClicks += 1;
+      return;
+    }
+    lastClickTs = now;
+    if (inputType === null) inputType = e.pointerType === 'touch' ? 'touch' : 'mouse';
+
+    const rect = aimBox.getBoundingClientRect();
+    const cx = e.clientX - rect.left;
+    const cy = e.clientY - rect.top;
+    const d = Math.hypot(cx - lastTargetPos.x, cy - lastTargetPos.y);
+    totalClicks += 1;
+
+    if (d <= radius) {
+      hits += 1;
+      reactionTimes.push(now - lastTargetTime);
+      hitCountEl.textContent = `${hits} / ${TARGET_COUNT}`;
+      if (hits >= TARGET_COUNT) {
+        finish();
+        return;
+      }
+      spawnTarget();
+    } else {
+      missDistances.push(d);
+    }
+  }
+
+  aimBox.addEventListener('pointerdown', onPointerDown);
+  aimBox.addEventListener('contextmenu', (e) => e.preventDefault());
+  aimBox.addEventListener('dragstart', (e) => e.preventDefault());
+
+  document.getElementById('startBtn').addEventListener('click', () => {
+    const sizeCfg = SIZES.find(s => s.key === selectedSize);
+    radius = sizeCfg.radius;
+    running = true;
+    inputType = null;
+    hits = 0;
+    totalClicks = 0;
+    invalidClicks = 0;
+    lastClickTs = 0;
+    lastTargetPos = null;
+    reactionTimes = [];
+    missDistances = [];
+    gameStartTime = performance.now();
+    hitCountEl.textContent = `0 / ${TARGET_COUNT}`;
+
+    introScreen.style.display = 'none';
+    resultPanel.classList.remove('show');
+    playScreen.style.display = '';
+    spawnTarget();
+  });
+
+  function buildBarChart(times) {
+    const W = 600, H = 140, PAD = 8;
+    const maxMs = Math.max(...times);
+    const minMs = Math.min(...times);
+    const barW = (W - PAD * 2) / times.length;
+    const bars = times.map((t, i) => {
+      const h = maxMs > 0 ? (t / maxMs) * (H - PAD * 2) : 0;
+      const x = PAD + i * barW;
+      const y = H - PAD - h;
+      let fill = '#a5b4fc';
+      if (t === maxMs) fill = '#ef4444';
+      if (t === minMs) fill = '#22c55e';
+      return `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${(barW * 0.75).toFixed(1)}" height="${Math.max(h, 1).toFixed(1)}" fill="${fill}" rx="2"/>`;
+    }).join('');
+    return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;margin:14px 0;">${bars}</svg>`;
+  }
+
+  function renderGradeTable(avgMs, accuracy) {
+    const grade = gradeFor(avgMs, accuracy);
+    const table = document.getElementById('gradeTable');
+    const rows = [
+      { g: GRADES[4], cond: '800ms 이상' },
+      { g: GRADES[3], cond: '600ms 이하' },
+      { g: GRADES[2], cond: '450ms 이하' },
+      { g: GRADES[1], cond: '350ms 이하' },
+      { g: GRADES[0], cond: '300ms 이하 (정확도 90%+)' },
+    ];
+    table.innerHTML = '<tr><th>등급</th><th>기준</th></tr>' +
+      rows.map(r => `<tr class="${r.g.key === grade.key ? 'current-row' : ''}"><td>${r.g.label}</td><td>${r.cond}</td></tr>`).join('');
+  }
+
+  function finish() {
+    playScreen.style.display = 'none';
+    running = false;
+
+    const totalTimeMs = performance.now() - gameStartTime;
+    const avgMs = reactionTimes.reduce((a, b) => a + b, 0) / reactionTimes.length;
+    const accuracy = (hits / totalClicks) * 100;
+    const avgMissDist = missDistances.length ? missDistances.reduce((a, b) => a + b, 0) / missDistances.length : null;
+
+    const bk = bucketKey(selectedSize, inputType);
+    const bs = getBucketStats(selectedSize, inputType);
+    bs.plays += 1;
+    if (bs.bestAvgMs === null || avgMs < bs.bestAvgMs) bs.bestAvgMs = avgMs;
+    if (bs.bestAccuracy === null || accuracy > bs.bestAccuracy) bs.bestAccuracy = accuracy;
+    allStats[bk] = bs;
+    saveStats(STORE_KEY, allStats);
+    renderStats();
+
+    const grade = gradeFor(avgMs, accuracy);
+    document.getElementById('resultTitle').textContent = `평균 ${Math.round(avgMs)}ms · 정확도 ${accuracy.toFixed(0)}%`;
+    document.getElementById('resultDesc').textContent = `총 ${(totalTimeMs / 1000).toFixed(1)}초 · ${grade.label}` +
+      (avgMissDist !== null ? ` · 평균 오차 ${avgMissDist.toFixed(0)}px` : '') +
+      (invalidClicks > 0 ? ` · 무효 클릭 ${invalidClicks}회` : '');
+    document.getElementById('resultMobileNote').style.display = inputType === 'touch' ? '' : 'none';
+    document.getElementById('chartContainer').innerHTML = buildBarChart(reactionTimes);
+    renderGradeTable(avgMs, accuracy);
+    resultPanel.classList.add('show');
+    resultPanel.dataset.share = `에임 테스트에서 평균 ${Math.round(avgMs)}ms · 정확도 ${accuracy.toFixed(0)}%를 기록했어요! (${grade.label}) 너도 해봐 → `;
+
+    if (accuracy >= 80) {
+      const lbList = addToLeaderboard(LB_KEY + '_' + bk, { value: avgMs, accuracy, date: Date.now() }, true);
+      renderTopLeaderboard(lbList);
+    } else {
+      renderTopLeaderboard(loadStats(LB_KEY + '_' + bk, []));
+    }
+  }
+
+  function renderTopLeaderboard(list) {
+    renderLeaderboard('topLeaderboard', list, (entry) => {
+      const d = new Date(entry.date);
+      const dateStr = `${d.getMonth() + 1}/${d.getDate()}`;
+      return `<span class="lb-name">${Math.round(entry.value)} ms</span><span class="lb-detail">정확도 ${entry.accuracy.toFixed(0)}% · ${dateStr}</span>`;
+    }, '아직 기록이 없어요. 첫 도전을 해보세요!');
+  }
+
+  document.getElementById('retryBtn').addEventListener('click', () => {
+    resultPanel.classList.remove('show');
+    introScreen.style.display = '';
+  });
+
+  document.getElementById('shareBtn').addEventListener('click', () => {
+    shareResult((resultPanel.dataset.share || '') + location.href.replace('games/aim-test.html', ''));
+  });
+
+  renderStats();
+  renderTopLeaderboard(loadStats(LB_KEY + '_' + bucketKey(selectedSize, 'mouse'), []));
+</script>
+</body>
+</html>

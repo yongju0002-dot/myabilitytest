@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>瞄准测试 | 能力测试</title>
+<meta name="description" content="尽可能快速且精准地点击30个目标。同时测量反应速度和精准度的免费瞄准测试。">
+<link rel="canonical" href="https://myabilitytest.com/zh/skill-test/games/aim-test.html">
+<link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/aim-test.html">
+<link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/aim-test.html">
+<link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/aim-test.html">
+<link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/aim-test.html">
+<link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/skill-test/games/aim-test.html">
+<link rel="stylesheet" href="/skill-test/style.css">
+<style>
+  .aim-box {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    aspect-ratio: 800 / 500;
+    margin: 16px auto;
+    background: var(--card-bg-2);
+    border-radius: 16px;
+    overflow: hidden;
+    user-select: none;
+    touch-action: none;
+    cursor: crosshair;
+  }
+  .aim-target {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--accent);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    box-shadow: 0 0 14px rgba(99,102,241,0.6);
+  }
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back-link" href="/zh/index.html">← 返回主页</a>
+    <div class="lang-switch">
+      <a href="/skill-test/games/aim-test.html">한국어</a>
+      <a href="/en/skill-test/games/aim-test.html">English</a>
+      <a href="/ja/skill-test/games/aim-test.html">日本語</a>
+      <a class="active" href="/zh/skill-test/games/aim-test.html">中文</a>
+    </div>
+    <h1>🎯 瞄准测试</h1>
+    <p class="sub">尽可能快速且精准地点击30个目标。</p>
+
+    <div id="introScreen">
+      <div class="info-box">💻 推荐使用电脑和鼠标。手机上也可以进行测试。</div>
+      <div class="level-card" style="text-align:left;">
+        <div class="label" style="text-align:center; margin-bottom:10px;">目标大小</div>
+        <div class="duration-select" id="sizeSelect">
+          <button data-size="large">大</button>
+          <button data-size="medium" class="active">中</button>
+          <button data-size="small">小</button>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="startBtn">开始</button>
+      </div>
+    </div>
+
+    <div id="playScreen" style="display:none;">
+      <div class="level-card">
+        <div class="label">命中</div>
+        <div class="num" id="hitCount">0 / 30</div>
+      </div>
+      <div class="aim-box" id="aimBox">
+        <div class="aim-target" id="aimTarget" style="display:none;"></div>
+      </div>
+    </div>
+
+    <div id="resultPanel" class="result-panel">
+      <div class="emoji">🎯</div>
+      <h2 id="resultTitle"></h2>
+      <div class="desc" id="resultDesc"></div>
+      <div class="percentile" id="resultMobileNote" style="display:none;">触屏记录与鼠标记录分开统计。</div>
+      <div id="chartContainer"></div>
+      <table class="grade-table" id="gradeTable"></table>
+      <div class="btn-row">
+        <button class="btn" id="retryBtn">再挑战一次</button>
+        <button class="btn share" id="shareBtn">分享结果</button>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat-box">
+        <div class="label">游玩次数</div>
+        <div class="value" id="statCount">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">最佳平均反应</div>
+        <div class="value" id="statBest">-</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">最佳精准度</div>
+        <div class="value" id="statAcc">-</div>
+      </div>
+    </div>
+
+    <section class="note-box">
+      <p><strong>什么是瞄准(Aim)?</strong> 由两个要素组成:瞬间精准点击静止目标的
+      "甩枪(flicking)",以及跟随移动目标并保持准心的"追踪(tracking)"。这个测试
+      测量的是甩枪能力。要判断真正的瞄准实力,不仅要看反应速度,还要看点击目标中心的
+      精准程度。</p>
+      <p>将鼠标DPI和游戏内灵敏度调整到适合自己手部动作的水平也很重要。灵敏度太高会
+      快但不准,太低则准但慢。持续用瞄准训练器练习,据说可以逐步提升反应速度和精准度。</p>
+    </section>
+
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 历代记录排行(最多30位)</h2>
+    <div id="topLeaderboard"></div>
+  </div>
+
+<script src="/skill-test/common.js"></script>
+<script>
+  const STORE_KEY = 'skillAimStats';
+  const LB_KEY = 'skillAimLeaderboardV1';
+  let allStats = loadStats(STORE_KEY, {});
+
+  const SIZES = [
+    { key: 'large', label: '大', radius: 24 },
+    { key: 'medium', label: '中', radius: 16 },
+    { key: 'small', label: '小', radius: 10 },
+  ];
+  const TARGET_COUNT = 30;
+
+  const GRADES = [
+    { key: 'PRO', label: '职业级' },
+    { key: 'TOP', label: '顶尖水平' },
+    { key: 'SKILLED', label: '熟练' },
+    { key: 'NORMAL', label: '一般' },
+    { key: 'BEGINNER', label: '入门' },
+  ];
+
+  function gradeFor(avgMs, accuracy) {
+    if (avgMs <= 300 && accuracy >= 90) return GRADES[0];
+    if (avgMs <= 350) return GRADES[1];
+    if (avgMs <= 450) return GRADES[2];
+    if (avgMs <= 600) return GRADES[3];
+    return GRADES[4];
+  }
+
+  const introScreen = document.getElementById('introScreen');
+  const playScreen = document.getElementById('playScreen');
+  const resultPanel = document.getElementById('resultPanel');
+  const sizeSelect = document.getElementById('sizeSelect');
+  const aimBox = document.getElementById('aimBox');
+  const aimTarget = document.getElementById('aimTarget');
+  const hitCountEl = document.getElementById('hitCount');
+
+  let selectedSize = 'medium';
+  let running = false;
+  let radius = 16;
+  let inputType = null;
+  let hits = 0;
+  let totalClicks = 0;
+  let invalidClicks = 0;
+  let lastClickTs = 0;
+  let lastTargetTime = 0;
+  let lastTargetPos = null;
+  let reactionTimes = [];
+  let missDistances = [];
+  let gameStartTime = 0;
+
+  function bucketKey(size, input) {
+    return `${size}_${input}`;
+  }
+
+  function getBucketStats(size, input) {
+    const k = bucketKey(size, input);
+    return allStats[k] || { plays: 0, bestAvgMs: null, bestAccuracy: null };
+  }
+
+  function renderStats() {
+    const displayInput = inputType || 'mouse';
+    const bs = getBucketStats(selectedSize, displayInput);
+    document.getElementById('statCount').textContent = bs.plays;
+    document.getElementById('statBest').textContent = bs.bestAvgMs !== null ? Math.round(bs.bestAvgMs) + ' ms' : '-';
+    document.getElementById('statAcc').textContent = bs.bestAccuracy !== null ? bs.bestAccuracy.toFixed(0) + '%' : '-';
+  }
+
+  sizeSelect.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      sizeSelect.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      selectedSize = btn.dataset.size;
+      renderStats();
+      renderTopLeaderboard(loadStats(LB_KEY + '_' + bucketKey(selectedSize, inputType || 'mouse'), []));
+    });
+  });
+
+  function spawnTarget() {
+    const rect = aimBox.getBoundingClientRect();
+    const minSep = Math.min(150, Math.min(rect.width, rect.height) * 0.3);
+    let x, y, tries = 0;
+    do {
+      x = radius + Math.random() * (rect.width - 2 * radius);
+      y = radius + Math.random() * (rect.height - 2 * radius);
+      tries += 1;
+    } while (lastTargetPos && Math.hypot(x - lastTargetPos.x, y - lastTargetPos.y) < minSep && tries < 50);
+    lastTargetPos = { x, y };
+    aimTarget.style.width = (radius * 2) + 'px';
+    aimTarget.style.height = (radius * 2) + 'px';
+    aimTarget.style.left = x + 'px';
+    aimTarget.style.top = y + 'px';
+    aimTarget.style.display = '';
+    lastTargetTime = performance.now();
+  }
+
+  function onPointerDown(e) {
+    if (!running) return;
+    e.preventDefault();
+    const now = performance.now();
+    if (now - lastClickTs < 30) {
+      invalidClicks += 1;
+      return;
+    }
+    lastClickTs = now;
+    if (inputType === null) inputType = e.pointerType === 'touch' ? 'touch' : 'mouse';
+
+    const rect = aimBox.getBoundingClientRect();
+    const cx = e.clientX - rect.left;
+    const cy = e.clientY - rect.top;
+    const d = Math.hypot(cx - lastTargetPos.x, cy - lastTargetPos.y);
+    totalClicks += 1;
+
+    if (d <= radius) {
+      hits += 1;
+      reactionTimes.push(now - lastTargetTime);
+      hitCountEl.textContent = `${hits} / ${TARGET_COUNT}`;
+      if (hits >= TARGET_COUNT) {
+        finish();
+        return;
+      }
+      spawnTarget();
+    } else {
+      missDistances.push(d);
+    }
+  }
+
+  aimBox.addEventListener('pointerdown', onPointerDown);
+  aimBox.addEventListener('contextmenu', (e) => e.preventDefault());
+  aimBox.addEventListener('dragstart', (e) => e.preventDefault());
+
+  document.getElementById('startBtn').addEventListener('click', () => {
+    const sizeCfg = SIZES.find(s => s.key === selectedSize);
+    radius = sizeCfg.radius;
+    running = true;
+    inputType = null;
+    hits = 0;
+    totalClicks = 0;
+    invalidClicks = 0;
+    lastClickTs = 0;
+    lastTargetPos = null;
+    reactionTimes = [];
+    missDistances = [];
+    gameStartTime = performance.now();
+    hitCountEl.textContent = `0 / ${TARGET_COUNT}`;
+
+    introScreen.style.display = 'none';
+    resultPanel.classList.remove('show');
+    playScreen.style.display = '';
+    spawnTarget();
+  });
+
+  function buildBarChart(times) {
+    const W = 600, H = 140, PAD = 8;
+    const maxMs = Math.max(...times);
+    const minMs = Math.min(...times);
+    const barW = (W - PAD * 2) / times.length;
+    const bars = times.map((t, i) => {
+      const h = maxMs > 0 ? (t / maxMs) * (H - PAD * 2) : 0;
+      const x = PAD + i * barW;
+      const y = H - PAD - h;
+      let fill = '#a5b4fc';
+      if (t === maxMs) fill = '#ef4444';
+      if (t === minMs) fill = '#22c55e';
+      return `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${(barW * 0.75).toFixed(1)}" height="${Math.max(h, 1).toFixed(1)}" fill="${fill}" rx="2"/>`;
+    }).join('');
+    return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;margin:14px 0;">${bars}</svg>`;
+  }
+
+  function renderGradeTable(avgMs, accuracy) {
+    const grade = gradeFor(avgMs, accuracy);
+    const table = document.getElementById('gradeTable');
+    const rows = [
+      { g: GRADES[4], cond: '800ms以上' },
+      { g: GRADES[3], cond: '600ms以内' },
+      { g: GRADES[2], cond: '450ms以内' },
+      { g: GRADES[1], cond: '350ms以内' },
+      { g: GRADES[0], cond: '300ms以内(精准度90%+)' },
+    ];
+    table.innerHTML = '<tr><th>等级</th><th>标准</th></tr>' +
+      rows.map(r => `<tr class="${r.g.key === grade.key ? 'current-row' : ''}"><td>${r.g.label}</td><td>${r.cond}</td></tr>`).join('');
+  }
+
+  function finish() {
+    playScreen.style.display = 'none';
+    running = false;
+
+    const totalTimeMs = performance.now() - gameStartTime;
+    const avgMs = reactionTimes.reduce((a, b) => a + b, 0) / reactionTimes.length;
+    const accuracy = (hits / totalClicks) * 100;
+    const avgMissDist = missDistances.length ? missDistances.reduce((a, b) => a + b, 0) / missDistances.length : null;
+
+    const bk = bucketKey(selectedSize, inputType);
+    const bs = getBucketStats(selectedSize, inputType);
+    bs.plays += 1;
+    if (bs.bestAvgMs === null || avgMs < bs.bestAvgMs) bs.bestAvgMs = avgMs;
+    if (bs.bestAccuracy === null || accuracy > bs.bestAccuracy) bs.bestAccuracy = accuracy;
+    allStats[bk] = bs;
+    saveStats(STORE_KEY, allStats);
+    renderStats();
+
+    const grade = gradeFor(avgMs, accuracy);
+    document.getElementById('resultTitle').textContent = `平均 ${Math.round(avgMs)}ms · 精准度 ${accuracy.toFixed(0)}%`;
+    document.getElementById('resultDesc').textContent = `总用时 ${(totalTimeMs / 1000).toFixed(1)}秒 · ${grade.label}` +
+      (avgMissDist !== null ? ` · 平均误差 ${avgMissDist.toFixed(0)}px` : '') +
+      (invalidClicks > 0 ? ` · 无效点击 ${invalidClicks}次` : '');
+    document.getElementById('resultMobileNote').style.display = inputType === 'touch' ? '' : 'none';
+    document.getElementById('chartContainer').innerHTML = buildBarChart(reactionTimes);
+    renderGradeTable(avgMs, accuracy);
+    resultPanel.classList.add('show');
+    resultPanel.dataset.share = `我在瞄准测试中平均${Math.round(avgMs)}ms、精准度${accuracy.toFixed(0)}%!(${grade.label}) 你也来试试 → `;
+
+    if (accuracy >= 80) {
+      const lbList = addToLeaderboard(LB_KEY + '_' + bk, { value: avgMs, accuracy, date: Date.now() }, true);
+      renderTopLeaderboard(lbList);
+    } else {
+      renderTopLeaderboard(loadStats(LB_KEY + '_' + bk, []));
+    }
+  }
+
+  function renderTopLeaderboard(list) {
+    renderLeaderboard('topLeaderboard', list, (entry) => {
+      const d = new Date(entry.date);
+      const dateStr = `${d.getMonth() + 1}/${d.getDate()}`;
+      return `<span class="lb-name">${Math.round(entry.value)} ms</span><span class="lb-detail">精准度${entry.accuracy.toFixed(0)}% · ${dateStr}</span>`;
+    }, '还没有记录。快来挑战第一次吧!');
+  }
+
+  document.getElementById('retryBtn').addEventListener('click', () => {
+    resultPanel.classList.remove('show');
+    introScreen.style.display = '';
+  });
+
+  document.getElementById('shareBtn').addEventListener('click', () => {
+    shareResult((resultPanel.dataset.share || '') + location.href.replace('games/aim-test.html', ''));
+  });
+
+  renderStats();
+  renderTopLeaderboard(loadStats(LB_KEY + '_' + bucketKey(selectedSize, 'mouse'), []));
+</script>
+</body>
+</html>

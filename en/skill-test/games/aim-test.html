@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aim Test | Ability Test</title>
+<meta name="description" content="Click 30 targets as fast and accurately as you can. Free aim test that measures both reaction speed and accuracy.">
+<link rel="canonical" href="https://myabilitytest.com/en/skill-test/games/aim-test.html">
+<link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/aim-test.html">
+<link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/aim-test.html">
+<link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/aim-test.html">
+<link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/aim-test.html">
+<link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/skill-test/games/aim-test.html">
+<link rel="stylesheet" href="/skill-test/style.css">
+<style>
+  .aim-box {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    aspect-ratio: 800 / 500;
+    margin: 16px auto;
+    background: var(--card-bg-2);
+    border-radius: 16px;
+    overflow: hidden;
+    user-select: none;
+    touch-action: none;
+    cursor: crosshair;
+  }
+  .aim-target {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--accent);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    box-shadow: 0 0 14px rgba(99,102,241,0.6);
+  }
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back-link" href="/en/index.html">← Back to Main</a>
+    <div class="lang-switch">
+      <a href="/skill-test/games/aim-test.html">한국어</a>
+      <a class="active" href="/en/skill-test/games/aim-test.html">English</a>
+      <a href="/ja/skill-test/games/aim-test.html">日本語</a>
+      <a href="/zh/skill-test/games/aim-test.html">中文</a>
+    </div>
+    <h1>🎯 Aim Test</h1>
+    <p class="sub">Click 30 targets as fast and accurately as you can.</p>
+
+    <div id="introScreen">
+      <div class="info-box">💻 Desktop and mouse are recommended. You can still play on mobile.</div>
+      <div class="level-card" style="text-align:left;">
+        <div class="label" style="text-align:center; margin-bottom:10px;">Target size</div>
+        <div class="duration-select" id="sizeSelect">
+          <button data-size="large">Large</button>
+          <button data-size="medium" class="active">Medium</button>
+          <button data-size="small">Small</button>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="startBtn">Start</button>
+      </div>
+    </div>
+
+    <div id="playScreen" style="display:none;">
+      <div class="level-card">
+        <div class="label">Hits</div>
+        <div class="num" id="hitCount">0 / 30</div>
+      </div>
+      <div class="aim-box" id="aimBox">
+        <div class="aim-target" id="aimTarget" style="display:none;"></div>
+      </div>
+    </div>
+
+    <div id="resultPanel" class="result-panel">
+      <div class="emoji">🎯</div>
+      <h2 id="resultTitle"></h2>
+      <div class="desc" id="resultDesc"></div>
+      <div class="percentile" id="resultMobileNote" style="display:none;">Touch records are tracked separately from mouse records.</div>
+      <div id="chartContainer"></div>
+      <table class="grade-table" id="gradeTable"></table>
+      <div class="btn-row">
+        <button class="btn" id="retryBtn">Try again</button>
+        <button class="btn share" id="shareBtn">Share result</button>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat-box">
+        <div class="label">Plays</div>
+        <div class="value" id="statCount">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">Best average</div>
+        <div class="value" id="statBest">-</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">Best accuracy</div>
+        <div class="value" id="statAcc">-</div>
+      </div>
+    </div>
+
+    <section class="note-box">
+      <p><strong>What is "aim"?</strong> It's made up of two components: "flicking" — snapping
+      quickly and precisely onto a stationary target — and "tracking" — following a moving
+      target while keeping your crosshair on it. This test measures flicking. Reaction speed
+      alone isn't the full picture; how precisely you hit the center of the target matters
+      just as much for real aim skill.</p>
+      <p>Tuning your mouse DPI and in-game sensitivity to match your hand movement matters
+      too. Too high and you'll be fast but sloppy; too low and you'll be precise but slow.
+      Consistent practice with an aim trainer is generally believed to improve both speed and
+      accuracy over time.</p>
+    </section>
+
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 All-Time Top Records (Top 30)</h2>
+    <div id="topLeaderboard"></div>
+  </div>
+
+<script src="/skill-test/common.js"></script>
+<script>
+  const STORE_KEY = 'skillAimStats';
+  const LB_KEY = 'skillAimLeaderboardV1';
+  let allStats = loadStats(STORE_KEY, {});
+
+  const SIZES = [
+    { key: 'large', label: 'Large', radius: 24 },
+    { key: 'medium', label: 'Medium', radius: 16 },
+    { key: 'small', label: 'Small', radius: 10 },
+  ];
+  const TARGET_COUNT = 30;
+
+  const GRADES = [
+    { key: 'PRO', label: 'Pro' },
+    { key: 'TOP', label: 'Top tier' },
+    { key: 'SKILLED', label: 'Skilled' },
+    { key: 'NORMAL', label: 'Average' },
+    { key: 'BEGINNER', label: 'Beginner' },
+  ];
+
+  function gradeFor(avgMs, accuracy) {
+    if (avgMs <= 300 && accuracy >= 90) return GRADES[0];
+    if (avgMs <= 350) return GRADES[1];
+    if (avgMs <= 450) return GRADES[2];
+    if (avgMs <= 600) return GRADES[3];
+    return GRADES[4];
+  }
+
+  const introScreen = document.getElementById('introScreen');
+  const playScreen = document.getElementById('playScreen');
+  const resultPanel = document.getElementById('resultPanel');
+  const sizeSelect = document.getElementById('sizeSelect');
+  const aimBox = document.getElementById('aimBox');
+  const aimTarget = document.getElementById('aimTarget');
+  const hitCountEl = document.getElementById('hitCount');
+
+  let selectedSize = 'medium';
+  let running = false;
+  let radius = 16;
+  let inputType = null;
+  let hits = 0;
+  let totalClicks = 0;
+  let invalidClicks = 0;
+  let lastClickTs = 0;
+  let lastTargetTime = 0;
+  let lastTargetPos = null;
+  let reactionTimes = [];
+  let missDistances = [];
+  let gameStartTime = 0;
+
+  function bucketKey(size, input) {
+    return `${size}_${input}`;
+  }
+
+  function getBucketStats(size, input) {
+    const k = bucketKey(size, input);
+    return allStats[k] || { plays: 0, bestAvgMs: null, bestAccuracy: null };
+  }
+
+  function renderStats() {
+    const displayInput = inputType || 'mouse';
+    const bs = getBucketStats(selectedSize, displayInput);
+    document.getElementById('statCount').textContent = bs.plays;
+    document.getElementById('statBest').textContent = bs.bestAvgMs !== null ? Math.round(bs.bestAvgMs) + ' ms' : '-';
+    document.getElementById('statAcc').textContent = bs.bestAccuracy !== null ? bs.bestAccuracy.toFixed(0) + '%' : '-';
+  }
+
+  sizeSelect.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      sizeSelect.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      selectedSize = btn.dataset.size;
+      renderStats();
+      renderTopLeaderboard(loadStats(LB_KEY + '_' + bucketKey(selectedSize, inputType || 'mouse'), []));
+    });
+  });
+
+  function spawnTarget() {
+    const rect = aimBox.getBoundingClientRect();
+    const minSep = Math.min(150, Math.min(rect.width, rect.height) * 0.3);
+    let x, y, tries = 0;
+    do {
+      x = radius + Math.random() * (rect.width - 2 * radius);
+      y = radius + Math.random() * (rect.height - 2 * radius);
+      tries += 1;
+    } while (lastTargetPos && Math.hypot(x - lastTargetPos.x, y - lastTargetPos.y) < minSep && tries < 50);
+    lastTargetPos = { x, y };
+    aimTarget.style.width = (radius * 2) + 'px';
+    aimTarget.style.height = (radius * 2) + 'px';
+    aimTarget.style.left = x + 'px';
+    aimTarget.style.top = y + 'px';
+    aimTarget.style.display = '';
+    lastTargetTime = performance.now();
+  }
+
+  function onPointerDown(e) {
+    if (!running) return;
+    e.preventDefault();
+    const now = performance.now();
+    if (now - lastClickTs < 30) {
+      invalidClicks += 1;
+      return;
+    }
+    lastClickTs = now;
+    if (inputType === null) inputType = e.pointerType === 'touch' ? 'touch' : 'mouse';
+
+    const rect = aimBox.getBoundingClientRect();
+    const cx = e.clientX - rect.left;
+    const cy = e.clientY - rect.top;
+    const d = Math.hypot(cx - lastTargetPos.x, cy - lastTargetPos.y);
+    totalClicks += 1;
+
+    if (d <= radius) {
+      hits += 1;
+      reactionTimes.push(now - lastTargetTime);
+      hitCountEl.textContent = `${hits} / ${TARGET_COUNT}`;
+      if (hits >= TARGET_COUNT) {
+        finish();
+        return;
+      }
+      spawnTarget();
+    } else {
+      missDistances.push(d);
+    }
+  }
+
+  aimBox.addEventListener('pointerdown', onPointerDown);
+  aimBox.addEventListener('contextmenu', (e) => e.preventDefault());
+  aimBox.addEventListener('dragstart', (e) => e.preventDefault());
+
+  document.getElementById('startBtn').addEventListener('click', () => {
+    const sizeCfg = SIZES.find(s => s.key === selectedSize);
+    radius = sizeCfg.radius;
+    running = true;
+    inputType = null;
+    hits = 0;
+    totalClicks = 0;
+    invalidClicks = 0;
+    lastClickTs = 0;
+    lastTargetPos = null;
+    reactionTimes = [];
+    missDistances = [];
+    gameStartTime = performance.now();
+    hitCountEl.textContent = `0 / ${TARGET_COUNT}`;
+
+    introScreen.style.display = 'none';
+    resultPanel.classList.remove('show');
+    playScreen.style.display = '';
+    spawnTarget();
+  });
+
+  function buildBarChart(times) {
+    const W = 600, H = 140, PAD = 8;
+    const maxMs = Math.max(...times);
+    const minMs = Math.min(...times);
+    const barW = (W - PAD * 2) / times.length;
+    const bars = times.map((t, i) => {
+      const h = maxMs > 0 ? (t / maxMs) * (H - PAD * 2) : 0;
+      const x = PAD + i * barW;
+      const y = H - PAD - h;
+      let fill = '#a5b4fc';
+      if (t === maxMs) fill = '#ef4444';
+      if (t === minMs) fill = '#22c55e';
+      return `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${(barW * 0.75).toFixed(1)}" height="${Math.max(h, 1).toFixed(1)}" fill="${fill}" rx="2"/>`;
+    }).join('');
+    return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;margin:14px 0;">${bars}</svg>`;
+  }
+
+  function renderGradeTable(avgMs, accuracy) {
+    const grade = gradeFor(avgMs, accuracy);
+    const table = document.getElementById('gradeTable');
+    const rows = [
+      { g: GRADES[4], cond: '800ms+' },
+      { g: GRADES[3], cond: 'under 600ms' },
+      { g: GRADES[2], cond: 'under 450ms' },
+      { g: GRADES[1], cond: 'under 350ms' },
+      { g: GRADES[0], cond: 'under 300ms (90%+ acc.)' },
+    ];
+    table.innerHTML = '<tr><th>Grade</th><th>Threshold</th></tr>' +
+      rows.map(r => `<tr class="${r.g.key === grade.key ? 'current-row' : ''}"><td>${r.g.label}</td><td>${r.cond}</td></tr>`).join('');
+  }
+
+  function finish() {
+    playScreen.style.display = 'none';
+    running = false;
+
+    const totalTimeMs = performance.now() - gameStartTime;
+    const avgMs = reactionTimes.reduce((a, b) => a + b, 0) / reactionTimes.length;
+    const accuracy = (hits / totalClicks) * 100;
+    const avgMissDist = missDistances.length ? missDistances.reduce((a, b) => a + b, 0) / missDistances.length : null;
+
+    const bk = bucketKey(selectedSize, inputType);
+    const bs = getBucketStats(selectedSize, inputType);
+    bs.plays += 1;
+    if (bs.bestAvgMs === null || avgMs < bs.bestAvgMs) bs.bestAvgMs = avgMs;
+    if (bs.bestAccuracy === null || accuracy > bs.bestAccuracy) bs.bestAccuracy = accuracy;
+    allStats[bk] = bs;
+    saveStats(STORE_KEY, allStats);
+    renderStats();
+
+    const grade = gradeFor(avgMs, accuracy);
+    document.getElementById('resultTitle').textContent = `Average ${Math.round(avgMs)}ms · ${accuracy.toFixed(0)}% accuracy`;
+    document.getElementById('resultDesc').textContent = `${(totalTimeMs / 1000).toFixed(1)}s total · ${grade.label}` +
+      (avgMissDist !== null ? ` · avg miss ${avgMissDist.toFixed(0)}px` : '') +
+      (invalidClicks > 0 ? ` · ${invalidClicks} invalid click(s)` : '');
+    document.getElementById('resultMobileNote').style.display = inputType === 'touch' ? '' : 'none';
+    document.getElementById('chartContainer').innerHTML = buildBarChart(reactionTimes);
+    renderGradeTable(avgMs, accuracy);
+    resultPanel.classList.add('show');
+    resultPanel.dataset.share = `I averaged ${Math.round(avgMs)}ms at ${accuracy.toFixed(0)}% accuracy on the aim test! (${grade.label}) Try it yourself → `;
+
+    if (accuracy >= 80) {
+      const lbList = addToLeaderboard(LB_KEY + '_' + bk, { value: avgMs, accuracy, date: Date.now() }, true);
+      renderTopLeaderboard(lbList);
+    } else {
+      renderTopLeaderboard(loadStats(LB_KEY + '_' + bk, []));
+    }
+  }
+
+  function renderTopLeaderboard(list) {
+    renderLeaderboard('topLeaderboard', list, (entry) => {
+      const d = new Date(entry.date);
+      const dateStr = `${d.getMonth() + 1}/${d.getDate()}`;
+      return `<span class="lb-name">${Math.round(entry.value)} ms</span><span class="lb-detail">${entry.accuracy.toFixed(0)}% acc. · ${dateStr}</span>`;
+    }, 'No records yet. Try your first challenge!');
+  }
+
+  document.getElementById('retryBtn').addEventListener('click', () => {
+    resultPanel.classList.remove('show');
+    introScreen.style.display = '';
+  });
+
+  document.getElementById('shareBtn').addEventListener('click', () => {
+    shareResult((resultPanel.dataset.share || '') + location.href.replace('games/aim-test.html', ''));
+  });
+
+  renderStats();
+  renderTopLeaderboard(loadStats(LB_KEY + '_' + bucketKey(selectedSize, 'mouse'), []));
+</script>
+</body>
+</html>

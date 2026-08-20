@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kohi 클릭 테스트 | 능력 테스트</title>
+<meta name="description" content="마인크래프트 Kohi 서버 방식의 10초 클릭 테스트. CPS를 소수점 둘째 자리까지, 초당 그래프와 함께 확인하세요.">
+<link rel="canonical" href="https://myabilitytest.com/skill-test/games/kohi-click.html">
+<link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/kohi-click.html">
+<link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/kohi-click.html">
+<link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/kohi-click.html">
+<link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/kohi-click.html">
+<link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/skill-test/games/kohi-click.html">
+<link rel="stylesheet" href="/skill-test/style.css">
+<style>
+  .related-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
+  .related-links a {
+    font-size: 13px;
+    color: #cbd5e1;
+    text-decoration: none;
+    background: var(--card-bg-2);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 999px;
+    padding: 7px 14px;
+  }
+  .related-links a:hover { border-color: var(--accent); color: #fff; }
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back-link" href="../../index.html">← 메인으로</a>
+    <div class="lang-switch">
+      <a class="active" href="/skill-test/games/kohi-click.html">한국어</a>
+      <a href="/en/skill-test/games/kohi-click.html">English</a>
+      <a href="/ja/skill-test/games/kohi-click.html">日本語</a>
+      <a href="/zh/skill-test/games/kohi-click.html">中文</a>
+    </div>
+    <h1>🎮 Kohi 클릭 테스트</h1>
+    <p class="sub">마인크래프트 Kohi 서버 방식 — 10초 동안 최대한 빠르게 클릭하세요.</p>
+
+    <div class="level-card">
+      <div class="label">남은 시간</div>
+      <div class="countdown-num" id="timeLeft">10.0</div>
+      <div class="sub" id="clickCountLine">클릭 수: 0 · 실시간 CPS: 0.00</div>
+    </div>
+
+    <button class="click-pad" id="clickPad">START</button>
+
+    <div id="resultPanel" class="result-panel">
+      <div class="emoji">🎮</div>
+      <h2 id="resultTitle"></h2>
+      <div class="stars" id="resultStars"></div>
+      <div class="desc" id="resultDesc"></div>
+      <div class="percentile" id="resultPeak"></div>
+      <div id="chartContainer"></div>
+      <table class="grade-table" id="gradeTable"></table>
+      <div class="btn-row">
+        <button class="btn" id="retryBtn">다시 하기</button>
+        <button class="btn share" id="shareBtn">결과 공유하기</button>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat-box">
+        <div class="label">도전 횟수</div>
+        <div class="value" id="statCount">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">최고 CPS</div>
+        <div class="value" id="statBest">-</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">최고 클릭 수</div>
+        <div class="value" id="statBestClicks">-</div>
+      </div>
+    </div>
+
+    <section class="note-box">
+      <p><strong>Kohi 클릭 테스트란?</strong> Kohi는 과거 마인크래프트 HCF(하드코어 팩션)
+      장르에서 유명했던 서버로, 서버 내에서 제공하던 10초 클릭 속도 측정 방식이 그대로
+      커뮤니티 표준처럼 굳어졌습니다. 지금도 마인크래프트 PvP 유저들 사이에서 "Kohi
+      클릭 테스트"는 10초 CPS 측정을 뜻하는 대명사로 쓰입니다.</p>
+      <p>이 페이지는 그 방식을 따라 10초 고정으로 측정하고, CPS를 소수점 둘째 자리까지
+      표시합니다. 초당 클릭 수 변화를 그래프로 보여주기 때문에 초반 폭발력과 후반 지구력
+      중 어느 쪽이 강한지도 확인할 수 있어요. 일반적으로 5~8 CPS면 평범한 수준, 10 CPS를
+      넘기면 상당히 빠른 편에 속합니다.</p>
+    </section>
+
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 역대 기록 순위 (최대 30위)</h2>
+    <div id="topLeaderboard"></div>
+
+    <h2 style="text-align:center; font-size:15px; margin-top:28px;">다른 클릭 테스트</h2>
+    <div class="related-links">
+      <a href="/skill-test/games/cps.html">🖱️ CPS 클릭 속도</a>
+      <a href="/skill-test/games/jitter-click.html">⚡ 지터 클릭</a>
+    </div>
+  </div>
+
+<script src="/skill-test/common.js"></script>
+<script src="/skill-test/games/shared/click-core.js"></script>
+<script>
+  const STORE_KEY = 'skillKohiClickStats';
+  const LB_KEY = 'skillKohiClickLeaderboardV1';
+  const DURATION = 10;
+  let stats = loadStats(STORE_KEY, { plays: 0, bestCps: 0, bestClicks: 0 });
+
+  const GRADES = [
+    { key: 'SS', min: 12, label: 'SS · 초고속' },
+    { key: 'S', min: 10, label: 'S · 매우 빠름' },
+    { key: 'A', min: 8, label: 'A · 빠름' },
+    { key: 'B', min: 6, label: 'B · 평균 이상' },
+    { key: 'C', min: 4, label: 'C · 평균' },
+    { key: 'D', min: 0, label: 'D · 느긋함' },
+  ];
+
+  function gradeFor(cps) {
+    return GRADES.find(g => cps >= g.min) || GRADES[GRADES.length - 1];
+  }
+
+  function starsFor(cps) {
+    if (cps >= 12) return 5;
+    if (cps >= 10) return 4;
+    if (cps >= 8) return 3;
+    if (cps >= 6) return 2;
+    return 1;
+  }
+
+  const clickPad = document.getElementById('clickPad');
+  const timeLeftEl = document.getElementById('timeLeft');
+  const clickCountLine = document.getElementById('clickCountLine');
+  const resultPanel = document.getElementById('resultPanel');
+
+  let running = false;
+  let finished = false;
+  let clicks = 0;
+  let startTime = 0;
+  let rafId = null;
+  let timestamps = [];
+
+  function renderStats() {
+    document.getElementById('statCount').textContent = stats.plays;
+    document.getElementById('statBest').textContent = stats.plays ? stats.bestCps.toFixed(2) : '-';
+    document.getElementById('statBestClicks').textContent = stats.plays ? stats.bestClicks : '-';
+  }
+
+  function spawnRipple(x, y) {
+    const r = document.createElement('div');
+    r.className = 'ripple';
+    r.style.left = x + 'px';
+    r.style.top = y + 'px';
+    clickPad.appendChild(r);
+    setTimeout(() => r.remove(), 600);
+  }
+
+  function tick() {
+    if (!running) return;
+    const elapsed = (performance.now() - startTime) / 1000;
+    const left = Math.max(0, DURATION - elapsed);
+    timeLeftEl.textContent = left.toFixed(1);
+    const liveCps = elapsed > 0 ? clicks / elapsed : 0;
+    clickCountLine.textContent = `클릭 수: ${clicks} · 실시간 CPS: ${liveCps.toFixed(2)}`;
+    if (left <= 0) {
+      finish();
+      return;
+    }
+    rafId = requestAnimationFrame(tick);
+  }
+
+  function start() {
+    running = true;
+    finished = false;
+    clicks = 1;
+    startTime = performance.now();
+    timestamps = [startTime];
+    resultPanel.classList.remove('show');
+    clickPad.textContent = '클릭! 클릭! 클릭!';
+    clickCountLine.textContent = '클릭 수: 1 · 실시간 CPS: 0.00';
+    rafId = requestAnimationFrame(tick);
+  }
+
+  function renderGradeTable(cps) {
+    const grade = gradeFor(cps);
+    const table = document.getElementById('gradeTable');
+    table.innerHTML = '<tr><th>등급</th><th>기준 CPS</th></tr>' +
+      GRADES.map(g => `<tr class="${g.key === grade.key ? 'current-row' : ''}"><td>${g.label}</td><td>${g.min}+</td></tr>`).join('');
+  }
+
+  function finish() {
+    running = false;
+    finished = true;
+    cancelAnimationFrame(rafId);
+    timeLeftEl.textContent = '0.0';
+    clickPad.textContent = '아래 버튼으로 다시 시작';
+
+    const cps = clicks / DURATION;
+    stats.plays += 1;
+    if (cps > stats.bestCps) stats.bestCps = cps;
+    if (clicks > stats.bestClicks) stats.bestClicks = clicks;
+    saveStats(STORE_KEY, stats);
+    renderStats();
+
+    const grade = gradeFor(cps);
+    const stars = starsFor(cps);
+    const buckets = perSecondCps(timestamps, startTime, DURATION);
+    const peak = Math.max(...buckets);
+
+    document.getElementById('resultTitle').textContent = cps.toFixed(2) + ' CPS';
+    document.getElementById('resultStars').textContent = '★'.repeat(stars) + '☆'.repeat(5 - stars);
+    document.getElementById('resultDesc').textContent = `총 클릭 ${clicks}회 / ${DURATION}초 — ${grade.label}`;
+    document.getElementById('resultPeak').textContent = `최고 구간: ${peak} 클릭/초`;
+    document.getElementById('chartContainer').innerHTML = buildCpsLineChart(buckets);
+    renderGradeTable(cps);
+    resultPanel.classList.add('show');
+    resultPanel.dataset.share = `Kohi 클릭 테스트에서 ${cps.toFixed(2)} CPS (${clicks}클릭/${DURATION}초, ${grade.key}등급) 기록! 너도 해봐 → `;
+
+    const lbList = addToLeaderboard(LB_KEY, { value: cps, clicks, date: Date.now() }, false);
+    renderTopLeaderboard(lbList);
+  }
+
+  function renderTopLeaderboard(list) {
+    renderLeaderboard('topLeaderboard', list, (entry) => {
+      const d = new Date(entry.date);
+      const dateStr = `${d.getMonth() + 1}/${d.getDate()}`;
+      return `<span class="lb-name">${entry.value.toFixed(2)} CPS</span><span class="lb-detail">${entry.clicks}클릭 · ${dateStr}</span>`;
+    }, '아직 기록이 없어요. 첫 도전을 해보세요!');
+  }
+
+  clickPad.addEventListener('pointerdown', (e) => {
+    if (finished) return;
+    e.preventDefault();
+    const rect = clickPad.getBoundingClientRect();
+    spawnRipple(e.clientX - rect.left, e.clientY - rect.top);
+    if (!running) {
+      start();
+      return;
+    }
+    clicks += 1;
+    timestamps.push(performance.now());
+  });
+  clickPad.addEventListener('contextmenu', (e) => e.preventDefault());
+
+  document.getElementById('retryBtn').addEventListener('click', () => {
+    finished = false;
+    resultPanel.classList.remove('show');
+    clickPad.textContent = 'START';
+    timeLeftEl.textContent = DURATION.toFixed(1);
+    clickCountLine.textContent = '클릭 수: 0 · 실시간 CPS: 0.00';
+  });
+
+  document.getElementById('shareBtn').addEventListener('click', () => {
+    shareResult((resultPanel.dataset.share || '') + location.href.replace('games/kohi-click.html', ''));
+  });
+
+  renderStats();
+  renderTopLeaderboard(loadStats(LB_KEY, []));
+</script>
+</body>
+</html>

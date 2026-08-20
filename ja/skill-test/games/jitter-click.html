@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ジタークリックテスト | 能力テスト</title>
+<meta name="description" content="腕を震わせて超高速でクリックするジタークリック!10秒間のCPSとクリックの安定性を同時に測る無料テスト。">
+<link rel="canonical" href="https://myabilitytest.com/ja/skill-test/games/jitter-click.html">
+<link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/jitter-click.html">
+<link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/jitter-click.html">
+<link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/jitter-click.html">
+<link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/jitter-click.html">
+<link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/skill-test/games/jitter-click.html">
+<link rel="stylesheet" href="/skill-test/style.css">
+<style>
+  .related-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
+  .related-links a {
+    font-size: 13px;
+    color: #cbd5e1;
+    text-decoration: none;
+    background: var(--card-bg-2);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 999px;
+    padding: 7px 14px;
+  }
+  .related-links a:hover { border-color: var(--accent); color: #fff; }
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back-link" href="/ja/index.html">← メインへ</a>
+    <div class="lang-switch">
+      <a href="/skill-test/games/jitter-click.html">한국어</a>
+      <a href="/en/skill-test/games/jitter-click.html">English</a>
+      <a class="active" href="/ja/skill-test/games/jitter-click.html">日本語</a>
+      <a href="/zh/skill-test/games/jitter-click.html">中文</a>
+    </div>
+    <h1>⚡ ジタークリックテスト</h1>
+    <p class="sub">10秒間、腕と手首を震わせてできるだけ速くクリックしよう。</p>
+
+    <div class="info-box">
+      ジタークリックは腕の筋肉をあえて震わせて秒間10回以上を狙うテクニックです。
+      ⚠️ 手首や腕に負担がかかるので短時間で、痛みを感じたらすぐにやめてください。
+    </div>
+
+    <div class="level-card">
+      <div class="label">残り時間</div>
+      <div class="countdown-num" id="timeLeft">10.0</div>
+      <div class="sub" id="clickCountLine">クリック数: 0 ・ リアルタイムCPS: 0.0</div>
+    </div>
+
+    <button class="click-pad" id="clickPad">START</button>
+
+    <div id="resultPanel" class="result-panel">
+      <div class="emoji">⚡</div>
+      <h2 id="resultTitle"></h2>
+      <div class="stars" id="resultStars"></div>
+      <div class="desc" id="resultDesc"></div>
+      <div class="percentile" id="resultJitter"></div>
+      <div id="chartContainer"></div>
+      <table class="grade-table" id="gradeTable"></table>
+      <div class="btn-row">
+        <button class="btn" id="retryBtn">もう一度</button>
+        <button class="btn share" id="shareBtn">結果を共有</button>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat-box">
+        <div class="label">挑戦回数</div>
+        <div class="value" id="statCount">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">最高CPS</div>
+        <div class="value" id="statBest">-</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">最多クリック数</div>
+        <div class="value" id="statBestClicks">-</div>
+      </div>
+    </div>
+
+    <section class="note-box">
+      <p><strong>ジタークリックとは?</strong> 指だけを動かす通常のクリックとは違い、
+      前腕と手首の筋肉を緊張させて素早く震わせ、その振動をマウスのボタンに伝えるテクニック
+      です。マインクラフトのPvPコミュニティで広く使われていて、熟練者は通常のクリック
+      (6〜8 CPS)をはるかに超える10〜14 CPSを記録することもあります。</p>
+      <p>このテストではCPSだけでなく<strong>クリック間隔の標準偏差</strong>も計算して、
+      振動の安定性として表示します。数値が小さいほど振動が規則的だという意味です。ただし
+      ジタークリックは手首や腕にかなりの負担をかける動作なので、繰り返しの練習はおすすめ
+      しません。痛みがあればすぐに中止してください。</p>
+    </section>
+
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 歴代記録ランキング(最大30位)</h2>
+    <div id="topLeaderboard"></div>
+
+    <h2 style="text-align:center; font-size:15px; margin-top:28px;">他のクリックテスト</h2>
+    <div class="related-links">
+      <a href="/ja/skill-test/games/cps.html">🖱️ CPSクリック速度</a>
+      <a href="/ja/skill-test/games/kohi-click.html">🎮 Kohiクリック</a>
+    </div>
+  </div>
+
+<script src="/skill-test/common.js"></script>
+<script src="/skill-test/games/shared/click-core.js"></script>
+<script>
+  const STORE_KEY = 'skillJitterClickStats';
+  const LB_KEY = 'skillJitterClickLeaderboardV1';
+  const DURATION = 10;
+  let stats = loadStats(STORE_KEY, { plays: 0, bestCps: 0, bestClicks: 0 });
+
+  const GRADES = [
+    { key: 'SS', min: 13, label: 'SS · ジターマスター' },
+    { key: 'S', min: 11, label: 'S · とても速い' },
+    { key: 'A', min: 9, label: 'A · 速い' },
+    { key: 'B', min: 7, label: 'B · 平均以上' },
+    { key: 'C', min: 5, label: 'C · 平均' },
+    { key: 'D', min: 0, label: 'D · 練習が必要' },
+  ];
+
+  function gradeFor(cps) {
+    return GRADES.find(g => cps >= g.min) || GRADES[GRADES.length - 1];
+  }
+
+  function starsFor(cps) {
+    if (cps >= 13) return 5;
+    if (cps >= 11) return 4;
+    if (cps >= 9) return 3;
+    if (cps >= 7) return 2;
+    return 1;
+  }
+
+  const clickPad = document.getElementById('clickPad');
+  const timeLeftEl = document.getElementById('timeLeft');
+  const clickCountLine = document.getElementById('clickCountLine');
+  const resultPanel = document.getElementById('resultPanel');
+
+  let running = false;
+  let finished = false;
+  let clicks = 0;
+  let startTime = 0;
+  let rafId = null;
+  let timestamps = [];
+
+  function renderStats() {
+    document.getElementById('statCount').textContent = stats.plays;
+    document.getElementById('statBest').textContent = stats.plays ? stats.bestCps.toFixed(1) : '-';
+    document.getElementById('statBestClicks').textContent = stats.plays ? stats.bestClicks : '-';
+  }
+
+  function spawnRipple(x, y) {
+    const r = document.createElement('div');
+    r.className = 'ripple';
+    r.style.left = x + 'px';
+    r.style.top = y + 'px';
+    clickPad.appendChild(r);
+    setTimeout(() => r.remove(), 600);
+  }
+
+  function tick() {
+    if (!running) return;
+    const elapsed = (performance.now() - startTime) / 1000;
+    const left = Math.max(0, DURATION - elapsed);
+    timeLeftEl.textContent = left.toFixed(1);
+    const liveCps = elapsed > 0 ? clicks / elapsed : 0;
+    clickCountLine.textContent = `クリック数: ${clicks} ・ リアルタイムCPS: ${liveCps.toFixed(1)}`;
+    if (left <= 0) {
+      finish();
+      return;
+    }
+    rafId = requestAnimationFrame(tick);
+  }
+
+  function start() {
+    running = true;
+    finished = false;
+    clicks = 1;
+    startTime = performance.now();
+    timestamps = [startTime];
+    resultPanel.classList.remove('show');
+    clickPad.textContent = '震わせろ!震わせろ!';
+    clickCountLine.textContent = 'クリック数: 1 ・ リアルタイムCPS: 0.0';
+    rafId = requestAnimationFrame(tick);
+  }
+
+  function renderGradeTable(cps) {
+    const grade = gradeFor(cps);
+    const table = document.getElementById('gradeTable');
+    table.innerHTML = '<tr><th>ランク</th><th>基準CPS</th></tr>' +
+      GRADES.map(g => `<tr class="${g.key === grade.key ? 'current-row' : ''}"><td>${g.label}</td><td>${g.min}+</td></tr>`).join('');
+  }
+
+  function finish() {
+    running = false;
+    finished = true;
+    cancelAnimationFrame(rafId);
+    timeLeftEl.textContent = '0.0';
+    clickPad.textContent = '下のボタンでもう一度';
+
+    const cps = clicks / DURATION;
+    stats.plays += 1;
+    if (cps > stats.bestCps) stats.bestCps = cps;
+    if (clicks > stats.bestClicks) stats.bestClicks = clicks;
+    saveStats(STORE_KEY, stats);
+    renderStats();
+
+    const grade = gradeFor(cps);
+    const stars = starsFor(cps);
+    const sd = clickIntervalStdDev(timestamps);
+
+    document.getElementById('resultTitle').textContent = cps.toFixed(1) + ' CPS';
+    document.getElementById('resultStars').textContent = '★'.repeat(stars) + '☆'.repeat(5 - stars);
+    document.getElementById('resultDesc').textContent = `合計クリック ${clicks}回 / ${DURATION}秒 — ${grade.label}`;
+    document.getElementById('resultJitter').textContent = sd !== null
+      ? `振動の安定性: クリック間隔の標準偏差 ${sd.toFixed(1)}ms(小さいほど規則的)`
+      : '';
+    document.getElementById('chartContainer').innerHTML =
+      buildCpsLineChart(perSecondCps(timestamps, startTime, DURATION));
+    renderGradeTable(cps);
+    resultPanel.classList.add('show');
+    resultPanel.dataset.share = `ジタークリックテストで${cps.toFixed(1)} CPS(${clicks}クリック/${DURATION}秒、${grade.key}ランク)を記録!あなたもどうぞ → `;
+
+    const lbList = addToLeaderboard(LB_KEY, { value: cps, clicks, sd, date: Date.now() }, false);
+    renderTopLeaderboard(lbList);
+  }
+
+  function renderTopLeaderboard(list) {
+    renderLeaderboard('topLeaderboard', list, (entry) => {
+      const d = new Date(entry.date);
+      const dateStr = `${d.getMonth() + 1}/${d.getDate()}`;
+      const sdText = entry.sd !== null && entry.sd !== undefined ? ` ・ 偏差${entry.sd.toFixed(0)}ms` : '';
+      return `<span class="lb-name">${entry.value.toFixed(1)} CPS</span><span class="lb-detail">${entry.clicks}クリック${sdText} ・ ${dateStr}</span>`;
+    }, 'まだ記録がありません。最初の挑戦をしてみましょう!');
+  }
+
+  clickPad.addEventListener('pointerdown', (e) => {
+    if (finished) return;
+    e.preventDefault();
+    const rect = clickPad.getBoundingClientRect();
+    spawnRipple(e.clientX - rect.left, e.clientY - rect.top);
+    if (!running) {
+      start();
+      return;
+    }
+    clicks += 1;
+    timestamps.push(performance.now());
+  });
+  clickPad.addEventListener('contextmenu', (e) => e.preventDefault());
+
+  document.getElementById('retryBtn').addEventListener('click', () => {
+    finished = false;
+    resultPanel.classList.remove('show');
+    clickPad.textContent = 'START';
+    timeLeftEl.textContent = DURATION.toFixed(1);
+    clickCountLine.textContent = 'クリック数: 0 ・ リアルタイムCPS: 0.0';
+  });
+
+  document.getElementById('shareBtn').addEventListener('click', () => {
+    shareResult((resultPanel.dataset.share || '') + location.href.replace('games/jitter-click.html', ''));
+  });
+
+  renderStats();
+  renderTopLeaderboard(loadStats(LB_KEY, []));
+</script>
+</body>
+</html>

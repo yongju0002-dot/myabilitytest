@@ -369,4 +369,78 @@
     <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/aim-test.html"/>
     <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/aim-test.html"/>
   </url>
+
+  <url>
+    <loc>https://myabilitytest.com/skill-test/games/jitter-click.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/jitter-click.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/jitter-click.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/jitter-click.html"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/jitter-click.html"/>
+  </url>
+  <url>
+    <loc>https://myabilitytest.com/en/skill-test/games/jitter-click.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/jitter-click.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/jitter-click.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/jitter-click.html"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/jitter-click.html"/>
+  </url>
+  <url>
+    <loc>https://myabilitytest.com/ja/skill-test/games/jitter-click.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/jitter-click.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/jitter-click.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/jitter-click.html"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/jitter-click.html"/>
+  </url>
+  <url>
+    <loc>https://myabilitytest.com/zh/skill-test/games/jitter-click.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/jitter-click.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/jitter-click.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/jitter-click.html"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/jitter-click.html"/>
+  </url>
+
+  <url>
+    <loc>https://myabilitytest.com/skill-test/games/kohi-click.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/kohi-click.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/kohi-click.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/kohi-click.html"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/kohi-click.html"/>
+  </url>
+  <url>
+    <loc>https://myabilitytest.com/en/skill-test/games/kohi-click.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/kohi-click.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/kohi-click.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/kohi-click.html"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/kohi-click.html"/>
+  </url>
+  <url>
+    <loc>https://myabilitytest.com/ja/skill-test/games/kohi-click.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/kohi-click.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/kohi-click.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/kohi-click.html"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/kohi-click.html"/>
+  </url>
+  <url>
+    <loc>https://myabilitytest.com/zh/skill-test/games/kohi-click.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/kohi-click.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/kohi-click.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/kohi-click.html"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/kohi-click.html"/>
+  </url>
 </urlset>

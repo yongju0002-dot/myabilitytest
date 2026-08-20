@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>抖动点击测试 | 能力测试</title>
+<meta name="description" content="靠手臂抖动实现超高速点击!10秒内同时测量CPS和点击稳定性的免费抖动点击测试。">
+<link rel="canonical" href="https://myabilitytest.com/zh/skill-test/games/jitter-click.html">
+<link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/jitter-click.html">
+<link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/jitter-click.html">
+<link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/jitter-click.html">
+<link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/jitter-click.html">
+<link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/skill-test/games/jitter-click.html">
+<link rel="stylesheet" href="/skill-test/style.css">
+<style>
+  .related-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
+  .related-links a {
+    font-size: 13px;
+    color: #cbd5e1;
+    text-decoration: none;
+    background: var(--card-bg-2);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 999px;
+    padding: 7px 14px;
+  }
+  .related-links a:hover { border-color: var(--accent); color: #fff; }
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back-link" href="/zh/index.html">← 返回主页</a>
+    <div class="lang-switch">
+      <a href="/skill-test/games/jitter-click.html">한국어</a>
+      <a href="/en/skill-test/games/jitter-click.html">English</a>
+      <a href="/ja/skill-test/games/jitter-click.html">日本語</a>
+      <a class="active" href="/zh/skill-test/games/jitter-click.html">中文</a>
+    </div>
+    <h1>⚡ 抖动点击测试</h1>
+    <p class="sub">10秒内,靠手臂和手腕的抖动尽可能快速点击。</p>
+
+    <div class="info-box">
+      抖动点击是刻意让手臂肌肉抖动、以求达到每秒10次以上的技巧。
+      ⚠️ 会对手腕和手臂造成负担,请控制时长,一旦感到疼痛请立即停止。
+    </div>
+
+    <div class="level-card">
+      <div class="label">剩余时间</div>
+      <div class="countdown-num" id="timeLeft">10.0</div>
+      <div class="sub" id="clickCountLine">点击数: 0 · 实时CPS: 0.0</div>
+    </div>
+
+    <button class="click-pad" id="clickPad">START</button>
+
+    <div id="resultPanel" class="result-panel">
+      <div class="emoji">⚡</div>
+      <h2 id="resultTitle"></h2>
+      <div class="stars" id="resultStars"></div>
+      <div class="desc" id="resultDesc"></div>
+      <div class="percentile" id="resultJitter"></div>
+      <div id="chartContainer"></div>
+      <table class="grade-table" id="gradeTable"></table>
+      <div class="btn-row">
+        <button class="btn" id="retryBtn">再来一次</button>
+        <button class="btn share" id="shareBtn">分享结果</button>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat-box">
+        <div class="label">挑战次数</div>
+        <div class="value" id="statCount">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">最高CPS</div>
+        <div class="value" id="statBest">-</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">最多点击数</div>
+        <div class="value" id="statBestClicks">-</div>
+      </div>
+    </div>
+
+    <section class="note-box">
+      <p><strong>什么是抖动点击?</strong> 与只活动手指的普通点击不同,抖动点击是绷紧
+      前臂和手腕的肌肉使其快速震颤,并把这种震动传递到鼠标按键上的技巧。它在《我的世界》
+      PvP社区中被广泛使用,熟练者能远远超过普通点击(6~8 CPS),达到10~14 CPS。</p>
+      <p>本测试除了CPS,还会计算<strong>点击间隔的标准差</strong>,作为震动稳定性显示。
+      数值越小说明震动越规律。不过抖动点击对手腕和手臂负担较大,不建议反复练习,
+      感到疼痛请立即停止。</p>
+    </section>
+
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 历代记录排行(最多30位)</h2>
+    <div id="topLeaderboard"></div>
+
+    <h2 style="text-align:center; font-size:15px; margin-top:28px;">其他点击测试</h2>
+    <div class="related-links">
+      <a href="/zh/skill-test/games/cps.html">🖱️ CPS点击速度</a>
+      <a href="/zh/skill-test/games/kohi-click.html">🎮 Kohi点击</a>
+    </div>
+  </div>
+
+<script src="/skill-test/common.js"></script>
+<script src="/skill-test/games/shared/click-core.js"></script>
+<script>
+  const STORE_KEY = 'skillJitterClickStats';
+  const LB_KEY = 'skillJitterClickLeaderboardV1';
+  const DURATION = 10;
+  let stats = loadStats(STORE_KEY, { plays: 0, bestCps: 0, bestClicks: 0 });
+
+  const GRADES = [
+    { key: 'SS', min: 13, label: 'SS · 抖动大师' },
+    { key: 'S', min: 11, label: 'S · 非常快' },
+    { key: 'A', min: 9, label: 'A · 快' },
+    { key: 'B', min: 7, label: 'B · 高于平均' },
+    { key: 'C', min: 5, label: 'C · 平均' },
+    { key: 'D', min: 0, label: 'D · 需要练习' },
+  ];
+
+  function gradeFor(cps) {
+    return GRADES.find(g => cps >= g.min) || GRADES[GRADES.length - 1];
+  }
+
+  function starsFor(cps) {
+    if (cps >= 13) return 5;
+    if (cps >= 11) return 4;
+    if (cps >= 9) return 3;
+    if (cps >= 7) return 2;
+    return 1;
+  }
+
+  const clickPad = document.getElementById('clickPad');
+  const timeLeftEl = document.getElementById('timeLeft');
+  const clickCountLine = document.getElementById('clickCountLine');
+  const resultPanel = document.getElementById('resultPanel');
+
+  let running = false;
+  let finished = false;
+  let clicks = 0;
+  let startTime = 0;
+  let rafId = null;
+  let timestamps = [];
+
+  function renderStats() {
+    document.getElementById('statCount').textContent = stats.plays;
+    document.getElementById('statBest').textContent = stats.plays ? stats.bestCps.toFixed(1) : '-';
+    document.getElementById('statBestClicks').textContent = stats.plays ? stats.bestClicks : '-';
+  }
+
+  function spawnRipple(x, y) {
+    const r = document.createElement('div');
+    r.className = 'ripple';
+    r.style.left = x + 'px';
+    r.style.top = y + 'px';
+    clickPad.appendChild(r);
+    setTimeout(() => r.remove(), 600);
+  }
+
+  function tick() {
+    if (!running) return;
+    const elapsed = (performance.now() - startTime) / 1000;
+    const left = Math.max(0, DURATION - elapsed);
+    timeLeftEl.textContent = left.toFixed(1);
+    const liveCps = elapsed > 0 ? clicks / elapsed : 0;
+    clickCountLine.textContent = `点击数: ${clicks} · 实时CPS: ${liveCps.toFixed(1)}`;
+    if (left <= 0) {
+      finish();
+      return;
+    }
+    rafId = requestAnimationFrame(tick);
+  }
+
+  function start() {
+    running = true;
+    finished = false;
+    clicks = 1;
+    startTime = performance.now();
+    timestamps = [startTime];
+    resultPanel.classList.remove('show');
+    clickPad.textContent = '抖起来!抖起来!';
+    clickCountLine.textContent = '点击数: 1 · 实时CPS: 0.0';
+    rafId = requestAnimationFrame(tick);
+  }
+
+  function renderGradeTable(cps) {
+    const grade = gradeFor(cps);
+    const table = document.getElementById('gradeTable');
+    table.innerHTML = '<tr><th>等级</th><th>标准CPS</th></tr>' +
+      GRADES.map(g => `<tr class="${g.key === grade.key ? 'current-row' : ''}"><td>${g.label}</td><td>${g.min}+</td></tr>`).join('');
+  }
+
+  function finish() {
+    running = false;
+    finished = true;
+    cancelAnimationFrame(rafId);
+    timeLeftEl.textContent = '0.0';
+    clickPad.textContent = '点击下方按钮重新开始';
+
+    const cps = clicks / DURATION;
+    stats.plays += 1;
+    if (cps > stats.bestCps) stats.bestCps = cps;
+    if (clicks > stats.bestClicks) stats.bestClicks = clicks;
+    saveStats(STORE_KEY, stats);
+    renderStats();
+
+    const grade = gradeFor(cps);
+    const stars = starsFor(cps);
+    const sd = clickIntervalStdDev(timestamps);
+
+    document.getElementById('resultTitle').textContent = cps.toFixed(1) + ' CPS';
+    document.getElementById('resultStars').textContent = '★'.repeat(stars) + '☆'.repeat(5 - stars);
+    document.getElementById('resultDesc').textContent = `共点击 ${clicks} 次 / ${DURATION}秒 — ${grade.label}`;
+    document.getElementById('resultJitter').textContent = sd !== null
+      ? `震动稳定性: 点击间隔标准差 ${sd.toFixed(1)}ms(越小越规律)`
+      : '';
+    document.getElementById('chartContainer').innerHTML =
+      buildCpsLineChart(perSecondCps(timestamps, startTime, DURATION));
+    renderGradeTable(cps);
+    resultPanel.classList.add('show');
+    resultPanel.dataset.share = `我在抖动点击测试中达到了${cps.toFixed(1)} CPS(${clicks}次点击/${DURATION}秒,${grade.key}级)!你也来试试 → `;
+
+    const lbList = addToLeaderboard(LB_KEY, { value: cps, clicks, sd, date: Date.now() }, false);
+    renderTopLeaderboard(lbList);
+  }
+
+  function renderTopLeaderboard(list) {
+    renderLeaderboard('topLeaderboard', list, (entry) => {
+      const d = new Date(entry.date);
+      const dateStr = `${d.getMonth() + 1}/${d.getDate()}`;
+      const sdText = entry.sd !== null && entry.sd !== undefined ? ` · 偏差${entry.sd.toFixed(0)}ms` : '';
+      return `<span class="lb-name">${entry.value.toFixed(1)} CPS</span><span class="lb-detail">${entry.clicks}次${sdText} · ${dateStr}</span>`;
+    }, '还没有记录。快来挑战第一次吧!');
+  }
+
+  clickPad.addEventListener('pointerdown', (e) => {
+    if (finished) return;
+    e.preventDefault();
+    const rect = clickPad.getBoundingClientRect();
+    spawnRipple(e.clientX - rect.left, e.clientY - rect.top);
+    if (!running) {
+      start();
+      return;
+    }
+    clicks += 1;
+    timestamps.push(performance.now());
+  });
+  clickPad.addEventListener('contextmenu', (e) => e.preventDefault());
+
+  document.getElementById('retryBtn').addEventListener('click', () => {
+    finished = false;
+    resultPanel.classList.remove('show');
+    clickPad.textContent = 'START';
+    timeLeftEl.textContent = DURATION.toFixed(1);
+    clickCountLine.textContent = '点击数: 0 · 实时CPS: 0.0';
+  });
+
+  document.getElementById('shareBtn').addEventListener('click', () => {
+    shareResult((resultPanel.dataset.share || '') + location.href.replace('games/jitter-click.html', ''));
+  });
+
+  renderStats();
+  renderTopLeaderboard(loadStats(LB_KEY, []));
+</script>
+</body>
+</html>

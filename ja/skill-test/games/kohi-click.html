@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kohiクリックテスト | 能力テスト</title>
+<meta name="description" content="マインクラフトのKohiサーバー方式の10秒クリックテスト。CPSを小数点以下2桁まで、秒ごとのグラフとあわせて確認しよう。">
+<link rel="canonical" href="https://myabilitytest.com/ja/skill-test/games/kohi-click.html">
+<link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/kohi-click.html">
+<link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/kohi-click.html">
+<link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/kohi-click.html">
+<link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/kohi-click.html">
+<link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/skill-test/games/kohi-click.html">
+<link rel="stylesheet" href="/skill-test/style.css">
+<style>
+  .related-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
+  .related-links a {
+    font-size: 13px;
+    color: #cbd5e1;
+    text-decoration: none;
+    background: var(--card-bg-2);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 999px;
+    padding: 7px 14px;
+  }
+  .related-links a:hover { border-color: var(--accent); color: #fff; }
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back-link" href="/ja/index.html">← メインへ</a>
+    <div class="lang-switch">
+      <a href="/skill-test/games/kohi-click.html">한국어</a>
+      <a href="/en/skill-test/games/kohi-click.html">English</a>
+      <a class="active" href="/ja/skill-test/games/kohi-click.html">日本語</a>
+      <a href="/zh/skill-test/games/kohi-click.html">中文</a>
+    </div>
+    <h1>🎮 Kohiクリックテスト</h1>
+    <p class="sub">マインクラフトのKohiサーバー方式 — 10秒間できるだけ速くクリックしよう。</p>
+
+    <div class="level-card">
+      <div class="label">残り時間</div>
+      <div class="countdown-num" id="timeLeft">10.0</div>
+      <div class="sub" id="clickCountLine">クリック数: 0 ・ リアルタイムCPS: 0.00</div>
+    </div>
+
+    <button class="click-pad" id="clickPad">START</button>
+
+    <div id="resultPanel" class="result-panel">
+      <div class="emoji">🎮</div>
+      <h2 id="resultTitle"></h2>
+      <div class="stars" id="resultStars"></div>
+      <div class="desc" id="resultDesc"></div>
+      <div class="percentile" id="resultPeak"></div>
+      <div id="chartContainer"></div>
+      <table class="grade-table" id="gradeTable"></table>
+      <div class="btn-row">
+        <button class="btn" id="retryBtn">もう一度</button>
+        <button class="btn share" id="shareBtn">結果を共有</button>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat-box">
+        <div class="label">挑戦回数</div>
+        <div class="value" id="statCount">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">最高CPS</div>
+        <div class="value" id="statBest">-</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">最多クリック数</div>
+        <div class="value" id="statBestClicks">-</div>
+      </div>
+    </div>
+
+    <section class="note-box">
+      <p><strong>Kohiクリックテストとは?</strong> Kohiはかつてマインクラフトの
+      HCF(ハードコアファクション)界隈で有名だったサーバーで、そこで提供されていた
+      10秒間のクリック速度測定がそのままコミュニティの標準のように定着しました。今でも
+      マインクラフトのPvPプレイヤーの間では「Kohiクリックテスト」は10秒間のCPS測定を
+      指す言葉として使われています。</p>
+      <p>このページはその方式にならって10秒固定で測定し、CPSを小数点以下2桁まで表示
+      します。秒ごとのクリック数の変化をグラフで見られるので、序盤の爆発力と終盤の
+      持久力のどちらが強いかも確認できます。一般的に5〜8 CPSなら平均的、10 CPSを超えると
+      かなり速い部類に入ります。</p>
+    </section>
+
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 歴代記録ランキング(最大30位)</h2>
+    <div id="topLeaderboard"></div>
+
+    <h2 style="text-align:center; font-size:15px; margin-top:28px;">他のクリックテスト</h2>
+    <div class="related-links">
+      <a href="/ja/skill-test/games/cps.html">🖱️ CPSクリック速度</a>
+      <a href="/ja/skill-test/games/jitter-click.html">⚡ ジタークリック</a>
+    </div>
+  </div>
+
+<script src="/skill-test/common.js"></script>
+<script src="/skill-test/games/shared/click-core.js"></script>
+<script>
+  const STORE_KEY = 'skillKohiClickStats';
+  const LB_KEY = 'skillKohiClickLeaderboardV1';
+  const DURATION = 10;
+  let stats = loadStats(STORE_KEY, { plays: 0, bestCps: 0, bestClicks: 0 });
+
+  const GRADES = [
+    { key: 'SS', min: 12, label: 'SS · 超高速' },
+    { key: 'S', min: 10, label: 'S · とても速い' },
+    { key: 'A', min: 8, label: 'A · 速い' },
+    { key: 'B', min: 6, label: 'B · 平均以上' },
+    { key: 'C', min: 4, label: 'C · 平均' },
+    { key: 'D', min: 0, label: 'D · のんびり' },
+  ];
+
+  function gradeFor(cps) {
+    return GRADES.find(g => cps >= g.min) || GRADES[GRADES.length - 1];
+  }
+
+  function starsFor(cps) {
+    if (cps >= 12) return 5;
+    if (cps >= 10) return 4;
+    if (cps >= 8) return 3;
+    if (cps >= 6) return 2;
+    return 1;
+  }
+
+  const clickPad = document.getElementById('clickPad');
+  const timeLeftEl = document.getElementById('timeLeft');
+  const clickCountLine = document.getElementById('clickCountLine');
+  const resultPanel = document.getElementById('resultPanel');
+
+  let running = false;
+  let finished = false;
+  let clicks = 0;
+  let startTime = 0;
+  let rafId = null;
+  let timestamps = [];
+
+  function renderStats() {
+    document.getElementById('statCount').textContent = stats.plays;
+    document.getElementById('statBest').textContent = stats.plays ? stats.bestCps.toFixed(2) : '-';
+    document.getElementById('statBestClicks').textContent = stats.plays ? stats.bestClicks : '-';
+  }
+
+  function spawnRipple(x, y) {
+    const r = document.createElement('div');
+    r.className = 'ripple';
+    r.style.left = x + 'px';
+    r.style.top = y + 'px';
+    clickPad.appendChild(r);
+    setTimeout(() => r.remove(), 600);
+  }
+
+  function tick() {
+    if (!running) return;
+    const elapsed = (performance.now() - startTime) / 1000;
+    const left = Math.max(0, DURATION - elapsed);
+    timeLeftEl.textContent = left.toFixed(1);
+    const liveCps = elapsed > 0 ? clicks / elapsed : 0;
+    clickCountLine.textContent = `クリック数: ${clicks} ・ リアルタイムCPS: ${liveCps.toFixed(2)}`;
+    if (left <= 0) {
+      finish();
+      return;
+    }
+    rafId = requestAnimationFrame(tick);
+  }
+
+  function start() {
+    running = true;
+    finished = false;
+    clicks = 1;
+    startTime = performance.now();
+    timestamps = [startTime];
+    resultPanel.classList.remove('show');
+    clickPad.textContent = 'クリック!クリック!';
+    clickCountLine.textContent = 'クリック数: 1 ・ リアルタイムCPS: 0.00';
+    rafId = requestAnimationFrame(tick);
+  }
+
+  function renderGradeTable(cps) {
+    const grade = gradeFor(cps);
+    const table = document.getElementById('gradeTable');
+    table.innerHTML = '<tr><th>ランク</th><th>基準CPS</th></tr>' +
+      GRADES.map(g => `<tr class="${g.key === grade.key ? 'current-row' : ''}"><td>${g.label}</td><td>${g.min}+</td></tr>`).join('');
+  }
+
+  function finish() {
+    running = false;
+    finished = true;
+    cancelAnimationFrame(rafId);
+    timeLeftEl.textContent = '0.0';
+    clickPad.textContent = '下のボタンでもう一度';
+
+    const cps = clicks / DURATION;
+    stats.plays += 1;
+    if (cps > stats.bestCps) stats.bestCps = cps;
+    if (clicks > stats.bestClicks) stats.bestClicks = clicks;
+    saveStats(STORE_KEY, stats);
+    renderStats();
+
+    const grade = gradeFor(cps);
+    const stars = starsFor(cps);
+    const buckets = perSecondCps(timestamps, startTime, DURATION);
+    const peak = Math.max(...buckets);
+
+    document.getElementById('resultTitle').textContent = cps.toFixed(2) + ' CPS';
+    document.getElementById('resultStars').textContent = '★'.repeat(stars) + '☆'.repeat(5 - stars);
+    document.getElementById('resultDesc').textContent = `合計クリック ${clicks}回 / ${DURATION}秒 — ${grade.label}`;
+    document.getElementById('resultPeak').textContent = `最高の1秒: ${peak}クリック`;
+    document.getElementById('chartContainer').innerHTML = buildCpsLineChart(buckets);
+    renderGradeTable(cps);
+    resultPanel.classList.add('show');
+    resultPanel.dataset.share = `Kohiクリックテストで${cps.toFixed(2)} CPS(${clicks}クリック/${DURATION}秒、${grade.key}ランク)を記録!あなたもどうぞ → `;
+
+    const lbList = addToLeaderboard(LB_KEY, { value: cps, clicks, date: Date.now() }, false);
+    renderTopLeaderboard(lbList);
+  }
+
+  function renderTopLeaderboard(list) {
+    renderLeaderboard('topLeaderboard', list, (entry) => {
+      const d = new Date(entry.date);
+      const dateStr = `${d.getMonth() + 1}/${d.getDate()}`;
+      return `<span class="lb-name">${entry.value.toFixed(2)} CPS</span><span class="lb-detail">${entry.clicks}クリック ・ ${dateStr}</span>`;
+    }, 'まだ記録がありません。最初の挑戦をしてみましょう!');
+  }
+
+  clickPad.addEventListener('pointerdown', (e) => {
+    if (finished) return;
+    e.preventDefault();
+    const rect = clickPad.getBoundingClientRect();
+    spawnRipple(e.clientX - rect.left, e.clientY - rect.top);
+    if (!running) {
+      start();
+      return;
+    }
+    clicks += 1;
+    timestamps.push(performance.now());
+  });
+  clickPad.addEventListener('contextmenu', (e) => e.preventDefault());
+
+  document.getElementById('retryBtn').addEventListener('click', () => {
+    finished = false;
+    resultPanel.classList.remove('show');
+    clickPad.textContent = 'START';
+    timeLeftEl.textContent = DURATION.toFixed(1);
+    clickCountLine.textContent = 'クリック数: 0 ・ リアルタイムCPS: 0.00';
+  });
+
+  document.getElementById('shareBtn').addEventListener('click', () => {
+    shareResult((resultPanel.dataset.share || '') + location.href.replace('games/kohi-click.html', ''));
+  });
+
+  renderStats();
+  renderTopLeaderboard(loadStats(LB_KEY, []));
+</script>
+</body>
+</html>

@@ -443,4 +443,115 @@
     <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/kohi-click.html"/>
     <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/kohi-click.html"/>
   </url>
+
+  <url>
+    <loc>https://myabilitytest.com/skill-test/games/spacebar.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/spacebar.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/spacebar.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/spacebar.html"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/spacebar.html"/>
+  </url>
+  <url>
+    <loc>https://myabilitytest.com/en/skill-test/games/spacebar.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/spacebar.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/spacebar.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/spacebar.html"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/spacebar.html"/>
+  </url>
+  <url>
+    <loc>https://myabilitytest.com/ja/skill-test/games/spacebar.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/spacebar.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/spacebar.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/spacebar.html"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/spacebar.html"/>
+  </url>
+  <url>
+    <loc>https://myabilitytest.com/zh/skill-test/games/spacebar.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/spacebar.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/spacebar.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/spacebar.html"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/spacebar.html"/>
+  </url>
+
+  <url>
+    <loc>https://myabilitytest.com/skill-test/games/apm.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/apm.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/apm.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/apm.html"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/apm.html"/>
+  </url>
+  <url>
+    <loc>https://myabilitytest.com/en/skill-test/games/apm.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/apm.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/apm.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/apm.html"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/apm.html"/>
+  </url>
+  <url>
+    <loc>https://myabilitytest.com/ja/skill-test/games/apm.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/apm.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/apm.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/apm.html"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/apm.html"/>
+  </url>
+  <url>
+    <loc>https://myabilitytest.com/zh/skill-test/games/apm.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/apm.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/apm.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/apm.html"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/apm.html"/>
+  </url>
+
+  <url>
+    <loc>https://myabilitytest.com/skill-test/games/mouse-accuracy.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/mouse-accuracy.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/mouse-accuracy.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/mouse-accuracy.html"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/mouse-accuracy.html"/>
+  </url>
+  <url>
+    <loc>https://myabilitytest.com/en/skill-test/games/mouse-accuracy.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/mouse-accuracy.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/mouse-accuracy.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/mouse-accuracy.html"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/mouse-accuracy.html"/>
+  </url>
+  <url>
+    <loc>https://myabilitytest.com/ja/skill-test/games/mouse-accuracy.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/mouse-accuracy.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/mouse-accuracy.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/mouse-accuracy.html"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/mouse-accuracy.html"/>
+  </url>
+  <url>
+    <loc>https://myabilitytest.com/zh/skill-test/games/mouse-accuracy.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/mouse-accuracy.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/mouse-accuracy.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/mouse-accuracy.html"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/mouse-accuracy.html"/>
+  </url>
 </urlset>

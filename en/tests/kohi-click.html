@@ -33,6 +33,21 @@
 </script>
 <link rel="stylesheet" href="/skill-test/style.css">
 <style>
+  .other-tests { margin-top: 16px; }
+  .other-tests .label { text-align: center; font-size: 12px; color: var(--text-dim); margin-bottom: 8px; }
+  .other-tests-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .other-tests-links a {
+    font-size: 12px;
+    color: #cbd5e1;
+    text-decoration: none;
+    background: var(--card-bg-2);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 999px;
+    padding: 6px 12px;
+  }
+  .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+</style>
+<style>
   .related-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
   .related-links a {
     font-size: 13px;
@@ -79,6 +94,15 @@
         <button class="btn" id="retryBtn">Try again</button>
         <button class="btn share" id="shareBtn">Share result</button>
       </div>
+        <div class="other-tests">
+          <div class="label">Try another ability test</div>
+          <div class="other-tests-links">
+            <a href="/en/tests/click-speed">🖱️ CPS Click Speed</a>
+            <a href="/en/tests/jitter-click">⚡ Jitter Click</a>
+            <a href="/en/tests/spacebar-counter">⌨️ Spacebar Speed</a>
+            <a href="/en/tests/apm">🎹 APM</a>
+          </div>
+        </div>
     </div>
 
     <div class="stats">

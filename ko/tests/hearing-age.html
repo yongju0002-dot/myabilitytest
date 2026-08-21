@@ -33,6 +33,21 @@
 </script>
 <link rel="stylesheet" href="/skill-test/style.css">
 <style>
+  .other-tests { margin-top: 16px; }
+  .other-tests .label { text-align: center; font-size: 12px; color: var(--text-dim); margin-bottom: 8px; }
+  .other-tests-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .other-tests-links a {
+    font-size: 12px;
+    color: #cbd5e1;
+    text-decoration: none;
+    background: var(--card-bg-2);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 999px;
+    padding: 6px 12px;
+  }
+  .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+</style>
+<style>
   .warn-box {
     background: rgba(239,68,68,0.14);
     border: 1px solid rgba(239,68,68,0.4);
@@ -146,6 +161,15 @@
         <button class="btn" id="retryBtn">다시 도전</button>
         <button class="btn share" id="shareBtn">결과 공유하기</button>
       </div>
+        <div class="other-tests">
+          <div class="label">다른 능력 테스트도 해보세요</div>
+          <div class="other-tests-links">
+            <a href="/ko/tests/dynamic-vision">👁️ 동체시력</a>
+            <a href="/ko/tests/reaction-time">⚡ 반응 속도</a>
+            <a href="/ko/tests/visual-memory">🧠 순간 기억력</a>
+            <a href="/ko/tests/chimp-test">🐵 침팬지 테스트</a>
+          </div>
+        </div>
     </div>
 
     <div class="stats">

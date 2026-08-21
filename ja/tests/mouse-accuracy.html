@@ -33,6 +33,21 @@
 </script>
 <link rel="stylesheet" href="/skill-test/style.css">
 <style>
+  .other-tests { margin-top: 16px; }
+  .other-tests .label { text-align: center; font-size: 12px; color: var(--text-dim); margin-bottom: 8px; }
+  .other-tests-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .other-tests-links a {
+    font-size: 12px;
+    color: #cbd5e1;
+    text-decoration: none;
+    background: var(--card-bg-2);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 999px;
+    padding: 6px 12px;
+  }
+  .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+</style>
+<style>
   .related-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
   .related-links a {
     font-size: 13px; color: #cbd5e1; text-decoration: none;
@@ -100,6 +115,15 @@
         <button class="btn" id="retryBtn">もう一度</button>
         <button class="btn share" id="shareBtn">結果を共有</button>
       </div>
+        <div class="other-tests">
+          <div class="label">他の能力テストも試してみよう</div>
+          <div class="other-tests-links">
+            <a href="/ja/tests/click-speed">🖱️ CPSクリック速度</a>
+            <a href="/ja/tests/aim-trainer">🎯 エイムテスト</a>
+            <a href="/ja/tests/apm">🎹 APM</a>
+            <a href="/ja/tests/spacebar-counter">⌨️ スペースキー連打</a>
+          </div>
+        </div>
     </div>
 
     <div class="stats">

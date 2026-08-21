@@ -42,6 +42,19 @@
   .info table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
   .info th, .info td { border: 1px solid #334155; padding: 8px; text-align: left; }
   .info th { background: var(--card-bg); }
+  .other-tests { margin-top: 16px; }
+  .other-tests .label { text-align: center; font-size: 12px; color: var(--text-dim); margin-bottom: 8px; }
+  .other-tests-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .other-tests-links a {
+    font-size: 12px;
+    color: #cbd5e1;
+    text-decoration: none;
+    background: var(--card-bg-2);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 999px;
+    padding: 6px 12px;
+  }
+  .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
 </style>
 <link rel="stylesheet" href="/skill-test/style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
@@ -78,6 +91,15 @@
       <div class="btn-row">
         <button class="btn" id="retryBtn">Try again</button>
         <button class="btn share" id="shareBtn">Share result</button>
+      </div>
+      <div class="other-tests">
+        <div class="label">Try another ability test</div>
+        <div class="other-tests-links">
+          <a href="/en/tests/jitter-click">⚡ Jitter Click</a>
+          <a href="/en/tests/kohi-click">🎮 Kohi Click</a>
+          <a href="/en/tests/spacebar-counter">⌨️ Spacebar Counter</a>
+          <a href="/en/tests/reaction-time">⚡ Reaction Time</a>
+        </div>
       </div>
     </div>
 

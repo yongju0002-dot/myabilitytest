@@ -2,6 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://myabilitytest.com/ko/</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/"/>
@@ -12,6 +13,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/en/</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/"/>
@@ -22,6 +24,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/ja/</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/"/>
@@ -32,6 +35,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/zh/</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/"/>
@@ -42,6 +46,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/ko/tests/hearing-age</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/hearing-age"/>
@@ -52,6 +57,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/en/tests/hearing-age</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/hearing-age"/>
@@ -62,6 +68,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/ja/tests/hearing-age</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/hearing-age"/>
@@ -72,6 +79,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/zh/tests/hearing-age</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/hearing-age"/>
@@ -82,6 +90,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/ko/tests/time-perception</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/time-perception"/>
@@ -92,6 +101,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/en/tests/time-perception</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/time-perception"/>
@@ -102,6 +112,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/ja/tests/time-perception</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/time-perception"/>
@@ -112,6 +123,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/zh/tests/time-perception</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/time-perception"/>
@@ -122,6 +134,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/ko/tests/click-speed</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/click-speed"/>
@@ -132,6 +145,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/en/tests/click-speed</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/click-speed"/>
@@ -142,6 +156,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/ja/tests/click-speed</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/click-speed"/>
@@ -152,6 +167,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/zh/tests/click-speed</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/click-speed"/>
@@ -162,6 +178,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/ko/tests/apm</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/apm"/>
@@ -172,6 +189,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/en/tests/apm</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/apm"/>
@@ -182,6 +200,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/ja/tests/apm</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/apm"/>
@@ -192,6 +211,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/zh/tests/apm</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/apm"/>
@@ -202,6 +222,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/ko/tests/visual-memory</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/visual-memory"/>
@@ -212,6 +233,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/en/tests/visual-memory</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/visual-memory"/>
@@ -222,6 +244,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/ja/tests/visual-memory</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/visual-memory"/>
@@ -232,6 +255,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/zh/tests/visual-memory</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/visual-memory"/>
@@ -242,6 +266,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/ko/tests/dynamic-vision</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/dynamic-vision"/>
@@ -252,6 +277,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/en/tests/dynamic-vision</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/dynamic-vision"/>
@@ -262,6 +288,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/ja/tests/dynamic-vision</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/dynamic-vision"/>
@@ -272,6 +299,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/zh/tests/dynamic-vision</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/dynamic-vision"/>
@@ -282,6 +310,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/ko/tests/time-stop</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/time-stop"/>
@@ -292,6 +321,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/en/tests/time-stop</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/time-stop"/>
@@ -302,6 +332,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/ja/tests/time-stop</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/time-stop"/>
@@ -312,6 +343,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/zh/tests/time-stop</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/time-stop"/>
@@ -322,6 +354,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/ko/tests/reaction-time</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/reaction-time"/>
@@ -332,6 +365,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/en/tests/reaction-time</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/reaction-time"/>
@@ -342,6 +376,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/ja/tests/reaction-time</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/reaction-time"/>
@@ -352,6 +387,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/zh/tests/reaction-time</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/reaction-time"/>
@@ -362,6 +398,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/ko/tests/chimp-test</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/chimp-test"/>
@@ -372,6 +409,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/en/tests/chimp-test</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/chimp-test"/>
@@ -382,6 +420,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/ja/tests/chimp-test</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/chimp-test"/>
@@ -392,6 +431,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/zh/tests/chimp-test</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/chimp-test"/>
@@ -402,6 +442,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/ko/tests/kohi-click</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/kohi-click"/>
@@ -412,6 +453,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/en/tests/kohi-click</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/kohi-click"/>
@@ -422,6 +464,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/ja/tests/kohi-click</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/kohi-click"/>
@@ -432,6 +475,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/zh/tests/kohi-click</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/kohi-click"/>
@@ -442,6 +486,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/ko/tests/spacebar-counter</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/spacebar-counter"/>
@@ -452,6 +497,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/en/tests/spacebar-counter</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/spacebar-counter"/>
@@ -462,6 +508,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/ja/tests/spacebar-counter</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/spacebar-counter"/>
@@ -472,6 +519,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/zh/tests/spacebar-counter</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/spacebar-counter"/>
@@ -482,6 +530,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/ko/tests/aim-trainer</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/aim-trainer"/>
@@ -492,6 +541,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/en/tests/aim-trainer</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/aim-trainer"/>
@@ -502,6 +552,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/ja/tests/aim-trainer</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/aim-trainer"/>
@@ -512,6 +563,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/zh/tests/aim-trainer</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/aim-trainer"/>
@@ -522,6 +574,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/ko/tests/mouse-accuracy</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/mouse-accuracy"/>
@@ -532,6 +585,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/en/tests/mouse-accuracy</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/mouse-accuracy"/>
@@ -542,6 +596,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/ja/tests/mouse-accuracy</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/mouse-accuracy"/>
@@ -552,6 +607,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/zh/tests/mouse-accuracy</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/mouse-accuracy"/>
@@ -562,6 +618,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/ko/tests/jitter-click</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/jitter-click"/>
@@ -572,6 +629,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/en/tests/jitter-click</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/jitter-click"/>
@@ -582,6 +640,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/ja/tests/jitter-click</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/jitter-click"/>
@@ -592,6 +651,7 @@
   </url>
   <url>
     <loc>https://myabilitytest.com/zh/tests/jitter-click</loc>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/jitter-click"/>

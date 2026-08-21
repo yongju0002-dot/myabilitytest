@@ -211,6 +211,33 @@
   .bar-fill { height: 100%; border-radius: 6px; background: var(--accent); }
   .bar-fill.you { background: #22c55e; }
 
+  .percentile-line { text-align: center; color: #fbbf24; font-weight: 700; font-size: 15px; margin: 2px 0 6px; }
+  .population-line { text-align: center; color: var(--text-dim); font-size: 12.5px; margin-bottom: 14px; }
+  .hw-disclaimer {
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin-bottom: 18px;
+  }
+  .histogram { margin-bottom: 4px; }
+  .histogram svg { width: 100%; height: auto; display: block; }
+  .other-tests { margin-top: 16px; }
+  .other-tests .label { text-align: center; font-size: 12px; color: var(--text-dim); margin-bottom: 8px; }
+  .other-tests-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .other-tests-links a {
+    font-size: 12px;
+    color: #cbd5e1;
+    text-decoration: none;
+    background: var(--card-bg-2);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 999px;
+    padding: 6px 12px;
+  }
+  .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+
   .summary-actions {
     display: flex;
     gap: 10px;
@@ -296,6 +323,7 @@
     </div>
     <h1>⚡ 反応速度テスト</h1>
     <p class="sub">画面の色が変わった瞬間にクリックしてください</p>
+    <p class="sub" style="margin-top:-12px; font-size:12px;">⚠️ モニター・マウス・タッチスクリーンの遅延で機器ごとに10〜50ms、テレビでは100ms以上増えることがあります</p>
 
     <div class="toolbar">
       <label><input type="checkbox" id="colorblindToggle"> 色覚配慮モード(青/オレンジ)</label>
@@ -347,6 +375,10 @@
 
       <h2>正確に測定する方法</h2>
       <p>1回の記録より5回以上測定した平均値を見るほうが正確です。手が冷たい時や眠い時、ワイヤレスマウスやモバイルタッチで測定する時は遅延が加わることがあるため、同じ機器・環境で何度も繰り返して比較してみてください。画面が変わる前に予測してクリックすると、正確な反応速度は測れません。</p>
+
+      <h2>この百分位はどう計算していますか?</h2>
+      <p>結果画面の「上位OO%」は、オンライン反応速度テストで広く報告されている中央値(約273ms)を基準に、そのデータでよく見られる右に裾を引く分布形状(速い側は220〜320msに集中し、遅い側に長い裾を持つ)を参考にして作った推定曲線です。特定の単一研究の公式な数値表ではなく、実際の結果はそのときの体調や機器環境によって変わります。</p>
+      <p style="font-size:13px; color:var(--text-dim2);">参考文献: Der, G., & Deary, I. J. (2006). Age and sex differences in reaction time in adulthood. <em>Psychology and Aging, 21</em>(1), 62–73(英国 Health & Lifestyle Survey, n=7,130)。Talboom, J. S., et al. (2021). MindCrowd: 反応速度などをオンラインで測定した大規模コホート研究。<em>npj Aging and Mechanisms of Disease</em>(n=75,666)。いずれも成人の反応速度がおおむね200〜300ms台に分布するという一般的傾向を裏付けていますが、このページの百分位曲線そのものを発表したものではありません。</p>
 
     </section>
 
@@ -496,6 +528,70 @@
     return 'やや遅めです';
   }
 
+  // Approximate percentile curve for simple visual "click when it turns green"
+  // reaction time, built from the median (~273ms) that's consistently reported
+  // across large-scale online reaction-time test aggregates, shaped using the
+  // right-skewed spread (fast cluster ~220-320ms, long slow tail) reported in
+  // that same literature. This is an estimate synthesized from multiple public
+  // sources, not a single peer-reviewed table — see the note below the chart.
+  const RT_CURVE = [
+    { ms: 120, pct: 99.9 },
+    { ms: 150, pct: 99 },
+    { ms: 180, pct: 95 },
+    { ms: 200, pct: 90 },
+    { ms: 230, pct: 75 },
+    { ms: 273, pct: 50 },
+    { ms: 320, pct: 25 },
+    { ms: 380, pct: 10 },
+    { ms: 450, pct: 3 },
+    { ms: 600, pct: 1 },
+  ];
+
+  function percentileForMs(ms) {
+    if (ms <= RT_CURVE[0].ms) return RT_CURVE[0].pct;
+    if (ms >= RT_CURVE[RT_CURVE.length - 1].ms) return RT_CURVE[RT_CURVE.length - 1].pct;
+    for (let i = 0; i < RT_CURVE.length - 1; i++) {
+      const a = RT_CURVE[i], b = RT_CURVE[i + 1];
+      if (ms >= a.ms && ms <= b.ms) {
+        const t = (ms - a.ms) / (b.ms - a.ms);
+        return a.pct + t * (b.pct - a.pct);
+      }
+    }
+    return 50;
+  }
+
+  function buildHistogram(userMs) {
+    const W = 320, H = 120, PAD = 6;
+    const edges = RT_CURVE.map(p => p.ms);
+    const minMs = edges[0], maxMs = edges[edges.length - 1];
+    const bins = [];
+    for (let i = 0; i < RT_CURVE.length - 1; i++) {
+      bins.push({ x0: RT_CURVE[i].ms, x1: RT_CURVE[i + 1].ms, density: RT_CURVE[i].pct - RT_CURVE[i + 1].pct });
+    }
+    const maxDensity = Math.max(...bins.map(b => b.density));
+    const xScale = (ms) => PAD + (Math.max(minMs, Math.min(maxMs, ms)) - minMs) / (maxMs - minMs) * (W - PAD * 2);
+
+    const barsHtml = bins.map(b => {
+      const x0 = xScale(b.x0), x1 = xScale(b.x1);
+      const h = (b.density / maxDensity) * (H - 30);
+      return `<rect x="${x0.toFixed(1)}" y="${(H - 20 - h).toFixed(1)}" width="${(x1 - x0 - 1).toFixed(1)}" height="${h.toFixed(1)}" fill="rgba(99,102,241,0.55)" rx="2"/>`;
+    }).join('');
+
+    const pinX = xScale(userMs);
+    const pinHtml = `
+      <line x1="${pinX.toFixed(1)}" y1="14" x2="${pinX.toFixed(1)}" y2="${H - 20}" stroke="#22c55e" stroke-width="2" stroke-dasharray="3 3"/>
+      <circle cx="${pinX.toFixed(1)}" cy="12" r="5" fill="#22c55e"/>
+      <text x="${pinX.toFixed(1)}" y="4" text-anchor="middle" font-size="10" fill="#22c55e" font-weight="700">あなた</text>
+    `;
+    const baseline = `<line x1="${PAD}" y1="${H - 20}" x2="${W - PAD}" y2="${H - 20}" stroke="rgba(255,255,255,0.15)"/>`;
+    const axisLabels = `
+      <text x="${xScale(150)}" y="${H - 6}" text-anchor="middle" font-size="9" fill="#94a3b8">150</text>
+      <text x="${xScale(273)}" y="${H - 6}" text-anchor="middle" font-size="9" fill="#94a3b8">273(中央値)</text>
+      <text x="${xScale(450)}" y="${H - 6}" text-anchor="middle" font-size="9" fill="#94a3b8">450+</text>
+    `;
+    return `<svg viewBox="0 0 ${W} ${H}">${baseline}${barsHtml}${pinHtml}${axisLabels}</svg>`;
+  }
+
   function showSummary() {
     state = STATE.SUMMARY;
     renderDots();
@@ -503,6 +599,8 @@
     const avg = Math.round(roundTimes.reduce((a, b) => a + b, 0) / roundTimes.length);
     const best = Math.min(...roundTimes);
     const worst = Math.max(...roundTimes);
+    const pct = percentileForMs(avg);
+    const topPct = Math.max(0.1, 100 - pct);
 
     const roundTableHtml = roundTimes.map((t, i) => {
       let cls = 'round-chip';
@@ -511,29 +609,27 @@
       return `<div class="${cls}"><div class="r">ラウンド ${i + 1}</div>${t} ms</div>`;
     }).join('');
 
-    const maxScale = Math.max(avg, 265, 170, 120) * 1.15;
-    const barsData = [
-      { label: 'あなたの平均', value: avg, cls: 'you' },
-      { label: '一般人の平均', value: 265, cls: '' },
-      { label: 'プロゲーマー平均', value: 170, cls: '' },
-      { label: '世界記録', value: 120, cls: '' },
-    ];
-    const barsHtml = barsData.map(b => `
-      <div class="bar-row">
-        <div class="bar-label"><span>${b.label}</span><span>${b.value} ms</span></div>
-        <div class="bar-track"><div class="bar-fill ${b.cls}" style="width:${(b.value / maxScale * 100).toFixed(1)}%"></div></div>
-      </div>
-    `).join('');
-
     setStage('round', `
       <div class="summary">
         <h2>テスト完了 🎉 平均 ${avg} ms</h2>
         <div class="grade">${gradeFor(avg)}</div>
+        <div class="percentile-line">上位 ${topPct.toFixed(topPct < 1 ? 1 : 0)}%です</div>
+        <div class="population-line">大規模なオンライン反応速度テストの中央値は約273msと言われています</div>
+        <div class="histogram">${buildHistogram(avg)}</div>
+        <div class="hw-disclaimer">⚠️ この結果は推定値です。モニター・マウス・タッチスクリーンの遅延で機器ごとに10〜50ms、テレビでは100ms以上増えることがあります。同じ機器で何度か測定して比較することをおすすめします。</div>
         <div class="round-table">${roundTableHtml}</div>
-        <div class="bars">${barsHtml}</div>
         <div class="summary-actions">
           <button id="retryBtn">もう一度挑戦</button>
           <button id="changeRoundsBtn" class="secondary">ラウンド数を変更</button>
+        </div>
+        <div class="other-tests">
+          <div class="label">他の能力テストも試してみよう</div>
+          <div class="other-tests-links">
+            <a href="/ja/tests/click-speed">🖱️ CPSクリック速度</a>
+            <a href="/ja/tests/visual-memory">🧠 瞬間記憶力</a>
+            <a href="/ja/tests/chimp-test">🐵 チンパンジーテスト</a>
+            <a href="/ja/tests/aim-trainer">🎯 エイムテスト</a>
+          </div>
         </div>
       </div>
     `);

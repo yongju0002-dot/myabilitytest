@@ -211,6 +211,33 @@
   .bar-fill { height: 100%; border-radius: 6px; background: var(--accent); }
   .bar-fill.you { background: #22c55e; }
 
+  .percentile-line { text-align: center; color: #fbbf24; font-weight: 700; font-size: 15px; margin: 2px 0 6px; }
+  .population-line { text-align: center; color: var(--text-dim); font-size: 12.5px; margin-bottom: 14px; }
+  .hw-disclaimer {
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin-bottom: 18px;
+  }
+  .histogram { margin-bottom: 4px; }
+  .histogram svg { width: 100%; height: auto; display: block; }
+  .other-tests { margin-top: 16px; }
+  .other-tests .label { text-align: center; font-size: 12px; color: var(--text-dim); margin-bottom: 8px; }
+  .other-tests-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .other-tests-links a {
+    font-size: 12px;
+    color: #cbd5e1;
+    text-decoration: none;
+    background: var(--card-bg-2);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 999px;
+    padding: 6px 12px;
+  }
+  .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+
   .summary-actions {
     display: flex;
     gap: 10px;
@@ -296,6 +323,7 @@
     </div>
     <h1>⚡ Reaction Time Test</h1>
     <p class="sub">Click the instant the screen color changes</p>
+    <p class="sub" style="margin-top:-12px; font-size:12px;">⚠️ Monitor, mouse, and touchscreen lag can add 10–50ms depending on your device — 100ms+ on a TV</p>
 
     <div class="toolbar">
       <label><input type="checkbox" id="colorblindToggle"> Colorblind mode (blue/orange)</label>
@@ -347,6 +375,10 @@
 
       <h2>How to measure accurately</h2>
       <p>A single try is less reliable than an average of 5+ tries. Cold hands, drowsiness, wireless mice, or mobile touch input can all add extra delay — repeat under the same device/environment to compare fairly. Clicking before the color actually changes won't give you a true reaction time reading.</p>
+
+      <h2>How is the percentile calculated?</h2>
+      <p>The "top X%" figure on the results screen is an estimated curve built around the ~273ms median that's widely reported for online reaction-time tests, shaped to match the right-skewed pattern commonly observed in that data (a fast-side cluster around 220–320ms with a long slow-side tail). It isn't a published table from a single study, and real-world results vary with momentary condition and device setup.</p>
+      <p style="font-size:13px; color:var(--text-dim2);">References: Der, G., & Deary, I. J. (2006). Age and sex differences in reaction time in adulthood. <em>Psychology and Aging, 21</em>(1), 62–73 (UK Health & Lifestyle Survey, n=7,130). Talboom, J. S., et al. (2021). MindCrowd, a large-scale online cognitive assessment cohort measuring reaction time and related measures. <em>npj Aging and Mechanisms of Disease</em> (n=75,666). Both support the general finding that adult reaction times cluster in the 200–300ms range, but neither publishes the exact percentile curve used on this page.</p>
 
     </section>
 
@@ -496,6 +528,75 @@
     return 'A bit on the slow side';
   }
 
+  // Approximate percentile curve for simple visual "click when it turns green"
+  // reaction time, built from the median (~273ms) that's consistently reported
+  // across large-scale online reaction-time test aggregates, shaped using the
+  // right-skewed spread (fast cluster ~220-320ms, long slow tail) reported in
+  // that same literature. This is an estimate synthesized from multiple public
+  // sources, not a single peer-reviewed table — see the note below the chart.
+  // General adult simple-RT ranges are consistent with lab findings summarized
+  // in reaction-time aging research (e.g. Der & Deary, 2006, Psychology and
+  // Aging) and large web cohorts such as MindCrowd (Talboom et al., 2021,
+  // npj Aging and Mechanisms of Disease, n=75,666), though neither publishes
+  // this exact online-test curve.
+  const RT_CURVE = [
+    { ms: 120, pct: 99.9 },
+    { ms: 150, pct: 99 },
+    { ms: 180, pct: 95 },
+    { ms: 200, pct: 90 },
+    { ms: 230, pct: 75 },
+    { ms: 273, pct: 50 },
+    { ms: 320, pct: 25 },
+    { ms: 380, pct: 10 },
+    { ms: 450, pct: 3 },
+    { ms: 600, pct: 1 },
+  ];
+
+  function percentileForMs(ms) {
+    if (ms <= RT_CURVE[0].ms) return RT_CURVE[0].pct;
+    if (ms >= RT_CURVE[RT_CURVE.length - 1].ms) return RT_CURVE[RT_CURVE.length - 1].pct;
+    for (let i = 0; i < RT_CURVE.length - 1; i++) {
+      const a = RT_CURVE[i], b = RT_CURVE[i + 1];
+      if (ms >= a.ms && ms <= b.ms) {
+        const t = (ms - a.ms) / (b.ms - a.ms);
+        return a.pct + t * (b.pct - a.pct);
+      }
+    }
+    return 50;
+  }
+
+  function buildHistogram(userMs) {
+    const W = 320, H = 120, PAD = 6;
+    const edges = RT_CURVE.map(p => p.ms);
+    const minMs = edges[0], maxMs = edges[edges.length - 1];
+    const bins = [];
+    for (let i = 0; i < RT_CURVE.length - 1; i++) {
+      bins.push({ x0: RT_CURVE[i].ms, x1: RT_CURVE[i + 1].ms, density: RT_CURVE[i].pct - RT_CURVE[i + 1].pct });
+    }
+    const maxDensity = Math.max(...bins.map(b => b.density));
+    const xScale = (ms) => PAD + (Math.max(minMs, Math.min(maxMs, ms)) - minMs) / (maxMs - minMs) * (W - PAD * 2);
+
+    const barsHtml = bins.map(b => {
+      const x0 = xScale(b.x0), x1 = xScale(b.x1);
+      const h = (b.density / maxDensity) * (H - 30);
+      return `<rect x="${x0.toFixed(1)}" y="${(H - 20 - h).toFixed(1)}" width="${(x1 - x0 - 1).toFixed(1)}" height="${h.toFixed(1)}" fill="rgba(99,102,241,0.55)" rx="2"/>`;
+    }).join('');
+
+    const pinX = xScale(userMs);
+    const pinHtml = `
+      <line x1="${pinX.toFixed(1)}" y1="14" x2="${pinX.toFixed(1)}" y2="${H - 20}" stroke="#22c55e" stroke-width="2" stroke-dasharray="3 3"/>
+      <circle cx="${pinX.toFixed(1)}" cy="12" r="5" fill="#22c55e"/>
+      <text x="${pinX.toFixed(1)}" y="4" text-anchor="middle" font-size="10" fill="#22c55e" font-weight="700">You</text>
+    `;
+    const baseline = `<line x1="${PAD}" y1="${H - 20}" x2="${W - PAD}" y2="${H - 20}" stroke="rgba(255,255,255,0.15)"/>`;
+    const axisLabels = `
+      <text x="${xScale(150)}" y="${H - 6}" text-anchor="middle" font-size="9" fill="#94a3b8">150</text>
+      <text x="${xScale(273)}" y="${H - 6}" text-anchor="middle" font-size="9" fill="#94a3b8">273 (median)</text>
+      <text x="${xScale(450)}" y="${H - 6}" text-anchor="middle" font-size="9" fill="#94a3b8">450+</text>
+    `;
+    return `<svg viewBox="0 0 ${W} ${H}">${baseline}${barsHtml}${pinHtml}${axisLabels}</svg>`;
+  }
+
   function showSummary() {
     state = STATE.SUMMARY;
     renderDots();
@@ -503,6 +604,8 @@
     const avg = Math.round(roundTimes.reduce((a, b) => a + b, 0) / roundTimes.length);
     const best = Math.min(...roundTimes);
     const worst = Math.max(...roundTimes);
+    const pct = percentileForMs(avg);
+    const topPct = Math.max(0.1, 100 - pct);
 
     const roundTableHtml = roundTimes.map((t, i) => {
       let cls = 'round-chip';
@@ -511,29 +614,27 @@
       return `<div class="${cls}"><div class="r">Round ${i + 1}</div>${t} ms</div>`;
     }).join('');
 
-    const maxScale = Math.max(avg, 265, 170, 120) * 1.15;
-    const barsData = [
-      { label: 'Your average', value: avg, cls: 'you' },
-      { label: 'General public average', value: 265, cls: '' },
-      { label: 'Pro gamer average', value: 170, cls: '' },
-      { label: 'World record', value: 120, cls: '' },
-    ];
-    const barsHtml = barsData.map(b => `
-      <div class="bar-row">
-        <div class="bar-label"><span>${b.label}</span><span>${b.value} ms</span></div>
-        <div class="bar-track"><div class="bar-fill ${b.cls}" style="width:${(b.value / maxScale * 100).toFixed(1)}%"></div></div>
-      </div>
-    `).join('');
-
     setStage('round', `
       <div class="summary">
         <h2>Test complete 🎉 Average ${avg} ms</h2>
         <div class="grade">${gradeFor(avg)}</div>
+        <div class="percentile-line">You're in the top ${topPct.toFixed(topPct < 1 ? 1 : 0)}%</div>
+        <div class="population-line">The median reaction time across large online click tests is about 273ms</div>
+        <div class="histogram">${buildHistogram(avg)}</div>
+        <div class="hw-disclaimer">⚠️ This result is an estimate. Monitor, mouse, and touchscreen lag can add 10–50ms depending on your device — 100ms+ on a TV. Repeat on the same device to compare fairly.</div>
         <div class="round-table">${roundTableHtml}</div>
-        <div class="bars">${barsHtml}</div>
         <div class="summary-actions">
           <button id="retryBtn">Try again</button>
           <button id="changeRoundsBtn" class="secondary">Change rounds</button>
+        </div>
+        <div class="other-tests">
+          <div class="label">Try another ability test</div>
+          <div class="other-tests-links">
+            <a href="/en/tests/click-speed">🖱️ CPS Click Speed</a>
+            <a href="/en/tests/visual-memory">🧠 Visual Memory</a>
+            <a href="/en/tests/chimp-test">🐵 Chimp Test</a>
+            <a href="/en/tests/aim-trainer">🎯 Aim Test</a>
+          </div>
         </div>
       </div>
     `);

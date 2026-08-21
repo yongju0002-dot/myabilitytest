@@ -211,6 +211,33 @@
   .bar-fill { height: 100%; border-radius: 6px; background: var(--accent); }
   .bar-fill.you { background: #22c55e; }
 
+  .percentile-line { text-align: center; color: #fbbf24; font-weight: 700; font-size: 15px; margin: 2px 0 6px; }
+  .population-line { text-align: center; color: var(--text-dim); font-size: 12.5px; margin-bottom: 14px; }
+  .hw-disclaimer {
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin-bottom: 18px;
+  }
+  .histogram { margin-bottom: 4px; }
+  .histogram svg { width: 100%; height: auto; display: block; }
+  .other-tests { margin-top: 16px; }
+  .other-tests .label { text-align: center; font-size: 12px; color: var(--text-dim); margin-bottom: 8px; }
+  .other-tests-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .other-tests-links a {
+    font-size: 12px;
+    color: #cbd5e1;
+    text-decoration: none;
+    background: var(--card-bg-2);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 999px;
+    padding: 6px 12px;
+  }
+  .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+
   .summary-actions {
     display: flex;
     gap: 10px;
@@ -296,6 +323,7 @@
     </div>
     <h1>⚡ 반응 속도 테스트</h1>
     <p class="sub">화면 색이 바뀌는 순간 바로 클릭하세요</p>
+    <p class="sub" style="margin-top:-12px; font-size:12px;">⚠️ 모니터·마우스·터치스크린 지연으로 기기마다 10~50ms, TV는 100ms 이상 늘어날 수 있어요</p>
 
     <div class="toolbar">
       <label><input type="checkbox" id="colorblindToggle"> 색약 모드 (파랑/주황)</label>
@@ -347,6 +375,10 @@
 
       <h2>정확하게 측정하는 방법</h2>
       <p>한 번의 기록보다 5회 이상 측정한 평균값을 보는 것이 정확합니다. 손이 차갑거나 졸릴 때, 무선 마우스나 모바일 터치로 측정할 때는 지연이 더해질 수 있으니 같은 기기·환경에서 여러 번 반복해 비교해보세요. 화면이 바뀌기 전에 미리 예측해서 누르면 정확한 반응속도로 볼 수 없습니다.</p>
+
+      <h2>백분위는 어떻게 계산하나요?</h2>
+      <p>결과 화면의 "상위 OO%"는 중앙값 약 273ms를 기준으로, 온라인 반응속도 테스트들에서 공통적으로 관찰되는 분포 형태(빠른 쪽으로 220~320ms 구간에 몰리고, 느린 쪽으로 긴 꼬리를 가지는 비대칭 분포)를 참고해 만든 추정 곡선입니다. 특정 단일 연구의 공식 수치표는 아니며, 실제 순간순간의 컨디션·기기 환경에 따라 오차가 있을 수 있습니다.</p>
+      <p style="font-size:13px; color:var(--text-dim2);">참고 문헌: Der, G., & Deary, I. J. (2006). Age and sex differences in reaction time in adulthood. <em>Psychology and Aging, 21</em>(1), 62–73 (영국 Health & Lifestyle Survey, n=7,130). Talboom, J. S., et al. (2021). MindCrowd: 온라인 인지 검사로 반응속도 등을 측정한 대규모 코호트 연구. <em>npj Aging and Mechanisms of Disease</em> (n=75,666). 두 연구 모두 성인의 반응속도가 대체로 200~300ms대에 분포한다는 일반적 경향을 뒷받침하며, 이 페이지의 정확한 백분위 곡선 자체를 출판한 것은 아닙니다.</p>
 
     </section>
 
@@ -496,6 +528,74 @@
     return '조금 느린 편이에요';
   }
 
+  // Approximate percentile curve for simple visual "click when it turns green"
+  // reaction time, built from the median (~273ms) that's consistently reported
+  // across large-scale online reaction-time test aggregates, shaped using the
+  // right-skewed spread (fast cluster ~220-320ms, long slow tail) reported in
+  // that same literature. This is an estimate synthesized from multiple public
+  // sources, not a single peer-reviewed table — see the note below the chart.
+  // General adult simple-RT ranges are consistent with lab findings summarized
+  // in reaction-time aging research (e.g. Der & Deary, 2006, Psychology and
+  // Aging) and large web cohorts such as MindCrowd (Talboom et al., 2021,
+  // npj Aging, n=75,666), though neither publishes this exact online-test curve.
+  const RT_CURVE = [
+    { ms: 120, pct: 99.9 },
+    { ms: 150, pct: 99 },
+    { ms: 180, pct: 95 },
+    { ms: 200, pct: 90 },
+    { ms: 230, pct: 75 },
+    { ms: 273, pct: 50 },
+    { ms: 320, pct: 25 },
+    { ms: 380, pct: 10 },
+    { ms: 450, pct: 3 },
+    { ms: 600, pct: 1 },
+  ];
+
+  function percentileForMs(ms) {
+    if (ms <= RT_CURVE[0].ms) return RT_CURVE[0].pct;
+    if (ms >= RT_CURVE[RT_CURVE.length - 1].ms) return RT_CURVE[RT_CURVE.length - 1].pct;
+    for (let i = 0; i < RT_CURVE.length - 1; i++) {
+      const a = RT_CURVE[i], b = RT_CURVE[i + 1];
+      if (ms >= a.ms && ms <= b.ms) {
+        const t = (ms - a.ms) / (b.ms - a.ms);
+        return a.pct + t * (b.pct - a.pct);
+      }
+    }
+    return 50;
+  }
+
+  function buildHistogram(userMs) {
+    const W = 320, H = 120, PAD = 6;
+    const edges = RT_CURVE.map(p => p.ms);
+    const minMs = edges[0], maxMs = edges[edges.length - 1];
+    const bins = [];
+    for (let i = 0; i < RT_CURVE.length - 1; i++) {
+      bins.push({ x0: RT_CURVE[i].ms, x1: RT_CURVE[i + 1].ms, density: RT_CURVE[i].pct - RT_CURVE[i + 1].pct });
+    }
+    const maxDensity = Math.max(...bins.map(b => b.density));
+    const xScale = (ms) => PAD + (Math.max(minMs, Math.min(maxMs, ms)) - minMs) / (maxMs - minMs) * (W - PAD * 2);
+
+    const barsHtml = bins.map(b => {
+      const x0 = xScale(b.x0), x1 = xScale(b.x1);
+      const h = (b.density / maxDensity) * (H - 30);
+      return `<rect x="${x0.toFixed(1)}" y="${(H - 20 - h).toFixed(1)}" width="${(x1 - x0 - 1).toFixed(1)}" height="${h.toFixed(1)}" fill="rgba(99,102,241,0.55)" rx="2"/>`;
+    }).join('');
+
+    const pinX = xScale(userMs);
+    const pinHtml = `
+      <line x1="${pinX.toFixed(1)}" y1="14" x2="${pinX.toFixed(1)}" y2="${H - 20}" stroke="#22c55e" stroke-width="2" stroke-dasharray="3 3"/>
+      <circle cx="${pinX.toFixed(1)}" cy="12" r="5" fill="#22c55e"/>
+      <text x="${pinX.toFixed(1)}" y="4" text-anchor="middle" font-size="10" fill="#22c55e" font-weight="700">나</text>
+    `;
+    const baseline = `<line x1="${PAD}" y1="${H - 20}" x2="${W - PAD}" y2="${H - 20}" stroke="rgba(255,255,255,0.15)"/>`;
+    const axisLabels = `
+      <text x="${xScale(150)}" y="${H - 6}" text-anchor="middle" font-size="9" fill="#94a3b8">150</text>
+      <text x="${xScale(273)}" y="${H - 6}" text-anchor="middle" font-size="9" fill="#94a3b8">273(중앙값)</text>
+      <text x="${xScale(450)}" y="${H - 6}" text-anchor="middle" font-size="9" fill="#94a3b8">450+</text>
+    `;
+    return `<svg viewBox="0 0 ${W} ${H}">${baseline}${barsHtml}${pinHtml}${axisLabels}</svg>`;
+  }
+
   function showSummary() {
     state = STATE.SUMMARY;
     renderDots();
@@ -503,6 +603,8 @@
     const avg = Math.round(roundTimes.reduce((a, b) => a + b, 0) / roundTimes.length);
     const best = Math.min(...roundTimes);
     const worst = Math.max(...roundTimes);
+    const pct = percentileForMs(avg);
+    const topPct = Math.max(0.1, 100 - pct);
 
     const roundTableHtml = roundTimes.map((t, i) => {
       let cls = 'round-chip';
@@ -511,29 +613,27 @@
       return `<div class="${cls}"><div class="r">라운드 ${i + 1}</div>${t} ms</div>`;
     }).join('');
 
-    const maxScale = Math.max(avg, 265, 170, 120) * 1.15;
-    const barsData = [
-      { label: '당신의 평균', value: avg, cls: 'you' },
-      { label: '일반인 평균', value: 265, cls: '' },
-      { label: '프로게이머 평균', value: 170, cls: '' },
-      { label: '세계 기록', value: 120, cls: '' },
-    ];
-    const barsHtml = barsData.map(b => `
-      <div class="bar-row">
-        <div class="bar-label"><span>${b.label}</span><span>${b.value} ms</span></div>
-        <div class="bar-track"><div class="bar-fill ${b.cls}" style="width:${(b.value / maxScale * 100).toFixed(1)}%"></div></div>
-      </div>
-    `).join('');
-
     setStage('round', `
       <div class="summary">
         <h2>테스트 완료 🎉 평균 ${avg} ms</h2>
         <div class="grade">${gradeFor(avg)}</div>
+        <div class="percentile-line">상위 ${topPct.toFixed(topPct < 1 ? 1 : 0)}%입니다</div>
+        <div class="population-line">사람들의 반응속도 중앙값은 약 273ms로 알려져 있어요 (온라인 클릭 테스트 대규모 집계 기준)</div>
+        <div class="histogram">${buildHistogram(avg)}</div>
+        <div class="hw-disclaimer">⚠️ 이 결과는 추정치입니다. 모니터·마우스·터치스크린 지연으로 기기마다 10~50ms, TV에서는 100ms 이상 늘어날 수 있어요. 같은 기기로 여러 번 측정해 비교하는 걸 권장합니다.</div>
         <div class="round-table">${roundTableHtml}</div>
-        <div class="bars">${barsHtml}</div>
         <div class="summary-actions">
           <button id="retryBtn">다시 도전</button>
           <button id="changeRoundsBtn" class="secondary">라운드 수 변경</button>
+        </div>
+        <div class="other-tests">
+          <div class="label">다른 능력 테스트도 해보세요</div>
+          <div class="other-tests-links">
+            <a href="/ko/tests/click-speed">🖱️ CPS 클릭 속도</a>
+            <a href="/ko/tests/visual-memory">🧠 순간 기억력</a>
+            <a href="/ko/tests/chimp-test">🐵 침팬지 테스트</a>
+            <a href="/ko/tests/aim-trainer">🎯 에임 테스트</a>
+          </div>
         </div>
       </div>
     `);

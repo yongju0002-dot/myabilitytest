@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>스페이스바 연타 테스트 | 능력 테스트</title>
+<meta name="description" content="제한 시간 안에 스페이스바를 몇 번이나 누를 수 있나요? 5·10·30·60초 중 선택하는 무료 스페이스바 연타 속도 테스트.">
+<link rel="canonical" href="https://myabilitytest.com/ko/tests/spacebar-counter">
+<link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/spacebar-counter">
+<link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/spacebar-counter">
+<link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/spacebar-counter">
+<link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/spacebar-counter">
+<link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/spacebar-counter">
+<link rel="stylesheet" href="/skill-test/style.css">
+<style>
+  .related-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
+  .related-links a {
+    font-size: 13px; color: #cbd5e1; text-decoration: none;
+    background: var(--card-bg-2); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 999px; padding: 7px 14px;
+  }
+  .related-links a:hover { border-color: var(--accent); color: #fff; }
+  .space-pad {
+    width: 100%;
+    min-height: 260px;
+    border-radius: 24px;
+    background: linear-gradient(160deg, #6366f1, #4338ca);
+    border: none;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 800;
+    cursor: pointer;
+    user-select: none;
+    touch-action: manipulation;
+    margin: 16px 0;
+    padding: 24px;
+    line-height: 1.5;
+  }
+  .space-pad:active { transform: scale(0.99); }
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back-link" href="/ko/">← 메인으로</a>
+    <div class="lang-switch">
+      <a class="active" href="/ko/tests/spacebar-counter">한국어</a>
+      <a href="/en/tests/spacebar-counter">English</a>
+      <a href="/ja/tests/spacebar-counter">日本語</a>
+      <a href="/zh/tests/spacebar-counter">中文</a>
+    </div>
+    <h1>⌨️ 스페이스바 연타 테스트</h1>
+    <p class="sub">제한 시간 동안 스페이스바를 최대한 많이 누르세요!</p>
+
+    <div class="duration-select" id="durationSelect"></div>
+
+    <div class="level-card">
+      <div class="label">남은 시간</div>
+      <div class="countdown-num" id="timeLeft">10.0</div>
+      <div class="sub" id="countLine">누른 횟수: 0 · 초당: 0.0</div>
+    </div>
+
+    <button class="space-pad" id="spacePad">스페이스바를 눌러 시작<br><span style="font-size:14px;font-weight:400;opacity:0.85;">(모바일에서는 이 영역을 탭하세요)</span></button>
+
+    <div id="resultPanel" class="result-panel">
+      <div class="emoji">⌨️</div>
+      <h2 id="resultTitle"></h2>
+      <div class="stars" id="resultStars"></div>
+      <div class="desc" id="resultDesc"></div>
+      <div class="percentile" id="resultMobileNote" style="display:none;">모바일(탭) 기록은 키보드 기록과 별도로 집계됩니다.</div>
+      <div id="chartContainer"></div>
+      <table class="grade-table" id="gradeTable"></table>
+      <div class="btn-row">
+        <button class="btn" id="retryBtn">다시 하기</button>
+        <button class="btn share" id="shareBtn">결과 공유하기</button>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat-box">
+        <div class="label" id="statCountLabel">이 시간 플레이</div>
+        <div class="value" id="statCount">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">최고 횟수</div>
+        <div class="value" id="statBest">-</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">최고 초당</div>
+        <div class="value" id="statBestRate">-</div>
+      </div>
+    </div>
+
+    <section class="note-box">
+      <p><strong>스페이스바 연타는 왜 측정할까?</strong> 게임에서 점프・대시 같은 동작이
+      스페이스바에 걸려 있는 경우가 많아, 짧은 시간에 얼마나 빠르게 반복 입력할 수 있는지가
+      곧 조작 능력으로 이어집니다. 마우스 클릭과 달리 엄지나 손바닥 옆면을 쓰는 사람도 많아
+      CPS와는 기록 경향이 다르게 나옵니다.</p>
+      <p>이 테스트는 키를 <strong>꾹 누르고 있을 때 발생하는 자동 반복 입력을 무시</strong>
+      하므로, 실제로 눌렀다 뗀 횟수만 집계됩니다. 키보드의 스위치 종류(멤브레인・기계식)와
+      키 눌림 깊이에 따라서도 결과가 달라질 수 있어요.</p>
+    </section>
+
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 역대 기록 순위 (최대 30위)</h2>
+    <div id="topLeaderboard"></div>
+
+    <h2 style="text-align:center; font-size:15px; margin-top:28px;">다른 클릭 테스트</h2>
+    <div class="related-links">
+      <a href="/ko/tests/click-speed">🖱️ CPS 클릭 속도</a>
+      <a href="/ko/tests/jitter-click">⚡ 지터 클릭</a>
+      <a href="/ko/tests/kohi-click">🎮 Kohi 클릭</a>
+      <a href="/ko/tests/apm">🎹 APM 테스트</a>
+      <a href="/ko/tests/mouse-accuracy">🖲️ 마우스 정확도</a>
+    </div>
+  </div>
+
+<script src="/skill-test/common.js"></script>
+<script src="/skill-test/games/shared/click-core.js"></script>
+<script>
+  const DURATIONS = [5, 10, 30, 60];
+  const STORE_KEY = 'skillSpacebarStats';
+  const LB_KEY = 'skillSpacebarLeaderboardV1';
+  let allStats = loadStats(STORE_KEY, {});
+
+  const GRADES = [
+    { key: 'SS', min: 9, label: 'SS · 초고속' },
+    { key: 'S', min: 7.5, label: 'S · 매우 빠름' },
+    { key: 'A', min: 6, label: 'A · 빠름' },
+    { key: 'B', min: 4.5, label: 'B · 평균 이상' },
+    { key: 'C', min: 3, label: 'C · 평균' },
+    { key: 'D', min: 0, label: 'D · 느긋함' },
+  ];
+
+  function gradeFor(rate) {
+    return GRADES.find(g => rate >= g.min) || GRADES[GRADES.length - 1];
+  }
+
+  function starsFor(rate) {
+    if (rate >= 9) return 5;
+    if (rate >= 7.5) return 4;
+    if (rate >= 6) return 3;
+    if (rate >= 4.5) return 2;
+    return 1;
+  }
+
+  const durationSelect = document.getElementById('durationSelect');
+  const spacePad = document.getElementById('spacePad');
+  const timeLeftEl = document.getElementById('timeLeft');
+  const countLine = document.getElementById('countLine');
+  const resultPanel = document.getElementById('resultPanel');
+
+  let duration = 10;
+  let running = false;
+  let finished = false;
+  let presses = 0;
+  let startTime = 0;
+  let rafId = null;
+  let timestamps = [];
+  let inputMode = null;
+
+  function bucketKey(d, mode) { return `${d}_${mode}`; }
+
+  function getBucket(d, mode) {
+    return allStats[bucketKey(d, mode)] || { plays: 0, bestCount: 0, bestRate: 0 };
+  }
+
+  function renderDurationButtons() {
+    durationSelect.innerHTML = '';
+    DURATIONS.forEach(d => {
+      const bs = getBucket(d, inputMode || 'keyboard');
+      const btn = document.createElement('button');
+      if (d === duration) btn.classList.add('active');
+      btn.innerHTML = `<span>${d}초</span><span class="d-best">${bs.plays ? bs.bestCount + '회' : '-'}</span>`;
+      btn.addEventListener('click', () => {
+        if (running) return;
+        duration = d;
+        renderDurationButtons();
+        timeLeftEl.textContent = duration.toFixed(1);
+        renderStats();
+        renderTopLeaderboard(loadStats(LB_KEY + '_' + bucketKey(duration, inputMode || 'keyboard'), []));
+      });
+      durationSelect.appendChild(btn);
+    });
+  }
+
+  function renderStats() {
+    const mode = inputMode || 'keyboard';
+    const bs = getBucket(duration, mode);
+    document.getElementById('statCountLabel').textContent = duration + '초 플레이';
+    document.getElementById('statCount').textContent = bs.plays;
+    document.getElementById('statBest').textContent = bs.plays ? bs.bestCount + '회' : '-';
+    document.getElementById('statBestRate').textContent = bs.plays ? bs.bestRate.toFixed(1) : '-';
+  }
+
+  function tick() {
+    if (!running) return;
+    const elapsed = (performance.now() - startTime) / 1000;
+    const left = Math.max(0, duration - elapsed);
+    timeLeftEl.textContent = left.toFixed(1);
+    const rate = elapsed > 0 ? presses / elapsed : 0;
+    countLine.textContent = `누른 횟수: ${presses} · 초당: ${rate.toFixed(1)}`;
+    if (left <= 0) { finish(); return; }
+    rafId = requestAnimationFrame(tick);
+  }
+
+  function start(mode) {
+    inputMode = mode;
+    running = true;
+    finished = false;
+    presses = 1;
+    startTime = performance.now();
+    timestamps = [startTime];
+    resultPanel.classList.remove('show');
+    spacePad.innerHTML = '계속 누르세요!';
+    countLine.textContent = '누른 횟수: 1 · 초당: 0.0';
+    rafId = requestAnimationFrame(tick);
+  }
+
+  function registerPress(mode) {
+    if (finished) return;
+    if (!running) { start(mode); return; }
+    if (mode !== inputMode) return;
+    presses += 1;
+    timestamps.push(performance.now());
+  }
+
+  // Keyboard: ignore auto-repeat from holding the key down, and stop the page scrolling.
+  window.addEventListener('keydown', (e) => {
+    if (e.code !== 'Space' && e.key !== ' ') return;
+    e.preventDefault();
+    if (e.repeat) return;
+    registerPress('keyboard');
+  });
+
+  spacePad.addEventListener('pointerdown', (e) => {
+    e.preventDefault();
+    registerPress(e.pointerType === 'touch' ? 'mobile' : 'keyboard');
+  });
+  spacePad.addEventListener('contextmenu', (e) => e.preventDefault());
+
+  function renderGradeTable(rate) {
+    const grade = gradeFor(rate);
+    const table = document.getElementById('gradeTable');
+    table.innerHTML = '<tr><th>등급</th><th>기준 (초당)</th></tr>' +
+      GRADES.map(g => `<tr class="${g.key === grade.key ? 'current-row' : ''}"><td>${g.label}</td><td>${g.min}+</td></tr>`).join('');
+  }
+
+  function finish() {
+    running = false;
+    finished = true;
+    cancelAnimationFrame(rafId);
+    timeLeftEl.textContent = '0.0';
+    spacePad.innerHTML = '아래 버튼으로 다시 시작';
+
+    const rate = presses / duration;
+    const bk = bucketKey(duration, inputMode);
+    const bs = getBucket(duration, inputMode);
+    bs.plays += 1;
+    if (presses > bs.bestCount) bs.bestCount = presses;
+    if (rate > bs.bestRate) bs.bestRate = rate;
+    allStats[bk] = bs;
+    saveStats(STORE_KEY, allStats);
+    renderStats();
+    renderDurationButtons();
+
+    const grade = gradeFor(rate);
+    const stars = starsFor(rate);
+    document.getElementById('resultTitle').textContent = `${presses}회 · 초당 ${rate.toFixed(1)}`;
+    document.getElementById('resultStars').textContent = '★'.repeat(stars) + '☆'.repeat(5 - stars);
+    document.getElementById('resultDesc').textContent = `${duration}초 동안 ${presses}회 — ${grade.label}`;
+    document.getElementById('resultMobileNote').style.display = inputMode === 'mobile' ? '' : 'none';
+    document.getElementById('chartContainer').innerHTML =
+      buildCpsLineChart(perSecondCps(timestamps, startTime, duration));
+    renderGradeTable(rate);
+    resultPanel.classList.add('show');
+    resultPanel.dataset.share = `스페이스바 연타 테스트에서 ${duration}초 동안 ${presses}회(초당 ${rate.toFixed(1)}) 기록! 너도 해봐 → `;
+
+    const lbList = addToLeaderboard(LB_KEY + '_' + bk, { value: presses, rate, date: Date.now() }, false);
+    renderTopLeaderboard(lbList);
+  }
+
+  function renderTopLeaderboard(list) {
+    renderLeaderboard('topLeaderboard', list, (entry) => {
+      const d = new Date(entry.date);
+      const dateStr = `${d.getMonth() + 1}/${d.getDate()}`;
+      return `<span class="lb-name">${entry.value}회</span><span class="lb-detail">초당 ${entry.rate.toFixed(1)} · ${dateStr}</span>`;
+    }, '아직 기록이 없어요. 첫 도전을 해보세요!');
+  }
+
+  document.getElementById('retryBtn').addEventListener('click', () => {
+    finished = false;
+    inputMode = null;
+    resultPanel.classList.remove('show');
+    spacePad.innerHTML = '스페이스바를 눌러 시작<br><span style="font-size:14px;font-weight:400;opacity:0.85;">(모바일에서는 이 영역을 탭하세요)</span>';
+    timeLeftEl.textContent = duration.toFixed(1);
+    countLine.textContent = '누른 횟수: 0 · 초당: 0.0';
+  });
+
+  document.getElementById('shareBtn').addEventListener('click', () => {
+    shareResult((resultPanel.dataset.share || '') + location.href);
+  });
+
+  renderDurationButtons();
+  renderStats();
+  renderTopLeaderboard(loadStats(LB_KEY + '_' + bucketKey(duration, 'keyboard'), []));
+</script>
+</body>
+</html>

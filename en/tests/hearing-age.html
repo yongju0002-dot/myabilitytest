@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hearing Age Test | Ability Test</title>
+<meta name="description" content="Find out how high a pitch you can hear and estimate your hearing age. Headphones required. Free hearing age test.">
+<link rel="canonical" href="https://myabilitytest.com/en/tests/hearing-age">
+<link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/hearing-age">
+<link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/hearing-age">
+<link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/hearing-age">
+<link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/hearing-age">
+<link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/hearing-age">
+<link rel="stylesheet" href="/skill-test/style.css">
+<style>
+  .warn-box {
+    background: rgba(239,68,68,0.14);
+    border: 1px solid rgba(239,68,68,0.4);
+    border-radius: 14px;
+    padding: 16px 18px;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 18px 0;
+  }
+  .warn-box .warn-title { font-weight: 800; font-size: 16px; margin-bottom: 6px; }
+  .note-box {
+    background: var(--card-bg);
+    border-radius: 14px;
+    padding: 16px 18px;
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin: 14px 0;
+  }
+  .hz-progress {
+    width: 100%;
+    height: 8px;
+    background: var(--card-bg-2);
+    border-radius: 999px;
+    overflow: hidden;
+    margin: 18px 0 6px;
+  }
+  .hz-progress-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 999px;
+    transition: width 0.25s ease;
+    width: 0%;
+  }
+  .hz-progress-label {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+  }
+  .disclaimer {
+    background: var(--card-bg);
+    border-radius: 14px;
+    padding: 14px 16px;
+    font-size: 12px;
+    color: var(--text-dim2);
+    line-height: 1.6;
+    margin-top: 16px;
+  }
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back-link" href="/en/">← Back to Main</a>
+    <div class="lang-switch">
+      <a href="/ko/tests/hearing-age">한국어</a>
+      <a class="active" href="/en/tests/hearing-age">English</a>
+      <a href="/ja/tests/hearing-age">日本語</a>
+      <a href="/zh/tests/hearing-age">中文</a>
+    </div>
+    <h1>👂 Hearing Age Test</h1>
+    <p class="sub">Listen as the pitch climbs higher and higher, and see how far you can go.</p>
+
+    <div id="introScreen">
+      <div class="warn-box">
+        <div class="warn-title">⚠️ Headphones required</div>
+        Speakers can't reproduce high frequencies accurately, so your result would be meaningless.
+        Put on headphones or earbuds before you start.
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="introStartBtn">Start test</button>
+      </div>
+    </div>
+
+    <div id="calibScreen" style="display:none;">
+      <div class="level-card">
+        <div class="label">Set your volume</div>
+        <div class="num" style="font-size:32px;">🔊 1000Hz</div>
+        <div class="sub">Adjust your device volume until this is comfortable to hear.<br>Once it's set, press the button below and don't change the volume again.</div>
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="calibDoneBtn">I can hear it, start</button>
+      </div>
+    </div>
+
+    <div id="testScreen" style="display:none;">
+      <div class="hz-progress"><div class="hz-progress-fill" id="hzProgressFill"></div></div>
+      <div class="hz-progress-label" id="hzProgressLabel">Step 1 / 10</div>
+      <div class="level-card">
+        <div class="label">Now playing</div>
+        <div class="num" id="freqNum">8000</div>
+        <div class="sub">Hz</div>
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="heardBtn">I hear it</button>
+        <button class="btn secondary" id="notHeardBtn">Can't hear it</button>
+      </div>
+    </div>
+
+    <div id="resultPanel" class="result-panel">
+      <div class="emoji">👂</div>
+      <h2 id="resultTitle"></h2>
+      <div class="desc" id="resultDesc"></div>
+      <div class="percentile" id="resultComment"></div>
+      <div class="disclaimer">
+        This result is not a medical diagnosis. It can vary a lot depending on your device,
+        headphones, background noise, and browser. If you're concerned about your hearing,
+        please see an ENT specialist.
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="retryBtn">Try again</button>
+        <button class="btn share" id="shareBtn">Share result</button>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat-box">
+        <div class="label">Attempts</div>
+        <div class="value" id="statCount">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">Highest frequency heard</div>
+        <div class="value" id="statBest">-</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">Average frequency heard</div>
+        <div class="value" id="statAvg">-</div>
+      </div>
+    </div>
+
+    <section class="note-box">
+      <p><strong>Why does high-pitch hearing fade with age?</strong> Inside the cochlea, tiny
+      hair cells convert sound into nerve signals, and the ones that detect high frequencies
+      sit near the entrance of the cochlea — which means they're the first to wear down from
+      noise exposure and aging. That's why age-related hearing loss (presbycusis) usually
+      takes the highest frequencies first. It's the same reason "mosquito tones" in the
+      15–17kHz range, nearly ultrasonic, tend to fade out first as people get older.</p>
+      <p>That said, results here depend heavily on your speaker or headphone quality, device
+      volume, how your browser handles audio, and background noise — so treat this as a fun
+      estimate, not a medical measurement.</p>
+    </section>
+
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 All-Time Top Records (Top 30)</h2>
+    <div id="topLeaderboard"></div>
+  </div>
+
+<script src="/skill-test/common.js"></script>
+<script>
+  const STORE_KEY = 'skillHearingAgeStats';
+  const LB_KEY = 'skillHearingAgeLeaderboardV1';
+  let stats = loadStats(STORE_KEY, { count: 0, best: 0, sum: 0 });
+
+  const FREQS = [8000, 10000, 12000, 14000, 15000, 16000, 17000, 18000, 19000, 20000];
+  const STEP_DURATION = 4;
+
+  const AGE_MAP = [
+    { freq: 20000, age: '18 or younger', comment: 'Even sharper than most people your age.' },
+    { freq: 19000, age: '20', comment: 'Young, healthy hearing.' },
+    { freq: 18000, age: '24', comment: 'Very good.' },
+    { freq: 17000, age: '30', comment: 'Better than average.' },
+    { freq: 16000, age: '35', comment: 'A normal range.' },
+    { freq: 15000, age: '40', comment: 'A normal range.' },
+    { freq: 14000, age: '45', comment: 'A natural range for this age.' },
+    { freq: 12000, age: '50', comment: 'A natural range for this age.' },
+    { freq: 10000, age: '55', comment: 'High frequencies are starting to fade a bit.' },
+    { freq: 8000, age: '60 or older', comment: 'Could also be device or environment related — take it lightly.' },
+    { freq: 0, age: '60 or older', comment: 'Could also be device or environment related — take it lightly.' },
+  ];
+
+  function ageFor(maxHeard) {
+    return AGE_MAP.find(m => maxHeard >= m.freq) || AGE_MAP[AGE_MAP.length - 1];
+  }
+
+  const introScreen = document.getElementById('introScreen');
+  const calibScreen = document.getElementById('calibScreen');
+  const testScreen = document.getElementById('testScreen');
+  const resultPanel = document.getElementById('resultPanel');
+  const freqNum = document.getElementById('freqNum');
+  const hzProgressFill = document.getElementById('hzProgressFill');
+  const hzProgressLabel = document.getElementById('hzProgressLabel');
+
+  let audioCtx = null;
+  let calibOsc = null, calibGain = null;
+  let stepIndex = 0;
+  let maxHeard = 0;
+
+  function ensureAudioCtx() {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    return audioCtx;
+  }
+
+  function startCalibTone() {
+    const ctx = ensureAudioCtx();
+    calibOsc = ctx.createOscillator();
+    calibGain = ctx.createGain();
+    calibOsc.type = 'sine';
+    calibOsc.frequency.value = 1000;
+    const now = ctx.currentTime;
+    calibGain.gain.setValueAtTime(0, now);
+    calibGain.gain.linearRampToValueAtTime(0.2, now + 0.06);
+    calibOsc.connect(calibGain);
+    calibGain.connect(ctx.destination);
+    calibOsc.start(now);
+  }
+
+  function stopCalibTone() {
+    if (!calibOsc) return;
+    const now = audioCtx.currentTime;
+    calibGain.gain.cancelScheduledValues(now);
+    calibGain.gain.setValueAtTime(calibGain.gain.value, now);
+    calibGain.gain.linearRampToValueAtTime(0, now + 0.06);
+    calibOsc.stop(now + 0.08);
+    calibOsc = null;
+    calibGain = null;
+  }
+
+  function playStep(freq, durationSec) {
+    const ctx = ensureAudioCtx();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = 'sine';
+    osc.frequency.value = freq;
+    const now = ctx.currentTime;
+    gain.gain.setValueAtTime(0, now);
+    gain.gain.linearRampToValueAtTime(0.2, now + 0.06);
+    gain.gain.setValueAtTime(0.2, now + durationSec - 0.06);
+    gain.gain.linearRampToValueAtTime(0, now + durationSec);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start(now);
+    osc.stop(now + durationSec + 0.02);
+  }
+
+  function renderStats() {
+    document.getElementById('statCount').textContent = stats.count;
+    document.getElementById('statBest').textContent = stats.best ? stats.best + ' Hz' : '-';
+    document.getElementById('statAvg').textContent = stats.count ? Math.round(stats.sum / stats.count) + ' Hz' : '-';
+  }
+
+  document.getElementById('introStartBtn').addEventListener('click', () => {
+    ensureAudioCtx();
+    introScreen.style.display = 'none';
+    calibScreen.style.display = '';
+    startCalibTone();
+  });
+
+  document.getElementById('calibDoneBtn').addEventListener('click', () => {
+    stopCalibTone();
+    calibScreen.style.display = 'none';
+    testScreen.style.display = '';
+    stepIndex = 0;
+    maxHeard = 0;
+    runStep();
+  });
+
+  function runStep() {
+    const freq = FREQS[stepIndex];
+    freqNum.textContent = freq;
+    hzProgressFill.style.width = (stepIndex / FREQS.length * 100) + '%';
+    hzProgressLabel.textContent = `Step ${stepIndex + 1} / ${FREQS.length}`;
+    playStep(freq, STEP_DURATION);
+  }
+
+  document.getElementById('heardBtn').addEventListener('click', () => {
+    maxHeard = FREQS[stepIndex];
+    stepIndex += 1;
+    if (stepIndex >= FREQS.length) {
+      finishTest();
+      return;
+    }
+    setTimeout(runStep, 400);
+  });
+
+  document.getElementById('notHeardBtn').addEventListener('click', () => {
+    finishTest();
+  });
+
+  function finishTest() {
+    testScreen.style.display = 'none';
+
+    stats.count += 1;
+    if (maxHeard > stats.best) stats.best = maxHeard;
+    stats.sum += maxHeard;
+    saveStats(STORE_KEY, stats);
+    renderStats();
+
+    const result = ageFor(maxHeard);
+    document.getElementById('resultTitle').textContent = `Your hearing age is ${result.age}`;
+    document.getElementById('resultDesc').textContent = maxHeard > 0
+      ? `Highest frequency heard: ${maxHeard} Hz`
+      : "You couldn't hear even the lowest step (8000Hz).";
+    document.getElementById('resultComment').textContent = result.comment;
+    resultPanel.classList.add('show');
+    resultPanel.dataset.share = `My hearing age test result: ${result.age}! (heard up to ${maxHeard || 8000}Hz) Try it yourself → `;
+
+    const lbList = addToLeaderboard(LB_KEY, { value: maxHeard, date: Date.now() }, false);
+    renderTopLeaderboard(lbList);
+  }
+
+  function renderTopLeaderboard(list) {
+    renderLeaderboard('topLeaderboard', list, (entry) => {
+      const d = new Date(entry.date);
+      const dateStr = `${d.getMonth() + 1}/${d.getDate()}`;
+      return `<span class="lb-name">${entry.value} Hz</span><span class="lb-detail">${ageFor(entry.value).age} · ${dateStr}</span>`;
+    }, 'No records yet. Try your first challenge!');
+  }
+
+  document.getElementById('retryBtn').addEventListener('click', () => {
+    resultPanel.classList.remove('show');
+    introScreen.style.display = '';
+  });
+
+  document.getElementById('shareBtn').addEventListener('click', () => {
+    shareResult((resultPanel.dataset.share || '') + location.href);
+  });
+
+  renderStats();
+  renderTopLeaderboard(loadStats(LB_KEY, []));
+</script>
+</body>
+</html>

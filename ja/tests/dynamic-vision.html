@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>動体視力テスト | 能力テスト</title>
+<meta name="description" content="一瞬だけ光る数字を読み取ってみましょう。何msまで読み取れるかを測る無料の動体視力テスト。">
+<link rel="canonical" href="https://myabilitytest.com/ja/tests/dynamic-vision">
+<link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/dynamic-vision">
+<link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/dynamic-vision">
+<link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/dynamic-vision">
+<link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/dynamic-vision">
+<link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/dynamic-vision">
+<link rel="stylesheet" href="/skill-test/style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back-link" href="/ja/">← メインへ</a>
+    <div class="lang-switch">
+      <a href="/ko/tests/dynamic-vision">한국어</a>
+      <a href="/en/tests/dynamic-vision">English</a>
+      <a class="active" href="/ja/tests/dynamic-vision">日本語</a>
+      <a href="/zh/tests/dynamic-vision">中文</a>
+    </div>
+    <h1>👁️ 動体視力テスト</h1>
+    <p class="sub">一瞬だけ光る数字をそのまま入力してください。正解するほどどんどん速くなります。</p>
+
+    <div id="introScreen">
+      <div class="note-box" style="text-align:center;">
+        3・2・1のカウントダウンの後、数字がごく短く表示されて消えます。その数字をそのまま
+        入力すると、次のラウンドから表示時間が少しずつ短くなります。3回間違えると終了です。
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="startBtn">はじめる</button>
+      </div>
+    </div>
+
+    <div id="playScreen" style="display:none;">
+      <div class="level-card">
+        <div class="label">ラウンド</div>
+        <div class="num" id="curRound">1</div>
+        <div class="sub" id="curSub">表示時間 500ms ・ 累積ミス 0/3</div>
+      </div>
+      <div class="stage-zone" id="stageZone">
+        <div class="flash-digit" id="flashDigit" style="visibility:hidden;"></div>
+      </div>
+      <div id="inputRow" class="guess-input-row" style="display:none;">
+        <input type="number" id="answerInput" inputmode="numeric" autocomplete="off" placeholder="数字を入力">
+        <button class="btn" id="submitBtn">確認</button>
+      </div>
+    </div>
+
+    <div id="resultPanel" class="result-panel">
+      <div class="emoji">👁️</div>
+      <h2 id="resultTitle"></h2>
+      <div class="desc" id="resultDesc"></div>
+      <div class="percentile" id="resultNote"></div>
+      <div id="chartContainer"></div>
+      <table class="grade-table" id="gradeTable"></table>
+      <div class="btn-row">
+        <button class="btn" id="retryBtn">もう一度</button>
+        <button class="btn share" id="shareBtn">結果を共有</button>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat-box">
+        <div class="label">挑戦回数</div>
+        <div class="value" id="statCount">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">最高記録</div>
+        <div class="value" id="statBest">-</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">平均記録</div>
+        <div class="value" id="statAvg">-</div>
+      </div>
+    </div>
+
+    <section class="note-box">
+      <p><strong>動体視力とは?</strong> 動いているものや、瞬間的に現れて消える対象を素早く
+      捉えて認識する能力のことです。このテストは実際の「動き」というより、ごく短い表示時間の
+      中で情報を読み取る瞬間的な把握力を測るものですが、原理はよく似ています。サッカーや
+      野球で速いボールを追いかけたり、FPSゲームで一瞬だけ横切る敵を認識したりする場面で
+      大きく関わってくる能力です。</p>
+      <p>動体視力は生まれつきの部分もありますが、繰り返しの視覚トレーニングやゲーム・
+      スポーツの経験によってある程度改善できるとも言われています。ただしこのテストの結果は
+      画面のリフレッシュレートや端末の性能、体調によって変わるので、参考程度に楽しんで
+      ください。</p>
+    </section>
+
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 歴代記録ランキング(最大30位)</h2>
+    <div id="topLeaderboard"></div>
+  </div>
+
+<script src="/skill-test/common.js"></script>
+<script>
+  const STORE_KEY = 'skillDynamicVisionStats';
+  const LB_KEY = 'skillDynamicVisionLeaderboardV1';
+  let stats = loadStats(STORE_KEY, { count: 0, best: null, sum: 0, scoredCount: 0 });
+
+  const GRADES = [
+    { key: 'PRO', max: 50, label: 'プロゲーマー級' },
+    { key: 'TOP', max: 80, label: '最上位クラス' },
+    { key: 'GREAT', max: 130, label: '優秀' },
+    { key: 'GOOD', max: 200, label: '良好' },
+    { key: 'NORMAL', max: Infinity, label: '一般的' },
+  ];
+
+  function gradeFor(ms) {
+    return GRADES.find(g => ms <= g.max) || GRADES[GRADES.length - 1];
+  }
+
+  const introScreen = document.getElementById('introScreen');
+  const playScreen = document.getElementById('playScreen');
+  const resultPanel = document.getElementById('resultPanel');
+  const stageZone = document.getElementById('stageZone');
+  const flashDigit = document.getElementById('flashDigit');
+  const inputRow = document.getElementById('inputRow');
+  const answerInput = document.getElementById('answerInput');
+  const curRound = document.getElementById('curRound');
+  const curSub = document.getElementById('curSub');
+
+  const MONO_FONT = "'SFMono-Regular','Consolas','Menlo',monospace";
+
+  let roundIndex = 1;
+  let exposureMs = 500;
+  let wrongCount = 0;
+  let bestScore = null;
+  let currentDigits = '';
+  let lastActualMs = 0;
+  let history = [];
+  let rafId = null;
+
+  function digitsForRound(r) {
+    if (r >= 14) return 6;
+    if (r >= 8) return 5;
+    return 4;
+  }
+
+  function fontSizeForDigits(n) {
+    if (n <= 4) return 84;
+    if (n === 5) return 68;
+    return 56;
+  }
+
+  function randomDigits(n) {
+    let s = String(1 + Math.floor(Math.random() * 9));
+    for (let i = 1; i < n; i++) s += String(Math.floor(Math.random() * 10));
+    return s;
+  }
+
+  function renderStats() {
+    document.getElementById('statCount').textContent = stats.count;
+    document.getElementById('statBest').textContent = stats.best !== null ? stats.best + ' ms' : '-';
+    document.getElementById('statAvg').textContent = stats.scoredCount ? Math.round(stats.sum / stats.scoredCount) + ' ms' : '-';
+  }
+
+  document.getElementById('startBtn').addEventListener('click', () => {
+    roundIndex = 1;
+    exposureMs = 500;
+    wrongCount = 0;
+    bestScore = null;
+    history = [];
+    introScreen.style.display = 'none';
+    resultPanel.classList.remove('show');
+    playScreen.style.display = '';
+    startRound();
+  });
+
+  function updateLevelCard() {
+    curRound.textContent = roundIndex;
+    curSub.textContent = `表示時間 ${Math.round(exposureMs)}ms ・ 累積ミス ${wrongCount}/3`;
+  }
+
+  function startRound() {
+    updateLevelCard();
+    inputRow.style.display = 'none';
+    flashDigit.style.transform = 'translate(0px, 0px)';
+    flashDigit.style.fontFamily = MONO_FONT;
+    flashDigit.style.visibility = 'visible';
+    let n = 3;
+    flashDigit.textContent = n;
+    const timer = setInterval(() => {
+      n -= 1;
+      if (n > 0) {
+        flashDigit.textContent = n;
+      } else {
+        clearInterval(timer);
+        flashDigit.style.visibility = 'hidden';
+        flashDigit.textContent = '';
+        setTimeout(runFlash, 250);
+      }
+    }, 550);
+  }
+
+  function runFlash() {
+    const digitCount = digitsForRound(roundIndex);
+    currentDigits = randomDigits(digitCount);
+    flashDigit.style.fontSize = fontSizeForDigits(digitCount) + 'px';
+    const jitterX = Math.round((Math.random() - 0.5) * 30);
+    const jitterY = Math.round((Math.random() - 0.5) * 20);
+    flashDigit.style.transform = `translate(${jitterX}px, ${jitterY}px)`;
+    flashDigit.textContent = currentDigits;
+    flashDigit.style.visibility = 'visible';
+
+    let startTs = null;
+    const targetMs = exposureMs;
+    function loop(ts) {
+      if (startTs === null) startTs = ts;
+      const elapsed = ts - startTs;
+      if (elapsed >= targetMs) {
+        lastActualMs = Math.round(elapsed);
+        flashDigit.style.visibility = 'hidden';
+        flashDigit.textContent = '';
+        flashDigit.style.transform = 'translate(0px, 0px)';
+        showInput();
+        return;
+      }
+      rafId = requestAnimationFrame(loop);
+    }
+    rafId = requestAnimationFrame(loop);
+  }
+
+  function showInput() {
+    inputRow.style.display = '';
+    answerInput.value = '';
+    answerInput.focus();
+  }
+
+  function submitAnswer() {
+    if (answerInput.value === '') return;
+    const correct = parseInt(answerInput.value, 10) === parseInt(currentDigits, 10);
+    recordRound(correct);
+  }
+
+  document.getElementById('submitBtn').addEventListener('click', submitAnswer);
+  answerInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') submitAnswer(); });
+
+  function recordRound(correct) {
+    history.push({ round: roundIndex, exposureMs, actualMs: lastActualMs, correct });
+    inputRow.style.display = 'none';
+
+    if (correct) {
+      if (bestScore === null || lastActualMs < bestScore) bestScore = lastActualMs;
+      const nextExposure = exposureMs * 0.88;
+      if (nextExposure < 20) {
+        finish('device-limit');
+        return;
+      }
+      exposureMs = nextExposure;
+    } else {
+      wrongCount += 1;
+      if (wrongCount >= 3) {
+        finish('fail-limit');
+        return;
+      }
+      exposureMs = exposureMs * 1.15;
+    }
+    roundIndex += 1;
+    setTimeout(startRound, 500);
+  }
+
+  function buildChartSvg(hist) {
+    if (hist.length < 2) return '';
+    const W = 600, H = 160, PAD = 24;
+    const maxMs = Math.max(...hist.map(h => h.actualMs), 500);
+    const stepX = (W - PAD * 2) / (hist.length - 1);
+    const scaleY = (H - PAD * 2) / maxMs;
+    const points = hist.map((h, i) => ({
+      x: PAD + i * stepX,
+      y: H - PAD - h.actualMs * scaleY,
+      correct: h.correct,
+    }));
+    const linePoints = points.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
+    const dots = points.map(p => `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4" fill="${p.correct ? '#22c55e' : '#ef4444'}"/>`).join('');
+    return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;margin:14px 0;">
+      <polyline points="${linePoints}" fill="none" stroke="#a5b4fc" stroke-width="2"/>
+      ${dots}
+    </svg>`;
+  }
+
+  function renderGradeTable(ms) {
+    const grade = gradeFor(ms);
+    const table = document.getElementById('gradeTable');
+    table.innerHTML = '<tr><th>ランク</th><th>基準</th></tr>' +
+      GRADES.map(g => `<tr class="${g.key === grade.key ? 'current-row' : ''}"><td>${g.label}</td><td>${g.max === Infinity ? '300ms以上' : g.max + 'ms以下'}</td></tr>`).join('');
+  }
+
+  function finish(reason) {
+    playScreen.style.display = 'none';
+    cancelAnimationFrame(rafId);
+
+    stats.count += 1;
+    if (bestScore !== null) {
+      stats.scoredCount += 1;
+      stats.sum += bestScore;
+      if (stats.best === null || bestScore < stats.best) stats.best = bestScore;
+    }
+    saveStats(STORE_KEY, stats);
+    renderStats();
+
+    document.getElementById('chartContainer').innerHTML = buildChartSvg(history);
+
+    if (bestScore === null) {
+      document.getElementById('resultTitle').textContent = '正解できませんでした';
+      document.getElementById('resultDesc').textContent = '残念ながら今回は記録なしです。もう一度挑戦してみましょう!';
+      document.getElementById('resultNote').textContent = '';
+      document.getElementById('gradeTable').innerHTML = '';
+      resultPanel.classList.add('show');
+      resultPanel.dataset.share = '';
+      return;
+    }
+
+    const grade = gradeFor(bestScore);
+    document.getElementById('resultTitle').textContent = `あなたが読み取れた最短表示時間: ${Math.round(bestScore)}ms`;
+    document.getElementById('resultDesc').textContent = `到達ラウンド ${roundIndex} ・ ${grade.label}`;
+    document.getElementById('resultNote').textContent = reason === 'device-limit'
+      ? '全問正解でこの端末の測定限界(約20ms)に到達しました!すごいです。'
+      : '';
+    renderGradeTable(bestScore);
+    resultPanel.classList.add('show');
+    resultPanel.dataset.share = `動体視力テストで${Math.round(bestScore)}msまで読み取れました!(${grade.label}) あなたもどうぞ → `;
+
+    const lbList = addToLeaderboard(LB_KEY, { value: bestScore, date: Date.now() }, true);
+    renderTopLeaderboard(lbList);
+  }
+
+  function renderTopLeaderboard(list) {
+    renderLeaderboard('topLeaderboard', list, (entry) => {
+      const d = new Date(entry.date);
+      const dateStr = `${d.getMonth() + 1}/${d.getDate()}`;
+      return `<span class="lb-name">${Math.round(entry.value)} ms</span><span class="lb-detail">${dateStr}</span>`;
+    }, 'まだ記録がありません。最初の挑戦をしてみましょう!');
+  }
+
+  document.getElementById('retryBtn').addEventListener('click', () => {
+    resultPanel.classList.remove('show');
+    introScreen.style.display = '';
+  });
+
+  document.getElementById('shareBtn').addEventListener('click', () => {
+    if (!resultPanel.dataset.share) return;
+    shareResult(resultPanel.dataset.share + location.href);
+  });
+
+  renderStats();
+  renderTopLeaderboard(loadStats(LB_KEY, []));
+</script>
+</body>
+</html>

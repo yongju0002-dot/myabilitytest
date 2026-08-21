@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chimp Test | Ability Test</title>
+<meta name="description" content="Remember the numbers in order and click them. Free chimp test that challenges you against Ayumu the chimpanzee's working memory.">
+<link rel="canonical" href="https://myabilitytest.com/en/tests/chimp-test">
+<link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/chimp-test">
+<link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/chimp-test">
+<link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/chimp-test">
+<link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/chimp-test">
+<link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/chimp-test">
+<link rel="stylesheet" href="/skill-test/style.css">
+<style>
+  .pick-cell { touch-action: manipulation; font-weight: 800; font-size: 26px; }
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back-link" href="/en/">← Back to Main</a>
+    <div class="lang-switch">
+      <a href="/ko/tests/chimp-test">한국어</a>
+      <a class="active" href="/en/tests/chimp-test">English</a>
+      <a href="/ja/tests/chimp-test">日本語</a>
+      <a href="/zh/tests/chimp-test">中文</a>
+    </div>
+    <h1>🐵 Chimp Test</h1>
+    <p class="sub">Numbers appear at once, then hide the moment you click the first one. Click them back in order.</p>
+
+    <div id="introScreen">
+      <div class="note-box" style="text-align:center;">
+        Numbers starting from 1 all appear on the grid at once. The instant you click "1",
+        the rest get hidden — remember where they were and click them in order. You have
+        3 lives, and a mistake lets you retry the same level.
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="startBtn">Start</button>
+      </div>
+    </div>
+
+    <div id="playScreen" style="display:none;">
+      <div class="level-card">
+        <div class="label">Numbers to remember</div>
+        <div class="num" id="levelNum">4</div>
+        <div class="sub" id="livesSub">❤️❤️❤️</div>
+      </div>
+      <div class="pick-grid" id="chimpGrid"></div>
+    </div>
+
+    <div id="resultPanel" class="result-panel">
+      <div class="emoji">🐵</div>
+      <h2 id="resultTitle"></h2>
+      <div class="desc" id="resultDesc"></div>
+      <div class="percentile" id="resultCompare">Ayumu the chimpanzee got 9 right with 80% accuracy.</div>
+      <table class="grade-table" id="gradeTable"></table>
+      <div class="btn-row">
+        <button class="btn" id="retryBtn">Try again</button>
+        <button class="btn share" id="shareBtn">Share result</button>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat-box">
+        <div class="label">Attempts</div>
+        <div class="value" id="statCount">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">Best score</div>
+        <div class="value" id="statBest">-</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">Average score</div>
+        <div class="value" id="statAvg">-</div>
+      </div>
+    </div>
+
+    <section class="note-box">
+      <p><strong>What was the Ayumu experiment?</strong> A team led by Tetsuro Matsuzawa at
+      Kyoto University's Primate Research Institute ran a working-memory experiment on a
+      chimpanzee named Ayumu. Numbers 1 through 9 briefly appeared on screen, then were
+      covered by white squares — and Ayumu tapped their locations in the correct order,
+      often faster and more accurately than trained human university students, which made
+      headlines at the time.</p>
+      <p>The experiment is often cited as a striking example of how working memory — the
+      ability to briefly hold and manipulate information you've just seen — can differ
+      between humans and chimpanzees. This kind of momentary memory shows up everywhere in
+      daily life, from mental math to conversation to learning.</p>
+    </section>
+
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 All-Time Top Records (Top 30)</h2>
+    <div id="topLeaderboard"></div>
+  </div>
+
+<script src="/skill-test/common.js"></script>
+<script>
+  const STORE_KEY = 'skillChimpStats';
+  const LB_KEY = 'skillChimpLeaderboardV1';
+  let stats = loadStats(STORE_KEY, { count: 0, best: 0, sum: 0 });
+
+  const GRADES = [
+    { key: 'TOP1', min: 12, label: 'Top 1%' },
+    { key: 'GREAT', min: 10, label: 'Great' },
+    { key: 'CHIMP', min: 9, label: 'Chimp tier' },
+    { key: 'AVG', min: 7, label: 'Average' },
+    { key: 'BELOW', min: 0, label: 'Below average' },
+  ];
+
+  function gradeFor(score) {
+    return GRADES.find(g => score >= g.min) || GRADES[GRADES.length - 1];
+  }
+
+  const introScreen = document.getElementById('introScreen');
+  const playScreen = document.getElementById('playScreen');
+  const resultPanel = document.getElementById('resultPanel');
+  const grid = document.getElementById('chimpGrid');
+  const levelNum = document.getElementById('levelNum');
+  const livesSub = document.getElementById('livesSub');
+
+  let cellsEls = [];
+  let totalCells = 0;
+  let currentN = 4;
+  let lives = 3;
+  let cellToNumber = {};
+  let nextExpected = 1;
+  let locked = false;
+
+  function renderStats() {
+    document.getElementById('statCount').textContent = stats.count;
+    document.getElementById('statBest').textContent = stats.best || '-';
+    document.getElementById('statAvg').textContent = stats.count ? (stats.sum / stats.count).toFixed(1) : '-';
+  }
+
+  function buildGrid() {
+    const isMobile = window.innerWidth < 768;
+    const cols = 5;
+    const rows = isMobile ? 6 : 8;
+    totalCells = cols * rows;
+    grid.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+    grid.innerHTML = '';
+    for (let i = 0; i < totalCells; i++) {
+      const cell = document.createElement('div');
+      cell.className = 'pick-cell';
+      cell.dataset.i = i;
+      cell.addEventListener('pointerdown', (e) => {
+        e.preventDefault();
+        pick(i, cell);
+      });
+      grid.appendChild(cell);
+    }
+    cellsEls = [...grid.children];
+  }
+
+  function newRound() {
+    if (currentN > totalCells) {
+      finish();
+      return;
+    }
+    locked = false;
+    nextExpected = 1;
+    cellToNumber = {};
+    const positions = new Set();
+    while (positions.size < currentN) positions.add(Math.floor(Math.random() * totalCells));
+    const posArr = shuffle([...positions]);
+    posArr.forEach((cellIdx, idx) => { cellToNumber[cellIdx] = idx + 1; });
+
+    cellsEls.forEach((cell, i) => {
+      cell.className = 'pick-cell';
+      cell.textContent = cellToNumber[i] !== undefined ? cellToNumber[i] : '';
+    });
+
+    levelNum.textContent = currentN;
+    livesSub.textContent = '❤️'.repeat(lives) + '🤍'.repeat(3 - lives);
+  }
+
+  function pick(i, cell) {
+    if (locked) return;
+    const num = cellToNumber[i];
+
+    if (num === nextExpected) {
+      cell.classList.add('tier-common');
+      cell.textContent = num;
+      if (num === 1) {
+        cellsEls.forEach((c, idx) => { if (idx !== i) c.textContent = ''; });
+      }
+      nextExpected += 1;
+      if (nextExpected > currentN) {
+        locked = true;
+        setTimeout(() => {
+          currentN += 1;
+          newRound();
+        }, 500);
+      }
+      return;
+    }
+
+    locked = true;
+    cell.classList.add('tier-bomb');
+    cell.textContent = num !== undefined ? num : '✕';
+    const correctCellIdx = Object.keys(cellToNumber).find(k => cellToNumber[k] === nextExpected);
+    if (correctCellIdx !== undefined && parseInt(correctCellIdx, 10) !== i) {
+      const correctCell = cellsEls[parseInt(correctCellIdx, 10)];
+      correctCell.classList.add('tier-jackpot');
+      correctCell.textContent = nextExpected;
+    }
+    lives -= 1;
+    livesSub.textContent = '❤️'.repeat(Math.max(lives, 0)) + '🤍'.repeat(3 - Math.max(lives, 0));
+
+    setTimeout(() => {
+      if (lives <= 0) {
+        finish();
+      } else {
+        newRound();
+      }
+    }, 900);
+  }
+
+  function renderGradeTable(score) {
+    const grade = gradeFor(score);
+    const table = document.getElementById('gradeTable');
+    table.innerHTML = '<tr><th>Grade</th><th>Threshold</th></tr>' +
+      GRADES.slice().reverse().map(g => `<tr class="${g.key === grade.key ? 'current-row' : ''}"><td>${g.label}</td><td>${g.min}+</td></tr>`).join('');
+  }
+
+  function finish() {
+    playScreen.style.display = 'none';
+    const score = Math.min(currentN, totalCells);
+
+    stats.count += 1;
+    if (score > stats.best) stats.best = score;
+    stats.sum += score;
+    saveStats(STORE_KEY, stats);
+    renderStats();
+
+    const grade = gradeFor(score);
+    document.getElementById('resultTitle').textContent = `You remembered ${score} numbers!`;
+    document.getElementById('resultDesc').textContent = `${grade.label} tier.`;
+    renderGradeTable(score);
+    resultPanel.classList.add('show');
+    resultPanel.dataset.share = `I remembered ${score} numbers on the chimp test! (${grade.label}) Ayumu the chimpanzee got 9 right at 80% accuracy. Try it yourself → `;
+
+    const lbList = addToLeaderboard(LB_KEY, { value: score, date: Date.now() }, false);
+    renderTopLeaderboard(lbList);
+  }
+
+  function renderTopLeaderboard(list) {
+    renderLeaderboard('topLeaderboard', list, (entry) => {
+      const d = new Date(entry.date);
+      const dateStr = `${d.getMonth() + 1}/${d.getDate()}`;
+      return `<span class="lb-name">${entry.value}</span><span class="lb-detail">${dateStr}</span>`;
+    }, 'No records yet. Try your first challenge!');
+  }
+
+  document.getElementById('startBtn').addEventListener('click', () => {
+    currentN = 4;
+    lives = 3;
+    buildGrid();
+    introScreen.style.display = 'none';
+    resultPanel.classList.remove('show');
+    playScreen.style.display = '';
+    newRound();
+  });
+
+  document.getElementById('retryBtn').addEventListener('click', () => {
+    resultPanel.classList.remove('show');
+    introScreen.style.display = '';
+  });
+
+  document.getElementById('shareBtn').addEventListener('click', () => {
+    shareResult((resultPanel.dataset.share || '') + location.href);
+  });
+
+  renderStats();
+  renderTopLeaderboard(loadStats(LB_KEY, []));
+</script>
+</body>
+</html>

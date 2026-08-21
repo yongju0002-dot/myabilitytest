@@ -1,0 +1,64 @@
+# Root: Korean was the unprefixed default; now lives at /ko/
+/ /ko/ 301
+/index.html /ko/ 301
+
+# Hub pages (ko was at root, en/ja/zh already prefixed but their old
+# index.html now needs no redirect since the path is unchanged)
+
+# Old flat test URLs -> new /{lang}/tests/{slug} scheme
+/skill-test/games/aim-test.html /ko/tests/aim-trainer 301
+/en/skill-test/games/aim-test.html /en/tests/aim-trainer 301
+/ja/skill-test/games/aim-test.html /ja/tests/aim-trainer 301
+/zh/skill-test/games/aim-test.html /zh/tests/aim-trainer 301
+/skill-test/games/spacebar.html /ko/tests/spacebar-counter 301
+/en/skill-test/games/spacebar.html /en/tests/spacebar-counter 301
+/ja/skill-test/games/spacebar.html /ja/tests/spacebar-counter 301
+/zh/skill-test/games/spacebar.html /zh/tests/spacebar-counter 301
+/skill-test/games/mouse-accuracy.html /ko/tests/mouse-accuracy 301
+/en/skill-test/games/mouse-accuracy.html /en/tests/mouse-accuracy 301
+/ja/skill-test/games/mouse-accuracy.html /ja/tests/mouse-accuracy 301
+/zh/skill-test/games/mouse-accuracy.html /zh/tests/mouse-accuracy 301
+/skill-test/games/jitter-click.html /ko/tests/jitter-click 301
+/en/skill-test/games/jitter-click.html /en/tests/jitter-click 301
+/ja/skill-test/games/jitter-click.html /ja/tests/jitter-click 301
+/zh/skill-test/games/jitter-click.html /zh/tests/jitter-click 301
+/skill-test/games/dynamic-vision.html /ko/tests/dynamic-vision 301
+/en/skill-test/games/dynamic-vision.html /en/tests/dynamic-vision 301
+/ja/skill-test/games/dynamic-vision.html /ja/tests/dynamic-vision 301
+/zh/skill-test/games/dynamic-vision.html /zh/tests/dynamic-vision 301
+/skill-test/games/chimp-test.html /ko/tests/chimp-test 301
+/en/skill-test/games/chimp-test.html /en/tests/chimp-test 301
+/ja/skill-test/games/chimp-test.html /ja/tests/chimp-test 301
+/zh/skill-test/games/chimp-test.html /zh/tests/chimp-test 301
+/skill-test/games/memory.html /ko/tests/visual-memory 301
+/en/skill-test/games/memory.html /en/tests/visual-memory 301
+/ja/skill-test/games/memory.html /ja/tests/visual-memory 301
+/zh/skill-test/games/memory.html /zh/tests/visual-memory 301
+/skill-test/games/hearing-age.html /ko/tests/hearing-age 301
+/en/skill-test/games/hearing-age.html /en/tests/hearing-age 301
+/ja/skill-test/games/hearing-age.html /ja/tests/hearing-age 301
+/zh/skill-test/games/hearing-age.html /zh/tests/hearing-age 301
+/ability-test/index.html /ko/tests/reaction-time 301
+/en/ability-test/index.html /en/tests/reaction-time 301
+/ja/ability-test/index.html /ja/tests/reaction-time 301
+/zh/ability-test/index.html /zh/tests/reaction-time 301
+/skill-test/games/apm.html /ko/tests/apm 301
+/en/skill-test/games/apm.html /en/tests/apm 301
+/ja/skill-test/games/apm.html /ja/tests/apm 301
+/zh/skill-test/games/apm.html /zh/tests/apm 301
+/skill-test/games/kohi-click.html /ko/tests/kohi-click 301
+/en/skill-test/games/kohi-click.html /en/tests/kohi-click 301
+/ja/skill-test/games/kohi-click.html /ja/tests/kohi-click 301
+/zh/skill-test/games/kohi-click.html /zh/tests/kohi-click 301
+/skill-test/games/time-stop.html /ko/tests/time-stop 301
+/en/skill-test/games/time-stop.html /en/tests/time-stop 301
+/ja/skill-test/games/time-stop.html /ja/tests/time-stop 301
+/zh/skill-test/games/time-stop.html /zh/tests/time-stop 301
+/skill-test/games/cps.html /ko/tests/click-speed 301
+/en/skill-test/games/cps.html /en/tests/click-speed 301
+/ja/skill-test/games/cps.html /ja/tests/click-speed 301
+/zh/skill-test/games/cps.html /zh/tests/click-speed 301
+/skill-test/games/time-guess.html /ko/tests/time-perception 301
+/en/skill-test/games/time-guess.html /en/tests/time-perception 301
+/ja/skill-test/games/time-guess.html /ja/tests/time-perception 301
+/zh/skill-test/games/time-guess.html /zh/tests/time-perception 301

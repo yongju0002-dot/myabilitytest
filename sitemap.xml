@@ -1,557 +1,603 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://myabilitytest.com/</loc>
+    <loc>https://myabilitytest.com/ko/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/index.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/index.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/index.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/en/index.html</loc>
+    <loc>https://myabilitytest.com/en/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/index.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/index.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/index.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/ja/index.html</loc>
+    <loc>https://myabilitytest.com/ja/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/index.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/index.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/index.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/zh/index.html</loc>
+    <loc>https://myabilitytest.com/zh/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/index.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/index.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/index.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/"/>
   </url>
-
   <url>
-    <loc>https://myabilitytest.com/ability-test/index.html</loc>
+    <loc>https://myabilitytest.com/ko/tests/hearing-age</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ability-test/index.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/ability-test/index.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/ability-test/index.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/ability-test/index.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/hearing-age"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/hearing-age"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/hearing-age"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/hearing-age"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/hearing-age"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/en/ability-test/index.html</loc>
+    <loc>https://myabilitytest.com/en/tests/hearing-age</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ability-test/index.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/ability-test/index.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/ability-test/index.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/ability-test/index.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/hearing-age"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/hearing-age"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/hearing-age"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/hearing-age"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/hearing-age"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/ja/ability-test/index.html</loc>
+    <loc>https://myabilitytest.com/ja/tests/hearing-age</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ability-test/index.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/ability-test/index.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/ability-test/index.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/ability-test/index.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/hearing-age"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/hearing-age"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/hearing-age"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/hearing-age"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/hearing-age"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/zh/ability-test/index.html</loc>
+    <loc>https://myabilitytest.com/zh/tests/hearing-age</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ability-test/index.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/ability-test/index.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/ability-test/index.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/ability-test/index.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/hearing-age"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/hearing-age"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/hearing-age"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/hearing-age"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/hearing-age"/>
   </url>
-
   <url>
-    <loc>https://myabilitytest.com/skill-test/games/memory.html</loc>
+    <loc>https://myabilitytest.com/ko/tests/time-perception</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/memory.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/memory.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/memory.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/memory.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/time-perception"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/time-perception"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/time-perception"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/time-perception"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/time-perception"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/en/skill-test/games/memory.html</loc>
+    <loc>https://myabilitytest.com/en/tests/time-perception</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/memory.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/memory.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/memory.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/memory.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/time-perception"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/time-perception"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/time-perception"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/time-perception"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/time-perception"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/ja/skill-test/games/memory.html</loc>
+    <loc>https://myabilitytest.com/ja/tests/time-perception</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/memory.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/memory.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/memory.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/memory.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/time-perception"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/time-perception"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/time-perception"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/time-perception"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/time-perception"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/zh/skill-test/games/memory.html</loc>
+    <loc>https://myabilitytest.com/zh/tests/time-perception</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/memory.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/memory.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/memory.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/memory.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/time-perception"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/time-perception"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/time-perception"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/time-perception"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/time-perception"/>
   </url>
-
   <url>
-    <loc>https://myabilitytest.com/skill-test/games/cps.html</loc>
+    <loc>https://myabilitytest.com/ko/tests/click-speed</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/cps.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/cps.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/cps.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/cps.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/click-speed"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/click-speed"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/click-speed"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/click-speed"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/click-speed"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/en/skill-test/games/cps.html</loc>
+    <loc>https://myabilitytest.com/en/tests/click-speed</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/cps.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/cps.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/cps.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/cps.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/click-speed"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/click-speed"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/click-speed"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/click-speed"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/click-speed"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/ja/skill-test/games/cps.html</loc>
+    <loc>https://myabilitytest.com/ja/tests/click-speed</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/cps.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/cps.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/cps.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/cps.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/click-speed"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/click-speed"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/click-speed"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/click-speed"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/click-speed"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/zh/skill-test/games/cps.html</loc>
+    <loc>https://myabilitytest.com/zh/tests/click-speed</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/cps.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/cps.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/cps.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/cps.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/click-speed"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/click-speed"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/click-speed"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/click-speed"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/click-speed"/>
   </url>
-
   <url>
-    <loc>https://myabilitytest.com/skill-test/games/time-stop.html</loc>
+    <loc>https://myabilitytest.com/ko/tests/apm</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/time-stop.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/time-stop.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/time-stop.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/time-stop.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/apm"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/apm"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/apm"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/apm"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/apm"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/en/skill-test/games/time-stop.html</loc>
+    <loc>https://myabilitytest.com/en/tests/apm</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/time-stop.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/time-stop.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/time-stop.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/time-stop.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/apm"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/apm"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/apm"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/apm"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/apm"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/ja/skill-test/games/time-stop.html</loc>
+    <loc>https://myabilitytest.com/ja/tests/apm</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/time-stop.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/time-stop.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/time-stop.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/time-stop.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/apm"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/apm"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/apm"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/apm"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/apm"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/zh/skill-test/games/time-stop.html</loc>
+    <loc>https://myabilitytest.com/zh/tests/apm</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/time-stop.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/time-stop.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/time-stop.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/time-stop.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/apm"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/apm"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/apm"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/apm"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/apm"/>
   </url>
-
   <url>
-    <loc>https://myabilitytest.com/skill-test/games/time-guess.html</loc>
+    <loc>https://myabilitytest.com/ko/tests/visual-memory</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/time-guess.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/time-guess.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/time-guess.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/time-guess.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/visual-memory"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/visual-memory"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/visual-memory"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/visual-memory"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/visual-memory"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/en/skill-test/games/time-guess.html</loc>
+    <loc>https://myabilitytest.com/en/tests/visual-memory</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/time-guess.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/time-guess.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/time-guess.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/time-guess.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/visual-memory"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/visual-memory"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/visual-memory"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/visual-memory"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/visual-memory"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/ja/skill-test/games/time-guess.html</loc>
+    <loc>https://myabilitytest.com/ja/tests/visual-memory</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/time-guess.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/time-guess.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/time-guess.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/time-guess.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/visual-memory"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/visual-memory"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/visual-memory"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/visual-memory"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/visual-memory"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/zh/skill-test/games/time-guess.html</loc>
+    <loc>https://myabilitytest.com/zh/tests/visual-memory</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/time-guess.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/time-guess.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/time-guess.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/time-guess.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/visual-memory"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/visual-memory"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/visual-memory"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/visual-memory"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/visual-memory"/>
   </url>
-
   <url>
-    <loc>https://myabilitytest.com/skill-test/games/hearing-age.html</loc>
+    <loc>https://myabilitytest.com/ko/tests/dynamic-vision</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/hearing-age.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/hearing-age.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/hearing-age.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/hearing-age.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/dynamic-vision"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/dynamic-vision"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/dynamic-vision"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/dynamic-vision"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/dynamic-vision"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/en/skill-test/games/hearing-age.html</loc>
+    <loc>https://myabilitytest.com/en/tests/dynamic-vision</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/hearing-age.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/hearing-age.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/hearing-age.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/hearing-age.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/dynamic-vision"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/dynamic-vision"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/dynamic-vision"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/dynamic-vision"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/dynamic-vision"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/ja/skill-test/games/hearing-age.html</loc>
+    <loc>https://myabilitytest.com/ja/tests/dynamic-vision</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/hearing-age.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/hearing-age.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/hearing-age.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/hearing-age.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/dynamic-vision"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/dynamic-vision"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/dynamic-vision"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/dynamic-vision"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/dynamic-vision"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/zh/skill-test/games/hearing-age.html</loc>
+    <loc>https://myabilitytest.com/zh/tests/dynamic-vision</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/hearing-age.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/hearing-age.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/hearing-age.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/hearing-age.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/dynamic-vision"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/dynamic-vision"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/dynamic-vision"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/dynamic-vision"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/dynamic-vision"/>
   </url>
-
   <url>
-    <loc>https://myabilitytest.com/skill-test/games/dynamic-vision.html</loc>
+    <loc>https://myabilitytest.com/ko/tests/time-stop</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/dynamic-vision.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/dynamic-vision.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/dynamic-vision.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/dynamic-vision.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/time-stop"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/time-stop"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/time-stop"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/time-stop"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/time-stop"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/en/skill-test/games/dynamic-vision.html</loc>
+    <loc>https://myabilitytest.com/en/tests/time-stop</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/dynamic-vision.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/dynamic-vision.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/dynamic-vision.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/dynamic-vision.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/time-stop"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/time-stop"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/time-stop"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/time-stop"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/time-stop"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/ja/skill-test/games/dynamic-vision.html</loc>
+    <loc>https://myabilitytest.com/ja/tests/time-stop</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/dynamic-vision.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/dynamic-vision.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/dynamic-vision.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/dynamic-vision.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/time-stop"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/time-stop"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/time-stop"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/time-stop"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/time-stop"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/zh/skill-test/games/dynamic-vision.html</loc>
+    <loc>https://myabilitytest.com/zh/tests/time-stop</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/dynamic-vision.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/dynamic-vision.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/dynamic-vision.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/dynamic-vision.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/time-stop"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/time-stop"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/time-stop"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/time-stop"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/time-stop"/>
   </url>
-
   <url>
-    <loc>https://myabilitytest.com/skill-test/games/chimp-test.html</loc>
+    <loc>https://myabilitytest.com/ko/tests/reaction-time</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/chimp-test.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/chimp-test.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/chimp-test.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/chimp-test.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/reaction-time"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/reaction-time"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/reaction-time"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/reaction-time"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/reaction-time"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/en/skill-test/games/chimp-test.html</loc>
+    <loc>https://myabilitytest.com/en/tests/reaction-time</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/chimp-test.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/chimp-test.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/chimp-test.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/chimp-test.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/reaction-time"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/reaction-time"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/reaction-time"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/reaction-time"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/reaction-time"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/ja/skill-test/games/chimp-test.html</loc>
+    <loc>https://myabilitytest.com/ja/tests/reaction-time</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/chimp-test.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/chimp-test.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/chimp-test.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/chimp-test.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/reaction-time"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/reaction-time"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/reaction-time"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/reaction-time"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/reaction-time"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/zh/skill-test/games/chimp-test.html</loc>
+    <loc>https://myabilitytest.com/zh/tests/reaction-time</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/chimp-test.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/chimp-test.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/chimp-test.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/chimp-test.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/reaction-time"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/reaction-time"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/reaction-time"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/reaction-time"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/reaction-time"/>
   </url>
-
   <url>
-    <loc>https://myabilitytest.com/skill-test/games/aim-test.html</loc>
+    <loc>https://myabilitytest.com/ko/tests/chimp-test</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/aim-test.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/aim-test.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/aim-test.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/aim-test.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/chimp-test"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/chimp-test"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/chimp-test"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/chimp-test"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/chimp-test"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/en/skill-test/games/aim-test.html</loc>
+    <loc>https://myabilitytest.com/en/tests/chimp-test</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/aim-test.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/aim-test.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/aim-test.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/aim-test.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/chimp-test"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/chimp-test"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/chimp-test"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/chimp-test"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/chimp-test"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/ja/skill-test/games/aim-test.html</loc>
+    <loc>https://myabilitytest.com/ja/tests/chimp-test</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/aim-test.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/aim-test.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/aim-test.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/aim-test.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/chimp-test"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/chimp-test"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/chimp-test"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/chimp-test"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/chimp-test"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/zh/skill-test/games/aim-test.html</loc>
+    <loc>https://myabilitytest.com/zh/tests/chimp-test</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/aim-test.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/aim-test.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/aim-test.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/aim-test.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/chimp-test"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/chimp-test"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/chimp-test"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/chimp-test"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/chimp-test"/>
   </url>
-
   <url>
-    <loc>https://myabilitytest.com/skill-test/games/jitter-click.html</loc>
+    <loc>https://myabilitytest.com/ko/tests/kohi-click</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/jitter-click.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/jitter-click.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/jitter-click.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/jitter-click.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/kohi-click"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/kohi-click"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/kohi-click"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/kohi-click"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/kohi-click"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/en/skill-test/games/jitter-click.html</loc>
+    <loc>https://myabilitytest.com/en/tests/kohi-click</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/jitter-click.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/jitter-click.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/jitter-click.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/jitter-click.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/kohi-click"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/kohi-click"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/kohi-click"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/kohi-click"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/kohi-click"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/ja/skill-test/games/jitter-click.html</loc>
+    <loc>https://myabilitytest.com/ja/tests/kohi-click</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/jitter-click.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/jitter-click.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/jitter-click.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/jitter-click.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/kohi-click"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/kohi-click"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/kohi-click"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/kohi-click"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/kohi-click"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/zh/skill-test/games/jitter-click.html</loc>
+    <loc>https://myabilitytest.com/zh/tests/kohi-click</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/jitter-click.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/jitter-click.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/jitter-click.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/jitter-click.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/kohi-click"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/kohi-click"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/kohi-click"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/kohi-click"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/kohi-click"/>
   </url>
-
   <url>
-    <loc>https://myabilitytest.com/skill-test/games/kohi-click.html</loc>
+    <loc>https://myabilitytest.com/ko/tests/spacebar-counter</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/kohi-click.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/kohi-click.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/kohi-click.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/kohi-click.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/spacebar-counter"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/spacebar-counter"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/spacebar-counter"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/spacebar-counter"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/spacebar-counter"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/en/skill-test/games/kohi-click.html</loc>
+    <loc>https://myabilitytest.com/en/tests/spacebar-counter</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/kohi-click.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/kohi-click.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/kohi-click.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/kohi-click.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/spacebar-counter"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/spacebar-counter"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/spacebar-counter"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/spacebar-counter"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/spacebar-counter"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/ja/skill-test/games/kohi-click.html</loc>
+    <loc>https://myabilitytest.com/ja/tests/spacebar-counter</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/kohi-click.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/kohi-click.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/kohi-click.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/kohi-click.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/spacebar-counter"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/spacebar-counter"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/spacebar-counter"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/spacebar-counter"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/spacebar-counter"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/zh/skill-test/games/kohi-click.html</loc>
+    <loc>https://myabilitytest.com/zh/tests/spacebar-counter</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/kohi-click.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/kohi-click.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/kohi-click.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/kohi-click.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/spacebar-counter"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/spacebar-counter"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/spacebar-counter"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/spacebar-counter"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/spacebar-counter"/>
   </url>
-
   <url>
-    <loc>https://myabilitytest.com/skill-test/games/spacebar.html</loc>
+    <loc>https://myabilitytest.com/ko/tests/aim-trainer</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/spacebar.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/spacebar.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/spacebar.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/spacebar.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/aim-trainer"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/aim-trainer"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/aim-trainer"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/aim-trainer"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/aim-trainer"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/en/skill-test/games/spacebar.html</loc>
+    <loc>https://myabilitytest.com/en/tests/aim-trainer</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/spacebar.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/spacebar.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/spacebar.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/spacebar.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/aim-trainer"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/aim-trainer"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/aim-trainer"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/aim-trainer"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/aim-trainer"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/ja/skill-test/games/spacebar.html</loc>
+    <loc>https://myabilitytest.com/ja/tests/aim-trainer</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/spacebar.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/spacebar.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/spacebar.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/spacebar.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/aim-trainer"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/aim-trainer"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/aim-trainer"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/aim-trainer"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/aim-trainer"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/zh/skill-test/games/spacebar.html</loc>
+    <loc>https://myabilitytest.com/zh/tests/aim-trainer</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/spacebar.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/spacebar.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/spacebar.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/spacebar.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/aim-trainer"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/aim-trainer"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/aim-trainer"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/aim-trainer"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/aim-trainer"/>
   </url>
-
   <url>
-    <loc>https://myabilitytest.com/skill-test/games/apm.html</loc>
+    <loc>https://myabilitytest.com/ko/tests/mouse-accuracy</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/apm.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/apm.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/apm.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/apm.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/mouse-accuracy"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/mouse-accuracy"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/mouse-accuracy"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/mouse-accuracy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/mouse-accuracy"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/en/skill-test/games/apm.html</loc>
+    <loc>https://myabilitytest.com/en/tests/mouse-accuracy</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/apm.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/apm.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/apm.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/apm.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/mouse-accuracy"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/mouse-accuracy"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/mouse-accuracy"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/mouse-accuracy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/mouse-accuracy"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/ja/skill-test/games/apm.html</loc>
+    <loc>https://myabilitytest.com/ja/tests/mouse-accuracy</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/apm.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/apm.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/apm.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/apm.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/mouse-accuracy"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/mouse-accuracy"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/mouse-accuracy"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/mouse-accuracy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/mouse-accuracy"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/zh/skill-test/games/apm.html</loc>
+    <loc>https://myabilitytest.com/zh/tests/mouse-accuracy</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/apm.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/apm.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/apm.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/apm.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/mouse-accuracy"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/mouse-accuracy"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/mouse-accuracy"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/mouse-accuracy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/mouse-accuracy"/>
   </url>
-
   <url>
-    <loc>https://myabilitytest.com/skill-test/games/mouse-accuracy.html</loc>
+    <loc>https://myabilitytest.com/ko/tests/jitter-click</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/mouse-accuracy.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/mouse-accuracy.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/mouse-accuracy.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/mouse-accuracy.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/jitter-click"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/jitter-click"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/jitter-click"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/jitter-click"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/jitter-click"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/en/skill-test/games/mouse-accuracy.html</loc>
+    <loc>https://myabilitytest.com/en/tests/jitter-click</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/mouse-accuracy.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/mouse-accuracy.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/mouse-accuracy.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/mouse-accuracy.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/jitter-click"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/jitter-click"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/jitter-click"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/jitter-click"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/jitter-click"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/ja/skill-test/games/mouse-accuracy.html</loc>
+    <loc>https://myabilitytest.com/ja/tests/jitter-click</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/mouse-accuracy.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/mouse-accuracy.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/mouse-accuracy.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/mouse-accuracy.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/jitter-click"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/jitter-click"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/jitter-click"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/jitter-click"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/jitter-click"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/zh/skill-test/games/mouse-accuracy.html</loc>
+    <loc>https://myabilitytest.com/zh/tests/jitter-click</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/skill-test/games/mouse-accuracy.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/skill-test/games/mouse-accuracy.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/skill-test/games/mouse-accuracy.html"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://myabilitytest.com/zh/skill-test/games/mouse-accuracy.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/jitter-click"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/jitter-click"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/jitter-click"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/jitter-click"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/jitter-click"/>
   </url>
 </urlset>

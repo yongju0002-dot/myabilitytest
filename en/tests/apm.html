@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APM Test | Ability Test</title>
+<meta name="description" content="Measure your actions per minute over 60 seconds, counting both mouse clicks and key presses. Free APM test for StarCraft and MOBA players.">
+<link rel="canonical" href="https://myabilitytest.com/en/tests/apm">
+<link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/apm">
+<link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/apm">
+<link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/apm">
+<link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/apm">
+<link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/apm">
+<link rel="stylesheet" href="/skill-test/style.css">
+<style>
+  .related-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
+  .related-links a {
+    font-size: 13px; color: #cbd5e1; text-decoration: none;
+    background: var(--card-bg-2); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 999px; padding: 7px 14px;
+  }
+  .related-links a:hover { border-color: var(--accent); color: #fff; }
+  .apm-pad {
+    width: 100%;
+    min-height: 300px;
+    border-radius: 24px;
+    background: linear-gradient(160deg, #6366f1, #4338ca);
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 800;
+    cursor: pointer;
+    user-select: none;
+    touch-action: manipulation;
+    margin: 16px 0;
+    padding: 24px;
+    line-height: 1.6;
+    position: relative;
+    overflow: hidden;
+  }
+  .apm-pad:active { transform: scale(0.99); }
+  .apm-split { display: flex; justify-content: center; gap: 18px; font-size: 13px; color: var(--text-dim); margin-top: 8px; }
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back-link" href="/en/">← Back to Main</a>
+    <div class="lang-switch">
+      <a href="/ko/tests/apm">한국어</a>
+      <a class="active" href="/en/tests/apm">English</a>
+      <a href="/ja/tests/apm">日本語</a>
+      <a href="/zh/tests/apm">中文</a>
+    </div>
+    <h1>🎹 APM Test</h1>
+    <p class="sub">60 seconds, counting every mouse click and key press together.</p>
+
+    <div class="info-box">
+      Press any key or click the area below — both count as actions.
+    </div>
+
+    <div class="level-card">
+      <div class="label">Time left</div>
+      <div class="countdown-num" id="timeLeft">60.0</div>
+      <div class="sub" id="apmLine">Actions: 0 · Live APM: 0</div>
+      <div class="apm-split">
+        <span>🖱️ Clicks <b id="mouseCount">0</b></span>
+        <span>⌨️ Keys <b id="keyCount">0</b></span>
+      </div>
+    </div>
+
+    <button class="apm-pad" id="apmPad">Press any key or click here to start</button>
+
+    <div id="resultPanel" class="result-panel">
+      <div class="emoji">🎹</div>
+      <h2 id="resultTitle"></h2>
+      <div class="stars" id="resultStars"></div>
+      <div class="desc" id="resultDesc"></div>
+      <div class="percentile" id="resultStamina"></div>
+      <div id="chartContainer"></div>
+      <table class="grade-table" id="gradeTable"></table>
+      <div class="btn-row">
+        <button class="btn" id="retryBtn">Try again</button>
+        <button class="btn share" id="shareBtn">Share result</button>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat-box">
+        <div class="label">Attempts</div>
+        <div class="value" id="statCount">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">Best APM</div>
+        <div class="value" id="statBest">-</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">Most actions</div>
+        <div class="value" id="statBestActions">-</div>
+      </div>
+    </div>
+
+    <section class="note-box">
+      <p><strong>What is APM (Actions Per Minute)?</strong> It's the number of actions — mouse
+      clicks plus key presses — you perform in one minute. It became widely known as a measure
+      of pro-player skill in StarCraft, and it's still used as a yardstick for control speed in
+      RTS and MOBA games. StarCraft pros are generally reported to average somewhere around
+      300–400 APM during matches.</p>
+      <p>That said, high APM doesn't automatically mean high skill. Meaningless repeated inputs
+      inflate the number just as easily, so what really matters is the share of actions that
+      accomplish something. This test graphs your APM in 10-second segments, so you can also see
+      whether your speed fades toward the end.</p>
+    </section>
+
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 All-Time Top Records (Top 30)</h2>
+    <div id="topLeaderboard"></div>
+
+    <h2 style="text-align:center; font-size:15px; margin-top:28px;">Other click tests</h2>
+    <div class="related-links">
+      <a href="/en/tests/click-speed">🖱️ CPS Click Speed</a>
+      <a href="/en/tests/jitter-click">⚡ Jitter Click</a>
+      <a href="/en/tests/kohi-click">🎮 Kohi Click</a>
+      <a href="/en/tests/spacebar-counter">⌨️ Spacebar Speed</a>
+      <a href="/en/tests/mouse-accuracy">🖲️ Mouse Accuracy</a>
+    </div>
+  </div>
+
+<script src="/skill-test/common.js"></script>
+<script src="/skill-test/games/shared/click-core.js"></script>
+<script>
+  const STORE_KEY = 'skillApmStats';
+  const LB_KEY = 'skillApmLeaderboardV1';
+  const DURATION = 60;
+  const SEGMENT = 10;
+  let stats = loadStats(STORE_KEY, { plays: 0, bestApm: 0, bestActions: 0 });
+
+  const GRADES = [
+    { key: 'PRO', min: 300, label: 'Pro tier (300–400)' },
+    { key: 'S', min: 220, label: 'S · Very fast' },
+    { key: 'A', min: 160, label: 'A · Fast' },
+    { key: 'B', min: 110, label: 'B · Above average' },
+    { key: 'C', min: 60, label: 'C · Average' },
+    { key: 'D', min: 0, label: 'D · Relaxed' },
+  ];
+
+  function gradeFor(apm) {
+    return GRADES.find(g => apm >= g.min) || GRADES[GRADES.length - 1];
+  }
+
+  function starsFor(apm) {
+    if (apm >= 300) return 5;
+    if (apm >= 220) return 4;
+    if (apm >= 160) return 3;
+    if (apm >= 110) return 2;
+    return 1;
+  }
+
+  const apmPad = document.getElementById('apmPad');
+  const timeLeftEl = document.getElementById('timeLeft');
+  const apmLine = document.getElementById('apmLine');
+  const resultPanel = document.getElementById('resultPanel');
+
+  let running = false;
+  let finished = false;
+  let actions = 0;
+  let mouseActions = 0;
+  let keyActions = 0;
+  let startTime = 0;
+  let rafId = null;
+  let timestamps = [];
+
+  function renderStats() {
+    document.getElementById('statCount').textContent = stats.plays;
+    document.getElementById('statBest').textContent = stats.plays ? Math.round(stats.bestApm) : '-';
+    document.getElementById('statBestActions').textContent = stats.plays ? stats.bestActions : '-';
+  }
+
+  function tick() {
+    if (!running) return;
+    const elapsed = (performance.now() - startTime) / 1000;
+    const left = Math.max(0, DURATION - elapsed);
+    timeLeftEl.textContent = left.toFixed(1);
+    const liveApm = elapsed > 0 ? (actions / elapsed) * 60 : 0;
+    apmLine.textContent = `Actions: ${actions} · Live APM: ${Math.round(liveApm)}`;
+    document.getElementById('mouseCount').textContent = mouseActions;
+    document.getElementById('keyCount').textContent = keyActions;
+    if (left <= 0) { finish(); return; }
+    rafId = requestAnimationFrame(tick);
+  }
+
+  function start() {
+    running = true;
+    finished = false;
+    actions = 1;
+    startTime = performance.now();
+    timestamps = [startTime];
+    resultPanel.classList.remove('show');
+    apmPad.textContent = 'Keep going!';
+    rafId = requestAnimationFrame(tick);
+  }
+
+  function registerAction(kind) {
+    if (finished) return;
+    if (!running) {
+      if (kind === 'mouse') mouseActions = 1; else keyActions = 1;
+      start();
+      return;
+    }
+    actions += 1;
+    if (kind === 'mouse') mouseActions += 1; else keyActions += 1;
+    timestamps.push(performance.now());
+  }
+
+  window.addEventListener('keydown', (e) => {
+    // Let the browser keep its own shortcuts; only count plain key presses.
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    if (e.key === 'Tab' || e.key === 'F5') return;
+    if (e.code === 'Space' || e.key === ' ') e.preventDefault();
+    if (e.repeat) return;
+    registerAction('key');
+  });
+
+  apmPad.addEventListener('pointerdown', (e) => {
+    e.preventDefault();
+    registerAction('mouse');
+  });
+  apmPad.addEventListener('contextmenu', (e) => e.preventDefault());
+
+  function renderGradeTable(apm) {
+    const grade = gradeFor(apm);
+    const table = document.getElementById('gradeTable');
+    table.innerHTML = '<tr><th>Grade</th><th>APM threshold</th></tr>' +
+      GRADES.map(g => `<tr class="${g.key === grade.key ? 'current-row' : ''}"><td>${g.label}</td><td>${g.min}+</td></tr>`).join('');
+  }
+
+  // Actions per minute within each 10-second segment.
+  function segmentApms() {
+    const segCount = DURATION / SEGMENT;
+    const segs = new Array(segCount).fill(0);
+    timestamps.forEach(ts => {
+      const idx = Math.floor((ts - startTime) / 1000 / SEGMENT);
+      if (idx >= 0 && idx < segCount) segs[idx] += 1;
+    });
+    return segs.map(c => c * (60 / SEGMENT));
+  }
+
+  function finish() {
+    running = false;
+    finished = true;
+    cancelAnimationFrame(rafId);
+    timeLeftEl.textContent = '0.0';
+    apmPad.textContent = 'Press the button below to restart';
+
+    const apm = (actions / DURATION) * 60;
+    stats.plays += 1;
+    if (apm > stats.bestApm) stats.bestApm = apm;
+    if (actions > stats.bestActions) stats.bestActions = actions;
+    saveStats(STORE_KEY, stats);
+    renderStats();
+
+    const grade = gradeFor(apm);
+    const stars = starsFor(apm);
+    const segs = segmentApms();
+    const firstSeg = segs[0];
+    const lastSeg = segs[segs.length - 1];
+    const dropPct = firstSeg > 0 ? ((firstSeg - lastSeg) / firstSeg) * 100 : 0;
+
+    document.getElementById('resultTitle').textContent = Math.round(apm) + ' APM';
+    document.getElementById('resultStars').textContent = '★'.repeat(stars) + '☆'.repeat(5 - stars);
+    document.getElementById('resultDesc').textContent =
+      `${actions} actions total (🖱️ ${mouseActions} / ⌨️ ${keyActions}) — ${grade.label}`;
+    document.getElementById('resultStamina').textContent = dropPct > 0
+      ? `Stamina: last 10s was ${dropPct.toFixed(0)}% slower than your first 10s`
+      : `Stamina: you held your pace all the way through!`;
+    document.getElementById('chartContainer').innerHTML = buildBucketBarChart(segs);
+    renderGradeTable(apm);
+    resultPanel.classList.add('show');
+    resultPanel.dataset.share = `I hit ${Math.round(apm)} APM (${actions} actions in 60s) on the APM test! Try it yourself → `;
+
+    const lbList = addToLeaderboard(LB_KEY, { value: apm, actions, date: Date.now() }, false);
+    renderTopLeaderboard(lbList);
+  }
+
+  function renderTopLeaderboard(list) {
+    renderLeaderboard('topLeaderboard', list, (entry) => {
+      const d = new Date(entry.date);
+      const dateStr = `${d.getMonth() + 1}/${d.getDate()}`;
+      return `<span class="lb-name">${Math.round(entry.value)} APM</span><span class="lb-detail">${entry.actions} actions · ${dateStr}</span>`;
+    }, 'No records yet. Try your first challenge!');
+  }
+
+  document.getElementById('retryBtn').addEventListener('click', () => {
+    finished = false;
+    actions = 0; mouseActions = 0; keyActions = 0;
+    resultPanel.classList.remove('show');
+    apmPad.textContent = 'Press any key or click here to start';
+    timeLeftEl.textContent = DURATION.toFixed(1);
+    apmLine.textContent = 'Actions: 0 · Live APM: 0';
+    document.getElementById('mouseCount').textContent = '0';
+    document.getElementById('keyCount').textContent = '0';
+  });
+
+  document.getElementById('shareBtn').addEventListener('click', () => {
+    shareResult((resultPanel.dataset.share || '') + location.href);
+  });
+
+  renderStats();
+  renderTopLeaderboard(loadStats(LB_KEY, []));
+</script>
+</body>
+</html>

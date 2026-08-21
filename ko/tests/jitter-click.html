@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>지터 클릭 테스트 | 능력 테스트</title>
+<meta name="description" content="팔을 떨어서 초고속으로 클릭하는 지터 클릭! 10초 동안 CPS와 떨림 일관성을 함께 측정하는 무료 테스트.">
+<link rel="canonical" href="https://myabilitytest.com/ko/tests/jitter-click">
+<link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/jitter-click">
+<link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/jitter-click">
+<link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/jitter-click">
+<link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/jitter-click">
+<link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/jitter-click">
+<link rel="stylesheet" href="/skill-test/style.css">
+<style>
+  .related-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
+  .related-links a {
+    font-size: 13px;
+    color: #cbd5e1;
+    text-decoration: none;
+    background: var(--card-bg-2);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 999px;
+    padding: 7px 14px;
+  }
+  .related-links a:hover { border-color: var(--accent); color: #fff; }
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back-link" href="/ko/">← 메인으로</a>
+    <div class="lang-switch">
+      <a class="active" href="/ko/tests/jitter-click">한국어</a>
+      <a href="/en/tests/jitter-click">English</a>
+      <a href="/ja/tests/jitter-click">日本語</a>
+      <a href="/zh/tests/jitter-click">中文</a>
+    </div>
+    <h1>⚡ 지터 클릭 테스트</h1>
+    <p class="sub">10초 동안 팔과 손목을 떨어서 최대한 빠르게 클릭하세요.</p>
+
+    <div class="info-box">
+      지터 클릭은 팔 근육을 의도적으로 떨어 초당 10회 이상을 노리는 기법입니다.
+      ⚠️ 손목・팔에 무리가 갈 수 있으니 짧게, 통증이 느껴지면 즉시 멈추세요.
+    </div>
+
+    <div class="level-card">
+      <div class="label">남은 시간</div>
+      <div class="countdown-num" id="timeLeft">10.0</div>
+      <div class="sub" id="clickCountLine">클릭 수: 0 · 실시간 CPS: 0.0</div>
+    </div>
+
+    <button class="click-pad" id="clickPad">START</button>
+
+    <div id="resultPanel" class="result-panel">
+      <div class="emoji">⚡</div>
+      <h2 id="resultTitle"></h2>
+      <div class="stars" id="resultStars"></div>
+      <div class="desc" id="resultDesc"></div>
+      <div class="percentile" id="resultJitter"></div>
+      <div id="chartContainer"></div>
+      <table class="grade-table" id="gradeTable"></table>
+      <div class="btn-row">
+        <button class="btn" id="retryBtn">다시 하기</button>
+        <button class="btn share" id="shareBtn">결과 공유하기</button>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat-box">
+        <div class="label">도전 횟수</div>
+        <div class="value" id="statCount">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">최고 CPS</div>
+        <div class="value" id="statBest">-</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">최고 클릭 수</div>
+        <div class="value" id="statBestClicks">-</div>
+      </div>
+    </div>
+
+    <section class="note-box">
+      <p><strong>지터 클릭이란?</strong> 손가락만 움직이는 일반 클릭과 달리, 팔뚝과 손목의
+      근육을 긴장시켜 빠르게 떨리게 만들고 그 진동을 마우스 버튼에 전달하는 기법입니다.
+      마인크래프트 PvP 커뮤니티에서 널리 쓰이며, 숙련자는 일반 클릭(6~8 CPS)을 훨씬 넘는
+      10~14 CPS를 기록하기도 합니다.</p>
+      <p>이 테스트는 CPS뿐 아니라 <strong>클릭 간격의 표준편차</strong>도 함께 계산해
+      '떨림 일관성'으로 보여줍니다. 표준편차가 작을수록 진동이 규칙적이라는 뜻이에요.
+      다만 지터 클릭은 손목과 팔에 상당한 부담을 주는 동작이므로, 반복 연습은 권하지 않으며
+      통증이 있으면 바로 중단하세요.</p>
+    </section>
+
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 역대 기록 순위 (최대 30위)</h2>
+    <div id="topLeaderboard"></div>
+
+    <h2 style="text-align:center; font-size:15px; margin-top:28px;">다른 클릭 테스트</h2>
+    <div class="related-links">
+      <a href="/ko/tests/click-speed">🖱️ CPS 클릭 속도</a>
+      <a href="/ko/tests/kohi-click">🎮 Kohi 클릭</a>
+      <a href="/ko/tests/spacebar-counter">⌨️ 스페이스바 연타</a>
+      <a href="/ko/tests/apm">🎹 APM 테스트</a>
+      <a href="/ko/tests/mouse-accuracy">🖲️ 마우스 정확도</a>
+    </div>
+  </div>
+
+<script src="/skill-test/common.js"></script>
+<script src="/skill-test/games/shared/click-core.js"></script>
+<script>
+  const STORE_KEY = 'skillJitterClickStats';
+  const LB_KEY = 'skillJitterClickLeaderboardV1';
+  const DURATION = 10;
+  let stats = loadStats(STORE_KEY, { plays: 0, bestCps: 0, bestClicks: 0 });
+
+  const GRADES = [
+    { key: 'SS', min: 13, label: 'SS · 지터 마스터' },
+    { key: 'S', min: 11, label: 'S · 매우 빠름' },
+    { key: 'A', min: 9, label: 'A · 빠름' },
+    { key: 'B', min: 7, label: 'B · 평균 이상' },
+    { key: 'C', min: 5, label: 'C · 평균' },
+    { key: 'D', min: 0, label: 'D · 연습 필요' },
+  ];
+
+  function gradeFor(cps) {
+    return GRADES.find(g => cps >= g.min) || GRADES[GRADES.length - 1];
+  }
+
+  function starsFor(cps) {
+    if (cps >= 13) return 5;
+    if (cps >= 11) return 4;
+    if (cps >= 9) return 3;
+    if (cps >= 7) return 2;
+    return 1;
+  }
+
+  const clickPad = document.getElementById('clickPad');
+  const timeLeftEl = document.getElementById('timeLeft');
+  const clickCountLine = document.getElementById('clickCountLine');
+  const resultPanel = document.getElementById('resultPanel');
+
+  let running = false;
+  let finished = false;
+  let clicks = 0;
+  let startTime = 0;
+  let rafId = null;
+  let timestamps = [];
+
+  function renderStats() {
+    document.getElementById('statCount').textContent = stats.plays;
+    document.getElementById('statBest').textContent = stats.plays ? stats.bestCps.toFixed(1) : '-';
+    document.getElementById('statBestClicks').textContent = stats.plays ? stats.bestClicks : '-';
+  }
+
+  function spawnRipple(x, y) {
+    const r = document.createElement('div');
+    r.className = 'ripple';
+    r.style.left = x + 'px';
+    r.style.top = y + 'px';
+    clickPad.appendChild(r);
+    setTimeout(() => r.remove(), 600);
+  }
+
+  function tick() {
+    if (!running) return;
+    const elapsed = (performance.now() - startTime) / 1000;
+    const left = Math.max(0, DURATION - elapsed);
+    timeLeftEl.textContent = left.toFixed(1);
+    const liveCps = elapsed > 0 ? clicks / elapsed : 0;
+    clickCountLine.textContent = `클릭 수: ${clicks} · 실시간 CPS: ${liveCps.toFixed(1)}`;
+    if (left <= 0) {
+      finish();
+      return;
+    }
+    rafId = requestAnimationFrame(tick);
+  }
+
+  function start() {
+    running = true;
+    finished = false;
+    clicks = 1;
+    startTime = performance.now();
+    timestamps = [startTime];
+    resultPanel.classList.remove('show');
+    clickPad.textContent = '떨어라! 떨어라!';
+    clickCountLine.textContent = '클릭 수: 1 · 실시간 CPS: 0.0';
+    rafId = requestAnimationFrame(tick);
+  }
+
+  function renderGradeTable(cps) {
+    const grade = gradeFor(cps);
+    const table = document.getElementById('gradeTable');
+    table.innerHTML = '<tr><th>등급</th><th>기준 CPS</th></tr>' +
+      GRADES.map(g => `<tr class="${g.key === grade.key ? 'current-row' : ''}"><td>${g.label}</td><td>${g.min}+</td></tr>`).join('');
+  }
+
+  function finish() {
+    running = false;
+    finished = true;
+    cancelAnimationFrame(rafId);
+    timeLeftEl.textContent = '0.0';
+    clickPad.textContent = '아래 버튼으로 다시 시작';
+
+    const cps = clicks / DURATION;
+    stats.plays += 1;
+    if (cps > stats.bestCps) stats.bestCps = cps;
+    if (clicks > stats.bestClicks) stats.bestClicks = clicks;
+    saveStats(STORE_KEY, stats);
+    renderStats();
+
+    const grade = gradeFor(cps);
+    const stars = starsFor(cps);
+    const sd = clickIntervalStdDev(timestamps);
+
+    document.getElementById('resultTitle').textContent = cps.toFixed(1) + ' CPS';
+    document.getElementById('resultStars').textContent = '★'.repeat(stars) + '☆'.repeat(5 - stars);
+    document.getElementById('resultDesc').textContent = `총 클릭 ${clicks}회 / ${DURATION}초 — ${grade.label}`;
+    document.getElementById('resultJitter').textContent = sd !== null
+      ? `떨림 일관성: 클릭 간격 표준편차 ${sd.toFixed(1)}ms (작을수록 규칙적)`
+      : '';
+    document.getElementById('chartContainer').innerHTML =
+      buildCpsLineChart(perSecondCps(timestamps, startTime, DURATION));
+    renderGradeTable(cps);
+    resultPanel.classList.add('show');
+    resultPanel.dataset.share = `지터 클릭 테스트에서 ${cps.toFixed(1)} CPS (${clicks}클릭/${DURATION}초, ${grade.key}등급) 기록! 너도 해봐 → `;
+
+    const lbList = addToLeaderboard(LB_KEY, { value: cps, clicks, sd, date: Date.now() }, false);
+    renderTopLeaderboard(lbList);
+  }
+
+  function renderTopLeaderboard(list) {
+    renderLeaderboard('topLeaderboard', list, (entry) => {
+      const d = new Date(entry.date);
+      const dateStr = `${d.getMonth() + 1}/${d.getDate()}`;
+      const sdText = entry.sd !== null && entry.sd !== undefined ? ` · 편차 ${entry.sd.toFixed(0)}ms` : '';
+      return `<span class="lb-name">${entry.value.toFixed(1)} CPS</span><span class="lb-detail">${entry.clicks}클릭${sdText} · ${dateStr}</span>`;
+    }, '아직 기록이 없어요. 첫 도전을 해보세요!');
+  }
+
+  clickPad.addEventListener('pointerdown', (e) => {
+    if (finished) return;
+    e.preventDefault();
+    const rect = clickPad.getBoundingClientRect();
+    spawnRipple(e.clientX - rect.left, e.clientY - rect.top);
+    if (!running) {
+      start();
+      return;
+    }
+    clicks += 1;
+    timestamps.push(performance.now());
+  });
+  clickPad.addEventListener('contextmenu', (e) => e.preventDefault());
+
+  document.getElementById('retryBtn').addEventListener('click', () => {
+    finished = false;
+    resultPanel.classList.remove('show');
+    clickPad.textContent = 'START';
+    timeLeftEl.textContent = DURATION.toFixed(1);
+    clickCountLine.textContent = '클릭 수: 0 · 실시간 CPS: 0.0';
+  });
+
+  document.getElementById('shareBtn').addEventListener('click', () => {
+    shareResult((resultPanel.dataset.share || '') + location.href);
+  });
+
+  renderStats();
+  renderTopLeaderboard(loadStats(LB_KEY, []));
+</script>
+</body>
+</html>

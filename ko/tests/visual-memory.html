@@ -46,6 +46,7 @@
     padding: 6px 12px;
   }
   .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+  .persona-label { margin-top: 6px; font-size: 19px; font-weight: 700; color: var(--accent); }
 </style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
 </head>
@@ -78,6 +79,7 @@
       <h2 id="resultTitle"></h2>
       <div class="stars" id="resultStars"></div>
       <div class="desc" id="resultDesc"></div>
+      <div class="persona-label" id="personaLabel"></div>
       <div class="percentile" id="resultPercentile"></div>
       <table class="grade-table" id="gradeTable"></table>
       <div class="btn-row">
@@ -156,13 +158,13 @@
   }
 
   const GRADES = [
-    { key: 'SS', min: 20, label: 'SS · 천재적' },
-    { key: 'S', min: 16, label: 'S · 뛰어남' },
-    { key: 'A', min: 13, label: 'A · 훌륭함' },
-    { key: 'B', min: 9, label: 'B · 좋음' },
-    { key: 'C', min: 5, label: 'C · 평범' },
-    { key: 'D', min: 2, label: 'D · 아쉬움' },
-    { key: 'F', min: 0, label: 'F · 초반 탈락' },
+    { key: 'SS', min: 20, label: 'SS · 천재적', persona: '🧠 천재적 기억술사' },
+    { key: 'S', min: 16, label: 'S · 뛰어남', persona: '✨ 비상한 기억력' },
+    { key: 'A', min: 13, label: 'A · 훌륭함', persona: '🎯 뛰어난 기억력' },
+    { key: 'B', min: 9, label: 'B · 좋음', persona: '🙂 좋은 기억력' },
+    { key: 'C', min: 5, label: 'C · 평범', persona: '😐 평범한 기억력' },
+    { key: 'D', min: 2, label: 'D · 아쉬움', persona: '🌀 아쉬운 기억력' },
+    { key: 'F', min: 0, label: 'F · 초반 탈락', persona: '🐌 초반 탈락형' },
   ];
 
   function gradeFor(lv) {
@@ -250,9 +252,10 @@
     document.getElementById('resultStars').textContent = '★'.repeat(stars) + '☆'.repeat(5 - stars);
     document.getElementById('resultDesc').textContent = tilesFor(reached) + '개의 칸을 기억해야 했어요.';
     document.getElementById('resultPercentile').textContent = rankText(reached);
+    document.getElementById('personaLabel').textContent = grade.persona;
     renderGradeTable(reached);
     resultPanel.classList.add('show');
-    resultPanel.dataset.share = `순간 기억력 테스트에서 ${reached}레벨 달성! (${grade.key}등급) 너도 해봐 → `;
+    resultPanel.dataset.share = `나는 ${grade.persona}! 순간 기억력 테스트에서 ${reached}레벨 달성! (${grade.key}등급) 너도 해봐 → `;
 
     const lbList = addToLeaderboard(LB_KEY, { value: reached, date: Date.now() }, false);
     renderTopLeaderboard(lbList);

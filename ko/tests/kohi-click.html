@@ -46,6 +46,7 @@
     padding: 6px 12px;
   }
   .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+  .persona-label { margin-top: 6px; font-size: 19px; font-weight: 700; color: var(--accent); }
 </style>
 <style>
   .related-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
@@ -87,6 +88,7 @@
       <h2 id="resultTitle"></h2>
       <div class="stars" id="resultStars"></div>
       <div class="desc" id="resultDesc"></div>
+      <div class="persona-label" id="personaLabel"></div>
       <div class="percentile" id="resultPeak"></div>
       <div id="chartContainer"></div>
       <table class="grade-table" id="gradeTable"></table>
@@ -153,12 +155,12 @@
   let stats = loadStats(STORE_KEY, { plays: 0, bestCps: 0, bestClicks: 0 });
 
   const GRADES = [
-    { key: 'SS', min: 12, label: 'SS · 초고속' },
-    { key: 'S', min: 10, label: 'S · 매우 빠름' },
-    { key: 'A', min: 8, label: 'A · 빠름' },
-    { key: 'B', min: 6, label: 'B · 평균 이상' },
-    { key: 'C', min: 4, label: 'C · 평균' },
-    { key: 'D', min: 0, label: 'D · 느긋함' },
+    { key: 'SS', min: 12, label: 'SS · 초고속', persona: '🔥 코히클릭 마스터' },
+    { key: 'S', min: 10, label: 'S · 매우 빠름', persona: '⚡ 빠른 손가락' },
+    { key: 'A', min: 8, label: 'A · 빠름', persona: '🎯 안정적인 코히' },
+    { key: 'B', min: 6, label: 'B · 평균 이상', persona: '👍 무난한 손가락' },
+    { key: 'C', min: 4, label: 'C · 평균', persona: '🙂 평범한 클릭러' },
+    { key: 'D', min: 0, label: 'D · 느긋함', persona: '🐢 느긋한 손가락' },
   ];
 
   function gradeFor(cps) {
@@ -255,11 +257,12 @@
     document.getElementById('resultTitle').textContent = cps.toFixed(2) + ' CPS';
     document.getElementById('resultStars').textContent = '★'.repeat(stars) + '☆'.repeat(5 - stars);
     document.getElementById('resultDesc').textContent = `총 클릭 ${clicks}회 / ${DURATION}초 — ${grade.label}`;
+    document.getElementById('personaLabel').textContent = grade.persona;
     document.getElementById('resultPeak').textContent = `최고 구간: ${peak} 클릭/초`;
     document.getElementById('chartContainer').innerHTML = buildCpsLineChart(buckets);
     renderGradeTable(cps);
     resultPanel.classList.add('show');
-    resultPanel.dataset.share = `Kohi 클릭 테스트에서 ${cps.toFixed(2)} CPS (${clicks}클릭/${DURATION}초, ${grade.key}등급) 기록! 너도 해봐 → `;
+    resultPanel.dataset.share = `나는 ${grade.persona}! Kohi 클릭 테스트에서 ${cps.toFixed(2)} CPS (${clicks}클릭/${DURATION}초, ${grade.key}등급) 기록! 너도 해봐 → `;
 
     const lbList = addToLeaderboard(LB_KEY, { value: cps, clicks, date: Date.now() }, false);
     renderTopLeaderboard(lbList);

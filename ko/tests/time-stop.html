@@ -46,6 +46,7 @@
     padding: 6px 12px;
   }
   .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+  .persona-label { margin-top: 6px; font-size: 19px; font-weight: 700; color: var(--accent); text-align: center; }
 </style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
 </head>
@@ -111,6 +112,7 @@
     <div id="resultPanel" class="result-panel">
       <div class="emoji">🏆</div>
       <h2>최종 결과</h2>
+      <div class="persona-label" id="personaLabel"></div>
       <ul class="leaderboard" id="leaderboard"></ul>
       <div class="btn-row">
         <button class="btn" id="retryBtn">다시 하기</button>
@@ -243,6 +245,14 @@
     }
   });
 
+  function personaFor(diff) {
+    if (diff <= 0.05) return '⏱️ 시간감각 초능력자';
+    if (diff <= 0.15) return '🎯 정확한 타이머';
+    if (diff <= 0.3) return '🙂 평범한 감각';
+    if (diff <= 0.6) return '🌀 살짝 아쉬운 감각';
+    return '🐢 자유로운 영혼';
+  }
+
   function finishGame() {
     playScreen.style.display = 'none';
     const sorted = [...results].sort((a, b) => a.diff - b.diff);
@@ -264,10 +274,11 @@
       </li>`;
     }).join('');
 
+    document.getElementById('personaLabel').textContent = personaFor(best.diff);
     resultPanel.classList.add('show');
     resultPanel.dataset.share = playerCount === 1
-      ? `시간 정지 게임에서 목표 ${targetTime}초 중 오차 ${best.diff.toFixed(2)}초! 너도 해봐 → `
-      : `시간 정지 게임에서 참가자 ${best.player}이(가) 오차 ${best.diff.toFixed(2)}초로 우승! 너도 해봐 → `;
+      ? `나는 ${personaFor(best.diff)}! 시간 정지 게임에서 목표 ${targetTime}초 중 오차 ${best.diff.toFixed(2)}초! 너도 해봐 → `
+      : `${personaFor(best.diff)} 참가자 ${best.player}이(가) 오차 ${best.diff.toFixed(2)}초로 우승! 너도 해봐 → `;
 
     const lbList = addToLeaderboard(LB_KEY, { value: best.diff, targetTime, playerCount, date: Date.now() }, true);
     renderTopLeaderboard(lbList);

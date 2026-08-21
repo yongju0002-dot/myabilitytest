@@ -46,6 +46,7 @@
     padding: 6px 12px;
   }
   .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+  .persona-label { margin-top: 6px; font-size: 19px; font-weight: 700; color: var(--accent); }
 </style>
 <style>
   .related-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
@@ -111,6 +112,7 @@
       <h2 id="resultTitle"></h2>
       <div class="stars" id="resultStars"></div>
       <div class="desc" id="resultDesc"></div>
+      <div class="persona-label" id="personaLabel"></div>
       <div class="percentile" id="resultStamina"></div>
       <div id="chartContainer"></div>
       <table class="grade-table" id="gradeTable"></table>
@@ -178,12 +180,12 @@
   let stats = loadStats(STORE_KEY, { plays: 0, bestApm: 0, bestActions: 0 });
 
   const GRADES = [
-    { key: 'PRO', min: 300, label: '프로게이머급 (300~400)' },
-    { key: 'S', min: 220, label: 'S · 매우 빠름' },
-    { key: 'A', min: 160, label: 'A · 빠름' },
-    { key: 'B', min: 110, label: 'B · 평균 이상' },
-    { key: 'C', min: 60, label: 'C · 평균' },
-    { key: 'D', min: 0, label: 'D · 느긋함' },
+    { key: 'PRO', min: 300, label: '프로게이머급 (300~400)', persona: '👑 프로게이머' },
+    { key: 'S', min: 220, label: 'S · 매우 빠름', persona: '⚡ 프로 지망생' },
+    { key: 'A', min: 160, label: 'A · 빠름', persona: '🎮 랭커' },
+    { key: 'B', min: 110, label: 'B · 평균 이상', persona: '🙂 준수한 게이머' },
+    { key: 'C', min: 60, label: 'C · 평균', persona: '🐢 여유형 게이머' },
+    { key: 'D', min: 0, label: 'D · 느긋함', persona: '🌙 캐주얼 게이머' },
   ];
 
   function gradeFor(apm) {
@@ -312,13 +314,14 @@
     document.getElementById('resultStars').textContent = '★'.repeat(stars) + '☆'.repeat(5 - stars);
     document.getElementById('resultDesc').textContent =
       `총 ${actions}액션 (🖱️ ${mouseActions} / ⌨️ ${keyActions}) — ${grade.label}`;
+    document.getElementById('personaLabel').textContent = grade.persona;
     document.getElementById('resultStamina').textContent = dropPct > 0
       ? `후반 지구력: 첫 10초 대비 마지막 10초 ${dropPct.toFixed(0)}% 감소`
       : `후반 지구력: 끝까지 속도를 유지했어요!`;
     document.getElementById('chartContainer').innerHTML = buildBucketBarChart(segs);
     renderGradeTable(apm);
     resultPanel.classList.add('show');
-    resultPanel.dataset.share = `APM 테스트에서 ${Math.round(apm)} APM (${actions}액션/60초) 기록! 너도 해봐 → `;
+    resultPanel.dataset.share = `나는 ${grade.persona}! APM 테스트에서 ${Math.round(apm)} APM (${actions}액션/60초) 기록! 너도 해봐 → `;
 
     const lbList = addToLeaderboard(LB_KEY, { value: apm, actions, date: Date.now() }, false);
     renderTopLeaderboard(lbList);

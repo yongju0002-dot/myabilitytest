@@ -42,6 +42,7 @@
   .info table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
   .info th, .info td { border: 1px solid #334155; padding: 8px; text-align: left; }
   .info th { background: var(--card-bg); }
+  .persona-label { margin-top: 6px; font-size: 19px; font-weight: 700; color: var(--accent); }
 </style>
 <link rel="stylesheet" href="/skill-test/style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
@@ -74,6 +75,7 @@
       <h2 id="resultTitle"></h2>
       <div class="stars" id="resultStars"></div>
       <div class="desc" id="resultDesc"></div>
+      <div class="persona-label" id="personaLabel"></div>
       <table class="grade-table" id="gradeTable"></table>
       <div class="btn-row">
         <button class="btn" id="retryBtn">다시 하기</button>
@@ -153,13 +155,13 @@
   let samples = [];
 
   const GRADES = [
-    { key: 'SS', min: 12, label: 'SS · 초고속' },
-    { key: 'S', min: 10, label: 'S · 매우 빠름' },
-    { key: 'A', min: 8, label: 'A · 빠름' },
-    { key: 'B', min: 6, label: 'B · 평균 이상' },
-    { key: 'C', min: 4, label: 'C · 평균' },
-    { key: 'D', min: 2, label: 'D · 느긋함' },
-    { key: 'F', min: 0, label: 'F · 매우 느긋함' },
+    { key: 'SS', min: 12, label: 'SS · 초고속', persona: '🖱️ 클릭 머신' },
+    { key: 'S', min: 10, label: 'S · 매우 빠름', persona: '⚡ 스피드 클리커' },
+    { key: 'A', min: 8, label: 'A · 빠름', persona: '🎯 빠른 손' },
+    { key: 'B', min: 6, label: 'B · 평균 이상', persona: '👍 안정적인 손' },
+    { key: 'C', min: 4, label: 'C · 평균', persona: '🙂 평범한 클릭러' },
+    { key: 'D', min: 2, label: 'D · 느긋함', persona: '🐢 여유형 클리커' },
+    { key: 'F', min: 0, label: 'F · 매우 느긋함', persona: '🌙 느긋한 감상형' },
   ];
 
   function getDurStats(d) {
@@ -295,9 +297,10 @@
     document.getElementById('resultTitle').textContent = cps.toFixed(1) + ' CPS';
     document.getElementById('resultStars').textContent = '★'.repeat(stars) + '☆'.repeat(5 - stars);
     document.getElementById('resultDesc').textContent = `총 클릭 ${clicks}회 / ${duration}초 — ${grade.label}`;
+    document.getElementById('personaLabel').textContent = grade.persona;
     renderGradeTable(cps);
     resultPanel.classList.add('show');
-    resultPanel.dataset.share = `CPS 테스트에서 ${cps.toFixed(1)} CPS (${clicks}클릭/${duration}초, ${grade.key}등급) 기록! 너도 해봐 → `;
+    resultPanel.dataset.share = `나는 ${grade.persona}! CPS 테스트에서 ${cps.toFixed(1)} CPS (${clicks}클릭/${duration}초, ${grade.key}등급) 기록! 너도 해봐 → `;
 
     const lbList = addToLeaderboard(LB_KEY, { value: cps, duration, date: Date.now() }, false);
     renderTopLeaderboard(lbList);

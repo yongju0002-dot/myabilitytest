@@ -46,6 +46,7 @@
     padding: 6px 12px;
   }
   .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+  .persona-label { margin-top: 6px; font-size: 19px; font-weight: 700; color: var(--accent); }
 </style>
 <style>
   .related-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
@@ -92,6 +93,7 @@
       <h2 id="resultTitle"></h2>
       <div class="stars" id="resultStars"></div>
       <div class="desc" id="resultDesc"></div>
+      <div class="persona-label" id="personaLabel"></div>
       <div class="percentile" id="resultJitter"></div>
       <div id="chartContainer"></div>
       <table class="grade-table" id="gradeTable"></table>
@@ -158,12 +160,12 @@
   let stats = loadStats(STORE_KEY, { plays: 0, bestCps: 0, bestClicks: 0 });
 
   const GRADES = [
-    { key: 'SS', min: 13, label: 'SS · 지터 마스터' },
-    { key: 'S', min: 11, label: 'S · 매우 빠름' },
-    { key: 'A', min: 9, label: 'A · 빠름' },
-    { key: 'B', min: 7, label: 'B · 평균 이상' },
-    { key: 'C', min: 5, label: 'C · 평균' },
-    { key: 'D', min: 0, label: 'D · 연습 필요' },
+    { key: 'SS', min: 13, label: 'SS · 지터 마스터', persona: '🌀 지터클릭 마스터' },
+    { key: 'S', min: 11, label: 'S · 매우 빠름', persona: '⚡ 진동의 달인' },
+    { key: 'A', min: 9, label: 'A · 빠름', persona: '🎯 능숙한 손목' },
+    { key: 'B', min: 7, label: 'B · 평균 이상', persona: '👍 안정적인 손목' },
+    { key: 'C', min: 5, label: 'C · 평균', persona: '🙂 평범한 손목' },
+    { key: 'D', min: 0, label: 'D · 연습 필요', persona: '🐢 연습이 필요한 손목' },
   ];
 
   function gradeFor(cps) {
@@ -259,6 +261,7 @@
     document.getElementById('resultTitle').textContent = cps.toFixed(1) + ' CPS';
     document.getElementById('resultStars').textContent = '★'.repeat(stars) + '☆'.repeat(5 - stars);
     document.getElementById('resultDesc').textContent = `총 클릭 ${clicks}회 / ${DURATION}초 — ${grade.label}`;
+    document.getElementById('personaLabel').textContent = grade.persona;
     document.getElementById('resultJitter').textContent = sd !== null
       ? `떨림 일관성: 클릭 간격 표준편차 ${sd.toFixed(1)}ms (작을수록 규칙적)`
       : '';
@@ -266,7 +269,7 @@
       buildCpsLineChart(perSecondCps(timestamps, startTime, DURATION));
     renderGradeTable(cps);
     resultPanel.classList.add('show');
-    resultPanel.dataset.share = `지터 클릭 테스트에서 ${cps.toFixed(1)} CPS (${clicks}클릭/${DURATION}초, ${grade.key}등급) 기록! 너도 해봐 → `;
+    resultPanel.dataset.share = `나는 ${grade.persona}! 지터 클릭 테스트에서 ${cps.toFixed(1)} CPS (${clicks}클릭/${DURATION}초, ${grade.key}등급) 기록! 너도 해봐 → `;
 
     const lbList = addToLeaderboard(LB_KEY, { value: cps, clicks, sd, date: Date.now() }, false);
     renderTopLeaderboard(lbList);

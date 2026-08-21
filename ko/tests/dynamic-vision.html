@@ -46,6 +46,7 @@
     padding: 6px 12px;
   }
   .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+  .persona-label { margin-top: 6px; font-size: 19px; font-weight: 700; color: var(--accent); }
 </style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
 </head>
@@ -90,6 +91,7 @@
       <div class="emoji">👁️</div>
       <h2 id="resultTitle"></h2>
       <div class="desc" id="resultDesc"></div>
+      <div class="persona-label" id="personaLabel"></div>
       <div class="percentile" id="resultNote"></div>
       <div id="chartContainer"></div>
       <table class="grade-table" id="gradeTable"></table>
@@ -145,11 +147,11 @@
   let stats = loadStats(STORE_KEY, { count: 0, best: null, sum: 0, scoredCount: 0 });
 
   const GRADES = [
-    { key: 'PRO', max: 50, label: '프로게이머급' },
-    { key: 'TOP', max: 80, label: '최상위' },
-    { key: 'GREAT', max: 130, label: '우수' },
-    { key: 'GOOD', max: 200, label: '양호' },
-    { key: 'NORMAL', max: Infinity, label: '일반' },
+    { key: 'PRO', max: 50, label: '프로게이머급', persona: '👁️ 매의 눈' },
+    { key: 'TOP', max: 80, label: '최상위', persona: '🦅 동체시력 상위권' },
+    { key: 'GREAT', max: 130, label: '우수', persona: '🎯 예리한 시야' },
+    { key: 'GOOD', max: 200, label: '양호', persona: '🙂 무난한 동체시력' },
+    { key: 'NORMAL', max: Infinity, label: '일반', persona: '🐢 여유로운 시야' },
   ];
 
   function gradeFor(ms) {
@@ -350,6 +352,7 @@
     if (bestScore === null) {
       document.getElementById('resultTitle').textContent = '정답을 맞히지 못했어요';
       document.getElementById('resultDesc').textContent = '아쉽게도 이번엔 기록이 없어요. 다시 도전해보세요!';
+      document.getElementById('personaLabel').textContent = '';
       document.getElementById('resultNote').textContent = '';
       document.getElementById('gradeTable').innerHTML = '';
       resultPanel.classList.add('show');
@@ -360,12 +363,13 @@
     const grade = gradeFor(bestScore);
     document.getElementById('resultTitle').textContent = `당신이 읽어낸 최소 노출 시간: ${Math.round(bestScore)}ms`;
     document.getElementById('resultDesc').textContent = `도달 라운드 ${roundIndex} · ${grade.label}`;
+    document.getElementById('personaLabel').textContent = grade.persona;
     document.getElementById('resultNote').textContent = reason === 'device-limit'
       ? '모든 문제를 맞혀서 이 기기의 측정 한계(약 20ms)에 도달했어요! 대단해요.'
       : '';
     renderGradeTable(bestScore);
     resultPanel.classList.add('show');
-    resultPanel.dataset.share = `동체시력 테스트에서 ${Math.round(bestScore)}ms까지 읽어냈어요! (${grade.label}) 너도 해봐 → `;
+    resultPanel.dataset.share = `나는 ${grade.persona}! 동체시력 테스트에서 ${Math.round(bestScore)}ms까지 읽어냈어요! (${grade.label}) 너도 해봐 → `;
 
     const lbList = addToLeaderboard(LB_KEY, { value: bestScore, date: Date.now() }, true);
     renderTopLeaderboard(lbList);

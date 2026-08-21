@@ -46,6 +46,7 @@
     padding: 6px 12px;
   }
   .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+  .persona-label { margin-top: 6px; font-size: 19px; font-weight: 700; color: var(--accent); }
 </style>
 <style>
   .warn-box {
@@ -152,6 +153,7 @@
       <div class="emoji">👂</div>
       <h2 id="resultTitle"></h2>
       <div class="desc" id="resultDesc"></div>
+      <div class="persona-label" id="personaLabel"></div>
       <div class="percentile" id="resultComment"></div>
       <div class="disclaimer">
         이 결과는 의학적 진단이 아닙니다. 기기·이어폰·주변 소음·브라우저에 따라 크게 달라질 수
@@ -211,17 +213,17 @@
   const STEP_DURATION = 4;
 
   const AGE_MAP = [
-    { freq: 20000, age: '18세 이하', comment: '또래보다도 예민한, 아주 좋은 편이에요.' },
-    { freq: 19000, age: '20세', comment: '젊고 건강한 청력이에요.' },
-    { freq: 18000, age: '24세', comment: '아주 좋은 편이에요.' },
-    { freq: 17000, age: '30세', comment: '평균보다 좋은 편이에요.' },
-    { freq: 16000, age: '35세', comment: '평범한 범위예요.' },
-    { freq: 15000, age: '40세', comment: '평범한 범위예요.' },
-    { freq: 14000, age: '45세', comment: '자연스러운 변화의 범위예요.' },
-    { freq: 12000, age: '50세', comment: '자연스러운 변화의 범위예요.' },
-    { freq: 10000, age: '55세', comment: '고주파가 조금씩 안 들리기 시작하는 범위예요.' },
-    { freq: 8000, age: '60세 이상', comment: '기기·환경 영향일 수도 있으니 편하게 참고해주세요.' },
-    { freq: 0, age: '60세 이상', comment: '기기·환경 영향일 수도 있으니 편하게 참고해주세요.' },
+    { freq: 20000, age: '18세 이하', comment: '또래보다도 예민한, 아주 좋은 편이에요.', persona: '👂 박쥐 귀' },
+    { freq: 19000, age: '20세', comment: '젊고 건강한 청력이에요.', persona: '👂 예민한 귀' },
+    { freq: 18000, age: '24세', comment: '아주 좋은 편이에요.', persona: '👂 맑은 귀' },
+    { freq: 17000, age: '30세', comment: '평균보다 좋은 편이에요.', persona: '👂 건강한 귀' },
+    { freq: 16000, age: '35세', comment: '평범한 범위예요.', persona: '👂 안정적인 귀' },
+    { freq: 15000, age: '40세', comment: '평범한 범위예요.', persona: '👂 무난한 귀' },
+    { freq: 14000, age: '45세', comment: '자연스러운 변화의 범위예요.', persona: '👂 자연스러운 귀' },
+    { freq: 12000, age: '50세', comment: '자연스러운 변화의 범위예요.', persona: '👂 관록있는 귀' },
+    { freq: 10000, age: '55세', comment: '고주파가 조금씩 안 들리기 시작하는 범위예요.', persona: '👂 노련한 귀' },
+    { freq: 8000, age: '60세 이상', comment: '기기·환경 영향일 수도 있으니 편하게 참고해주세요.', persona: '👂 여유로운 귀' },
+    { freq: 0, age: '60세 이상', comment: '기기·환경 영향일 수도 있으니 편하게 참고해주세요.', persona: '👂 여유로운 귀' },
   ];
 
   function ageFor(maxHeard) {
@@ -348,8 +350,9 @@
       ? `최고 청취 주파수: ${maxHeard} Hz`
       : '가장 낮은 단계(8000Hz)부터 들리지 않았어요.';
     document.getElementById('resultComment').textContent = result.comment;
+    document.getElementById('personaLabel').textContent = result.persona;
     resultPanel.classList.add('show');
-    resultPanel.dataset.share = `청력 나이 테스트 결과 ${result.age}! (최고 ${maxHeard || 8000}Hz 청취) 너도 해봐 → `;
+    resultPanel.dataset.share = `나는 ${result.persona}! 청력 나이 테스트 결과 ${result.age}! (최고 ${maxHeard || 8000}Hz 청취) 너도 해봐 → `;
 
     const lbList = addToLeaderboard(LB_KEY, { value: maxHeard, date: Date.now() }, false);
     renderTopLeaderboard(lbList);

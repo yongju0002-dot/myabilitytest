@@ -46,6 +46,7 @@
     padding: 6px 12px;
   }
   .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+  .persona-label { margin-top: 6px; font-size: 19px; font-weight: 700; color: var(--accent); }
 </style>
 <style>
   .related-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
@@ -102,6 +103,7 @@
       <h2 id="resultTitle"></h2>
       <div class="stars" id="resultStars"></div>
       <div class="desc" id="resultDesc"></div>
+      <div class="persona-label" id="personaLabel"></div>
       <div class="percentile" id="resultMobileNote" style="display:none;">모바일(탭) 기록은 키보드 기록과 별도로 집계됩니다.</div>
       <div id="chartContainer"></div>
       <table class="grade-table" id="gradeTable"></table>
@@ -167,12 +169,12 @@
   let allStats = loadStats(STORE_KEY, {});
 
   const GRADES = [
-    { key: 'SS', min: 9, label: 'SS · 초고속' },
-    { key: 'S', min: 7.5, label: 'S · 매우 빠름' },
-    { key: 'A', min: 6, label: 'A · 빠름' },
-    { key: 'B', min: 4.5, label: 'B · 평균 이상' },
-    { key: 'C', min: 3, label: 'C · 평균' },
-    { key: 'D', min: 0, label: 'D · 느긋함' },
+    { key: 'SS', min: 9, label: 'SS · 초고속', persona: '⌨️ 스페이스바 파괴자' },
+    { key: 'S', min: 7.5, label: 'S · 매우 빠름', persona: '⚡ 초고속 태퍼' },
+    { key: 'A', min: 6, label: 'A · 빠름', persona: '🎯 빠른 태퍼' },
+    { key: 'B', min: 4.5, label: 'B · 평균 이상', persona: '👍 안정적인 태퍼' },
+    { key: 'C', min: 3, label: 'C · 평균', persona: '🙂 평범한 태퍼' },
+    { key: 'D', min: 0, label: 'D · 느긋함', persona: '🐢 여유로운 태퍼' },
   ];
 
   function gradeFor(rate) {
@@ -312,12 +314,13 @@
     document.getElementById('resultTitle').textContent = `${presses}회 · 초당 ${rate.toFixed(1)}`;
     document.getElementById('resultStars').textContent = '★'.repeat(stars) + '☆'.repeat(5 - stars);
     document.getElementById('resultDesc').textContent = `${duration}초 동안 ${presses}회 — ${grade.label}`;
+    document.getElementById('personaLabel').textContent = grade.persona;
     document.getElementById('resultMobileNote').style.display = inputMode === 'mobile' ? '' : 'none';
     document.getElementById('chartContainer').innerHTML =
       buildCpsLineChart(perSecondCps(timestamps, startTime, duration));
     renderGradeTable(rate);
     resultPanel.classList.add('show');
-    resultPanel.dataset.share = `스페이스바 연타 테스트에서 ${duration}초 동안 ${presses}회(초당 ${rate.toFixed(1)}) 기록! 너도 해봐 → `;
+    resultPanel.dataset.share = `나는 ${grade.persona}! 스페이스바 연타 테스트에서 ${duration}초 동안 ${presses}회(초당 ${rate.toFixed(1)}) 기록! 너도 해봐 → `;
 
     const lbList = addToLeaderboard(LB_KEY + '_' + bk, { value: presses, rate, date: Date.now() }, false);
     renderTopLeaderboard(lbList);

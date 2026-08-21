@@ -46,6 +46,7 @@
     padding: 6px 12px;
   }
   .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+  .persona-label { margin-top: 6px; font-size: 19px; font-weight: 700; color: var(--accent); }
 </style>
 <style>
   .pick-cell { touch-action: manipulation; font-weight: 800; font-size: 26px; }
@@ -88,7 +89,8 @@
       <div class="emoji">🐵</div>
       <h2 id="resultTitle"></h2>
       <div class="desc" id="resultDesc"></div>
-      <div class="percentile" id="resultCompare">침팬지 아유무는 9개를 80% 정확도로 성공했습니다.</div>
+      <div class="persona-label" id="personaLabel"></div>
+      <div class="percentile" id="resultCompare"침팬지 아유무는 9개를 80% 정확도로 성공했습니다.</div>
       <table class="grade-table" id="gradeTable"></table>
       <div class="btn-row">
         <button class="btn" id="retryBtn">다시 도전</button>
@@ -142,11 +144,11 @@
   let stats = loadStats(STORE_KEY, { count: 0, best: 0, sum: 0 });
 
   const GRADES = [
-    { key: 'TOP1', min: 12, label: '상위 1%' },
-    { key: 'GREAT', min: 10, label: '우수' },
-    { key: 'CHIMP', min: 9, label: '침팬지와 동급' },
-    { key: 'AVG', min: 7, label: '평균' },
-    { key: 'BELOW', min: 0, label: '평균 이하' },
+    { key: 'TOP1', min: 12, label: '상위 1%', persona: '🧠 인간계 최상위 기억력' },
+    { key: 'GREAT', min: 10, label: '우수', persona: '🦉 비상한 기억력' },
+    { key: 'CHIMP', min: 9, label: '침팬지와 동급', persona: '🐵 침팬지급 기억력' },
+    { key: 'AVG', min: 7, label: '평균', persona: '🙂 평범한 기억력' },
+    { key: 'BELOW', min: 0, label: '평균 이하', persona: '🐌 여유로운 기억력' },
   ];
 
   function gradeFor(score) {
@@ -278,9 +280,10 @@
     const grade = gradeFor(score);
     document.getElementById('resultTitle').textContent = `숫자 ${score}개 기억!`;
     document.getElementById('resultDesc').textContent = `${grade.label} 등급이에요.`;
+    document.getElementById('personaLabel').textContent = grade.persona;
     renderGradeTable(score);
     resultPanel.classList.add('show');
-    resultPanel.dataset.share = `침팬지 테스트에서 숫자 ${score}개를 기억했어요! (${grade.label}) 침팬지 아유무는 9개를 80% 정확도로 성공했대요. 너도 해봐 → `;
+    resultPanel.dataset.share = `나는 ${grade.persona}! 침팬지 테스트에서 숫자 ${score}개를 기억했어요! (${grade.label}) 침팬지 아유무는 9개를 80% 정확도로 성공했대요. 너도 해봐 → `;
 
     const lbList = addToLeaderboard(LB_KEY, { value: score, date: Date.now() }, false);
     renderTopLeaderboard(lbList);

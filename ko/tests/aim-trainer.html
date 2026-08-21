@@ -46,6 +46,7 @@
     padding: 6px 12px;
   }
   .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+  .persona-label { margin-top: 6px; font-size: 19px; font-weight: 700; color: var(--accent); }
 </style>
 <style>
   .aim-box {
@@ -113,6 +114,7 @@
       <div class="emoji">🎯</div>
       <h2 id="resultTitle"></h2>
       <div class="desc" id="resultDesc"></div>
+      <div class="persona-label" id="personaLabel"></div>
       <div class="percentile" id="resultMobileNote" style="display:none;">터치 기록은 마우스 기록과 별도로 집계됩니다.</div>
       <div id="chartContainer"></div>
       <table class="grade-table" id="gradeTable"></table>
@@ -176,11 +178,11 @@
   const TARGET_COUNT = 30;
 
   const GRADES = [
-    { key: 'PRO', label: '프로급' },
-    { key: 'TOP', label: '상위권' },
-    { key: 'SKILLED', label: '숙련' },
-    { key: 'NORMAL', label: '일반' },
-    { key: 'BEGINNER', label: '입문' },
+    { key: 'PRO', label: '프로급', persona: '🎯 매복형 스나이퍼' },
+    { key: 'TOP', label: '상위권', persona: '🏹 정밀 사격수' },
+    { key: 'SKILLED', label: '숙련', persona: '🔫 숙련된 명사수' },
+    { key: 'NORMAL', label: '일반', persona: '🙂 평범한 조준수' },
+    { key: 'BEGINNER', label: '입문', persona: '🌱 신입 요원' },
   ];
 
   function gradeFor(avgMs, accuracy) {
@@ -368,11 +370,12 @@
     document.getElementById('resultDesc').textContent = `총 ${(totalTimeMs / 1000).toFixed(1)}초 · ${grade.label}` +
       (avgMissDist !== null ? ` · 평균 오차 ${avgMissDist.toFixed(0)}px` : '') +
       (invalidClicks > 0 ? ` · 무효 클릭 ${invalidClicks}회` : '');
+    document.getElementById('personaLabel').textContent = grade.persona;
     document.getElementById('resultMobileNote').style.display = inputType === 'touch' ? '' : 'none';
     document.getElementById('chartContainer').innerHTML = buildBarChart(reactionTimes);
     renderGradeTable(avgMs, accuracy);
     resultPanel.classList.add('show');
-    resultPanel.dataset.share = `에임 테스트에서 평균 ${Math.round(avgMs)}ms · 정확도 ${accuracy.toFixed(0)}%를 기록했어요! (${grade.label}) 너도 해봐 → `;
+    resultPanel.dataset.share = `나는 ${grade.persona}! 에임 테스트에서 평균 ${Math.round(avgMs)}ms · 정확도 ${accuracy.toFixed(0)}%를 기록했어요! (${grade.label}) 너도 해봐 → `;
 
     if (accuracy >= 80) {
       const lbList = addToLeaderboard(LB_KEY + '_' + bk, { value: avgMs, accuracy, date: Date.now() }, true);

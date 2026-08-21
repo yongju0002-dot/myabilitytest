@@ -46,6 +46,7 @@
     padding: 6px 12px;
   }
   .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+  .persona-label { margin-top: 6px; font-size: 19px; font-weight: 700; color: var(--accent); text-align: center; }
 </style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
 </head>
@@ -95,6 +96,7 @@
       <div class="emoji">🏆</div>
       <h2>최종 결과</h2>
       <div class="desc" id="actualReveal"></div>
+      <div class="persona-label" id="personaLabel"></div>
       <ul class="leaderboard" id="leaderboard"></ul>
       <div class="btn-row">
         <button class="btn" id="retryBtn">다시 하기</button>
@@ -231,6 +233,14 @@
   document.getElementById('submitGuessBtn').addEventListener('click', submitAllGuesses);
   guessList.addEventListener('keydown', (e) => { if (e.key === 'Enter') submitAllGuesses(); });
 
+  function personaFor(diff) {
+    if (diff <= 0.1) return '⏱️ 시간감각 초능력자';
+    if (diff <= 0.3) return '🎯 정확한 시간감각';
+    if (diff <= 0.6) return '🙂 평범한 시간감각';
+    if (diff <= 1.0) return '🌀 살짝 아쉬운 시간감각';
+    return '🐢 자유로운 영혼';
+  }
+
   function finishGame(results) {
     playScreen.style.display = 'none';
     const sorted = [...results].sort((a, b) => a.diff - b.diff);
@@ -243,6 +253,7 @@
     renderStats();
 
     document.getElementById('actualReveal').textContent = `실제 시간: ${actualTime.toFixed(1)}초`;
+    document.getElementById('personaLabel').textContent = personaFor(best.diff);
 
     const lb = document.getElementById('leaderboard');
     lb.innerHTML = sorted.map((r, i) => {
@@ -256,8 +267,8 @@
 
     resultPanel.classList.add('show');
     resultPanel.dataset.share = playerCount === 1
-      ? `시간 감각 테스트에서 오차 ${best.diff.toFixed(2)}초! 너도 해봐 → `
-      : `시간 감각 테스트에서 참가자 ${best.player}이(가) 오차 ${best.diff.toFixed(2)}초로 우승! 너도 해봐 → `;
+      ? `나는 ${personaFor(best.diff)}! 시간 감각 테스트에서 오차 ${best.diff.toFixed(2)}초! 너도 해봐 → `
+      : `${personaFor(best.diff)} 참가자 ${best.player}이(가) 오차 ${best.diff.toFixed(2)}초로 우승! 너도 해봐 → `;
 
     const lbList = addToLeaderboard(LB_KEY, { value: best.diff, playerCount, date: Date.now() }, true);
     renderTopLeaderboard(lbList);

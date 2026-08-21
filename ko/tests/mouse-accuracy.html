@@ -46,6 +46,7 @@
     padding: 6px 12px;
   }
   .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+  .persona-label { margin-top: 6px; font-size: 19px; font-weight: 700; color: var(--accent); }
 </style>
 <style>
   .related-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
@@ -109,6 +110,7 @@
       <h2 id="resultTitle"></h2>
       <div class="stars" id="resultStars"></div>
       <div class="desc" id="resultDesc"></div>
+      <div class="persona-label" id="personaLabel"></div>
       <div class="percentile" id="resultMobileNote" style="display:none;">터치 기록은 마우스 기록과 별도로 집계됩니다.</div>
       <table class="grade-table" id="gradeTable"></table>
       <div class="btn-row">
@@ -172,12 +174,12 @@
   let allStats = loadStats(STORE_KEY, {});
 
   const GRADES = [
-    { key: 'SS', min: 90, label: 'SS · 정밀 조작' },
-    { key: 'S', min: 80, label: 'S · 매우 안정적' },
-    { key: 'A', min: 68, label: 'A · 안정적' },
-    { key: 'B', min: 55, label: 'B · 평균 이상' },
-    { key: 'C', min: 40, label: 'C · 평균' },
-    { key: 'D', min: 0, label: 'D · 연습 필요' },
+    { key: 'SS', min: 90, label: 'SS · 정밀 조작', persona: '🖱️ 정밀 조작의 신' },
+    { key: 'S', min: 80, label: 'S · 매우 안정적', persona: '🎯 안정적인 손' },
+    { key: 'A', min: 68, label: 'A · 안정적', persona: '👍 능숙한 컨트롤러' },
+    { key: 'B', min: 55, label: 'B · 평균 이상', persona: '🙂 무난한 조작' },
+    { key: 'C', min: 40, label: 'C · 평균', persona: '🌀 흔들리는 손' },
+    { key: 'D', min: 0, label: 'D · 연습 필요', persona: '🐢 연습이 필요한 손' },
   ];
 
   function gradeFor(score) {
@@ -319,10 +321,11 @@
     document.getElementById('resultStars').textContent = '★'.repeat(stars) + '☆'.repeat(5 - stars);
     document.getElementById('resultDesc').textContent =
       `완주 ${seconds.toFixed(1)}초 · 경로 이탈 ${(offTime / 1000).toFixed(1)}초 — ${grade.label}`;
+    document.getElementById('personaLabel').textContent = grade.persona;
     document.getElementById('resultMobileNote').style.display = mode === 'touch' ? '' : 'none';
     renderGradeTable(score);
     resultPanel.classList.add('show');
-    resultPanel.dataset.share = `마우스 정확도 테스트에서 ${Math.round(score)}점 (정확도 ${accuracy.toFixed(0)}%) 기록! 너도 해봐 → `;
+    resultPanel.dataset.share = `나는 ${grade.persona}! 마우스 정확도 테스트에서 ${Math.round(score)}점 (정확도 ${accuracy.toFixed(0)}%) 기록! 너도 해봐 → `;
 
     const lbList = addToLeaderboard(LB_KEY + '_' + mode, { value: score, accuracy, seconds, date: Date.now() }, false);
     renderTopLeaderboard(lbList);

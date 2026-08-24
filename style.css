@@ -323,3 +323,33 @@ h1 { text-align: center; font-size: 24px; margin: 6px 0 4px; }
 .reference-block { text-align: center; margin: 16px 0; }
 .reference-block .ref-label { color: var(--text-dim); font-size: 12px; margin-bottom: 6px; }
 .quiz-prompt { text-align: center; font-size: 15px; font-weight: 600; margin: 14px 0; }
+
+/* ---- 사이트 공통 푸터 ---- */
+.site-footer {
+  margin-top: 44px;
+  padding: 20px 0 8px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-dim2);
+  line-height: 1.9;
+}
+.site-footer .footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+.site-footer a { color: var(--text-dim); text-decoration: none; }
+.site-footer a:hover { color: #fff; text-decoration: underline; }
+.site-footer .copyright { color: var(--text-dim2); }
+
+/* ---- 법적 문서 페이지 (개인정보처리방침 등) ---- */
+.legal { color: #cbd5e1; font-size: 14px; line-height: 1.8; }
+.legal h2 { font-size: 17px; color: #f1f5f9; margin: 26px 0 8px; }
+.legal p { margin: 8px 0; }
+.legal ul { margin: 8px 0; padding-left: 20px; }
+.legal li { margin: 4px 0; }
+.legal .updated { color: var(--text-dim2); font-size: 12px; margin-bottom: 4px; }
+.legal a { color: #a5b4fc; }

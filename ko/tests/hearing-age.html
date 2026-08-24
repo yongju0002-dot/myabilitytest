@@ -46,6 +46,11 @@
     padding: 6px 12px;
   }
   .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+  .info { margin-top: 40px; color: #cbd5e1; font-size: 14px; line-height: 1.7; }
+  .info h2 { font-size: 17px; color: #f1f5f9; margin: 28px 0 8px; }
+  .info table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
+  .info th, .info td { border: 1px solid #334155; padding: 8px; text-align: left; }
+  .info th { background: var(--card-bg); }
   .persona-label { margin-top: 6px; font-size: 19px; font-weight: 700; color: var(--accent); }
 </style>
 <style>
@@ -189,14 +194,23 @@
       </div>
     </div>
 
-    <section class="note-box">
-      <p><strong>왜 나이가 들면 고주파부터 안 들릴까요?</strong> 귀 안 달팽이관에는 소리를 신경
-      신호로 바꿔주는 유모세포가 있는데, 고주파를 감지하는 유모세포가 달팽이관 입구 쪽에 몰려
-      있어서 소음과 노화에 가장 먼저 손상됩니다. 이 때문에 노인성 난청은 보통 높은 소리부터
-      안 들리는 순서로 진행됩니다. 흔히 '모기 소리'라 불리는 15~17kHz대 초음파에 가까운 소리가
-      나이 든 사람에게 잘 안 들리는 것도 같은 원리입니다.</p>
-      <p>다만 이 테스트 결과는 스피커·이어폰의 성능, 기기 볼륨, 브라우저의 오디오 처리 방식,
-      주변 소음에 따라 크게 달라질 수 있어 재미로 참고하는 용도로만 활용해주세요.</p>
+    <section class="info">
+      <h2>왜 나이가 들면 고주파부터 안 들릴까요?</h2>
+      <p>귀 안 달팽이관에는 소리를 신경 신호로 바꿔주는 유모세포가 있는데, 고주파를 감지하는 유모세포가 달팽이관 입구 쪽에 몰려 있어서 소음과 노화에 가장 먼저 손상됩니다. 이 때문에 노인성 난청은 보통 높은 소리부터 안 들리는 순서로 진행됩니다. 흔히 '모기 소리'라 불리는 15~17kHz대 초음파에 가까운 소리가 나이 든 사람에게 잘 안 들리는 것도 같은 원리입니다.</p>
+
+      <h2>주파수-연령대 참고표</h2>
+      <table>
+        <tr><th>들리는 최고 주파수</th><th>대략적인 연령대</th></tr>
+        <tr><td>20,000Hz 이상</td><td>18세 이하</td></tr>
+        <tr><td>19,000Hz</td><td>20세 전후</td></tr>
+        <tr><td>17,000 ~ 18,000Hz</td><td>24 ~ 30세</td></tr>
+        <tr><td>15,000 ~ 16,000Hz</td><td>35 ~ 40세</td></tr>
+        <tr><td>12,000 ~ 14,000Hz</td><td>45 ~ 50세</td></tr>
+        <tr><td>10,000Hz 이하</td><td>55세 이상</td></tr>
+      </table>
+
+      <h2>결과가 왜 사람마다, 매번 다를 수 있나요?</h2>
+      <p>이 테스트 결과는 스피커·이어폰의 성능, 기기 볼륨, 브라우저의 오디오 처리 방식, 주변 소음에 따라 크게 달라질 수 있어 재미로 참고하는 용도로만 활용해주세요. 정확도를 높이고 싶다면 조용한 곳에서 유선 이어폰을 착용하고 측정하는 걸 권장합니다.</p>
     </section>
 
     <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 역대 기록 순위 (최대 30위)</h2>

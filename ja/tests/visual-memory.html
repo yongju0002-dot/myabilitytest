@@ -46,6 +46,11 @@
     padding: 6px 12px;
   }
   .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+  .info { margin-top: 40px; color: #cbd5e1; font-size: 14px; line-height: 1.7; }
+  .info h2 { font-size: 17px; color: #f1f5f9; margin: 28px 0 8px; }
+  .info table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
+  .info th, .info td { border: 1px solid #334155; padding: 8px; text-align: left; }
+  .info th { background: var(--card-bg); }
 </style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
 </head>
@@ -109,6 +114,29 @@
         <div class="value" id="statBestTiles">-</div>
       </div>
     </div>
+
+    <section class="info">
+      <h2>瞬間記憶力テストとは?</h2>
+      <p>このテストは空間ワーキングメモリ(spatial working memory)、つまり複数の場所を一瞬で覚えて思い出す能力を測定します。画面に一瞬表示されたマスの位置を、順不同ですべてクリックして当てる形式です。レベルが上がるごとにマスが1つずつ増えるので、どのレベルで間違えるかが空間記憶の容量の目安になります。</p>
+
+      <h2>結果の見方</h2>
+      <table>
+        <tr><th>到達レベル</th><th>ランク</th></tr>
+        <tr><td>20以上</td><td>SS・天才的</td></tr>
+        <tr><td>16~19</td><td>S・卓越</td></tr>
+        <tr><td>13~15</td><td>A・優秀</td></tr>
+        <tr><td>9~12</td><td>B・良い</td></tr>
+        <tr><td>5~8</td><td>C・平均的</td></tr>
+        <tr><td>2~4</td><td>D・やや低い</td></tr>
+        <tr><td>1</td><td>F・序盤敗退</td></tr>
+      </table>
+
+      <h2>レベルはどう上がりますか?</h2>
+      <p>レベル1では3マスを記憶し、レベルが1つ上がるごとにマスが1つ増えます(レベルN=N+2マス)。一度でも間違えるとそのレベルで終了し、到達した最高レベルが最終記録になります。</p>
+
+      <h2>記憶力を伸ばす方法はありますか?</h2>
+      <p>心理学でよく言われる「チャンキング(chunking)」が有効とされています。マスを1つずつ覚えるのではなく、三角形・対角線・十字のような1つの形として捉えると、より多くのマスを一度に記憶しやすくなります。画面中央に視線を固定し、周辺視野で全体の配置を捉える練習も役立つと言われています。</p>
+    </section>
 
     <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 歴代記録ランキング(最大30位)</h2>
     <div id="topLeaderboard"></div>

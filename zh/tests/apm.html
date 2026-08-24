@@ -46,6 +46,11 @@
     padding: 6px 12px;
   }
   .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+  .info { margin-top: 40px; color: #cbd5e1; font-size: 14px; line-height: 1.7; }
+  .info h2 { font-size: 17px; color: #f1f5f9; margin: 28px 0 8px; }
+  .info table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
+  .info th, .info td { border: 1px solid #334155; padding: 8px; text-align: left; }
+  .info th { background: var(--card-bg); }
 </style>
 <style>
   .related-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
@@ -144,14 +149,23 @@
       </div>
     </div>
 
-    <section class="note-box">
-      <p><strong>什么是APM(Actions Per Minute)?</strong> 指一分钟内完成的操作
-      (鼠标点击+键盘输入)次数。它因作为星际争霸中衡量职业选手水平的指标而广为人知,
-      如今在RTS和MOBA类游戏中仍被用作操作速度的尺度。据称星际争霸职业选手比赛中的平均
-      APM大约在300~400左右。</p>
-      <p>不过APM高并不等于水平高。毫无意义的重复输入同样能把数值刷上去,实际上更重要的是
-      有效操作所占的比例。本测试会以10秒为区间绘制APM图表,因此也能看出你的速度是否在
-      后半段下滑(耐力)。</p>
+    <section class="info">
+      <h2>什么是APM(Actions Per Minute)?</h2>
+      <p>指一分钟内完成的操作(鼠标点击+键盘输入)次数。它因作为星际争霸中衡量职业选手水平的指标而广为人知,如今在RTS和MOBA类游戏中仍被用作操作速度的尺度。据称星际争霸职业选手比赛中的平均APM大约在300~400左右。</p>
+
+      <h2>结果解读表</h2>
+      <table>
+        <tr><th>APM</th><th>评级</th></tr>
+        <tr><td>300以上</td><td>职业选手级</td></tr>
+        <tr><td>220~300</td><td>S・极快</td></tr>
+        <tr><td>160~220</td><td>A・快</td></tr>
+        <tr><td>110~160</td><td>B・中等偏上</td></tr>
+        <tr><td>60~110</td><td>C・一般</td></tr>
+        <tr><td>低于60</td><td>D・悠闲</td></tr>
+      </table>
+
+      <h2>为什么APM高不代表水平高</h2>
+      <p>不过APM高并不等于水平高。毫无意义的重复输入同样能把数值刷上去,实际上更重要的是有效操作所占的比例。本测试会以10秒为区间绘制APM图表,因此也能看出你的速度是否在后半段下滑(耐力)。</p>
     </section>
 
     <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 历代记录排行(最多30位)</h2>

@@ -46,6 +46,11 @@
     padding: 6px 12px;
   }
   .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+  .info { margin-top: 40px; color: #cbd5e1; font-size: 14px; line-height: 1.7; }
+  .info h2 { font-size: 17px; color: #f1f5f9; margin: 28px 0 8px; }
+  .info table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
+  .info th, .info td { border: 1px solid #334155; padding: 8px; text-align: left; }
+  .info th { background: var(--card-bg); }
   .persona-label { margin-top: 6px; font-size: 19px; font-weight: 700; color: var(--accent); }
 </style>
 <style>
@@ -148,16 +153,23 @@
       </div>
     </div>
 
-    <section class="note-box">
-      <p><strong>에임(Aim)이란?</strong> 정지된 대상을 순간적으로 정확히 클릭하는
-      '플리킹(flicking)'과, 움직이는 대상을 따라가며 조준을 유지하는 '트래킹(tracking)'
-      두 가지 요소로 이루어집니다. 이 테스트는 그중 플리킹 능력을 측정합니다. 반응 속도뿐
-      아니라 얼마나 정확하게 목표 중심을 클릭하는지도 함께 봐야 진짜 에임 실력을 알 수
-      있어요.</p>
-      <p>마우스 DPI와 인게임 감도(센시티비티)를 자신의 손 움직임에 맞게 조절하는 것도
-      중요합니다. 감도가 너무 높으면 빠르지만 부정확해지고, 너무 낮으면 정확하지만 느려져요.
-      꾸준히 에임 트레이너로 연습하면 반응 속도와 정확도 모두 점진적으로 개선할 수 있다고
-      알려져 있습니다.</p>
+    <section class="info">
+      <h2>에임(Aim)이란?</h2>
+      <p>정지된 대상을 순간적으로 정확히 클릭하는 '플리킹(flicking)'과, 움직이는 대상을 따라가며 조준을 유지하는 '트래킹(tracking)' 두 가지 요소로 이루어집니다. 이 테스트는 그중 플리킹 능력을 측정합니다. 반응 속도뿐 아니라 얼마나 정확하게 목표 중심을 클릭하는지도 함께 봐야 진짜 에임 실력을 알 수 있어요.</p>
+
+      <h2>결과 해석표</h2>
+      <table>
+        <tr><th>평균 반응</th><th>등급</th></tr>
+        <tr><td>300ms 이하 (정확도 90%+)</td><td>프로급</td></tr>
+        <tr><td>350ms 이하</td><td>상위권</td></tr>
+        <tr><td>450ms 이하</td><td>숙련</td></tr>
+        <tr><td>600ms 이하</td><td>일반</td></tr>
+        <tr><td>600ms 초과</td><td>입문</td></tr>
+      </table>
+      <p>프로급은 속도(300ms 이하)와 정확도(90% 이상)를 동시에 만족해야 합니다. 속도만 빠르고 정확도가 낮으면 프로급 대신 상위권으로 매겨집니다 — 빗나간 클릭이 많으면 아무리 빨라도 실전 에임으로는 의미가 없기 때문이에요.</p>
+
+      <h2>마우스 설정이 왜 중요한가요?</h2>
+      <p>마우스 DPI와 인게임 감도(센시티비티)를 자신의 손 움직임에 맞게 조절하는 것도 중요합니다. 감도가 너무 높으면 빠르지만 부정확해지고, 너무 낮으면 정확하지만 느려져요. 꾸준히 에임 트레이너로 연습하면 반응 속도와 정확도 모두 점진적으로 개선할 수 있다고 알려져 있습니다.</p>
     </section>
 
     <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 역대 기록 순위 (최대 30위)</h2>

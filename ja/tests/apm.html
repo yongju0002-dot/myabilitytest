@@ -46,6 +46,11 @@
     padding: 6px 12px;
   }
   .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+  .info { margin-top: 40px; color: #cbd5e1; font-size: 14px; line-height: 1.7; }
+  .info h2 { font-size: 17px; color: #f1f5f9; margin: 28px 0 8px; }
+  .info table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
+  .info th, .info td { border: 1px solid #334155; padding: 8px; text-align: left; }
+  .info th { background: var(--card-bg); }
 </style>
 <style>
   .related-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
@@ -144,16 +149,23 @@
       </div>
     </div>
 
-    <section class="note-box">
-      <p><strong>APM(Actions Per Minute)とは?</strong> 1分間に行ったアクション
-      (マウスクリック+キーボード入力)の数のことです。スタークラフトでプロゲーマーの
-      実力を測る指標として広く知られるようになり、今でもRTSやMOBAで操作速度の目安として
-      使われています。スタークラフトのプロの試合中の平均APMは、おおよそ300〜400程度と
-      言われています。</p>
-      <p>ただしAPMが高ければ必ず上手いというわけではありません。意味のない繰り返し入力でも
-      数値は上がってしまうため、実際には有効なアクションの割合のほうが重要です。このテストは
-      10秒区間ごとのAPMをグラフで表示するので、終盤にかけて速度が落ちていないか(持久力)も
-      確認できます。</p>
+    <section class="info">
+      <h2>APM(Actions Per Minute)とは?</h2>
+      <p>1分間に行ったアクション(マウスクリック+キーボード入力)の数のことです。スタークラフトでプロゲーマーの実力を測る指標として広く知られるようになり、今でもRTSやMOBAで操作速度の目安として使われています。スタークラフトのプロの試合中の平均APMは、おおよそ300〜400程度と言われています。</p>
+
+      <h2>結果の見方</h2>
+      <table>
+        <tr><th>APM</th><th>ランク</th></tr>
+        <tr><td>300以上</td><td>プロゲーマー級</td></tr>
+        <tr><td>220~300</td><td>S・非常に速い</td></tr>
+        <tr><td>160~220</td><td>A・速い</td></tr>
+        <tr><td>110~160</td><td>B・平均以上</td></tr>
+        <tr><td>60~110</td><td>C・平均的</td></tr>
+        <tr><td>60未満</td><td>D・のんびり</td></tr>
+      </table>
+
+      <h2>APMが高ければ上手いとは限らない理由</h2>
+      <p>ただしAPMが高ければ必ず上手いというわけではありません。意味のない繰り返し入力でも数値は上がってしまうため、実際には有効なアクションの割合のほうが重要です。このテストは10秒区間ごとのAPMをグラフで表示するので、終盤にかけて速度が落ちていないか(持久力)も確認できます。</p>
     </section>
 
     <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 歴代記録ランキング(最大30位)</h2>

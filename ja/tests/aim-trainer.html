@@ -46,6 +46,11 @@
     padding: 6px 12px;
   }
   .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+  .info { margin-top: 40px; color: #cbd5e1; font-size: 14px; line-height: 1.7; }
+  .info h2 { font-size: 17px; color: #f1f5f9; margin: 28px 0 8px; }
+  .info table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
+  .info th, .info td { border: 1px solid #334155; padding: 8px; text-align: left; }
+  .info th { background: var(--card-bg); }
 </style>
 <style>
   .aim-box {
@@ -146,16 +151,23 @@
       </div>
     </div>
 
-    <section class="note-box">
-      <p><strong>エイム(Aim)とは?</strong> 静止した対象を瞬時に正確にクリックする
-      「フリッキング(flicking)」と、動く対象を追いながら照準を維持する「トラッキング
-      (tracking)」の2つの要素で構成されます。このテストはそのうちフリッキング能力を
-      測定します。反応速度だけでなく、どれだけ正確にターゲットの中心をクリックできるかも
-      本当のエイム実力を測る上で重要です。</p>
-      <p>マウスのDPIとゲーム内感度(センシティビティ)を自分の手の動きに合わせて調整する
-      ことも大切です。感度が高すぎると速いけれど不正確になり、低すぎると正確だけど遅く
-      なります。エイムトレーナーで継続的に練習すると、反応速度と正確度の両方が徐々に
-      改善すると言われています。</p>
+    <section class="info">
+      <h2>エイム(Aim)とは?</h2>
+      <p>静止した対象を瞬時に正確にクリックする「フリッキング(flicking)」と、動く対象を追いながら照準を維持する「トラッキング(tracking)」の2つの要素で構成されます。このテストはそのうちフリッキング能力を測定します。反応速度だけでなく、どれだけ正確にターゲットの中心をクリックできるかも本当のエイム実力を測る上で重要です。</p>
+
+      <h2>結果の見方</h2>
+      <table>
+        <tr><th>平均反応</th><th>ランク</th></tr>
+        <tr><td>300ms以下(正確度90%以上)</td><td>プロ級</td></tr>
+        <tr><td>350ms以下</td><td>上位</td></tr>
+        <tr><td>450ms以下</td><td>熟練</td></tr>
+        <tr><td>600ms以下</td><td>一般</td></tr>
+        <tr><td>600ms超</td><td>入門</td></tr>
+      </table>
+      <p>プロ級は速さ(300ms以下)と正確度(90%以上)を同時に満たす必要があります。速いだけで外れが多いと、プロ級ではなく上位ランクになります。どれだけ速くても、実戦では外れの多いクリックはあまり意味がないからです。</p>
+
+      <h2>マウス設定はなぜ重要ですか?</h2>
+      <p>マウスのDPIとゲーム内感度(センシティビティ)を自分の手の動きに合わせて調整することも大切です。感度が高すぎると速いけれど不正確になり、低すぎると正確だけど遅くなります。エイムトレーナーで継続的に練習すると、反応速度と正確度の両方が徐々に改善すると言われています。</p>
     </section>
 
     <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 歴代記録ランキング(最大30位)</h2>

@@ -46,6 +46,11 @@
     padding: 6px 12px;
   }
   .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+  .info { margin-top: 40px; color: #cbd5e1; font-size: 14px; line-height: 1.7; }
+  .info h2 { font-size: 17px; color: #f1f5f9; margin: 28px 0 8px; }
+  .info table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
+  .info th, .info td { border: 1px solid #334155; padding: 8px; text-align: left; }
+  .info th { background: var(--card-bg); }
   .persona-label { margin-top: 6px; font-size: 19px; font-weight: 700; color: var(--accent); }
 </style>
 <style>
@@ -146,15 +151,23 @@
       </div>
     </div>
 
-    <section class="note-box">
-      <p><strong>APM(Actions Per Minute)이란?</strong> 1분 동안 수행한 액션(마우스 클릭 +
-      키보드 입력)의 수를 뜻합니다. 스타크래프트에서 프로게이머의 실력을 가늠하는 지표로
-      널리 알려졌고, 지금도 RTS와 AOS 장르에서 조작 속도의 척도로 쓰입니다. 스타크래프트
-      프로게이머의 경기 중 평균 APM은 대략 300~400 수준으로 알려져 있습니다.</p>
-      <p>다만 APM이 높다고 반드시 잘하는 것은 아닙니다. 의미 없는 반복 입력으로도 수치는
-      올라가기 때문에, 실제로는 유효한 액션의 비율이 더 중요합니다. 이 테스트는 10초 구간별
-      APM을 그래프로 보여주므로 후반으로 갈수록 속도가 떨어지는지(지구력)도 확인할 수
-      있어요.</p>
+    <section class="info">
+      <h2>APM(Actions Per Minute)이란?</h2>
+      <p>1분 동안 수행한 액션(마우스 클릭 + 키보드 입력)의 수를 뜻합니다. 스타크래프트에서 프로게이머의 실력을 가늠하는 지표로 널리 알려졌고, 지금도 RTS와 AOS 장르에서 조작 속도의 척도로 쓰입니다. 스타크래프트 프로게이머의 경기 중 평균 APM은 대략 300~400 수준으로 알려져 있습니다.</p>
+
+      <h2>결과 해석표</h2>
+      <table>
+        <tr><th>APM</th><th>등급</th></tr>
+        <tr><td>300 이상</td><td>프로게이머급</td></tr>
+        <tr><td>220 ~ 300</td><td>S · 매우 빠름</td></tr>
+        <tr><td>160 ~ 220</td><td>A · 빠름</td></tr>
+        <tr><td>110 ~ 160</td><td>B · 평균 이상</td></tr>
+        <tr><td>60 ~ 110</td><td>C · 평균</td></tr>
+        <tr><td>60 미만</td><td>D · 느긋함</td></tr>
+      </table>
+
+      <h2>APM이 높다고 다 잘하는 건 아닌 이유</h2>
+      <p>다만 APM이 높다고 반드시 잘하는 것은 아닙니다. 의미 없는 반복 입력으로도 수치는 올라가기 때문에, 실제로는 유효한 액션의 비율이 더 중요합니다. 이 테스트는 10초 구간별 APM을 그래프로 보여주므로 후반으로 갈수록 속도가 떨어지는지(지구력)도 확인할 수 있어요.</p>
     </section>
 
     <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 역대 기록 순위 (최대 30위)</h2>

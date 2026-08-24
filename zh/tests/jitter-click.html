@@ -46,6 +46,11 @@
     padding: 6px 12px;
   }
   .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+  .info { margin-top: 40px; color: #cbd5e1; font-size: 14px; line-height: 1.7; }
+  .info h2 { font-size: 17px; color: #f1f5f9; margin: 28px 0 8px; }
+  .info table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
+  .info th, .info td { border: 1px solid #334155; padding: 8px; text-align: left; }
+  .info th { background: var(--card-bg); }
 </style>
 <style>
   .related-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
@@ -125,13 +130,23 @@
       </div>
     </div>
 
-    <section class="note-box">
-      <p><strong>什么是抖动点击?</strong> 与只活动手指的普通点击不同,抖动点击是绷紧
-      前臂和手腕的肌肉使其快速震颤,并把这种震动传递到鼠标按键上的技巧。它在《我的世界》
-      PvP社区中被广泛使用,熟练者能远远超过普通点击(6~8 CPS),达到10~14 CPS。</p>
-      <p>本测试除了CPS,还会计算<strong>点击间隔的标准差</strong>,作为震动稳定性显示。
-      数值越小说明震动越规律。不过抖动点击对手腕和手臂负担较大,不建议反复练习,
-      感到疼痛请立即停止。</p>
+    <section class="info">
+      <h2>什么是抖动点击?</h2>
+      <p>与只活动手指的普通点击不同,抖动点击是绷紧前臂和手腕的肌肉使其快速震颤,并把这种震动传递到鼠标按键上的技巧。它在《我的世界》PvP社区中被广泛使用,熟练者能远远超过普通点击(6~8 CPS),达到10~14 CPS。</p>
+
+      <h2>结果解读表</h2>
+      <table>
+        <tr><th>CPS</th><th>评级</th></tr>
+        <tr><td>13以上</td><td>SS・抖动大师</td></tr>
+        <tr><td>11~13</td><td>S・极快</td></tr>
+        <tr><td>9~11</td><td>A・快</td></tr>
+        <tr><td>7~9</td><td>B・中等偏上</td></tr>
+        <tr><td>5~7</td><td>C・一般</td></tr>
+        <tr><td>低于5</td><td>D・需要练习</td></tr>
+      </table>
+
+      <h2>震动稳定性是什么?(以及安全提醒)</h2>
+      <p>本测试除了CPS,还会计算<strong>点击间隔的标准差</strong>,作为震动稳定性显示。数值越小说明震动越规律。不过抖动点击对手腕和手臂负担较大,不建议反复练习,感到疼痛请立即停止。</p>
     </section>
 
     <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 历代记录排行(最多30位)</h2>

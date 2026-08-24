@@ -46,6 +46,11 @@
     padding: 6px 12px;
   }
   .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+  .info { margin-top: 40px; color: #cbd5e1; font-size: 14px; line-height: 1.7; }
+  .info h2 { font-size: 17px; color: #f1f5f9; margin: 28px 0 8px; }
+  .info table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
+  .info th, .info td { border: 1px solid #334155; padding: 8px; text-align: left; }
+  .info th { background: var(--card-bg); }
 </style>
 <style>
   .related-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
@@ -135,12 +140,23 @@
       </div>
     </div>
 
-    <section class="note-box">
-      <p><strong>为什么要测空格键连打?</strong> 很多游戏把跳跃、冲刺等操作绑定在空格键上,
-      因此短时间内能多快地重复输入,直接关系到操作能力。与鼠标点击不同,不少人是用拇指
-      或手掌侧面来敲击空格键,所以成绩趋势和CPS并不相同。</p>
-      <p>本测试会<strong>忽略长按时产生的自动重复输入</strong>,只统计真正按下再松开的
-      次数。键盘的轴体类型(薄膜、机械)以及键程深浅也会影响结果。</p>
+    <section class="info">
+      <h2>为什么要测空格键连打?</h2>
+      <p>很多游戏把跳跃、冲刺等操作绑定在空格键上,因此短时间内能多快地重复输入,直接关系到操作能力。与鼠标点击不同,不少人是用拇指或手掌侧面来敲击空格键,所以成绩趋势和CPS并不相同。</p>
+
+      <h2>结果解读表</h2>
+      <table>
+        <tr><th>每秒输入次数</th><th>评级</th></tr>
+        <tr><td>9以上</td><td>SS・超高速</td></tr>
+        <tr><td>7.5~9</td><td>S・极快</td></tr>
+        <tr><td>6~7.5</td><td>A・快</td></tr>
+        <tr><td>4.5~6</td><td>B・中等偏上</td></tr>
+        <tr><td>3~4.5</td><td>C・一般</td></tr>
+        <tr><td>低于3</td><td>D・悠闲</td></tr>
+      </table>
+
+      <h2>是怎么测量的?</h2>
+      <p>本测试会<strong>忽略长按时产生的自动重复输入</strong>,只统计真正按下再松开的次数。键盘的轴体类型(薄膜、机械)以及键程深浅也会影响结果。</p>
     </section>
 
     <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 历代记录排行(最多30位)</h2>

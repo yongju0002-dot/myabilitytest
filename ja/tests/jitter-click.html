@@ -46,6 +46,11 @@
     padding: 6px 12px;
   }
   .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+  .info { margin-top: 40px; color: #cbd5e1; font-size: 14px; line-height: 1.7; }
+  .info h2 { font-size: 17px; color: #f1f5f9; margin: 28px 0 8px; }
+  .info table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
+  .info th, .info td { border: 1px solid #334155; padding: 8px; text-align: left; }
+  .info th { background: var(--card-bg); }
 </style>
 <style>
   .related-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
@@ -125,15 +130,23 @@
       </div>
     </div>
 
-    <section class="note-box">
-      <p><strong>ジタークリックとは?</strong> 指だけを動かす通常のクリックとは違い、
-      前腕と手首の筋肉を緊張させて素早く震わせ、その振動をマウスのボタンに伝えるテクニック
-      です。マインクラフトのPvPコミュニティで広く使われていて、熟練者は通常のクリック
-      (6〜8 CPS)をはるかに超える10〜14 CPSを記録することもあります。</p>
-      <p>このテストではCPSだけでなく<strong>クリック間隔の標準偏差</strong>も計算して、
-      振動の安定性として表示します。数値が小さいほど振動が規則的だという意味です。ただし
-      ジタークリックは手首や腕にかなりの負担をかける動作なので、繰り返しの練習はおすすめ
-      しません。痛みがあればすぐに中止してください。</p>
+    <section class="info">
+      <h2>ジタークリックとは?</h2>
+      <p>指だけを動かす通常のクリックとは違い、前腕と手首の筋肉を緊張させて素早く震わせ、その振動をマウスのボタンに伝えるテクニックです。マインクラフトのPvPコミュニティで広く使われていて、熟練者は通常のクリック(6〜8 CPS)をはるかに超える10〜14 CPSを記録することもあります。</p>
+
+      <h2>結果の見方</h2>
+      <table>
+        <tr><th>CPS</th><th>ランク</th></tr>
+        <tr><td>13以上</td><td>SS・ジターマスター</td></tr>
+        <tr><td>11~13</td><td>S・非常に速い</td></tr>
+        <tr><td>9~11</td><td>A・速い</td></tr>
+        <tr><td>7~9</td><td>B・平均以上</td></tr>
+        <tr><td>5~7</td><td>C・平均的</td></tr>
+        <tr><td>5未満</td><td>D・練習が必要</td></tr>
+      </table>
+
+      <h2>振動の安定性とは?(そして安全上の注意)</h2>
+      <p>このテストではCPSだけでなく<strong>クリック間隔の標準偏差</strong>も計算して、振動の安定性として表示します。数値が小さいほど振動が規則的だという意味です。ただしジタークリックは手首や腕にかなりの負担をかける動作なので、繰り返しの練習はおすすめしません。痛みがあればすぐに中止してください。</p>
     </section>
 
     <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 歴代記録ランキング(最大30位)</h2>

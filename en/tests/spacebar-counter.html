@@ -46,6 +46,11 @@
     padding: 6px 12px;
   }
   .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+  .info { margin-top: 40px; color: #cbd5e1; font-size: 14px; line-height: 1.7; }
+  .info h2 { font-size: 17px; color: #f1f5f9; margin: 28px 0 8px; }
+  .info table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
+  .info th, .info td { border: 1px solid #334155; padding: 8px; text-align: left; }
+  .info th { background: var(--card-bg); }
 </style>
 <style>
   .related-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
@@ -135,14 +140,23 @@
       </div>
     </div>
 
-    <section class="note-box">
-      <p><strong>Why measure spacebar speed?</strong> Plenty of games bind jump or dash to the
-      spacebar, so how fast you can repeat that input translates directly into control. Unlike
-      mouse clicking, many people hit the bar with a thumb or the side of the palm, which is
-      why spacebar results tend to look different from CPS results.</p>
-      <p>This test <strong>ignores the auto-repeat that fires when you hold the key down</strong>,
-      so only genuine press-and-release actions count. Your keyboard's switch type (membrane vs.
-      mechanical) and key travel distance can also change your result.</p>
+    <section class="info">
+      <h2>Why measure spacebar speed?</h2>
+      <p>Plenty of games bind jump or dash to the spacebar, so how fast you can repeat that input translates directly into control. Unlike mouse clicking, many people hit the bar with a thumb or the side of the palm, which is why spacebar results tend to look different from CPS results.</p>
+
+      <h2>Score guide</h2>
+      <table>
+        <tr><th>Presses per second</th><th>Grade</th></tr>
+        <tr><td>9+</td><td>SS · Ultra fast</td></tr>
+        <tr><td>7.5 - 9</td><td>S · Very fast</td></tr>
+        <tr><td>6 - 7.5</td><td>A · Fast</td></tr>
+        <tr><td>4.5 - 6</td><td>B · Above average</td></tr>
+        <tr><td>3 - 4.5</td><td>C · Average</td></tr>
+        <tr><td>Under 3</td><td>D · Relaxed</td></tr>
+      </table>
+
+      <h2>How is this measured?</h2>
+      <p>This test <strong>ignores the auto-repeat that fires when you hold the key down</strong>, so only genuine press-and-release actions count. Your keyboard's switch type (membrane vs. mechanical) and key travel distance can also change your result.</p>
     </section>
 
     <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 All-Time Top Records (Top 30)</h2>

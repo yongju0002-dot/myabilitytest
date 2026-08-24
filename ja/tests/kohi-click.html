@@ -46,6 +46,11 @@
     padding: 6px 12px;
   }
   .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+  .info { margin-top: 40px; color: #cbd5e1; font-size: 14px; line-height: 1.7; }
+  .info h2 { font-size: 17px; color: #f1f5f9; margin: 28px 0 8px; }
+  .info table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
+  .info th, .info td { border: 1px solid #334155; padding: 8px; text-align: left; }
+  .info th { background: var(--card-bg); }
 </style>
 <style>
   .related-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
@@ -120,16 +125,23 @@
       </div>
     </div>
 
-    <section class="note-box">
-      <p><strong>Kohiクリックテストとは?</strong> Kohiはかつてマインクラフトの
-      HCF(ハードコアファクション)界隈で有名だったサーバーで、そこで提供されていた
-      10秒間のクリック速度測定がそのままコミュニティの標準のように定着しました。今でも
-      マインクラフトのPvPプレイヤーの間では「Kohiクリックテスト」は10秒間のCPS測定を
-      指す言葉として使われています。</p>
-      <p>このページはその方式にならって10秒固定で測定し、CPSを小数点以下2桁まで表示
-      します。秒ごとのクリック数の変化をグラフで見られるので、序盤の爆発力と終盤の
-      持久力のどちらが強いかも確認できます。一般的に5〜8 CPSなら平均的、10 CPSを超えると
-      かなり速い部類に入ります。</p>
+    <section class="info">
+      <h2>Kohiクリックテストとは?</h2>
+      <p>Kohiはかつてマインクラフトのハードコアファクション界隈で有名だったサーバーで、そこで提供されていた10秒間のクリック速度測定がそのままコミュニティの標準のように定着しました。今でもマインクラフトのPvPプレイヤーの間では「Kohiクリックテスト」は10秒間のCPS測定を指す言葉として使われています。</p>
+
+      <h2>結果の見方</h2>
+      <table>
+        <tr><th>CPS</th><th>ランク</th></tr>
+        <tr><td>12以上</td><td>SS・超高速</td></tr>
+        <tr><td>10~12</td><td>S・非常に速い</td></tr>
+        <tr><td>8~10</td><td>A・速い</td></tr>
+        <tr><td>6~8</td><td>B・平均以上</td></tr>
+        <tr><td>4~6</td><td>C・平均的</td></tr>
+        <tr><td>4未満</td><td>D・のんびり</td></tr>
+      </table>
+
+      <h2>どうやって測定しますか?</h2>
+      <p>このページはその方式にならって10秒固定で測定し、CPSを小数点以下2桁まで表示します。秒ごとのクリック数の変化をグラフで見られるので、序盤の爆発力と終盤の持久力のどちらが強いかも確認できます。一般的に5〜8 CPSなら平均的、10 CPSを超えるとかなり速い部類に入ります。</p>
     </section>
 
     <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 歴代記録ランキング(最大30位)</h2>

@@ -46,6 +46,11 @@
     padding: 6px 12px;
   }
   .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+  .info { margin-top: 40px; color: #cbd5e1; font-size: 14px; line-height: 1.7; }
+  .info h2 { font-size: 17px; color: #f1f5f9; margin: 28px 0 8px; }
+  .info table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
+  .info th, .info td { border: 1px solid #334155; padding: 8px; text-align: left; }
+  .info th { background: var(--card-bg); }
 </style>
 <style>
   .related-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
@@ -135,14 +140,23 @@
       </div>
     </div>
 
-    <section class="note-box">
-      <p><strong>スペースキー連打を測る意味は?</strong> ゲームではジャンプやダッシュが
-      スペースキーに割り当てられていることが多く、短時間にどれだけ速く繰り返し入力できるかが
-      そのまま操作力につながります。マウスクリックと違って親指や手のひらの側面で叩く人も
-      多いため、CPSとは記録の傾向が変わってきます。</p>
-      <p>このテストは<strong>キーを押しっぱなしにしたときの自動リピート入力を無視</strong>
-      するので、実際に押して離した回数だけが集計されます。キーボードのスイッチの種類
-      (メンブレン・メカニカル)やキーの押し込みの深さによっても結果は変わります。</p>
+    <section class="info">
+      <h2>スペースキー連打を測る意味は?</h2>
+      <p>ゲームではジャンプやダッシュがスペースキーに割り当てられていることが多く、短時間にどれだけ速く繰り返し入力できるかがそのまま操作力につながります。マウスクリックと違って親指や手のひらの側面で叩く人も多いため、CPSとは記録の傾向が変わってきます。</p>
+
+      <h2>結果の見方</h2>
+      <table>
+        <tr><th>秒あたりの入力数</th><th>ランク</th></tr>
+        <tr><td>9以上</td><td>SS・超高速</td></tr>
+        <tr><td>7.5~9</td><td>S・非常に速い</td></tr>
+        <tr><td>6~7.5</td><td>A・速い</td></tr>
+        <tr><td>4.5~6</td><td>B・平均以上</td></tr>
+        <tr><td>3~4.5</td><td>C・平均的</td></tr>
+        <tr><td>3未満</td><td>D・のんびり</td></tr>
+      </table>
+
+      <h2>どうやって測定していますか?</h2>
+      <p>このテストは<strong>キーを押しっぱなしにしたときの自動リピート入力を無視</strong>するので、実際に押して離した回数だけが集計されます。キーボードのスイッチの種類(メンブレン・メカニカル)やキーの押し込みの深さによっても結果は変わります。</p>
     </section>
 
     <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 歴代記録ランキング(最大30位)</h2>

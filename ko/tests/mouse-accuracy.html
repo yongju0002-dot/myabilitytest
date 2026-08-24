@@ -46,6 +46,11 @@
     padding: 6px 12px;
   }
   .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+  .info { margin-top: 40px; color: #cbd5e1; font-size: 14px; line-height: 1.7; }
+  .info h2 { font-size: 17px; color: #f1f5f9; margin: 28px 0 8px; }
+  .info table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
+  .info th, .info td { border: 1px solid #334155; padding: 8px; text-align: left; }
+  .info th { background: var(--card-bg); }
   .persona-label { margin-top: 6px; font-size: 19px; font-weight: 700; color: var(--accent); }
 </style>
 <style>
@@ -143,15 +148,23 @@
       </div>
     </div>
 
-    <section class="note-box">
-      <p><strong>마우스 정확도란?</strong> 목표 지점을 정확히 클릭하는 능력(플리킹)과 달리,
-      이 테스트는 커서를 의도한 궤적 위에 <strong>유지</strong>하는 능력을 봅니다. FPS 게임의
-      트래킹 에임, 그래픽 툴의 펜 작업, 드래그 조작처럼 "정확히 따라가는" 상황에 필요한
-      컨트롤이에요.</p>
-      <p>점수는 경로 안에 머문 시간 비율(정확도)과 완주 시간을 함께 반영합니다. 너무 빨리
-      움직이면 경로를 벗어나기 쉽고, 너무 조심스러우면 시간이 길어지기 때문에 속도와 정확성의
-      균형이 중요합니다. 마우스 감도가 지나치게 높으면 미세 조정이 어려우니 감도를 조절해보는
-      것도 도움이 됩니다.</p>
+    <section class="info">
+      <h2>마우스 정확도란?</h2>
+      <p>목표 지점을 정확히 클릭하는 능력(플리킹)과 달리, 이 테스트는 커서를 의도한 궤적 위에 <strong>유지</strong>하는 능력을 봅니다. FPS 게임의 트래킹 에임, 그래픽 툴의 펜 작업, 드래그 조작처럼 "정확히 따라가는" 상황에 필요한 컨트롤이에요.</p>
+
+      <h2>결과 해석표</h2>
+      <table>
+        <tr><th>종합 점수</th><th>등급</th></tr>
+        <tr><td>90점 이상</td><td>SS · 정밀 조작</td></tr>
+        <tr><td>80 ~ 90점</td><td>S · 매우 안정적</td></tr>
+        <tr><td>68 ~ 80점</td><td>A · 안정적</td></tr>
+        <tr><td>55 ~ 68점</td><td>B · 평균 이상</td></tr>
+        <tr><td>40 ~ 55점</td><td>C · 평균</td></tr>
+        <tr><td>40점 미만</td><td>D · 연습 필요</td></tr>
+      </table>
+
+      <h2>점수는 어떻게 계산되나요?</h2>
+      <p>점수는 경로 안에 머문 시간 비율(정확도)과 완주 시간을 함께 반영합니다. 너무 빨리 움직이면 경로를 벗어나기 쉽고, 너무 조심스러우면 시간이 길어지기 때문에 속도와 정확성의 균형이 중요합니다. 마우스 감도가 지나치게 높으면 미세 조정이 어려우니 감도를 조절해보는 것도 도움이 됩니다.</p>
     </section>
 
     <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 역대 기록 순위 (최대 30위)</h2>

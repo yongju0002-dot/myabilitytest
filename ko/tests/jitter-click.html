@@ -46,6 +46,11 @@
     padding: 6px 12px;
   }
   .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+  .info { margin-top: 40px; color: #cbd5e1; font-size: 14px; line-height: 1.7; }
+  .info h2 { font-size: 17px; color: #f1f5f9; margin: 28px 0 8px; }
+  .info table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
+  .info th, .info td { border: 1px solid #334155; padding: 8px; text-align: left; }
+  .info th { background: var(--card-bg); }
   .persona-label { margin-top: 6px; font-size: 19px; font-weight: 700; color: var(--accent); }
 </style>
 <style>
@@ -127,15 +132,23 @@
       </div>
     </div>
 
-    <section class="note-box">
-      <p><strong>지터 클릭이란?</strong> 손가락만 움직이는 일반 클릭과 달리, 팔뚝과 손목의
-      근육을 긴장시켜 빠르게 떨리게 만들고 그 진동을 마우스 버튼에 전달하는 기법입니다.
-      마인크래프트 PvP 커뮤니티에서 널리 쓰이며, 숙련자는 일반 클릭(6~8 CPS)을 훨씬 넘는
-      10~14 CPS를 기록하기도 합니다.</p>
-      <p>이 테스트는 CPS뿐 아니라 <strong>클릭 간격의 표준편차</strong>도 함께 계산해
-      '떨림 일관성'으로 보여줍니다. 표준편차가 작을수록 진동이 규칙적이라는 뜻이에요.
-      다만 지터 클릭은 손목과 팔에 상당한 부담을 주는 동작이므로, 반복 연습은 권하지 않으며
-      통증이 있으면 바로 중단하세요.</p>
+    <section class="info">
+      <h2>지터 클릭이란?</h2>
+      <p>손가락만 움직이는 일반 클릭과 달리, 팔뚝과 손목의 근육을 긴장시켜 빠르게 떨리게 만들고 그 진동을 마우스 버튼에 전달하는 기법입니다. 마인크래프트 PvP 커뮤니티에서 널리 쓰이며, 숙련자는 일반 클릭(6~8 CPS)을 훨씬 넘는 10~14 CPS를 기록하기도 합니다.</p>
+
+      <h2>결과 해석표</h2>
+      <table>
+        <tr><th>CPS</th><th>등급</th></tr>
+        <tr><td>13 이상</td><td>SS · 지터 마스터</td></tr>
+        <tr><td>11 ~ 13</td><td>S · 매우 빠름</td></tr>
+        <tr><td>9 ~ 11</td><td>A · 빠름</td></tr>
+        <tr><td>7 ~ 9</td><td>B · 평균 이상</td></tr>
+        <tr><td>5 ~ 7</td><td>C · 평균</td></tr>
+        <tr><td>5 미만</td><td>D · 연습 필요</td></tr>
+      </table>
+
+      <h2>떨림 일관성이란? (그리고 부상 주의)</h2>
+      <p>이 테스트는 CPS뿐 아니라 <strong>클릭 간격의 표준편차</strong>도 함께 계산해 '떨림 일관성'으로 보여줍니다. 표준편차가 작을수록 진동이 규칙적이라는 뜻이에요. 다만 지터 클릭은 손목과 팔에 상당한 부담을 주는 동작이므로, 반복 연습은 권하지 않으며 통증이 있으면 바로 중단하세요.</p>
     </section>
 
     <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 역대 기록 순위 (최대 30위)</h2>

@@ -46,6 +46,11 @@
     padding: 6px 12px;
   }
   .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+  .info { margin-top: 40px; color: #cbd5e1; font-size: 14px; line-height: 1.7; }
+  .info h2 { font-size: 17px; color: #f1f5f9; margin: 28px 0 8px; }
+  .info table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
+  .info th, .info td { border: 1px solid #334155; padding: 8px; text-align: left; }
+  .info th { background: var(--card-bg); }
 </style>
 <style>
   .related-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
@@ -120,15 +125,23 @@
       </div>
     </div>
 
-    <section class="note-box">
-      <p><strong>What is the Kohi click test?</strong> Kohi was a well-known Minecraft server
-      in the HCF (hardcore factions) scene, and the 10-second click-speed measurement it
-      offered in-game effectively became a community standard. Among Minecraft PvP players,
-      "Kohi click test" is still shorthand for measuring CPS over 10 seconds.</p>
-      <p>This page follows that format with a fixed 10-second window and shows CPS to two
-      decimal places. Because it graphs your clicks per second, you can also see whether your
-      strength is burst speed early on or stamina near the end. Generally 5–8 CPS is typical,
-      while breaking 10 CPS is considered quite fast.</p>
+    <section class="info">
+      <h2>What is the Kohi click test?</h2>
+      <p>Kohi was a well-known Minecraft server in the HCF (hardcore factions) scene, and the 10-second click-speed measurement it offered in-game effectively became a community standard. Among Minecraft PvP players, "Kohi click test" is still shorthand for measuring CPS over 10 seconds.</p>
+
+      <h2>Score guide</h2>
+      <table>
+        <tr><th>CPS</th><th>Grade</th></tr>
+        <tr><td>12+</td><td>SS · Ultra fast</td></tr>
+        <tr><td>10 - 12</td><td>S · Very fast</td></tr>
+        <tr><td>8 - 10</td><td>A · Fast</td></tr>
+        <tr><td>6 - 8</td><td>B · Above average</td></tr>
+        <tr><td>4 - 6</td><td>C · Average</td></tr>
+        <tr><td>Under 4</td><td>D · Relaxed</td></tr>
+      </table>
+
+      <h2>How is it measured?</h2>
+      <p>This page follows that format with a fixed 10-second window and shows CPS to two decimal places. Because it graphs your clicks per second, you can also see whether your strength is burst speed early on or stamina near the end. Generally 5–8 CPS is typical, while breaking 10 CPS is considered quite fast.</p>
     </section>
 
     <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 All-Time Top Records (Top 30)</h2>

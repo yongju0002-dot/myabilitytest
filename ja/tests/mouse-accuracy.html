@@ -46,6 +46,11 @@
     padding: 6px 12px;
   }
   .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+  .info { margin-top: 40px; color: #cbd5e1; font-size: 14px; line-height: 1.7; }
+  .info h2 { font-size: 17px; color: #f1f5f9; margin: 28px 0 8px; }
+  .info table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
+  .info th, .info td { border: 1px solid #334155; padding: 8px; text-align: left; }
+  .info th { background: var(--card-bg); }
 </style>
 <style>
   .related-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
@@ -141,15 +146,23 @@
       </div>
     </div>
 
-    <section class="note-box">
-      <p><strong>マウス精度とは?</strong> 目標地点を正確にクリックする能力(フリッキング)
-      とは違い、このテストはカーソルを意図した軌道の上に<strong>維持する</strong>能力を見ます。
-      FPSゲームのトラッキングエイム、グラフィックツールでのペン作業、ドラッグ操作など
-      「正確になぞる」場面で必要になるコントロールです。</p>
-      <p>スコアは経路の中にとどまっていた時間の割合(精度)と完走タイムの両方を反映します。
-      速く動かしすぎると経路を外れやすく、慎重すぎると時間がかかるため、速度と正確さの
-      バランスが重要です。マウス感度が高すぎると微調整が難しくなるので、感度を調整して
-      みるのも有効です。</p>
+    <section class="info">
+      <h2>マウス精度とは?</h2>
+      <p>目標地点を正確にクリックする能力(フリッキング)とは違い、このテストはカーソルを意図した軌道の上に<strong>維持する</strong>能力を見ます。FPSゲームのトラッキングエイム、グラフィックツールでのペン作業、ドラッグ操作など「正確になぞる」場面で必要になるコントロールです。</p>
+
+      <h2>結果の見方</h2>
+      <table>
+        <tr><th>総合スコア</th><th>ランク</th></tr>
+        <tr><td>90点以上</td><td>SS・精密操作</td></tr>
+        <tr><td>80~90点</td><td>S・非常に安定</td></tr>
+        <tr><td>68~80点</td><td>A・安定</td></tr>
+        <tr><td>55~68点</td><td>B・平均以上</td></tr>
+        <tr><td>40~55点</td><td>C・平均的</td></tr>
+        <tr><td>40点未満</td><td>D・練習が必要</td></tr>
+      </table>
+
+      <h2>スコアはどう計算されますか?</h2>
+      <p>スコアは経路の中にとどまっていた時間の割合(精度)と完走タイムの両方を反映します。速く動かしすぎると経路を外れやすく、慎重すぎると時間がかかるため、速度と正確さのバランスが重要です。マウス感度が高すぎると微調整が難しくなるので、感度を調整してみるのも有効です。</p>
     </section>
 
     <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 歴代記録ランキング(最大30位)</h2>

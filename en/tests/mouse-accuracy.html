@@ -46,6 +46,11 @@
     padding: 6px 12px;
   }
   .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+  .info { margin-top: 40px; color: #cbd5e1; font-size: 14px; line-height: 1.7; }
+  .info h2 { font-size: 17px; color: #f1f5f9; margin: 28px 0 8px; }
+  .info table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
+  .info th, .info td { border: 1px solid #334155; padding: 8px; text-align: left; }
+  .info th { background: var(--card-bg); }
 </style>
 <style>
   .related-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
@@ -142,15 +147,23 @@
       </div>
     </div>
 
-    <section class="note-box">
-      <p><strong>What is mouse accuracy?</strong> Unlike clicking a target precisely (flicking),
-      this test looks at your ability to <strong>keep</strong> the cursor on an intended path.
-      It's the control you need for tracking aim in FPS games, pen work in graphics software,
-      and any drag operation where following exactly is the point.</p>
-      <p>Your score combines the share of time you stayed inside the path (accuracy) with how
-      quickly you finished. Move too fast and you'll drift off the track; move too cautiously and
-      the clock runs, so balancing speed against precision is the whole challenge. If your mouse
-      sensitivity is very high, fine adjustments get harder — it can be worth dialing it down.</p>
+    <section class="info">
+      <h2>What is mouse accuracy?</h2>
+      <p>Unlike clicking a target precisely (flicking), this test looks at your ability to <strong>keep</strong> the cursor on an intended path. It's the control you need for tracking aim in FPS games, pen work in graphics software, and any drag operation where following exactly is the point.</p>
+
+      <h2>Score guide</h2>
+      <table>
+        <tr><th>Composite score</th><th>Grade</th></tr>
+        <tr><td>90+</td><td>SS · Precision control</td></tr>
+        <tr><td>80 - 90</td><td>S · Very steady</td></tr>
+        <tr><td>68 - 80</td><td>A · Steady</td></tr>
+        <tr><td>55 - 68</td><td>B · Above average</td></tr>
+        <tr><td>40 - 55</td><td>C · Average</td></tr>
+        <tr><td>Under 40</td><td>D · Needs practice</td></tr>
+      </table>
+
+      <h2>How is the score calculated?</h2>
+      <p>Your score combines the share of time you stayed inside the path (accuracy) with how quickly you finished. Move too fast and you'll drift off the track; move too cautiously and the clock runs, so balancing speed against precision is the whole challenge. If your mouse sensitivity is very high, fine adjustments get harder — it can be worth dialing it down.</p>
     </section>
 
     <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 All-Time Top Records (Top 30)</h2>

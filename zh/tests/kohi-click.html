@@ -46,6 +46,11 @@
     padding: 6px 12px;
   }
   .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+  .info { margin-top: 40px; color: #cbd5e1; font-size: 14px; line-height: 1.7; }
+  .info h2 { font-size: 17px; color: #f1f5f9; margin: 28px 0 8px; }
+  .info table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
+  .info th, .info td { border: 1px solid #334155; padding: 8px; text-align: left; }
+  .info th { background: var(--card-bg); }
 </style>
 <style>
   .related-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
@@ -120,13 +125,23 @@
       </div>
     </div>
 
-    <section class="note-box">
-      <p><strong>什么是Kohi点击测试?</strong> Kohi曾是《我的世界》HCF(硬核派系)
-      玩法中知名的服务器,其服务器内提供的10秒点击速度测量方式后来几乎成了社区标准。
-      直到现在,在《我的世界》PvP玩家之间,"Kohi点击测试"依然是10秒CPS测量的代名词。</p>
-      <p>本页面沿用该方式,固定10秒测量,并将CPS精确显示到小数点后两位。由于会以图表
-      呈现每秒点击数的变化,你还能看出自己是前期爆发力更强,还是后期耐力更好。一般来说
-      5~8 CPS属于普通水平,超过10 CPS就相当快了。</p>
+    <section class="info">
+      <h2>什么是Kohi点击测试?</h2>
+      <p>Kohi曾是《我的世界》HCF(硬核派系)玩法中知名的服务器,其服务器内提供的10秒点击速度测量方式后来几乎成了社区标准。直到现在,在《我的世界》PvP玩家之间,"Kohi点击测试"依然是10秒CPS测量的代名词。</p>
+
+      <h2>结果解读表</h2>
+      <table>
+        <tr><th>CPS</th><th>评级</th></tr>
+        <tr><td>12以上</td><td>SS・超高速</td></tr>
+        <tr><td>10~12</td><td>S・极快</td></tr>
+        <tr><td>8~10</td><td>A・快</td></tr>
+        <tr><td>6~8</td><td>B・中等偏上</td></tr>
+        <tr><td>4~6</td><td>C・一般</td></tr>
+        <tr><td>低于4</td><td>D・悠闲</td></tr>
+      </table>
+
+      <h2>是怎么测量的?</h2>
+      <p>本页面沿用该方式,固定10秒测量,并将CPS精确显示到小数点后两位。由于会以图表呈现每秒点击数的变化,你还能看出自己是前期爆发力更强,还是后期耐力更好。一般来说5~8 CPS属于普通水平,超过10 CPS就相当快了。</p>
     </section>
 
     <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 历代记录排行(最多30位)</h2>

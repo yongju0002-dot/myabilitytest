@@ -46,6 +46,11 @@
     padding: 6px 12px;
   }
   .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+  .info { margin-top: 40px; color: #cbd5e1; font-size: 14px; line-height: 1.7; }
+  .info h2 { font-size: 17px; color: #f1f5f9; margin: 28px 0 8px; }
+  .info table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
+  .info th, .info td { border: 1px solid #334155; padding: 8px; text-align: left; }
+  .info th { background: var(--card-bg); }
   .persona-label { margin-top: 6px; font-size: 19px; font-weight: 700; color: var(--accent); }
 </style>
 <style>
@@ -122,15 +127,23 @@
       </div>
     </div>
 
-    <section class="note-box">
-      <p><strong>Kohi 클릭 테스트란?</strong> Kohi는 과거 마인크래프트 HCF(하드코어 팩션)
-      장르에서 유명했던 서버로, 서버 내에서 제공하던 10초 클릭 속도 측정 방식이 그대로
-      커뮤니티 표준처럼 굳어졌습니다. 지금도 마인크래프트 PvP 유저들 사이에서 "Kohi
-      클릭 테스트"는 10초 CPS 측정을 뜻하는 대명사로 쓰입니다.</p>
-      <p>이 페이지는 그 방식을 따라 10초 고정으로 측정하고, CPS를 소수점 둘째 자리까지
-      표시합니다. 초당 클릭 수 변화를 그래프로 보여주기 때문에 초반 폭발력과 후반 지구력
-      중 어느 쪽이 강한지도 확인할 수 있어요. 일반적으로 5~8 CPS면 평범한 수준, 10 CPS를
-      넘기면 상당히 빠른 편에 속합니다.</p>
+    <section class="info">
+      <h2>Kohi 클릭 테스트란?</h2>
+      <p>Kohi는 과거 마인크래프트 HCF(하드코어 팩션) 장르에서 유명했던 서버로, 서버 내에서 제공하던 10초 클릭 속도 측정 방식이 그대로 커뮤니티 표준처럼 굳어졌습니다. 지금도 마인크래프트 PvP 유저들 사이에서 "Kohi 클릭 테스트"는 10초 CPS 측정을 뜻하는 대명사로 쓰입니다.</p>
+
+      <h2>결과 해석표</h2>
+      <table>
+        <tr><th>CPS</th><th>등급</th></tr>
+        <tr><td>12 이상</td><td>SS · 초고속</td></tr>
+        <tr><td>10 ~ 12</td><td>S · 매우 빠름</td></tr>
+        <tr><td>8 ~ 10</td><td>A · 빠름</td></tr>
+        <tr><td>6 ~ 8</td><td>B · 평균 이상</td></tr>
+        <tr><td>4 ~ 6</td><td>C · 평균</td></tr>
+        <tr><td>4 미만</td><td>D · 느긋함</td></tr>
+      </table>
+
+      <h2>어떻게 측정하나요?</h2>
+      <p>이 페이지는 그 방식을 따라 10초 고정으로 측정하고, CPS를 소수점 둘째 자리까지 표시합니다. 초당 클릭 수 변화를 그래프로 보여주기 때문에 초반 폭발력과 후반 지구력 중 어느 쪽이 강한지도 확인할 수 있어요. 일반적으로 5~8 CPS면 평범한 수준, 10 CPS를 넘기면 상당히 빠른 편에 속합니다.</p>
     </section>
 
     <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 역대 기록 순위 (최대 30위)</h2>

@@ -46,6 +46,11 @@
     padding: 6px 12px;
   }
   .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+  .info { margin-top: 40px; color: #cbd5e1; font-size: 14px; line-height: 1.7; }
+  .info h2 { font-size: 17px; color: #f1f5f9; margin: 28px 0 8px; }
+  .info table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
+  .info th, .info td { border: 1px solid #334155; padding: 8px; text-align: left; }
+  .info th { background: var(--card-bg); }
   .persona-label { margin-top: 6px; font-size: 19px; font-weight: 700; color: var(--accent); }
 </style>
 <style>
@@ -137,14 +142,23 @@
       </div>
     </div>
 
-    <section class="note-box">
-      <p><strong>스페이스바 연타는 왜 측정할까?</strong> 게임에서 점프・대시 같은 동작이
-      스페이스바에 걸려 있는 경우가 많아, 짧은 시간에 얼마나 빠르게 반복 입력할 수 있는지가
-      곧 조작 능력으로 이어집니다. 마우스 클릭과 달리 엄지나 손바닥 옆면을 쓰는 사람도 많아
-      CPS와는 기록 경향이 다르게 나옵니다.</p>
-      <p>이 테스트는 키를 <strong>꾹 누르고 있을 때 발생하는 자동 반복 입력을 무시</strong>
-      하므로, 실제로 눌렀다 뗀 횟수만 집계됩니다. 키보드의 스위치 종류(멤브레인・기계식)와
-      키 눌림 깊이에 따라서도 결과가 달라질 수 있어요.</p>
+    <section class="info">
+      <h2>스페이스바 연타는 왜 측정할까?</h2>
+      <p>게임에서 점프・대시 같은 동작이 스페이스바에 걸려 있는 경우가 많아, 짧은 시간에 얼마나 빠르게 반복 입력할 수 있는지가 곧 조작 능력으로 이어집니다. 마우스 클릭과 달리 엄지나 손바닥 옆면을 쓰는 사람도 많아 CPS와는 기록 경향이 다르게 나옵니다.</p>
+
+      <h2>결과 해석표</h2>
+      <table>
+        <tr><th>초당 입력</th><th>등급</th></tr>
+        <tr><td>9 이상</td><td>SS · 초고속</td></tr>
+        <tr><td>7.5 ~ 9</td><td>S · 매우 빠름</td></tr>
+        <tr><td>6 ~ 7.5</td><td>A · 빠름</td></tr>
+        <tr><td>4.5 ~ 6</td><td>B · 평균 이상</td></tr>
+        <tr><td>3 ~ 4.5</td><td>C · 평균</td></tr>
+        <tr><td>3 미만</td><td>D · 느긋함</td></tr>
+      </table>
+
+      <h2>측정 방식이 궁금해요</h2>
+      <p>이 테스트는 키를 <strong>꾹 누르고 있을 때 발생하는 자동 반복 입력을 무시</strong>하므로, 실제로 눌렀다 뗀 횟수만 집계됩니다. 키보드의 스위치 종류(멤브레인・기계식)와 키 눌림 깊이에 따라서도 결과가 달라질 수 있어요.</p>
     </section>
 
     <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 역대 기록 순위 (최대 30위)</h2>

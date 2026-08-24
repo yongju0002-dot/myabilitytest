@@ -46,6 +46,11 @@
     padding: 6px 12px;
   }
   .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+  .info { margin-top: 40px; color: #cbd5e1; font-size: 14px; line-height: 1.7; }
+  .info h2 { font-size: 17px; color: #f1f5f9; margin: 28px 0 8px; }
+  .info table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
+  .info th, .info td { border: 1px solid #334155; padding: 8px; text-align: left; }
+  .info th { background: var(--card-bg); }
 </style>
 <style>
   .related-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
@@ -141,13 +146,23 @@
       </div>
     </div>
 
-    <section class="note-box">
-      <p><strong>什么是鼠标精准度?</strong> 与精确点击目标(甩枪)不同,这个测试考察的是把
-      光标<strong>保持</strong>在预定轨迹上的能力。在FPS游戏的追踪瞄准、绘图软件的笔触操作,
-      以及各种拖拽操作中,都需要这种"精确跟随"的操控力。</p>
-      <p>分数同时反映停留在路径内的时间比例(精准度)和完成时间。移动太快容易偏离路径,
-      太谨慎又会拖长时间,因此速度与精度的平衡才是关键。如果鼠标灵敏度过高,微调会变得
-      困难,适当调低灵敏度也会有帮助。</p>
+    <section class="info">
+      <h2>什么是鼠标精准度?</h2>
+      <p>与精确点击目标(甩枪)不同,这个测试考察的是把光标<strong>保持</strong>在预定轨迹上的能力。在FPS游戏的追踪瞄准、绘图软件的笔触操作,以及各种拖拽操作中,都需要这种"精确跟随"的操控力。</p>
+
+      <h2>结果解读表</h2>
+      <table>
+        <tr><th>综合得分</th><th>评级</th></tr>
+        <tr><td>90分以上</td><td>SS・精密操控</td></tr>
+        <tr><td>80~90分</td><td>S・非常稳定</td></tr>
+        <tr><td>68~80分</td><td>A・稳定</td></tr>
+        <tr><td>55~68分</td><td>B・中等偏上</td></tr>
+        <tr><td>40~55分</td><td>C・一般</td></tr>
+        <tr><td>低于40分</td><td>D・需要练习</td></tr>
+      </table>
+
+      <h2>分数是怎么计算的?</h2>
+      <p>分数同时反映停留在路径内的时间比例(精准度)和完成时间。移动太快容易偏离路径,太谨慎又会拖长时间,因此速度与精度的平衡才是关键。如果鼠标灵敏度过高,微调会变得困难,适当调低灵敏度也会有帮助。</p>
     </section>
 
     <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 历代记录排行(最多30位)</h2>

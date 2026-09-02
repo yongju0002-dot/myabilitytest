@@ -616,4 +616,48 @@
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/privacy"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/privacy"/>
   </url>
+  <url>
+    <loc>https://myabilitytest.com/ko/tests/monitor-hz</loc>
+    <lastmod>2026-09-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/monitor-hz"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/monitor-hz"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/monitor-hz"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/monitor-hz"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/monitor-hz"/>
+  </url>
+  <url>
+    <loc>https://myabilitytest.com/en/tests/monitor-hz</loc>
+    <lastmod>2026-09-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/monitor-hz"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/monitor-hz"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/monitor-hz"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/monitor-hz"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/monitor-hz"/>
+  </url>
+  <url>
+    <loc>https://myabilitytest.com/ja/tests/monitor-hz</loc>
+    <lastmod>2026-09-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/monitor-hz"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/monitor-hz"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/monitor-hz"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/monitor-hz"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/monitor-hz"/>
+  </url>
+  <url>
+    <loc>https://myabilitytest.com/zh/tests/monitor-hz</loc>
+    <lastmod>2026-09-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/monitor-hz"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/monitor-hz"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/monitor-hz"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/monitor-hz"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/monitor-hz"/>
+  </url>
 </urlset>

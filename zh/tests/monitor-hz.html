@@ -1,0 +1,352 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>显示器刷新率测试 | 能力测试</title>
+<meta name="description" content="你的显示器真的是60Hz?144Hz?在浏览器里直接测量的免费刷新率(Hz)测试,无需安装,实测真实帧间隔。">
+<link rel="canonical" href="https://myabilitytest.com/zh/tests/monitor-hz">
+<link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/monitor-hz">
+<link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/monitor-hz">
+<link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/monitor-hz">
+<link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/monitor-hz">
+<link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/monitor-hz">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MyAbilityTest">
+<meta property="og:title" content="显示器刷新率测试 | 能力测试">
+<meta property="og:description" content="你的显示器真的是60Hz?144Hz?在浏览器里直接测量的免费刷新率测试。">
+<meta property="og:url" content="https://myabilitytest.com/zh/tests/monitor-hz">
+<meta property="og:image" content="https://myabilitytest.com/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="显示器刷新率测试 | 能力测试">
+<meta name="twitter:description" content="你的显示器真的是60Hz?144Hz?在浏览器里直接测量的免费刷新率测试。">
+<meta name="twitter:image" content="https://myabilitytest.com/og-default.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"Organization","@id":"https://myabilitytest.com/#organization","name":"MyAbilityTest","url":"https://myabilitytest.com/","logo":{"@type":"ImageObject","url":"https://myabilitytest.com/og-default.png","width":1200,"height":630}},
+{"@type":"WebSite","@id":"https://myabilitytest.com/#website","name":"MyAbilityTest","url":"https://myabilitytest.com/","inLanguage":["ko","en","ja","zh-Hant"],"publisher":{"@id":"https://myabilitytest.com/#organization"}},
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://myabilitytest.com/zh/"},{"@type":"ListItem","position":2,"name":"显示器刷新率测试 | 能力测试","item":"https://myabilitytest.com/zh/tests/monitor-hz"}]},{"@type":"WebApplication","name":"显示器刷新率测试 | 能力测试","url":"https://myabilitytest.com/zh/tests/monitor-hz","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"zh"},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"浏览器测出的刷新率会和实际不同吗?","acceptedAnswer":{"@type":"Answer","text":"会。浏览器按照屏幕刷新节奏绘制帧,但省电模式、其他标签页的负载以及浏览器的限帧策略,都可能让读数低于显示器的实际刷新率。请接上电源、关闭其他标签页后重新测量。"}},
+{"@type":"Question","name":"我是144Hz显示器,却显示60Hz。","acceptedAnswer":{"@type":"Answer","text":"多半是操作系统的显示设置仍停留在60Hz。Windows 可在 设置 > 系统 > 显示 > 高级显示设置 中查看修改,Mac 可在 设置 > 显示器 中调整。线材规格不支持高刷新率时也会被限制。"}},
+{"@type":"Question","name":"刷新率高对游戏有利吗?","acceptedAnswer":{"@type":"Answer","text":"屏幕更新更频繁,移动画面看起来更顺滑,新信息到达眼睛的延迟更短。不过体感差异因人和游戏类型而异,刷新率本身并不决定水平。"}}
+]}
+]}
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
+<link rel="stylesheet" href="/skill-test/style.css">
+<style>
+  .info { margin-top: 40px; color: #cbd5e1; font-size: 14px; line-height: 1.7; }
+  .info h2 { font-size: 17px; color: #f1f5f9; margin: 28px 0 8px; }
+  .info table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
+  .info th, .info td { border: 1px solid #334155; padding: 8px; text-align: left; }
+  .info th { background: var(--card-bg); }
+  .info ul { padding-left: 20px; }
+  .other-tests { margin-top: 16px; }
+  .other-tests .label { text-align: center; font-size: 12px; color: var(--text-dim); margin-bottom: 8px; }
+  .other-tests-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .other-tests-links a {
+    font-size: 12px; color: #cbd5e1; text-decoration: none;
+    background: var(--card-bg-2); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 999px; padding: 6px 12px;
+  }
+  .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+
+  .hz-readout { text-align: center; margin: 18px 0 6px; }
+  .hz-readout .hz-num { font-size: 76px; font-weight: 800; color: var(--accent); line-height: 1; font-variant-numeric: tabular-nums; }
+  .hz-readout .hz-unit { font-size: 24px; font-weight: 700; color: var(--accent); margin-left: 4px; }
+  .hz-readout .hz-label { color: var(--text-dim); font-size: 13px; margin-top: 8px; }
+  .hz-progress { height: 6px; background: var(--card-bg-2); border-radius: 999px; overflow: hidden; margin: 14px 0 6px; }
+  .hz-progress .fill { height: 100%; width: 0%; background: var(--accent); transition: width 0.15s linear; }
+  .hz-detail { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 16px; }
+  .hz-detail .box { background: var(--card-bg-2); border-radius: 12px; padding: 12px 8px; text-align: center; }
+  .hz-detail .box .k { font-size: 11.5px; color: var(--text-dim); margin-bottom: 4px; }
+  .hz-detail .box .v { font-size: 16px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .hz-verdict { text-align: center; font-size: 15px; font-weight: 700; margin-top: 14px; }
+  .hz-note { color: var(--text-dim); font-size: 12.5px; text-align: center; margin-top: 8px; line-height: 1.6; }
+
+  /* 用于比较流畅度的移动圆点 */
+  .smooth-demo { background: var(--card-bg-2); border-radius: 14px; padding: 14px; margin-top: 18px; overflow: hidden; }
+  .smooth-demo .track { position: relative; height: 26px; margin-bottom: 8px; }
+  .smooth-demo .dot { position: absolute; top: 3px; width: 20px; height: 20px; border-radius: 50%; background: var(--accent); }
+  .smooth-demo .cap { color: var(--text-dim); font-size: 11.5px; text-align: center; }
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back-link" href="/zh/">← 返回主页</a>
+    <div class="lang-switch">
+      <a href="/ko/tests/monitor-hz">한국어</a>
+      <a href="/en/tests/monitor-hz">English</a>
+      <a href="/ja/tests/monitor-hz">日本語</a>
+      <a class="active" href="/zh/tests/monitor-hz">中文</a>
+    </div>
+    <h1>🖥️ 显示器刷新率测试</h1>
+    <p class="sub">通过测量浏览器实际绘制的帧间隔来推算刷新率。</p>
+
+    <div class="info-box">
+      💻 无需安装,直接测量。为了准确,请<strong>关闭其他标签页,笔记本请接上电源</strong>后再测。
+    </div>
+
+    <div class="level-card">
+      <div class="hz-readout">
+        <span class="hz-num" id="hzNum">--</span><span class="hz-unit">Hz</span>
+        <div class="hz-label" id="hzLabel">请点击测量按钮</div>
+      </div>
+      <div class="hz-progress"><div class="fill" id="hzFill"></div></div>
+      <div class="hz-detail">
+        <div class="box"><div class="k">平均帧间隔</div><div class="v" id="hzAvg">-</div></div>
+        <div class="box"><div class="k">最短间隔</div><div class="v" id="hzMin">-</div></div>
+        <div class="box"><div class="k">帧抖动</div><div class="v" id="hzJitter">-</div></div>
+      </div>
+      <div class="hz-verdict" id="hzVerdict"></div>
+      <div class="hz-note" id="hzNote"></div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn" id="startBtn">测量刷新率(5秒)</button>
+      <button class="btn secondary" id="shareBtn" style="display:none;">分享结果</button>
+    </div>
+
+    <div class="smooth-demo">
+      <div class="track"><div class="dot" id="demoDot"></div></div>
+      <div class="cap">如果这个点看起来卡顿,可能是刷新率偏低,或浏览器在限制帧数</div>
+    </div>
+
+    <div class="stats">
+      <div class="stat-box">
+        <div class="label">测量次数</div>
+        <div class="value" id="statCount">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">最高读数</div>
+        <div class="value" id="statBest">-</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">最新读数</div>
+        <div class="value" id="statLast">-</div>
+      </div>
+    </div>
+
+    <section class="info">
+      <h2>什么是刷新率(Hz)?</h2>
+      <p>刷新率表示显示器每秒重绘屏幕的次数。60Hz就是每秒60次,144Hz则是144次。数值越大,移动画面看起来越顺滑,新画面到达眼睛的延迟也越短。</p>
+
+      <h2>这个测试是怎么测量的?</h2>
+      <p>浏览器的<code>requestAnimationFrame</code>会跟随屏幕刷新周期被调用。本测试在5秒内记录所有调用间隔,然后以<strong>中位数</strong>为准计算每秒帧数。使用中位数而非平均值,是为了避免测量过程中偶尔跳变的帧影响结果。</p>
+
+      <h2>结果解读</h2>
+      <table>
+        <tr><th>读数</th><th>通常含义</th></tr>
+        <tr><td>低于约50Hz</td><td>很可能处于省电模式,或浏览器正在限制帧数</td></tr>
+        <tr><td>约60Hz</td><td>普通办公/入门显示器,以及笔记本内置屏幕的标准值</td></tr>
+        <tr><td>约75Hz</td><td>入门级电竞显示器上常见的数值</td></tr>
+        <tr><td>约120~144Hz</td><td>电竞显示器的典型区间</td></tr>
+        <tr><td>165Hz以上</td><td>高刷新率电竞显示器</td></tr>
+      </table>
+
+      <h2>为什么读数会偏低</h2>
+      <ul>
+        <li><strong>省电模式</strong> — 笔记本用电池供电时,很多机型会降低刷新率。</li>
+        <li><strong>浏览器限帧</strong> — 处于后台标签页,或其他标签页负载过重时帧数会下降。</li>
+        <li><strong>系统设置</strong> — 即便是144Hz显示器,若显示设置为60Hz就只会以60Hz运行。</li>
+        <li><strong>线材与接口</strong> — 规格较低的线材在高分辨率下可能无法传输高刷新率。</li>
+      </ul>
+      <p>如果读数和预期不符,请接上电源、关闭所有其他标签页后重新测量。若仍然偏低,建议检查系统的显示设置。</p>
+
+      <h2>刷新率和反应速度有什么关系?</h2>
+      <p>刷新率越高,新信息出现在屏幕上的等待时间就越短。60Hz下一帧约16.7ms,144Hz下约6.9ms,理论上你能提前这么多看到新信息。这也是<a href="/zh/tests/reaction-time">反应速度测试</a>结果会因设备不同而相差10~50ms的原因之一。</p>
+    </section>
+
+    <div class="side-panel" id="ladderPanel"></div>
+    <div class="side-panel">
+      <div class="ach-head">🕒 最近测量</div>
+      <div id="recentPanel"></div>
+    </div>
+
+    <div class="other-tests">
+      <div class="label">也来试试其他测试</div>
+      <div class="other-tests-links">
+        <a href="/zh/tests/reaction-time">⚡ 反应速度</a>
+        <a href="/zh/tests/aim-trainer">🎯 瞄准测试</a>
+        <a href="/zh/tests/dynamic-vision">👁️ 动态视力</a>
+        <a href="/zh/tests/click-speed">🖱️ CPS点击速度</a>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <div class="footer-links">
+        <a href="/zh/">首页</a>
+        <a href="/zh/privacy">隐私政策</a>
+        <a href="mailto:yongju0002@gmail.com">联系我们</a>
+      </div>
+      <div class="copyright">© 2026 MyAbilityTest. 所有测试仅供娱乐和参考。</div>
+    </footer>
+  </div>
+
+<script src="/skill-test/common.js"></script>
+<script>
+  const STORE_KEY = 'hwMonitorHz';
+  const DURATION_MS = 5000;
+
+  const startBtn = document.getElementById('startBtn');
+  const shareBtn = document.getElementById('shareBtn');
+  const hzNum = document.getElementById('hzNum');
+  const hzLabel = document.getElementById('hzLabel');
+  const hzFill = document.getElementById('hzFill');
+  const demoDot = document.getElementById('demoDot');
+
+  let stats = loadStats(STORE_KEY, { count: 0, best: 0, last: 0 });
+  let running = false;
+
+  // 刷新率区间(用于阶梯显示)。越高越好。
+  const HZ_TIERS = [
+    { key: '240', min: 200, label: '240Hz级' },
+    { key: '165', min: 150, label: '165Hz级' },
+    { key: '144', min: 110, label: '120~144Hz级' },
+    { key: '75', min: 70, label: '75Hz级' },
+    { key: '60', min: 50, label: '60Hz级' },
+    { key: 'low', min: 0, label: '低于50Hz(疑似省电/限帧)' },
+  ];
+
+  function renderStats() {
+    document.getElementById('statCount').textContent = stats.count;
+    document.getElementById('statBest').textContent = stats.best ? stats.best + ' Hz' : '-';
+    document.getElementById('statLast').textContent = stats.last ? stats.last + ' Hz' : '-';
+  }
+
+  function renderPanels() {
+    renderRankLadder('ladderPanel', HZ_TIERS, stats.best || null, {
+      title: '测量区间', unit: 'Hz', digits: 0,
+    });
+    renderRecentRecords('recentPanel', loadStats(STORE_KEY + '_recent', []),
+      e => `${e.hz} Hz · 间隔 ${e.avg}ms`, '还没有测量记录');
+  }
+
+  function median(arr) {
+    const a = arr.slice().sort((x, y) => x - y);
+    const m = Math.floor(a.length / 2);
+    return a.length % 2 ? a[m] : (a[m - 1] + a[m]) / 2;
+  }
+
+  function verdictFor(hz) {
+    if (hz < 50) return { text: '可能处于省电模式,或浏览器正在限制帧数', warn: true };
+    if (hz < 65) return { text: '60Hz级 — 普通办公与笔记本内置屏幕的标准值', warn: false };
+    if (hz < 90) return { text: '75Hz级 — 入门级电竞显示器常见的数值', warn: false };
+    if (hz < 150) return { text: '120~144Hz级 — 电竞显示器区间', warn: false };
+    return { text: '属于高刷新率电竞显示器级别', warn: false };
+  }
+
+  function measure() {
+    if (running) return;
+    running = true;
+    startBtn.disabled = true;
+    shareBtn.style.display = 'none';
+    hzLabel.textContent = '测量中… 请保持此标签页处于前台';
+    hzNum.textContent = '--';
+
+    const gaps = [];
+    let last = performance.now();
+    const t0 = last;
+
+    // rAF가 아예 돌지 않는 경우(백그라운드 탭 등)를 대비한 안전장치
+    const stallGuard = setTimeout(() => {
+      if (!running) return;
+      running = false;
+      startBtn.disabled = false;
+      hzFill.style.width = "0%";
+      hzLabel.textContent = "-";
+      document.getElementById("hzNote").textContent = "测量没有进行。浏览器停止了此标签页的画面刷新(处于后台)。请让此标签页保持可见后重试。";
+    }, DURATION_MS + 3000);
+
+    function frame(now) {
+      const gap = now - last;
+      last = now;
+      // 排除首帧和异常长的帧(切换标签页等)
+      if (gap > 0.5 && gap < 100) gaps.push(gap);
+      const elapsed = now - t0;
+      hzFill.style.width = Math.min(100, (elapsed / DURATION_MS) * 100) + '%';
+      if (gaps.length > 8) {
+        hzNum.textContent = Math.round(1000 / median(gaps));
+      }
+      if (elapsed < DURATION_MS) {
+        requestAnimationFrame(frame);
+      } else {
+        clearTimeout(stallGuard);
+        finish(gaps);
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+
+  function finish(gaps) {
+    running = false;
+    startBtn.disabled = false;
+    hzFill.style.width = '100%';
+
+    if (gaps.length < 20) {
+      hzLabel.textContent = '测量失败';
+      document.getElementById('hzVerdict').textContent = '';
+      document.getElementById('hzNote').textContent = '采集到的帧数不足。请保持此标签页处于前台后重试。';
+      return;
+    }
+
+    const med = median(gaps);
+    const hz = Math.round(1000 / med);
+    const avg = gaps.reduce((a, b) => a + b, 0) / gaps.length;
+    const min = Math.min(...gaps);
+    const jitter = Math.sqrt(gaps.reduce((a, g) => a + (g - avg) * (g - avg), 0) / gaps.length);
+
+    hzNum.textContent = hz;
+    hzLabel.textContent = `${gaps.length}帧测量完成`;
+    document.getElementById('hzAvg').textContent = avg.toFixed(2) + ' ms';
+    document.getElementById('hzMin').textContent = min.toFixed(2) + ' ms';
+    document.getElementById('hzJitter').textContent = jitter.toFixed(2) + ' ms';
+
+    const v = verdictFor(hz);
+    const verdictEl = document.getElementById('hzVerdict');
+    verdictEl.textContent = v.text;
+    verdictEl.style.color = v.warn ? '#fbbf24' : '#22c55e';
+    document.getElementById('hzNote').textContent =
+      '这是基于浏览器绘制帧的估算值,可能与显示器的实际设置不同。';
+
+    stats.count += 1;
+    stats.last = hz;
+    if (hz > stats.best) stats.best = hz;
+    saveStats(STORE_KEY, stats);
+    addRecentRecord(STORE_KEY, { hz, avg: avg.toFixed(1), date: Date.now() });
+    renderStats();
+    renderPanels();
+
+    shareBtn.style.display = '';
+    shareBtn.dataset.share = `我的显示器约为${hz}Hz!(帧间隔${avg.toFixed(1)}ms)你也来测测 → `;
+  }
+
+  // 流畅度比较演示:左右往复的圆点
+  (function animateDemo() {
+    const track = demoDot.parentElement;
+    function loop(now) {
+      const w = track.clientWidth - 20;
+      const t = (now % 2000) / 2000;
+      const x = w * (t < 0.5 ? t * 2 : (1 - t) * 2);
+      demoDot.style.transform = `translateX(${x}px)`;
+      requestAnimationFrame(loop);
+    }
+    requestAnimationFrame(loop);
+  })();
+
+  startBtn.addEventListener('click', measure);
+  shareBtn.addEventListener('click', () => {
+    shareResult((shareBtn.dataset.share || '') + location.href);
+  });
+
+  renderStats();
+  renderPanels();
+</script>
+</body>
+</html>

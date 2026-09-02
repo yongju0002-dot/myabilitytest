@@ -1,0 +1,352 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monitor Refresh Rate Test | Ability Test</title>
+<meta name="description" content="Is your monitor really 60Hz? 144Hz? Free refresh rate (Hz) test that measures actual frame timing right in your browser - nothing to install.">
+<link rel="canonical" href="https://myabilitytest.com/en/tests/monitor-hz">
+<link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/monitor-hz">
+<link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/monitor-hz">
+<link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/monitor-hz">
+<link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/monitor-hz">
+<link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/monitor-hz">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MyAbilityTest">
+<meta property="og:title" content="Monitor Refresh Rate Test | Ability Test">
+<meta property="og:description" content="Is your monitor really 60Hz? 144Hz? A free refresh rate test that runs in your browser.">
+<meta property="og:url" content="https://myabilitytest.com/en/tests/monitor-hz">
+<meta property="og:image" content="https://myabilitytest.com/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Monitor Refresh Rate Test | Ability Test">
+<meta name="twitter:description" content="Is your monitor really 60Hz? 144Hz? A free refresh rate test that runs in your browser.">
+<meta name="twitter:image" content="https://myabilitytest.com/og-default.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"Organization","@id":"https://myabilitytest.com/#organization","name":"MyAbilityTest","url":"https://myabilitytest.com/","logo":{"@type":"ImageObject","url":"https://myabilitytest.com/og-default.png","width":1200,"height":630}},
+{"@type":"WebSite","@id":"https://myabilitytest.com/#website","name":"MyAbilityTest","url":"https://myabilitytest.com/","inLanguage":["ko","en","ja","zh-Hant"],"publisher":{"@id":"https://myabilitytest.com/#organization"}},
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://myabilitytest.com/en/"},{"@type":"ListItem","position":2,"name":"Monitor Refresh Rate Test | Ability Test","item":"https://myabilitytest.com/en/tests/monitor-hz"}]},{"@type":"WebApplication","name":"Monitor Refresh Rate Test | Ability Test","url":"https://myabilitytest.com/en/tests/monitor-hz","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"en"},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Can the browser reading differ from my real refresh rate?","acceptedAnswer":{"@type":"Answer","text":"Yes. The browser draws frames in step with the display, but power-saving modes, load from other tabs, and browser frame-throttling policies can all make the reading come out lower than your monitor actually runs. Plug in, close other tabs, and measure again."}},
+{"@type":"Question","name":"My monitor is 144Hz but this shows 60Hz.","acceptedAnswer":{"@type":"Answer","text":"Most likely your OS display settings are still set to 60Hz. On Windows check Settings > System > Display > Advanced display; on macOS check Settings > Displays. A cable that does not support the higher rate at your resolution can also cap it."}},
+{"@type":"Question","name":"Does a higher refresh rate help in games?","acceptedAnswer":{"@type":"Answer","text":"The screen updates more often, so motion looks smoother and new information reaches your eyes with less delay. How much you notice depends on the person and the genre, and refresh rate alone does not decide skill."}}
+]}
+]}
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
+<link rel="stylesheet" href="/skill-test/style.css">
+<style>
+  .info { margin-top: 40px; color: #cbd5e1; font-size: 14px; line-height: 1.7; }
+  .info h2 { font-size: 17px; color: #f1f5f9; margin: 28px 0 8px; }
+  .info table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
+  .info th, .info td { border: 1px solid #334155; padding: 8px; text-align: left; }
+  .info th { background: var(--card-bg); }
+  .info ul { padding-left: 20px; }
+  .other-tests { margin-top: 16px; }
+  .other-tests .label { text-align: center; font-size: 12px; color: var(--text-dim); margin-bottom: 8px; }
+  .other-tests-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .other-tests-links a {
+    font-size: 12px; color: #cbd5e1; text-decoration: none;
+    background: var(--card-bg-2); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 999px; padding: 6px 12px;
+  }
+  .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+
+  .hz-readout { text-align: center; margin: 18px 0 6px; }
+  .hz-readout .hz-num { font-size: 76px; font-weight: 800; color: var(--accent); line-height: 1; font-variant-numeric: tabular-nums; }
+  .hz-readout .hz-unit { font-size: 24px; font-weight: 700; color: var(--accent); margin-left: 4px; }
+  .hz-readout .hz-label { color: var(--text-dim); font-size: 13px; margin-top: 8px; }
+  .hz-progress { height: 6px; background: var(--card-bg-2); border-radius: 999px; overflow: hidden; margin: 14px 0 6px; }
+  .hz-progress .fill { height: 100%; width: 0%; background: var(--accent); transition: width 0.15s linear; }
+  .hz-detail { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 16px; }
+  .hz-detail .box { background: var(--card-bg-2); border-radius: 12px; padding: 12px 8px; text-align: center; }
+  .hz-detail .box .k { font-size: 11.5px; color: var(--text-dim); margin-bottom: 4px; }
+  .hz-detail .box .v { font-size: 16px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .hz-verdict { text-align: center; font-size: 15px; font-weight: 700; margin-top: 14px; }
+  .hz-note { color: var(--text-dim); font-size: 12.5px; text-align: center; margin-top: 8px; line-height: 1.6; }
+
+  /* Moving dot for judging smoothness */
+  .smooth-demo { background: var(--card-bg-2); border-radius: 14px; padding: 14px; margin-top: 18px; overflow: hidden; }
+  .smooth-demo .track { position: relative; height: 26px; margin-bottom: 8px; }
+  .smooth-demo .dot { position: absolute; top: 3px; width: 20px; height: 20px; border-radius: 50%; background: var(--accent); }
+  .smooth-demo .cap { color: var(--text-dim); font-size: 11.5px; text-align: center; }
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back-link" href="/en/">← Back to Main</a>
+    <div class="lang-switch">
+      <a href="/ko/tests/monitor-hz">한국어</a>
+      <a class="active" href="/en/tests/monitor-hz">English</a>
+      <a href="/ja/tests/monitor-hz">日本語</a>
+      <a href="/zh/tests/monitor-hz">中文</a>
+    </div>
+    <h1>🖥️ Monitor Refresh Rate Test</h1>
+    <p class="sub">We measure the gaps between frames your browser actually draws, and estimate your refresh rate from them.</p>
+
+    <div class="info-box">
+      💻 Nothing to install. For an accurate reading, <strong>close other tabs and plug in your laptop</strong> before measuring.
+    </div>
+
+    <div class="level-card">
+      <div class="hz-readout">
+        <span class="hz-num" id="hzNum">--</span><span class="hz-unit">Hz</span>
+        <div class="hz-label" id="hzLabel">Press the measure button</div>
+      </div>
+      <div class="hz-progress"><div class="fill" id="hzFill"></div></div>
+      <div class="hz-detail">
+        <div class="box"><div class="k">Average frame gap</div><div class="v" id="hzAvg">-</div></div>
+        <div class="box"><div class="k">Shortest gap</div><div class="v" id="hzMin">-</div></div>
+        <div class="box"><div class="k">Frame jitter</div><div class="v" id="hzJitter">-</div></div>
+      </div>
+      <div class="hz-verdict" id="hzVerdict"></div>
+      <div class="hz-note" id="hzNote"></div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn" id="startBtn">Measure refresh rate (5s)</button>
+      <button class="btn secondary" id="shareBtn" style="display:none;">Share result</button>
+    </div>
+
+    <div class="smooth-demo">
+      <div class="track"><div class="dot" id="demoDot"></div></div>
+      <div class="cap">If this dot looks choppy, your refresh rate may be low or the browser may be throttling frames</div>
+    </div>
+
+    <div class="stats">
+      <div class="stat-box">
+        <div class="label">Measurements</div>
+        <div class="value" id="statCount">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">Highest reading</div>
+        <div class="value" id="statBest">-</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">Latest reading</div>
+        <div class="value" id="statLast">-</div>
+      </div>
+    </div>
+
+    <section class="info">
+      <h2>What is refresh rate (Hz)?</h2>
+      <p>Refresh rate is how many times per second your monitor redraws the screen. At 60Hz that is 60 times a second; at 144Hz, 144 times. Higher numbers mean motion looks smoother and new frames reach your eyes with less delay.</p>
+
+      <h2>How does this test measure it?</h2>
+      <p>The browser calls <code>requestAnimationFrame</code> in step with each screen refresh. This test records every gap between those calls for 5 seconds, then computes frames per second from the <strong>median</strong> gap. The median is used instead of the average so that one or two stray frames during the run cannot skew the result.</p>
+
+      <h2>Reading the result</h2>
+      <table>
+        <tr><th>Reading</th><th>What it usually means</th></tr>
+        <tr><td>Under ~50Hz</td><td>Likely a power-saving mode or browser frame throttling</td></tr>
+        <tr><td>Around 60Hz</td><td>Standard for office and entry-level monitors, and most laptop panels</td></tr>
+        <tr><td>Around 75Hz</td><td>Common on entry-level gaming monitors</td></tr>
+        <tr><td>Around 120-144Hz</td><td>The typical gaming monitor band</td></tr>
+        <tr><td>165Hz and above</td><td>High-refresh gaming monitor</td></tr>
+      </table>
+
+      <h2>Why the reading can come out low</h2>
+      <ul>
+        <li><strong>Power saving</strong> - many laptops drop the refresh rate when running on battery.</li>
+        <li><strong>Browser throttling</strong> - a background tab, or heavy load in another tab, reduces the frame rate.</li>
+        <li><strong>OS settings</strong> - a 144Hz monitor still runs at 60Hz if the display settings say so.</li>
+        <li><strong>Cable and port</strong> - a lower-spec cable may not carry a high refresh rate at your resolution.</li>
+      </ul>
+      <p>If the reading is not what you expected, plug in, close every other tab, and measure again. If it is still low, check your OS display settings.</p>
+
+      <h2>How does refresh rate relate to reaction time?</h2>
+      <p>A higher refresh rate shortens the wait before new information appears on screen. One frame is about 16.7ms at 60Hz and about 6.9ms at 144Hz, so in theory you see new information that much sooner. This is part of why <a href="/en/tests/reaction-time">reaction time test</a> results can shift by 10-50ms between devices.</p>
+    </section>
+
+    <div class="side-panel" id="ladderPanel"></div>
+    <div class="side-panel">
+      <div class="ach-head">🕒 Recent measurements</div>
+      <div id="recentPanel"></div>
+    </div>
+
+    <div class="other-tests">
+      <div class="label">Try another test</div>
+      <div class="other-tests-links">
+        <a href="/en/tests/reaction-time">⚡ Reaction Time</a>
+        <a href="/en/tests/aim-trainer">🎯 Aim Test</a>
+        <a href="/en/tests/dynamic-vision">👁️ Dynamic Vision</a>
+        <a href="/en/tests/click-speed">🖱️ CPS Click Speed</a>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <div class="footer-links">
+        <a href="/en/">Home</a>
+        <a href="/en/privacy">Privacy Policy</a>
+        <a href="mailto:yongju0002@gmail.com">Contact</a>
+      </div>
+      <div class="copyright">© 2026 MyAbilityTest. All tests are for fun and general reference.</div>
+    </footer>
+  </div>
+
+<script src="/skill-test/common.js"></script>
+<script>
+  const STORE_KEY = 'hwMonitorHz';
+  const DURATION_MS = 5000;
+
+  const startBtn = document.getElementById('startBtn');
+  const shareBtn = document.getElementById('shareBtn');
+  const hzNum = document.getElementById('hzNum');
+  const hzLabel = document.getElementById('hzLabel');
+  const hzFill = document.getElementById('hzFill');
+  const demoDot = document.getElementById('demoDot');
+
+  let stats = loadStats(STORE_KEY, { count: 0, best: 0, last: 0 });
+  let running = false;
+
+  // Refresh-rate bands for the ladder. Higher is better.
+  const HZ_TIERS = [
+    { key: '240', min: 200, label: '240Hz class' },
+    { key: '165', min: 150, label: '165Hz class' },
+    { key: '144', min: 110, label: '120-144Hz class' },
+    { key: '75', min: 70, label: '75Hz class' },
+    { key: '60', min: 50, label: '60Hz class' },
+    { key: 'low', min: 0, label: 'Under 50Hz (throttling suspected)' },
+  ];
+
+  function renderStats() {
+    document.getElementById('statCount').textContent = stats.count;
+    document.getElementById('statBest').textContent = stats.best ? stats.best + ' Hz' : '-';
+    document.getElementById('statLast').textContent = stats.last ? stats.last + ' Hz' : '-';
+  }
+
+  function renderPanels() {
+    renderRankLadder('ladderPanel', HZ_TIERS, stats.best || null, {
+      title: 'Measured band', unit: 'Hz', digits: 0,
+    });
+    renderRecentRecords('recentPanel', loadStats(STORE_KEY + '_recent', []),
+      e => `${e.hz} Hz · gap ${e.avg}ms`, 'No measurements yet');
+  }
+
+  function median(arr) {
+    const a = arr.slice().sort((x, y) => x - y);
+    const m = Math.floor(a.length / 2);
+    return a.length % 2 ? a[m] : (a[m - 1] + a[m]) / 2;
+  }
+
+  function verdictFor(hz) {
+    if (hz < 50) return { text: 'Likely a power-saving mode, or the browser is throttling frames', warn: true };
+    if (hz < 65) return { text: '60Hz class - standard for office monitors and laptop panels', warn: false };
+    if (hz < 90) return { text: '75Hz class - common on entry-level gaming monitors', warn: false };
+    if (hz < 150) return { text: '120-144Hz class - the gaming monitor band', warn: false };
+    return { text: 'High-refresh gaming monitor class', warn: false };
+  }
+
+  function measure() {
+    if (running) return;
+    running = true;
+    startBtn.disabled = true;
+    shareBtn.style.display = 'none';
+    hzLabel.textContent = 'Measuring... keep this tab in the foreground';
+    hzNum.textContent = '--';
+
+    const gaps = [];
+    let last = performance.now();
+    const t0 = last;
+
+    // rAF가 아예 돌지 않는 경우(백그라운드 탭 등)를 대비한 안전장치
+    const stallGuard = setTimeout(() => {
+      if (!running) return;
+      running = false;
+      startBtn.disabled = false;
+      hzFill.style.width = "0%";
+      hzLabel.textContent = "-";
+      document.getElementById("hzNote").textContent = "The measurement never got going. Your browser stopped refreshing this tab (it was in the background). Keep this tab visible and try again.";
+    }, DURATION_MS + 3000);
+
+    function frame(now) {
+      const gap = now - last;
+      last = now;
+      // Skip the first frame and abnormally long gaps (tab switches, etc.)
+      if (gap > 0.5 && gap < 100) gaps.push(gap);
+      const elapsed = now - t0;
+      hzFill.style.width = Math.min(100, (elapsed / DURATION_MS) * 100) + '%';
+      if (gaps.length > 8) {
+        hzNum.textContent = Math.round(1000 / median(gaps));
+      }
+      if (elapsed < DURATION_MS) {
+        requestAnimationFrame(frame);
+      } else {
+        clearTimeout(stallGuard);
+        finish(gaps);
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+
+  function finish(gaps) {
+    running = false;
+    startBtn.disabled = false;
+    hzFill.style.width = '100%';
+
+    if (gaps.length < 20) {
+      hzLabel.textContent = 'Measurement failed';
+      document.getElementById('hzVerdict').textContent = '';
+      document.getElementById('hzNote').textContent = 'Not enough frames were collected. Keep this tab in the foreground and try again.';
+      return;
+    }
+
+    const med = median(gaps);
+    const hz = Math.round(1000 / med);
+    const avg = gaps.reduce((a, b) => a + b, 0) / gaps.length;
+    const min = Math.min(...gaps);
+    const jitter = Math.sqrt(gaps.reduce((a, g) => a + (g - avg) * (g - avg), 0) / gaps.length);
+
+    hzNum.textContent = hz;
+    hzLabel.textContent = `${gaps.length} frames measured`;
+    document.getElementById('hzAvg').textContent = avg.toFixed(2) + ' ms';
+    document.getElementById('hzMin').textContent = min.toFixed(2) + ' ms';
+    document.getElementById('hzJitter').textContent = jitter.toFixed(2) + ' ms';
+
+    const v = verdictFor(hz);
+    const verdictEl = document.getElementById('hzVerdict');
+    verdictEl.textContent = v.text;
+    verdictEl.style.color = v.warn ? '#fbbf24' : '#22c55e';
+    document.getElementById('hzNote').textContent =
+      'An estimate based on the frames your browser draws. It can differ from your monitor\'s configured setting.';
+
+    stats.count += 1;
+    stats.last = hz;
+    if (hz > stats.best) stats.best = hz;
+    saveStats(STORE_KEY, stats);
+    addRecentRecord(STORE_KEY, { hz, avg: avg.toFixed(1), date: Date.now() });
+    renderStats();
+    renderPanels();
+
+    shareBtn.style.display = '';
+    shareBtn.dataset.share = `My monitor runs at about ${hz}Hz! (frame gap ${avg.toFixed(1)}ms) Measure yours → `;
+  }
+
+  // Smoothness demo: a dot that travels back and forth
+  (function animateDemo() {
+    const track = demoDot.parentElement;
+    function loop(now) {
+      const w = track.clientWidth - 20;
+      const t = (now % 2000) / 2000;
+      const x = w * (t < 0.5 ? t * 2 : (1 - t) * 2);
+      demoDot.style.transform = `translateX(${x}px)`;
+      requestAnimationFrame(loop);
+    }
+    requestAnimationFrame(loop);
+  })();
+
+  startBtn.addEventListener('click', measure);
+  shareBtn.addEventListener('click', () => {
+    shareResult((shareBtn.dataset.share || '') + location.href);
+  });
+
+  renderStats();
+  renderPanels();
+</script>
+</body>
+</html>

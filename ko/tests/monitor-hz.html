@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>모니터 주사율 테스트 | 능력 테스트</title>
+<meta name="description" content="내 모니터가 정말 60Hz? 144Hz? 브라우저에서 바로 측정하는 무료 주사율(Hz) 테스트. 설치 없이 실제 프레임 간격을 재서 알려드려요.">
+<link rel="canonical" href="https://myabilitytest.com/ko/tests/monitor-hz">
+<link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/monitor-hz">
+<link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/monitor-hz">
+<link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/monitor-hz">
+<link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/monitor-hz">
+<link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/monitor-hz">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MyAbilityTest">
+<meta property="og:title" content="모니터 주사율 테스트 | 능력 테스트">
+<meta property="og:description" content="내 모니터가 정말 60Hz? 144Hz? 브라우저에서 바로 측정하는 무료 주사율(Hz) 테스트.">
+<meta property="og:url" content="https://myabilitytest.com/ko/tests/monitor-hz">
+<meta property="og:image" content="https://myabilitytest.com/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="모니터 주사율 테스트 | 능력 테스트">
+<meta name="twitter:description" content="내 모니터가 정말 60Hz? 144Hz? 브라우저에서 바로 측정하는 무료 주사율(Hz) 테스트.">
+<meta name="twitter:image" content="https://myabilitytest.com/og-default.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"Organization","@id":"https://myabilitytest.com/#organization","name":"MyAbilityTest","url":"https://myabilitytest.com/","logo":{"@type":"ImageObject","url":"https://myabilitytest.com/og-default.png","width":1200,"height":630}},
+{"@type":"WebSite","@id":"https://myabilitytest.com/#website","name":"MyAbilityTest","url":"https://myabilitytest.com/","inLanguage":["ko","en","ja","zh-Hant"],"publisher":{"@id":"https://myabilitytest.com/#organization"}},
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://myabilitytest.com/ko/"},{"@type":"ListItem","position":2,"name":"모니터 주사율 테스트 | 능력 테스트","item":"https://myabilitytest.com/ko/tests/monitor-hz"}]},{"@type":"WebApplication","name":"모니터 주사율 테스트 | 능력 테스트","url":"https://myabilitytest.com/ko/tests/monitor-hz","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"ko"},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"브라우저에서 잰 주사율이 실제와 다를 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. 브라우저는 화면 갱신에 맞춰 프레임을 그리지만, 배터리 절약 모드나 다른 탭의 부하, 브라우저의 프레임 제한 정책 때문에 실제 모니터 주사율보다 낮게 측정될 수 있습니다. 전원을 연결하고 다른 탭을 닫은 뒤 다시 측정해보세요."}},
+{"@type":"Question","name":"144Hz 모니터인데 60Hz로 나와요.","acceptedAnswer":{"@type":"Answer","text":"운영체제 디스플레이 설정에서 주사율이 60Hz로 잡혀 있을 가능성이 높습니다. 윈도우는 설정 > 시스템 > 디스플레이 > 고급 디스플레이에서, 맥은 설정 > 디스플레이에서 주사율을 확인하고 변경할 수 있습니다. 케이블 규격(HDMI 버전 등)이 높은 주사율을 지원하지 않는 경우도 있습니다."}},
+{"@type":"Question","name":"주사율이 높으면 게임에 유리한가요?","acceptedAnswer":{"@type":"Answer","text":"화면이 더 자주 갱신되므로 움직이는 대상이 더 부드럽게 보이고, 새로운 정보가 눈에 닿기까지의 지연이 줄어듭니다. 다만 체감 차이는 사람과 게임 장르에 따라 다르며, 주사율만으로 실력이 결정되지는 않습니다."}}
+]}
+]}
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
+<link rel="stylesheet" href="/skill-test/style.css">
+<style>
+  .info { margin-top: 40px; color: #cbd5e1; font-size: 14px; line-height: 1.7; }
+  .info h2 { font-size: 17px; color: #f1f5f9; margin: 28px 0 8px; }
+  .info table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
+  .info th, .info td { border: 1px solid #334155; padding: 8px; text-align: left; }
+  .info th { background: var(--card-bg); }
+  .info ul { padding-left: 20px; }
+  .other-tests { margin-top: 16px; }
+  .other-tests .label { text-align: center; font-size: 12px; color: var(--text-dim); margin-bottom: 8px; }
+  .other-tests-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .other-tests-links a {
+    font-size: 12px; color: #cbd5e1; text-decoration: none;
+    background: var(--card-bg-2); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 999px; padding: 6px 12px;
+  }
+  .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+
+  .hz-readout { text-align: center; margin: 18px 0 6px; }
+  .hz-readout .hz-num { font-size: 76px; font-weight: 800; color: var(--accent); line-height: 1; font-variant-numeric: tabular-nums; }
+  .hz-readout .hz-unit { font-size: 24px; font-weight: 700; color: var(--accent); margin-left: 4px; }
+  .hz-readout .hz-label { color: var(--text-dim); font-size: 13px; margin-top: 8px; }
+  .hz-progress { height: 6px; background: var(--card-bg-2); border-radius: 999px; overflow: hidden; margin: 14px 0 6px; }
+  .hz-progress .fill { height: 100%; width: 0%; background: var(--accent); transition: width 0.15s linear; }
+  .hz-detail { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 16px; }
+  .hz-detail .box { background: var(--card-bg-2); border-radius: 12px; padding: 12px 8px; text-align: center; }
+  .hz-detail .box .k { font-size: 11.5px; color: var(--text-dim); margin-bottom: 4px; }
+  .hz-detail .box .v { font-size: 16px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .hz-verdict { text-align: center; font-size: 15px; font-weight: 700; margin-top: 14px; }
+  .hz-note { color: var(--text-dim); font-size: 12.5px; text-align: center; margin-top: 8px; line-height: 1.6; }
+
+  /* 부드러움 비교용 움직이는 막대 */
+  .smooth-demo { background: var(--card-bg-2); border-radius: 14px; padding: 14px; margin-top: 18px; overflow: hidden; }
+  .smooth-demo .track { position: relative; height: 26px; margin-bottom: 8px; }
+  .smooth-demo .dot { position: absolute; top: 3px; width: 20px; height: 20px; border-radius: 50%; background: var(--accent); }
+  .smooth-demo .cap { color: var(--text-dim); font-size: 11.5px; text-align: center; }
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back-link" href="/ko/">← 메인으로</a>
+    <div class="lang-switch">
+      <a class="active" href="/ko/tests/monitor-hz">한국어</a>
+      <a href="/en/tests/monitor-hz">English</a>
+      <a href="/ja/tests/monitor-hz">日本語</a>
+      <a href="/zh/tests/monitor-hz">中文</a>
+    </div>
+    <h1>🖥️ 모니터 주사율 테스트</h1>
+    <p class="sub">브라우저가 실제로 그리는 프레임 간격을 재서 주사율을 추정합니다.</p>
+
+    <div class="info-box">
+      💻 설치할 것 없이 바로 측정합니다. 정확도를 위해 <strong>다른 탭을 닫고, 노트북은 전원을 연결한 뒤</strong> 측정해주세요.
+    </div>
+
+    <div class="level-card">
+      <div class="hz-readout">
+        <span class="hz-num" id="hzNum">--</span><span class="hz-unit">Hz</span>
+        <div class="hz-label" id="hzLabel">측정 버튼을 눌러주세요</div>
+      </div>
+      <div class="hz-progress"><div class="fill" id="hzFill"></div></div>
+      <div class="hz-detail">
+        <div class="box"><div class="k">평균 프레임 간격</div><div class="v" id="hzAvg">-</div></div>
+        <div class="box"><div class="k">가장 짧은 간격</div><div class="v" id="hzMin">-</div></div>
+        <div class="box"><div class="k">프레임 흔들림</div><div class="v" id="hzJitter">-</div></div>
+      </div>
+      <div class="hz-verdict" id="hzVerdict"></div>
+      <div class="hz-note" id="hzNote"></div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn" id="startBtn">주사율 측정 (5초)</button>
+      <button class="btn secondary" id="shareBtn" style="display:none;">결과 공유하기</button>
+    </div>
+
+    <div class="smooth-demo">
+      <div class="track"><div class="dot" id="demoDot"></div></div>
+      <div class="cap">이 점이 끊겨 보이면 주사율이 낮거나 브라우저가 프레임을 제한하고 있을 수 있어요</div>
+    </div>
+
+    <div class="stats">
+      <div class="stat-box">
+        <div class="label">측정 횟수</div>
+        <div class="value" id="statCount">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">최고 측정값</div>
+        <div class="value" id="statBest">-</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">최근 측정값</div>
+        <div class="value" id="statLast">-</div>
+      </div>
+    </div>
+
+    <section class="info">
+      <h2>주사율(Hz)이란?</h2>
+      <p>주사율은 모니터가 1초에 화면을 몇 번 새로 그리는지를 나타내는 값입니다. 60Hz면 1초에 60번, 144Hz면 144번 갱신합니다. 숫자가 클수록 움직이는 화면이 부드럽게 보이고, 새로운 장면이 눈에 도달하기까지의 지연이 줄어듭니다.</p>
+
+      <h2>이 테스트는 어떻게 측정하나요?</h2>
+      <p>브라우저의 <code>requestAnimationFrame</code>은 화면이 갱신되는 주기에 맞춰 호출됩니다. 이 테스트는 5초 동안 그 호출 간격을 모두 기록한 뒤, <strong>중앙값</strong>을 기준으로 초당 프레임 수를 계산합니다. 평균 대신 중앙값을 쓰는 이유는 측정 중 한두 번 튀는 프레임이 결과를 왜곡하지 않게 하기 위해서입니다.</p>
+
+      <h2>결과 해석표</h2>
+      <table>
+        <tr><th>측정값</th><th>일반적인 해석</th></tr>
+        <tr><td>~50Hz 미만</td><td>절전 모드이거나 브라우저가 프레임을 제한하는 상태일 가능성이 큽니다</td></tr>
+        <tr><td>약 60Hz</td><td>일반 사무용·보급형 모니터, 또는 노트북 내장 화면의 표준값</td></tr>
+        <tr><td>약 75Hz</td><td>보급형 게이밍 모니터에서 흔한 값</td></tr>
+        <tr><td>약 120~144Hz</td><td>게이밍 모니터의 대표적인 구간</td></tr>
+        <tr><td>165Hz 이상</td><td>고주사율 게이밍 모니터</td></tr>
+      </table>
+
+      <h2>실제 주사율보다 낮게 나오는 이유</h2>
+      <ul>
+        <li><strong>절전 모드</strong> — 노트북이 배터리로 동작 중이면 주사율을 낮추는 기종이 많습니다.</li>
+        <li><strong>브라우저 프레임 제한</strong> — 백그라운드 탭이거나 다른 탭이 무거우면 프레임이 줄어듭니다.</li>
+        <li><strong>OS 설정</strong> — 144Hz 모니터라도 디스플레이 설정이 60Hz로 잡혀 있으면 60Hz로 동작합니다.</li>
+        <li><strong>케이블·포트</strong> — 규격이 낮은 케이블은 높은 해상도에서 높은 주사율을 전달하지 못할 수 있습니다.</li>
+      </ul>
+      <p>측정값이 기대와 다르면 전원을 연결하고 다른 탭을 모두 닫은 뒤 다시 재보세요. 그래도 낮게 나온다면 OS의 디스플레이 설정을 확인하는 것이 좋습니다.</p>
+
+      <h2>주사율과 반응 속도는 어떤 관계인가요?</h2>
+      <p>주사율이 높으면 화면에 새로운 정보가 표시되기까지의 대기 시간이 짧아집니다. 60Hz에서는 한 프레임이 약 16.7ms, 144Hz에서는 약 6.9ms이므로 이론상 그 차이만큼 정보를 더 일찍 볼 수 있습니다. 이 때문에 <a href="/ko/tests/reaction-time">반응 속도 테스트</a> 결과도 기기에 따라 10~50ms가량 달라질 수 있습니다.</p>
+    </section>
+
+    <div class="side-panel" id="ladderPanel"></div>
+    <div class="side-panel">
+      <div class="ach-head">🕒 최근 측정</div>
+      <div id="recentPanel"></div>
+    </div>
+
+    <div class="other-tests">
+      <div class="label">다른 테스트도 해보세요</div>
+      <div class="other-tests-links">
+        <a href="/ko/tests/reaction-time">⚡ 반응 속도</a>
+        <a href="/ko/tests/aim-trainer">🎯 에임 테스트</a>
+        <a href="/ko/tests/dynamic-vision">👁️ 동체시력</a>
+        <a href="/ko/tests/click-speed">🖱️ CPS 클릭 속도</a>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <div class="footer-links">
+        <a href="/ko/">홈</a>
+        <a href="/ko/privacy">개인정보처리방침</a>
+        <a href="mailto:yongju0002@gmail.com">문의</a>
+      </div>
+      <div class="copyright">© 2026 MyAbilityTest. 모든 테스트는 재미와 참고용입니다.</div>
+    </footer>
+  </div>
+
+<script src="/skill-test/common.js"></script>
+<script>
+  const STORE_KEY = 'hwMonitorHz';
+  const DURATION_MS = 5000;
+
+  const startBtn = document.getElementById('startBtn');
+  const shareBtn = document.getElementById('shareBtn');
+  const hzNum = document.getElementById('hzNum');
+  const hzLabel = document.getElementById('hzLabel');
+  const hzFill = document.getElementById('hzFill');
+  const demoDot = document.getElementById('demoDot');
+
+  let stats = loadStats(STORE_KEY, { count: 0, best: 0, last: 0 });
+  let running = false;
+
+  // 주사율 구간 (사다리 표시용). 높을수록 좋음.
+  const HZ_TIERS = [
+    { key: '240', min: 200, label: '240Hz급' },
+    { key: '165', min: 150, label: '165Hz급' },
+    { key: '144', min: 110, label: '120~144Hz급' },
+    { key: '75', min: 70, label: '75Hz급' },
+    { key: '60', min: 50, label: '60Hz급' },
+    { key: 'low', min: 0, label: '50Hz 미만 (절전·제한 의심)' },
+  ];
+
+  function renderStats() {
+    document.getElementById('statCount').textContent = stats.count;
+    document.getElementById('statBest').textContent = stats.best ? stats.best + ' Hz' : '-';
+    document.getElementById('statLast').textContent = stats.last ? stats.last + ' Hz' : '-';
+  }
+
+  function renderPanels() {
+    renderRankLadder('ladderPanel', HZ_TIERS, stats.best || null, {
+      title: '측정 구간', unit: 'Hz', digits: 0,
+    });
+    renderRecentRecords('recentPanel', loadStats(STORE_KEY + '_recent', []),
+      e => `${e.hz} Hz · 간격 ${e.avg}ms`, '아직 측정 기록이 없어요');
+  }
+
+  function median(arr) {
+    const a = arr.slice().sort((x, y) => x - y);
+    const m = Math.floor(a.length / 2);
+    return a.length % 2 ? a[m] : (a[m - 1] + a[m]) / 2;
+  }
+
+  function verdictFor(hz) {
+    if (hz < 50) return { text: '절전 모드이거나 브라우저가 프레임을 제한하는 중일 수 있어요', warn: true };
+    if (hz < 65) return { text: '60Hz급 — 일반 사무용·노트북 내장 화면의 표준값이에요', warn: false };
+    if (hz < 90) return { text: '75Hz급 — 보급형 게이밍 모니터에서 흔한 값이에요', warn: false };
+    if (hz < 150) return { text: '120~144Hz급 — 게이밍 모니터 구간이에요', warn: false };
+    return { text: '고주사율 게이밍 모니터급이에요', warn: false };
+  }
+
+  function measure() {
+    if (running) return;
+    running = true;
+    startBtn.disabled = true;
+    shareBtn.style.display = 'none';
+    hzLabel.textContent = '측정 중… 이 탭을 활성 상태로 두세요';
+    hzNum.textContent = '--';
+
+    const gaps = [];
+    let last = performance.now();
+    const t0 = last;
+
+    // rAF가 아예 돌지 않는 경우(백그라운드 탭 등)를 대비한 안전장치
+    const stallGuard = setTimeout(() => {
+      if (!running) return;
+      running = false;
+      startBtn.disabled = false;
+      hzFill.style.width = "0%";
+      hzLabel.textContent = "-";
+      document.getElementById("hzNote").textContent = "측정이 진행되지 않았어요. 브라우저가 이 탭의 화면 갱신을 멈춘 상태예요(다른 탭·백그라운드). 이 탭을 화면에 띄운 채 다시 시도해주세요.";
+    }, DURATION_MS + 3000);
+
+    function frame(now) {
+      const gap = now - last;
+      last = now;
+      // 첫 프레임과 비정상적으로 긴 프레임(탭 전환 등)은 제외
+      if (gap > 0.5 && gap < 100) gaps.push(gap);
+      const elapsed = now - t0;
+      hzFill.style.width = Math.min(100, (elapsed / DURATION_MS) * 100) + '%';
+      if (gaps.length > 8) {
+        hzNum.textContent = Math.round(1000 / median(gaps));
+      }
+      if (elapsed < DURATION_MS) {
+        requestAnimationFrame(frame);
+      } else {
+        clearTimeout(stallGuard);
+        finish(gaps);
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+
+  function finish(gaps) {
+    running = false;
+    startBtn.disabled = false;
+    hzFill.style.width = '100%';
+
+    if (gaps.length < 20) {
+      hzLabel.textContent = '측정 실패';
+      document.getElementById('hzVerdict').textContent = '';
+      document.getElementById('hzNote').textContent = '프레임이 충분히 수집되지 않았어요. 이 탭을 활성 상태로 두고 다시 시도해주세요.';
+      return;
+    }
+
+    const med = median(gaps);
+    const hz = Math.round(1000 / med);
+    const avg = gaps.reduce((a, b) => a + b, 0) / gaps.length;
+    const min = Math.min(...gaps);
+    const jitter = Math.sqrt(gaps.reduce((a, g) => a + (g - avg) * (g - avg), 0) / gaps.length);
+
+    hzNum.textContent = hz;
+    hzLabel.textContent = `${gaps.length}개 프레임 측정 완료`;
+    document.getElementById('hzAvg').textContent = avg.toFixed(2) + ' ms';
+    document.getElementById('hzMin').textContent = min.toFixed(2) + ' ms';
+    document.getElementById('hzJitter').textContent = jitter.toFixed(2) + ' ms';
+
+    const v = verdictFor(hz);
+    const verdictEl = document.getElementById('hzVerdict');
+    verdictEl.textContent = v.text;
+    verdictEl.style.color = v.warn ? '#fbbf24' : '#22c55e';
+    document.getElementById('hzNote').textContent =
+      '브라우저가 그리는 프레임 기준의 추정값입니다. 실제 모니터 설정값과 다를 수 있어요.';
+
+    stats.count += 1;
+    stats.last = hz;
+    if (hz > stats.best) stats.best = hz;
+    saveStats(STORE_KEY, stats);
+    addRecentRecord(STORE_KEY, { hz, avg: avg.toFixed(1), date: Date.now() });
+    renderStats();
+    renderPanels();
+
+    shareBtn.style.display = '';
+    shareBtn.dataset.share = `내 모니터 주사율은 약 ${hz}Hz! (프레임 간격 ${avg.toFixed(1)}ms) 너도 재봐 → `;
+  }
+
+  // 부드러움 비교용 데모: 좌우로 왕복하는 점
+  (function animateDemo() {
+    const track = demoDot.parentElement;
+    function loop(now) {
+      const w = track.clientWidth - 20;
+      const t = (now % 2000) / 2000;
+      const x = w * (t < 0.5 ? t * 2 : (1 - t) * 2);
+      demoDot.style.transform = `translateX(${x}px)`;
+      requestAnimationFrame(loop);
+    }
+    requestAnimationFrame(loop);
+  })();
+
+  startBtn.addEventListener('click', measure);
+  shareBtn.addEventListener('click', () => {
+    shareResult((shareBtn.dataset.share || '') + location.href);
+  });
+
+  renderStats();
+  renderPanels();
+</script>
+</body>
+</html>

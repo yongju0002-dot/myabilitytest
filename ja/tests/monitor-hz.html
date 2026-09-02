@@ -1,0 +1,352 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>モニターリフレッシュレートテスト | 能力テスト</title>
+<meta name="description" content="あなたのモニターは本当に60Hz?144Hz?ブラウザですぐ測れる無料のリフレッシュレート(Hz)テスト。インストール不要で実際のフレーム間隔を測定します。">
+<link rel="canonical" href="https://myabilitytest.com/ja/tests/monitor-hz">
+<link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/monitor-hz">
+<link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/monitor-hz">
+<link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/monitor-hz">
+<link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/monitor-hz">
+<link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/monitor-hz">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MyAbilityTest">
+<meta property="og:title" content="モニターリフレッシュレートテスト | 能力テスト">
+<meta property="og:description" content="あなたのモニターは本当に60Hz?144Hz?ブラウザですぐ測れる無料のリフレッシュレートテスト。">
+<meta property="og:url" content="https://myabilitytest.com/ja/tests/monitor-hz">
+<meta property="og:image" content="https://myabilitytest.com/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="モニターリフレッシュレートテスト | 能力テスト">
+<meta name="twitter:description" content="あなたのモニターは本当に60Hz?144Hz?ブラウザですぐ測れる無料のリフレッシュレートテスト。">
+<meta name="twitter:image" content="https://myabilitytest.com/og-default.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"Organization","@id":"https://myabilitytest.com/#organization","name":"MyAbilityTest","url":"https://myabilitytest.com/","logo":{"@type":"ImageObject","url":"https://myabilitytest.com/og-default.png","width":1200,"height":630}},
+{"@type":"WebSite","@id":"https://myabilitytest.com/#website","name":"MyAbilityTest","url":"https://myabilitytest.com/","inLanguage":["ko","en","ja","zh-Hant"],"publisher":{"@id":"https://myabilitytest.com/#organization"}},
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://myabilitytest.com/ja/"},{"@type":"ListItem","position":2,"name":"モニターリフレッシュレートテスト | 能力テスト","item":"https://myabilitytest.com/ja/tests/monitor-hz"}]},{"@type":"WebApplication","name":"モニターリフレッシュレートテスト | 能力テスト","url":"https://myabilitytest.com/ja/tests/monitor-hz","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"ja"},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"ブラウザで測ったリフレッシュレートは実際と違うことがありますか?","acceptedAnswer":{"@type":"Answer","text":"はい。ブラウザは画面の更新に合わせてフレームを描画しますが、省電力モードや他のタブの負荷、ブラウザのフレーム制限により、実際のモニターのリフレッシュレートより低く測定されることがあります。電源を接続し、他のタブを閉じてから測り直してください。"}},
+{"@type":"Question","name":"144Hzのモニターなのに60Hzと表示されます。","acceptedAnswer":{"@type":"Answer","text":"OSのディスプレイ設定が60Hzのままである可能性が高いです。Windowsは設定 > システム > ディスプレイ > ディスプレイの詳細設定、Macは設定 > ディスプレイでリフレッシュレートを確認・変更できます。ケーブルの規格が高いリフレッシュレートに対応していない場合もあります。"}},
+{"@type":"Question","name":"リフレッシュレートが高いとゲームで有利ですか?","acceptedAnswer":{"@type":"Answer","text":"画面がより頻繁に更新されるため、動く対象が滑らかに見え、新しい情報が目に届くまでの遅延が短くなります。ただし体感の差は人やジャンルによって異なり、リフレッシュレートだけで実力が決まるわけではありません。"}}
+]}
+]}
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
+<link rel="stylesheet" href="/skill-test/style.css">
+<style>
+  .info { margin-top: 40px; color: #cbd5e1; font-size: 14px; line-height: 1.7; }
+  .info h2 { font-size: 17px; color: #f1f5f9; margin: 28px 0 8px; }
+  .info table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
+  .info th, .info td { border: 1px solid #334155; padding: 8px; text-align: left; }
+  .info th { background: var(--card-bg); }
+  .info ul { padding-left: 20px; }
+  .other-tests { margin-top: 16px; }
+  .other-tests .label { text-align: center; font-size: 12px; color: var(--text-dim); margin-bottom: 8px; }
+  .other-tests-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .other-tests-links a {
+    font-size: 12px; color: #cbd5e1; text-decoration: none;
+    background: var(--card-bg-2); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 999px; padding: 6px 12px;
+  }
+  .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+
+  .hz-readout { text-align: center; margin: 18px 0 6px; }
+  .hz-readout .hz-num { font-size: 76px; font-weight: 800; color: var(--accent); line-height: 1; font-variant-numeric: tabular-nums; }
+  .hz-readout .hz-unit { font-size: 24px; font-weight: 700; color: var(--accent); margin-left: 4px; }
+  .hz-readout .hz-label { color: var(--text-dim); font-size: 13px; margin-top: 8px; }
+  .hz-progress { height: 6px; background: var(--card-bg-2); border-radius: 999px; overflow: hidden; margin: 14px 0 6px; }
+  .hz-progress .fill { height: 100%; width: 0%; background: var(--accent); transition: width 0.15s linear; }
+  .hz-detail { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 16px; }
+  .hz-detail .box { background: var(--card-bg-2); border-radius: 12px; padding: 12px 8px; text-align: center; }
+  .hz-detail .box .k { font-size: 11.5px; color: var(--text-dim); margin-bottom: 4px; }
+  .hz-detail .box .v { font-size: 16px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .hz-verdict { text-align: center; font-size: 15px; font-weight: 700; margin-top: 14px; }
+  .hz-note { color: var(--text-dim); font-size: 12.5px; text-align: center; margin-top: 8px; line-height: 1.6; }
+
+  /* 滑らかさ比較用の動く点 */
+  .smooth-demo { background: var(--card-bg-2); border-radius: 14px; padding: 14px; margin-top: 18px; overflow: hidden; }
+  .smooth-demo .track { position: relative; height: 26px; margin-bottom: 8px; }
+  .smooth-demo .dot { position: absolute; top: 3px; width: 20px; height: 20px; border-radius: 50%; background: var(--accent); }
+  .smooth-demo .cap { color: var(--text-dim); font-size: 11.5px; text-align: center; }
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back-link" href="/ja/">← メインへ</a>
+    <div class="lang-switch">
+      <a href="/ko/tests/monitor-hz">한국어</a>
+      <a href="/en/tests/monitor-hz">English</a>
+      <a class="active" href="/ja/tests/monitor-hz">日本語</a>
+      <a href="/zh/tests/monitor-hz">中文</a>
+    </div>
+    <h1>🖥️ モニターリフレッシュレートテスト</h1>
+    <p class="sub">ブラウザが実際に描画するフレーム間隔を測って、リフレッシュレートを推定します。</p>
+
+    <div class="info-box">
+      💻 インストール不要ですぐ測定できます。精度のため<strong>他のタブを閉じ、ノートPCは電源を接続して</strong>から測定してください。
+    </div>
+
+    <div class="level-card">
+      <div class="hz-readout">
+        <span class="hz-num" id="hzNum">--</span><span class="hz-unit">Hz</span>
+        <div class="hz-label" id="hzLabel">測定ボタンを押してください</div>
+      </div>
+      <div class="hz-progress"><div class="fill" id="hzFill"></div></div>
+      <div class="hz-detail">
+        <div class="box"><div class="k">平均フレーム間隔</div><div class="v" id="hzAvg">-</div></div>
+        <div class="box"><div class="k">最短間隔</div><div class="v" id="hzMin">-</div></div>
+        <div class="box"><div class="k">フレームのばらつき</div><div class="v" id="hzJitter">-</div></div>
+      </div>
+      <div class="hz-verdict" id="hzVerdict"></div>
+      <div class="hz-note" id="hzNote"></div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn" id="startBtn">リフレッシュレートを測定(5秒)</button>
+      <button class="btn secondary" id="shareBtn" style="display:none;">結果を共有</button>
+    </div>
+
+    <div class="smooth-demo">
+      <div class="track"><div class="dot" id="demoDot"></div></div>
+      <div class="cap">この点がカクついて見える場合、リフレッシュレートが低いか、ブラウザがフレームを制限している可能性があります</div>
+    </div>
+
+    <div class="stats">
+      <div class="stat-box">
+        <div class="label">測定回数</div>
+        <div class="value" id="statCount">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">最高値</div>
+        <div class="value" id="statBest">-</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">最新の値</div>
+        <div class="value" id="statLast">-</div>
+      </div>
+    </div>
+
+    <section class="info">
+      <h2>リフレッシュレート(Hz)とは?</h2>
+      <p>リフレッシュレートは、モニターが1秒間に何回画面を描き直すかを表す値です。60Hzなら1秒に60回、144Hzなら144回更新します。数値が大きいほど動きが滑らかに見え、新しい映像が目に届くまでの遅延が短くなります。</p>
+
+      <h2>このテストはどうやって測定しますか?</h2>
+      <p>ブラウザの<code>requestAnimationFrame</code>は画面が更新される周期に合わせて呼び出されます。このテストは5秒間その呼び出し間隔をすべて記録し、<strong>中央値</strong>を基準に毎秒のフレーム数を計算します。平均ではなく中央値を使うのは、測定中に一度や二度跳ねたフレームが結果を歪めないようにするためです。</p>
+
+      <h2>結果の見方</h2>
+      <table>
+        <tr><th>測定値</th><th>一般的な解釈</th></tr>
+        <tr><td>約50Hz未満</td><td>省電力モード、またはブラウザがフレームを制限している可能性が高いです</td></tr>
+        <tr><td>約60Hz</td><td>一般的な事務用・普及型モニター、またはノートPC内蔵画面の標準値</td></tr>
+        <tr><td>約75Hz</td><td>普及型ゲーミングモニターでよく見る値</td></tr>
+        <tr><td>約120〜144Hz</td><td>ゲーミングモニターの代表的な帯域</td></tr>
+        <tr><td>165Hz以上</td><td>高リフレッシュレートのゲーミングモニター</td></tr>
+      </table>
+
+      <h2>実際より低く出る理由</h2>
+      <ul>
+        <li><strong>省電力モード</strong> — ノートPCがバッテリー駆動中はリフレッシュレートを下げる機種が多いです。</li>
+        <li><strong>ブラウザのフレーム制限</strong> — バックグラウンドタブや他のタブが重いとフレームが減ります。</li>
+        <li><strong>OSの設定</strong> — 144Hzのモニターでもディスプレイ設定が60Hzなら60Hzで動作します。</li>
+        <li><strong>ケーブル・ポート</strong> — 規格の低いケーブルは高解像度で高いリフレッシュレートを伝えられないことがあります。</li>
+      </ul>
+      <p>測定値が期待と違う場合は、電源を接続し他のタブをすべて閉じてから測り直してください。それでも低い場合はOSのディスプレイ設定を確認しましょう。</p>
+
+      <h2>リフレッシュレートと反応速度の関係は?</h2>
+      <p>リフレッシュレートが高いと、画面に新しい情報が表示されるまでの待ち時間が短くなります。60Hzでは1フレーム約16.7ms、144Hzでは約6.9msなので、理論上その分だけ早く情報を見られます。そのため<a href="/ja/tests/reaction-time">反応速度テスト</a>の結果も端末によって10〜50ms程度変わることがあります。</p>
+    </section>
+
+    <div class="side-panel" id="ladderPanel"></div>
+    <div class="side-panel">
+      <div class="ach-head">🕒 最近の測定</div>
+      <div id="recentPanel"></div>
+    </div>
+
+    <div class="other-tests">
+      <div class="label">他のテストも試してみよう</div>
+      <div class="other-tests-links">
+        <a href="/ja/tests/reaction-time">⚡ 反応速度</a>
+        <a href="/ja/tests/aim-trainer">🎯 エイムテスト</a>
+        <a href="/ja/tests/dynamic-vision">👁️ 動体視力</a>
+        <a href="/ja/tests/click-speed">🖱️ CPSクリック速度</a>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <div class="footer-links">
+        <a href="/ja/">ホーム</a>
+        <a href="/ja/privacy">プライバシーポリシー</a>
+        <a href="mailto:yongju0002@gmail.com">お問い合わせ</a>
+      </div>
+      <div class="copyright">© 2026 MyAbilityTest. すべてのテストは娯楽および参考用です。</div>
+    </footer>
+  </div>
+
+<script src="/skill-test/common.js"></script>
+<script>
+  const STORE_KEY = 'hwMonitorHz';
+  const DURATION_MS = 5000;
+
+  const startBtn = document.getElementById('startBtn');
+  const shareBtn = document.getElementById('shareBtn');
+  const hzNum = document.getElementById('hzNum');
+  const hzLabel = document.getElementById('hzLabel');
+  const hzFill = document.getElementById('hzFill');
+  const demoDot = document.getElementById('demoDot');
+
+  let stats = loadStats(STORE_KEY, { count: 0, best: 0, last: 0 });
+  let running = false;
+
+  // リフレッシュレートの帯域(ラダー表示用)。高いほど良い。
+  const HZ_TIERS = [
+    { key: '240', min: 200, label: '240Hz級' },
+    { key: '165', min: 150, label: '165Hz級' },
+    { key: '144', min: 110, label: '120〜144Hz級' },
+    { key: '75', min: 70, label: '75Hz級' },
+    { key: '60', min: 50, label: '60Hz級' },
+    { key: 'low', min: 0, label: '50Hz未満(省電力・制限の疑い)' },
+  ];
+
+  function renderStats() {
+    document.getElementById('statCount').textContent = stats.count;
+    document.getElementById('statBest').textContent = stats.best ? stats.best + ' Hz' : '-';
+    document.getElementById('statLast').textContent = stats.last ? stats.last + ' Hz' : '-';
+  }
+
+  function renderPanels() {
+    renderRankLadder('ladderPanel', HZ_TIERS, stats.best || null, {
+      title: '測定帯域', unit: 'Hz', digits: 0,
+    });
+    renderRecentRecords('recentPanel', loadStats(STORE_KEY + '_recent', []),
+      e => `${e.hz} Hz · 間隔 ${e.avg}ms`, 'まだ測定記録がありません');
+  }
+
+  function median(arr) {
+    const a = arr.slice().sort((x, y) => x - y);
+    const m = Math.floor(a.length / 2);
+    return a.length % 2 ? a[m] : (a[m - 1] + a[m]) / 2;
+  }
+
+  function verdictFor(hz) {
+    if (hz < 50) return { text: '省電力モード、またはブラウザがフレームを制限している可能性があります', warn: true };
+    if (hz < 65) return { text: '60Hz級 — 一般的な事務用・ノートPC内蔵画面の標準値です', warn: false };
+    if (hz < 90) return { text: '75Hz級 — 普及型ゲーミングモニターでよく見る値です', warn: false };
+    if (hz < 150) return { text: '120〜144Hz級 — ゲーミングモニターの帯域です', warn: false };
+    return { text: '高リフレッシュレートのゲーミングモニター級です', warn: false };
+  }
+
+  function measure() {
+    if (running) return;
+    running = true;
+    startBtn.disabled = true;
+    shareBtn.style.display = 'none';
+    hzLabel.textContent = '測定中… このタブをアクティブにしておいてください';
+    hzNum.textContent = '--';
+
+    const gaps = [];
+    let last = performance.now();
+    const t0 = last;
+
+    // rAF가 아예 돌지 않는 경우(백그라운드 탭 등)를 대비한 안전장치
+    const stallGuard = setTimeout(() => {
+      if (!running) return;
+      running = false;
+      startBtn.disabled = false;
+      hzFill.style.width = "0%";
+      hzLabel.textContent = "-";
+      document.getElementById("hzNote").textContent = "測定が進みませんでした。ブラウザがこのタブの画面更新を止めています(バックグラウンド状態)。このタブを表示したまま再試行してください。";
+    }, DURATION_MS + 3000);
+
+    function frame(now) {
+      const gap = now - last;
+      last = now;
+      // 最初のフレームと異常に長いフレーム(タブ切替など)は除外
+      if (gap > 0.5 && gap < 100) gaps.push(gap);
+      const elapsed = now - t0;
+      hzFill.style.width = Math.min(100, (elapsed / DURATION_MS) * 100) + '%';
+      if (gaps.length > 8) {
+        hzNum.textContent = Math.round(1000 / median(gaps));
+      }
+      if (elapsed < DURATION_MS) {
+        requestAnimationFrame(frame);
+      } else {
+        clearTimeout(stallGuard);
+        finish(gaps);
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+
+  function finish(gaps) {
+    running = false;
+    startBtn.disabled = false;
+    hzFill.style.width = '100%';
+
+    if (gaps.length < 20) {
+      hzLabel.textContent = '測定失敗';
+      document.getElementById('hzVerdict').textContent = '';
+      document.getElementById('hzNote').textContent = 'フレームが十分に集まりませんでした。このタブをアクティブにして再試行してください。';
+      return;
+    }
+
+    const med = median(gaps);
+    const hz = Math.round(1000 / med);
+    const avg = gaps.reduce((a, b) => a + b, 0) / gaps.length;
+    const min = Math.min(...gaps);
+    const jitter = Math.sqrt(gaps.reduce((a, g) => a + (g - avg) * (g - avg), 0) / gaps.length);
+
+    hzNum.textContent = hz;
+    hzLabel.textContent = `${gaps.length}フレームの測定完了`;
+    document.getElementById('hzAvg').textContent = avg.toFixed(2) + ' ms';
+    document.getElementById('hzMin').textContent = min.toFixed(2) + ' ms';
+    document.getElementById('hzJitter').textContent = jitter.toFixed(2) + ' ms';
+
+    const v = verdictFor(hz);
+    const verdictEl = document.getElementById('hzVerdict');
+    verdictEl.textContent = v.text;
+    verdictEl.style.color = v.warn ? '#fbbf24' : '#22c55e';
+    document.getElementById('hzNote').textContent =
+      'ブラウザが描画するフレームに基づく推定値です。実際のモニター設定と異なる場合があります。';
+
+    stats.count += 1;
+    stats.last = hz;
+    if (hz > stats.best) stats.best = hz;
+    saveStats(STORE_KEY, stats);
+    addRecentRecord(STORE_KEY, { hz, avg: avg.toFixed(1), date: Date.now() });
+    renderStats();
+    renderPanels();
+
+    shareBtn.style.display = '';
+    shareBtn.dataset.share = `私のモニターは約${hz}Hz!(フレーム間隔${avg.toFixed(1)}ms)あなたも測ってみて → `;
+  }
+
+  // 滑らかさ比較デモ:左右に往復する点
+  (function animateDemo() {
+    const track = demoDot.parentElement;
+    function loop(now) {
+      const w = track.clientWidth - 20;
+      const t = (now % 2000) / 2000;
+      const x = w * (t < 0.5 ? t * 2 : (1 - t) * 2);
+      demoDot.style.transform = `translateX(${x}px)`;
+      requestAnimationFrame(loop);
+    }
+    requestAnimationFrame(loop);
+  })();
+
+  startBtn.addEventListener('click', measure);
+  shareBtn.addEventListener('click', () => {
+    shareResult((shareBtn.dataset.share || '') + location.href);
+  });
+
+  renderStats();
+  renderPanels();
+</script>
+</body>
+</html>

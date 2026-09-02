@@ -101,8 +101,7 @@
       <div class="countdown-num" id="timeLeft">10.0</div>
       <div class="sub" id="countLine">按下次数: 0 · 每秒: 0.0</div>
     </div>
-
-    <button class="space-pad" id="spacePad">按空格键开始<br><span style="font-size:14px;font-weight:400;opacity:0.85;">(手机上请点击此区域)</span></button>
+    <button class="space-pad" id="spacePad"><div class="pad-main">按空格键开始</div><div class="pad-sub">(手机上请点击此区域)</div></button>
 
     <div id="resultPanel" class="result-panel">
       <div class="emoji">⌨️</div>
@@ -259,6 +258,17 @@
     document.getElementById('statBestRate').textContent = bs.plays ? bs.bestRate.toFixed(1) : '-';
   }
 
+  function setPad(main, sub, live) {
+    spacePad.innerHTML = "";
+    const m = document.createElement("div");
+    m.className = "pad-main" + (live ? " live" : "");
+    m.textContent = main;
+    const s = document.createElement("div");
+    s.className = "pad-sub";
+    s.textContent = sub;
+    spacePad.append(m, s);
+  }
+
   function tick() {
     if (!running) return;
     const elapsed = (performance.now() - startTime) / 1000;
@@ -266,6 +276,7 @@
     timeLeftEl.textContent = left.toFixed(1);
     const rate = elapsed > 0 ? presses / elapsed : 0;
     countLine.textContent = `按下次数: ${presses} · 每秒: ${rate.toFixed(1)}`;
+    setPad(presses, `剩余${left.toFixed(1)}秒 · 每秒${rate.toFixed(1)}`, true);
     if (left <= 0) { finish(); return; }
     rafId = requestAnimationFrame(tick);
   }
@@ -278,8 +289,7 @@
     startTime = performance.now();
     timestamps = [startTime];
     resultPanel.classList.remove('show');
-    spacePad.innerHTML = '继续按!';
-    countLine.textContent = '按下次数: 1 · 每秒: 0.0';
+    setPad(1, `剩余${duration.toFixed(1)}秒 · 继续按!`, true);
     rafId = requestAnimationFrame(tick);
   }
 
@@ -317,25 +327,7 @@
     finished = true;
     cancelAnimationFrame(rafId);
     timeLeftEl.textContent = '0.0';
-    spacePad.innerHTML = '点击下方按钮重新开始';
-
-    const rate = presses / duration;
-    const bk = bucketKey(duration, inputMode);
-    const bs = getBucket(duration, inputMode);
-    bs.plays += 1;
-    if (presses > bs.bestCount) bs.bestCount = presses;
-    if (rate > bs.bestRate) bs.bestRate = rate;
-    allStats[bk] = bs;
-    saveStats(STORE_KEY, allStats);
-    renderStats();
-    renderDurationButtons();
-
-    const grade = gradeFor(rate);
-    const stars = starsFor(rate);
-    document.getElementById('resultTitle').textContent = `${presses}次 · 每秒 ${rate.toFixed(1)}`;
-    document.getElementById('resultStars').textContent = '★'.repeat(stars) + '☆'.repeat(5 - stars);
-    document.getElementById('resultDesc').textContent = `${duration}秒内${presses}次 — ${grade.label}`;
-    document.getElementById('resultMobileNote').style.display = inputMode === 'mobile' ? '' : 'none';
+    setPad('完成!', '点击下方按钮重新开始', false);
     document.getElementById('chartContainer').innerHTML =
       buildCpsLineChart(perSecondCps(timestamps, startTime, duration));
     renderGradeTable(rate);
@@ -358,7 +350,7 @@
     finished = false;
     inputMode = null;
     resultPanel.classList.remove('show');
-    spacePad.innerHTML = '按空格键开始<br><span style="font-size:14px;font-weight:400;opacity:0.85;">(手机上请点击此区域)</span>';
+    setPad('按空格键开始', '(手机上请点击此区域)', false);
     timeLeftEl.textContent = duration.toFixed(1);
     countLine.textContent = '按下次数: 0 · 每秒: 0.0';
   });

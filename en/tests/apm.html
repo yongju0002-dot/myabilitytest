@@ -110,8 +110,7 @@
         <span>⌨️ Keys <b id="keyCount">0</b></span>
       </div>
     </div>
-
-    <button class="apm-pad" id="apmPad">Press any key or click here to start</button>
+    <button class="apm-pad" id="apmPad"><div class="pad-main">Press any key or click here to start</div><div class="pad-sub">Live APM appears here</div></button>
 
     <div id="resultPanel" class="result-panel">
       <div class="emoji">🎹</div>
@@ -240,6 +239,17 @@
     document.getElementById('statBestActions').textContent = stats.plays ? stats.bestActions : '-';
   }
 
+  function setPad(main, sub, live) {
+    apmPad.innerHTML = "";
+    const m = document.createElement("div");
+    m.className = "pad-main" + (live ? " live" : "");
+    m.textContent = main;
+    const s = document.createElement("div");
+    s.className = "pad-sub";
+    s.textContent = sub;
+    apmPad.append(m, s);
+  }
+
   function tick() {
     if (!running) return;
     const elapsed = (performance.now() - startTime) / 1000;
@@ -249,6 +259,7 @@
     apmLine.textContent = `Actions: ${actions} · Live APM: ${Math.round(liveApm)}`;
     document.getElementById('mouseCount').textContent = mouseActions;
     document.getElementById('keyCount').textContent = keyActions;
+    setPad(Math.round(liveApm), `${left.toFixed(1)}s left - ${actions} actions`, true);
     if (left <= 0) { finish(); return; }
     rafId = requestAnimationFrame(tick);
   }
@@ -260,7 +271,7 @@
     startTime = performance.now();
     timestamps = [startTime];
     resultPanel.classList.remove('show');
-    apmPad.textContent = 'Keep going!';
+    setPad(0, `${DURATION.toFixed(1)}s left - keep going!`, true);
     rafId = requestAnimationFrame(tick);
   }
 
@@ -314,7 +325,7 @@
     finished = true;
     cancelAnimationFrame(rafId);
     timeLeftEl.textContent = '0.0';
-    apmPad.textContent = 'Press the button below to restart';
+    setPad('Done!', 'Press the button below to restart', false);
 
     const apm = (actions / DURATION) * 60;
     stats.plays += 1;
@@ -358,7 +369,7 @@
     finished = false;
     actions = 0; mouseActions = 0; keyActions = 0;
     resultPanel.classList.remove('show');
-    apmPad.textContent = 'Press any key or click here to start';
+    setPad('Press any key or click here to start', 'Live APM appears here', false);
     timeLeftEl.textContent = DURATION.toFixed(1);
     apmLine.textContent = 'Actions: 0 · Live APM: 0';
     document.getElementById('mouseCount').textContent = '0';

@@ -103,7 +103,7 @@
       <div class="sub" id="countLine">누른 횟수: 0 · 초당: 0.0</div>
     </div>
 
-    <button class="space-pad" id="spacePad">스페이스바를 눌러 시작<br><span style="font-size:14px;font-weight:400;opacity:0.85;">(모바일에서는 이 영역을 탭하세요)</span></button>
+    <button class="space-pad" id="spacePad"><div class="pad-main">스페이스바를 눌러 시작</div><div class="pad-sub">(모바일에서는 이 영역을 탭하세요)</div></button>
 
     <div id="resultPanel" class="result-panel">
       <div class="emoji">⌨️</div>
@@ -261,6 +261,17 @@
     document.getElementById('statBestRate').textContent = bs.plays ? bs.bestRate.toFixed(1) : '-';
   }
 
+  function setPad(main, sub, live) {
+    spacePad.innerHTML = "";
+    const m = document.createElement("div");
+    m.className = "pad-main" + (live ? " live" : "");
+    m.textContent = main;
+    const s = document.createElement("div");
+    s.className = "pad-sub";
+    s.textContent = sub;
+    spacePad.append(m, s);
+  }
+
   function tick() {
     if (!running) return;
     const elapsed = (performance.now() - startTime) / 1000;
@@ -268,6 +279,7 @@
     timeLeftEl.textContent = left.toFixed(1);
     const rate = elapsed > 0 ? presses / elapsed : 0;
     countLine.textContent = `누른 횟수: ${presses} · 초당: ${rate.toFixed(1)}`;
+    setPad(presses, `${left.toFixed(1)}초 남음 · 초당 ${rate.toFixed(1)}`, true);
     if (left <= 0) { finish(); return; }
     rafId = requestAnimationFrame(tick);
   }
@@ -280,7 +292,7 @@
     startTime = performance.now();
     timestamps = [startTime];
     resultPanel.classList.remove('show');
-    spacePad.innerHTML = '계속 누르세요!';
+    setPad(1, `${duration.toFixed(1)}초 남음 · 계속 누르세요!`, true);
     countLine.textContent = '누른 횟수: 1 · 초당: 0.0';
     rafId = requestAnimationFrame(tick);
   }
@@ -319,7 +331,7 @@
     finished = true;
     cancelAnimationFrame(rafId);
     timeLeftEl.textContent = '0.0';
-    spacePad.innerHTML = '아래 버튼으로 다시 시작';
+    setPad("완료!", "아래 버튼으로 다시 시작", false);
 
     const rate = presses / duration;
     const bk = bucketKey(duration, inputMode);
@@ -361,7 +373,7 @@
     finished = false;
     inputMode = null;
     resultPanel.classList.remove('show');
-    spacePad.innerHTML = '스페이스바를 눌러 시작<br><span style="font-size:14px;font-weight:400;opacity:0.85;">(모바일에서는 이 영역을 탭하세요)</span>';
+    setPad("스페이스바를 눌러 시작", "(모바일에서는 이 영역을 탭하세요)", false);
     timeLeftEl.textContent = duration.toFixed(1);
     countLine.textContent = '누른 횟수: 0 · 초당: 0.0';
   });

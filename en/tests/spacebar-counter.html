@@ -101,8 +101,7 @@
       <div class="countdown-num" id="timeLeft">10.0</div>
       <div class="sub" id="countLine">Presses: 0 · Per second: 0.0</div>
     </div>
-
-    <button class="space-pad" id="spacePad">Press the spacebar to start<br><span style="font-size:14px;font-weight:400;opacity:0.85;">(on mobile, tap this area)</span></button>
+    <button class="space-pad" id="spacePad"><div class="pad-main">Press the spacebar to start</div><div class="pad-sub">(on mobile, tap this area)</div></button>
 
     <div id="resultPanel" class="result-panel">
       <div class="emoji">⌨️</div>
@@ -259,6 +258,17 @@
     document.getElementById('statBestRate').textContent = bs.plays ? bs.bestRate.toFixed(1) : '-';
   }
 
+  function setPad(main, sub, live) {
+    spacePad.innerHTML = "";
+    const m = document.createElement("div");
+    m.className = "pad-main" + (live ? " live" : "");
+    m.textContent = main;
+    const s = document.createElement("div");
+    s.className = "pad-sub";
+    s.textContent = sub;
+    spacePad.append(m, s);
+  }
+
   function tick() {
     if (!running) return;
     const elapsed = (performance.now() - startTime) / 1000;
@@ -266,6 +276,7 @@
     timeLeftEl.textContent = left.toFixed(1);
     const rate = elapsed > 0 ? presses / elapsed : 0;
     countLine.textContent = `Presses: ${presses} · Per second: ${rate.toFixed(1)}`;
+    setPad(presses, `${left.toFixed(1)}s left - ${rate.toFixed(1)}/sec`, true);
     if (left <= 0) { finish(); return; }
     rafId = requestAnimationFrame(tick);
   }
@@ -278,8 +289,7 @@
     startTime = performance.now();
     timestamps = [startTime];
     resultPanel.classList.remove('show');
-    spacePad.innerHTML = 'Keep going!';
-    countLine.textContent = 'Presses: 1 · Per second: 0.0';
+    setPad(1, `${duration.toFixed(1)}s left - keep going!`, true);
     rafId = requestAnimationFrame(tick);
   }
 
@@ -317,25 +327,7 @@
     finished = true;
     cancelAnimationFrame(rafId);
     timeLeftEl.textContent = '0.0';
-    spacePad.innerHTML = 'Press the button below to restart';
-
-    const rate = presses / duration;
-    const bk = bucketKey(duration, inputMode);
-    const bs = getBucket(duration, inputMode);
-    bs.plays += 1;
-    if (presses > bs.bestCount) bs.bestCount = presses;
-    if (rate > bs.bestRate) bs.bestRate = rate;
-    allStats[bk] = bs;
-    saveStats(STORE_KEY, allStats);
-    renderStats();
-    renderDurationButtons();
-
-    const grade = gradeFor(rate);
-    const stars = starsFor(rate);
-    document.getElementById('resultTitle').textContent = `${presses} presses · ${rate.toFixed(1)}/s`;
-    document.getElementById('resultStars').textContent = '★'.repeat(stars) + '☆'.repeat(5 - stars);
-    document.getElementById('resultDesc').textContent = `${presses} presses in ${duration}s — ${grade.label}`;
-    document.getElementById('resultMobileNote').style.display = inputMode === 'mobile' ? '' : 'none';
+    setPad('Done!', 'Press the button below to restart', false);
     document.getElementById('chartContainer').innerHTML =
       buildCpsLineChart(perSecondCps(timestamps, startTime, duration));
     renderGradeTable(rate);
@@ -358,7 +350,7 @@
     finished = false;
     inputMode = null;
     resultPanel.classList.remove('show');
-    spacePad.innerHTML = 'Press the spacebar to start<br><span style="font-size:14px;font-weight:400;opacity:0.85;">(on mobile, tap this area)</span>';
+    setPad('Press the spacebar to start', '(on mobile, tap this area)', false);
     timeLeftEl.textContent = duration.toFixed(1);
     countLine.textContent = 'Presses: 0 · Per second: 0.0';
   });

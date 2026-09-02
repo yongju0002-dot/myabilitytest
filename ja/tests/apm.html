@@ -110,8 +110,7 @@
         <span>⌨️ キー <b id="keyCount">0</b></span>
       </div>
     </div>
-
-    <button class="apm-pad" id="apmPad">どれかキーを押すか、ここをクリックしてスタート</button>
+    <button class="apm-pad" id="apmPad"><div class="pad-main">何かキーを押すかここをクリックしてスタート</div><div class="pad-sub">リアルタイムAPMがここに表示されます</div></button>
 
     <div id="resultPanel" class="result-panel">
       <div class="emoji">🎹</div>
@@ -240,6 +239,17 @@
     document.getElementById('statBestActions').textContent = stats.plays ? stats.bestActions : '-';
   }
 
+  function setPad(main, sub, live) {
+    apmPad.innerHTML = "";
+    const m = document.createElement("div");
+    m.className = "pad-main" + (live ? " live" : "");
+    m.textContent = main;
+    const s = document.createElement("div");
+    s.className = "pad-sub";
+    s.textContent = sub;
+    apmPad.append(m, s);
+  }
+
   function tick() {
     if (!running) return;
     const elapsed = (performance.now() - startTime) / 1000;
@@ -249,6 +259,7 @@
     apmLine.textContent = `アクション: ${actions} ・ リアルタイムAPM: ${Math.round(liveApm)}`;
     document.getElementById('mouseCount').textContent = mouseActions;
     document.getElementById('keyCount').textContent = keyActions;
+    setPad(Math.round(liveApm), `残り${left.toFixed(1)}秒 ・ ${actions}アクション`, true);
     if (left <= 0) { finish(); return; }
     rafId = requestAnimationFrame(tick);
   }
@@ -260,7 +271,7 @@
     startTime = performance.now();
     timestamps = [startTime];
     resultPanel.classList.remove('show');
-    apmPad.textContent = '入力を続けて!';
+    setPad(0, `残り${DURATION.toFixed(1)}秒 ・ 入力を続けて!`, true);
     rafId = requestAnimationFrame(tick);
   }
 
@@ -314,7 +325,7 @@
     finished = true;
     cancelAnimationFrame(rafId);
     timeLeftEl.textContent = '0.0';
-    apmPad.textContent = '下のボタンでもう一度';
+    setPad('完了!', '下のボタンでもう一度', false);
 
     const apm = (actions / DURATION) * 60;
     stats.plays += 1;
@@ -358,7 +369,7 @@
     finished = false;
     actions = 0; mouseActions = 0; keyActions = 0;
     resultPanel.classList.remove('show');
-    apmPad.textContent = 'どれかキーを押すか、ここをクリックしてスタート';
+    setPad('何かキーを押すかここをクリックしてスタート', 'リアルタイムAPMがここに表示されます', false);
     timeLeftEl.textContent = DURATION.toFixed(1);
     apmLine.textContent = 'アクション: 0 ・ リアルタイムAPM: 0';
     document.getElementById('mouseCount').textContent = '0';

@@ -110,8 +110,7 @@
         <span>⌨️ 按键 <b id="keyCount">0</b></span>
       </div>
     </div>
-
-    <button class="apm-pad" id="apmPad">按任意键或点击此处开始</button>
+    <button class="apm-pad" id="apmPad"><div class="pad-main">按任意键或点击这里开始</div><div class="pad-sub">实时APM将显示在这里</div></button>
 
     <div id="resultPanel" class="result-panel">
       <div class="emoji">🎹</div>
@@ -240,6 +239,17 @@
     document.getElementById('statBestActions').textContent = stats.plays ? stats.bestActions : '-';
   }
 
+  function setPad(main, sub, live) {
+    apmPad.innerHTML = "";
+    const m = document.createElement("div");
+    m.className = "pad-main" + (live ? " live" : "");
+    m.textContent = main;
+    const s = document.createElement("div");
+    s.className = "pad-sub";
+    s.textContent = sub;
+    apmPad.append(m, s);
+  }
+
   function tick() {
     if (!running) return;
     const elapsed = (performance.now() - startTime) / 1000;
@@ -249,6 +259,7 @@
     apmLine.textContent = `操作数: ${actions} · 实时APM: ${Math.round(liveApm)}`;
     document.getElementById('mouseCount').textContent = mouseActions;
     document.getElementById('keyCount').textContent = keyActions;
+    setPad(Math.round(liveApm), `剩余${left.toFixed(1)}秒 · ${actions}次操作`, true);
     if (left <= 0) { finish(); return; }
     rafId = requestAnimationFrame(tick);
   }
@@ -260,7 +271,7 @@
     startTime = performance.now();
     timestamps = [startTime];
     resultPanel.classList.remove('show');
-    apmPad.textContent = '继续输入!';
+    setPad(0, `剩余${DURATION.toFixed(1)}秒 · 继续输入!`, true);
     rafId = requestAnimationFrame(tick);
   }
 
@@ -314,7 +325,7 @@
     finished = true;
     cancelAnimationFrame(rafId);
     timeLeftEl.textContent = '0.0';
-    apmPad.textContent = '点击下方按钮重新开始';
+    setPad('完成!', '点击下方按钮重新开始', false);
 
     const apm = (actions / DURATION) * 60;
     stats.plays += 1;
@@ -358,7 +369,7 @@
     finished = false;
     actions = 0; mouseActions = 0; keyActions = 0;
     resultPanel.classList.remove('show');
-    apmPad.textContent = '按任意键或点击此处开始';
+    setPad('按任意键或点击这里开始', '实时APM将显示在这里', false);
     timeLeftEl.textContent = DURATION.toFixed(1);
     apmLine.textContent = '操作数: 0 · 实时APM: 0';
     document.getElementById('mouseCount').textContent = '0';

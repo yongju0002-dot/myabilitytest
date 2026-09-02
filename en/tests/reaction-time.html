@@ -106,6 +106,43 @@
     color: var(--text-dim);
   }
   .toolbar label { display: flex; align-items: center; gap: 6px; cursor: pointer; }
+.mode-select { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; margin-bottom: 8px; }
+  .mode-select button {
+    background: transparent; border: 1px solid rgba(255,255,255,0.18); color: var(--text-dim);
+    padding: 7px 14px; border-radius: 999px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit;
+  }
+  .mode-select button:hover { color: #fff; border-color: rgba(255,255,255,0.4); }
+  .mode-select button.active { background: rgba(99,102,241,0.18); border-color: var(--accent); color: #fff; }
+  .mode-hint { text-align: center; color: var(--text-dim); font-size: 12.5px; margin: 0 0 12px; line-height: 1.5; }
+
+  /* F1 스타트 라이트 */
+  .f1-lights { display: flex; gap: 14px; justify-content: center; margin-bottom: 18px; }
+  .f1-light { width: 44px; height: 44px; border-radius: 50%; background: rgba(0,0,0,0.35); border: 2px solid rgba(255,255,255,0.25); }
+  .f1-light.on { background: #ef4444; border-color: #fca5a5; box-shadow: 0 0 18px rgba(239,68,68,0.7); }
+  @media (max-width: 420px) { .f1-light { width: 32px; height: 32px; } .f1-lights { gap: 9px; } }
+
+  /* 공용 패널 (업적/사다리/최근기록) */
+  .side-panel { background: var(--card-bg); border-radius: 16px; padding: 16px 18px; margin-top: 16px; }
+  .ach-head, .ladder-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; font-size: 13px; font-weight: 700; color: #cbd5e1; margin-bottom: 10px; }
+  .ach-count, .ladder-best { font-size: 12px; font-weight: 600; color: var(--accent); font-variant-numeric: tabular-nums; }
+  .ach-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+  .ach { font-size: 11.5px; padding: 5px 10px; border-radius: 999px; background: var(--card-bg-2); border: 1px solid rgba(255,255,255,0.07); color: var(--text-dim2); }
+  .ach.got { background: rgba(99,102,241,0.16); border-color: var(--accent); color: #c7d2fe; font-weight: 600; }
+  .ladder { display: flex; flex-direction: column; gap: 4px; }
+  .rung { display: grid; grid-template-columns: 18px 1fr auto; gap: 10px; align-items: center; padding: 7px 10px; border-radius: 8px; font-size: 12.5px; background: var(--card-bg-2); color: var(--text-dim); }
+  .rung-mark { text-align: center; color: var(--text-dim2); }
+  .rung.reached { color: #e2e8f0; }
+  .rung.reached .rung-mark { color: #22c55e; }
+  .rung.current { background: rgba(99,102,241,0.18); color: #fff; font-weight: 700; }
+  .rung-bound { font-size: 11.5px; color: var(--text-dim2); font-variant-numeric: tabular-nums; }
+  .rung.current .rung-bound { color: #c7d2fe; }
+  .recent-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 3px; }
+  .recent-list li { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; padding: 6px 10px; border-radius: 8px; background: var(--card-bg-2); font-size: 12.5px; }
+  .rec-main { color: #e2e8f0; }
+  .rec-time { color: var(--text-dim2); font-size: 11.5px; font-variant-numeric: tabular-nums; }
+  .rec-empty { text-align: center; color: var(--text-dim); font-size: 12.5px; margin: 4px 0; }
+  .toast { position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%) translateY(20px); background: #0f172a; border: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 10px 18px; border-radius: 999px; font-size: 13px; opacity: 0; pointer-events: none; transition: opacity 0.2s ease, transform 0.2s ease; z-index: 50; }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
   .stage {
     height: min(1020px, 85vh);
@@ -352,6 +389,13 @@
     <p class="sub">Click the instant the screen color changes</p>
     <p class="sub" style="margin-top:-12px; font-size:12px;">⚠️ Monitor, mouse, and touchscreen lag can add 10–50ms depending on your device — 100ms+ on a TV</p>
 
+    <div class="mode-select" id="modeSelect">
+      <button data-mode="simple" class="active">Simple</button>
+      <button data-mode="f1">F1 Start</button>
+      <button data-mode="gonogo">Go / No-Go</button>
+    </div>
+    <p class="mode-hint" id="modeHint">The classic test: click the moment the colour changes.</p>
+
     <div class="toolbar">
       <label><input type="checkbox" id="colorblindToggle"> Colorblind mode (blue/orange)</label>
     </div>
@@ -409,6 +453,13 @@
 
     </section>
 
+    <div class="side-panel" id="ladderPanel"></div>
+    <div class="side-panel" id="achPanel"></div>
+    <div class="side-panel">
+      <div class="ach-head">🕒 Recent runs</div>
+      <div id="recentPanel"></div>
+    </div>
+
     <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 All-Time Top Records (Top 30)</h2>
     <div id="topLeaderboard"></div>
 
@@ -422,6 +473,7 @@
     </footer>
   </div>
 
+<script src="/skill-test/common.js"></script>
 <script>
   const stage = document.getElementById('stage');
   const dotsEl = document.getElementById('dots');
@@ -429,9 +481,22 @@
   const statAvg = document.getElementById('statAvg');
   const statBest = document.getElementById('statBest');
   const colorblindToggle = document.getElementById('colorblindToggle');
+  const modeSelect = document.getElementById('modeSelect');
+  const modeHint = document.getElementById('modeHint');
 
   const STATE = { SETUP: 'setup', WAIT: 'wait', GO: 'go', EARLY: 'early', ROUND_RESULT: 'round_result', SUMMARY: 'summary' };
   let state = STATE.SETUP;
+
+  // ---- 반응 모드 ----
+  // 백분위(RT_CURVE)는 단순 반응 기준으로만 만든 곡선이라 단순 모드에서만 표시한다.
+  const MODES = [
+    { key: 'simple', label: 'Simple', hint: 'The classic test: click the moment the colour changes.', percentile: true },
+    { key: 'f1', label: 'F1 Start', hint: 'Five red lights come on in sequence. Click the instant they all go out - the Formula 1 start procedure.', percentile: false },
+    { key: 'gonogo', label: 'Go / No-Go', hint: 'Click only on green. Clicking on red is a miss.', percentile: false },
+  ];
+  let mode = MODES[0];
+  let noGoRound = false;
+  let f1Timers = [];
   let timeoutId = null;
   let startTime = 0;
   let totalRounds = 5;
@@ -446,7 +511,7 @@
     try { return JSON.parse(localStorage.getItem(LB_KEY) || '[]'); } catch (e) { return []; }
   }
 
-  function addToLeaderboard(value) {
+  function rtAddToLeaderboard(value) {
     let list = loadLB();
     list.push({ value, date: Date.now() });
     list.sort((a, b) => a.value - b.value);
@@ -469,7 +534,7 @@
     }).join('') + '</ul>';
   }
 
-  function saveStats(ms) {
+  function rtSaveStats(ms) {
     stats.count += 1;
     stats.sum += ms;
     stats.best = stats.best === null ? ms : Math.min(stats.best, ms);
@@ -503,8 +568,70 @@
     stage.innerHTML = html;
   }
 
+  // ---- 업적 / 사다리 / 최근 기록 ----
+  const ACH_KEY = 'reaction';
+  const RT_TIERS = [
+    { key: 'S', max: 150, label: 'Very fast' },
+    { key: 'A', max: 200, label: 'Fast' },
+    { key: 'B', max: 250, label: 'Good' },
+    { key: 'C', max: 300, label: 'Average' },
+    { key: 'D', max: 400, label: 'Relaxed' },
+    { key: 'E', max: Infinity, label: 'Very relaxed' },
+  ];
+  const ACH_DEFS = (() => {
+    const defs = [{ id: 'first', label: 'First run' }];
+    [1, 5, 10, 25, 50].forEach(n => defs.push({ id: 'plays' + n, label: n + ' plays' }));
+    MODES.forEach(m => RT_TIERS.forEach(t => {
+      defs.push({ id: `${m.key}_${t.key}`, label: `${m.label} · ${t.key}`, hint: `${m.label} · ${t.label}` });
+    }));
+    defs.push({ id: 'allmodes', label: 'Tried all 3 modes' });
+    return defs;
+  })();
+
+  function modeStats() { return loadStats(ACH_KEY + '_modes', {}); }
+  function bestForMode() {
+    const s = modeStats()[mode.key];
+    return s && s.best != null ? s.best : null;
+  }
+  function recordModeResult(avg) {
+    const all = modeStats();
+    const cur = all[mode.key] || { plays: 0, best: null };
+    cur.plays += 1;
+    cur.best = cur.best === null ? avg : Math.min(cur.best, avg);
+    all[mode.key] = cur;
+    saveStats(ACH_KEY + '_modes', all);
+    return all;
+  }
+  function earnedIds(avg) {
+    const all = recordModeResult(avg);
+    const ids = ['first'];
+    const tp = Object.values(all).reduce((a, s) => a + (s.plays || 0), 0);
+    [1, 5, 10, 25, 50].forEach(n => { if (tp >= n) ids.push('plays' + n); });
+    const idx = RT_TIERS.findIndex(t => avg <= t.max);
+    RT_TIERS.slice(idx).forEach(t => ids.push(`${mode.key}_${t.key}`));
+    if (Object.keys(all).length >= 3) ids.push('allmodes');
+    return ids;
+  }
+  function renderPanels() {
+    renderRankLadder('ladderPanel', RT_TIERS, bestForMode(), {
+      title: `${mode.label} rank`, unit: 'ms', digits: 0, betterIsLower: true,
+    });
+    renderAchievements('achPanel', ACH_KEY, ACH_DEFS, '🏅 Achievements');
+    renderRecentRecords('recentPanel', loadStats(ACH_KEY + '_recent', []),
+      e => `${e.avg}ms · ${e.mode} · ${e.rounds} rounds`, 'No runs yet');
+  }
+
+  function renderModeButtons() {
+    modeSelect.querySelectorAll('button').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.mode === mode.key);
+    });
+    modeHint.textContent = mode.hint;
+  }
+
   function showSetup() {
     state = STATE.SETUP;
+    clearTimeout(timeoutId);
+    clearF1();
     setStage('idle', `
       <div class="big">Choose number of rounds</div>
       <div class="round-select">
@@ -534,13 +661,70 @@
     startWaiting();
   }
 
+  function clearF1() {
+    f1Timers.forEach(t => clearTimeout(t));
+    f1Timers = [];
+  }
+
   function startWaiting() {
     state = STATE.WAIT;
+    clearF1();
+    noGoRound = false;
+    renderDots();
+
+    if (mode.key === 'f1') {
+      setStage('wait', `
+        <div class="f1-lights">${'<div class="f1-light"></div>'.repeat(5)}</div>
+        <div class="small">Round ${currentRound} / ${totalRounds} — click when all the lights go out!</div>
+      `);
+      const lights = stage.querySelectorAll('.f1-light');
+      const step = 600 + Math.random() * 400;
+      lights.forEach((el, i) => {
+        f1Timers.push(setTimeout(() => el.classList.add('on'), step * (i + 1)));
+      });
+      const outAt = step * 5 + 800 + Math.random() * 2500;
+      timeoutId = setTimeout(() => {
+        state = STATE.GO;
+        startTime = performance.now();
+        setStage('go', `
+          <div class="f1-lights">${'<div class="f1-light"></div>'.repeat(5)}</div>
+          <div class="big">Click now!</div>
+        `);
+      }, outAt);
+      return;
+    }
+
+    if (mode.key === 'gonogo') {
+      setStage('wait', `
+        <div class="big">Wait for it...</div>
+        <div class="small">Round ${currentRound} / ${totalRounds} — click only on green!</div>
+      `);
+      const delay = 1200 + Math.random() * 2800;
+      timeoutId = setTimeout(() => {
+        noGoRound = Math.random() < 0.3;
+        if (noGoRound) {
+          state = STATE.GO;
+          startTime = performance.now();
+          setStage('early', `<div class="big">Don't press!</div><div class="small">Hold still to pass</div>`);
+          timeoutId = setTimeout(() => {
+            if (state !== STATE.GO) return;
+            state = STATE.ROUND_RESULT;
+            setStage('round', `<div class="big">Nice hold ✓</div><div class="small">This round isn't counted in your score</div>`);
+            setTimeout(() => { if (state === STATE.ROUND_RESULT) nextRound(); }, 900);
+          }, 1200);
+          return;
+        }
+        state = STATE.GO;
+        startTime = performance.now();
+        setStage('go', `<div class="big">Click now!</div>`);
+      }, delay);
+      return;
+    }
+
     setStage('wait', `
       <div class="big">Wait for it...</div>
-      <div class="small">Round ${currentRound} / ${totalRounds} — click the instant it changes color!</div>
+      <div class="small">Round ${currentRound} / ${totalRounds} — click the moment the colour changes!</div>
     `);
-    renderDots();
     const delay = 1200 + Math.random() * 2800;
     timeoutId = setTimeout(() => {
       state = STATE.GO;
@@ -650,13 +834,18 @@
       return `<div class="${cls}"><div class="r">Round ${i + 1}</div>${t} ms</div>`;
     }).join('');
 
+    const percentileBlock = mode.percentile ? `
+        <div class="percentile-line">You're in the top ${topPct.toFixed(topPct < 1 ? 1 : 0)}%</div>
+        <div class="population-line">The median reaction time across large online click tests is about 273ms</div>
+        <div class="histogram">${buildHistogram(avg)}</div>` : `
+        <div class="population-line">${mode.label} mode measures differently from Simple, so no percentile or distribution is shown. Compare within the same mode.</div>`;
+
     setStage('round', `
       <div class="summary">
         <h2>Test complete 🎉 Average ${avg} ms</h2>
-        <div class="grade">${gradeFor(avg)}</div>
-        <div class="percentile-line">You're in the top ${topPct.toFixed(topPct < 1 ? 1 : 0)}%</div>
-        <div class="population-line">The median reaction time across large online click tests is about 273ms</div>
-        <div class="histogram">${buildHistogram(avg)}</div>
+        <div class="grade">${mode.label} · ${gradeFor(avg)}</div>
+        ${percentileBlock}
+
         <div class="hw-disclaimer">⚠️ This result is an estimate. Monitor, mouse, and touchscreen lag can add 10–50ms depending on your device — 100ms+ on a TV. Repeat on the same device to compare fairly.</div>
         <div class="round-table">${roundTableHtml}</div>
         <div class="summary-actions">
@@ -686,15 +875,31 @@
       showSetup();
     });
 
-    const lbList = addToLeaderboard(avg);
+    const lbList = rtAddToLeaderboard(avg);
     renderTopLeaderboard(lbList);
+
+    const fresh = unlockAchievements(ACH_KEY, earnedIds(avg));
+    addRecentRecord(ACH_KEY, { avg, mode: mode.label, rounds: totalRounds, date: Date.now() });
+    renderPanels();
+    if (fresh.length) {
+      showAchievementToast(fresh.map(id => (ACH_DEFS.find(a => a.id === id) || {}).label).filter(Boolean), 'Achievement unlocked!');
+    }
   }
 
   function handleClick() {
     if (state === STATE.WAIT) {
       clearTimeout(timeoutId);
+      clearF1();
       state = STATE.EARLY;
       setStage('early', `<div class="big">Too soon!</div><div class="small">Click again to retry this round</div>`);
+      return;
+    }
+
+    if (state === STATE.GO && noGoRound) {
+      clearTimeout(timeoutId);
+      noGoRound = false;
+      state = STATE.EARLY;
+      setStage('early', `<div class="big">Don't click on red!</div><div class="small">Click again to retry this round</div>`);
       return;
     }
 
@@ -707,7 +912,7 @@
     if (state === STATE.GO) {
       const reaction = Math.round(performance.now() - startTime);
       roundTimes.push(reaction);
-      saveStats(reaction);
+      rtSaveStats(reaction);
       renderStats();
       state = STATE.ROUND_RESULT;
       setStage('round', `<div class="big">${reaction} ms</div><div class="small">${rateFeedback(reaction)}</div>`);
@@ -724,9 +929,22 @@
     document.body.classList.toggle('colorblind', colorblindToggle.checked);
   });
 
+  modeSelect.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      mode = MODES.find(m => m.key === btn.dataset.mode) || MODES[0];
+      renderModeButtons();
+      renderPanels();
+      roundTimes = [];
+      currentRound = 0;
+      showSetup();
+    });
+  });
+
   renderStats();
+  renderModeButtons();
   showSetup();
   renderTopLeaderboard(loadLB());
+  renderPanels();
 </script>
 </body>
 </html>

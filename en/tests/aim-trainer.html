@@ -53,6 +53,7 @@
   .info table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
   .info th, .info td { border: 1px solid #334155; padding: 8px; text-align: left; }
   .info th { background: var(--card-bg); }
+  .persona-label { margin-top: 6px; font-size: 19px; font-weight: 700; color: var(--accent); }
 </style>
 <style>
   .aim-box {
@@ -78,6 +79,7 @@
     pointer-events: none;
     box-shadow: 0 0 14px rgba(99,102,241,0.6);
   }
+  .aim-target.on-cursor { background: #22c55e; box-shadow: 0 0 20px rgba(34,197,94,0.75); }
   .aim-countdown {
     position: absolute;
     inset: 0;
@@ -106,6 +108,13 @@
     <h1>🎯 Aim Test</h1>
     <p class="sub">Click 30 targets as fast and accurately as you can.</p>
 
+    <div class="mode-select" id="modeSelect">
+      <button data-mode="flick" class="active">Flick</button>
+      <button data-mode="gridshot">Grid Shot</button>
+      <button data-mode="tracking">Tracking</button>
+    </div>
+    <p class="mode-hint" id="modeHint">Targets appear one at a time. Click each one as fast and accurately as you can.</p>
+
     <div id="introScreen">
       <div class="info-box">💻 Desktop and mouse are recommended. You can still play on mobile.</div>
       <div class="level-card" style="text-align:left;">
@@ -123,7 +132,7 @@
 
     <div id="playScreen" style="display:none;">
       <div class="level-card">
-        <div class="label">Hits</div>
+        <div class="label" id="aimHud">Hits</div>
         <div class="num" id="hitCount">0 / 30</div>
       </div>
       <div class="aim-box" id="aimBox">
@@ -136,6 +145,7 @@
       <div class="emoji">🎯</div>
       <h2 id="resultTitle"></h2>
       <div class="desc" id="resultDesc"></div>
+      <div class="persona-label" id="personaLabel"></div>
       <div class="percentile" id="resultMobileNote" style="display:none;">Touch records are tracked separately from mouse records.</div>
       <div id="chartContainer"></div>
       <table class="grade-table" id="gradeTable"></table>
@@ -188,6 +198,13 @@
       <p>Tuning your mouse DPI and in-game sensitivity to match your hand movement matters too. Too high and you'll be fast but sloppy; too low and you'll be precise but slow. Consistent practice with an aim trainer is generally believed to improve both speed and accuracy over time.</p>
     </section>
 
+    <div class="side-panel" id="ladderPanel"></div>
+    <div class="side-panel" id="achPanel"></div>
+    <div class="side-panel">
+      <div class="ach-head">🕒 Recent runs</div>
+      <div id="recentPanel"></div>
+    </div>
+
     <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 All-Time Top Records (Top 30)</h2>
     <div id="topLeaderboard"></div>
 
@@ -203,8 +220,13 @@
 
 <script src="/skill-test/common.js"></script>
 <script>
-  const STORE_KEY = 'skillAimStats';
-  const LB_KEY = 'skillAimLeaderboardV1';
+﻿  const STORE_KEY = 'skillAimStats';
+  const ACH_KEY = 'skillAim';
+  const LB_KEYS = {
+    flick: 'skillAimLeaderboardV1',
+    gridshot: 'skillAimLeaderboardV1_gridshot',
+    tracking: 'skillAimLeaderboardV1_tracking',
+  };
   let allStats = loadStats(STORE_KEY, {});
 
   const SIZES = [
@@ -212,32 +234,59 @@
     { key: 'medium', label: 'Medium', radius: 16 },
     { key: 'small', label: 'Small', radius: 10 },
   ];
-  const TARGET_COUNT = 30;
 
-  const GRADES = [
-    { key: 'PRO', label: 'Pro' },
-    { key: 'TOP', label: 'Top tier' },
-    { key: 'SKILLED', label: 'Skilled' },
-    { key: 'NORMAL', label: 'Average' },
-    { key: 'BEGINNER', label: 'Beginner' },
+  // Each mode measures something different.
+  //  flick    - one target at a time, 30 of them. Lower average reaction (ms) is better.
+  //  gridshot - three up at once, clear as many as possible in 30s. Higher clears/s is better.
+  //  tracking - keep the cursor on a moving target for 20s. Higher on-target % is better.
+  const MODES = [
+    {
+      key: 'flick', label: 'Flick', metric: 'ms', targets: 30,
+      hint: 'Targets appear one at a time. Click each one as fast and accurately as you can.',
+      grades: [
+        { key: 'PRO', max: 300, label: 'Pro-level', persona: '🎯 Ambush Sniper' },
+        { key: 'TOP', max: 350, label: 'Top-tier', persona: '🏹 Precision Marksman' },
+        { key: 'SKILLED', max: 450, label: 'Skilled', persona: '🔫 Seasoned Shooter' },
+        { key: 'NORMAL', max: 600, label: 'Average', persona: '🙂 Average Aimer' },
+        { key: 'BEGINNER', max: Infinity, label: 'Beginner', persona: '🌱 Rookie Agent' },
+      ],
+    },
+    {
+      key: 'gridshot', label: 'Grid Shot', metric: 'tps', duration: 30,
+      hint: 'Three targets are up at once. Clear as many as you can in 30 seconds - each hit respawns elsewhere.',
+      grades: [
+        { key: 'PRO', min: 2.5, label: 'Pro-level', persona: '🎯 Grid Dominator' },
+        { key: 'TOP', min: 2.0, label: 'Top-tier', persona: '🏹 Rapid Marksman' },
+        { key: 'SKILLED', min: 1.5, label: 'Skilled', persona: '🔫 Skilled Rapid-fire' },
+        { key: 'NORMAL', min: 1.0, label: 'Average', persona: '🙂 Average Rapid-fire' },
+        { key: 'BEGINNER', min: 0, label: 'Beginner', persona: '🌱 Rookie Agent' },
+      ],
+    },
+    {
+      key: 'tracking', label: 'Tracking', metric: 'pct', duration: 20,
+      hint: 'Keep your cursor on the moving target. We measure how much of the 20 seconds you stayed on it.',
+      grades: [
+        { key: 'PRO', min: 85, label: 'Pro-level', persona: '🎯 Perfect Tracker' },
+        { key: 'TOP', min: 70, label: 'Top-tier', persona: '🏹 Relentless Tracker' },
+        { key: 'SKILLED', min: 55, label: 'Skilled', persona: '🔫 Steady Hand' },
+        { key: 'NORMAL', min: 40, label: 'Average', persona: '🙂 Average Tracking' },
+        { key: 'BEGINNER', min: 0, label: 'Beginner', persona: '🌱 Rookie Agent' },
+      ],
+    },
   ];
-
-  function gradeFor(avgMs, accuracy) {
-    if (avgMs <= 300 && accuracy >= 90) return GRADES[0];
-    if (avgMs <= 350) return GRADES[1];
-    if (avgMs <= 450) return GRADES[2];
-    if (avgMs <= 600) return GRADES[3];
-    return GRADES[4];
-  }
+  let mode = MODES[0];
 
   const introScreen = document.getElementById('introScreen');
   const playScreen = document.getElementById('playScreen');
   const resultPanel = document.getElementById('resultPanel');
   const sizeSelect = document.getElementById('sizeSelect');
+  const modeSelect = document.getElementById('modeSelect');
+  const modeHint = document.getElementById('modeHint');
   const aimBox = document.getElementById('aimBox');
   const aimTarget = document.getElementById('aimTarget');
   const aimCountdown = document.getElementById('aimCountdown');
   const hitCountEl = document.getElementById('hitCount');
+  const aimHud = document.getElementById('aimHud');
 
   let selectedSize = 'medium';
   let running = false;
@@ -252,22 +301,50 @@
   let reactionTimes = [];
   let missDistances = [];
   let gameStartTime = 0;
+  // For grid shot / tracking
+  let gridTargets = [];        // [{el, x, y}]
+  let trackTarget = null;      // {el, x, y, vx, vy}
+  let onTargetMs = 0;
+  let lastFrameTs = 0;
+  let pointerInside = false;
+  let pointerPos = { x: 0, y: 0 };
+  let rafId = null;
+  let endTimer = null;
 
   function bucketKey(size, input) {
-    return `${size}_${input}`;
+    return `${mode.key}_${size}_${input}`;
   }
-
   function getBucketStats(size, input) {
-    const k = bucketKey(size, input);
-    return allStats[k] || { plays: 0, bestAvgMs: null, bestAccuracy: null };
+    return allStats[bucketKey(size, input)] || { plays: 0, best: null, bestAccuracy: null };
   }
 
   function renderStats() {
     const displayInput = inputType || 'mouse';
     const bs = getBucketStats(selectedSize, displayInput);
     document.getElementById('statCount').textContent = bs.plays;
-    document.getElementById('statBest').textContent = bs.bestAvgMs !== null ? Math.round(bs.bestAvgMs) + ' ms' : '-';
+    document.getElementById('statBest').textContent = bs.best !== null ? formatScore(bs.best) : '-';
     document.getElementById('statAcc').textContent = bs.bestAccuracy !== null ? bs.bestAccuracy.toFixed(0) + '%' : '-';
+  }
+
+  function formatScore(v) {
+    if (mode.metric === 'ms') return Math.round(v) + ' ms';
+    if (mode.metric === 'tps') return v.toFixed(2) + ' /s';
+    return v.toFixed(0) + '%';
+  }
+
+  function gradeFor(score, accuracy) {
+    if (mode.metric === 'ms') {
+      if (score <= 300 && accuracy >= 90) return mode.grades[0];
+      return mode.grades.find(g => score <= g.max && g.key !== 'PRO') || mode.grades[mode.grades.length - 1];
+    }
+    return mode.grades.find(g => score >= g.min) || mode.grades[mode.grades.length - 1];
+  }
+
+  function renderModeButtons() {
+    modeSelect.querySelectorAll('button').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.mode === mode.key);
+    });
+    modeHint.textContent = mode.hint;
   }
 
   sizeSelect.querySelectorAll('button').forEach(btn => {
@@ -276,57 +353,165 @@
       btn.classList.add('active');
       selectedSize = btn.dataset.size;
       renderStats();
-      renderTopLeaderboard(loadStats(LB_KEY + '_' + bucketKey(selectedSize, inputType || 'mouse'), []));
+      renderPanels();
+      renderTopLeaderboard(loadStats(LB_KEYS[mode.key], []));
     });
   });
 
+  modeSelect.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (running) return;
+      mode = MODES.find(m => m.key === btn.dataset.mode) || MODES[0];
+      renderModeButtons();
+      renderStats();
+      renderPanels();
+      renderTopLeaderboard(loadStats(LB_KEYS[mode.key], []));
+      resultPanel.classList.remove('show');
+      introScreen.style.display = '';
+      playScreen.style.display = 'none';
+    });
+  });
+
+  function randomPos() {
+    const rect = aimBox.getBoundingClientRect();
+    return {
+      x: radius + Math.random() * (rect.width - 2 * radius),
+      y: radius + Math.random() * (rect.height - 2 * radius),
+    };
+  }
+
+  function placeEl(el, x, y) {
+    el.style.width = (radius * 2) + 'px';
+    el.style.height = (radius * 2) + 'px';
+    el.style.left = x + 'px';
+    el.style.top = y + 'px';
+    el.style.display = '';
+  }
+
+  // ---- Flick ----
   function spawnTarget() {
     const rect = aimBox.getBoundingClientRect();
     const minSep = Math.min(150, Math.min(rect.width, rect.height) * 0.3);
-    let x, y, tries = 0;
+    let p, tries = 0;
     do {
-      x = radius + Math.random() * (rect.width - 2 * radius);
-      y = radius + Math.random() * (rect.height - 2 * radius);
+      p = randomPos();
       tries += 1;
-    } while (lastTargetPos && Math.hypot(x - lastTargetPos.x, y - lastTargetPos.y) < minSep && tries < 50);
-    lastTargetPos = { x, y };
-    aimTarget.style.width = (radius * 2) + 'px';
-    aimTarget.style.height = (radius * 2) + 'px';
-    aimTarget.style.left = x + 'px';
-    aimTarget.style.top = y + 'px';
-    aimTarget.style.display = '';
+    } while (lastTargetPos && Math.hypot(p.x - lastTargetPos.x, p.y - lastTargetPos.y) < minSep && tries < 50);
+    lastTargetPos = p;
+    placeEl(aimTarget, p.x, p.y);
     lastTargetTime = performance.now();
+  }
+
+  // ---- Grid Shot ----
+  function makeTargetEl() {
+    const el = document.createElement('div');
+    el.className = 'aim-target';
+    aimBox.appendChild(el);
+    return el;
+  }
+  function spawnGrid(n) {
+    gridTargets.forEach(t => t.el.remove());
+    gridTargets = [];
+    for (let i = 0; i < n; i++) {
+      const el = makeTargetEl();
+      const p = randomPos();
+      placeEl(el, p.x, p.y);
+      gridTargets.push({ el, x: p.x, y: p.y });
+    }
+  }
+  function respawnGridTarget(t) {
+    const p = randomPos();
+    placeEl(t.el, p.x, p.y);
+    t.x = p.x; t.y = p.y;
+  }
+
+  // ---- Tracking ----
+  function startTracking() {
+    const rect = aimBox.getBoundingClientRect();
+    const el = makeTargetEl();
+    const p = randomPos();
+    placeEl(el, p.x, p.y);
+    const speed = 130 + Math.random() * 70;   // px/s
+    const angle = Math.random() * Math.PI * 2;
+    trackTarget = { el, x: p.x, y: p.y, vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed };
+    onTargetMs = 0;
+    lastFrameTs = performance.now();
+    rafId = requestAnimationFrame(trackFrame);
+  }
+  function trackFrame(now) {
+    if (!running || !trackTarget) return;
+    const dt = Math.min(50, now - lastFrameTs);
+    lastFrameTs = now;
+    const rect = aimBox.getBoundingClientRect();
+    let { x, y, vx, vy } = trackTarget;
+    x += vx * dt / 1000;
+    y += vy * dt / 1000;
+    // Bounce off the walls
+    if (x < radius) { x = radius; vx = -vx; }
+    if (x > rect.width - radius) { x = rect.width - radius; vx = -vx; }
+    if (y < radius) { y = radius; vy = -vy; }
+    if (y > rect.height - radius) { y = rect.height - radius; vy = -vy; }
+    Object.assign(trackTarget, { x, y, vx, vy });
+    trackTarget.el.style.left = x + 'px';
+    trackTarget.el.style.top = y + 'px';
+
+    if (pointerInside && Math.hypot(pointerPos.x - x, pointerPos.y - y) <= radius) {
+      onTargetMs += dt;
+      trackTarget.el.classList.add('on-cursor');
+    } else {
+      trackTarget.el.classList.remove('on-cursor');
+    }
+    const elapsed = (now - gameStartTime) / 1000;
+    const pct = elapsed > 0 ? (onTargetMs / (elapsed * 1000)) * 100 : 0;
+    updateHud(`${pct.toFixed(0)}%`, `on target · ${Math.max(0, mode.duration - elapsed).toFixed(1)}s left`);
+    rafId = requestAnimationFrame(trackFrame);
+  }
+
+  function updateHud(main, sub) {
+    hitCountEl.textContent = main;
+    if (aimHud) aimHud.textContent = sub;
   }
 
   function onPointerDown(e) {
     if (!running) return;
     e.preventDefault();
     const now = performance.now();
-    if (now - lastClickTs < 30) {
-      invalidClicks += 1;
-      return;
-    }
+    if (now - lastClickTs < 30) { invalidClicks += 1; return; }
     lastClickTs = now;
     if (inputType === null) inputType = e.pointerType === 'touch' ? 'touch' : 'mouse';
 
     const rect = aimBox.getBoundingClientRect();
     const cx = e.clientX - rect.left;
     const cy = e.clientY - rect.top;
-    const d = Math.hypot(cx - lastTargetPos.x, cy - lastTargetPos.y);
     totalClicks += 1;
 
-    if (d <= radius) {
-      hits += 1;
-      reactionTimes.push(now - lastTargetTime);
-      hitCountEl.textContent = `${hits} / ${TARGET_COUNT}`;
-      if (hits >= TARGET_COUNT) {
-        finish();
-        return;
+    if (mode.key === 'flick') {
+      const d = Math.hypot(cx - lastTargetPos.x, cy - lastTargetPos.y);
+      if (d <= radius) {
+        hits += 1;
+        reactionTimes.push(now - lastTargetTime);
+        updateHud(`${hits} / ${mode.targets}`, 'Hits');
+        if (hits >= mode.targets) { finish(); return; }
+        spawnTarget();
+      } else {
+        missDistances.push(d);
+        flashMiss();
       }
-      spawnTarget();
-    } else {
-      missDistances.push(d);
-      flashMiss();
+      return;
+    }
+
+    if (mode.key === 'gridshot') {
+      const hit = gridTargets.find(t => Math.hypot(cx - t.x, cy - t.y) <= radius);
+      if (hit) {
+        hits += 1;
+        respawnGridTarget(hit);
+        const elapsed = (now - gameStartTime) / 1000;
+        updateHud(String(hits), `cleared · ${Math.max(0, mode.duration - elapsed).toFixed(1)}s left`);
+      } else {
+        const nearest = Math.min(...gridTargets.map(t => Math.hypot(cx - t.x, cy - t.y)));
+        missDistances.push(nearest);
+        flashMiss();
+      }
     }
   }
 
@@ -340,6 +525,22 @@
   aimBox.addEventListener('pointerdown', onPointerDown);
   aimBox.addEventListener('contextmenu', (e) => e.preventDefault());
   aimBox.addEventListener('dragstart', (e) => e.preventDefault());
+  aimBox.addEventListener('pointermove', (e) => {
+    const rect = aimBox.getBoundingClientRect();
+    pointerPos = { x: e.clientX - rect.left, y: e.clientY - rect.top };
+    pointerInside = true;
+    if (inputType === null && running) inputType = e.pointerType === 'touch' ? 'touch' : 'mouse';
+  });
+  aimBox.addEventListener('pointerleave', () => { pointerInside = false; });
+
+  function cleanup() {
+    cancelAnimationFrame(rafId);
+    clearTimeout(endTimer);
+    gridTargets.forEach(t => t.el.remove());
+    gridTargets = [];
+    if (trackTarget) { trackTarget.el.remove(); trackTarget = null; }
+    aimTarget.style.display = 'none';
+  }
 
   document.getElementById('startBtn').addEventListener('click', () => {
     const sizeCfg = SIZES.find(s => s.key === selectedSize);
@@ -353,12 +554,16 @@
     lastTargetPos = null;
     reactionTimes = [];
     missDistances = [];
-    hitCountEl.textContent = `0 / ${TARGET_COUNT}`;
+    onTargetMs = 0;
+    cleanup();
+
+    if (mode.key === 'flick') updateHud(`0 / ${mode.targets}`, 'Hits');
+    else if (mode.key === 'gridshot') updateHud('0', `cleared · ${mode.duration}s`);
+    else updateHud('0%', `on target · ${mode.duration}s`);
 
     introScreen.style.display = 'none';
     resultPanel.classList.remove('show');
     playScreen.style.display = '';
-    aimTarget.style.display = 'none';
     startCountdown();
   });
 
@@ -375,13 +580,22 @@
         aimCountdown.style.display = 'none';
         running = true;
         gameStartTime = performance.now();
-        spawnTarget();
+        if (mode.key === 'flick') {
+          spawnTarget();
+        } else if (mode.key === 'gridshot') {
+          spawnGrid(3);
+          endTimer = setTimeout(finish, mode.duration * 1000);
+        } else {
+          startTracking();
+          endTimer = setTimeout(finish, mode.duration * 1000);
+        }
       }
     };
     setTimeout(tick, 1000);
   }
 
   function buildBarChart(times) {
+    if (!times.length) return '';
     const W = 600, H = 140, PAD = 8;
     const maxMs = Math.max(...times);
     const minMs = Math.min(...times);
@@ -398,54 +612,123 @@
     return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;margin:14px 0;">${bars}</svg>`;
   }
 
-  function renderGradeTable(avgMs, accuracy) {
-    const grade = gradeFor(avgMs, accuracy);
+  function renderGradeTable(score, accuracy) {
+    const grade = gradeFor(score, accuracy);
     const table = document.getElementById('gradeTable');
-    const rows = [
-      { g: GRADES[4], cond: '800ms+' },
-      { g: GRADES[3], cond: 'under 600ms' },
-      { g: GRADES[2], cond: 'under 450ms' },
-      { g: GRADES[1], cond: 'under 350ms' },
-      { g: GRADES[0], cond: 'under 300ms (90%+ acc.)' },
-    ];
-    table.innerHTML = '<tr><th>Grade</th><th>Threshold</th></tr>' +
-      rows.map(r => `<tr class="${r.g.key === grade.key ? 'current-row' : ''}"><td>${r.g.label}</td><td>${r.cond}</td></tr>`).join('');
+    const rows = mode.grades.slice().reverse().map(g => {
+      const cond = mode.metric === 'ms'
+        ? (g.key === 'PRO' ? '300ms or less (90%+ accuracy)' : (g.max === Infinity ? 'over 600ms' : `${g.max}ms or less`))
+        : (mode.metric === 'tps' ? `${g.min}/s or more` : `${g.min}% or more`);
+      return `<tr class="${g.key === grade.key ? 'current-row' : ''}"><td>${g.label}</td><td>${cond}</td></tr>`;
+    }).join('');
+    table.innerHTML = '<tr><th>Grade</th><th>Threshold</th></tr>' + rows;
+  }
+
+  // ---- Achievements / ladder / recent runs ----
+  const ACH_DEFS = (() => {
+    const defs = [{ id: 'first', label: 'First run' }];
+    [1, 5, 10, 25, 50].forEach(n => defs.push({ id: 'plays' + n, label: n + ' plays' }));
+    MODES.forEach(m => m.grades.forEach(g => {
+      defs.push({ id: `${m.key}_${g.key}`, label: `${m.label} · ${g.label}` });
+    }));
+    defs.push({ id: 'allmodes', label: 'Tried all 3 modes' });
+    return defs;
+  })();
+
+  function totalPlays() {
+    return Object.values(allStats).reduce((a, s) => a + (s.plays || 0), 0);
+  }
+  function modesTried() {
+    return MODES.filter(m => Object.keys(allStats).some(k => k.startsWith(m.key + '_'))).length;
+  }
+  function earnedIds(grade) {
+    const ids = ['first'];
+    const tp = totalPlays();
+    [1, 5, 10, 25, 50].forEach(n => { if (tp >= n) ids.push('plays' + n); });
+    const idx = mode.grades.findIndex(g => g.key === grade.key);
+    mode.grades.slice(idx).forEach(g => ids.push(`${mode.key}_${g.key}`));
+    if (modesTried() >= 3) ids.push('allmodes');
+    return ids;
+  }
+  function bestForMode() {
+    let best = null;
+    SIZES.forEach(s => {
+      ['mouse', 'touch'].forEach(inp => {
+        const st = allStats[`${mode.key}_${s.key}_${inp}`];
+        if (!st || st.best === null) return;
+        if (best === null) best = st.best;
+        else best = mode.metric === 'ms' ? Math.min(best, st.best) : Math.max(best, st.best);
+      });
+    });
+    return best;
+  }
+  function renderPanels() {
+    const tiers = mode.grades.map(g => ({ key: g.key, label: g.label, min: g.min, max: g.max }));
+    renderRankLadder('ladderPanel', tiers, bestForMode(), {
+      title: `${mode.label} rank`,
+      unit: mode.metric === 'ms' ? 'ms' : (mode.metric === 'tps' ? '/s' : '%'),
+      digits: mode.metric === 'tps' ? 2 : 0,
+      betterIsLower: mode.metric === 'ms',
+    });
+    renderAchievements('achPanel', ACH_KEY, ACH_DEFS, '🏅 Achievements');
+    renderRecentRecords('recentPanel', loadStats(ACH_KEY + '_recent', []),
+      e => `${e.score} · ${e.mode} · accuracy ${e.acc}%`, 'No runs yet');
   }
 
   function finish() {
-    playScreen.style.display = 'none';
     running = false;
+    cleanup();
+    playScreen.style.display = 'none';
 
     const totalTimeMs = performance.now() - gameStartTime;
-    const avgMs = reactionTimes.reduce((a, b) => a + b, 0) / reactionTimes.length;
-    const accuracy = (hits / totalClicks) * 100;
+    let score, accuracy;
+    if (mode.key === 'flick') {
+      score = reactionTimes.reduce((a, b) => a + b, 0) / reactionTimes.length;
+      accuracy = (hits / totalClicks) * 100;
+    } else if (mode.key === 'gridshot') {
+      score = hits / mode.duration;
+      accuracy = totalClicks ? (hits / totalClicks) * 100 : 0;
+    } else {
+      score = (onTargetMs / (mode.duration * 1000)) * 100;
+      accuracy = score;
+    }
     const avgMissDist = missDistances.length ? missDistances.reduce((a, b) => a + b, 0) / missDistances.length : null;
 
-    const bk = bucketKey(selectedSize, inputType);
-    const bs = getBucketStats(selectedSize, inputType);
+    const bk = bucketKey(selectedSize, inputType || 'mouse');
+    const bs = getBucketStats(selectedSize, inputType || 'mouse');
     bs.plays += 1;
-    if (bs.bestAvgMs === null || avgMs < bs.bestAvgMs) bs.bestAvgMs = avgMs;
+    if (bs.best === null) bs.best = score;
+    else bs.best = mode.metric === 'ms' ? Math.min(bs.best, score) : Math.max(bs.best, score);
     if (bs.bestAccuracy === null || accuracy > bs.bestAccuracy) bs.bestAccuracy = accuracy;
     allStats[bk] = bs;
     saveStats(STORE_KEY, allStats);
     renderStats();
 
-    const grade = gradeFor(avgMs, accuracy);
-    document.getElementById('resultTitle').textContent = `Average ${Math.round(avgMs)}ms · ${accuracy.toFixed(0)}% accuracy`;
-    document.getElementById('resultDesc').textContent = `${(totalTimeMs / 1000).toFixed(1)}s total · ${grade.label}` +
+    const grade = gradeFor(score, accuracy);
+    document.getElementById('resultTitle').textContent =
+      mode.key === 'flick' ? `avg ${Math.round(score)}ms · accuracy ${accuracy.toFixed(0)}%`
+      : mode.key === 'gridshot' ? `${score.toFixed(2)} cleared/s · ${hits}`
+      : `${score.toFixed(0)}%`;
+    document.getElementById('resultDesc').textContent =
+      `${mode.label} · ${(totalTimeMs / 1000).toFixed(1)}s · ${grade.label}` +
       (avgMissDist !== null ? ` · avg miss ${avgMissDist.toFixed(0)}px` : '') +
-      (invalidClicks > 0 ? ` · ${invalidClicks} invalid click(s)` : '');
+      (invalidClicks > 0 ? ` · invalid clicks: ${invalidClicks}` : '');
+    document.getElementById('personaLabel').textContent = grade.persona;
     document.getElementById('resultMobileNote').style.display = inputType === 'touch' ? '' : 'none';
-    document.getElementById('chartContainer').innerHTML = buildBarChart(reactionTimes);
-    renderGradeTable(avgMs, accuracy);
+    document.getElementById('chartContainer').innerHTML = mode.key === 'flick' ? buildBarChart(reactionTimes) : '';
+    renderGradeTable(score, accuracy);
     resultPanel.classList.add('show');
-    resultPanel.dataset.share = `I averaged ${Math.round(avgMs)}ms at ${accuracy.toFixed(0)}% accuracy on the aim test! (${grade.label}) Try it yourself → `;
+    resultPanel.dataset.share = `I am a ${grade.persona}! Scored on the ${mode.label} aim test: ${formatScore(score)}! Try it → `;
 
-    if (accuracy >= 80) {
-      const lbList = addToLeaderboard(LB_KEY + '_' + bk, { value: avgMs, accuracy, date: Date.now() }, true);
-      renderTopLeaderboard(lbList);
-    } else {
-      renderTopLeaderboard(loadStats(LB_KEY + '_' + bk, []));
+    const lbBetterIsLower = mode.metric === 'ms';
+    const lbList = addToLeaderboard(LB_KEYS[mode.key], { value: score, accuracy, date: Date.now() }, lbBetterIsLower);
+    renderTopLeaderboard(lbList);
+
+    const fresh = unlockAchievements(ACH_KEY, earnedIds(grade));
+    addRecentRecord(ACH_KEY, { score: formatScore(score), mode: mode.label, acc: accuracy.toFixed(0), date: Date.now() });
+    renderPanels();
+    if (fresh.length) {
+      showAchievementToast(fresh.map(id => (ACH_DEFS.find(a => a.id === id) || {}).label).filter(Boolean), 'Achievement unlocked!');
     }
   }
 
@@ -453,8 +736,11 @@
     renderLeaderboard('topLeaderboard', list, (entry) => {
       const d = new Date(entry.date);
       const dateStr = `${d.getMonth() + 1}/${d.getDate()}`;
-      return `<span class="lb-name">${Math.round(entry.value)} ms</span><span class="lb-detail">${entry.accuracy.toFixed(0)}% acc. · ${dateStr}</span>`;
-    }, 'No records yet. Try your first challenge!');
+      const v = mode.metric === 'ms' ? Math.round(entry.value) + ' ms'
+        : mode.metric === 'tps' ? entry.value.toFixed(2) + ' /s'
+        : entry.value.toFixed(0) + '%';
+      return `<span class="lb-name">${v}</span><span class="lb-detail">accuracy ${entry.accuracy.toFixed(0)}% · ${dateStr}</span>`;
+    }, 'No records yet. Try your first run!');
   }
 
   document.getElementById('retryBtn').addEventListener('click', () => {
@@ -466,8 +752,10 @@
     shareResult((resultPanel.dataset.share || '') + location.href);
   });
 
+  renderModeButtons();
   renderStats();
-  renderTopLeaderboard(loadStats(LB_KEY + '_' + bucketKey(selectedSize, 'mouse'), []));
+  renderPanels();
+  renderTopLeaderboard(loadStats(LB_KEYS[mode.key], []));
 </script>
 </body>
 </html>

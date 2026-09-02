@@ -114,6 +114,15 @@
   .mode-select button:hover { color: #fff; border-color: rgba(255,255,255,0.4); }
   .mode-select button.active { background: rgba(99,102,241,0.18); border-color: var(--accent); color: #fff; }
   .mode-hint { text-align: center; color: var(--text-dim); font-size: 12.5px; margin: 0 0 12px; line-height: 1.5; }
+  .setting-row { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px 10px; margin-bottom: 8px; }
+  .setting-label { font-size: 12.5px; color: var(--text-dim); font-weight: 600; }
+  .duration-select { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; }
+  .duration-select button {
+    background: transparent; border: 1px solid rgba(255,255,255,0.18); color: var(--text-dim);
+    padding: 5px 12px; border-radius: 999px; font-size: 12.5px; font-weight: 600; cursor: pointer; font-family: inherit;
+  }
+  .duration-select button:hover { color: #fff; border-color: rgba(255,255,255,0.4); }
+  .duration-select button.active { background: rgba(99,102,241,0.18); border-color: var(--accent); color: #fff; }
 
   /* F1 스타트 라이트 */
   .f1-lights { display: flex; gap: 14px; justify-content: center; margin-bottom: 18px; }
@@ -396,6 +405,16 @@
     </div>
     <p class="mode-hint" id="modeHint">色が変わった瞬間にクリックする定番方式です。</p>
 
+    <div class="setting-row">
+      <span class="setting-label">待ち時間</span>
+      <div class="duration-select" id="rangeSelect">
+        <button data-range="short">短め</button>
+        <button data-range="normal" class="active">標準</button>
+        <button data-range="long">長め</button>
+      </div>
+    </div>
+    <p class="mode-hint" id="rangeHint">1.2~4.0秒のあいだのランダムなタイミングで合図が出ます。</p>
+
     <div class="toolbar">
       <label><input type="checkbox" id="colorblindToggle"> 色覚配慮モード(青/オレンジ)</label>
     </div>
@@ -503,12 +522,23 @@
   let currentRound = 0;
   let roundTimes = [];
 
-  const STORE_KEY = 'reactionStatsV2';
-  const LB_KEY = 'reactionLeaderboardV1';
-  let stats = JSON.parse(localStorage.getItem(STORE_KEY) || 'null') || { count: 0, sum: 0, best: null };
+  // 待ち時間(前期間)が長いほど反応は遅くなるため、範囲ごとに記録を分けます。
+  const RANGES = [
+    { key: 'short', label: '短め', min: 800, span: 1200, hint: '0.8~2.0秒のあいだのランダムなタイミングで合図が出ます。' },
+    { key: 'normal', label: '標準', min: 1200, span: 2800, hint: '1.2~4.0秒のあいだのランダムなタイミングで合図が出ます。' },
+    { key: 'long', label: '長め', min: 2000, span: 5000, hint: '2.0~7.0秒のあいだのランダムなタイミングで合図が出ます。集中を長く保つ必要があります。' },
+  ];
+  let range = RANGES[1];
+  function randomDelay() { return range.min + Math.random() * range.span; }
+
+  // 「標準」は既存の保存キーをそのまま使い、これまでの記録を保持します。
+  function storeKey() { return range.key === 'normal' ? 'reactionStatsV2' : 'reactionStatsV2_' + range.key; }
+  function lbKey() { return range.key === 'normal' ? 'reactionLeaderboardV1' : 'reactionLeaderboardV1_' + range.key; }
+
+  let stats = JSON.parse(localStorage.getItem(storeKey()) || 'null') || { count: 0, sum: 0, best: null };
 
   function loadLB() {
-    try { return JSON.parse(localStorage.getItem(LB_KEY) || '[]'); } catch (e) { return []; }
+    try { return JSON.parse(localStorage.getItem(lbKey()) || '[]'); } catch (e) { return []; }
   }
 
   function rtAddToLeaderboard(value) {
@@ -516,7 +546,7 @@
     list.push({ value, date: Date.now() });
     list.sort((a, b) => a.value - b.value);
     list = list.slice(0, 30);
-    localStorage.setItem(LB_KEY, JSON.stringify(list));
+    localStorage.setItem(lbKey(), JSON.stringify(list));
     return list;
   }
 
@@ -538,7 +568,7 @@
     stats.count += 1;
     stats.sum += ms;
     stats.best = stats.best === null ? ms : Math.min(stats.best, ms);
-    localStorage.setItem(STORE_KEY, JSON.stringify(stats));
+    localStorage.setItem(storeKey(), JSON.stringify(stats));
   }
 
   function renderStats() {
@@ -699,7 +729,7 @@
         <div class="big">待ってください...</div>
         <div class="small">ラウンド ${currentRound} / ${totalRounds} — 緑のときだけクリック!</div>
       `);
-      const delay = 1200 + Math.random() * 2800;
+      const delay = randomDelay();
       timeoutId = setTimeout(() => {
         noGoRound = Math.random() < 0.3;
         if (noGoRound) {
@@ -725,7 +755,7 @@
       <div class="big">待ってください...</div>
       <div class="small">ラウンド ${currentRound} / ${totalRounds} — 色が変わったらすぐクリック!</div>
     `);
-    const delay = 1200 + Math.random() * 2800;
+    const delay = randomDelay();
     timeoutId = setTimeout(() => {
       state = STATE.GO;
       startTime = performance.now();
@@ -829,11 +859,12 @@
       return `<div class="${cls}"><div class="r">ラウンド ${i + 1}</div>${t} ms</div>`;
     }).join('');
 
-    const percentileBlock = mode.percentile ? `
+    const percentileBlock = (mode.percentile && range.key === 'normal') ? `
         <div class="percentile-line">上位 ${topPct.toFixed(topPct < 1 ? 1 : 0)}% です</div>
         <div class="population-line">人々の反応速度の中央値は約273msと言われています(オンラインクリックテストの大規模集計基準)</div>
-        <div class="histogram">${buildHistogram(avg)}</div>` : `
-        <div class="population-line">${mode.label}モードは単純反応と測定方式が違うため、パーセンタイルや分布は表示しません。同じモード同士で比較してください。</div>`;
+        <div class="histogram">${buildHistogram(avg)}</div>` : (mode.percentile ? `
+        <div class="population-line">待ち時間「${range.label}」は標準の測定条件と異なるため、パーセンタイルや分布は表示しません。同じ設定どうしで比べてください。</div>` : `
+        <div class="population-line">${mode.label}モードは単純反応と測定方式が違うため、パーセンタイルや分布は表示しません。同じモード同士で比較してください。</div>`);
 
     setStage('round', `
       <div class="summary">
@@ -935,8 +966,25 @@
     });
   });
 
-  renderStats();
-  renderModeButtons();
+  const rangeSelect = document.getElementById('rangeSelect');
+  const rangeHint = document.getElementById('rangeHint');
+  rangeSelect.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      range = RANGES.find(r => r.key === btn.dataset.range) || RANGES[1];
+      rangeSelect.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.range === range.key));
+      rangeHint.textContent = range.hint;
+      // 範囲ごとに記録が別なので、統計とランキングを読み直します。
+      stats = JSON.parse(localStorage.getItem(storeKey()) || 'null') || { count: 0, sum: 0, best: null };
+      renderStats();
+      renderTopLeaderboard(loadLB());
+      renderPanels();
+      roundTimes = [];
+      currentRound = 0;
+      showSetup();
+    });
+  });
+
+  renderStats();  renderModeButtons();
   showSetup();
   renderTopLeaderboard(loadLB());
   renderPanels();

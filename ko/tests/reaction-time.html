@@ -114,6 +114,15 @@
   .mode-select button:hover { color: #fff; border-color: rgba(255,255,255,0.4); }
   .mode-select button.active { background: rgba(99,102,241,0.18); border-color: var(--accent); color: #fff; }
   .mode-hint { text-align: center; color: var(--text-dim); font-size: 12.5px; margin: 0 0 12px; line-height: 1.5; }
+  .setting-row { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px 10px; margin-bottom: 8px; }
+  .setting-label { font-size: 12.5px; color: var(--text-dim); font-weight: 600; }
+  .duration-select { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; }
+  .duration-select button {
+    background: transparent; border: 1px solid rgba(255,255,255,0.18); color: var(--text-dim);
+    padding: 5px 12px; border-radius: 999px; font-size: 12.5px; font-weight: 600; cursor: pointer; font-family: inherit;
+  }
+  .duration-select button:hover { color: #fff; border-color: rgba(255,255,255,0.4); }
+  .duration-select button.active { background: rgba(99,102,241,0.18); border-color: var(--accent); color: #fff; }
 
   /* F1 스타트 라이트 */
   .f1-lights { display: flex; gap: 14px; justify-content: center; margin-bottom: 18px; }
@@ -397,6 +406,16 @@
     </div>
     <p class="mode-hint" id="modeHint">색이 바뀌는 순간 클릭하는 고전 방식입니다.</p>
 
+    <div class="setting-row">
+      <span class="setting-label">대기 시간</span>
+      <div class="duration-select" id="rangeSelect">
+        <button data-range="short">짧게</button>
+        <button data-range="normal" class="active">보통</button>
+        <button data-range="long">길게</button>
+      </div>
+    </div>
+    <p class="mode-hint" id="rangeHint">1.2~4.0초 사이에서 무작위로 신호가 나옵니다.</p>
+
     <div class="toolbar">
       <label><input type="checkbox" id="colorblindToggle"> 색약 모드 (파랑/주황)</label>
     </div>
@@ -504,12 +523,23 @@
   let currentRound = 0;
   let roundTimes = [];
 
-  const STORE_KEY = 'reactionStatsV2';
-  const LB_KEY = 'reactionLeaderboardV1';
-  let stats = JSON.parse(localStorage.getItem(STORE_KEY) || 'null') || { count: 0, sum: 0, best: null };
+  // 대기 시간(전조기간)이 길수록 반응이 느려지므로 범위마다 기록을 따로 모은다.
+  const RANGES = [
+    { key: 'short', label: '짧게', min: 800, span: 1200, hint: '0.8~2.0초 사이에서 무작위로 신호가 나옵니다.' },
+    { key: 'normal', label: '보통', min: 1200, span: 2800, hint: '1.2~4.0초 사이에서 무작위로 신호가 나옵니다.' },
+    { key: 'long', label: '길게', min: 2000, span: 5000, hint: '2.0~7.0초 사이에서 무작위로 신호가 나옵니다. 집중을 오래 유지해야 해요.' },
+  ];
+  let range = RANGES[1];
+  function randomDelay() { return range.min + Math.random() * range.span; }
+
+  // '보통'은 기존 저장 키를 그대로 써서 예전 기록을 유지합니다.
+  function storeKey() { return range.key === 'normal' ? 'reactionStatsV2' : 'reactionStatsV2_' + range.key; }
+  function lbKey() { return range.key === 'normal' ? 'reactionLeaderboardV1' : 'reactionLeaderboardV1_' + range.key; }
+
+  let stats = JSON.parse(localStorage.getItem(storeKey()) || 'null') || { count: 0, sum: 0, best: null };
 
   function loadLB() {
-    try { return JSON.parse(localStorage.getItem(LB_KEY) || '[]'); } catch (e) { return []; }
+    try { return JSON.parse(localStorage.getItem(lbKey()) || '[]'); } catch (e) { return []; }
   }
 
   function rtAddToLeaderboard(value) {
@@ -517,7 +547,7 @@
     list.push({ value, date: Date.now() });
     list.sort((a, b) => a.value - b.value);
     list = list.slice(0, 30);
-    localStorage.setItem(LB_KEY, JSON.stringify(list));
+    localStorage.setItem(lbKey(), JSON.stringify(list));
     return list;
   }
 
@@ -539,7 +569,7 @@
     stats.count += 1;
     stats.sum += ms;
     stats.best = stats.best === null ? ms : Math.min(stats.best, ms);
-    localStorage.setItem(STORE_KEY, JSON.stringify(stats));
+    localStorage.setItem(storeKey(), JSON.stringify(stats));
   }
 
   function renderStats() {
@@ -705,7 +735,7 @@
         <div class="big">기다리세요...</div>
         <div class="small">라운드 ${currentRound} / ${totalRounds} — 초록일 때만 클릭!</div>
       `);
-      const delay = 1200 + Math.random() * 2800;
+      const delay = randomDelay();
       timeoutId = setTimeout(() => {
         // 30% 확률로 No-Go(빨강) 라운드
         noGoRound = Math.random() < 0.3;
@@ -733,7 +763,7 @@
       <div class="big">기다리세요...</div>
       <div class="small">라운드 ${currentRound} / ${totalRounds} — 색이 바뀌면 바로 클릭!</div>
     `);
-    const delay = 1200 + Math.random() * 2800;
+    const delay = randomDelay();
     timeoutId = setTimeout(() => {
       state = STATE.GO;
       startTime = performance.now();
@@ -849,11 +879,12 @@
     }).join('');
 
     // 백분위·분포는 단순 반응 기준으로 만든 곡선이라 그 모드에서만 보여준다.
-    const percentileBlock = mode.percentile ? `
+    const percentileBlock = (mode.percentile && range.key === 'normal') ? `
         <div class="percentile-line">상위 ${topPct.toFixed(topPct < 1 ? 1 : 0)}%입니다</div>
         <div class="population-line">사람들의 반응속도 중앙값은 약 273ms로 알려져 있어요 (온라인 클릭 테스트 대규모 집계 기준)</div>
-        <div class="histogram">${buildHistogram(avg)}</div>` : `
-        <div class="population-line">${mode.label} 모드는 단순 반응과 측정 방식이 달라 백분위·분포는 표시하지 않아요. 같은 모드끼리 비교해주세요.</div>`;
+        <div class="histogram">${buildHistogram(avg)}</div>` : (mode.percentile ? `
+        <div class="population-line">대기 시간 '${range.label}'는 표준 측정 조건과 달라 백분위·분포는 표시하지 않아요. 같은 설정끼리 비교해주세요.</div>` : `
+        <div class="population-line">${mode.label} 모드는 단순 반응과 측정 방식이 달라 백분위·분포는 표시하지 않아요. 같은 모드끼리 비교해주세요.</div>`);
 
     setStage('round', `
       <div class="summary">
@@ -949,6 +980,24 @@
     btn.addEventListener('click', () => {
       mode = MODES.find(m => m.key === btn.dataset.mode) || MODES[0];
       renderModeButtons();
+      renderPanels();
+      roundTimes = [];
+      currentRound = 0;
+      showSetup();
+    });
+  });
+
+  const rangeSelect = document.getElementById('rangeSelect');
+  const rangeHint = document.getElementById('rangeHint');
+  rangeSelect.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      range = RANGES.find(r => r.key === btn.dataset.range) || RANGES[1];
+      rangeSelect.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.range === range.key));
+      rangeHint.textContent = range.hint;
+      // 범위마다 기록이 따로이므로 통계·순위를 다시 읽어온다.
+      stats = JSON.parse(localStorage.getItem(storeKey()) || 'null') || { count: 0, sum: 0, best: null };
+      renderStats();
+      renderTopLeaderboard(loadLB());
       renderPanels();
       roundTimes = [];
       currentRound = 0;

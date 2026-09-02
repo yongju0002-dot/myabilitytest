@@ -114,6 +114,15 @@
   .mode-select button:hover { color: #fff; border-color: rgba(255,255,255,0.4); }
   .mode-select button.active { background: rgba(99,102,241,0.18); border-color: var(--accent); color: #fff; }
   .mode-hint { text-align: center; color: var(--text-dim); font-size: 12.5px; margin: 0 0 12px; line-height: 1.5; }
+  .setting-row { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px 10px; margin-bottom: 8px; }
+  .setting-label { font-size: 12.5px; color: var(--text-dim); font-weight: 600; }
+  .duration-select { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; }
+  .duration-select button {
+    background: transparent; border: 1px solid rgba(255,255,255,0.18); color: var(--text-dim);
+    padding: 5px 12px; border-radius: 999px; font-size: 12.5px; font-weight: 600; cursor: pointer; font-family: inherit;
+  }
+  .duration-select button:hover { color: #fff; border-color: rgba(255,255,255,0.4); }
+  .duration-select button.active { background: rgba(99,102,241,0.18); border-color: var(--accent); color: #fff; }
 
   /* F1 스타트 라이트 */
   .f1-lights { display: flex; gap: 14px; justify-content: center; margin-bottom: 18px; }
@@ -396,6 +405,16 @@
     </div>
     <p class="mode-hint" id="modeHint">The classic test: click the moment the colour changes.</p>
 
+    <div class="setting-row">
+      <span class="setting-label">Wait time</span>
+      <div class="duration-select" id="rangeSelect">
+        <button data-range="short">Short</button>
+        <button data-range="normal" class="active">Normal</button>
+        <button data-range="long">Long</button>
+      </div>
+    </div>
+    <p class="mode-hint" id="rangeHint">The signal appears at a random point between 1.2 and 4.0 seconds.</p>
+
     <div class="toolbar">
       <label><input type="checkbox" id="colorblindToggle"> Colorblind mode (blue/orange)</label>
     </div>
@@ -503,12 +522,23 @@
   let currentRound = 0;
   let roundTimes = [];
 
-  const STORE_KEY = 'reactionStatsV2';
-  const LB_KEY = 'reactionLeaderboardV1';
-  let stats = JSON.parse(localStorage.getItem(STORE_KEY) || 'null') || { count: 0, sum: 0, best: null };
+  // A longer foreperiod slows reactions, so each range keeps its own records.
+  const RANGES = [
+    { key: 'short', label: 'Short', min: 800, span: 1200, hint: 'The signal appears at a random point between 0.8 and 2.0 seconds.' },
+    { key: 'normal', label: 'Normal', min: 1200, span: 2800, hint: 'The signal appears at a random point between 1.2 and 4.0 seconds.' },
+    { key: 'long', label: 'Long', min: 2000, span: 5000, hint: 'The signal appears at a random point between 2.0 and 7.0 seconds. You have to hold your focus longer.' },
+  ];
+  let range = RANGES[1];
+  function randomDelay() { return range.min + Math.random() * range.span; }
+
+  // 'Normal' keeps the original storage keys so existing records survive.
+  function storeKey() { return range.key === 'normal' ? 'reactionStatsV2' : 'reactionStatsV2_' + range.key; }
+  function lbKey() { return range.key === 'normal' ? 'reactionLeaderboardV1' : 'reactionLeaderboardV1_' + range.key; }
+
+  let stats = JSON.parse(localStorage.getItem(storeKey()) || 'null') || { count: 0, sum: 0, best: null };
 
   function loadLB() {
-    try { return JSON.parse(localStorage.getItem(LB_KEY) || '[]'); } catch (e) { return []; }
+    try { return JSON.parse(localStorage.getItem(lbKey()) || '[]'); } catch (e) { return []; }
   }
 
   function rtAddToLeaderboard(value) {
@@ -516,7 +546,7 @@
     list.push({ value, date: Date.now() });
     list.sort((a, b) => a.value - b.value);
     list = list.slice(0, 30);
-    localStorage.setItem(LB_KEY, JSON.stringify(list));
+    localStorage.setItem(lbKey(), JSON.stringify(list));
     return list;
   }
 
@@ -538,7 +568,7 @@
     stats.count += 1;
     stats.sum += ms;
     stats.best = stats.best === null ? ms : Math.min(stats.best, ms);
-    localStorage.setItem(STORE_KEY, JSON.stringify(stats));
+    localStorage.setItem(storeKey(), JSON.stringify(stats));
   }
 
   function renderStats() {
@@ -699,7 +729,7 @@
         <div class="big">Wait for it...</div>
         <div class="small">Round ${currentRound} / ${totalRounds} — click only on green!</div>
       `);
-      const delay = 1200 + Math.random() * 2800;
+      const delay = randomDelay();
       timeoutId = setTimeout(() => {
         noGoRound = Math.random() < 0.3;
         if (noGoRound) {
@@ -725,7 +755,7 @@
       <div class="big">Wait for it...</div>
       <div class="small">Round ${currentRound} / ${totalRounds} — click the moment the colour changes!</div>
     `);
-    const delay = 1200 + Math.random() * 2800;
+    const delay = randomDelay();
     timeoutId = setTimeout(() => {
       state = STATE.GO;
       startTime = performance.now();
@@ -834,11 +864,12 @@
       return `<div class="${cls}"><div class="r">Round ${i + 1}</div>${t} ms</div>`;
     }).join('');
 
-    const percentileBlock = mode.percentile ? `
+    const percentileBlock = (mode.percentile && range.key === 'normal') ? `
         <div class="percentile-line">You're in the top ${topPct.toFixed(topPct < 1 ? 1 : 0)}%</div>
         <div class="population-line">The median reaction time across large online click tests is about 273ms</div>
-        <div class="histogram">${buildHistogram(avg)}</div>` : `
-        <div class="population-line">${mode.label} mode measures differently from Simple, so no percentile or distribution is shown. Compare within the same mode.</div>`;
+        <div class="histogram">${buildHistogram(avg)}</div>` : (mode.percentile ? `
+        <div class="population-line">Wait time '${range.label}' differs from the standard measurement condition, so no percentile or distribution is shown. Compare within the same setting.</div>` : `
+        <div class="population-line">${mode.label} mode measures differently from Simple, so no percentile or distribution is shown. Compare within the same mode.</div>`);
 
     setStage('round', `
       <div class="summary">
@@ -940,8 +971,25 @@
     });
   });
 
-  renderStats();
-  renderModeButtons();
+  const rangeSelect = document.getElementById('rangeSelect');
+  const rangeHint = document.getElementById('rangeHint');
+  rangeSelect.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      range = RANGES.find(r => r.key === btn.dataset.range) || RANGES[1];
+      rangeSelect.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.range === range.key));
+      rangeHint.textContent = range.hint;
+      // Records are per range, so reload the stats and rankings.
+      stats = JSON.parse(localStorage.getItem(storeKey()) || 'null') || { count: 0, sum: 0, best: null };
+      renderStats();
+      renderTopLeaderboard(loadLB());
+      renderPanels();
+      roundTimes = [];
+      currentRound = 0;
+      showSetup();
+    });
+  });
+
+  renderStats();  renderModeButtons();
   showSetup();
   renderTopLeaderboard(loadLB());
   renderPanels();

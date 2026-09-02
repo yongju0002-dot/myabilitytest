@@ -413,3 +413,71 @@ other-tests 포함, 최신).
 새 테스트를 만들 때 위 템플릿을 채운 뒤 반드시 4개 언어(ko/en/ja/zh) 전부 작성하고,
 8번 항목의 파일들(허브 4개 + sitemap.xml)을 같이 갱신할 것. 한국어판에만 6번(persona 라벨)을
 추가로 적용할지는 선택사항.
+
+---
+
+## 9. 능력 테스트 / 하드웨어 테스트 구분 (2026-09-02 추가)
+
+허브(`/{lang}/index.html`)는 카드를 두 섹션으로 나눈다.
+
+```html
+<div class="hub-section"><h2>능력 테스트</h2><span class="note">…</span></div>
+<div class="hub-grid"> … 능력 테스트 카드 12개 … </div>
+
+<div class="hub-section"><h2>하드웨어 테스트</h2><span class="note">…</span></div>
+<div class="hub-grid"> … 하드웨어 카드 3개 … </div>
+```
+
+- **능력 테스트(12개)**: 사람의 능력을 재고 등급·기록이 남는 것.
+  `reaction-time` `visual-memory` `click-speed` `time-stop` `time-perception`
+  `hearing-age` `dynamic-vision` `chimp-test` `aim-trainer` `spacebar-counter`
+  `apm` `mouse-accuracy`
+- **하드웨어 테스트(3개)**: 기기가 제대로 동작하는지 점검하는 것. 등급·리더보드 없음.
+  `monitor-hz` `mouse-tester` `keyboard-tester`
+- `.hub-section` 스타일은 **두 CSS 파일 모두**에 있어야 한다 (`/style.css`, `/skill-test/style.css`).
+  허브는 `/style.css`를 쓰므로 `skill-test` 쪽에만 넣으면 적용되지 않는다. 실제로 이 실수가 났다.
+
+## 10. 모드/설정이 있는 테스트의 저장 키 규칙 (2026-09-02 추가)
+
+여러 모드·설정을 가진 테스트는 **설정마다 기록을 분리**하되, **원래 기본값은 기존 키를 그대로 쓴다.**
+그래야 개편 전 사용자의 기록이 사라지지 않는다.
+
+```js
+// 예: visual-memory
+const LB_KEYS = { classic: 'skillMemoryLeaderboardV1',  // 기존 키 유지
+                  g4: 'skillMemoryLbG4V1', g5: '…', g6: '…' };
+// 예: reaction-time
+function lbKey() { return range.key === 'normal' ? 'reactionLeaderboardV1'
+                                                 : 'reactionLeaderboardV1_' + range.key; }
+```
+
+- 삭제한 테스트를 모드로 흡수할 때도 같은 규칙을 쓴다 — 지터 클릭은 `click-speed`의 모드가
+  되면서 `skillJitterClickLeaderboardV1` 키를 그대로 이어받았다.
+- **백분위·분포는 표준 조건에서만 표시한다.** `RT_CURVE`는 단순 반응 + 보통 대기 시간 기준으로
+  만든 곡선이라, 다른 모드나 다른 대기 범위에서는 숫자를 만들어내지 말고 안내 문구로 대체한다.
+
+## 11. 패드 안 실시간 HUD (2026-09-02 추가)
+
+연타형 테스트(`click-speed` `spacebar-counter` `apm`)는 진행 중 수치를 **패드 안에** 크게 띄운다.
+시선이 클릭 영역을 벗어나지 않게 하기 위함이다.
+
+```js
+function setPad(main, sub, live) { /* .pad-main(+.live) / .pad-sub 두 div를 패드에 넣는다 */ }
+```
+
+CSS는 `/skill-test/style.css`의 `.click-pad, .space-pad, .apm-pad` 규칙 하나로 3종을 함께 처리한다.
+
+## 12. 4개 언어 일괄 수정 시 주의 (2026-09-02 추가)
+
+이번 작업에서 실제로 터진 함정들. 반복하지 말 것.
+
+- **`python3`는 Windows 스토어 스텁**이라 동작하지 않는다. JSON/정규식 처리는 PowerShell을 쓴다.
+- **PowerShell 5.1은 BOM 없는 UTF-8 `.ps1`을 ANSI로 읽는다.** 스크립트는 반드시 UTF-8 **BOM 포함**으로
+  저장할 것. 안 그러면 한글·일본어·중국어 리터럴이 전부 깨져 파싱 에러가 난다.
+- **PowerShell 큰따옴표 here-string은 JS 템플릿 변수 `${x}`를 변수 참조로 삼켜 빈 문자열로 만든다.**
+  `${m.key}` 같은 걸 넣어야 하면 `@@PLACEHOLDER@@`로 넣고 마지막에 `.Replace()`로 복원한다.
+  (실제로 업적 id가 전부 `_`가 되고 랭크 제목이 비는 사고가 났다.)
+- **`perl -0pi -e`에 비ASCII 치환문을 쓰면 파일이 이중 인코딩된다** ("Wide character" 경고가 신호).
+  치환 대상·치환 문자열이 모두 ASCII일 때만 perl을 쓰고, 아니면 PowerShell + `UTF8Encoding($false)`를 쓴다.
+- 일괄 수정 후에는 항상 **4개 언어 전부** 문법(`new Function`) + JSON-LD + `getElementById` 대상 존재 +
+  깨진 인코딩(`Ã|â€|ã‚|æ¥`)을 검사할 것.

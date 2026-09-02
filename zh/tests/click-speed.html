@@ -73,6 +73,14 @@
     <h1>🖱️ CPS点击速度测试</h1>
     <p class="sub">在限定时间内尽可能快速点击!</p>
 
+    <div class="mode-select" id="modeSelect">
+      <button data-mode="classic" class="active">经典</button>
+      <button data-mode="jitter">抖动</button>
+      <button data-mode="butterfly">蝴蝶</button>
+      <button data-mode="drag">拖拽</button>
+    </div>
+    <p class="mode-hint" id="modeHint">用一根食指按的普通点击。选择你实际使用的技巧,系统会按该技巧的标准评级。</p>
+
     <div class="duration-select" id="durationSelect"></div>
 
     <div class="level-card">
@@ -82,13 +90,17 @@
       <canvas class="cps-graph" id="cpsGraph"></canvas>
     </div>
 
-    <button class="click-pad" id="clickPad">START</button>
+    <button class="click-pad" id="clickPad">
+      <span class="pad-main" id="padMain">START</span>
+      <span class="pad-sub" id="padSub"></span>
+    </button>
 
     <div id="resultPanel" class="result-panel">
       <div class="emoji" id="resultEmoji">🖱️</div>
       <h2 id="resultTitle"></h2>
       <div class="stars" id="resultStars"></div>
       <div class="desc" id="resultDesc"></div>
+      <div class="percentile" id="resultExtra"></div>
       <table class="grade-table" id="gradeTable"></table>
       <div class="btn-row">
         <button class="btn" id="retryBtn">再玩一次</button>
@@ -128,15 +140,26 @@
       <h2>多少CPS算是好成绩?</h2>
       <p>一般来说4~6 CPS属于平均水平,8 CPS以上算快,10 CPS以上属于非常快。超过12 CPS就是本站的最高等级(SS)。</p>
 
-      <h2>结果解读表</h2>
+      <h2>什么是点击技巧模式?</h2>
+      <p>在上方的模式标签中选择你实际使用的技巧,系统就会按该技巧对应的等级表评分。技巧不会自动识别,由你自己选择,记录也会按技巧和时长分别保存。</p>
+      <ul>
+        <li><strong>经典</strong> — 用一根食指按的普通点击。大约4~13 CPS。</li>
+        <li><strong>抖动</strong> — 绷紧手臂和手腕肌肉制造震颤来点击。结果页还会显示点击间隔的稳定性(标准差)。对手腕负担较大,不建议反复练习。</li>
+        <li><strong>蝴蝶</strong> — 食指与中指交替按压。大约12~25 CPS。</li>
+        <li><strong>拖拽</strong> — 手指在按键上滑动,靠摩擦产生连击。视鼠标不同,有时能远超20 CPS。</li>
+      </ul>
+
+      <h2>结果解读表(按技巧)</h2>
+      <p>下列数值并非官方统计,而是参考各点击测试社区通行的感受制定的本站自有标准。</p>
       <table>
-        <tr><th>CPS</th><th>等级</th></tr>
-        <tr><td>12以上</td><td>SS · 超高速</td></tr>
-        <tr><td>10~12</td><td>S · 非常快</td></tr>
-        <tr><td>8~10</td><td>A · 快</td></tr>
-        <tr><td>6~8</td><td>B · 高于平均</td></tr>
-        <tr><td>4~6</td><td>C · 平均</td></tr>
-        <tr><td>低于4</td><td>D · 慢悠悠</td></tr>
+        <tr><th>等级</th><th>经典</th><th>抖动</th><th>蝴蝶</th><th>拖拽</th></tr>
+        <tr><td>SS</td><td>12+</td><td>13+</td><td>20+</td><td>40+</td></tr>
+        <tr><td>S</td><td>10+</td><td>11+</td><td>16+</td><td>30+</td></tr>
+        <tr><td>A</td><td>8+</td><td>9+</td><td>13+</td><td>22+</td></tr>
+        <tr><td>B</td><td>6+</td><td>7+</td><td>10+</td><td>15+</td></tr>
+        <tr><td>C</td><td>4+</td><td>5+</td><td>7+</td><td>8+</td></tr>
+        <tr><td>D</td><td>2~4</td><td>低于5</td><td>低于7</td><td>低于8</td></tr>
+        <tr><td>F</td><td>低于2</td><td>—</td><td>—</td><td>—</td></tr>
       </table>
 
       <h2>CPS是怎么计算的?</h2>
@@ -163,20 +186,87 @@
   </div>
 
 <script src="/skill-test/common.js"></script>
+<script src="/skill-test/games/shared/click-core.js"></script>
 <script>
   const DURATIONS = [1, 3, 5, 10, 15, 30, 60];
   const STORE_KEY = 'skillCpsStatsV2';
-  const LB_KEY = 'skillCpsLeaderboardV1';
+  // Classic keeps the original key so existing records carry over.
+  // Jitter reuses the removed jitter-click test's key so those records carry over too.
+  const LB_KEYS = {
+    classic: 'skillCpsLeaderboardV1',
+    jitter: 'skillJitterClickLeaderboardV1',
+    butterfly: 'skillCpsLeaderboardV1_butterfly',
+    drag: 'skillCpsLeaderboardV1_drag',
+  };
   let allStats = loadStats(STORE_KEY, {});
 
+  // Click technique modes. Thresholds are this site's own scale based on
+  // community convention, not official statistics.
+  const MODES = [
+    {
+      key: 'classic', label: '经典',
+      hint: "用一根食指按的普通点击。选择你实际使用的技巧,系统会按该技巧的标准评级。",
+      grades: [
+        { key: 'SS', min: 12, label: 'SS・超高速', persona: '🖱️ 点击机器' },
+        { key: 'S', min: 10, label: 'S・极快', persona: '⚡ 极速点击者' },
+        { key: 'A', min: 8, label: 'A・快', persona: '🎯 快手' },
+        { key: 'B', min: 6, label: 'B・中等偏上', persona: '👍 稳定的手' },
+        { key: 'C', min: 4, label: 'C・一般', persona: '🙂 普通点击者' },
+        { key: 'D', min: 2, label: 'D・悠闲', persona: '🐢 悠闲点击者' },
+        { key: 'F', min: 0, label: 'F・非常悠闲', persona: '🌙 围观模式' },
+      ],
+    },
+    {
+      key: 'jitter', label: '抖动',
+      hint: '绷紧手臂和手腕使其震颤来点击。结果还会显示点击间隔的稳定性。对手腕负担较大,请勿勉强。',
+      grades: [
+        { key: 'SS', min: 13, label: 'SS・抖动大师', persona: '🌀 抖动大师' },
+        { key: 'S', min: 11, label: 'S・极快', persona: '⚡ 震动达人' },
+        { key: 'A', min: 9, label: 'A・快', persona: '🎯 熟练的手腕' },
+        { key: 'B', min: 7, label: 'B・中等偏上', persona: '👍 稳定的手腕' },
+        { key: 'C', min: 5, label: 'C・一般', persona: '🙂 普通的手腕' },
+        { key: 'D', min: 0, label: 'D・需要练习', persona: '🐢 练习中的手腕' },
+      ],
+    },
+    {
+      key: 'butterfly', label: '蝴蝶',
+      hint: '食指与中指交替点击。节奏越稳定,CPS 越稳。',
+      grades: [
+        { key: 'SS', min: 20, label: 'SS・蝴蝶大师', persona: '🦋 蝴蝶大师' },
+        { key: 'S', min: 16, label: 'S・极快', persona: '⚡ 双指达人' },
+        { key: 'A', min: 13, label: 'A・快', persona: '🎯 节奏点击者' },
+        { key: 'B', min: 10, label: 'B・中等偏上', persona: '👍 稳定交替' },
+        { key: 'C', min: 7, label: 'C・一般', persona: '🙂 普通交替' },
+        { key: 'D', min: 0, label: 'D・需要练习', persona: '🐢 练习中的手指' },
+      ],
+    },
+    {
+      key: 'drag', label: '拖拽',
+      hint: '手指在按键上滑动,靠摩擦产生连击。不同鼠标差异很大。',
+      grades: [
+        { key: 'SS', min: 40, label: 'SS・拖拽大师', persona: '🔥 拖拽狂飙' },
+        { key: 'S', min: 30, label: 'S・极快', persona: '⚡ 摩擦达人' },
+        { key: 'A', min: 22, label: 'A・快', persona: '🎯 熟练拖拽者' },
+        { key: 'B', min: 15, label: 'B・中等偏上', persona: '👍 找到手感' },
+        { key: 'C', min: 8, label: 'C・一般', persona: '🙂 普通拖拽' },
+        { key: 'D', min: 0, label: 'D・需要练习', persona: '🐢 拖拽入门' },
+      ],
+    },
+  ];
+
+  const modeSelect = document.getElementById('modeSelect');
+  const modeHint = document.getElementById('modeHint');
   const durationSelect = document.getElementById('durationSelect');
   const clickPad = document.getElementById('clickPad');
+  const padMain = document.getElementById('padMain');
+  const padSub = document.getElementById('padSub');
   const timeLeftEl = document.getElementById('timeLeft');
   const clickCountLine = document.getElementById('clickCountLine');
   const resultPanel = document.getElementById('resultPanel');
   const graphCanvas = document.getElementById('cpsGraph');
   const graphCtx = graphCanvas.getContext('2d');
 
+  let mode = MODES[0];
   let duration = 5;
   let running = false;
   let finished = false;
@@ -184,20 +274,39 @@
   let startTime = 0;
   let rafId = null;
   let samples = [];
+  let timestamps = [];
 
-  const GRADES = [
-    { key: 'SS', min: 12, label: 'SS · 超高速' },
-    { key: 'S', min: 10, label: 'S · 非常快' },
-    { key: 'A', min: 8, label: 'A · 快' },
-    { key: 'B', min: 6, label: 'B · 高于平均' },
-    { key: 'C', min: 4, label: 'C · 平均' },
-    { key: 'D', min: 2, label: 'D · 悠闲' },
-    { key: 'F', min: 0, label: 'F · 非常悠闲' },
-  ];
-
-  function getDurStats(d) {
-    return allStats[d] || { plays: 0, bestCps: 0, bestClicks: 0 };
+  // Stat keys: classic keeps the plain numeric key (preserves old records),
+  // other techniques get a technique prefix.
+  function statKey(m, d) {
+    return m.key === 'classic' ? String(d) : `${m.key}_${d}`;
   }
+  function getStats(m, d) {
+    return allStats[statKey(m, d)] || { plays: 0, bestCps: 0, bestClicks: 0 };
+  }
+
+  // One-time merge of records from the removed jitter / kohi tests.
+  // Jitter (fixed 10s) -> jitter mode 10s, Kohi (10s classic) -> classic 10s.
+  (function migrateLegacy() {
+    const mergeStats = (oldKey, targetKey) => {
+      const old = loadStats(oldKey, null);
+      if (!old || !old.plays) return;
+      const cur = allStats[targetKey] || { plays: 0, bestCps: 0, bestClicks: 0 };
+      cur.plays += old.plays;
+      cur.bestCps = Math.max(cur.bestCps, old.bestCps || 0);
+      cur.bestClicks = Math.max(cur.bestClicks, old.bestClicks || 0);
+      allStats[targetKey] = cur;
+      localStorage.removeItem(oldKey);
+      saveStats(STORE_KEY, allStats);
+    };
+    mergeStats('skillJitterClickStats', 'jitter_10');
+    mergeStats('skillKohiClickStats', '10');
+    const kohiLb = loadStats('skillKohiClickLeaderboardV1', null);
+    if (kohiLb && kohiLb.length) {
+      kohiLb.forEach(e => addToLeaderboard(LB_KEYS.classic, { value: e.value, duration: 10, date: e.date }, false));
+      localStorage.removeItem('skillKohiClickLeaderboardV1');
+    }
+  })();
 
   function resizeGraph() {
     const rect = graphCanvas.getBoundingClientRect();
@@ -222,10 +331,17 @@
     graphCtx.stroke();
   }
 
+  function renderModeButtons() {
+    modeSelect.querySelectorAll('button').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.mode === mode.key);
+    });
+    modeHint.textContent = mode.hint;
+  }
+
   function renderDurationButtons() {
     durationSelect.innerHTML = '';
     DURATIONS.forEach(d => {
-      const ds = getDurStats(d);
+      const ds = getStats(mode, d);
       const btn = document.createElement('button');
       btn.dataset.d = d;
       if (d === duration) btn.classList.add('active');
@@ -242,23 +358,20 @@
   }
 
   function renderStats() {
-    const ds = getDurStats(duration);
-    document.getElementById('statCountLabel').textContent = duration + '秒游玩次数';
+    const ds = getStats(mode, duration);
+    document.getElementById('statCountLabel').textContent = `${mode.label} ${duration}秒游玩`;
     document.getElementById('statCount').textContent = ds.plays;
     document.getElementById('statBest').textContent = ds.plays ? ds.bestCps.toFixed(1) : '-';
     document.getElementById('statBestClicks').textContent = ds.plays ? ds.bestClicks : '-';
   }
 
   function gradeFor(cps) {
-    return GRADES.find(g => cps >= g.min) || GRADES[GRADES.length - 1];
+    return mode.grades.find(g => cps >= g.min) || mode.grades[mode.grades.length - 1];
   }
 
-  function starsFor(cps) {
-    if (cps >= 10) return 5;
-    if (cps >= 8) return 4;
-    if (cps >= 6) return 3;
-    if (cps >= 4) return 2;
-    return 1;
+  // Stars derive from the grade, so the rule holds across modes.
+  function starsFor(grade) {
+    return { SS: 5, S: 5, A: 4, B: 3, C: 2 }[grade.key] || 1;
   }
 
   function spawnRipple(x, y) {
@@ -270,6 +383,12 @@
     setTimeout(() => r.remove(), 600);
   }
 
+  function setPad(main, sub, live) {
+    padMain.textContent = main;
+    padSub.textContent = sub;
+    padMain.classList.toggle('live', !!live);
+  }
+
   function tick() {
     if (!running) return;
     const elapsed = (performance.now() - startTime) / 1000;
@@ -277,6 +396,7 @@
     timeLeftEl.textContent = left.toFixed(1);
     const liveCps = elapsed > 0 ? clicks / elapsed : 0;
     clickCountLine.textContent = `点击数: ${clicks} · 实时CPS: ${liveCps.toFixed(1)}`;
+    setPad(liveCps.toFixed(1), `CPS · ${clicks}次点击 · ${mode.label}`, true);
     if (elapsed > 0.03) samples.push({ t: Math.min(elapsed, duration), cps: liveCps });
     drawGraph();
     if (left <= 0) {
@@ -292,18 +412,19 @@
     clicks = 1;
     samples = [];
     startTime = performance.now();
+    timestamps = [startTime];
     resizeGraph();
     clickCountLine.textContent = '点击数: 1 · 实时CPS: 0.0';
     resultPanel.classList.remove('show');
-    clickPad.textContent = '点击!点击!点击!';
+    setPad('0.0', `CPS · 1次点击 · ${mode.label}`, true);
     rafId = requestAnimationFrame(tick);
   }
 
   function renderGradeTable(cps) {
     const grade = gradeFor(cps);
     const table = document.getElementById('gradeTable');
-    table.innerHTML = '<tr><th>等级</th><th>基准CPS</th></tr>' +
-      GRADES.map(g => `<tr class="${g.key === grade.key ? 'current-row' : ''}"><td>${g.label}</td><td>${g.min}+</td></tr>`).join('');
+    table.innerHTML = `<tr><th>评级 (${mode.label})</th><th>CPS标准</th></tr>` +
+      mode.grades.map(g => `<tr class="${g.key === grade.key ? 'current-row' : ''}"><td>${g.label}</td><td>${g.min}+</td></tr>`).join('');
   }
 
   function finish() {
@@ -311,28 +432,38 @@
     finished = true;
     cancelAnimationFrame(rafId);
     timeLeftEl.textContent = '0.0';
-    clickPad.textContent = '按下方按钮重新开始';
 
     const cps = clicks / duration;
-    const ds = getDurStats(duration);
+    setPad(cps.toFixed(1), '结束!请在下方查看结果', true);
+
+    const key = statKey(mode, duration);
+    const ds = getStats(mode, duration);
     ds.plays += 1;
     if (cps > ds.bestCps) ds.bestCps = cps;
     if (clicks > ds.bestClicks) ds.bestClicks = clicks;
-    allStats[duration] = ds;
+    allStats[key] = ds;
     saveStats(STORE_KEY, allStats);
     renderStats();
     renderDurationButtons();
 
     const grade = gradeFor(cps);
-    const stars = starsFor(cps);
+    const stars = starsFor(grade);
     document.getElementById('resultTitle').textContent = cps.toFixed(1) + ' CPS';
     document.getElementById('resultStars').textContent = '★'.repeat(stars) + '☆'.repeat(5 - stars);
-    document.getElementById('resultDesc').textContent = `共点击 ${clicks}次 / ${duration}秒 — ${grade.label}`;
+    document.getElementById('resultDesc').textContent = `点击 ${clicks}次 / ${duration}秒 · ${mode.label} — ${grade.label}`;
+
+    // Peak second (the old Kohi stat) + click consistency in jitter mode (the old jitter stat)
+    const peak = Math.max(...perSecondCps(timestamps, startTime, duration));
+    const sd = mode.key === 'jitter' ? clickIntervalStdDev(timestamps) : null;
+    document.getElementById('resultExtra').textContent =
+      `最高区间: ${peak} 次/秒` +
+      (sd !== null ? ` · 震动稳定性: 点击间隔标准差 ${sd.toFixed(1)}ms (越小越规律)` : '');
+
     renderGradeTable(cps);
     resultPanel.classList.add('show');
-    resultPanel.dataset.share = `我在CPS测试中获得了${cps.toFixed(1)} CPS(${clicks}次点击/${duration}秒,${grade.key}等级)!你也来试试 → `;
+    resultPanel.dataset.share = `我是 ${grade.persona}!在CPS测试(${mode.label})中记录了 ${cps.toFixed(1)} CPS (${clicks}次点击/${duration}秒、${grade.key}级)!你也来试试 → `;
 
-    const lbList = addToLeaderboard(LB_KEY, { value: cps, duration, date: Date.now() }, false);
+    const lbList = addToLeaderboard(LB_KEYS[mode.key], { value: cps, duration, clicks, date: Date.now() }, false);
     renderTopLeaderboard(lbList);
   }
 
@@ -340,9 +471,32 @@
     renderLeaderboard('topLeaderboard', list, (entry) => {
       const d = new Date(entry.date);
       const dateStr = `${d.getMonth() + 1}/${d.getDate()}`;
-      return `<span class="lb-name">${entry.value.toFixed(1)} CPS</span><span class="lb-detail">${entry.duration}秒 · ${dateStr}</span>`;
+      return `<span class="lb-name">${entry.value.toFixed(1)} CPS</span><span class="lb-detail">${entry.duration || 10}秒 · ${dateStr}</span>`;
     }, '还没有记录。快来挑战第一次吧!');
   }
+
+  function loadModeLeaderboard() {
+    renderTopLeaderboard(loadStats(LB_KEYS[mode.key], []));
+  }
+
+  modeSelect.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (running) return;
+      mode = MODES.find(m => m.key === btn.dataset.mode) || MODES[0];
+      renderModeButtons();
+      renderDurationButtons();
+      renderStats();
+      loadModeLeaderboard();
+      if (finished) {
+        finished = false;
+        resultPanel.classList.remove('show');
+        setPad('START', '', false);
+        timeLeftEl.textContent = duration.toFixed(1);
+        clickCountLine.textContent = '点击数: 0 · 实时CPS: 0.0';
+        graphCtx.clearRect(0, 0, graphCanvas.width, graphCanvas.height);
+      }
+    });
+  });
 
   clickPad.addEventListener('click', (e) => {
     if (finished) return;
@@ -353,13 +507,14 @@
       return;
     }
     clicks += 1;
+    timestamps.push(performance.now());
   });
 
   document.getElementById('retryBtn').addEventListener('click', () => {
     finished = false;
     samples = [];
     resultPanel.classList.remove('show');
-    clickPad.textContent = 'START';
+    setPad('START', '', false);
     timeLeftEl.textContent = duration.toFixed(1);
     clickCountLine.textContent = '点击数: 0 · 实时CPS: 0.0';
     graphCtx.clearRect(0, 0, graphCanvas.width, graphCanvas.height);
@@ -371,10 +526,11 @@
 
   window.addEventListener('resize', () => { if (running) resizeGraph(); });
 
+  renderModeButtons();
   renderDurationButtons();
   renderStats();
+  loadModeLeaderboard();
   resizeGraph();
-  renderTopLeaderboard(loadStats(LB_KEY, []));
 </script>
 </body>
 </html>

@@ -480,3 +480,26 @@ h1 { text-align: center; font-size: 24px; margin: 6px 0 4px; }
 .site-footer a { color: var(--text-dim); text-decoration: none; }
 .site-footer a:hover { color: #fff; text-decoration: underline; }
 .site-footer .copyright { color: var(--text-dim2); }
+
+/* ---- 클릭 기술 모드 탭 (CPS) ---- */
+.mode-select { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; margin-top: 16px; }
+.mode-select button {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.18);
+  color: var(--text-dim);
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+}
+.mode-select button:hover { color: #fff; border-color: rgba(255,255,255,0.4); }
+.mode-select button.active { background: rgba(99,102,241,0.18); border-color: var(--accent); color: #fff; }
+.mode-hint { text-align: center; color: var(--text-dim); font-size: 12.5px; margin: 8px 0 0; line-height: 1.5; }
+
+/* ---- 패드 안 실시간 HUD ---- */
+.click-pad { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
+.click-pad .pad-main { font-size: 30px; font-weight: 800; line-height: 1.1; }
+.click-pad .pad-main.live { font-size: 76px; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+.click-pad .pad-sub { font-size: 14px; font-weight: 500; opacity: 0.85; }

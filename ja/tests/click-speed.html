@@ -73,6 +73,14 @@
     <h1>🖱️ CPSクリック速度テスト</h1>
     <p class="sub">制限時間内にできるだけ速くクリックしてください!</p>
 
+    <div class="mode-select" id="modeSelect">
+      <button data-mode="classic" class="active">クラシック</button>
+      <button data-mode="jitter">ジター</button>
+      <button data-mode="butterfly">バタフライ</button>
+      <button data-mode="drag">ドラッグ</button>
+    </div>
+    <p class="mode-hint" id="modeHint">人差し指1本で押す通常のクリック。使っている技術を選ぶと、その技術に合った基準で採点されます。</p>
+
     <div class="duration-select" id="durationSelect"></div>
 
     <div class="level-card">
@@ -82,13 +90,17 @@
       <canvas class="cps-graph" id="cpsGraph"></canvas>
     </div>
 
-    <button class="click-pad" id="clickPad">START</button>
+    <button class="click-pad" id="clickPad">
+      <span class="pad-main" id="padMain">START</span>
+      <span class="pad-sub" id="padSub"></span>
+    </button>
 
     <div id="resultPanel" class="result-panel">
       <div class="emoji" id="resultEmoji">🖱️</div>
       <h2 id="resultTitle"></h2>
       <div class="stars" id="resultStars"></div>
       <div class="desc" id="resultDesc"></div>
+      <div class="percentile" id="resultExtra"></div>
       <table class="grade-table" id="gradeTable"></table>
       <div class="btn-row">
         <button class="btn" id="retryBtn">もう一度</button>
@@ -128,15 +140,26 @@
       <h2>良いCPSスコアはどれくらい?</h2>
       <p>一般的に4〜6 CPSは平均的な水準で、8 CPS以上なら速いほう、10 CPS以上ならとても速い部類に入ります。12 CPSを超えるとこのサイトの最高ランク(SS)です。</p>
 
-      <h2>結果の解釈表</h2>
+      <h2>クリック技術モードとは?</h2>
+      <p>上部のモードタブで自分が使っている技術を選ぶと、その技術に合ったランク表で採点されます。技術は自動判別ではなく自分で選ぶ方式で、記録は技術・持続時間ごとに分けて保存されます。</p>
+      <ul>
+        <li><strong>クラシック</strong> — 人差し指1本で押す通常のクリック。おおむね4〜13 CPS。</li>
+        <li><strong>ジター</strong> — 腕や手首の筋肉を緊張させ、震えを作ってクリック。結果画面にクリック間隔の安定性(標準偏差)も表示されます。手首への負担が大きいので繰り返しの練習はおすすめしません。</li>
+        <li><strong>バタフライ</strong> — 人差し指と中指を交互に押すクリック。おおむね12〜25 CPS。</li>
+        <li><strong>ドラッグ</strong> — ボタンの上で指を滑らせ、摩擦で連打を作るクリック。マウスによっては20 CPSを大きく超えることもあります。</li>
+      </ul>
+
+      <h2>結果の解釈表(技術別)</h2>
+      <p>以下の数値は公式な統計ではなく、各クリックテストコミュニティで通用している感覚を参考にした当サイト独自の基準です。</p>
       <table>
-        <tr><th>CPS</th><th>ランク</th></tr>
-        <tr><td>12以上</td><td>SS · 超高速</td></tr>
-        <tr><td>10〜12</td><td>S · とても速い</td></tr>
-        <tr><td>8〜10</td><td>A · 速い</td></tr>
-        <tr><td>6〜8</td><td>B · 平均以上</td></tr>
-        <tr><td>4〜6</td><td>C · 平均</td></tr>
-        <tr><td>4未満</td><td>D · のんびり</td></tr>
+        <tr><th>ランク</th><th>クラシック</th><th>ジター</th><th>バタフライ</th><th>ドラッグ</th></tr>
+        <tr><td>SS</td><td>12+</td><td>13+</td><td>20+</td><td>40+</td></tr>
+        <tr><td>S</td><td>10+</td><td>11+</td><td>16+</td><td>30+</td></tr>
+        <tr><td>A</td><td>8+</td><td>9+</td><td>13+</td><td>22+</td></tr>
+        <tr><td>B</td><td>6+</td><td>7+</td><td>10+</td><td>15+</td></tr>
+        <tr><td>C</td><td>4+</td><td>5+</td><td>7+</td><td>8+</td></tr>
+        <tr><td>D</td><td>2〜4</td><td>5未満</td><td>7未満</td><td>8未満</td></tr>
+        <tr><td>F</td><td>2未満</td><td>—</td><td>—</td><td>—</td></tr>
       </table>
 
       <h2>CPSはどうやって計算しますか?</h2>
@@ -163,20 +186,87 @@
   </div>
 
 <script src="/skill-test/common.js"></script>
+<script src="/skill-test/games/shared/click-core.js"></script>
 <script>
   const DURATIONS = [1, 3, 5, 10, 15, 30, 60];
   const STORE_KEY = 'skillCpsStatsV2';
-  const LB_KEY = 'skillCpsLeaderboardV1';
+  // Classic keeps the original key so existing records carry over.
+  // Jitter reuses the removed jitter-click test's key so those records carry over too.
+  const LB_KEYS = {
+    classic: 'skillCpsLeaderboardV1',
+    jitter: 'skillJitterClickLeaderboardV1',
+    butterfly: 'skillCpsLeaderboardV1_butterfly',
+    drag: 'skillCpsLeaderboardV1_drag',
+  };
   let allStats = loadStats(STORE_KEY, {});
 
+  // Click technique modes. Thresholds are this site's own scale based on
+  // community convention, not official statistics.
+  const MODES = [
+    {
+      key: 'classic', label: 'クラシック',
+      hint: "人差し指1本で押す通常のクリック。使っている技術を選ぶと、その技術に合った基準で採点されます。",
+      grades: [
+        { key: 'SS', min: 12, label: 'SS・超高速', persona: '🖱️ クリックマシン' },
+        { key: 'S', min: 10, label: 'S・非常に速い', persona: '⚡ スピードクリッカー' },
+        { key: 'A', min: 8, label: 'A・速い', persona: '🎯 速い手' },
+        { key: 'B', min: 6, label: 'B・平均以上', persona: '👍 安定した手' },
+        { key: 'C', min: 4, label: 'C・平均的', persona: '🙂 平均的なクリッカー' },
+        { key: 'D', min: 2, label: 'D・のんびり', persona: '🐢 のんびりクリッカー' },
+        { key: 'F', min: 0, label: 'F・とてものんびり', persona: '🌙 見学モード' },
+      ],
+    },
+    {
+      key: 'jitter', label: 'ジター',
+      hint: '腕と手首の筋肉を震わせてクリック。結果にクリック間隔の安定性も表示されます。手首に負担がかかるので無理は禁物です。',
+      grades: [
+        { key: 'SS', min: 13, label: 'SS・ジターマスター', persona: '🌀 ジターマスター' },
+        { key: 'S', min: 11, label: 'S・非常に速い', persona: '⚡ 振動の達人' },
+        { key: 'A', min: 9, label: 'A・速い', persona: '🎯 熟練の手首' },
+        { key: 'B', min: 7, label: 'B・平均以上', persona: '👍 安定した手首' },
+        { key: 'C', min: 5, label: 'C・平均的', persona: '🙂 平均的な手首' },
+        { key: 'D', min: 0, label: 'D・練習が必要', persona: '🐢 練習中の手首' },
+      ],
+    },
+    {
+      key: 'butterfly', label: 'バタフライ',
+      hint: '人差し指と中指を交互に使うクリック。リズムが一定なほどCPSが安定します。',
+      grades: [
+        { key: 'SS', min: 20, label: 'SS・バタフライマスター', persona: '🦋 バタフライマスター' },
+        { key: 'S', min: 16, label: 'S・非常に速い', persona: '⚡ 二本指の達人' },
+        { key: 'A', min: 13, label: 'A・速い', persona: '🎯 リズムクリッカー' },
+        { key: 'B', min: 10, label: 'B・平均以上', persona: '👍 安定した交互打ち' },
+        { key: 'C', min: 7, label: 'C・平均的', persona: '🙂 平均的な交互打ち' },
+        { key: 'D', min: 0, label: 'D・練習が必要', persona: '🐢 練習中の指' },
+      ],
+    },
+    {
+      key: 'drag', label: 'ドラッグ',
+      hint: 'ボタンの上で指を滑らせ、摩擦で連打を生むクリック。マウスによって差が大きいです。',
+      grades: [
+        { key: 'SS', min: 40, label: 'SS・ドラッグマスター', persona: '🔥 ドラッグ暴走' },
+        { key: 'S', min: 30, label: 'S・非常に速い', persona: '⚡ 摩擦の達人' },
+        { key: 'A', min: 22, label: 'A・速い', persona: '🎯 熟練ドラッガー' },
+        { key: 'B', min: 15, label: 'B・平均以上', persona: '👍 コツを掴んだドラッグ' },
+        { key: 'C', min: 8, label: 'C・平均的', persona: '🙂 平均的なドラッグ' },
+        { key: 'D', min: 0, label: 'D・練習が必要', persona: '🐢 ドラッグ入門' },
+      ],
+    },
+  ];
+
+  const modeSelect = document.getElementById('modeSelect');
+  const modeHint = document.getElementById('modeHint');
   const durationSelect = document.getElementById('durationSelect');
   const clickPad = document.getElementById('clickPad');
+  const padMain = document.getElementById('padMain');
+  const padSub = document.getElementById('padSub');
   const timeLeftEl = document.getElementById('timeLeft');
   const clickCountLine = document.getElementById('clickCountLine');
   const resultPanel = document.getElementById('resultPanel');
   const graphCanvas = document.getElementById('cpsGraph');
   const graphCtx = graphCanvas.getContext('2d');
 
+  let mode = MODES[0];
   let duration = 5;
   let running = false;
   let finished = false;
@@ -184,20 +274,39 @@
   let startTime = 0;
   let rafId = null;
   let samples = [];
+  let timestamps = [];
 
-  const GRADES = [
-    { key: 'SS', min: 12, label: 'SS · 超高速' },
-    { key: 'S', min: 10, label: 'S · 非常に速い' },
-    { key: 'A', min: 8, label: 'A · 速い' },
-    { key: 'B', min: 6, label: 'B · 平均以上' },
-    { key: 'C', min: 4, label: 'C · 平均' },
-    { key: 'D', min: 2, label: 'D · のんびり' },
-    { key: 'F', min: 0, label: 'F · とてものんびり' },
-  ];
-
-  function getDurStats(d) {
-    return allStats[d] || { plays: 0, bestCps: 0, bestClicks: 0 };
+  // Stat keys: classic keeps the plain numeric key (preserves old records),
+  // other techniques get a technique prefix.
+  function statKey(m, d) {
+    return m.key === 'classic' ? String(d) : `${m.key}_${d}`;
   }
+  function getStats(m, d) {
+    return allStats[statKey(m, d)] || { plays: 0, bestCps: 0, bestClicks: 0 };
+  }
+
+  // One-time merge of records from the removed jitter / kohi tests.
+  // Jitter (fixed 10s) -> jitter mode 10s, Kohi (10s classic) -> classic 10s.
+  (function migrateLegacy() {
+    const mergeStats = (oldKey, targetKey) => {
+      const old = loadStats(oldKey, null);
+      if (!old || !old.plays) return;
+      const cur = allStats[targetKey] || { plays: 0, bestCps: 0, bestClicks: 0 };
+      cur.plays += old.plays;
+      cur.bestCps = Math.max(cur.bestCps, old.bestCps || 0);
+      cur.bestClicks = Math.max(cur.bestClicks, old.bestClicks || 0);
+      allStats[targetKey] = cur;
+      localStorage.removeItem(oldKey);
+      saveStats(STORE_KEY, allStats);
+    };
+    mergeStats('skillJitterClickStats', 'jitter_10');
+    mergeStats('skillKohiClickStats', '10');
+    const kohiLb = loadStats('skillKohiClickLeaderboardV1', null);
+    if (kohiLb && kohiLb.length) {
+      kohiLb.forEach(e => addToLeaderboard(LB_KEYS.classic, { value: e.value, duration: 10, date: e.date }, false));
+      localStorage.removeItem('skillKohiClickLeaderboardV1');
+    }
+  })();
 
   function resizeGraph() {
     const rect = graphCanvas.getBoundingClientRect();
@@ -222,10 +331,17 @@
     graphCtx.stroke();
   }
 
+  function renderModeButtons() {
+    modeSelect.querySelectorAll('button').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.mode === mode.key);
+    });
+    modeHint.textContent = mode.hint;
+  }
+
   function renderDurationButtons() {
     durationSelect.innerHTML = '';
     DURATIONS.forEach(d => {
-      const ds = getDurStats(d);
+      const ds = getStats(mode, d);
       const btn = document.createElement('button');
       btn.dataset.d = d;
       if (d === duration) btn.classList.add('active');
@@ -242,23 +358,20 @@
   }
 
   function renderStats() {
-    const ds = getDurStats(duration);
-    document.getElementById('statCountLabel').textContent = duration + '秒プレイ';
+    const ds = getStats(mode, duration);
+    document.getElementById('statCountLabel').textContent = `${mode.label} ${duration}秒プレイ`;
     document.getElementById('statCount').textContent = ds.plays;
     document.getElementById('statBest').textContent = ds.plays ? ds.bestCps.toFixed(1) : '-';
     document.getElementById('statBestClicks').textContent = ds.plays ? ds.bestClicks : '-';
   }
 
   function gradeFor(cps) {
-    return GRADES.find(g => cps >= g.min) || GRADES[GRADES.length - 1];
+    return mode.grades.find(g => cps >= g.min) || mode.grades[mode.grades.length - 1];
   }
 
-  function starsFor(cps) {
-    if (cps >= 10) return 5;
-    if (cps >= 8) return 4;
-    if (cps >= 6) return 3;
-    if (cps >= 4) return 2;
-    return 1;
+  // Stars derive from the grade, so the rule holds across modes.
+  function starsFor(grade) {
+    return { SS: 5, S: 5, A: 4, B: 3, C: 2 }[grade.key] || 1;
   }
 
   function spawnRipple(x, y) {
@@ -270,13 +383,20 @@
     setTimeout(() => r.remove(), 600);
   }
 
+  function setPad(main, sub, live) {
+    padMain.textContent = main;
+    padSub.textContent = sub;
+    padMain.classList.toggle('live', !!live);
+  }
+
   function tick() {
     if (!running) return;
     const elapsed = (performance.now() - startTime) / 1000;
     const left = Math.max(0, duration - elapsed);
     timeLeftEl.textContent = left.toFixed(1);
     const liveCps = elapsed > 0 ? clicks / elapsed : 0;
-    clickCountLine.textContent = `クリック数: ${clicks} · リアルタイムCPS: ${liveCps.toFixed(1)}`;
+    clickCountLine.textContent = `クリック数: ${clicks} ・ リアルタイムCPS: ${liveCps.toFixed(1)}`;
+    setPad(liveCps.toFixed(1), `CPS ・ ${clicks}クリック ・ ${mode.label}`, true);
     if (elapsed > 0.03) samples.push({ t: Math.min(elapsed, duration), cps: liveCps });
     drawGraph();
     if (left <= 0) {
@@ -292,18 +412,19 @@
     clicks = 1;
     samples = [];
     startTime = performance.now();
+    timestamps = [startTime];
     resizeGraph();
-    clickCountLine.textContent = 'クリック数: 1 · リアルタイムCPS: 0.0';
+    clickCountLine.textContent = 'クリック数: 1 ・ リアルタイムCPS: 0.0';
     resultPanel.classList.remove('show');
-    clickPad.textContent = 'クリック!クリック!クリック!';
+    setPad('0.0', `CPS ・ 1クリック ・ ${mode.label}`, true);
     rafId = requestAnimationFrame(tick);
   }
 
   function renderGradeTable(cps) {
     const grade = gradeFor(cps);
     const table = document.getElementById('gradeTable');
-    table.innerHTML = '<tr><th>ランク</th><th>基準CPS</th></tr>' +
-      GRADES.map(g => `<tr class="${g.key === grade.key ? 'current-row' : ''}"><td>${g.label}</td><td>${g.min}+</td></tr>`).join('');
+    table.innerHTML = `<tr><th>ランク (${mode.label})</th><th>基準CPS</th></tr>` +
+      mode.grades.map(g => `<tr class="${g.key === grade.key ? 'current-row' : ''}"><td>${g.label}</td><td>${g.min}+</td></tr>`).join('');
   }
 
   function finish() {
@@ -311,28 +432,38 @@
     finished = true;
     cancelAnimationFrame(rafId);
     timeLeftEl.textContent = '0.0';
-    clickPad.textContent = '再開するには下のボタンを押してください';
 
     const cps = clicks / duration;
-    const ds = getDurStats(duration);
+    setPad(cps.toFixed(1), '終了!下で結果を確認してください', true);
+
+    const key = statKey(mode, duration);
+    const ds = getStats(mode, duration);
     ds.plays += 1;
     if (cps > ds.bestCps) ds.bestCps = cps;
     if (clicks > ds.bestClicks) ds.bestClicks = clicks;
-    allStats[duration] = ds;
+    allStats[key] = ds;
     saveStats(STORE_KEY, allStats);
     renderStats();
     renderDurationButtons();
 
     const grade = gradeFor(cps);
-    const stars = starsFor(cps);
+    const stars = starsFor(grade);
     document.getElementById('resultTitle').textContent = cps.toFixed(1) + ' CPS';
     document.getElementById('resultStars').textContent = '★'.repeat(stars) + '☆'.repeat(5 - stars);
-    document.getElementById('resultDesc').textContent = `合計クリック ${clicks}回 / ${duration}秒 — ${grade.label}`;
+    document.getElementById('resultDesc').textContent = `クリック ${clicks}回 / ${duration}秒 ・ ${mode.label} — ${grade.label}`;
+
+    // Peak second (the old Kohi stat) + click consistency in jitter mode (the old jitter stat)
+    const peak = Math.max(...perSecondCps(timestamps, startTime, duration));
+    const sd = mode.key === 'jitter' ? clickIntervalStdDev(timestamps) : null;
+    document.getElementById('resultExtra').textContent =
+      `最高区間: ${peak} クリック/秒` +
+      (sd !== null ? ` ・ 振動の安定性: クリック間隔の標準偏差 ${sd.toFixed(1)}ms (小さいほど規則的)` : '');
+
     renderGradeTable(cps);
     resultPanel.classList.add('show');
-    resultPanel.dataset.share = `CPSテストで${cps.toFixed(1)} CPS(${clicks}クリック/${duration}秒、${grade.key}ランク)を記録!あなたもどうぞ → `;
+    resultPanel.dataset.share = `私は ${grade.persona}! CPSテスト(${mode.label})で ${cps.toFixed(1)} CPS (${clicks}クリック/${duration}秒、${grade.key}ランク)を記録!あなたもどうぞ → `;
 
-    const lbList = addToLeaderboard(LB_KEY, { value: cps, duration, date: Date.now() }, false);
+    const lbList = addToLeaderboard(LB_KEYS[mode.key], { value: cps, duration, clicks, date: Date.now() }, false);
     renderTopLeaderboard(lbList);
   }
 
@@ -340,9 +471,32 @@
     renderLeaderboard('topLeaderboard', list, (entry) => {
       const d = new Date(entry.date);
       const dateStr = `${d.getMonth() + 1}/${d.getDate()}`;
-      return `<span class="lb-name">${entry.value.toFixed(1)} CPS</span><span class="lb-detail">${entry.duration}秒 · ${dateStr}</span>`;
+      return `<span class="lb-name">${entry.value.toFixed(1)} CPS</span><span class="lb-detail">${entry.duration || 10}秒 ・ ${dateStr}</span>`;
     }, 'まだ記録がありません。最初の挑戦をしてみましょう!');
   }
+
+  function loadModeLeaderboard() {
+    renderTopLeaderboard(loadStats(LB_KEYS[mode.key], []));
+  }
+
+  modeSelect.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (running) return;
+      mode = MODES.find(m => m.key === btn.dataset.mode) || MODES[0];
+      renderModeButtons();
+      renderDurationButtons();
+      renderStats();
+      loadModeLeaderboard();
+      if (finished) {
+        finished = false;
+        resultPanel.classList.remove('show');
+        setPad('START', '', false);
+        timeLeftEl.textContent = duration.toFixed(1);
+        clickCountLine.textContent = 'クリック数: 0 ・ リアルタイムCPS: 0.0';
+        graphCtx.clearRect(0, 0, graphCanvas.width, graphCanvas.height);
+      }
+    });
+  });
 
   clickPad.addEventListener('click', (e) => {
     if (finished) return;
@@ -353,15 +507,16 @@
       return;
     }
     clicks += 1;
+    timestamps.push(performance.now());
   });
 
   document.getElementById('retryBtn').addEventListener('click', () => {
     finished = false;
     samples = [];
     resultPanel.classList.remove('show');
-    clickPad.textContent = 'START';
+    setPad('START', '', false);
     timeLeftEl.textContent = duration.toFixed(1);
-    clickCountLine.textContent = 'クリック数: 0 · リアルタイムCPS: 0.0';
+    clickCountLine.textContent = 'クリック数: 0 ・ リアルタイムCPS: 0.0';
     graphCtx.clearRect(0, 0, graphCanvas.width, graphCanvas.height);
   });
 
@@ -371,10 +526,11 @@
 
   window.addEventListener('resize', () => { if (running) resizeGraph(); });
 
+  renderModeButtons();
   renderDurationButtons();
   renderStats();
+  loadModeLeaderboard();
   resizeGraph();
-  renderTopLeaderboard(loadStats(LB_KEY, []));
 </script>
 </body>
 </html>

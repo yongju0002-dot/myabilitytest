@@ -172,6 +172,13 @@
       <p>人差し指と中指を交互に使う「ドラッグクリック」や、腕の筋肉を震わせてクリックする「ジタークリック」といった技法がコミュニティで広く知られています。ただし、これらは手首や腕に負担がかかりやすいので、無理に繰り返し練習しないことをおすすめします。</p>
     </section>
 
+    <div class="side-panel" id="ladderPanel"></div>
+    <div class="side-panel" id="achPanel"></div>
+    <div class="side-panel">
+      <div class="ach-head">🕒 最近の記録</div>
+      <div id="recentPanel"></div>
+    </div>
+
     <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 歴代記録ランキング(最大30位)</h2>
     <div id="topLeaderboard"></div>
 
@@ -463,10 +470,61 @@
     resultPanel.classList.add('show');
     resultPanel.dataset.share = `私は ${grade.persona}! CPSテスト(${mode.label})で ${cps.toFixed(1)} CPS (${clicks}クリック/${duration}秒、${grade.key}ランク)を記録!あなたもどうぞ → `;
 
+    const fresh = unlockAchievements(ACH_KEY, earnedIds(grade));
+    addRecentRecord(ACH_KEY, { cps, mode: mode.label, duration, date: Date.now() });
+    renderPanels();
+    if (fresh.length) showAchievementToast(fresh.map(id => (ACH_DEFS.find(a => a.id === id) || {}).label).filter(Boolean), '実績を解除!');
+
     const lbList = addToLeaderboard(LB_KEYS[mode.key], { value: cps, duration, clicks, date: Date.now() }, false);
     renderTopLeaderboard(lbList);
   }
 
+
+  // ---- 업적 정의: 이미 현지화된 MODES/grades에서 자동 생성 ----
+  const ACH_KEY = 'skillCps';
+  const ACH_DEFS = (() => {
+    const defs = [{ id: 'first', label: '初挑戦' }];
+    [1, 5, 10, 25, 50].forEach(n => defs.push({ id: 'plays' + n, label: n + '回プレイ' }));
+    MODES.forEach(m => m.grades.forEach(g => {
+      defs.push({ id: `${m.key}_${g.key}`, label: `${m.label} · ${g.key}` , hint: `${m.label} · ${g.label}` });
+    }));
+    defs.push({ id: 'allmodes', label: '4技術すべて体験' });
+    return defs;
+  })();
+
+  function totalPlays() {
+    return Object.values(allStats).reduce((a, s) => a + (s.plays || 0), 0);
+  }
+  function modesTried() {
+    return MODES.filter(m => DURATIONS.some(d => (allStats[statKey(m, d)] || {}).plays)).length;
+  }
+
+  // 이번 판에서 만족한 업적 id 목록
+  function earnedIds(grade) {
+    const ids = ['first'];
+    const tp = totalPlays();
+    [1, 5, 10, 25, 50].forEach(n => { if (tp >= n) ids.push('plays' + n); });
+    // 해당 기술에서 이 등급 이하 티어는 전부 달성으로 본다(첫 판에 여러 개 해금)
+    const idx = mode.grades.findIndex(g => g.key === grade.key);
+    mode.grades.slice(idx).forEach(g => ids.push(`${mode.key}_${g.key}`));
+    if (modesTried() >= 4) ids.push('allmodes');
+    return ids;
+  }
+
+  function bestForMode() {
+    let best = 0;
+    DURATIONS.forEach(d => { const s = allStats[statKey(mode, d)]; if (s && s.bestCps > best) best = s.bestCps; });
+    return best || null;
+  }
+
+  function renderPanels() {
+    renderRankLadder('ladderPanel', mode.grades, bestForMode(), {
+      title: `${mode.label} ランク`, unit: ' CPS', digits: 1,
+    });
+    renderAchievements('achPanel', ACH_KEY, ACH_DEFS, '🏅 実績');
+    renderRecentRecords('recentPanel', loadStats(ACH_KEY + '_recent', []),
+      e => `${e.cps.toFixed(1)} CPS · ${e.mode} · ${e.duration}秒`, 'まだ記録がありません');
+  }
   function renderTopLeaderboard(list) {
     renderLeaderboard('topLeaderboard', list, (entry) => {
       const d = new Date(entry.date);
@@ -487,6 +545,7 @@
       renderDurationButtons();
       renderStats();
       loadModeLeaderboard();
+      renderPanels();
       if (finished) {
         finished = false;
         resultPanel.classList.remove('show');
@@ -530,6 +589,7 @@
   renderDurationButtons();
   renderStats();
   loadModeLeaderboard();
+  renderPanels();
   resizeGraph();
 </script>
 </body>

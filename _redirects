@@ -18,10 +18,10 @@
 /en/skill-test/games/mouse-accuracy.html /en/tests/mouse-accuracy 301
 /ja/skill-test/games/mouse-accuracy.html /ja/tests/mouse-accuracy 301
 /zh/skill-test/games/mouse-accuracy.html /zh/tests/mouse-accuracy 301
-/skill-test/games/jitter-click.html /ko/tests/jitter-click 301
-/en/skill-test/games/jitter-click.html /en/tests/jitter-click 301
-/ja/skill-test/games/jitter-click.html /ja/tests/jitter-click 301
-/zh/skill-test/games/jitter-click.html /zh/tests/jitter-click 301
+/skill-test/games/jitter-click.html /ko/tests/click-speed 301
+/en/skill-test/games/jitter-click.html /en/tests/click-speed 301
+/ja/skill-test/games/jitter-click.html /ja/tests/click-speed 301
+/zh/skill-test/games/jitter-click.html /zh/tests/click-speed 301
 /skill-test/games/dynamic-vision.html /ko/tests/dynamic-vision 301
 /en/skill-test/games/dynamic-vision.html /en/tests/dynamic-vision 301
 /ja/skill-test/games/dynamic-vision.html /ja/tests/dynamic-vision 301
@@ -46,10 +46,10 @@
 /en/skill-test/games/apm.html /en/tests/apm 301
 /ja/skill-test/games/apm.html /ja/tests/apm 301
 /zh/skill-test/games/apm.html /zh/tests/apm 301
-/skill-test/games/kohi-click.html /ko/tests/kohi-click 301
-/en/skill-test/games/kohi-click.html /en/tests/kohi-click 301
-/ja/skill-test/games/kohi-click.html /ja/tests/kohi-click 301
-/zh/skill-test/games/kohi-click.html /zh/tests/kohi-click 301
+/skill-test/games/kohi-click.html /ko/tests/click-speed 301
+/en/skill-test/games/kohi-click.html /en/tests/click-speed 301
+/ja/skill-test/games/kohi-click.html /ja/tests/click-speed 301
+/zh/skill-test/games/kohi-click.html /zh/tests/click-speed 301
 /skill-test/games/time-stop.html /ko/tests/time-stop 301
 /en/skill-test/games/time-stop.html /en/tests/time-stop 301
 /ja/skill-test/games/time-stop.html /ja/tests/time-stop 301
@@ -62,3 +62,13 @@
 /en/skill-test/games/time-guess.html /en/tests/time-perception 301
 /ja/skill-test/games/time-guess.html /ja/tests/time-perception 301
 /zh/skill-test/games/time-guess.html /zh/tests/time-perception 301
+
+# 지터/Kohi 클릭 테스트 삭제 (2026-08-24) -> CPS 클릭 속도로 통합
+/ko/tests/jitter-click /ko/tests/click-speed 301
+/en/tests/jitter-click /en/tests/click-speed 301
+/ja/tests/jitter-click /ja/tests/click-speed 301
+/zh/tests/jitter-click /zh/tests/click-speed 301
+/ko/tests/kohi-click /ko/tests/click-speed 301
+/en/tests/kohi-click /en/tests/click-speed 301
+/ja/tests/kohi-click /ja/tests/click-speed 301
+/zh/tests/kohi-click /zh/tests/click-speed 301

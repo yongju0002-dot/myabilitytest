@@ -27,8 +27,11 @@
     다른 패턴을 쓰던 것)는 더 이상 없다** — 지금은 `/ko/tests/reaction-time.html`로 다른
     테스트들과 완전히 동일한 디렉터리 패턴을 따른다.
 - **구 URL 하위호환**: 옛 경로(`/skill-test/games/{old-slug}.html`, `/ability-test/index.html`
-  등)로 들어오는 요청은 `_redirects` 파일의 301 규칙 58개로 새 경로에 매핑된다. 새 테스트를
+  등)로 들어오는 요청은 `_redirects` 파일의 301 규칙으로 새 경로에 매핑된다. 새 테스트를
   추가할 때는 `_redirects`를 건드릴 필요 없음 — 애초에 없던 페이지라 구 경로도 없다.
+  **반대로 기존 테스트를 삭제할 때는 반드시 규칙을 추가할 것** — 이미 색인된 URL이 404가
+  되면 SEO상 손해다. 예: 지터/Kohi 클릭 테스트 삭제(2026-08-24) 시 해당 URL 8개를
+  `click-speed`로 301 처리했다.
 - 공용 리소스는 여전히 **절대경로**로 참조한다: `<link rel="stylesheet" href="/skill-test/style.css">`,
   `<script src="/skill-test/common.js">`. 새 파일도 이 절대경로 패턴을 따를 것.
 - 페이지 내부 링크(뒤로가기·언어전환)는 **개편 후 전부 절대경로로 통일됨** (구버전 문서가
@@ -36,7 +39,7 @@
   - `back-link`: `href="/{lang}/"` (허브로 절대경로 복귀)
   - `lang-switch`: `href="/{lang}/tests/{slug}"` 절대경로, 여전히 4개 언어 전부 존재
 - **CSS 파일 두 벌 구조는 그대로 유지됨**: `/style.css`(325줄, 4개 허브 `/{lang}/index.html`
-  전용)와 `/skill-test/style.css`(461줄, 테스트 페이지 14종 전용)는 여전히 별개 파일이다.
+  전용)와 `/skill-test/style.css`(461줄, 테스트 페이지 12종 전용)는 여전히 별개 파일이다.
   **디자인 토큰(`:root` 변수명)은 개편 과정에서 통일되어 현재는 두 파일이 동일한 변수 세트를
   쓴다** (구버전 문서가 지적했던 토큰 불일치는 해소됨 — 재확인 필요 시 `diff`로 직접 검증할 것,
   값까지 100% 동일한지는 미검증). 새 테스트 페이지는 계속 `/skill-test/style.css`만 참조할 것.
@@ -78,26 +81,29 @@
 {"@type":"WebApplication","name":"CPS 클릭 속도 테스트 | 능력 테스트","url":"https://myabilitytest.com/ko/tests/click-speed","applicationCategory":"GameApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"ko"}
 ]}
 </script>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
 <link rel="stylesheet" href="/skill-test/style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
 </head>
 ```
 
+- **파비콘**: 위 2줄이 전 페이지 공통. 새 페이지에도 반드시 넣을 것.
 - **title**: `"{테스트명} | 능력 테스트"` (en/ja/zh는 각각 `"| Ability Test"` / `"| 能力テスト"` / `"| 能力测试"`).
-- **meta description**: 한 문장 훅 + 짧은 설명, 대략 40~55자(한글 기준). 60개 페이지 전부 고유함
+- **meta description**: 한 문장 훅 + 짧은 설명, 대략 40~55자(한글 기준). 56개 페이지 전부 고유함
   (중복 없음, curl로 검증됨).
 - **canonical**: 항상 자기 자신(해당 언어 버전)의 URL.
 - **hreflang**: `ko → en → ja → zh-Hant → x-default` 순서 고정, 5개 항상 전부 포함.
   **주의 — 구버전 문서는 `hreflang="zh"`로 기록했으나 실제로는 `zh-Hant`가 맞다.**
   `x-default`는 **영어(en) URL**을 가리킨다 (한국어가 아님 — 국제 SEO 관례상 x-default는
   범용/영어권 기본값으로 설정하는 게 낫다는 판단으로 개편 시 변경됨).
-- **OG 태그 / Twitter 카드 / JSON-LD 구조화 데이터**: **60개 페이지 전부에 존재한다.**
+- **OG 태그 / Twitter 카드 / JSON-LD 구조화 데이터**: **56개 페이지 전부에 존재한다.**
   (구버전 문서는 "사이트 전체에 단 하나도 없다"고 기록했으나 이는 개편 전 상태였다.)
   `@graph` 배열은 Organization + WebSite(사이트 전체 공통) + BreadcrumbList(페이지별) +
   WebApplication(테스트 페이지만) 조합이 기본. `click-speed`, `reaction-time` 2개 페이지는
   여기에 `FAQPage` 블록이 추가로 붙어 있다(검색 유입 가능성이 크다고 판단된 2종만 선별 적용,
   전체 확대는 하지 않음 — 확장 시 반드시 실제 자주 나오는 질문 기반으로만 작성할 것).
-- **서드파티 스크립트**: AdSense Auto ads 스크립트 하나만 60개 전 페이지 `</head>` 직전에 있음.
+- **서드파티 스크립트**: AdSense Auto ads 스크립트 하나만 56개 전 페이지 `</head>` 직전에 있음.
   GA4나 다른 분석 스크립트는 소스에 없음.
 - `google-site-verification` 메타 태그는 **`/ko/index.html`에서만** 확인됨 (구 루트
   `/index.html` 자리를 이제 `/ko/index.html`이 대신함). 다른 페이지는 확인 안 함(확인 불가).
@@ -124,20 +130,23 @@
 - `lang-switch`는 항상 4개 `<a>` 전부 존재, 현재 언어에만 `class="active"`가 붙고 href는
   자기 자신을 가리킴.
 - **결과 화면**: `<div id="resultPanel" class="result-panel">` 안에 emoji → h2 → (stars) →
-  desc → **(persona-label — 한국어 페이지 14종 전부에 존재, 아래 6번 참고)** →
+  desc → **(persona-label — 한국어 페이지 12종 전부에 존재, 아래 6번 참고)** →
   (percentile, grade-table — 게임에 따라 있고 없음) → **(other-tests — 다른 테스트 4개로
-  가는 크로스링크, 60페이지 전부에 존재, 아래 7번 참고)** → `btn-row`(다시하기 + 공유하기 버튼).
+  가는 크로스링크, 테스트 48페이지 전부에 존재, 아래 7번 참고)** → `btn-row`(다시하기 + 공유하기 버튼).
 - **세션 통계**: `<div class="stats">` 3열 grid, 각 `.stat-box`에 label + value.
 - **역대 기록 순위 섹션** (거의 모든 테스트 공통, `.wrap` 최하단):
   ```html
   <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 역대 기록 순위 (최대 30위)</h2>
   <div id="topLeaderboard"></div>
   ```
-- **하단 SEO 설명(`.info`) 섹션**: `click-speed`, `reaction-time` 2개 페이지에만 있음
-  (FAQPage 스키마가 붙은 페이지와 동일). 나머지 12종에는 없음 — 필수 아님, 있으면 좋지만
-  실제 자주 검색되는 키워드가 확인된 페이지에만 추가하는 걸 권장.
-- **footer**: 공통 컴포넌트로 존재하지 않는다. `reaction-time`에만 `<footer class="note">`
-  (예측 클릭 경고문)가 남아있고, 나머지 13종에는 `<footer>` 요소 자체가 없음.
+- **하단 SEO 설명(`.info`) 섹션**: **12종 테스트 전부에 있다** (2026-08-24 애드센스
+  "가치 없는 콘텐츠" 판정 대응으로 전면 보강됨). 구성은 `<h2>` 여러 개 + 점수 해석표
+  + 설명 문단. 새 테스트를 만들 때도 반드시 같이 작성할 것 — 이게 없으면 그 페이지만
+  콘텐츠가 빈약해진다. `click-speed`, `reaction-time` 2개는 여기에 FAQPage 스키마까지 붙어 있다.
+- **footer**: `<footer class="site-footer">`가 **전 페이지 공통**으로 `.wrap` 안 최하단에
+  있다(홈 / 개인정보처리방침 / 문의 + 저작권). 스타일은 `/style.css`와
+  `/skill-test/style.css` 양쪽에 정의돼 있다. `reaction-time`에는 이와 별개로
+  `<footer class="note">`(예측 클릭 경고문)가 추가로 남아있다.
 
 ## 4. 디자인 토큰
 
@@ -187,7 +196,7 @@
 ## 6. 한국어 전용 정체성(persona) 라벨 패턴 (2026-08-21 추가)
 
 한국 시장 조사 결과 "반응속도 250ms"보다 "매복형 스나이퍼 — 상위 8%" 같은 공유 가능한
-정체성 라벨이 SNS 공유를 유발한다는 판단 하에, **한국어(`/ko/`) 페이지 14종 전부**에 다음
+정체성 라벨이 SNS 공유를 유발한다는 판단 하에, **한국어(`/ko/`) 페이지 12종 전부**에 다음
 패턴이 추가됨. **영어/일본어/중국어 페이지에는 의도적으로 적용하지 않음.**
 
 - 기존 `GRADES`/tier 배열이 있는 테스트(10종): 각 tier 객체에 `persona: '{emoji} {짧은 정체성 문구}'`
@@ -202,7 +211,7 @@
 
 ## 7. 테스트 간 크로스링크 패턴 (2026-08-21 추가)
 
-**60개 페이지 전부**에 결과 화면 하단, `btn-row` 앞에 다른 테스트 4개로 가는 링크 블록이
+**테스트 48페이지 전부**에 결과 화면 하단, `btn-row` 앞에 다른 테스트 4개로 가는 링크 블록이
 있음(자기 자신은 제외, 카테고리가 비슷한 테스트 위주로 선정):
 
 ```html
@@ -231,7 +240,7 @@ CSS(`.other-tests`, `.other-tests-links`)는 공용 스타일시트가 아니라
 - `_redirects`는 **새 테스트에는 수정 불필요** (구 URL이 애초에 없으므로 리다이렉트할 대상이
   없음). 기존 테스트의 slug를 바꾸는 경우에만 새 규칙을 추가할 것.
 - 기존 테스트 13개 각각의 `.other-tests-links`에 새 테스트로 가는 링크를 추가할지는 선택사항
-  (전부 다 추가하면 60개 파일을 다 고쳐야 하므로, 카테고리가 겹치는 소수 테스트에만 추가하는
+  (전부 다 추가하면 48개 파일을 다 고쳐야 하므로, 카테고리가 겹치는 소수 테스트에만 추가하는
   것을 권장).
 
 ---

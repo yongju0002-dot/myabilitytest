@@ -441,50 +441,6 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/chimp-test"/>
   </url>
   <url>
-    <loc>https://myabilitytest.com/ko/tests/kohi-click</loc>
-    <lastmod>2026-08-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/kohi-click"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/kohi-click"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/kohi-click"/>
-    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/kohi-click"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/kohi-click"/>
-  </url>
-  <url>
-    <loc>https://myabilitytest.com/en/tests/kohi-click</loc>
-    <lastmod>2026-08-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/kohi-click"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/kohi-click"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/kohi-click"/>
-    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/kohi-click"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/kohi-click"/>
-  </url>
-  <url>
-    <loc>https://myabilitytest.com/ja/tests/kohi-click</loc>
-    <lastmod>2026-08-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/kohi-click"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/kohi-click"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/kohi-click"/>
-    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/kohi-click"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/kohi-click"/>
-  </url>
-  <url>
-    <loc>https://myabilitytest.com/zh/tests/kohi-click</loc>
-    <lastmod>2026-08-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/kohi-click"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/kohi-click"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/kohi-click"/>
-    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/kohi-click"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/kohi-click"/>
-  </url>
-  <url>
     <loc>https://myabilitytest.com/ko/tests/spacebar-counter</loc>
     <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
@@ -615,50 +571,6 @@
     <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/mouse-accuracy"/>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/mouse-accuracy"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/mouse-accuracy"/>
-  </url>
-  <url>
-    <loc>https://myabilitytest.com/ko/tests/jitter-click</loc>
-    <lastmod>2026-08-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/jitter-click"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/jitter-click"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/jitter-click"/>
-    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/jitter-click"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/jitter-click"/>
-  </url>
-  <url>
-    <loc>https://myabilitytest.com/en/tests/jitter-click</loc>
-    <lastmod>2026-08-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/jitter-click"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/jitter-click"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/jitter-click"/>
-    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/jitter-click"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/jitter-click"/>
-  </url>
-  <url>
-    <loc>https://myabilitytest.com/ja/tests/jitter-click</loc>
-    <lastmod>2026-08-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/jitter-click"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/jitter-click"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/jitter-click"/>
-    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/jitter-click"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/jitter-click"/>
-  </url>
-  <url>
-    <loc>https://myabilitytest.com/zh/tests/jitter-click</loc>
-    <lastmod>2026-08-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/jitter-click"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/jitter-click"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/jitter-click"/>
-    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/jitter-click"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/jitter-click"/>
   </url>
   <url>
     <loc>https://myabilitytest.com/ko/privacy</loc>

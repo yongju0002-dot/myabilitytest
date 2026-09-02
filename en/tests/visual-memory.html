@@ -68,6 +68,14 @@
     <h1>🧠 Visual Memory Test</h1>
     <p class="sub">Remember the tiles shown in green, then click those same tiles.</p>
 
+    <div class="mode-select" id="modeSelect">
+      <button data-mode="classic" class="active">Classic</button>
+      <button data-mode="g4">4x4</button>
+      <button data-mode="g5">5x5</button>
+      <button data-mode="g6">6x6</button>
+    </div>
+    <p class="mode-hint" id="modeHint">Grid grows as you level up. The default mode.</p>
+
     <div class="level-card">
       <div class="label">Current level</div>
       <div class="num" id="levelNum">1</div>
@@ -100,6 +108,13 @@
             <a href="/en/tests/click-speed">🖱️ CPS Click Speed</a>
           </div>
         </div>
+    </div>
+
+    <div class="side-panel" id="ladderPanel"></div>
+    <div class="side-panel" id="achPanel"></div>
+    <div class="side-panel">
+      <div class="ach-head">Recent runs</div>
+      <div id="recentPanel"></div>
     </div>
 
     <div class="stats">
@@ -155,12 +170,23 @@
 
 <script src="/skill-test/common.js"></script>
 <script>
-  const STORE_KEY = 'skillMemoryStats';
-  const LB_KEY = 'skillMemoryLeaderboardV1';
-  let stats = loadStats(STORE_KEY, { count: 0, best: 0 });
+  const ACH_KEY = 'skillMemoryAchV1';
+  const MODES = [
+    { key: 'classic', label: 'Classic', fixed: null, hint: 'Grid grows as you level up. The default mode.' },
+    { key: 'g4', label: '4x4', fixed: 4, hint: '16 tiles, fixed. Small grid fills up fast.' },
+    { key: 'g5', label: '5x5', fixed: 5, hint: '25 tiles, fixed. A balanced challenge.' },
+    { key: 'g6', label: '6x6', fixed: 6, hint: '36 tiles, fixed. Scan a wide board at a glance.' },
+  ];
+  const LB_KEYS = { classic: 'skillMemoryLeaderboardV1', g4: 'skillMemoryLbG4V1', g5: 'skillMemoryLbG5V1', g6: 'skillMemoryLbG6V1' };
+  const STAT_KEYS = { classic: 'skillMemoryStats', g4: 'skillMemoryStatsG4', g5: 'skillMemoryStatsG5', g6: 'skillMemoryStatsG6' };
+
+  let mode = MODES[0];
+  let stats = loadStats(STAT_KEYS[mode.key], { count: 0, best: 0 });
   const grid = document.getElementById('memoryGrid');
   const resultPanel = document.getElementById('resultPanel');
   const startRow = document.getElementById('startRow');
+  const modeSelect = document.getElementById('modeSelect');
+  const modeHint = document.getElementById('modeHint');
 
   let level = 1;
   let over = false;
@@ -169,9 +195,14 @@
   let remaining = new Set();
   let locked = true;
 
-  function tilesFor(lv) { return lv + 2; }
+  function tilesFor(lv) {
+    const t = lv + 2;
+    if (mode.fixed) return Math.min(t, Math.floor(mode.fixed * mode.fixed * 0.6));
+    return t;
+  }
 
   function gridSizeFor(tiles) {
+    if (mode.fixed) return mode.fixed;
     if (tiles <= 4) return 3;
     if (tiles <= 7) return 4;
     if (tiles <= 11) return 5;
@@ -249,7 +280,7 @@
   function showTargets() {
     locked = true;
     targets.forEach(i => grid.children[i].classList.add('show-target'));
-    const showTime = 800 + gridSize * 150;
+    const showTime = mode.fixed ? 700 + targets.size * 220 : 800 + gridSize * 150;
     setTimeout(() => {
       targets.forEach(i => grid.children[i].classList.remove('show-target'));
       locked = false;
@@ -275,12 +306,68 @@
     }
   }
 
+  const ACH_DEFS = (() => {
+    const defs = [{ id: 'first', label: 'First attempt' }];
+    [1, 5, 10, 25, 50].forEach(n => defs.push({ id: 'plays' + n, label: n + ' plays' }));
+    MODES.forEach(m => GRADES.forEach(g => {
+      defs.push({ id: `${m.key}_${g.key}`, label: `${m.label} - ${g.label}` });
+    }));
+    defs.push({ id: 'allmodes', label: 'Tried all 4 modes' });
+    return defs;
+  })();
+
+  function totalPlays() {
+    return MODES.reduce((a, m) => a + (loadStats(STAT_KEYS[m.key], { count: 0 }).count || 0), 0);
+  }
+  function modesTried() {
+    return MODES.filter(m => (loadStats(STAT_KEYS[m.key], { count: 0 }).count || 0) > 0).length;
+  }
+  function earnedIds(grade) {
+    const ids = ['first'];
+    const tp = totalPlays();
+    [1, 5, 10, 25, 50].forEach(n => { if (tp >= n) ids.push('plays' + n); });
+    const idx = GRADES.findIndex(g => g.key === grade.key);
+    GRADES.slice(idx).forEach(g => ids.push(`${mode.key}_${g.key}`));
+    if (modesTried() >= MODES.length) ids.push('allmodes');
+    return ids;
+  }
+  function renderPanels() {
+    renderRankLadder('ladderPanel', GRADES.map(g => ({ key: g.key, label: g.label, min: g.min })),
+      stats.best || null, { title: `${mode.label} rank`, unit: ' lv', digits: 0 });
+    renderAchievements('achPanel', ACH_KEY, ACH_DEFS, 'Achievements');
+    renderRecentRecords('recentPanel', loadStats(ACH_KEY + '_recent', []),
+      e => `${e.mode} - level ${e.level} - ${e.tiles} tiles`, 'No records yet');
+  }
+
+  function setMode(key) {
+    mode = MODES.find(m => m.key === key) || MODES[0];
+    modeSelect.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.mode === mode.key));
+    modeHint.textContent = mode.hint;
+    stats = loadStats(STAT_KEYS[mode.key], { count: 0, best: 0 });
+    level = 1;
+    over = false;
+    locked = true;
+    resultPanel.classList.remove('show');
+    startRow.style.display = '';
+    grid.innerHTML = '';
+    grid.style.gridTemplateColumns = '';
+    document.getElementById('levelNum').textContent = '1';
+    document.getElementById('tilesSub').textContent = `Tiles to remember: ${tilesFor(1)}`;
+    renderStats();
+    renderTopLeaderboard(loadStats(LB_KEYS[mode.key], []));
+    renderPanels();
+  }
+
+  modeSelect.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => setMode(btn.dataset.mode));
+  });
+
   function endGame() {
     over = true;
     const reached = level;
     stats.count += 1;
     if (reached > stats.best) stats.best = reached;
-    saveStats(STORE_KEY, stats);
+    saveStats(STAT_KEYS[mode.key], stats);
     renderStats();
 
     const grade = gradeFor(reached);
@@ -291,10 +378,15 @@
     document.getElementById('resultPercentile').textContent = rankText(reached);
     renderGradeTable(reached);
     resultPanel.classList.add('show');
-    resultPanel.dataset.share = `I reached level ${reached} (grade ${grade.key}) on the Visual Memory Test! Try it yourself → `;
+    resultPanel.dataset.share = `I reached level ${reached} in ${mode.label} mode (grade ${grade.key}) on the Visual Memory Test! Try it yourself→ `;
 
-    const lbList = addToLeaderboard(LB_KEY, { value: reached, date: Date.now() }, false);
+    const lbList = addToLeaderboard(LB_KEYS[mode.key], { value: reached, date: Date.now() }, false);
     renderTopLeaderboard(lbList);
+
+    addRecentRecord(ACH_KEY, { level: reached, mode: mode.label, tiles: tilesFor(reached), date: Date.now() });
+    const newly = unlockAchievements(ACH_KEY, earnedIds(grade));
+    renderPanels();
+    if (newly.length) showAchievementToast(newly.map(id => (ACH_DEFS.find(d => d.id === id) || {}).label).filter(Boolean), 'Achievement unlocked');
   }
 
   function renderTopLeaderboard(list) {
@@ -324,8 +416,7 @@
     shareResult((resultPanel.dataset.share || '') + location.href);
   });
 
-  renderStats();
-  renderTopLeaderboard(loadStats(LB_KEY, []));
+  setMode('classic');
 </script>
 </body>
 </html>

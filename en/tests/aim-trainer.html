@@ -58,7 +58,7 @@
   .aim-box {
     position: relative;
     width: 100%;
-    max-width: 800px;
+    max-width: 1200px;
     aspect-ratio: 800 / 500;
     margin: 16px auto;
     background: var(--card-bg-2);
@@ -67,7 +67,9 @@
     user-select: none;
     touch-action: none;
     cursor: crosshair;
+    transition: background-color 0.12s ease;
   }
+  .aim-box.miss-flash { background-color: rgba(239, 68, 68, 0.45); }
   .aim-target {
     position: absolute;
     border-radius: 50%;
@@ -75,6 +77,19 @@
     transform: translate(-50%, -50%);
     pointer-events: none;
     box-shadow: 0 0 14px rgba(99,102,241,0.6);
+  }
+  .aim-countdown {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 72px;
+    font-weight: 800;
+    color: #fff;
+    background: rgba(15, 23, 42, 0.6);
+    z-index: 2;
+    pointer-events: none;
   }
 </style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
@@ -113,6 +128,7 @@
       </div>
       <div class="aim-box" id="aimBox">
         <div class="aim-target" id="aimTarget" style="display:none;"></div>
+        <div class="aim-countdown" id="aimCountdown" style="display:none;"></div>
       </div>
     </div>
 
@@ -220,6 +236,7 @@
   const sizeSelect = document.getElementById('sizeSelect');
   const aimBox = document.getElementById('aimBox');
   const aimTarget = document.getElementById('aimTarget');
+  const aimCountdown = document.getElementById('aimCountdown');
   const hitCountEl = document.getElementById('hitCount');
 
   let selectedSize = 'medium';
@@ -309,7 +326,15 @@
       spawnTarget();
     } else {
       missDistances.push(d);
+      flashMiss();
     }
+  }
+
+  let missFlashTimer = null;
+  function flashMiss() {
+    aimBox.classList.add('miss-flash');
+    clearTimeout(missFlashTimer);
+    missFlashTimer = setTimeout(() => aimBox.classList.remove('miss-flash'), 150);
   }
 
   aimBox.addEventListener('pointerdown', onPointerDown);
@@ -319,7 +344,7 @@
   document.getElementById('startBtn').addEventListener('click', () => {
     const sizeCfg = SIZES.find(s => s.key === selectedSize);
     radius = sizeCfg.radius;
-    running = true;
+    running = false;
     inputType = null;
     hits = 0;
     totalClicks = 0;
@@ -328,14 +353,33 @@
     lastTargetPos = null;
     reactionTimes = [];
     missDistances = [];
-    gameStartTime = performance.now();
     hitCountEl.textContent = `0 / ${TARGET_COUNT}`;
 
     introScreen.style.display = 'none';
     resultPanel.classList.remove('show');
     playScreen.style.display = '';
-    spawnTarget();
+    aimTarget.style.display = 'none';
+    startCountdown();
   });
+
+  function startCountdown() {
+    let n = 3;
+    aimCountdown.textContent = n;
+    aimCountdown.style.display = '';
+    const tick = () => {
+      n -= 1;
+      if (n > 0) {
+        aimCountdown.textContent = n;
+        setTimeout(tick, 1000);
+      } else {
+        aimCountdown.style.display = 'none';
+        running = true;
+        gameStartTime = performance.now();
+        spawnTarget();
+      }
+    };
+    setTimeout(tick, 1000);
+  }
 
   function buildBarChart(times) {
     const W = 600, H = 140, PAD = 8;

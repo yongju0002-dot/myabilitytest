@@ -1,0 +1,279 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>キーボードテスト | 能力テスト</title>
+<meta name="description" content="キーボードのすべてのキーが正しく入力されるか、同時に何個まで押せるか(ゴースティング・Nキーロールオーバー)をブラウザですぐ確認。インストール不要の無料点検ツール。">
+<link rel="canonical" href="https://myabilitytest.com/ja/tests/keyboard-tester">
+<link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/keyboard-tester">
+<link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/keyboard-tester">
+<link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/keyboard-tester">
+<link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/keyboard-tester">
+<link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/keyboard-tester">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MyAbilityTest">
+<meta property="og:title" content="キーボードテスト | 能力テスト">
+<meta property="og:description" content="すべてのキーが正しく入力されるか、同時入力は何個までかをブラウザですぐ点検。">
+<meta property="og:url" content="https://myabilitytest.com/ja/tests/keyboard-tester">
+<meta property="og:image" content="https://myabilitytest.com/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="キーボードテスト | 能力テスト">
+<meta name="twitter:description" content="すべてのキーが正しく入力されるか、同時入力は何個までかをブラウザですぐ点検。">
+<meta name="twitter:image" content="https://myabilitytest.com/og-default.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"Organization","@id":"https://myabilitytest.com/#organization","name":"MyAbilityTest","url":"https://myabilitytest.com/","logo":{"@type":"ImageObject","url":"https://myabilitytest.com/og-default.png","width":1200,"height":630}},
+{"@type":"WebSite","@id":"https://myabilitytest.com/#website","name":"MyAbilityTest","url":"https://myabilitytest.com/","inLanguage":["ko","en","ja","zh-Hant"],"publisher":{"@id":"https://myabilitytest.com/#organization"}},
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://myabilitytest.com/ja/"},{"@type":"ListItem","position":2,"name":"キーボードテスト | 能力テスト","item":"https://myabilitytest.com/ko/tests/keyboard-tester"}]},{"@type":"WebApplication","name":"キーボードテスト | 能力テスト","url":"https://myabilitytest.com/ja/tests/keyboard-tester","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"ja"},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"ゴースティングとは?","acceptedAnswer":{"@type":"Answer","text":"複数のキーを同時に押したとき、一部のキーがまったく認識されない現象です。安価なキーボードはキーをマトリクス回路でまとめて読むため、同じ行・列にまたがる組み合わせを同時に押すと区別できず入力が欠落します。ゲームで移動しながらジャンプと別の操作を同時に押すときに現れやすいです。"}},
+{"@type":"Question","name":"Nキーロールオーバーとは?","acceptedAnswer":{"@type":"Answer","text":"同時に押したキーを何個まで正確に区別できるかを指します。6キーロールオーバー(6KRO)は修飾キーを除いて6個まで、NKROは事実上制限なく認識します。USB接続では標準仕様上6個に制限されることが多く、NKRO対応キーボードでも設定やファームウェア次第で6個までしか拾えない場合があります。"}},
+{"@type":"Question","name":"特定のキーを押しても反応しません。","acceptedAnswer":{"@type":"Answer","text":"ブラウザやOSが先に横取りするキーかもしれません。たとえばF11(全画面)、F12(開発者ツール)、Win/Cmdキー、Alt+Tabなどはウェブページまで信号が届きません。これらを除いても反応がない場合は、キーボード自体の問題の可能性があります。"}}
+]}
+]}
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
+<link rel="stylesheet" href="/skill-test/style.css">
+<style>
+  .info { margin-top: 40px; color: #cbd5e1; font-size: 14px; line-height: 1.7; }
+  .info h2 { font-size: 17px; color: #f1f5f9; margin: 28px 0 8px; }
+  .info table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
+  .info th, .info td { border: 1px solid #334155; padding: 8px; text-align: left; }
+  .info th { background: var(--card-bg); }
+  .info ul { padding-left: 20px; }
+  .other-tests { margin-top: 16px; }
+  .other-tests .label { text-align: center; font-size: 12px; color: var(--text-dim); margin-bottom: 8px; }
+  .other-tests-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .other-tests-links a {
+    font-size: 12px; color: #cbd5e1; text-decoration: none;
+    background: var(--card-bg-2); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 999px; padding: 6px 12px;
+  }
+  .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+
+  .kb {
+    background: var(--card-bg-2); border-radius: 16px; padding: 14px;
+    overflow-x: auto; user-select: none;
+  }
+  .kb-row { display: flex; gap: 5px; margin-bottom: 5px; justify-content: center; min-width: 640px; }
+  .key {
+    background: var(--card-bg); border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 7px; min-width: 38px; height: 38px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: var(--text-dim); padding: 0 6px; white-space: nowrap;
+    transition: background 0.06s ease, color 0.06s ease, border-color 0.06s ease;
+  }
+  .key.w15 { min-width: 58px; } .key.w20 { min-width: 78px; }
+  .key.w25 { min-width: 98px; } .key.w60 { min-width: 236px; }
+  .key.down { background: var(--accent); color: #fff; border-color: #c7d2fe; }
+  .key.used { border-color: #22c55e; color: #cbd5e1; }
+
+  .live-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 14px; }
+  .live-box { background: var(--card-bg); border-radius: 12px; padding: 12px 10px; text-align: center; }
+  .live-box .k { font-size: 11.5px; color: var(--text-dim); margin-bottom: 4px; }
+  .live-box .v { font-size: 20px; font-weight: 800; font-variant-numeric: tabular-nums; }
+  .live-box .v.small { font-size: 13px; font-weight: 600; word-break: break-all; }
+
+  .held { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-top: 12px; min-height: 30px; }
+  .held span { background: var(--accent); color: #fff; border-radius: 999px; padding: 5px 12px; font-size: 12px; font-weight: 600; }
+  .kro-note { text-align: center; color: var(--text-dim); font-size: 12.5px; margin-top: 10px; line-height: 1.6; }
+  .kro-verdict { text-align: center; font-size: 15px; font-weight: 700; margin-top: 8px; }
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back-link" href="/ja/">← メインへ</a>
+    <div class="lang-switch">
+      <a href="/ko/tests/keyboard-tester">한국어</a>
+      <a href="/en/tests/keyboard-tester">English</a>
+      <a class="active" href="/ja/tests/keyboard-tester">日本語</a>
+      <a href="/zh/tests/keyboard-tester">中文</a>
+    </div>
+    <h1>⌨️ キーボードテスト</h1>
+    <p class="sub">キーを押してみてください。押されたキーが光り、一度でも認識されたキーは緑の枠で残ります。</p>
+
+    <div class="info-box">
+      ⌨️ 何かキーを押してみてください。複数のキーを<strong>同時に</strong>押すと、何個まで認識されるか(ゴースティング・Nキーロールオーバー)も確認できます。F11・F12・Winキーなど一部はブラウザが先に横取りし検出されない場合があります。
+    </div>
+
+    <div class="kb" id="kb"></div>
+
+    <div class="held" id="heldKeys"></div>
+    <div class="kro-verdict" id="kroVerdict"></div>
+    <p class="kro-note">複数のキーを一度に押して最大同時入力数を確認しましょう。USB規格のため6個で止まるキーボードが多いです。</p>
+
+    <div class="live-row">
+      <div class="live-box"><div class="k">現在の同時入力</div><div class="v" id="nowHeld">0</div></div>
+      <div class="live-box"><div class="k">最大同時入力</div><div class="v" id="maxHeld">0</div></div>
+      <div class="live-box"><div class="k">最後のキー</div><div class="v small" id="lastKey">-</div></div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn secondary" id="resetBtn">記録をリセット</button>
+    </div>
+
+    <div class="stats">
+      <div class="stat-box">
+        <div class="label">認識されたキー種類</div>
+        <div class="value" id="statUnique">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">総入力</div>
+        <div class="value" id="statTotal">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">未認識のキー</div>
+        <div class="value" id="statMissing">-</div>
+      </div>
+    </div>
+
+    <section class="info">
+      <h2>このテストで何が分かる?</h2>
+      <p>キーボードの各キーがブラウザに信号を送っているかを一つずつ確認でき、同時に押したときに何個まで正確に区別されるか(<strong>Nキーロールオーバー</strong>)、一部の組み合わせで入力が消える<strong>ゴースティング</strong>も併せて点検できます。</p>
+
+      <h2>ゴースティングとNキーロールオーバー</h2>
+      <p>多くのキーボードはキーを個別の配線で読むのではなく、<strong>マトリクス回路</strong>でまとめて読みます。この構造では同じ行・列にまたがる特定の組み合わせを同時に押すと、どのキーが押されたか区別できず入力が欠落します。これがゴースティングです。各キーにダイオードを入れたキーボードは同時に押してもすべて区別でき、この能力をロールオーバーと呼びます。</p>
+      <table>
+        <tr><th>表記</th><th>意味</th></tr>
+        <tr><td>2KRO</td><td>修飾キー以外は2個までしか確実に区別できない。安価な製品で多い</td></tr>
+        <tr><td>6KRO</td><td>6個まで区別。USB標準仕様の基準値です</td></tr>
+        <tr><td>NKRO</td><td>事実上制限なく区別。ゲーミング・メカニカルで広く対応</td></tr>
+      </table>
+      <p>NKRO対応キーボードでも、USB接続では標準仕様のため6個に制限されて見えることがあります。機種によっては専用ソフトやファームウェア設定、特定のキー組み合わせでNKROモードを有効にする必要があります。</p>
+
+      <h2>同時入力が6個で止まる場合</h2>
+      <ul>
+        <li><strong>正常な場合があります</strong> — USB HIDの標準仕様が6キーのため、多くのキーボードはここで止まります。</li>
+        <li><strong>NKROモードの確認</strong> — ゲーミングキーボードは専用ソフトやFn組み合わせでNKROを有効にできる場合があります。</li>
+        <li><strong>修飾キーは別扱い</strong> — Shift・Ctrl・Altは通常ロールオーバーの数に含まれず別に処理されます。</li>
+      </ul>
+
+      <h2>特定のキーが検出されない理由</h2>
+      <p>ブラウザやOSが先に横取りするキーはウェブページまで信号が届きません。F11(全画面)、F12(開発者ツール)、Win/Cmdキー、Alt+Tab、PrtScなどが代表例です。これらを除いても特定のキーだけ反応がない場合は、キーボード側の問題を疑えます。</p>
+      <p>またこのページは物理的なキー位置(<code>event.code</code>)を基準に表示するため、入力言語やキー配列(QWERTY・QWERTZなど)に関係なく同じ位置のキーが光ります。</p>
+
+      <h2>参考</h2>
+      <p>このテストはブラウザが受け取った信号だけで判断する参考用の点検であり、正式なハードウェア診断の代わりにはなりません。キーをどれだけ速く連打できるか測りたい場合は<a href="/ja/tests/spacebar-counter">スペースキー連打テスト</a>や<a href="/ja/tests/apm">APMテスト</a>をお試しください。</p>
+    </section>
+
+    <div class="other-tests">
+      <div class="label">他のテストも試してみよう</div>
+      <div class="other-tests-links">
+        <a href="/ja/tests/mouse-tester">🖱️ マウステスト</a>
+        <a href="/ja/tests/monitor-hz">🖥️ リフレッシュレート</a>
+        <a href="/ja/tests/spacebar-counter">⌨️ スペースキー連打</a>
+        <a href="/ja/tests/apm">🎹 APMテスト</a>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <div class="footer-links">
+        <a href="/ja/">ホーム</a>
+        <a href="/ja/privacy">プライバシーポリシー</a>
+        <a href="mailto:yongju0002@gmail.com">お問い合わせ</a>
+      </div>
+      <div class="copyright">© 2026 MyAbilityTest. すべてのテストは娯楽および参考用です。</div>
+    </footer>
+  </div>
+
+<script src="/skill-test/common.js"></script>
+<script>
+  // 物理キー位置(event.code)基準のレイアウト — 配列や入力方式に関係なく同じ位置を光らせる。
+  const LAYOUT = [
+    [['Escape','Esc'],['F1','F1'],['F2','F2'],['F3','F3'],['F4','F4'],['F5','F5'],['F6','F6'],['F7','F7'],['F8','F8'],['F9','F9'],['F10','F10'],['F11','F11'],['F12','F12']],
+    [['Backquote','`'],['Digit1','1'],['Digit2','2'],['Digit3','3'],['Digit4','4'],['Digit5','5'],['Digit6','6'],['Digit7','7'],['Digit8','8'],['Digit9','9'],['Digit0','0'],['Minus','-'],['Equal','='],['Backspace','⌫','w20']],
+    [['Tab','Tab','w15'],['KeyQ','Q'],['KeyW','W'],['KeyE','E'],['KeyR','R'],['KeyT','T'],['KeyY','Y'],['KeyU','U'],['KeyI','I'],['KeyO','O'],['KeyP','P'],['BracketLeft','['],['BracketRight',']'],['Backslash','\\','w15']],
+    [['CapsLock','Caps','w20'],['KeyA','A'],['KeyS','S'],['KeyD','D'],['KeyF','F'],['KeyG','G'],['KeyH','H'],['KeyJ','J'],['KeyK','K'],['KeyL','L'],['Semicolon',';'],['Quote','\''],['Enter','Enter','w20']],
+    [['ShiftLeft','Shift','w25'],['KeyZ','Z'],['KeyX','X'],['KeyC','C'],['KeyV','V'],['KeyB','B'],['KeyN','N'],['KeyM','M'],['Comma',','],['Period','.'],['Slash','/'],['ShiftRight','Shift','w25']],
+    [['ControlLeft','Ctrl','w15'],['MetaLeft','Win','w15'],['AltLeft','Alt','w15'],['Space','Space','w60'],['AltRight','Alt','w15'],['MetaRight','Win','w15'],['ControlRight','Ctrl','w15']],
+    [['ArrowUp','↑'],['ArrowLeft','←'],['ArrowDown','↓'],['ArrowRight','→'],['Insert','Ins'],['Delete','Del'],['Home','Home'],['End','End'],['PageUp','PgUp'],['PageDown','PgDn']],
+  ];
+
+  const kb = document.getElementById('kb');
+  const heldEl = document.getElementById('heldKeys');
+  const codeToEl = new Map();
+  const labelOf = new Map();
+
+  LAYOUT.forEach(row => {
+    const rowEl = document.createElement('div');
+    rowEl.className = 'kb-row';
+    row.forEach(([code, label, w]) => {
+      const el = document.createElement('div');
+      el.className = 'key' + (w ? ' ' + w : '');
+      el.textContent = label;
+      rowEl.appendChild(el);
+      codeToEl.set(code, el);
+      labelOf.set(code, label);
+    });
+    kb.appendChild(rowEl);
+  });
+
+  const held = new Set();
+  const used = new Set();
+  let totalPresses = 0;
+  let maxHeld = 0;
+
+  function render() {
+    document.getElementById('nowHeld').textContent = held.size;
+    document.getElementById('maxHeld').textContent = maxHeld;
+    document.getElementById('statUnique').textContent = used.size;
+    document.getElementById('statTotal').textContent = totalPresses;
+    const missing = [...codeToEl.keys()].filter(c => !used.has(c)).length;
+    document.getElementById('statMissing').textContent = used.size ? missing : '-';
+    heldEl.innerHTML = [...held].map(c => `<span>${labelOf.get(c) || c}</span>`).join('');
+
+    const v = document.getElementById('kroVerdict');
+    if (maxHeld === 0) { v.textContent = ''; return; }
+    if (maxHeld <= 2) { v.textContent = `最大${maxHeld}個の同時入力 — さらに押して限界を確認しましょう`; v.style.color = 'var(--text-dim)'; }
+    else if (maxHeld <= 5) { v.textContent = `最大${maxHeld}個の同時入力 — ゴースティングの可能性がある組み合わせかもしれません`; v.style.color = '#fbbf24'; }
+    else if (maxHeld === 6) { v.textContent = '最大6個の同時入力 — USB標準仕様(6KRO)の基準値です'; v.style.color = '#22c55e'; }
+    else { v.textContent = `最大${maxHeld}個の同時入力 — 6キーを超えました。NKROで動作しています`; v.style.color = '#22c55e'; }
+  }
+
+  window.addEventListener('keydown', (e) => {
+    // ブラウザのショートカットを妨げないよう、修飾キーが押されている場合は既定動作を維持する。
+    if (!e.ctrlKey && !e.metaKey && !e.altKey) e.preventDefault();
+    const code = e.code;
+    if (!e.repeat) {
+      totalPresses += 1;
+      held.add(code);
+      used.add(code);
+      if (held.size > maxHeld) maxHeld = held.size;
+    }
+    const el = codeToEl.get(code);
+    if (el) el.classList.add('down', 'used');
+    document.getElementById('lastKey').textContent = `${labelOf.get(code) || e.key} (${code})`;
+    render();
+  });
+
+  window.addEventListener('keyup', (e) => {
+    held.delete(e.code);
+    const el = codeToEl.get(e.code);
+    if (el) el.classList.remove('down');
+    render();
+  });
+
+  // ウィンドウからフォーカスが外れたら押下状態をクリア
+  window.addEventListener('blur', () => {
+    held.clear();
+    document.querySelectorAll('.key.down').forEach(el => el.classList.remove('down'));
+    render();
+  });
+
+  document.getElementById('resetBtn').addEventListener('click', () => {
+    held.clear(); used.clear(); totalPresses = 0; maxHeld = 0;
+    document.querySelectorAll('.key').forEach(el => el.classList.remove('down', 'used'));
+    document.getElementById('lastKey').textContent = '-';
+    render();
+  });
+
+  render();
+</script>
+</body>
+</html>

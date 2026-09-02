@@ -1,0 +1,279 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keyboard Test | Ability Test</title>
+<meta name="description" content="Check that every key on your keyboard registers, and how many you can hold at once (ghosting and N-key rollover) - right in the browser. Free, nothing to install.">
+<link rel="canonical" href="https://myabilitytest.com/en/tests/keyboard-tester">
+<link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/keyboard-tester">
+<link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/keyboard-tester">
+<link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/keyboard-tester">
+<link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/keyboard-tester">
+<link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/keyboard-tester">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MyAbilityTest">
+<meta property="og:title" content="Keyboard Test | Ability Test">
+<meta property="og:description" content="Check that every key registers and how many keys you can hold at once, right in your browser.">
+<meta property="og:url" content="https://myabilitytest.com/en/tests/keyboard-tester">
+<meta property="og:image" content="https://myabilitytest.com/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Keyboard Test | Ability Test">
+<meta name="twitter:description" content="Check that every key registers and how many keys you can hold at once, right in your browser.">
+<meta name="twitter:image" content="https://myabilitytest.com/og-default.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"Organization","@id":"https://myabilitytest.com/#organization","name":"MyAbilityTest","url":"https://myabilitytest.com/","logo":{"@type":"ImageObject","url":"https://myabilitytest.com/og-default.png","width":1200,"height":630}},
+{"@type":"WebSite","@id":"https://myabilitytest.com/#website","name":"MyAbilityTest","url":"https://myabilitytest.com/","inLanguage":["ko","en","ja","zh-Hant"],"publisher":{"@id":"https://myabilitytest.com/#organization"}},
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://myabilitytest.com/en/"},{"@type":"ListItem","position":2,"name":"Keyboard Test | Ability Test","item":"https://myabilitytest.com/ko/tests/keyboard-tester"}]},{"@type":"WebApplication","name":"Keyboard Test | Ability Test","url":"https://myabilitytest.com/en/tests/keyboard-tester","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"en"},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is ghosting?","acceptedAnswer":{"@type":"Answer","text":"It is when some keys simply do not register while several are held at once. Cheaper keyboards read keys through a shared matrix, and certain combinations that span the same row or column cannot be told apart, so an input is dropped. It shows up in games when you hold a movement key and press jump plus something else."}},
+{"@type":"Question","name":"What is N-key rollover?","acceptedAnswer":{"@type":"Answer","text":"It is how many simultaneously held keys the keyboard can tell apart. 6-key rollover (6KRO) handles six at once excluding modifiers; NKRO handles effectively any number. Over USB the default spec often caps this at six, so even an NKRO keyboard may report only six depending on its settings or firmware."}},
+{"@type":"Question","name":"A particular key does nothing when I press it.","acceptedAnswer":{"@type":"Answer","text":"The browser or OS may be intercepting it first. F11 (fullscreen), F12 (devtools), the Win/Cmd key and Alt+Tab, for example, never reach the page. If a key still does nothing once you rule those out, the keyboard itself may be at fault."}}
+]}
+]}
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
+<link rel="stylesheet" href="/skill-test/style.css">
+<style>
+  .info { margin-top: 40px; color: #cbd5e1; font-size: 14px; line-height: 1.7; }
+  .info h2 { font-size: 17px; color: #f1f5f9; margin: 28px 0 8px; }
+  .info table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
+  .info th, .info td { border: 1px solid #334155; padding: 8px; text-align: left; }
+  .info th { background: var(--card-bg); }
+  .info ul { padding-left: 20px; }
+  .other-tests { margin-top: 16px; }
+  .other-tests .label { text-align: center; font-size: 12px; color: var(--text-dim); margin-bottom: 8px; }
+  .other-tests-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .other-tests-links a {
+    font-size: 12px; color: #cbd5e1; text-decoration: none;
+    background: var(--card-bg-2); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 999px; padding: 6px 12px;
+  }
+  .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+
+  .kb {
+    background: var(--card-bg-2); border-radius: 16px; padding: 14px;
+    overflow-x: auto; user-select: none;
+  }
+  .kb-row { display: flex; gap: 5px; margin-bottom: 5px; justify-content: center; min-width: 640px; }
+  .key {
+    background: var(--card-bg); border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 7px; min-width: 38px; height: 38px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: var(--text-dim); padding: 0 6px; white-space: nowrap;
+    transition: background 0.06s ease, color 0.06s ease, border-color 0.06s ease;
+  }
+  .key.w15 { min-width: 58px; } .key.w20 { min-width: 78px; }
+  .key.w25 { min-width: 98px; } .key.w60 { min-width: 236px; }
+  .key.down { background: var(--accent); color: #fff; border-color: #c7d2fe; }
+  .key.used { border-color: #22c55e; color: #cbd5e1; }
+
+  .live-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 14px; }
+  .live-box { background: var(--card-bg); border-radius: 12px; padding: 12px 10px; text-align: center; }
+  .live-box .k { font-size: 11.5px; color: var(--text-dim); margin-bottom: 4px; }
+  .live-box .v { font-size: 20px; font-weight: 800; font-variant-numeric: tabular-nums; }
+  .live-box .v.small { font-size: 13px; font-weight: 600; word-break: break-all; }
+
+  .held { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-top: 12px; min-height: 30px; }
+  .held span { background: var(--accent); color: #fff; border-radius: 999px; padding: 5px 12px; font-size: 12px; font-weight: 600; }
+  .kro-note { text-align: center; color: var(--text-dim); font-size: 12.5px; margin-top: 10px; line-height: 1.6; }
+  .kro-verdict { text-align: center; font-size: 15px; font-weight: 700; margin-top: 8px; }
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back-link" href="/en/">← Back to Main</a>
+    <div class="lang-switch">
+      <a href="/ko/tests/keyboard-tester">한국어</a>
+      <a class="active" href="/en/tests/keyboard-tester">English</a>
+      <a href="/ja/tests/keyboard-tester">日本語</a>
+      <a href="/zh/tests/keyboard-tester">中文</a>
+    </div>
+    <h1>⌨️ Keyboard Test</h1>
+    <p class="sub">Press any key. It lights up, and any key that has registered at least once keeps a green outline.</p>
+
+    <div class="info-box">
+      ⌨️ Press any key. Holding several keys <strong>at once</strong> also shows how many register together (ghosting and N-key rollover). Some keys such as F11, F12 and Win are intercepted by the browser first and will not be detected.
+    </div>
+
+    <div class="kb" id="kb"></div>
+
+    <div class="held" id="heldKeys"></div>
+    <div class="kro-verdict" id="kroVerdict"></div>
+    <p class="kro-note">Hold several keys together to find your maximum. Many keyboards stop at six because of the USB spec.</p>
+
+    <div class="live-row">
+      <div class="live-box"><div class="k">Held now</div><div class="v" id="nowHeld">0</div></div>
+      <div class="live-box"><div class="k">Max held</div><div class="v" id="maxHeld">0</div></div>
+      <div class="live-box"><div class="k">Last key</div><div class="v small" id="lastKey">-</div></div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn secondary" id="resetBtn">Reset</button>
+    </div>
+
+    <div class="stats">
+      <div class="stat-box">
+        <div class="label">Unique keys seen</div>
+        <div class="value" id="statUnique">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">Total presses</div>
+        <div class="value" id="statTotal">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">Keys not yet seen</div>
+        <div class="value" id="statMissing">-</div>
+      </div>
+    </div>
+
+    <section class="info">
+      <h2>What does this test tell you?</h2>
+      <p>You can check each key one by one to see whether it reaches the browser, and at the same time find how many keys are told apart when held together (<strong>N-key rollover</strong>) and whether certain combinations drop inputs (<strong>ghosting</strong>).</p>
+
+      <h2>Ghosting and N-key rollover</h2>
+      <p>Most keyboards do not read each key on its own wire - they read them through a shared <strong>matrix</strong>. In that design, certain combinations spanning the same row or column cannot be distinguished when held together, so an input is dropped: that is ghosting. Keyboards that add a diode per key can tell them all apart, and that capability is called rollover.</p>
+      <table>
+        <tr><th>Term</th><th>Meaning</th></tr>
+        <tr><td>2KRO</td><td>Only two keys beyond modifiers are reliably distinguished. Common on budget boards</td></tr>
+        <tr><td>6KRO</td><td>Six at once. The standard figure for the default USB spec</td></tr>
+        <tr><td>NKRO</td><td>Effectively unlimited. Common on gaming and mechanical keyboards</td></tr>
+      </table>
+      <p>Even an NKRO keyboard can appear capped at six over USB because of the default spec. Depending on the model you may need to enable NKRO in its software, its firmware, or with a specific key combination.</p>
+
+      <h2>If you stop at six</h2>
+      <ul>
+        <li><strong>It may be normal</strong> - the default USB HID spec is six keys, so many keyboards stop there.</li>
+        <li><strong>Check for an NKRO mode</strong> - gaming keyboards often enable it through their software or an Fn combination.</li>
+        <li><strong>Modifiers are separate</strong> - Shift, Ctrl and Alt are usually handled apart from the rollover count.</li>
+      </ul>
+
+      <h2>Why some keys are never detected</h2>
+      <p>Keys the browser or OS intercepts first never reach the page - F11 (fullscreen), F12 (devtools), the Win/Cmd key, Alt+Tab and PrtSc are the usual ones. If a particular key still never responds once you exclude those, the keyboard itself may be the problem.</p>
+      <p>This page also highlights by physical key position (<code>event.code</code>), so the same physical key lights up regardless of your input language or layout (QWERTY, QWERTZ and so on).</p>
+
+      <h2>Note</h2>
+      <p>This check works only from the signals the browser receives, and is not a substitute for proper hardware diagnostics. If you want to measure how fast you can hit a key repeatedly, try the <a href="/en/tests/spacebar-counter">spacebar speed test</a> or the <a href="/en/tests/apm">APM test</a>.</p>
+    </section>
+
+    <div class="other-tests">
+      <div class="label">Try another test</div>
+      <div class="other-tests-links">
+        <a href="/en/tests/mouse-tester">🖱️ Mouse Test</a>
+        <a href="/en/tests/monitor-hz">🖥️ Refresh Rate</a>
+        <a href="/en/tests/spacebar-counter">⌨️ Spacebar Speed</a>
+        <a href="/en/tests/apm">🎹 APM Test</a>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <div class="footer-links">
+        <a href="/en/">Home</a>
+        <a href="/en/privacy">Privacy Policy</a>
+        <a href="mailto:yongju0002@gmail.com">Contact</a>
+      </div>
+      <div class="copyright">© 2026 MyAbilityTest. All tests are for fun and general reference.</div>
+    </footer>
+  </div>
+
+<script src="/skill-test/common.js"></script>
+<script>
+  // Layout keyed on physical position (event.code) - independent of language or layout.
+  const LAYOUT = [
+    [['Escape','Esc'],['F1','F1'],['F2','F2'],['F3','F3'],['F4','F4'],['F5','F5'],['F6','F6'],['F7','F7'],['F8','F8'],['F9','F9'],['F10','F10'],['F11','F11'],['F12','F12']],
+    [['Backquote','`'],['Digit1','1'],['Digit2','2'],['Digit3','3'],['Digit4','4'],['Digit5','5'],['Digit6','6'],['Digit7','7'],['Digit8','8'],['Digit9','9'],['Digit0','0'],['Minus','-'],['Equal','='],['Backspace','⌫','w20']],
+    [['Tab','Tab','w15'],['KeyQ','Q'],['KeyW','W'],['KeyE','E'],['KeyR','R'],['KeyT','T'],['KeyY','Y'],['KeyU','U'],['KeyI','I'],['KeyO','O'],['KeyP','P'],['BracketLeft','['],['BracketRight',']'],['Backslash','\\','w15']],
+    [['CapsLock','Caps','w20'],['KeyA','A'],['KeyS','S'],['KeyD','D'],['KeyF','F'],['KeyG','G'],['KeyH','H'],['KeyJ','J'],['KeyK','K'],['KeyL','L'],['Semicolon',';'],['Quote','\''],['Enter','Enter','w20']],
+    [['ShiftLeft','Shift','w25'],['KeyZ','Z'],['KeyX','X'],['KeyC','C'],['KeyV','V'],['KeyB','B'],['KeyN','N'],['KeyM','M'],['Comma',','],['Period','.'],['Slash','/'],['ShiftRight','Shift','w25']],
+    [['ControlLeft','Ctrl','w15'],['MetaLeft','Win','w15'],['AltLeft','Alt','w15'],['Space','Space','w60'],['AltRight','Alt','w15'],['MetaRight','Win','w15'],['ControlRight','Ctrl','w15']],
+    [['ArrowUp','↑'],['ArrowLeft','←'],['ArrowDown','↓'],['ArrowRight','→'],['Insert','Ins'],['Delete','Del'],['Home','Home'],['End','End'],['PageUp','PgUp'],['PageDown','PgDn']],
+  ];
+
+  const kb = document.getElementById('kb');
+  const heldEl = document.getElementById('heldKeys');
+  const codeToEl = new Map();
+  const labelOf = new Map();
+
+  LAYOUT.forEach(row => {
+    const rowEl = document.createElement('div');
+    rowEl.className = 'kb-row';
+    row.forEach(([code, label, w]) => {
+      const el = document.createElement('div');
+      el.className = 'key' + (w ? ' ' + w : '');
+      el.textContent = label;
+      rowEl.appendChild(el);
+      codeToEl.set(code, el);
+      labelOf.set(code, label);
+    });
+    kb.appendChild(rowEl);
+  });
+
+  const held = new Set();
+  const used = new Set();
+  let totalPresses = 0;
+  let maxHeld = 0;
+
+  function render() {
+    document.getElementById('nowHeld').textContent = held.size;
+    document.getElementById('maxHeld').textContent = maxHeld;
+    document.getElementById('statUnique').textContent = used.size;
+    document.getElementById('statTotal').textContent = totalPresses;
+    const missing = [...codeToEl.keys()].filter(c => !used.has(c)).length;
+    document.getElementById('statMissing').textContent = used.size ? missing : '-';
+    heldEl.innerHTML = [...held].map(c => `<span>${labelOf.get(c) || c}</span>`).join('');
+
+    const v = document.getElementById('kroVerdict');
+    if (maxHeld === 0) { v.textContent = ''; return; }
+    if (maxHeld <= 2) { v.textContent = `${maxHeld} keys held - press more to find your limit`; v.style.color = 'var(--text-dim)'; }
+    else if (maxHeld <= 5) { v.textContent = `${maxHeld} keys held - this combination may be hitting ghosting`; v.style.color = '#fbbf24'; }
+    else if (maxHeld === 6) { v.textContent = '6 keys held - the standard figure for the default USB spec (6KRO)'; v.style.color = '#22c55e'; }
+    else { v.textContent = `${maxHeld} keys held - past six, so this is running as NKRO`; v.style.color = '#22c55e'; }
+  }
+
+  window.addEventListener('keydown', (e) => {
+    // Leave default behaviour intact when a modifier is held, so browser shortcuts still work.
+    if (!e.ctrlKey && !e.metaKey && !e.altKey) e.preventDefault();
+    const code = e.code;
+    if (!e.repeat) {
+      totalPresses += 1;
+      held.add(code);
+      used.add(code);
+      if (held.size > maxHeld) maxHeld = held.size;
+    }
+    const el = codeToEl.get(code);
+    if (el) el.classList.add('down', 'used');
+    document.getElementById('lastKey').textContent = `${labelOf.get(code) || e.key} (${code})`;
+    render();
+  });
+
+  window.addEventListener('keyup', (e) => {
+    held.delete(e.code);
+    const el = codeToEl.get(e.code);
+    if (el) el.classList.remove('down');
+    render();
+  });
+
+  // Clear held state when the window loses focus
+  window.addEventListener('blur', () => {
+    held.clear();
+    document.querySelectorAll('.key.down').forEach(el => el.classList.remove('down'));
+    render();
+  });
+
+  document.getElementById('resetBtn').addEventListener('click', () => {
+    held.clear(); used.clear(); totalPresses = 0; maxHeld = 0;
+    document.querySelectorAll('.key').forEach(el => el.classList.remove('down', 'used'));
+    document.getElementById('lastKey').textContent = '-';
+    render();
+  });
+
+  render();
+</script>
+</body>
+</html>

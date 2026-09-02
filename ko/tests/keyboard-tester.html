@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>키보드 테스트 | 능력 테스트</title>
+<meta name="description" content="키보드의 모든 키가 제대로 입력되는지, 동시에 몇 개까지 눌리는지(고스팅·N키롤오버) 브라우저에서 바로 확인하세요. 설치 없는 무료 키보드 점검 도구.">
+<link rel="canonical" href="https://myabilitytest.com/ko/tests/keyboard-tester">
+<link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/keyboard-tester">
+<link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/keyboard-tester">
+<link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/keyboard-tester">
+<link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/keyboard-tester">
+<link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/keyboard-tester">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MyAbilityTest">
+<meta property="og:title" content="키보드 테스트 | 능력 테스트">
+<meta property="og:description" content="모든 키가 제대로 입력되는지, 동시 입력은 몇 개까지 되는지 브라우저에서 바로 점검하세요.">
+<meta property="og:url" content="https://myabilitytest.com/ko/tests/keyboard-tester">
+<meta property="og:image" content="https://myabilitytest.com/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="키보드 테스트 | 능력 테스트">
+<meta name="twitter:description" content="모든 키가 제대로 입력되는지, 동시 입력은 몇 개까지 되는지 브라우저에서 바로 점검하세요.">
+<meta name="twitter:image" content="https://myabilitytest.com/og-default.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"Organization","@id":"https://myabilitytest.com/#organization","name":"MyAbilityTest","url":"https://myabilitytest.com/","logo":{"@type":"ImageObject","url":"https://myabilitytest.com/og-default.png","width":1200,"height":630}},
+{"@type":"WebSite","@id":"https://myabilitytest.com/#website","name":"MyAbilityTest","url":"https://myabilitytest.com/","inLanguage":["ko","en","ja","zh-Hant"],"publisher":{"@id":"https://myabilitytest.com/#organization"}},
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://myabilitytest.com/ko/"},{"@type":"ListItem","position":2,"name":"키보드 테스트 | 능력 테스트","item":"https://myabilitytest.com/ko/tests/keyboard-tester"}]},{"@type":"WebApplication","name":"키보드 테스트 | 능력 테스트","url":"https://myabilitytest.com/ko/tests/keyboard-tester","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"ko"},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"고스팅(ghosting)이 뭔가요?","acceptedAnswer":{"@type":"Answer","text":"여러 키를 동시에 눌렀을 때 일부 키가 아예 인식되지 않는 현상입니다. 저가형 키보드는 키를 격자 회로로 묶어 읽는데, 같은 줄·열에 걸친 조합을 동시에 누르면 구분하지 못해 입력이 누락됩니다. 게임에서 이동하면서 점프와 다른 동작을 같이 누를 때 잘 드러납니다."}},
+{"@type":"Question","name":"N키롤오버는 무엇인가요?","acceptedAnswer":{"@type":"Answer","text":"동시에 누른 키를 몇 개까지 정확히 구분하는지를 뜻합니다. 6키롤오버(6KRO)는 수식키를 제외하고 6개까지, NKRO는 사실상 제한 없이 인식합니다. USB 연결에서는 기본 규격상 6개로 제한되는 경우가 많아, NKRO 키보드도 설정이나 펌웨어에 따라 6개까지만 잡힐 수 있습니다."}},
+{"@type":"Question","name":"특정 키가 눌러도 반응이 없어요.","acceptedAnswer":{"@type":"Answer","text":"브라우저나 운영체제가 먼저 가로채는 키일 수 있습니다. 예를 들어 F11(전체화면), F12(개발자도구), Win/Cmd 키, Alt+Tab 등은 웹페이지까지 신호가 오지 않습니다. 이런 키를 제외하고도 반응이 없다면 키보드 자체의 문제일 가능성이 있습니다."}}
+]}
+]}
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
+<link rel="stylesheet" href="/skill-test/style.css">
+<style>
+  .info { margin-top: 40px; color: #cbd5e1; font-size: 14px; line-height: 1.7; }
+  .info h2 { font-size: 17px; color: #f1f5f9; margin: 28px 0 8px; }
+  .info table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
+  .info th, .info td { border: 1px solid #334155; padding: 8px; text-align: left; }
+  .info th { background: var(--card-bg); }
+  .info ul { padding-left: 20px; }
+  .other-tests { margin-top: 16px; }
+  .other-tests .label { text-align: center; font-size: 12px; color: var(--text-dim); margin-bottom: 8px; }
+  .other-tests-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .other-tests-links a {
+    font-size: 12px; color: #cbd5e1; text-decoration: none;
+    background: var(--card-bg-2); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 999px; padding: 6px 12px;
+  }
+  .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+
+  .kb {
+    background: var(--card-bg-2); border-radius: 16px; padding: 14px;
+    overflow-x: auto; user-select: none;
+  }
+  .kb-row { display: flex; gap: 5px; margin-bottom: 5px; justify-content: center; min-width: 640px; }
+  .key {
+    background: var(--card-bg); border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 7px; min-width: 38px; height: 38px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: var(--text-dim); padding: 0 6px; white-space: nowrap;
+    transition: background 0.06s ease, color 0.06s ease, border-color 0.06s ease;
+  }
+  .key.w15 { min-width: 58px; } .key.w20 { min-width: 78px; }
+  .key.w25 { min-width: 98px; } .key.w60 { min-width: 236px; }
+  .key.down { background: var(--accent); color: #fff; border-color: #c7d2fe; }
+  .key.used { border-color: #22c55e; color: #cbd5e1; }
+
+  .live-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 14px; }
+  .live-box { background: var(--card-bg); border-radius: 12px; padding: 12px 10px; text-align: center; }
+  .live-box .k { font-size: 11.5px; color: var(--text-dim); margin-bottom: 4px; }
+  .live-box .v { font-size: 20px; font-weight: 800; font-variant-numeric: tabular-nums; }
+  .live-box .v.small { font-size: 13px; font-weight: 600; word-break: break-all; }
+
+  .held { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-top: 12px; min-height: 30px; }
+  .held span { background: var(--accent); color: #fff; border-radius: 999px; padding: 5px 12px; font-size: 12px; font-weight: 600; }
+  .kro-note { text-align: center; color: var(--text-dim); font-size: 12.5px; margin-top: 10px; line-height: 1.6; }
+  .kro-verdict { text-align: center; font-size: 15px; font-weight: 700; margin-top: 8px; }
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back-link" href="/ko/">← 메인으로</a>
+    <div class="lang-switch">
+      <a class="active" href="/ko/tests/keyboard-tester">한국어</a>
+      <a href="/en/tests/keyboard-tester">English</a>
+      <a href="/ja/tests/keyboard-tester">日本語</a>
+      <a href="/zh/tests/keyboard-tester">中文</a>
+    </div>
+    <h1>⌨️ 키보드 테스트</h1>
+    <p class="sub">키를 눌러보세요. 눌린 키에 불이 들어오고, 한 번이라도 인식된 키는 초록 테두리로 남습니다.</p>
+
+    <div class="info-box">
+      ⌨️ 아무 키나 눌러보세요. 여러 키를 <strong>동시에</strong> 누르면 몇 개까지 인식되는지(고스팅·N키롤오버)도 함께 확인됩니다. F11·F12·Win 키 등 일부는 브라우저가 먼저 가로채 감지되지 않을 수 있어요.
+    </div>
+
+    <div class="kb" id="kb"></div>
+
+    <div class="held" id="heldKeys"></div>
+    <div class="kro-verdict" id="kroVerdict"></div>
+    <p class="kro-note">여러 키를 한꺼번에 눌러 최대 동시 입력 수를 확인해보세요. USB 규격 때문에 6개에서 멈추는 키보드가 많습니다.</p>
+
+    <div class="live-row">
+      <div class="live-box"><div class="k">현재 동시 입력</div><div class="v" id="nowHeld">0</div></div>
+      <div class="live-box"><div class="k">최대 동시 입력</div><div class="v" id="maxHeld">0</div></div>
+      <div class="live-box"><div class="k">마지막 키</div><div class="v small" id="lastKey">-</div></div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn secondary" id="resetBtn">기록 초기화</button>
+    </div>
+
+    <div class="stats">
+      <div class="stat-box">
+        <div class="label">인식된 키 종류</div>
+        <div class="value" id="statUnique">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">총 입력</div>
+        <div class="value" id="statTotal">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">미인식 키</div>
+        <div class="value" id="statMissing">-</div>
+      </div>
+    </div>
+
+    <section class="info">
+      <h2>이 테스트로 무엇을 알 수 있나요?</h2>
+      <p>키보드의 각 키가 브라우저에 신호를 보내는지 하나씩 확인할 수 있고, 여러 키를 동시에 눌렀을 때 몇 개까지 정확히 구분되는지(<strong>N키롤오버</strong>)와 일부 조합에서 입력이 사라지는 <strong>고스팅</strong>을 함께 점검할 수 있습니다.</p>
+
+      <h2>고스팅과 N키롤오버</h2>
+      <p>많은 키보드는 키를 하나씩 따로 읽지 않고 <strong>격자(매트릭스) 회로</strong>로 묶어서 읽습니다. 이 구조에서는 같은 줄·열에 걸친 특정 조합을 동시에 누르면 어떤 키가 눌렸는지 구분하지 못해 입력이 누락되는데, 이것이 고스팅입니다. 이를 막기 위해 회로에 다이오드를 넣은 키보드는 동시에 눌러도 모두 구분해내며, 이 능력을 롤오버라고 부릅니다.</p>
+      <table>
+        <tr><th>표기</th><th>의미</th></tr>
+        <tr><td>2KRO</td><td>수식키 외 2개까지만 확실히 구분. 저가형에서 흔합니다</td></tr>
+        <tr><td>6KRO</td><td>6개까지 구분. USB 기본 규격의 표준값입니다</td></tr>
+        <tr><td>NKRO</td><td>사실상 제한 없이 구분. 게이밍·기계식에서 많이 지원합니다</td></tr>
+      </table>
+      <p>NKRO 키보드라도 USB 연결에서는 기본 규격 때문에 6개로 제한되어 보일 수 있습니다. 키보드에 따라 전용 소프트웨어나 펌웨어 설정, 혹은 특정 키 조합으로 NKRO 모드를 켜야 하는 경우가 있습니다.</p>
+
+      <h2>동시 입력이 6개에서 멈춘다면</h2>
+      <ul>
+        <li><strong>정상일 수 있습니다</strong> — USB HID 기본 규격이 6키이므로, 많은 키보드가 여기서 멈춥니다.</li>
+        <li><strong>NKRO 모드 확인</strong> — 게이밍 키보드는 전용 소프트웨어나 Fn 조합으로 NKRO를 켤 수 있는 경우가 있습니다.</li>
+        <li><strong>수식키는 별도</strong> — Shift·Ctrl·Alt는 보통 롤오버 개수에 포함되지 않고 따로 처리됩니다.</li>
+      </ul>
+
+      <h2>특정 키가 감지되지 않는 이유</h2>
+      <p>브라우저나 운영체제가 먼저 가로채는 키는 웹페이지까지 신호가 오지 않습니다. F11(전체화면), F12(개발자 도구), Win/Cmd 키, Alt+Tab, PrtSc 등이 대표적입니다. 이런 키를 제외했는데도 특정 키만 계속 반응이 없다면 키보드 쪽 문제를 의심해볼 수 있습니다.</p>
+      <p>또한 이 페이지는 물리적인 키 위치(<code>event.code</code>)를 기준으로 표시하므로, 한글/영문 입력 상태나 키보드 배열(QWERTY·QWERTZ 등)과 무관하게 같은 자리의 키가 켜집니다.</p>
+
+      <h2>참고</h2>
+      <p>이 테스트는 브라우저가 받은 신호만으로 판단하는 참고용 점검이며, 정식 하드웨어 진단을 대체하지 않습니다. 키를 얼마나 빠르게 연타할 수 있는지 재보고 싶다면 <a href="/ko/tests/spacebar-counter">스페이스바 연타 테스트</a>나 <a href="/ko/tests/apm">APM 테스트</a>를 이용해보세요.</p>
+    </section>
+
+    <div class="other-tests">
+      <div class="label">다른 테스트도 해보세요</div>
+      <div class="other-tests-links">
+        <a href="/ko/tests/mouse-tester">🖱️ 마우스 테스트</a>
+        <a href="/ko/tests/monitor-hz">🖥️ 모니터 주사율</a>
+        <a href="/ko/tests/spacebar-counter">⌨️ 스페이스바 연타</a>
+        <a href="/ko/tests/apm">🎹 APM 테스트</a>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <div class="footer-links">
+        <a href="/ko/">홈</a>
+        <a href="/ko/privacy">개인정보처리방침</a>
+        <a href="mailto:yongju0002@gmail.com">문의</a>
+      </div>
+      <div class="copyright">© 2026 MyAbilityTest. 모든 테스트는 재미와 참고용입니다.</div>
+    </footer>
+  </div>
+
+<script src="/skill-test/common.js"></script>
+<script>
+  // 물리 키 위치(event.code) 기준 배열 — 배열·입력기와 무관하게 같은 자리를 켠다.
+  const LAYOUT = [
+    [['Escape','Esc'],['F1','F1'],['F2','F2'],['F3','F3'],['F4','F4'],['F5','F5'],['F6','F6'],['F7','F7'],['F8','F8'],['F9','F9'],['F10','F10'],['F11','F11'],['F12','F12']],
+    [['Backquote','`'],['Digit1','1'],['Digit2','2'],['Digit3','3'],['Digit4','4'],['Digit5','5'],['Digit6','6'],['Digit7','7'],['Digit8','8'],['Digit9','9'],['Digit0','0'],['Minus','-'],['Equal','='],['Backspace','⌫','w20']],
+    [['Tab','Tab','w15'],['KeyQ','Q'],['KeyW','W'],['KeyE','E'],['KeyR','R'],['KeyT','T'],['KeyY','Y'],['KeyU','U'],['KeyI','I'],['KeyO','O'],['KeyP','P'],['BracketLeft','['],['BracketRight',']'],['Backslash','\\','w15']],
+    [['CapsLock','Caps','w20'],['KeyA','A'],['KeyS','S'],['KeyD','D'],['KeyF','F'],['KeyG','G'],['KeyH','H'],['KeyJ','J'],['KeyK','K'],['KeyL','L'],['Semicolon',';'],['Quote','\''],['Enter','Enter','w20']],
+    [['ShiftLeft','Shift','w25'],['KeyZ','Z'],['KeyX','X'],['KeyC','C'],['KeyV','V'],['KeyB','B'],['KeyN','N'],['KeyM','M'],['Comma',','],['Period','.'],['Slash','/'],['ShiftRight','Shift','w25']],
+    [['ControlLeft','Ctrl','w15'],['MetaLeft','Win','w15'],['AltLeft','Alt','w15'],['Space','Space','w60'],['AltRight','Alt','w15'],['MetaRight','Win','w15'],['ControlRight','Ctrl','w15']],
+    [['ArrowUp','↑'],['ArrowLeft','←'],['ArrowDown','↓'],['ArrowRight','→'],['Insert','Ins'],['Delete','Del'],['Home','Home'],['End','End'],['PageUp','PgUp'],['PageDown','PgDn']],
+  ];
+
+  const kb = document.getElementById('kb');
+  const heldEl = document.getElementById('heldKeys');
+  const codeToEl = new Map();
+  const labelOf = new Map();
+
+  LAYOUT.forEach(row => {
+    const rowEl = document.createElement('div');
+    rowEl.className = 'kb-row';
+    row.forEach(([code, label, w]) => {
+      const el = document.createElement('div');
+      el.className = 'key' + (w ? ' ' + w : '');
+      el.textContent = label;
+      rowEl.appendChild(el);
+      codeToEl.set(code, el);
+      labelOf.set(code, label);
+    });
+    kb.appendChild(rowEl);
+  });
+
+  const held = new Set();
+  const used = new Set();
+  let totalPresses = 0;
+  let maxHeld = 0;
+
+  function render() {
+    document.getElementById('nowHeld').textContent = held.size;
+    document.getElementById('maxHeld').textContent = maxHeld;
+    document.getElementById('statUnique').textContent = used.size;
+    document.getElementById('statTotal').textContent = totalPresses;
+    const missing = [...codeToEl.keys()].filter(c => !used.has(c)).length;
+    document.getElementById('statMissing').textContent = used.size ? missing : '-';
+    heldEl.innerHTML = [...held].map(c => `<span>${labelOf.get(c) || c}</span>`).join('');
+
+    const v = document.getElementById('kroVerdict');
+    if (maxHeld === 0) { v.textContent = ''; return; }
+    if (maxHeld <= 2) { v.textContent = `최대 ${maxHeld}개 동시 입력 — 더 눌러서 한계를 확인해보세요`; v.style.color = 'var(--text-dim)'; }
+    else if (maxHeld <= 5) { v.textContent = `최대 ${maxHeld}개 동시 입력 — 고스팅 가능성이 있는 조합일 수 있어요`; v.style.color = '#fbbf24'; }
+    else if (maxHeld === 6) { v.textContent = '최대 6개 동시 입력 — USB 기본 규격(6KRO)의 표준값이에요'; v.style.color = '#22c55e'; }
+    else { v.textContent = `최대 ${maxHeld}개 동시 입력 — 6키를 넘겼어요. NKRO로 동작하고 있습니다`; v.style.color = '#22c55e'; }
+  }
+
+  window.addEventListener('keydown', (e) => {
+    // 브라우저 단축키를 막지 않도록 조합키가 걸린 경우는 기본 동작을 유지한다.
+    if (!e.ctrlKey && !e.metaKey && !e.altKey) e.preventDefault();
+    const code = e.code;
+    if (!e.repeat) {
+      totalPresses += 1;
+      held.add(code);
+      used.add(code);
+      if (held.size > maxHeld) maxHeld = held.size;
+    }
+    const el = codeToEl.get(code);
+    if (el) el.classList.add('down', 'used');
+    document.getElementById('lastKey').textContent = `${labelOf.get(code) || e.key} (${code})`;
+    render();
+  });
+
+  window.addEventListener('keyup', (e) => {
+    held.delete(e.code);
+    const el = codeToEl.get(e.code);
+    if (el) el.classList.remove('down');
+    render();
+  });
+
+  // 창을 벗어나면 눌림 상태가 남지 않도록 정리
+  window.addEventListener('blur', () => {
+    held.clear();
+    document.querySelectorAll('.key.down').forEach(el => el.classList.remove('down'));
+    render();
+  });
+
+  document.getElementById('resetBtn').addEventListener('click', () => {
+    held.clear(); used.clear(); totalPresses = 0; maxHeld = 0;
+    document.querySelectorAll('.key').forEach(el => el.classList.remove('down', 'used'));
+    document.getElementById('lastKey').textContent = '-';
+    render();
+  });
+
+  render();
+</script>
+</body>
+</html>

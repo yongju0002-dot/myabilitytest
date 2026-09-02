@@ -1,0 +1,324 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mouse Test | Ability Test</title>
+<meta name="description" content="Check whether your left, right, wheel and side buttons all register - right in the browser. Free check for double-click failure (chatter) and scroll wheel behaviour too.">
+<link rel="canonical" href="https://myabilitytest.com/en/tests/mouse-tester">
+<link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/mouse-tester">
+<link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/mouse-tester">
+<link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/mouse-tester">
+<link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/mouse-tester">
+<link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/mouse-tester">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MyAbilityTest">
+<meta property="og:title" content="Mouse Test | Ability Test">
+<meta property="og:description" content="Check your mouse buttons and wheel, and test for double-click failure, right in your browser.">
+<meta property="og:url" content="https://myabilitytest.com/en/tests/mouse-tester">
+<meta property="og:image" content="https://myabilitytest.com/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mouse Test | Ability Test">
+<meta name="twitter:description" content="Check your mouse buttons and wheel, and test for double-click failure, right in your browser.">
+<meta name="twitter:image" content="https://myabilitytest.com/og-default.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"Organization","@id":"https://myabilitytest.com/#organization","name":"MyAbilityTest","url":"https://myabilitytest.com/","logo":{"@type":"ImageObject","url":"https://myabilitytest.com/og-default.png","width":1200,"height":630}},
+{"@type":"WebSite","@id":"https://myabilitytest.com/#website","name":"MyAbilityTest","url":"https://myabilitytest.com/","inLanguage":["ko","en","ja","zh-Hant"],"publisher":{"@id":"https://myabilitytest.com/#organization"}},
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://myabilitytest.com/en/"},{"@type":"ListItem","position":2,"name":"Mouse Test | Ability Test","item":"https://myabilitytest.com/ko/tests/mouse-tester"}]},{"@type":"WebApplication","name":"Mouse Test | Ability Test","url":"https://myabilitytest.com/en/tests/mouse-tester","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"en"},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Why does one press register as two clicks?","acceptedAnswer":{"@type":"Answer","text":"As a mouse switch wears out, its contacts can bounce, so a single press is delivered as two clicks - known as chatter, or double-click failure. This page times the gaps between clicks and flags consecutive clicks closer together than a person could reasonably intend (under 70ms by default)."}},
+{"@type":"Question","name":"My side buttons are not detected.","acceptedAnswer":{"@type":"Answer","text":"Browsers often treat buttons 4 and 5 as back/forward navigation, so the page never sees them. Also, if your mouse software maps those buttons to a macro or a keyboard key, they arrive as that key rather than as a mouse button."}},
+{"@type":"Question","name":"What should I do if chatter is confirmed?","acceptedAnswer":{"@type":"Answer","text":"If it is still under warranty, a replacement or repair is the surest fix. Some mice let you raise the debounce time in their software to mask the symptom, and on some models the switch can be replaced. This test is a rough check, not a substitute for proper hardware diagnostics."}}
+]}
+]}
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
+<link rel="stylesheet" href="/skill-test/style.css">
+<style>
+  .info { margin-top: 40px; color: #cbd5e1; font-size: 14px; line-height: 1.7; }
+  .info h2 { font-size: 17px; color: #f1f5f9; margin: 28px 0 8px; }
+  .info table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
+  .info th, .info td { border: 1px solid #334155; padding: 8px; text-align: left; }
+  .info th { background: var(--card-bg); }
+  .info ul { padding-left: 20px; }
+  .other-tests { margin-top: 16px; }
+  .other-tests .label { text-align: center; font-size: 12px; color: var(--text-dim); margin-bottom: 8px; }
+  .other-tests-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .other-tests-links a {
+    font-size: 12px; color: #cbd5e1; text-decoration: none;
+    background: var(--card-bg-2); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 999px; padding: 6px 12px;
+  }
+  .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+
+  /* Mouse diagram */
+  .mouse-stage {
+    background: var(--card-bg-2); border-radius: 18px; padding: 22px;
+    display: flex; flex-direction: column; align-items: center; gap: 14px;
+    user-select: none; touch-action: none; cursor: default;
+  }
+  .mouse-shape {
+    position: relative; width: 180px; height: 270px;
+    border: 3px solid rgba(255,255,255,0.22); border-radius: 90px 90px 70px 70px;
+    background: var(--card-bg);
+  }
+  .mbtn {
+    position: absolute; background: rgba(255,255,255,0.06);
+    border: 2px solid rgba(255,255,255,0.18); transition: background 0.08s ease, border-color 0.08s ease;
+  }
+  .mbtn.active { background: var(--accent); border-color: #c7d2fe; }
+  .mbtn.used { border-color: #22c55e; }
+  .mbtn-left  { left: 3px; top: 3px; width: 82px; height: 118px; border-radius: 84px 8px 8px 8px; }
+  .mbtn-right { right: 3px; top: 3px; width: 82px; height: 118px; border-radius: 8px 84px 8px 8px; }
+  .mbtn-mid   { left: 50%; top: 46px; transform: translateX(-50%); width: 26px; height: 54px; border-radius: 14px; }
+  .mbtn-side1 { left: -14px; top: 132px; width: 16px; height: 34px; border-radius: 6px; }
+  .mbtn-side2 { left: -14px; top: 172px; width: 16px; height: 34px; border-radius: 6px; }
+  .mouse-hint { color: var(--text-dim); font-size: 12.5px; text-align: center; line-height: 1.6; }
+
+  .wheel-row { display: flex; align-items: center; gap: 10px; justify-content: center; font-size: 13px; color: var(--text-dim); }
+  .wheel-bar { width: 160px; height: 8px; background: var(--card-bg); border-radius: 999px; position: relative; overflow: hidden; }
+  .wheel-bar .mark { position: absolute; top: 0; bottom: 0; width: 26px; background: var(--accent); border-radius: 999px; left: 50%; transform: translateX(-50%); transition: left 0.1s ease; }
+
+  .btn-report { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 16px; }
+  .btn-report .row {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+    background: var(--card-bg-2); border-radius: 10px; padding: 9px 12px; font-size: 12.5px;
+  }
+  .btn-report .k { color: var(--text-dim); }
+  .btn-report .v { font-weight: 700; font-variant-numeric: tabular-nums; }
+  .btn-report .v.ok { color: #22c55e; }
+  .btn-report .v.none { color: var(--text-dim2); }
+  @media (max-width: 420px) { .btn-report { grid-template-columns: 1fr; } }
+
+  .chatter-box { background: var(--card-bg); border-radius: 14px; padding: 16px 18px; margin-top: 16px; }
+  .chatter-head { display: flex; justify-content: space-between; align-items: baseline; font-size: 13px; font-weight: 700; color: #cbd5e1; margin-bottom: 8px; }
+  .chatter-verdict { font-size: 15px; font-weight: 700; margin: 6px 0; }
+  .chatter-verdict.ok { color: #22c55e; }
+  .chatter-verdict.warn { color: #fbbf24; }
+  .chatter-list { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+  .chatter-list li { background: var(--card-bg-2); border-radius: 8px; padding: 6px 10px; font-size: 12px; color: #fca5a5; font-variant-numeric: tabular-nums; }
+  .chatter-note { color: var(--text-dim); font-size: 12px; line-height: 1.6; margin-top: 8px; }
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back-link" href="/en/">← Back to Main</a>
+    <div class="lang-switch">
+      <a href="/ko/tests/mouse-tester">한국어</a>
+      <a class="active" href="/en/tests/mouse-tester">English</a>
+      <a href="/ja/tests/mouse-tester">日本語</a>
+      <a href="/zh/tests/mouse-tester">中文</a>
+    </div>
+    <h1>🖱️ Mouse Test</h1>
+    <p class="sub">Check that your buttons and wheel work, and look for double-click failure.</p>
+
+    <div class="info-box">
+      💻 Press each button over the mouse diagram below. The pressed button lights up, and any button that has registered at least once keeps a green outline.
+    </div>
+
+    <div class="mouse-stage" id="mouseStage">
+      <div class="mouse-shape">
+        <div class="mbtn mbtn-left" id="btn0"></div>
+        <div class="mbtn mbtn-right" id="btn2"></div>
+        <div class="mbtn mbtn-mid" id="btn1"></div>
+        <div class="mbtn mbtn-side1" id="btn3"></div>
+        <div class="mbtn mbtn-side2" id="btn4"></div>
+      </div>
+      <div class="wheel-row">
+        <span>Wheel ↑</span>
+        <div class="wheel-bar"><div class="mark" id="wheelMark"></div></div>
+        <span>Wheel ↓</span>
+      </div>
+      <div class="mouse-hint" id="mouseHint">Click and scroll inside this area. The right-click menu is suppressed here only.</div>
+    </div>
+
+    <div class="btn-report" id="btnReport"></div>
+
+    <div class="chatter-box">
+      <div class="chatter-head">
+        <span>Double-click failure (chatter) check</span>
+        <span id="chatterCount">0 suspected</span>
+      </div>
+      <div class="chatter-verdict ok" id="chatterVerdict">Press left-click at least 20 times</div>
+      <ul class="chatter-list" id="chatterList"></ul>
+      <p class="chatter-note">This looks for a single press being counted twice. Any two left-clicks less than <strong>70ms</strong> apart are recorded as a suspected case. Deliberately fast double-clicks will also trip it, so press <strong>slowly, one at a time</strong> when checking.</p>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn secondary" id="resetBtn">Reset</button>
+    </div>
+
+    <div class="stats">
+      <div class="stat-box">
+        <div class="label">Total clicks</div>
+        <div class="value" id="statClicks">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">Buttons detected</div>
+        <div class="value" id="statButtons">0 / 5</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">Wheel scrolls</div>
+        <div class="value" id="statWheel">0</div>
+      </div>
+    </div>
+
+    <section class="info">
+      <h2>What does this test tell you?</h2>
+      <p>You can check whether each mouse button sends a signal the browser sees, whether the wheel registers up and down, and whether a single click is being counted twice - <strong>chatter</strong>. It all runs in the browser with nothing to install.</p>
+
+      <h2>What is double-click failure (chatter)?</h2>
+      <p>Each mouse button contains a switch with metal contacts. As it ages those contacts can bounce as they open and close, and if the hardware and driver fail to filter that bounce, one press is delivered as <strong>two clicks</strong>. In practice a file you are dragging gets dropped mid-drag, or a single shot in a game fires twice.</p>
+
+      <h2>How does this page decide?</h2>
+      <p>It timestamps every left-click and measures the <strong>gap between consecutive clicks</strong>. A gap under <strong>70ms</strong> - faster than a person can deliberately press twice - is flagged as suspected. Techniques like butterfly or jitter clicking will produce those gaps on a perfectly healthy mouse, so press <strong>slowly, one at a time</strong> when you want a verdict.</p>
+
+      <h2>Reading the result</h2>
+      <table>
+        <tr><th>Result</th><th>Meaning</th></tr>
+        <tr><td>0 suspected (20+ clicks)</td><td>No sign of chatter observed</td></tr>
+        <tr><td>1-2 suspected</td><td>Could be coincidence. Press slowly and check again</td></tr>
+        <tr><td>3 or more suspected</td><td>Chatter is likely. See the options below</td></tr>
+      </table>
+
+      <h2>If chatter is likely</h2>
+      <ul>
+        <li><strong>Check the warranty</strong> - if it is still covered, replacement or repair is the surest fix.</li>
+        <li><strong>Debounce setting</strong> - some mice let you raise the click debounce time in their software to mask the symptom.</li>
+        <li><strong>Switch replacement</strong> - models with socketed switches can be swapped, though some require soldering.</li>
+      </ul>
+      <p>This is a rough check, not a substitute for proper hardware diagnostics. Browser or OS settings, and macros from other software, can all change the result.</p>
+
+      <h2>When side buttons do not register</h2>
+      <p>Browsers often treat buttons 4 and 5 as back/forward navigation, so the signal never reaches the page. And if your mouse software maps them to a keyboard key or macro, they arrive as that key instead. In that case the <a href="/en/tests/keyboard-tester">keyboard test</a> will show you which key they land on.</p>
+    </section>
+
+    <div class="other-tests">
+      <div class="label">Try another test</div>
+      <div class="other-tests-links">
+        <a href="/en/tests/keyboard-tester">⌨️ Keyboard Test</a>
+        <a href="/en/tests/monitor-hz">🖥️ Refresh Rate</a>
+        <a href="/en/tests/click-speed">🖱️ CPS Click Speed</a>
+        <a href="/en/tests/mouse-accuracy">🖲️ Mouse Accuracy</a>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <div class="footer-links">
+        <a href="/en/">Home</a>
+        <a href="/en/privacy">Privacy Policy</a>
+        <a href="mailto:yongju0002@gmail.com">Contact</a>
+      </div>
+      <div class="copyright">© 2026 MyAbilityTest. All tests are for fun and general reference.</div>
+    </footer>
+  </div>
+
+<script src="/skill-test/common.js"></script>
+<script>
+  const CHATTER_MS = 70;   // Consecutive left-clicks closer than this are treated as suspected chatter
+  const BUTTONS = [
+    { i: 0, label: 'Left' },
+    { i: 1, label: 'Wheel' },
+    { i: 2, label: 'Right' },
+    { i: 3, label: 'Side 1' },
+    { i: 4, label: 'Side 2' },
+  ];
+
+  const stage = document.getElementById('mouseStage');
+  const wheelMark = document.getElementById('wheelMark');
+  const btnReport = document.getElementById('btnReport');
+
+  let counts = { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0 };
+  let totalClicks = 0;
+  let wheelCount = 0;
+  let lastLeftTs = 0;
+  let chatters = [];
+
+  function renderReport() {
+    btnReport.innerHTML = BUTTONS.map(b => {
+      const c = counts[b.i];
+      return `<div class="row"><span class="k">${b.label}</span><span class="v ${c ? 'ok' : 'none'}">${c ? c + 'x' : 'not seen'}</span></div>`;
+    }).join('');
+    document.getElementById('statClicks').textContent = totalClicks;
+    document.getElementById('statButtons').textContent =
+      `${BUTTONS.filter(b => counts[b.i] > 0).length} / 5`;
+    document.getElementById('statWheel').textContent = wheelCount;
+  }
+
+  function renderChatter() {
+    document.getElementById('chatterCount').textContent = `${chatters.length} suspected`;
+    const verdict = document.getElementById('chatterVerdict');
+    const list = document.getElementById('chatterList');
+    if (counts[0] < 20) {
+      verdict.className = 'chatter-verdict ok';
+      verdict.textContent = `Press left-click at least 20 times (currently ${counts[0]})`;
+    } else if (chatters.length === 0) {
+      verdict.className = 'chatter-verdict ok';
+      verdict.textContent = 'No sign of chatter observed';
+    } else if (chatters.length <= 2) {
+      verdict.className = 'chatter-verdict warn';
+      verdict.textContent = 'A few suspected cases. Press slowly, one at a time, and check again';
+    } else {
+      verdict.className = 'chatter-verdict warn';
+      verdict.textContent = 'Chatter is likely. See the options in the notes below';
+    }
+    list.innerHTML = chatters.slice(-5).map(ms => `<li>Gap between clicks: ${ms.toFixed(0)}ms</li>`).join('');
+  }
+
+  function flash(i) {
+    const el = document.getElementById('btn' + i);
+    if (!el) return;
+    el.classList.add('active', 'used');
+    setTimeout(() => el.classList.remove('active'), 130);
+  }
+
+  stage.addEventListener('pointerdown', (e) => {
+    if (e.pointerType === 'touch') return;   // Touch has no button distinction, so skip it
+    e.preventDefault();
+    const b = e.button;
+    if (counts[b] === undefined) return;
+    counts[b] += 1;
+    totalClicks += 1;
+    flash(b);
+
+    if (b === 0) {
+      const now = performance.now();
+      if (lastLeftTs && now - lastLeftTs < CHATTER_MS) chatters.push(now - lastLeftTs);
+      lastLeftTs = now;
+      renderChatter();
+    }
+    renderReport();
+  });
+
+  stage.addEventListener('contextmenu', (e) => e.preventDefault());
+  stage.addEventListener('auxclick', (e) => e.preventDefault());
+  stage.addEventListener('dragstart', (e) => e.preventDefault());
+
+  stage.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    wheelCount += 1;
+    const dir = e.deltaY > 0 ? 1 : -1;
+    wheelMark.style.left = dir > 0 ? '78%' : '22%';
+    setTimeout(() => { wheelMark.style.left = '50%'; }, 180);
+    renderReport();
+  }, { passive: false });
+
+  document.getElementById('resetBtn').addEventListener('click', () => {
+    counts = { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0 };
+    totalClicks = 0; wheelCount = 0; lastLeftTs = 0; chatters = [];
+    document.querySelectorAll('.mbtn').forEach(el => el.classList.remove('used', 'active'));
+    renderReport();
+    renderChatter();
+  });
+
+  renderReport();
+  renderChatter();
+</script>
+</body>
+</html>

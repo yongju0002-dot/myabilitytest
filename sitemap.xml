@@ -660,4 +660,92 @@
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/monitor-hz"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/monitor-hz"/>
   </url>
+  <url>
+    <loc>https://myabilitytest.com/ko/tests/mouse-tester</loc>
+    <lastmod>2026-09-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/mouse-tester"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/mouse-tester"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/mouse-tester"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/mouse-tester"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/mouse-tester"/>
+  </url>
+  <url>
+    <loc>https://myabilitytest.com/en/tests/mouse-tester</loc>
+    <lastmod>2026-09-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/mouse-tester"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/mouse-tester"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/mouse-tester"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/mouse-tester"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/mouse-tester"/>
+  </url>
+  <url>
+    <loc>https://myabilitytest.com/ja/tests/mouse-tester</loc>
+    <lastmod>2026-09-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/mouse-tester"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/mouse-tester"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/mouse-tester"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/mouse-tester"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/mouse-tester"/>
+  </url>
+  <url>
+    <loc>https://myabilitytest.com/zh/tests/mouse-tester</loc>
+    <lastmod>2026-09-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/mouse-tester"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/mouse-tester"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/mouse-tester"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/mouse-tester"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/mouse-tester"/>
+  </url>
+  <url>
+    <loc>https://myabilitytest.com/ko/tests/keyboard-tester</loc>
+    <lastmod>2026-09-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/keyboard-tester"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/keyboard-tester"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/keyboard-tester"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/keyboard-tester"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/keyboard-tester"/>
+  </url>
+  <url>
+    <loc>https://myabilitytest.com/en/tests/keyboard-tester</loc>
+    <lastmod>2026-09-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/keyboard-tester"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/keyboard-tester"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/keyboard-tester"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/keyboard-tester"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/keyboard-tester"/>
+  </url>
+  <url>
+    <loc>https://myabilitytest.com/ja/tests/keyboard-tester</loc>
+    <lastmod>2026-09-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/keyboard-tester"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/keyboard-tester"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/keyboard-tester"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/keyboard-tester"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/keyboard-tester"/>
+  </url>
+  <url>
+    <loc>https://myabilitytest.com/zh/tests/keyboard-tester</loc>
+    <lastmod>2026-09-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/keyboard-tester"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/keyboard-tester"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/keyboard-tester"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/zh/tests/keyboard-tester"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/keyboard-tester"/>
+  </url>
 </urlset>

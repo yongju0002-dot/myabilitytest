@@ -109,7 +109,7 @@
       <span class="here">Spacebar Speed Test</span>
       <span class="idx">10 / 15</span>
     </nav>
-    <h1>⌨️ Spacebar Speed Test</h1>
+    <h1>Spacebar Speed Test</h1>
     <p class="sub">Hit the spacebar as many times as you can before time runs out!</p>
 
     <div class="duration-select" id="durationSelect"></div>
@@ -122,7 +122,7 @@
     <button class="space-pad" id="spacePad"><div class="pad-main">Press the spacebar to start</div><div class="pad-sub">(on mobile, tap this area)</div></button>
 
     <div id="resultPanel" class="result-panel">
-      <div class="emoji">⌨️</div>
+      <div class="result-icon"><svg class="ticon" viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 9h18v6H3zM7 12h10"></path></svg></div>
       <h2 id="resultTitle"></h2>
       <div class="stars" id="resultStars"></div>
       <div class="desc" id="resultDesc"></div>
@@ -136,10 +136,10 @@
         <div class="other-tests">
           <div class="label">Try another ability test</div>
           <div class="other-tests-links">
-            <a href="/en/tests/click-speed">🖱️ CPS Click Speed</a>
-            <a href="/en/tests/apm">🎹 APM</a>
-            <a href="/en/tests/mouse-accuracy">🖲️ Mouse Accuracy</a>
-            <a href="/en/tests/aim-trainer">🎯 Aim Test</a>
+            <a href="/en/tests/click-speed"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 3h8a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zM12 3v7"></path></svg><span>CPS Click Speed</span></a>
+            <a href="/en/tests/apm"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 20V10M10 20V4M16 20V13M22 20V8"></path></svg><span>APM</span></a>
+            <a href="/en/tests/mouse-accuracy"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 17c3 0 3-10 6-10s3 10 6 10 3-10 6-10"></path></svg><span>Mouse Accuracy</span></a>
+            <a href="/en/tests/aim-trainer"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0M12 2v4M12 18v4M2 12h4M18 12h4"></path></svg><span>Aim Test</span></a>
           </div>
         </div>
     </div>
@@ -178,13 +178,13 @@
       <p>This test <strong>ignores the auto-repeat that fires when you hold the key down</strong>, so only genuine press-and-release actions count. Your keyboard's switch type (membrane vs. mechanical) and key travel distance can also change your result.</p>
     </section>
 
-    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 All-Time Top Records (Top 30)</h2>
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">All-Time Top Records (Top 30)</h2>
     <div id="topLeaderboard"></div>
 <h2 style="text-align:center; font-size:15px; margin-top:28px;">Other click tests</h2>
     <div class="related-links">
-      <a href="/en/tests/click-speed">🖱️ CPS Click Speed</a>
-      <a href="/en/tests/apm">🎹 APM Test</a>
-      <a href="/en/tests/mouse-accuracy">🖲️ Mouse Accuracy</a>
+      <a href="/en/tests/click-speed"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 3h8a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zM12 3v7"></path></svg><span>CPS Click Speed</span></a>
+      <a href="/en/tests/apm"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 20V10M10 20V4M16 20V13M22 20V8"></path></svg><span>APM Test</span></a>
+      <a href="/en/tests/mouse-accuracy"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 17c3 0 3-10 6-10s3 10 6 10 3-10 6-10"></path></svg><span>Mouse Accuracy</span></a>
     </div>
   </div>
 
@@ -248,12 +248,12 @@
   let allStats = loadStats(STORE_KEY, {});
 
   const GRADES = [
-    { key: 'SS', min: 9, label: 'SS · Ultra fast' },
-    { key: 'S', min: 7.5, label: 'S · Very fast' },
-    { key: 'A', min: 6, label: 'A · Fast' },
-    { key: 'B', min: 4.5, label: 'B · Above average' },
-    { key: 'C', min: 3, label: 'C · Average' },
-    { key: 'D', min: 0, label: 'D · Relaxed' },
+    { key: 'SS', min: 9, label : 'SS · Ultra fast' },
+    { key: 'S', min: 7.5, label : 'S · Very fast' },
+    { key: 'A', min: 6, label : 'A · Fast' },
+    { key: 'B', min: 4.5, label : 'B · Above average' },
+    { key: 'C', min: 3, label : 'C · Average' },
+    { key: 'D', min: 0, label : 'D · Relaxed' },
   ];
 
   function gradeFor(rate) {
@@ -302,7 +302,7 @@
         renderDurationButtons();
         timeLeftEl.textContent = duration.toFixed(1);
         renderStats();
-        renderTopLeaderboard(loadStats(LB_KEY + '_' + bucketKey(duration, inputMode || 'keyboard'), []));
+        renderTopLeaderboard(loadStats(LB_KEY + '_' + bucketKey(duration, inputMode ||'keyboard'), []));
       });
       durationSelect.appendChild(btn);
     });
@@ -362,7 +362,7 @@
 
   // Keyboard: ignore auto-repeat from holding the key down, and stop the page scrolling.
   window.addEventListener('keydown', (e) => {
-    if (e.code !== 'Space' && e.key !== ' ') return;
+    if (e.code !== 'Space' && e.key !==' ') return;
     e.preventDefault();
     if (e.repeat) return;
     registerPress('keyboard');
@@ -386,7 +386,7 @@
     finished = true;
     cancelAnimationFrame(rafId);
     timeLeftEl.textContent = '0.0';
-    setPad('Done!', 'Press the button below to restart', false);
+    setPad('Done!','Press the button below to restart', false);
     document.getElementById('chartContainer').innerHTML =
       buildCpsLineChart(perSecondCps(timestamps, startTime, duration));
     renderGradeTable(rate);
@@ -409,7 +409,7 @@
     finished = false;
     inputMode = null;
     resultPanel.classList.remove('show');
-    setPad('Press the spacebar to start', '(on mobile, tap this area)', false);
+    setPad('Press the spacebar to start','(on mobile, tap this area)', false);
     timeLeftEl.textContent = duration.toFixed(1);
     countLine.textContent = 'Presses: 0 · Per second: 0.0';
   });
@@ -420,7 +420,7 @@
 
   renderDurationButtons();
   renderStats();
-  renderTopLeaderboard(loadStats(LB_KEY + '_' + bucketKey(duration, 'keyboard'), []));
+  renderTopLeaderboard(loadStats(LB_KEY + '_' + bucketKey(duration,'keyboard'), []));
 </script>
 </body>
 </html>

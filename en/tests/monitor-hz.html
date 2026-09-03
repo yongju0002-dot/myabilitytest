@@ -104,11 +104,11 @@
       <span class="here">Monitor Refresh Rate Test</span>
       <span class="idx">13 / 15</span>
     </nav>
-    <h1>🖥️ Monitor Refresh Rate Test</h1>
+    <h1>Monitor Refresh Rate Test</h1>
     <p class="sub">We measure the gaps between frames your browser actually draws, and estimate your refresh rate from them.</p>
 
     <div class="info-box">
-      💻 Nothing to install. For an accurate reading, <strong>close other tabs and plug in your laptop</strong> before measuring.
+      Nothing to install. For an accurate reading, <strong>close other tabs and plug in your laptop</strong> before measuring.
     </div>
 
     <div class="level-card">
@@ -183,17 +183,17 @@
 
     <div class="side-panel" id="ladderPanel"></div>
     <div class="side-panel">
-      <div class="ach-head">🕒 Recent measurements</div>
+      <div class="ach-head">Recent measurements</div>
       <div id="recentPanel"></div>
     </div>
 
     <div class="other-tests">
       <div class="label">Try another test</div>
       <div class="other-tests-links">
-        <a href="/en/tests/reaction-time">⚡ Reaction Time</a>
-        <a href="/en/tests/aim-trainer">🎯 Aim Test</a>
-        <a href="/en/tests/dynamic-vision">👁️ Dynamic Vision</a>
-        <a href="/en/tests/click-speed">🖱️ CPS Click Speed</a>
+        <a href="/en/tests/reaction-time"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0M9.5 12a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0-5 0"></path></svg><span>Reaction Time</span></a>
+        <a href="/en/tests/aim-trainer"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0M12 2v4M12 18v4M2 12h4M18 12h4"></path></svg><span>Aim Test</span></a>
+        <a href="/en/tests/dynamic-vision"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 12c3-5 7-7 10-7s7 2 10 7c-3 5-7 7-10 7s-7-2-10-7zM9 12a3 3 0 1 0 6 0a3 3 0 1 0-6 0"></path></svg><span>Dynamic Vision</span></a>
+        <a href="/en/tests/click-speed"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 3h8a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zM12 3v7"></path></svg><span>CPS Click Speed</span></a>
       </div>
     </div>
   </div>
@@ -266,12 +266,12 @@
 
   // Refresh-rate bands for the ladder. Higher is better.
   const HZ_TIERS = [
-    { key: '240', min: 200, label: '240Hz class' },
-    { key: '165', min: 150, label: '165Hz class' },
-    { key: '144', min: 110, label: '120-144Hz class' },
-    { key: '75', min: 70, label: '75Hz class' },
-    { key: '60', min: 50, label: '60Hz class' },
-    { key: 'low', min: 0, label: 'Under 50Hz (throttling suspected)' },
+    { key: '240', min: 200, label : '240Hz class' },
+    { key: '165', min: 150, label : '165Hz class' },
+    { key: '144', min: 110, label : '120-144Hz class' },
+    { key: '75', min: 70, label : '75Hz class' },
+    { key: '60', min: 50, label : '60Hz class' },
+    { key: 'low', min: 0, label : 'Under 50Hz (throttling suspected)' },
   ];
 
   function renderStats() {
@@ -282,7 +282,7 @@
 
   function renderPanels() {
     renderRankLadder('ladderPanel', HZ_TIERS, stats.best || null, {
-      title: 'Measured band', unit: 'Hz', digits: 0,
+      title: 'Measured band', unit : 'Hz', digits: 0,
     });
     renderRecentRecords('recentPanel', loadStats(STORE_KEY + '_recent', []),
       e => `${e.hz} Hz · gap ${e.avg}ms`, 'No measurements yet');
@@ -351,8 +351,8 @@
 
     if (gaps.length < 20) {
       hzLabel.textContent = 'Measurement failed';
-      document.getElementById('hzVerdict').textContent = '';
-      document.getElementById('hzNote').textContent = 'Not enough frames were collected. Keep this tab in the foreground and try again.';
+      document.getElementById('hzVerdict').textContent ='';
+      document.getElementById('hzNote').textContent ='Not enough frames were collected. Keep this tab in the foreground and try again.';
       return;
     }
 

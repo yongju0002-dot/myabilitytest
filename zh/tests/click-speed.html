@@ -88,7 +88,7 @@
       <span class="here">CPS点击速度测试</span>
       <span class="idx">03 / 15</span>
     </nav>
-    <h1>🖱️ CPS点击速度测试</h1>
+    <h1>CPS点击速度测试</h1>
     <p class="sub">在限定时间内尽可能快速点击!</p>
 
     <div class="mode-select" id="modeSelect">
@@ -114,7 +114,7 @@
     </button>
 
     <div id="resultPanel" class="result-panel">
-      <div class="emoji" id="resultEmoji">🖱️</div>
+      <div class="result-icon"><svg class="ticon" viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 3h8a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zM12 3v7"></path></svg></div>
       <h2 id="resultTitle"></h2>
       <div class="stars" id="resultStars"></div>
       <div class="desc" id="resultDesc"></div>
@@ -127,10 +127,10 @@
       <div class="other-tests">
         <div class="label">也来试试其他能力测试</div>
         <div class="other-tests-links">
-          <a href="/zh/tests/apm">🎹 APM</a>
-          <a href="/zh/tests/mouse-accuracy">🖲️ 鼠标精准度</a>
-          <a href="/zh/tests/spacebar-counter">⌨️ 空格键连打</a>
-          <a href="/zh/tests/reaction-time">⚡ 反应速度</a>
+          <a href="/zh/tests/apm"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 20V10M10 20V4M16 20V13M22 20V8"></path></svg><span>APM</span></a>
+          <a href="/zh/tests/mouse-accuracy"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 17c3 0 3-10 6-10s3 10 6 10 3-10 6-10"></path></svg><span>鼠标精准度</span></a>
+          <a href="/zh/tests/spacebar-counter"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 9h18v6H3zM7 12h10"></path></svg><span>空格键连打</span></a>
+          <a href="/zh/tests/reaction-time"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0M9.5 12a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0-5 0"></path></svg><span>反应速度</span></a>
         </div>
       </div>
     </div>
@@ -193,11 +193,11 @@
     <div class="side-panel" id="ladderPanel"></div>
     <div class="side-panel" id="achPanel"></div>
     <div class="side-panel">
-      <div class="ach-head">🕒 最近记录</div>
+      <div class="ach-head">最近记录</div>
       <div id="recentPanel"></div>
     </div>
 
-    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 历代记录排行(最多30位)</h2>
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">历代记录排行(最多30位)</h2>
     <div id="topLeaderboard"></div>
   </div>
 
@@ -271,52 +271,52 @@
   // community convention, not official statistics.
   const MODES = [
     {
-      key: 'classic', label: '经典',
+      key: 'classic', label : '经典',
       hint: "用一根食指按的普通点击。选择你实际使用的技巧,系统会按该技巧的标准评级。",
       grades: [
-        { key: 'SS', min: 12, label: 'SS・超高速', persona: '🖱️ 点击机器' },
-        { key: 'S', min: 10, label: 'S・极快', persona: '⚡ 极速点击者' },
-        { key: 'A', min: 8, label: 'A・快', persona: '🎯 快手' },
-        { key: 'B', min: 6, label: 'B・中等偏上', persona: '👍 稳定的手' },
-        { key: 'C', min: 4, label: 'C・一般', persona: '🙂 普通点击者' },
-        { key: 'D', min: 2, label: 'D・悠闲', persona: '🐢 悠闲点击者' },
-        { key: 'F', min: 0, label: 'F・非常悠闲', persona: '🌙 围观模式' },
+        { key: 'SS', min: 12, label : 'SS・超高速', persona : '点击机器' },
+        { key: 'S', min: 10, label : 'S・极快', persona : '极速点击者' },
+        { key: 'A', min: 8, label : 'A・快', persona : '快手' },
+        { key: 'B', min: 6, label : 'B・中等偏上', persona : '稳定的手' },
+        { key: 'C', min: 4, label : 'C・一般', persona : '普通点击者' },
+        { key: 'D', min: 2, label : 'D・悠闲', persona : '悠闲点击者' },
+        { key: 'F', min: 0, label : 'F・非常悠闲', persona : '围观模式' },
       ],
     },
     {
-      key: 'jitter', label: '抖动',
+      key: 'jitter', label : '抖动',
       hint: '绷紧手臂和手腕使其震颤来点击。结果还会显示点击间隔的稳定性。对手腕负担较大,请勿勉强。',
       grades: [
-        { key: 'SS', min: 13, label: 'SS・抖动大师', persona: '🌀 抖动大师' },
-        { key: 'S', min: 11, label: 'S・极快', persona: '⚡ 震动达人' },
-        { key: 'A', min: 9, label: 'A・快', persona: '🎯 熟练的手腕' },
-        { key: 'B', min: 7, label: 'B・中等偏上', persona: '👍 稳定的手腕' },
-        { key: 'C', min: 5, label: 'C・一般', persona: '🙂 普通的手腕' },
-        { key: 'D', min: 0, label: 'D・需要练习', persona: '🐢 练习中的手腕' },
+        { key: 'SS', min: 13, label : 'SS・抖动大师', persona : '抖动大师' },
+        { key: 'S', min: 11, label : 'S・极快', persona : '震动达人' },
+        { key: 'A', min: 9, label : 'A・快', persona : '熟练的手腕' },
+        { key: 'B', min: 7, label : 'B・中等偏上', persona : '稳定的手腕' },
+        { key: 'C', min: 5, label : 'C・一般', persona : '普通的手腕' },
+        { key: 'D', min: 0, label : 'D・需要练习', persona : '练习中的手腕' },
       ],
     },
     {
-      key: 'butterfly', label: '蝴蝶',
+      key: 'butterfly', label : '蝴蝶',
       hint: '食指与中指交替点击。节奏越稳定,CPS 越稳。',
       grades: [
-        { key: 'SS', min: 20, label: 'SS・蝴蝶大师', persona: '🦋 蝴蝶大师' },
-        { key: 'S', min: 16, label: 'S・极快', persona: '⚡ 双指达人' },
-        { key: 'A', min: 13, label: 'A・快', persona: '🎯 节奏点击者' },
-        { key: 'B', min: 10, label: 'B・中等偏上', persona: '👍 稳定交替' },
-        { key: 'C', min: 7, label: 'C・一般', persona: '🙂 普通交替' },
-        { key: 'D', min: 0, label: 'D・需要练习', persona: '🐢 练习中的手指' },
+        { key: 'SS', min: 20, label : 'SS・蝴蝶大师', persona : '蝴蝶大师' },
+        { key: 'S', min: 16, label : 'S・极快', persona : '双指达人' },
+        { key: 'A', min: 13, label : 'A・快', persona : '节奏点击者' },
+        { key: 'B', min: 10, label : 'B・中等偏上', persona : '稳定交替' },
+        { key: 'C', min: 7, label : 'C・一般', persona : '普通交替' },
+        { key: 'D', min: 0, label : 'D・需要练习', persona : '练习中的手指' },
       ],
     },
     {
-      key: 'drag', label: '拖拽',
+      key: 'drag', label : '拖拽',
       hint: '手指在按键上滑动,靠摩擦产生连击。不同鼠标差异很大。',
       grades: [
-        { key: 'SS', min: 40, label: 'SS・拖拽大师', persona: '🔥 拖拽狂飙' },
-        { key: 'S', min: 30, label: 'S・极快', persona: '⚡ 摩擦达人' },
-        { key: 'A', min: 22, label: 'A・快', persona: '🎯 熟练拖拽者' },
-        { key: 'B', min: 15, label: 'B・中等偏上', persona: '👍 找到手感' },
-        { key: 'C', min: 8, label: 'C・一般', persona: '🙂 普通拖拽' },
-        { key: 'D', min: 0, label: 'D・需要练习', persona: '🐢 拖拽入门' },
+        { key: 'SS', min: 40, label : 'SS・拖拽大师', persona : '拖拽狂飙' },
+        { key: 'S', min: 30, label : 'S・极快', persona : '摩擦达人' },
+        { key: 'A', min: 22, label : 'A・快', persona : '熟练拖拽者' },
+        { key: 'B', min: 15, label : 'B・中等偏上', persona : '找到手感' },
+        { key: 'C', min: 8, label : 'C・一般', persona : '普通拖拽' },
+        { key: 'D', min: 0, label : 'D・需要练习', persona : '拖拽入门' },
       ],
     },
   ];
@@ -366,8 +366,8 @@
       localStorage.removeItem(oldKey);
       saveStats(STORE_KEY, allStats);
     };
-    mergeStats('skillJitterClickStats', 'jitter_10');
-    mergeStats('skillKohiClickStats', '10');
+    mergeStats('skillJitterClickStats','jitter_10');
+    mergeStats('skillKohiClickStats','10');
     const kohiLb = loadStats('skillKohiClickLeaderboardV1', null);
     if (kohiLb && kohiLb.length) {
       kohiLb.forEach(e => addToLeaderboard(LB_KEYS.classic, { value: e.value, duration: 10, date: e.date }, false));
@@ -516,7 +516,7 @@
     const grade = gradeFor(cps);
     const stars = starsFor(grade);
     document.getElementById('resultTitle').textContent = cps.toFixed(1) + ' CPS';
-    document.getElementById('resultStars').textContent = '★'.repeat(stars) + '☆'.repeat(5 - stars);
+    document.getElementById('resultStars').textContent ='★'.repeat(stars) + '☆'.repeat(5 - stars);
     document.getElementById('resultDesc').textContent = `点击 ${clicks}次 / ${duration}秒 · ${mode.label} — ${grade.label}`;
 
     // Peak second (the old Kohi stat) + click consistency in jitter mode (the old jitter stat)
@@ -543,12 +543,12 @@
   // ---- 업적 정의: 이미 현지화된 MODES/grades에서 자동 생성 ----
   const ACH_KEY = 'skillCps';
   const ACH_DEFS = (() => {
-    const defs = [{ id: 'first', label: '首次挑战' }];
+    const defs = [{ id: 'first', label : '首次挑战' }];
     [1, 5, 10, 25, 50].forEach(n => defs.push({ id: 'plays' + n, label: n + '次游玩' }));
     MODES.forEach(m => m.grades.forEach(g => {
       defs.push({ id: `${m.key}_${g.key}`, label: `${m.label} · ${g.key}` , hint: `${m.label} · ${g.label}` });
     }));
-    defs.push({ id: 'allmodes', label: '体验全部4种技巧' });
+    defs.push({ id: 'allmodes', label : '体验全部4种技巧' });
     return defs;
   })();
 
@@ -581,7 +581,7 @@
     renderRankLadder('ladderPanel', mode.grades, bestForMode(), {
       title: `${mode.label} 评级`, unit: ' CPS', digits: 1,
     });
-    renderAchievements('achPanel', ACH_KEY, ACH_DEFS, '🏅 成就');
+    renderAchievements('achPanel', ACH_KEY, ACH_DEFS,'成就');
     renderRecentRecords('recentPanel', loadStats(ACH_KEY + '_recent', []),
       e => `${e.cps.toFixed(1)} CPS · ${e.mode} · ${e.duration}秒`, '还没有记录');
   }
@@ -609,7 +609,7 @@
       if (finished) {
         finished = false;
         resultPanel.classList.remove('show');
-        setPad('START', '', false);
+        setPad('START','', false);
         timeLeftEl.textContent = duration.toFixed(1);
         clickCountLine.textContent = '点击数: 0 · 实时CPS: 0.0';
         graphCtx.clearRect(0, 0, graphCanvas.width, graphCanvas.height);
@@ -633,7 +633,7 @@
     finished = false;
     samples = [];
     resultPanel.classList.remove('show');
-    setPad('START', '', false);
+    setPad('START','', false);
     timeLeftEl.textContent = duration.toFixed(1);
     clickCountLine.textContent = '点击数: 0 · 实时CPS: 0.0';
     graphCtx.clearRect(0, 0, graphCanvas.width, graphCanvas.height);

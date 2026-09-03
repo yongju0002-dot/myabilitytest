@@ -134,12 +134,12 @@
       <span class="here">聴力年齢テスト</span>
       <span class="idx">06 / 15</span>
     </nav>
-    <h1>👂 聴力年齢テスト</h1>
+    <h1>聴力年齢テスト</h1>
     <p class="sub">だんだん高くなる音を聞いて、どこまで聞こえるか確かめてみましょう。</p>
 
     <div id="introScreen">
       <div class="warn-box">
-        <div class="warn-title">⚠️ イヤホン・ヘッドホン必須</div>
+        <div class="warn-title">イヤホン・ヘッドホン必須</div>
         スピーカーでは高音がうまく再生されず、結果が意味をなしません。必ずイヤホンか
         ヘッドホンを着けてから始めてください。
       </div>
@@ -151,7 +151,7 @@
     <div id="calibScreen" style="display:none;">
       <div class="level-card">
         <div class="label">音量を合わせる</div>
-        <div class="num" style="font-size:32px;">🔊 1000Hz</div>
+        <div class="num" style="font-size:32px;">1000Hz</div>
         <div class="sub">心地よく聞こえるレベルに端末の音量を合わせてください。<br>合わせたら下のボタンを押し、それ以降は音量を変えないでください。</div>
       </div>
       <div class="btn-row">
@@ -174,7 +174,7 @@
     </div>
 
     <div id="resultPanel" class="result-panel">
-      <div class="emoji">👂</div>
+      <div class="result-icon"><svg class="ticon" viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 9v6M8 6v12M12 3v18M16 6v12M20 9v6"></path></svg></div>
       <h2 id="resultTitle"></h2>
       <div class="desc" id="resultDesc"></div>
       <div class="percentile" id="resultComment"></div>
@@ -189,10 +189,10 @@
         <div class="other-tests">
           <div class="label">他の能力テストも試してみよう</div>
           <div class="other-tests-links">
-            <a href="/ja/tests/dynamic-vision">👁️ 動体視力</a>
-            <a href="/ja/tests/reaction-time">⚡ 反応速度</a>
-            <a href="/ja/tests/visual-memory">🧠 瞬間記憶力</a>
-            <a href="/ja/tests/chimp-test">🐵 チンパンジーテスト</a>
+            <a href="/ja/tests/dynamic-vision"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 12c3-5 7-7 10-7s7 2 10 7c-3 5-7 7-10 7s-7-2-10-7zM9 12a3 3 0 1 0 6 0a3 3 0 1 0-6 0"></path></svg><span>動体視力</span></a>
+            <a href="/ja/tests/reaction-time"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0M9.5 12a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0-5 0"></path></svg><span>反応速度</span></a>
+            <a href="/ja/tests/visual-memory"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"></path></svg><span>瞬間記憶力</span></a>
+            <a href="/ja/tests/chimp-test"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 14h6v6H3zM9 8h6v6H9zM15 3h6v6h-6z"></path></svg><span>チンパンジーテスト</span></a>
           </div>
         </div>
     </div>
@@ -231,7 +231,7 @@
       <p>この結果はスピーカー・イヤホンの性能、端末の音量、ブラウザの音声処理、周囲の騒音によって大きく変わるため、あくまで参考程度に楽しんでください。より安定した結果を知りたい場合は、静かな場所で有線イヤホンを使って測定することをおすすめします。</p>
     </section>
 
-    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 歴代記録ランキング(最大30位)</h2>
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">歴代記録ランキング(最大30位)</h2>
     <div id="topLeaderboard"></div>
   </div>
 
@@ -296,17 +296,17 @@
   const STEP_DURATION = 4;
 
   const AGE_MAP = [
-    { freq: 20000, age: '18歳以下', comment: '同年代よりも敏感な、とても良い聴力です。' },
-    { freq: 19000, age: '20歳', comment: '若々しく健康的な聴力です。' },
-    { freq: 18000, age: '24歳', comment: 'とても良い方です。' },
-    { freq: 17000, age: '30歳', comment: '平均より良い方です。' },
-    { freq: 16000, age: '35歳', comment: '一般的な範囲です。' },
-    { freq: 15000, age: '40歳', comment: '一般的な範囲です。' },
-    { freq: 14000, age: '45歳', comment: '自然な変化の範囲です。' },
-    { freq: 12000, age: '50歳', comment: '自然な変化の範囲です。' },
-    { freq: 10000, age: '55歳', comment: '高音が少しずつ聞こえにくくなってきている範囲です。' },
-    { freq: 8000, age: '60歳以上', comment: '機器や環境の影響かもしれません。気軽に参考にしてください。' },
-    { freq: 0, age: '60歳以上', comment: '機器や環境の影響かもしれません。気軽に参考にしてください。' },
+    { freq: 20000, age: '18歳以下', comment : '同年代よりも敏感な、とても良い聴力です。' },
+    { freq: 19000, age: '20歳', comment : '若々しく健康的な聴力です。' },
+    { freq: 18000, age: '24歳', comment : 'とても良い方です。' },
+    { freq: 17000, age: '30歳', comment : '平均より良い方です。' },
+    { freq: 16000, age: '35歳', comment : '一般的な範囲です。' },
+    { freq: 15000, age: '40歳', comment : '一般的な範囲です。' },
+    { freq: 14000, age: '45歳', comment : '自然な変化の範囲です。' },
+    { freq: 12000, age: '50歳', comment : '自然な変化の範囲です。' },
+    { freq: 10000, age: '55歳', comment : '高音が少しずつ聞こえにくくなってきている範囲です。' },
+    { freq: 8000, age: '60歳以上', comment : '機器や環境の影響かもしれません。気軽に参考にしてください。' },
+    { freq: 0, age: '60歳以上', comment : '機器や環境の影響かもしれません。気軽に参考にしてください。' },
   ];
 
   function ageFor(maxHeard) {

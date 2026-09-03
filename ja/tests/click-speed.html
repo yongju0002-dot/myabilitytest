@@ -88,7 +88,7 @@
       <span class="here">CPSクリック速度テスト</span>
       <span class="idx">03 / 15</span>
     </nav>
-    <h1>🖱️ CPSクリック速度テスト</h1>
+    <h1>CPSクリック速度テスト</h1>
     <p class="sub">制限時間内にできるだけ速くクリックしてください!</p>
 
     <div class="mode-select" id="modeSelect">
@@ -114,7 +114,7 @@
     </button>
 
     <div id="resultPanel" class="result-panel">
-      <div class="emoji" id="resultEmoji">🖱️</div>
+      <div class="result-icon"><svg class="ticon" viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 3h8a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zM12 3v7"></path></svg></div>
       <h2 id="resultTitle"></h2>
       <div class="stars" id="resultStars"></div>
       <div class="desc" id="resultDesc"></div>
@@ -127,10 +127,10 @@
       <div class="other-tests">
         <div class="label">他の能力テストも試してみよう</div>
         <div class="other-tests-links">
-          <a href="/ja/tests/apm">🎹 APM</a>
-          <a href="/ja/tests/mouse-accuracy">🖲️ マウス精度</a>
-          <a href="/ja/tests/spacebar-counter">⌨️ スペースキー連打</a>
-          <a href="/ja/tests/reaction-time">⚡ 反応速度</a>
+          <a href="/ja/tests/apm"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 20V10M10 20V4M16 20V13M22 20V8"></path></svg><span>APM</span></a>
+          <a href="/ja/tests/mouse-accuracy"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 17c3 0 3-10 6-10s3 10 6 10 3-10 6-10"></path></svg><span>マウス精度</span></a>
+          <a href="/ja/tests/spacebar-counter"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 9h18v6H3zM7 12h10"></path></svg><span>スペースキー連打</span></a>
+          <a href="/ja/tests/reaction-time"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0M9.5 12a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0-5 0"></path></svg><span>反応速度</span></a>
         </div>
       </div>
     </div>
@@ -193,11 +193,11 @@
     <div class="side-panel" id="ladderPanel"></div>
     <div class="side-panel" id="achPanel"></div>
     <div class="side-panel">
-      <div class="ach-head">🕒 最近の記録</div>
+      <div class="ach-head">最近の記録</div>
       <div id="recentPanel"></div>
     </div>
 
-    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 歴代記録ランキング(最大30位)</h2>
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">歴代記録ランキング(最大30位)</h2>
     <div id="topLeaderboard"></div>
   </div>
 
@@ -271,52 +271,52 @@
   // community convention, not official statistics.
   const MODES = [
     {
-      key: 'classic', label: 'クラシック',
+      key: 'classic', label : 'クラシック',
       hint: "人差し指1本で押す通常のクリック。使っている技術を選ぶと、その技術に合った基準で採点されます。",
       grades: [
-        { key: 'SS', min: 12, label: 'SS・超高速', persona: '🖱️ クリックマシン' },
-        { key: 'S', min: 10, label: 'S・非常に速い', persona: '⚡ スピードクリッカー' },
-        { key: 'A', min: 8, label: 'A・速い', persona: '🎯 速い手' },
-        { key: 'B', min: 6, label: 'B・平均以上', persona: '👍 安定した手' },
-        { key: 'C', min: 4, label: 'C・平均的', persona: '🙂 平均的なクリッカー' },
-        { key: 'D', min: 2, label: 'D・のんびり', persona: '🐢 のんびりクリッカー' },
-        { key: 'F', min: 0, label: 'F・とてものんびり', persona: '🌙 見学モード' },
+        { key: 'SS', min: 12, label : 'SS・超高速', persona : 'クリックマシン' },
+        { key: 'S', min: 10, label : 'S・非常に速い', persona : 'スピードクリッカー' },
+        { key: 'A', min: 8, label : 'A・速い', persona : '速い手' },
+        { key: 'B', min: 6, label : 'B・平均以上', persona : '安定した手' },
+        { key: 'C', min: 4, label : 'C・平均的', persona : '平均的なクリッカー' },
+        { key: 'D', min: 2, label : 'D・のんびり', persona : 'のんびりクリッカー' },
+        { key: 'F', min: 0, label : 'F・とてものんびり', persona : '見学モード' },
       ],
     },
     {
-      key: 'jitter', label: 'ジター',
+      key: 'jitter', label : 'ジター',
       hint: '腕と手首の筋肉を震わせてクリック。結果にクリック間隔の安定性も表示されます。手首に負担がかかるので無理は禁物です。',
       grades: [
-        { key: 'SS', min: 13, label: 'SS・ジターマスター', persona: '🌀 ジターマスター' },
-        { key: 'S', min: 11, label: 'S・非常に速い', persona: '⚡ 振動の達人' },
-        { key: 'A', min: 9, label: 'A・速い', persona: '🎯 熟練の手首' },
-        { key: 'B', min: 7, label: 'B・平均以上', persona: '👍 安定した手首' },
-        { key: 'C', min: 5, label: 'C・平均的', persona: '🙂 平均的な手首' },
-        { key: 'D', min: 0, label: 'D・練習が必要', persona: '🐢 練習中の手首' },
+        { key: 'SS', min: 13, label : 'SS・ジターマスター', persona : 'ジターマスター' },
+        { key: 'S', min: 11, label : 'S・非常に速い', persona : '振動の達人' },
+        { key: 'A', min: 9, label : 'A・速い', persona : '熟練の手首' },
+        { key: 'B', min: 7, label : 'B・平均以上', persona : '安定した手首' },
+        { key: 'C', min: 5, label : 'C・平均的', persona : '平均的な手首' },
+        { key: 'D', min: 0, label : 'D・練習が必要', persona : '練習中の手首' },
       ],
     },
     {
-      key: 'butterfly', label: 'バタフライ',
+      key: 'butterfly', label : 'バタフライ',
       hint: '人差し指と中指を交互に使うクリック。リズムが一定なほどCPSが安定します。',
       grades: [
-        { key: 'SS', min: 20, label: 'SS・バタフライマスター', persona: '🦋 バタフライマスター' },
-        { key: 'S', min: 16, label: 'S・非常に速い', persona: '⚡ 二本指の達人' },
-        { key: 'A', min: 13, label: 'A・速い', persona: '🎯 リズムクリッカー' },
-        { key: 'B', min: 10, label: 'B・平均以上', persona: '👍 安定した交互打ち' },
-        { key: 'C', min: 7, label: 'C・平均的', persona: '🙂 平均的な交互打ち' },
-        { key: 'D', min: 0, label: 'D・練習が必要', persona: '🐢 練習中の指' },
+        { key: 'SS', min: 20, label : 'SS・バタフライマスター', persona : 'バタフライマスター' },
+        { key: 'S', min: 16, label : 'S・非常に速い', persona : '二本指の達人' },
+        { key: 'A', min: 13, label : 'A・速い', persona : 'リズムクリッカー' },
+        { key: 'B', min: 10, label : 'B・平均以上', persona : '安定した交互打ち' },
+        { key: 'C', min: 7, label : 'C・平均的', persona : '平均的な交互打ち' },
+        { key: 'D', min: 0, label : 'D・練習が必要', persona : '練習中の指' },
       ],
     },
     {
-      key: 'drag', label: 'ドラッグ',
+      key: 'drag', label : 'ドラッグ',
       hint: 'ボタンの上で指を滑らせ、摩擦で連打を生むクリック。マウスによって差が大きいです。',
       grades: [
-        { key: 'SS', min: 40, label: 'SS・ドラッグマスター', persona: '🔥 ドラッグ暴走' },
-        { key: 'S', min: 30, label: 'S・非常に速い', persona: '⚡ 摩擦の達人' },
-        { key: 'A', min: 22, label: 'A・速い', persona: '🎯 熟練ドラッガー' },
-        { key: 'B', min: 15, label: 'B・平均以上', persona: '👍 コツを掴んだドラッグ' },
-        { key: 'C', min: 8, label: 'C・平均的', persona: '🙂 平均的なドラッグ' },
-        { key: 'D', min: 0, label: 'D・練習が必要', persona: '🐢 ドラッグ入門' },
+        { key: 'SS', min: 40, label : 'SS・ドラッグマスター', persona : 'ドラッグ暴走' },
+        { key: 'S', min: 30, label : 'S・非常に速い', persona : '摩擦の達人' },
+        { key: 'A', min: 22, label : 'A・速い', persona : '熟練ドラッガー' },
+        { key: 'B', min: 15, label : 'B・平均以上', persona : 'コツを掴んだドラッグ' },
+        { key: 'C', min: 8, label : 'C・平均的', persona : '平均的なドラッグ' },
+        { key: 'D', min: 0, label : 'D・練習が必要', persona : 'ドラッグ入門' },
       ],
     },
   ];
@@ -366,8 +366,8 @@
       localStorage.removeItem(oldKey);
       saveStats(STORE_KEY, allStats);
     };
-    mergeStats('skillJitterClickStats', 'jitter_10');
-    mergeStats('skillKohiClickStats', '10');
+    mergeStats('skillJitterClickStats','jitter_10');
+    mergeStats('skillKohiClickStats','10');
     const kohiLb = loadStats('skillKohiClickLeaderboardV1', null);
     if (kohiLb && kohiLb.length) {
       kohiLb.forEach(e => addToLeaderboard(LB_KEYS.classic, { value: e.value, duration: 10, date: e.date }, false));
@@ -516,7 +516,7 @@
     const grade = gradeFor(cps);
     const stars = starsFor(grade);
     document.getElementById('resultTitle').textContent = cps.toFixed(1) + ' CPS';
-    document.getElementById('resultStars').textContent = '★'.repeat(stars) + '☆'.repeat(5 - stars);
+    document.getElementById('resultStars').textContent ='★'.repeat(stars) + '☆'.repeat(5 - stars);
     document.getElementById('resultDesc').textContent = `クリック ${clicks}回 / ${duration}秒 ・ ${mode.label} — ${grade.label}`;
 
     // Peak second (the old Kohi stat) + click consistency in jitter mode (the old jitter stat)
@@ -543,12 +543,12 @@
   // ---- 업적 정의: 이미 현지화된 MODES/grades에서 자동 생성 ----
   const ACH_KEY = 'skillCps';
   const ACH_DEFS = (() => {
-    const defs = [{ id: 'first', label: '初挑戦' }];
+    const defs = [{ id: 'first', label : '初挑戦' }];
     [1, 5, 10, 25, 50].forEach(n => defs.push({ id: 'plays' + n, label: n + '回プレイ' }));
     MODES.forEach(m => m.grades.forEach(g => {
       defs.push({ id: `${m.key}_${g.key}`, label: `${m.label} · ${g.key}` , hint: `${m.label} · ${g.label}` });
     }));
-    defs.push({ id: 'allmodes', label: '4技術すべて体験' });
+    defs.push({ id: 'allmodes', label : '4技術すべて体験' });
     return defs;
   })();
 
@@ -581,7 +581,7 @@
     renderRankLadder('ladderPanel', mode.grades, bestForMode(), {
       title: `${mode.label} ランク`, unit: ' CPS', digits: 1,
     });
-    renderAchievements('achPanel', ACH_KEY, ACH_DEFS, '🏅 実績');
+    renderAchievements('achPanel', ACH_KEY, ACH_DEFS,'実績');
     renderRecentRecords('recentPanel', loadStats(ACH_KEY + '_recent', []),
       e => `${e.cps.toFixed(1)} CPS · ${e.mode} · ${e.duration}秒`, 'まだ記録がありません');
   }
@@ -609,7 +609,7 @@
       if (finished) {
         finished = false;
         resultPanel.classList.remove('show');
-        setPad('START', '', false);
+        setPad('START','', false);
         timeLeftEl.textContent = duration.toFixed(1);
         clickCountLine.textContent = 'クリック数: 0 ・ リアルタイムCPS: 0.0';
         graphCtx.clearRect(0, 0, graphCanvas.width, graphCanvas.height);
@@ -633,7 +633,7 @@
     finished = false;
     samples = [];
     resultPanel.classList.remove('show');
-    setPad('START', '', false);
+    setPad('START','', false);
     timeLeftEl.textContent = duration.toFixed(1);
     clickCountLine.textContent = 'クリック数: 0 ・ リアルタイムCPS: 0.0';
     graphCtx.clearRect(0, 0, graphCanvas.width, graphCanvas.height);

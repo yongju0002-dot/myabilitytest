@@ -140,9 +140,9 @@
       <span class="here">反应速度测试</span>
       <span class="idx">01 / 15</span>
     </nav>
-    <h1>⚡ 反应速度测试</h1>
+    <h1>反应速度测试</h1>
     <p class="sub">画面颜色变化的瞬间立刻点击</p>
-    <p class="disclaimer">⚠️ 显示器、鼠标、触屏延迟会因设备不同增加10~50ms,电视上可能增加100ms以上</p>
+    <p class="disclaimer">显示器、鼠标、触屏延迟会因设备不同增加10~50ms,电视上可能增加100ms以上</p>
 
     <div class="mode-select" id="modeSelect">
       <button data-mode="simple" class="active">单纯反应</button>
@@ -220,11 +220,11 @@
     <div class="side-panel" id="ladderPanel"></div>
     <div class="side-panel" id="achPanel"></div>
     <div class="side-panel">
-      <div class="ach-head">🕒 最近记录</div>
+      <div class="ach-head">最近记录</div>
       <div id="recentPanel"></div>
     </div>
 
-    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 历代记录排行(最多30位)</h2>
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">历代记录排行(最多30位)</h2>
     <div id="topLeaderboard"></div>
   </div>
 
@@ -290,15 +290,15 @@
   const modeSelect = document.getElementById('modeSelect');
   const modeHint = document.getElementById('modeHint');
 
-  const STATE = { SETUP: 'setup', WAIT: 'wait', GO: 'go', EARLY: 'early', ROUND_RESULT: 'round_result', SUMMARY: 'summary' };
+  const STATE = { SETUP: 'setup', WAIT : 'wait', GO : 'go', EARLY : 'early', ROUND_RESULT : 'round_result', SUMMARY : 'summary' };
   let state = STATE.SETUP;
 
   // ---- 반응 모드 ----
   // 백분위(RT_CURVE)는 단순 반응 기준으로만 만든 곡선이라 단순 모드에서만 표시한다.
   const MODES = [
-    { key: 'simple', label: '单纯反应', hint: '颜色一变就点击的经典方式。', percentile: true },
-    { key: 'f1', label: 'F1起步', hint: '五盏红灯依次亮起,全部熄灭的瞬间点击。这是F1的起步信号方式。', percentile: false },
-    { key: 'gonogo', label: '选择反应', hint: '只在绿色时点击。在红色时点击就算失败。', percentile: false },
+    { key: 'simple', label : '单纯反应', hint : '颜色一变就点击的经典方式。', percentile: true },
+    { key: 'f1', label : 'F1起步', hint : '五盏红灯依次亮起,全部熄灭的瞬间点击。这是F1的起步信号方式。', percentile: false },
+    { key: 'gonogo', label : '选择反应', hint : '只在绿色时点击。在红色时点击就算失败。', percentile: false },
   ];
   let mode = MODES[0];
   let noGoRound = false;
@@ -311,9 +311,9 @@
 
   // 等待时间(前置期)越长反应越慢,因此各范围分开记录。
   const RANGES = [
-    { key: 'short', label: '短', min: 800, span: 1200, hint: '信号会在0.8~2.0秒之间随机出现。' },
-    { key: 'normal', label: '标准', min: 1200, span: 2800, hint: '信号会在1.2~4.0秒之间随机出现。' },
-    { key: 'long', label: '长', min: 2000, span: 5000, hint: '信号会在2.0~7.0秒之间随机出现。需要保持更长时间的专注。' },
+    { key: 'short', label : '短', min: 800, span: 1200, hint : '信号会在0.8~2.0秒之间随机出现。' },
+    { key: 'normal', label : '标准', min: 1200, span: 2800, hint : '信号会在1.2~4.0秒之间随机出现。' },
+    { key: 'long', label : '长', min: 2000, span: 5000, hint : '信号会在2.0~7.0秒之间随机出现。需要保持更长时间的专注。' },
   ];
   let range = RANGES[1];
   function randomDelay() { return range.min + Math.random() * range.span; }
@@ -344,7 +344,7 @@
       return;
     }
     el.innerHTML = '<ul class="leaderboard">' + list.map((entry, i) => {
-      const medal = ['🥇', '🥈', '🥉'][i] || (i + 1) + '.';
+      const medal = ['01','02','03'][i] || (i + 1) + '.';
       const d = new Date(entry.date);
       const dateStr = `${d.getMonth() + 1}/${d.getDate()}`;
       return `<li class="${i === 0 ? 'winner' : ''}"><span class="rank">${medal}</span><span class="lb-name">${entry.value} ms</span><span class="lb-detail">${dateStr}</span></li>`;
@@ -388,20 +388,20 @@
   // ---- 업적 / 사다리 / 최근 기록 ----
   const ACH_KEY = 'reaction';
   const RT_TIERS = [
-    { key: 'S', max: 150, label: '非常快' },
-    { key: 'A', max: 200, label: '快' },
-    { key: 'B', max: 250, label: '良好' },
-    { key: 'C', max: 300, label: '一般' },
-    { key: 'D', max: 400, label: '慢悠悠' },
-    { key: 'E', max: Infinity, label: '非常慢' },
+    { key: 'S', max: 150, label : '非常快' },
+    { key: 'A', max: 200, label : '快' },
+    { key: 'B', max: 250, label : '良好' },
+    { key: 'C', max: 300, label : '一般' },
+    { key: 'D', max: 400, label : '慢悠悠' },
+    { key: 'E', max: Infinity, label : '非常慢' },
   ];
   const ACH_DEFS = (() => {
-    const defs = [{ id: 'first', label: '首次挑战' }];
+    const defs = [{ id: 'first', label : '首次挑战' }];
     [1, 5, 10, 25, 50].forEach(n => defs.push({ id: 'plays' + n, label: n + '次游玩' }));
     MODES.forEach(m => RT_TIERS.forEach(t => {
       defs.push({ id: `${m.key}_${t.key}`, label: `${m.label} · ${t.key}`, hint: `${m.label} · ${t.label}` });
     }));
-    defs.push({ id: 'allmodes', label: '体验全部3种模式' });
+    defs.push({ id: 'allmodes', label : '体验全部3种模式' });
     return defs;
   })();
 
@@ -433,7 +433,7 @@
     renderRankLadder('ladderPanel', RT_TIERS, bestForMode(), {
       title: `${mode.label} 评级`, unit: 'ms', digits: 0, betterIsLower: true,
     });
-    renderAchievements('achPanel', ACH_KEY, ACH_DEFS, '🏅 成就');
+    renderAchievements('achPanel', ACH_KEY, ACH_DEFS,'成就');
     renderRecentRecords('recentPanel', loadStats(ACH_KEY + '_recent', []),
       e => `${e.avg}ms · ${e.mode} · ${e.rounds}轮`, '还没有记录');
   }
@@ -551,11 +551,11 @@
   }
 
   function rateFeedback(ms) {
-    if (ms < 200) return '超级快! 🚀';
-    if (ms < 250) return '太棒了! 💪';
-    if (ms < 300) return '不错 👍';
+    if (ms < 200) return '超级快!';
+    if (ms < 250) return '太棒了!';
+    if (ms < 300) return '不错';
     if (ms < 400) return '一般般';
-    return '有点慢 🐢';
+    return '有点慢';
   }
 
   function gradeFor(avg) {
@@ -655,11 +655,11 @@
 
     setStage('round', `
       <div class="summary">
-        <h2>测试完成 🎉 平均 ${avg} ms</h2>
+        <h2>测试完成 平均 ${avg} ms</h2>
         <div class="grade">${mode.label} · ${gradeFor(avg)}</div>
         ${percentileBlock}
 
-        <div class="hw-disclaimer">⚠️ 此结果为估计值。显示器、鼠标、触屏延迟会因设备不同增加10~50ms,电视上可能增加100ms以上。建议用同一设备多次测量后再比较。</div>
+        <div class="hw-disclaimer">此结果为估计值。显示器、鼠标、触屏延迟会因设备不同增加10~50ms,电视上可能增加100ms以上。建议用同一设备多次测量后再比较。</div>
         <div class="round-table">${roundTableHtml}</div>
         <div class="summary-actions">
           <button id="retryBtn">再次挑战</button>
@@ -668,10 +668,10 @@
         <div class="other-tests">
           <div class="label">也来试试其他能力测试</div>
           <div class="other-tests-links">
-            <a href="/zh/tests/click-speed">🖱️ CPS点击速度</a>
-            <a href="/zh/tests/visual-memory">🧠 瞬间记忆力</a>
-            <a href="/zh/tests/chimp-test">🐵 黑猩猩测试</a>
-            <a href="/zh/tests/aim-trainer">🎯 瞄准测试</a>
+            <a href="/zh/tests/click-speed"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 3h8a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zM12 3v7"></path></svg><span>CPS点击速度</span></a>
+            <a href="/zh/tests/visual-memory"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"></path></svg><span>瞬间记忆力</span></a>
+            <a href="/zh/tests/chimp-test"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 14h6v6H3zM9 8h6v6H9zM15 3h6v6h-6z"></path></svg><span>黑猩猩测试</span></a>
+            <a href="/zh/tests/aim-trainer"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0M12 2v4M12 18v4M2 12h4M18 12h4"></path></svg><span>瞄准测试</span></a>
           </div>
         </div>
       </div>

@@ -841,3 +841,11 @@ h2 { font-size: clamp(22px, 3vw, 30px); font-weight: 900; letter-spacing: -0.03e
 .tier-strip .tier span { display: block; margin-top: 2px; font-family: var(--mono); font-size: 10px; color: var(--muted); }
 .tier-strip .tier.on { background: var(--accent); color: #fff; }
 .tier-strip .tier.on span { color: rgba(255, 255, 255, 0.8); }
+
+/* ---- 라인 아이콘 ---- */
+.ticon { display: block; color: var(--accent); flex: none; }
+.test-row .icon { display: flex; align-items: center; justify-content: center; }
+.result-icon { display: flex; justify-content: center; margin-bottom: 12px; color: var(--accent); }
+.other-tests-links a, .related-links a { display: flex; align-items: center; gap: 10px; }
+.other-tests-links a .ticon, .related-links a .ticon { color: var(--accent); }
+.leaderboard .rank { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--muted); }

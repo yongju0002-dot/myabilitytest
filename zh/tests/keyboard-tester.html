@@ -113,7 +113,7 @@
       <span class="here">键盘测试</span>
       <span class="idx">15 / 15</span>
     </nav>
-    <h1>⌨️ 键盘测试</h1>
+    <h1>键盘测试</h1>
     <p class="sub">请按下按键。被按下的键会亮起,凡是被识别过一次的键会保留绿色边框。</p>
 
     <div class="info-box">
@@ -183,10 +183,10 @@
     <div class="other-tests">
       <div class="label">也来试试其他测试</div>
       <div class="other-tests-links">
-        <a href="/zh/tests/mouse-tester">🖱️ 鼠标测试</a>
-        <a href="/zh/tests/monitor-hz">🖥️ 显示器刷新率</a>
-        <a href="/zh/tests/spacebar-counter">⌨️ 空格键连打</a>
-        <a href="/zh/tests/apm">🎹 APM测试</a>
+        <a href="/zh/tests/mouse-tester"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3a6 6 0 0 1 6 6v6a6 6 0 0 1-12 0V9a6 6 0 0 1 6-6zM12 3v7M6 10h12"></path></svg><span>鼠标测试</span></a>
+        <a href="/zh/tests/monitor-hz"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 4h18v12H3zM8 20h8M12 16v4"></path></svg><span>显示器刷新率</span></a>
+        <a href="/zh/tests/spacebar-counter"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 9h18v6H3zM7 12h10"></path></svg><span>空格键连打</span></a>
+        <a href="/zh/tests/apm"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 20V10M10 20V4M16 20V13M22 20V8"></path></svg><span>APM测试</span></a>
       </div>
     </div>
   </div>
@@ -292,7 +292,7 @@
     if (maxHeld === 0) { v.textContent = ''; return; }
     if (maxHeld <= 2) { v.textContent = `最多同时按下${maxHeld}个 — 再多按一些来确认上限`; v.style.color = 'var(--text-dim)'; }
     else if (maxHeld <= 5) { v.textContent = `最多同时按下${maxHeld}个 — 这个组合可能存在按键冲突`; v.style.color = '#fbbf24'; }
-    else if (maxHeld === 6) { v.textContent = '最多同时按下6个 — 这是USB默认规范(6KRO)的标准值'; v.style.color = '#15803d'; }
+    else if (maxHeld === 6) { v.textContent = '最多同时按下6个 — 这是USB默认规范(6KRO)的标准值'; v.style.color ='#15803d'; }
     else { v.textContent = `最多同时按下${maxHeld}个 — 已超过6键,正以NKRO模式工作`; v.style.color = '#15803d'; }
   }
 
@@ -307,7 +307,7 @@
       if (held.size > maxHeld) maxHeld = held.size;
     }
     const el = codeToEl.get(code);
-    if (el) el.classList.add('down', 'used');
+    if (el) el.classList.add('down','used');
     document.getElementById('lastKey').textContent = `${labelOf.get(code) || e.key} (${code})`;
     render();
   });
@@ -328,8 +328,8 @@
 
   document.getElementById('resetBtn').addEventListener('click', () => {
     held.clear(); used.clear(); totalPresses = 0; maxHeld = 0;
-    document.querySelectorAll('.key').forEach(el => el.classList.remove('down', 'used'));
-    document.getElementById('lastKey').textContent = '-';
+    document.querySelectorAll('.key').forEach(el => el.classList.remove('down','used'));
+    document.getElementById('lastKey').textContent ='-';
     render();
   });
 

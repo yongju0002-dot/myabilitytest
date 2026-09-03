@@ -113,7 +113,7 @@
       <span class="here">키보드 테스트</span>
       <span class="idx">15 / 15</span>
     </nav>
-    <h1>⌨️ 키보드 테스트</h1>
+    <h1>키보드 테스트</h1>
     <p class="sub">키를 눌러보세요. 눌린 키에 불이 들어오고, 한 번이라도 인식된 키는 초록 테두리로 남습니다.</p>
 
     <div class="info-box">
@@ -183,10 +183,10 @@
     <div class="other-tests">
       <div class="label">다른 테스트도 해보세요</div>
       <div class="other-tests-links">
-        <a href="/ko/tests/mouse-tester">🖱️ 마우스 테스트</a>
-        <a href="/ko/tests/monitor-hz">🖥️ 모니터 주사율</a>
-        <a href="/ko/tests/spacebar-counter">⌨️ 스페이스바 연타</a>
-        <a href="/ko/tests/apm">🎹 APM 테스트</a>
+        <a href="/ko/tests/mouse-tester"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3a6 6 0 0 1 6 6v6a6 6 0 0 1-12 0V9a6 6 0 0 1 6-6zM12 3v7M6 10h12"></path></svg><span>마우스 테스트</span></a>
+        <a href="/ko/tests/monitor-hz"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 4h18v12H3zM8 20h8M12 16v4"></path></svg><span>모니터 주사율</span></a>
+        <a href="/ko/tests/spacebar-counter"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 9h18v6H3zM7 12h10"></path></svg><span>스페이스바 연타</span></a>
+        <a href="/ko/tests/apm"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 20V10M10 20V4M16 20V13M22 20V8"></path></svg><span>APM 테스트</span></a>
       </div>
     </div>
   </div>
@@ -292,7 +292,7 @@
     if (maxHeld === 0) { v.textContent = ''; return; }
     if (maxHeld <= 2) { v.textContent = `최대 ${maxHeld}개 동시 입력 — 더 눌러서 한계를 확인해보세요`; v.style.color = 'var(--text-dim)'; }
     else if (maxHeld <= 5) { v.textContent = `최대 ${maxHeld}개 동시 입력 — 고스팅 가능성이 있는 조합일 수 있어요`; v.style.color = '#fbbf24'; }
-    else if (maxHeld === 6) { v.textContent = '최대 6개 동시 입력 — USB 기본 규격(6KRO)의 표준값이에요'; v.style.color = '#15803d'; }
+    else if (maxHeld === 6) { v.textContent = '최대 6개 동시 입력 — USB 기본 규격(6KRO)의 표준값이에요'; v.style.color ='#15803d'; }
     else { v.textContent = `최대 ${maxHeld}개 동시 입력 — 6키를 넘겼어요. NKRO로 동작하고 있습니다`; v.style.color = '#15803d'; }
   }
 
@@ -307,7 +307,7 @@
       if (held.size > maxHeld) maxHeld = held.size;
     }
     const el = codeToEl.get(code);
-    if (el) el.classList.add('down', 'used');
+    if (el) el.classList.add('down','used');
     document.getElementById('lastKey').textContent = `${labelOf.get(code) || e.key} (${code})`;
     render();
   });
@@ -328,8 +328,8 @@
 
   document.getElementById('resetBtn').addEventListener('click', () => {
     held.clear(); used.clear(); totalPresses = 0; maxHeld = 0;
-    document.querySelectorAll('.key').forEach(el => el.classList.remove('down', 'used'));
-    document.getElementById('lastKey').textContent = '-';
+    document.querySelectorAll('.key').forEach(el => el.classList.remove('down','used'));
+    document.getElementById('lastKey').textContent ='-';
     render();
   });
 

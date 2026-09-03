@@ -134,12 +134,12 @@
       <span class="here">Hearing Age Test</span>
       <span class="idx">06 / 15</span>
     </nav>
-    <h1>👂 Hearing Age Test</h1>
+    <h1>Hearing Age Test</h1>
     <p class="sub">Listen as the pitch climbs higher and higher, and see how far you can go.</p>
 
     <div id="introScreen">
       <div class="warn-box">
-        <div class="warn-title">⚠️ Headphones required</div>
+        <div class="warn-title">Headphones required</div>
         Speakers can't reproduce high frequencies accurately, so your result would be meaningless.
         Put on headphones or earbuds before you start.
       </div>
@@ -151,7 +151,7 @@
     <div id="calibScreen" style="display:none;">
       <div class="level-card">
         <div class="label">Set your volume</div>
-        <div class="num" style="font-size:32px;">🔊 1000Hz</div>
+        <div class="num" style="font-size:32px;">1000Hz</div>
         <div class="sub">Adjust your device volume until this is comfortable to hear.<br>Once it's set, press the button below and don't change the volume again.</div>
       </div>
       <div class="btn-row">
@@ -174,7 +174,7 @@
     </div>
 
     <div id="resultPanel" class="result-panel">
-      <div class="emoji">👂</div>
+      <div class="result-icon"><svg class="ticon" viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 9v6M8 6v12M12 3v18M16 6v12M20 9v6"></path></svg></div>
       <h2 id="resultTitle"></h2>
       <div class="desc" id="resultDesc"></div>
       <div class="percentile" id="resultComment"></div>
@@ -190,10 +190,10 @@
         <div class="other-tests">
           <div class="label">Try another ability test</div>
           <div class="other-tests-links">
-            <a href="/en/tests/dynamic-vision">👁️ Dynamic Vision</a>
-            <a href="/en/tests/reaction-time">⚡ Reaction Time</a>
-            <a href="/en/tests/visual-memory">🧠 Visual Memory</a>
-            <a href="/en/tests/chimp-test">🐵 Chimp Test</a>
+            <a href="/en/tests/dynamic-vision"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 12c3-5 7-7 10-7s7 2 10 7c-3 5-7 7-10 7s-7-2-10-7zM9 12a3 3 0 1 0 6 0a3 3 0 1 0-6 0"></path></svg><span>Dynamic Vision</span></a>
+            <a href="/en/tests/reaction-time"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0M9.5 12a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0-5 0"></path></svg><span>Reaction Time</span></a>
+            <a href="/en/tests/visual-memory"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"></path></svg><span>Visual Memory</span></a>
+            <a href="/en/tests/chimp-test"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 14h6v6H3zM9 8h6v6H9zM15 3h6v6h-6z"></path></svg><span>Chimp Test</span></a>
           </div>
         </div>
     </div>
@@ -232,7 +232,7 @@
       <p>Results here depend heavily on your speaker or headphone quality, device volume, how your browser handles audio, and background noise — so treat this as a fun estimate, not a medical measurement. For a more consistent read, try wired headphones in a quiet room.</p>
     </section>
 
-    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 All-Time Top Records (Top 30)</h2>
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">All-Time Top Records (Top 30)</h2>
     <div id="topLeaderboard"></div>
   </div>
 
@@ -297,17 +297,17 @@
   const STEP_DURATION = 4;
 
   const AGE_MAP = [
-    { freq: 20000, age: '18 or younger', comment: 'Even sharper than most people your age.' },
-    { freq: 19000, age: '20', comment: 'Young, healthy hearing.' },
-    { freq: 18000, age: '24', comment: 'Very good.' },
-    { freq: 17000, age: '30', comment: 'Better than average.' },
-    { freq: 16000, age: '35', comment: 'A normal range.' },
-    { freq: 15000, age: '40', comment: 'A normal range.' },
-    { freq: 14000, age: '45', comment: 'A natural range for this age.' },
-    { freq: 12000, age: '50', comment: 'A natural range for this age.' },
-    { freq: 10000, age: '55', comment: 'High frequencies are starting to fade a bit.' },
-    { freq: 8000, age: '60 or older', comment: 'Could also be device or environment related — take it lightly.' },
-    { freq: 0, age: '60 or older', comment: 'Could also be device or environment related — take it lightly.' },
+    { freq: 20000, age: '18 or younger', comment : 'Even sharper than most people your age.' },
+    { freq: 19000, age: '20', comment : 'Young, healthy hearing.' },
+    { freq: 18000, age: '24', comment : 'Very good.' },
+    { freq: 17000, age: '30', comment : 'Better than average.' },
+    { freq: 16000, age: '35', comment : 'A normal range.' },
+    { freq: 15000, age: '40', comment : 'A normal range.' },
+    { freq: 14000, age: '45', comment : 'A natural range for this age.' },
+    { freq: 12000, age: '50', comment : 'A natural range for this age.' },
+    { freq: 10000, age: '55', comment : 'High frequencies are starting to fade a bit.' },
+    { freq: 8000, age: '60 or older', comment : 'Could also be device or environment related — take it lightly.' },
+    { freq: 0, age: '60 or older', comment : 'Could also be device or environment related — take it lightly.' },
   ];
 
   function ageFor(maxHeard) {

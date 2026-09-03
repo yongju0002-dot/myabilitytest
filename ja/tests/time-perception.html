@@ -83,7 +83,7 @@
       <span class="here">時間感覚テスト</span>
       <span class="idx">05 / 15</span>
     </nav>
-    <h1>🧭 時間感覚テスト</h1>
+    <h1>時間感覚テスト</h1>
     <p class="sub">どれくらい経ったか見えないまま時間が流れます。止まったら時間を当ててみましょう!</p>
 
     <div id="setupScreen">
@@ -117,7 +117,7 @@
     </div>
 
     <div id="resultPanel" class="result-panel">
-      <div class="emoji">🏆</div>
+      <div class="result-icon"><svg class="ticon" viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 3h12M6 21h12M7 3c0 6 5 6 5 9s-5 3-5 9M17 3c0 6-5 6-5 9s5 3 5 9"></path></svg></div>
       <h2>最終結果</h2>
       <div class="desc" id="actualReveal"></div>
       <ul class="leaderboard" id="leaderboard"></ul>
@@ -128,10 +128,10 @@
         <div class="other-tests">
           <div class="label">他の能力テストも試してみよう</div>
           <div class="other-tests-links">
-            <a href="/ja/tests/time-stop">⏱️ 時間ストップ</a>
-            <a href="/ja/tests/reaction-time">⚡ 反応速度</a>
-            <a href="/ja/tests/hearing-age">👂 聴力年齢</a>
-            <a href="/ja/tests/click-speed">🖱️ CPSクリック速度</a>
+            <a href="/ja/tests/time-stop"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0M12 7v5h4"></path></svg><span>時間ストップ</span></a>
+            <a href="/ja/tests/reaction-time"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0M9.5 12a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0-5 0"></path></svg><span>反応速度</span></a>
+            <a href="/ja/tests/hearing-age"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 9v6M8 6v12M12 3v18M16 6v12M20 9v6"></path></svg><span>聴力年齢</span></a>
+            <a href="/ja/tests/click-speed"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 3h8a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zM12 3v7"></path></svg><span>CPSクリック速度</span></a>
           </div>
         </div>
     </div>
@@ -158,11 +158,11 @@
       <h2>誤差の見方</h2>
       <table>
         <tr><th>誤差</th><th>評価</th></tr>
-        <tr><td>0.1秒以下</td><td>⏱️ 時間感覚の超能力者</td></tr>
-        <tr><td>0.1~0.3秒</td><td>🎯 正確な時間感覚</td></tr>
-        <tr><td>0.3~0.6秒</td><td>🙂 平均的な時間感覚</td></tr>
-        <tr><td>0.6~1.0秒</td><td>🌀 少しずれている</td></tr>
-        <tr><td>1.0秒超</td><td>🐢 自由な魂</td></tr>
+        <tr><td>0.1秒以下</td><td>時間感覚の超能力者</td></tr>
+        <tr><td>0.1~0.3秒</td><td>正確な時間感覚</td></tr>
+        <tr><td>0.3~0.6秒</td><td>平均的な時間感覚</td></tr>
+        <tr><td>0.6~1.0秒</td><td>少しずれている</td></tr>
+        <tr><td>1.0秒超</td><td>自由な魂</td></tr>
       </table>
 
       <h2>どうやって測定しますか?</h2>
@@ -172,7 +172,7 @@
       <p>心の中でリズムを数えたり(「いち、に、さん…」)、呼吸のリズムを使ったりする人が多いと言われています。ただし、これは純粋な時間知覚というより「数を数える能力」を測っているという見方もあります。本当の感覚だけで挑戦したいなら、数を数えずに試してみるのも面白い方法です。</p>
     </section>
 
-    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 歴代記録ランキング(最大30位)</h2>
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">歴代記録ランキング(最大30位)</h2>
     <div id="topLeaderboard"></div>
   </div>
 
@@ -326,7 +326,7 @@
   }
 
   document.getElementById('submitGuessBtn').addEventListener('click', submitAllGuesses);
-  guessList.addEventListener('keydown', (e) => { if (e.key === 'Enter') submitAllGuesses(); });
+  guessList.addEventListener('keydown', (e) => { if (e.key ==='Enter') submitAllGuesses(); });
 
   function finishGame(results) {
     playScreen.style.display = 'none';
@@ -343,7 +343,7 @@
 
     const lb = document.getElementById('leaderboard');
     lb.innerHTML = sorted.map((r, i) => {
-      const medal = ['🥇', '🥈', '🥉'][i] || (i + 1) + '.';
+      const medal = ['01','02','03'][i] || (i + 1) + '.';
       return `<li class="${i === 0 ? 'winner' : ''}">
         <span class="rank">${medal}</span>
         <span class="lb-name">参加者 ${r.player}</span>

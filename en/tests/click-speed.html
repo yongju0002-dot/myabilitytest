@@ -88,7 +88,7 @@
       <span class="here">CPS Click Speed Test</span>
       <span class="idx">03 / 15</span>
     </nav>
-    <h1>🖱️ CPS Click Speed Test</h1>
+    <h1>CPS Click Speed Test</h1>
     <p class="sub">Click as fast as you can within the time limit!</p>
 
     <div class="mode-select" id="modeSelect">
@@ -114,7 +114,7 @@
     </button>
 
     <div id="resultPanel" class="result-panel">
-      <div class="emoji" id="resultEmoji">🖱️</div>
+      <div class="result-icon"><svg class="ticon" viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 3h8a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zM12 3v7"></path></svg></div>
       <h2 id="resultTitle"></h2>
       <div class="stars" id="resultStars"></div>
       <div class="desc" id="resultDesc"></div>
@@ -127,10 +127,10 @@
       <div class="other-tests">
         <div class="label">Try another ability test</div>
         <div class="other-tests-links">
-          <a href="/en/tests/apm">🎹 APM</a>
-          <a href="/en/tests/mouse-accuracy">🖲️ Mouse Accuracy</a>
-          <a href="/en/tests/spacebar-counter">⌨️ Spacebar Counter</a>
-          <a href="/en/tests/reaction-time">⚡ Reaction Time</a>
+          <a href="/en/tests/apm"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 20V10M10 20V4M16 20V13M22 20V8"></path></svg><span>APM</span></a>
+          <a href="/en/tests/mouse-accuracy"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 17c3 0 3-10 6-10s3 10 6 10 3-10 6-10"></path></svg><span>Mouse Accuracy</span></a>
+          <a href="/en/tests/spacebar-counter"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 9h18v6H3zM7 12h10"></path></svg><span>Spacebar Counter</span></a>
+          <a href="/en/tests/reaction-time"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0M9.5 12a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0-5 0"></path></svg><span>Reaction Time</span></a>
         </div>
       </div>
     </div>
@@ -193,11 +193,11 @@
     <div class="side-panel" id="ladderPanel"></div>
     <div class="side-panel" id="achPanel"></div>
     <div class="side-panel">
-      <div class="ach-head">🕒 Recent runs</div>
+      <div class="ach-head">Recent runs</div>
       <div id="recentPanel"></div>
     </div>
 
-    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 All-Time Top Records (Top 30)</h2>
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">All-Time Top Records (Top 30)</h2>
     <div id="topLeaderboard"></div>
   </div>
 
@@ -271,52 +271,52 @@
   // community convention, not official statistics.
   const MODES = [
     {
-      key: 'classic', label: 'Classic',
+      key: 'classic', label : 'Classic',
       hint: "Normal clicking with one index finger. Pick the technique you actually use and you'll be graded on that technique's scale.",
       grades: [
-        { key: 'SS', min: 12, label: 'SS · Ultra fast', persona: '🖱️ Click Machine' },
-        { key: 'S', min: 10, label: 'S · Very fast', persona: '⚡ Speed Clicker' },
-        { key: 'A', min: 8, label: 'A · Fast', persona: '🎯 Quick Hand' },
-        { key: 'B', min: 6, label: 'B · Above average', persona: '👍 Steady Hand' },
-        { key: 'C', min: 4, label: 'C · Average', persona: '🙂 Average Clicker' },
-        { key: 'D', min: 2, label: 'D · Relaxed', persona: '🐢 Easygoing Clicker' },
-        { key: 'F', min: 0, label: 'F · Very relaxed', persona: '🌙 Just Here to Watch' },
+        { key: 'SS', min: 12, label : 'SS · Ultra fast', persona : 'Click Machine' },
+        { key: 'S', min: 10, label : 'S · Very fast', persona : 'Speed Clicker' },
+        { key: 'A', min: 8, label : 'A · Fast', persona : 'Quick Hand' },
+        { key: 'B', min: 6, label : 'B · Above average', persona : 'Steady Hand' },
+        { key: 'C', min: 4, label : 'C · Average', persona : 'Average Clicker' },
+        { key: 'D', min: 2, label : 'D · Relaxed', persona : 'Easygoing Clicker' },
+        { key: 'F', min: 0, label : 'F · Very relaxed', persona : 'Just Here to Watch' },
       ],
     },
     {
-      key: 'jitter', label: 'Jitter',
+      key: 'jitter', label : 'Jitter',
       hint: 'Tensing your arm and wrist to vibrate the click. Your result also shows click-interval consistency. Hard on the wrist, so don’t overdo it.',
       grades: [
-        { key: 'SS', min: 13, label: 'SS · Jitter master', persona: '🌀 Jitter Master' },
-        { key: 'S', min: 11, label: 'S · Very fast', persona: '⚡ Vibration Expert' },
-        { key: 'A', min: 9, label: 'A · Fast', persona: '🎯 Skilled Wrist' },
-        { key: 'B', min: 7, label: 'B · Above average', persona: '👍 Steady Wrist' },
-        { key: 'C', min: 5, label: 'C · Average', persona: '🙂 Average Wrist' },
-        { key: 'D', min: 0, label: 'D · Needs practice', persona: '🐢 Wrist in Training' },
+        { key: 'SS', min: 13, label : 'SS · Jitter master', persona : 'Jitter Master' },
+        { key: 'S', min: 11, label : 'S · Very fast', persona : 'Vibration Expert' },
+        { key: 'A', min: 9, label : 'A · Fast', persona : 'Skilled Wrist' },
+        { key: 'B', min: 7, label : 'B · Above average', persona : 'Steady Wrist' },
+        { key: 'C', min: 5, label : 'C · Average', persona : 'Average Wrist' },
+        { key: 'D', min: 0, label : 'D · Needs practice', persona : 'Wrist in Training' },
       ],
     },
     {
-      key: 'butterfly', label: 'Butterfly',
+      key: 'butterfly', label : 'Butterfly',
       hint: 'Alternating your index and middle finger. The steadier your rhythm, the more consistent your CPS.',
       grades: [
-        { key: 'SS', min: 20, label: 'SS · Butterfly master', persona: '🦋 Butterfly Master' },
-        { key: 'S', min: 16, label: 'S · Very fast', persona: '⚡ Two-Finger Expert' },
-        { key: 'A', min: 13, label: 'A · Fast', persona: '🎯 Rhythm Clicker' },
-        { key: 'B', min: 10, label: 'B · Above average', persona: '👍 Steady Alternator' },
-        { key: 'C', min: 7, label: 'C · Average', persona: '🙂 Average Alternator' },
-        { key: 'D', min: 0, label: 'D · Needs practice', persona: '🐢 Fingers in Training' },
+        { key: 'SS', min: 20, label : 'SS · Butterfly master', persona : 'Butterfly Master' },
+        { key: 'S', min: 16, label : 'S · Very fast', persona : 'Two-Finger Expert' },
+        { key: 'A', min: 13, label : 'A · Fast', persona : 'Rhythm Clicker' },
+        { key: 'B', min: 10, label : 'B · Above average', persona : 'Steady Alternator' },
+        { key: 'C', min: 7, label : 'C · Average', persona : 'Average Alternator' },
+        { key: 'D', min: 0, label : 'D · Needs practice', persona : 'Fingers in Training' },
       ],
     },
     {
-      key: 'drag', label: 'Drag',
+      key: 'drag', label : 'Drag',
       hint: 'Dragging a finger across the button so friction fires repeated clicks. Results vary a lot by mouse.',
       grades: [
-        { key: 'SS', min: 40, label: 'SS · Drag master', persona: '🔥 Drag Overdrive' },
-        { key: 'S', min: 30, label: 'S · Very fast', persona: '⚡ Friction Expert' },
-        { key: 'A', min: 22, label: 'A · Fast', persona: '🎯 Skilled Dragger' },
-        { key: 'B', min: 15, label: 'B · Above average', persona: '👍 Getting the Hang of It' },
-        { key: 'C', min: 8, label: 'C · Average', persona: '🙂 Average Dragger' },
-        { key: 'D', min: 0, label: 'D · Needs practice', persona: '🐢 Drag Beginner' },
+        { key: 'SS', min: 40, label : 'SS · Drag master', persona : 'Drag Overdrive' },
+        { key: 'S', min: 30, label : 'S · Very fast', persona : 'Friction Expert' },
+        { key: 'A', min: 22, label : 'A · Fast', persona : 'Skilled Dragger' },
+        { key: 'B', min: 15, label : 'B · Above average', persona : 'Getting the Hang of It' },
+        { key: 'C', min: 8, label : 'C · Average', persona : 'Average Dragger' },
+        { key: 'D', min: 0, label : 'D · Needs practice', persona : 'Drag Beginner' },
       ],
     },
   ];
@@ -366,8 +366,8 @@
       localStorage.removeItem(oldKey);
       saveStats(STORE_KEY, allStats);
     };
-    mergeStats('skillJitterClickStats', 'jitter_10');
-    mergeStats('skillKohiClickStats', '10');
+    mergeStats('skillJitterClickStats','jitter_10');
+    mergeStats('skillKohiClickStats','10');
     const kohiLb = loadStats('skillKohiClickLeaderboardV1', null);
     if (kohiLb && kohiLb.length) {
       kohiLb.forEach(e => addToLeaderboard(LB_KEYS.classic, { value: e.value, duration: 10, date: e.date }, false));
@@ -516,7 +516,7 @@
     const grade = gradeFor(cps);
     const stars = starsFor(grade);
     document.getElementById('resultTitle').textContent = cps.toFixed(1) + ' CPS';
-    document.getElementById('resultStars').textContent = '★'.repeat(stars) + '☆'.repeat(5 - stars);
+    document.getElementById('resultStars').textContent ='★'.repeat(stars) + '☆'.repeat(5 - stars);
     document.getElementById('resultDesc').textContent = `${clicks} clicks / ${duration}s · ${mode.label} — ${grade.label}`;
 
     // Peak second (the old Kohi stat) + click consistency in jitter mode (the old jitter stat)
@@ -543,12 +543,12 @@
   // ---- 업적 정의: 이미 현지화된 MODES/grades에서 자동 생성 ----
   const ACH_KEY = 'skillCps';
   const ACH_DEFS = (() => {
-    const defs = [{ id: 'first', label: 'First run' }];
+    const defs = [{ id: 'first', label : 'First run' }];
     [1, 5, 10, 25, 50].forEach(n => defs.push({ id: 'plays' + n, label: n + ' plays' }));
     MODES.forEach(m => m.grades.forEach(g => {
       defs.push({ id: `${m.key}_${g.key}`, label: `${m.label} · ${g.key}` , hint: `${m.label} · ${g.label}` });
     }));
-    defs.push({ id: 'allmodes', label: 'Tried all 4 techniques' });
+    defs.push({ id: 'allmodes', label : 'Tried all 4 techniques' });
     return defs;
   })();
 
@@ -581,7 +581,7 @@
     renderRankLadder('ladderPanel', mode.grades, bestForMode(), {
       title: `${mode.label} Rank`, unit: ' CPS', digits: 1,
     });
-    renderAchievements('achPanel', ACH_KEY, ACH_DEFS, '🏅 Achievements');
+    renderAchievements('achPanel', ACH_KEY, ACH_DEFS,'Achievements');
     renderRecentRecords('recentPanel', loadStats(ACH_KEY + '_recent', []),
       e => `${e.cps.toFixed(1)} CPS · ${e.mode} · ${e.duration}s`, 'No runs yet');
   }
@@ -609,7 +609,7 @@
       if (finished) {
         finished = false;
         resultPanel.classList.remove('show');
-        setPad('START', '', false);
+        setPad('START','', false);
         timeLeftEl.textContent = duration.toFixed(1);
         clickCountLine.textContent = 'Clicks: 0 · Live CPS: 0.0';
         graphCtx.clearRect(0, 0, graphCanvas.width, graphCanvas.height);
@@ -633,7 +633,7 @@
     finished = false;
     samples = [];
     resultPanel.classList.remove('show');
-    setPad('START', '', false);
+    setPad('START','', false);
     timeLeftEl.textContent = duration.toFixed(1);
     clickCountLine.textContent = 'Clicks: 0 · Live CPS: 0.0';
     graphCtx.clearRect(0, 0, graphCanvas.width, graphCanvas.height);

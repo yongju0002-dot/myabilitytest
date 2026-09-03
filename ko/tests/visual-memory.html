@@ -84,7 +84,7 @@
       <span class="here">순간 기억력 테스트</span>
       <span class="idx">02 / 15</span>
     </nav>
-    <h1>🧠 순간 기억력 테스트</h1>
+    <h1>순간 기억력 테스트</h1>
     <p class="sub">초록색으로 표시된 칸의 위치를 기억한 뒤, 같은 칸을 클릭하세요.</p>
 
     <div class="mode-select" id="modeSelect">
@@ -108,7 +108,7 @@
     </div>
 
     <div id="resultPanel" class="result-panel">
-      <div class="emoji">💥</div>
+      <div class="result-icon"><svg class="ticon" viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"></path></svg></div>
       <h2 id="resultTitle"></h2>
       <div class="stars" id="resultStars"></div>
       <div class="desc" id="resultDesc"></div>
@@ -122,10 +122,10 @@
         <div class="other-tests">
           <div class="label">다른 능력 테스트도 해보세요</div>
           <div class="other-tests-links">
-            <a href="/ko/tests/chimp-test">🐵 침팬지 테스트</a>
-            <a href="/ko/tests/reaction-time">⚡ 반응 속도</a>
-            <a href="/ko/tests/dynamic-vision">👁️ 동체시력</a>
-            <a href="/ko/tests/click-speed">🖱️ CPS 클릭 속도</a>
+            <a href="/ko/tests/chimp-test"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 14h6v6H3zM9 8h6v6H9zM15 3h6v6h-6z"></path></svg><span>침팬지 테스트</span></a>
+            <a href="/ko/tests/reaction-time"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0M9.5 12a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0-5 0"></path></svg><span>반응 속도</span></a>
+            <a href="/ko/tests/dynamic-vision"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 12c3-5 7-7 10-7s7 2 10 7c-3 5-7 7-10 7s-7-2-10-7zM9 12a3 3 0 1 0 6 0a3 3 0 1 0-6 0"></path></svg><span>동체시력</span></a>
+            <a href="/ko/tests/click-speed"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 3h8a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zM12 3v7"></path></svg><span>CPS 클릭 속도</span></a>
           </div>
         </div>
     </div>
@@ -133,7 +133,7 @@
     <div class="side-panel" id="ladderPanel"></div>
     <div class="side-panel" id="achPanel"></div>
     <div class="side-panel">
-      <div class="ach-head">🕒 최근 기록</div>
+      <div class="ach-head">최근 기록</div>
       <div id="recentPanel"></div>
     </div>
 
@@ -175,7 +175,7 @@
       <p>심리학에서 흔히 이야기하는 청킹(chunking) 기법이 도움이 됩니다. 칸 하나하나를 따로 외우기보다, 화면에 표시된 모양을 하나의 패턴(예: 삼각형, 대각선, 십자 모양)으로 묶어서 인식하면 더 많은 칸을 한 번에 기억할 수 있어요. 시선을 화면 중앙에 고정하고 주변시야로 전체 배치를 파악하는 연습도 도움이 된다고 알려져 있습니다.</p>
     </section>
 
-    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 역대 기록 순위 (최대 30위)</h2>
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">역대 기록 순위 (최대 30위)</h2>
     <div id="topLeaderboard"></div>
   </div>
 
@@ -234,14 +234,14 @@
 <script>
   const ACH_KEY = 'skillMemoryAchV1';
   const MODES = [
-    { key: 'classic', label: '클래식', fixed: null, hint: '레벨이 오르면 격자도 함께 커집니다. 기본 모드예요.' },
-    { key: 'g4', label: '4×4', fixed: 4, hint: '16칸 고정. 격자가 작아 칸이 빠르게 빽빽해집니다.' },
-    { key: 'g5', label: '5×5', fixed: 5, hint: '25칸 고정. 균형 잡힌 난이도예요.' },
-    { key: 'g6', label: '6×6', fixed: 6, hint: '36칸 고정. 넓은 화면을 한 번에 훑어야 합니다.' },
+    { key: 'classic', label : '클래식', fixed: null, hint : '레벨이 오르면 격자도 함께 커집니다. 기본 모드예요.' },
+    { key: 'g4', label : '4×4', fixed: 4, hint : '16칸 고정. 격자가 작아 칸이 빠르게 빽빽해집니다.' },
+    { key: 'g5', label : '5×5', fixed: 5, hint : '25칸 고정. 균형 잡힌 난이도예요.' },
+    { key: 'g6', label : '6×6', fixed: 6, hint : '36칸 고정. 넓은 화면을 한 번에 훑어야 합니다.' },
   ];
   // 클래식은 기존 저장 키를 그대로 써서 예전 기록을 유지합니다.
-  const LB_KEYS = { classic: 'skillMemoryLeaderboardV1', g4: 'skillMemoryLbG4V1', g5: 'skillMemoryLbG5V1', g6: 'skillMemoryLbG6V1' };
-  const STAT_KEYS = { classic: 'skillMemoryStats', g4: 'skillMemoryStatsG4', g5: 'skillMemoryStatsG5', g6: 'skillMemoryStatsG6' };
+  const LB_KEYS = { classic: 'skillMemoryLeaderboardV1', g4 : 'skillMemoryLbG4V1', g5 : 'skillMemoryLbG5V1', g6 : 'skillMemoryLbG6V1' };
+  const STAT_KEYS = { classic: 'skillMemoryStats', g4 : 'skillMemoryStatsG4', g5 : 'skillMemoryStatsG5', g6 : 'skillMemoryStatsG6' };
 
   let mode = MODES[0];
   let stats = loadStats(STAT_KEYS[mode.key], { count: 0, best: 0 });
@@ -290,13 +290,13 @@
   }
 
   const GRADES = [
-    { key: 'SS', min: 20, label: 'SS · 천재적', persona: '🧠 천재적 기억술사' },
-    { key: 'S', min: 16, label: 'S · 뛰어남', persona: '✨ 비상한 기억력' },
-    { key: 'A', min: 13, label: 'A · 훌륭함', persona: '🎯 뛰어난 기억력' },
-    { key: 'B', min: 9, label: 'B · 좋음', persona: '🙂 좋은 기억력' },
-    { key: 'C', min: 5, label: 'C · 평범', persona: '😐 평범한 기억력' },
-    { key: 'D', min: 2, label: 'D · 아쉬움', persona: '🌀 아쉬운 기억력' },
-    { key: 'F', min: 0, label: 'F · 초반 탈락', persona: '🐌 초반 탈락형' },
+    { key: 'SS', min: 20, label : 'SS · 천재적', persona : '천재적 기억술사' },
+    { key: 'S', min: 16, label : 'S · 뛰어남', persona : '비상한 기억력' },
+    { key: 'A', min: 13, label : 'A · 훌륭함', persona : '뛰어난 기억력' },
+    { key: 'B', min: 9, label : 'B · 좋음', persona : '좋은 기억력' },
+    { key: 'C', min: 5, label : 'C · 평범', persona : '평범한 기억력' },
+    { key: 'D', min: 2, label : 'D · 아쉬움', persona : '아쉬운 기억력' },
+    { key: 'F', min: 0, label : 'F · 초반 탈락', persona : '초반 탈락형' },
   ];
 
   function gradeFor(lv) {
@@ -356,14 +356,14 @@
     if (locked || over || cell.classList.contains('disabled')) return;
 
     if (targets.has(i)) {
-      cell.classList.add('disabled', 'picked-correct');
+      cell.classList.add('disabled','picked-correct');
       remaining.delete(i);
       if (remaining.size === 0) {
         locked = true;
         setTimeout(() => { level += 1; buildGrid(); showTargets(); }, 600);
       }
     } else {
-      cell.classList.add('disabled', 'picked-wrong');
+      cell.classList.add('disabled','picked-wrong');
       locked = true;
       targets.forEach(idx => grid.children[idx].classList.add('show-target'));
       [...grid.children].forEach(c => c.classList.add('disabled'));
@@ -373,12 +373,12 @@
 
   // ---- 업적 / 사다리 / 최근 기록 ----
   const ACH_DEFS = (() => {
-    const defs = [{ id: 'first', label: '첫 도전' }];
+    const defs = [{ id: 'first', label : '첫 도전' }];
     [1, 5, 10, 25, 50].forEach(n => defs.push({ id: 'plays' + n, label: n + '회 플레이' }));
     MODES.forEach(m => GRADES.forEach(g => {
       defs.push({ id: `${m.key}_${g.key}`, label: `${m.label} · ${g.label}` });
     }));
-    defs.push({ id: 'allmodes', label: '4개 모드 모두 체험' });
+    defs.push({ id: 'allmodes', label : '4개 모드 모두 체험' });
     return defs;
   })();
 
@@ -400,7 +400,7 @@
   function renderPanels() {
     renderRankLadder('ladderPanel', GRADES.map(g => ({ key: g.key, label: g.label, min: g.min })),
       stats.best || null, { title: `${mode.label} 랭크`, unit: '레벨', digits: 0 });
-    renderAchievements('achPanel', ACH_KEY, ACH_DEFS, '🏅 업적');
+    renderAchievements('achPanel', ACH_KEY, ACH_DEFS,'업적');
     renderRecentRecords('recentPanel', loadStats(ACH_KEY + '_recent', []),
       e => `${e.level}레벨 · ${e.mode} · ${e.tiles}칸`, '아직 기록이 없어요');
   }
@@ -417,7 +417,7 @@
     startRow.style.display = '';
     grid.innerHTML = '';
     grid.style.gridTemplateColumns = '';
-    document.getElementById('levelNum').textContent = '1';
+    document.getElementById('levelNum').textContent ='1';
     document.getElementById('tilesSub').textContent = `기억할 칸: ${tilesFor(1)}개`;
     renderStats();
     renderTopLeaderboard(loadStats(LB_KEYS[mode.key], []));
@@ -439,7 +439,7 @@
     const grade = gradeFor(reached);
     const stars = starsFor(reached);
     document.getElementById('resultTitle').textContent = reached + '레벨에서 실패!';
-    document.getElementById('resultStars').textContent = '★'.repeat(stars) + '☆'.repeat(5 - stars);
+    document.getElementById('resultStars').textContent ='★'.repeat(stars) + '☆'.repeat(5 - stars);
     document.getElementById('resultDesc').textContent = tilesFor(reached) + '개의 칸을 기억해야 했어요.';
     document.getElementById('resultPercentile').textContent = rankText(reached);
     document.getElementById('personaLabel').textContent = grade.persona;

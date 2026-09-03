@@ -83,7 +83,7 @@
       <span class="here">Dynamic Vision Test</span>
       <span class="idx">07 / 15</span>
     </nav>
-    <h1>👁️ Dynamic Vision Test</h1>
+    <h1>Dynamic Vision Test</h1>
     <p class="sub">A number flashes for a split second — type it in. Get it right and it gets faster.</p>
 
     <div id="introScreen">
@@ -113,7 +113,7 @@
     </div>
 
     <div id="resultPanel" class="result-panel">
-      <div class="emoji">👁️</div>
+      <div class="result-icon"><svg class="ticon" viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 12c3-5 7-7 10-7s7 2 10 7c-3 5-7 7-10 7s-7-2-10-7zM9 12a3 3 0 1 0 6 0a3 3 0 1 0-6 0"></path></svg></div>
       <h2 id="resultTitle"></h2>
       <div class="desc" id="resultDesc"></div>
       <div class="percentile" id="resultNote"></div>
@@ -126,10 +126,10 @@
         <div class="other-tests">
           <div class="label">Try another ability test</div>
           <div class="other-tests-links">
-            <a href="/en/tests/hearing-age">👂 Hearing Age</a>
-            <a href="/en/tests/aim-trainer">🎯 Aim Test</a>
-            <a href="/en/tests/visual-memory">🧠 Visual Memory</a>
-            <a href="/en/tests/reaction-time">⚡ Reaction Time</a>
+            <a href="/en/tests/hearing-age"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 9v6M8 6v12M12 3v18M16 6v12M20 9v6"></path></svg><span>Hearing Age</span></a>
+            <a href="/en/tests/aim-trainer"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0M12 2v4M12 18v4M2 12h4M18 12h4"></path></svg><span>Aim Test</span></a>
+            <a href="/en/tests/visual-memory"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"></path></svg><span>Visual Memory</span></a>
+            <a href="/en/tests/reaction-time"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0M9.5 12a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0-5 0"></path></svg><span>Reaction Time</span></a>
           </div>
         </div>
     </div>
@@ -167,7 +167,7 @@
       <p>Dynamic vision is partly natural, but it's also believed to improve somewhat through repeated visual training and experience with games and sports. That said, results here depend on your screen's refresh rate, device performance, and how alert you are — so treat it as a fun estimate.</p>
     </section>
 
-    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 All-Time Top Records (Top 30)</h2>
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">All-Time Top Records (Top 30)</h2>
     <div id="topLeaderboard"></div>
   </div>
 
@@ -229,11 +229,11 @@
   let stats = loadStats(STORE_KEY, { count: 0, best: null, sum: 0, scoredCount: 0 });
 
   const GRADES = [
-    { key: 'PRO', max: 50, label: 'Pro gamer tier' },
-    { key: 'TOP', max: 80, label: 'Top tier' },
-    { key: 'GREAT', max: 130, label: 'Great' },
-    { key: 'GOOD', max: 200, label: 'Good' },
-    { key: 'NORMAL', max: Infinity, label: 'Average' },
+    { key: 'PRO', max: 50, label : 'Pro gamer tier' },
+    { key: 'TOP', max: 80, label : 'Top tier' },
+    { key: 'GREAT', max: 130, label : 'Great' },
+    { key: 'GOOD', max: 200, label : 'Good' },
+    { key: 'NORMAL', max: Infinity, label : 'Average' },
   ];
 
   function gradeFor(ms) {
@@ -364,7 +364,7 @@
   }
 
   document.getElementById('submitBtn').addEventListener('click', submitAnswer);
-  answerInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') submitAnswer(); });
+  answerInput.addEventListener('keydown', (e) => { if (e.key ==='Enter') submitAnswer(); });
 
   function recordRound(correct) {
     history.push({ round: roundIndex, exposureMs, actualMs: lastActualMs, correct });
@@ -433,9 +433,9 @@
 
     if (bestScore === null) {
       document.getElementById('resultTitle').textContent = "You didn't get any right";
-      document.getElementById('resultDesc').textContent = 'No score this time — give it another shot!';
-      document.getElementById('resultNote').textContent = '';
-      document.getElementById('gradeTable').innerHTML = '';
+      document.getElementById('resultDesc').textContent ='No score this time — give it another shot!';
+      document.getElementById('resultNote').textContent ='';
+      document.getElementById('gradeTable').innerHTML ='';
       resultPanel.classList.add('show');
       resultPanel.dataset.share = '';
       return;
@@ -444,7 +444,7 @@
     const grade = gradeFor(bestScore);
     document.getElementById('resultTitle').textContent = `Shortest exposure you read: ${Math.round(bestScore)}ms`;
     document.getElementById('resultDesc').textContent = `Reached round ${roundIndex} · ${grade.label}`;
-    document.getElementById('resultNote').textContent = reason === 'device-limit'
+    document.getElementById('resultNote').textContent = reason ==='device-limit'
       ? "You got everything right and hit this device's measurement limit (~20ms)! Impressive."
       : '';
     renderGradeTable(bestScore);

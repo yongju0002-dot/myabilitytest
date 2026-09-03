@@ -109,7 +109,7 @@
       <span class="here">空格键连打测试</span>
       <span class="idx">10 / 15</span>
     </nav>
-    <h1>⌨️ 空格键连打测试</h1>
+    <h1>空格键连打测试</h1>
     <p class="sub">在限定时间内尽可能多地按下空格键!</p>
 
     <div class="duration-select" id="durationSelect"></div>
@@ -122,7 +122,7 @@
     <button class="space-pad" id="spacePad"><div class="pad-main">按空格键开始</div><div class="pad-sub">(手机上请点击此区域)</div></button>
 
     <div id="resultPanel" class="result-panel">
-      <div class="emoji">⌨️</div>
+      <div class="result-icon"><svg class="ticon" viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 9h18v6H3zM7 12h10"></path></svg></div>
       <h2 id="resultTitle"></h2>
       <div class="stars" id="resultStars"></div>
       <div class="desc" id="resultDesc"></div>
@@ -136,10 +136,10 @@
         <div class="other-tests">
           <div class="label">也来试试其他能力测试</div>
           <div class="other-tests-links">
-            <a href="/zh/tests/click-speed">🖱️ CPS点击速度</a>
-            <a href="/zh/tests/apm">🎹 APM</a>
-            <a href="/zh/tests/mouse-accuracy">🖲️ 鼠标精准度</a>
-            <a href="/zh/tests/aim-trainer">🎯 瞄准测试</a>
+            <a href="/zh/tests/click-speed"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 3h8a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zM12 3v7"></path></svg><span>CPS点击速度</span></a>
+            <a href="/zh/tests/apm"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 20V10M10 20V4M16 20V13M22 20V8"></path></svg><span>APM</span></a>
+            <a href="/zh/tests/mouse-accuracy"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 17c3 0 3-10 6-10s3 10 6 10 3-10 6-10"></path></svg><span>鼠标精准度</span></a>
+            <a href="/zh/tests/aim-trainer"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0M12 2v4M12 18v4M2 12h4M18 12h4"></path></svg><span>瞄准测试</span></a>
           </div>
         </div>
     </div>
@@ -178,13 +178,13 @@
       <p>本测试会<strong>忽略长按时产生的自动重复输入</strong>,只统计真正按下再松开的次数。键盘的轴体类型(薄膜、机械)以及键程深浅也会影响结果。</p>
     </section>
 
-    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 历代记录排行(最多30位)</h2>
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">历代记录排行(最多30位)</h2>
     <div id="topLeaderboard"></div>
 <h2 style="text-align:center; font-size:15px; margin-top:28px;">其他点击测试</h2>
     <div class="related-links">
-      <a href="/zh/tests/click-speed">🖱️ CPS点击速度</a>
-      <a href="/zh/tests/apm">🎹 APM测试</a>
-      <a href="/zh/tests/mouse-accuracy">🖲️ 鼠标精准度</a>
+      <a href="/zh/tests/click-speed"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 3h8a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zM12 3v7"></path></svg><span>CPS点击速度</span></a>
+      <a href="/zh/tests/apm"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 20V10M10 20V4M16 20V13M22 20V8"></path></svg><span>APM测试</span></a>
+      <a href="/zh/tests/mouse-accuracy"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 17c3 0 3-10 6-10s3 10 6 10 3-10 6-10"></path></svg><span>鼠标精准度</span></a>
     </div>
   </div>
 
@@ -248,12 +248,12 @@
   let allStats = loadStats(STORE_KEY, {});
 
   const GRADES = [
-    { key: 'SS', min: 9, label: 'SS · 超高速' },
-    { key: 'S', min: 7.5, label: 'S · 非常快' },
-    { key: 'A', min: 6, label: 'A · 快' },
-    { key: 'B', min: 4.5, label: 'B · 高于平均' },
-    { key: 'C', min: 3, label: 'C · 平均' },
-    { key: 'D', min: 0, label: 'D · 慢悠悠' },
+    { key: 'SS', min: 9, label : 'SS · 超高速' },
+    { key: 'S', min: 7.5, label : 'S · 非常快' },
+    { key: 'A', min: 6, label : 'A · 快' },
+    { key: 'B', min: 4.5, label : 'B · 高于平均' },
+    { key: 'C', min: 3, label : 'C · 平均' },
+    { key: 'D', min: 0, label : 'D · 慢悠悠' },
   ];
 
   function gradeFor(rate) {
@@ -302,7 +302,7 @@
         renderDurationButtons();
         timeLeftEl.textContent = duration.toFixed(1);
         renderStats();
-        renderTopLeaderboard(loadStats(LB_KEY + '_' + bucketKey(duration, inputMode || 'keyboard'), []));
+        renderTopLeaderboard(loadStats(LB_KEY + '_' + bucketKey(duration, inputMode ||'keyboard'), []));
       });
       durationSelect.appendChild(btn);
     });
@@ -362,7 +362,7 @@
 
   // Keyboard: ignore auto-repeat from holding the key down, and stop the page scrolling.
   window.addEventListener('keydown', (e) => {
-    if (e.code !== 'Space' && e.key !== ' ') return;
+    if (e.code !== 'Space' && e.key !==' ') return;
     e.preventDefault();
     if (e.repeat) return;
     registerPress('keyboard');
@@ -386,7 +386,7 @@
     finished = true;
     cancelAnimationFrame(rafId);
     timeLeftEl.textContent = '0.0';
-    setPad('完成!', '点击下方按钮重新开始', false);
+    setPad('完成!','点击下方按钮重新开始', false);
     document.getElementById('chartContainer').innerHTML =
       buildCpsLineChart(perSecondCps(timestamps, startTime, duration));
     renderGradeTable(rate);
@@ -409,7 +409,7 @@
     finished = false;
     inputMode = null;
     resultPanel.classList.remove('show');
-    setPad('按空格键开始', '(手机上请点击此区域)', false);
+    setPad('按空格键开始','(手机上请点击此区域)', false);
     timeLeftEl.textContent = duration.toFixed(1);
     countLine.textContent = '按下次数: 0 · 每秒: 0.0';
   });
@@ -420,7 +420,7 @@
 
   renderDurationButtons();
   renderStats();
-  renderTopLeaderboard(loadStats(LB_KEY + '_' + bucketKey(duration, 'keyboard'), []));
+  renderTopLeaderboard(loadStats(LB_KEY + '_' + bucketKey(duration,'keyboard'), []));
 </script>
 </body>
 </html>

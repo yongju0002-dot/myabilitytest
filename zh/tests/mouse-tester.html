@@ -133,11 +133,11 @@
       <span class="here">鼠标测试</span>
       <span class="idx">14 / 15</span>
     </nav>
-    <h1>🖱️ 鼠标测试</h1>
+    <h1>鼠标测试</h1>
     <p class="sub">检查按键和滚轮是否正常,有没有双击失灵。</p>
 
     <div class="info-box">
-      💻 请在下方鼠标图上按各个按键。被按下的键会亮起,凡是被识别过一次的键会保留绿色边框。
+      请在下方鼠标图上按各个按键。被按下的键会亮起,凡是被识别过一次的键会保留绿色边框。
     </div>
 
     <div class="mouse-stage" id="mouseStage">
@@ -220,10 +220,10 @@
     <div class="other-tests">
       <div class="label">也来试试其他测试</div>
       <div class="other-tests-links">
-        <a href="/zh/tests/keyboard-tester">⌨️ 键盘测试</a>
-        <a href="/zh/tests/monitor-hz">🖥️ 显示器刷新率</a>
-        <a href="/zh/tests/click-speed">🖱️ CPS点击速度</a>
-        <a href="/zh/tests/mouse-accuracy">🖲️ 鼠标精准度</a>
+        <a href="/zh/tests/keyboard-tester"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 6h20v12H2zM6 10h1M10 10h1M14 10h1M18 10h1M7 14h10"></path></svg><span>键盘测试</span></a>
+        <a href="/zh/tests/monitor-hz"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 4h18v12H3zM8 20h8M12 16v4"></path></svg><span>显示器刷新率</span></a>
+        <a href="/zh/tests/click-speed"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 3h8a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zM12 3v7"></path></svg><span>CPS点击速度</span></a>
+        <a href="/zh/tests/mouse-accuracy"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 17c3 0 3-10 6-10s3 10 6 10 3-10 6-10"></path></svg><span>鼠标精准度</span></a>
       </div>
     </div>
   </div>
@@ -334,7 +334,7 @@
   function flash(i) {
     const el = document.getElementById('btn' + i);
     if (!el) return;
-    el.classList.add('active', 'used');
+    el.classList.add('active','used');
     setTimeout(() => el.classList.remove('active'), 130);
   }
 
@@ -372,7 +372,7 @@
   document.getElementById('resetBtn').addEventListener('click', () => {
     counts = { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0 };
     totalClicks = 0; wheelCount = 0; lastLeftTs = 0; chatters = [];
-    document.querySelectorAll('.mbtn').forEach(el => el.classList.remove('used', 'active'));
+    document.querySelectorAll('.mbtn').forEach(el => el.classList.remove('used','active'));
     renderReport();
     renderChatter();
   });

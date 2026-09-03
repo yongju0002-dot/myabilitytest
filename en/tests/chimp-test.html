@@ -86,7 +86,7 @@
       <span class="here">Chimp Test</span>
       <span class="idx">08 / 15</span>
     </nav>
-    <h1>🐵 Chimp Test</h1>
+    <h1>Chimp Test</h1>
     <p class="sub">Numbers appear at once, then hide the moment you click the first one. Click them back in order.</p>
 
     <div id="introScreen">
@@ -110,7 +110,7 @@
     </div>
 
     <div id="resultPanel" class="result-panel">
-      <div class="emoji">🐵</div>
+      <div class="result-icon"><svg class="ticon" viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 14h6v6H3zM9 8h6v6H9zM15 3h6v6h-6z"></path></svg></div>
       <h2 id="resultTitle"></h2>
       <div class="desc" id="resultDesc"></div>
       <div class="percentile" id="resultCompare">Ayumu the chimpanzee got 9 right with 80% accuracy.</div>
@@ -122,10 +122,10 @@
         <div class="other-tests">
           <div class="label">Try another ability test</div>
           <div class="other-tests-links">
-            <a href="/en/tests/visual-memory">🧠 Visual Memory</a>
-            <a href="/en/tests/aim-trainer">🎯 Aim Test</a>
-            <a href="/en/tests/reaction-time">⚡ Reaction Time</a>
-            <a href="/en/tests/click-speed">🖱️ CPS Click Speed</a>
+            <a href="/en/tests/visual-memory"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"></path></svg><span>Visual Memory</span></a>
+            <a href="/en/tests/aim-trainer"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0M12 2v4M12 18v4M2 12h4M18 12h4"></path></svg><span>Aim Test</span></a>
+            <a href="/en/tests/reaction-time"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0M9.5 12a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0-5 0"></path></svg><span>Reaction Time</span></a>
+            <a href="/en/tests/click-speed"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 3h8a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zM12 3v7"></path></svg><span>CPS Click Speed</span></a>
           </div>
         </div>
     </div>
@@ -163,7 +163,7 @@
       <p>The experiment is often cited as a striking example of how working memory — the ability to briefly hold and manipulate information you've just seen — can differ between humans and chimpanzees. This kind of momentary memory shows up everywhere in daily life, from mental math to conversation to learning.</p>
     </section>
 
-    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 All-Time Top Records (Top 30)</h2>
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">All-Time Top Records (Top 30)</h2>
     <div id="topLeaderboard"></div>
   </div>
 
@@ -225,11 +225,11 @@
   let stats = loadStats(STORE_KEY, { count: 0, best: 0, sum: 0 });
 
   const GRADES = [
-    { key: 'TOP1', min: 12, label: 'Top 1%' },
-    { key: 'GREAT', min: 10, label: 'Great' },
-    { key: 'CHIMP', min: 9, label: 'Chimp tier' },
-    { key: 'AVG', min: 7, label: 'Average' },
-    { key: 'BELOW', min: 0, label: 'Below average' },
+    { key: 'TOP1', min: 12, label : 'Top 1%' },
+    { key: 'GREAT', min: 10, label : 'Great' },
+    { key: 'CHIMP', min: 9, label : 'Chimp tier' },
+    { key: 'AVG', min: 7, label : 'Average' },
+    { key: 'BELOW', min: 0, label : 'Below average' },
   ];
 
   function gradeFor(score) {
@@ -253,7 +253,7 @@
 
   function renderStats() {
     document.getElementById('statCount').textContent = stats.count;
-    document.getElementById('statBest').textContent = stats.best || '-';
+    document.getElementById('statBest').textContent = stats.best ||'-';
     document.getElementById('statAvg').textContent = stats.count ? (stats.sum / stats.count).toFixed(1) : '-';
   }
 

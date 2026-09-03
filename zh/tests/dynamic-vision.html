@@ -83,7 +83,7 @@
       <span class="here">动态视力测试</span>
       <span class="idx">07 / 15</span>
     </nav>
-    <h1>👁️ 动态视力测试</h1>
+    <h1>动态视力测试</h1>
     <p class="sub">数字只闪现一瞬间,照原样输入。答对了显示时间会越来越短。</p>
 
     <div id="introScreen">
@@ -112,7 +112,7 @@
     </div>
 
     <div id="resultPanel" class="result-panel">
-      <div class="emoji">👁️</div>
+      <div class="result-icon"><svg class="ticon" viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 12c3-5 7-7 10-7s7 2 10 7c-3 5-7 7-10 7s-7-2-10-7zM9 12a3 3 0 1 0 6 0a3 3 0 1 0-6 0"></path></svg></div>
       <h2 id="resultTitle"></h2>
       <div class="desc" id="resultDesc"></div>
       <div class="percentile" id="resultNote"></div>
@@ -125,10 +125,10 @@
         <div class="other-tests">
           <div class="label">也来试试其他能力测试</div>
           <div class="other-tests-links">
-            <a href="/zh/tests/hearing-age">👂 听力年龄</a>
-            <a href="/zh/tests/aim-trainer">🎯 瞄准测试</a>
-            <a href="/zh/tests/visual-memory">🧠 瞬间记忆力</a>
-            <a href="/zh/tests/reaction-time">⚡ 反应速度</a>
+            <a href="/zh/tests/hearing-age"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 9v6M8 6v12M12 3v18M16 6v12M20 9v6"></path></svg><span>听力年龄</span></a>
+            <a href="/zh/tests/aim-trainer"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0M12 2v4M12 18v4M2 12h4M18 12h4"></path></svg><span>瞄准测试</span></a>
+            <a href="/zh/tests/visual-memory"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"></path></svg><span>瞬间记忆力</span></a>
+            <a href="/zh/tests/reaction-time"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0M9.5 12a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0-5 0"></path></svg><span>反应速度</span></a>
           </div>
         </div>
     </div>
@@ -166,7 +166,7 @@
       <p>动态视力有先天的成分,但也有研究认为可以通过反复的视觉训练以及游戏、运动经验在一定程度上得到提升。不过这个测试结果会因屏幕刷新率、设备性能和状态而有所不同,请仅作娱乐参考。</p>
     </section>
 
-    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 历代记录排行(最多30位)</h2>
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">历代记录排行(最多30位)</h2>
     <div id="topLeaderboard"></div>
   </div>
 
@@ -228,11 +228,11 @@
   let stats = loadStats(STORE_KEY, { count: 0, best: null, sum: 0, scoredCount: 0 });
 
   const GRADES = [
-    { key: 'PRO', max: 50, label: '职业选手级' },
-    { key: 'TOP', max: 80, label: '顶尖水平' },
-    { key: 'GREAT', max: 130, label: '优秀' },
-    { key: 'GOOD', max: 200, label: '良好' },
-    { key: 'NORMAL', max: Infinity, label: '一般' },
+    { key: 'PRO', max: 50, label : '职业选手级' },
+    { key: 'TOP', max: 80, label : '顶尖水平' },
+    { key: 'GREAT', max: 130, label : '优秀' },
+    { key: 'GOOD', max: 200, label : '良好' },
+    { key: 'NORMAL', max: Infinity, label : '一般' },
   ];
 
   function gradeFor(ms) {
@@ -363,7 +363,7 @@
   }
 
   document.getElementById('submitBtn').addEventListener('click', submitAnswer);
-  answerInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') submitAnswer(); });
+  answerInput.addEventListener('keydown', (e) => { if (e.key ==='Enter') submitAnswer(); });
 
   function recordRound(correct) {
     history.push({ round: roundIndex, exposureMs, actualMs: lastActualMs, correct });
@@ -431,10 +431,10 @@
     document.getElementById('chartContainer').innerHTML = buildChartSvg(history);
 
     if (bestScore === null) {
-      document.getElementById('resultTitle').textContent = '很遗憾,一次都没答对';
-      document.getElementById('resultDesc').textContent = '这次没有留下记录,再挑战一次吧!';
-      document.getElementById('resultNote').textContent = '';
-      document.getElementById('gradeTable').innerHTML = '';
+      document.getElementById('resultTitle').textContent ='很遗憾,一次都没答对';
+      document.getElementById('resultDesc').textContent ='这次没有留下记录,再挑战一次吧!';
+      document.getElementById('resultNote').textContent ='';
+      document.getElementById('gradeTable').innerHTML ='';
       resultPanel.classList.add('show');
       resultPanel.dataset.share = '';
       return;
@@ -443,7 +443,7 @@
     const grade = gradeFor(bestScore);
     document.getElementById('resultTitle').textContent = `你读到的最短显示时间: ${Math.round(bestScore)}ms`;
     document.getElementById('resultDesc').textContent = `到达第 ${roundIndex} 轮 · ${grade.label}`;
-    document.getElementById('resultNote').textContent = reason === 'device-limit'
+    document.getElementById('resultNote').textContent = reason ==='device-limit'
       ? '你全部答对,已经达到这台设备的测量极限(约20ms)!非常厉害。'
       : '';
     renderGradeTable(bestScore);

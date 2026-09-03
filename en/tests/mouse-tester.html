@@ -133,11 +133,11 @@
       <span class="here">Mouse Test</span>
       <span class="idx">14 / 15</span>
     </nav>
-    <h1>🖱️ Mouse Test</h1>
+    <h1>Mouse Test</h1>
     <p class="sub">Check that your buttons and wheel work, and look for double-click failure.</p>
 
     <div class="info-box">
-      💻 Press each button over the mouse diagram below. The pressed button lights up, and any button that has registered at least once keeps a green outline.
+      Press each button over the mouse diagram below. The pressed button lights up, and any button that has registered at least once keeps a green outline.
     </div>
 
     <div class="mouse-stage" id="mouseStage">
@@ -220,10 +220,10 @@
     <div class="other-tests">
       <div class="label">Try another test</div>
       <div class="other-tests-links">
-        <a href="/en/tests/keyboard-tester">⌨️ Keyboard Test</a>
-        <a href="/en/tests/monitor-hz">🖥️ Refresh Rate</a>
-        <a href="/en/tests/click-speed">🖱️ CPS Click Speed</a>
-        <a href="/en/tests/mouse-accuracy">🖲️ Mouse Accuracy</a>
+        <a href="/en/tests/keyboard-tester"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 6h20v12H2zM6 10h1M10 10h1M14 10h1M18 10h1M7 14h10"></path></svg><span>Keyboard Test</span></a>
+        <a href="/en/tests/monitor-hz"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 4h18v12H3zM8 20h8M12 16v4"></path></svg><span>Refresh Rate</span></a>
+        <a href="/en/tests/click-speed"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 3h8a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zM12 3v7"></path></svg><span>CPS Click Speed</span></a>
+        <a href="/en/tests/mouse-accuracy"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 17c3 0 3-10 6-10s3 10 6 10 3-10 6-10"></path></svg><span>Mouse Accuracy</span></a>
       </div>
     </div>
   </div>
@@ -334,7 +334,7 @@
   function flash(i) {
     const el = document.getElementById('btn' + i);
     if (!el) return;
-    el.classList.add('active', 'used');
+    el.classList.add('active','used');
     setTimeout(() => el.classList.remove('active'), 130);
   }
 
@@ -372,7 +372,7 @@
   document.getElementById('resetBtn').addEventListener('click', () => {
     counts = { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0 };
     totalClicks = 0; wheelCount = 0; lastLeftTs = 0; chatters = [];
-    document.querySelectorAll('.mbtn').forEach(el => el.classList.remove('used', 'active'));
+    document.querySelectorAll('.mbtn').forEach(el => el.classList.remove('used','active'));
     renderReport();
     renderChatter();
   });

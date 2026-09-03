@@ -84,7 +84,7 @@
       <span class="here">동체시력 테스트</span>
       <span class="idx">07 / 15</span>
     </nav>
-    <h1>👁️ 동체시력 테스트</h1>
+    <h1>동체시력 테스트</h1>
     <p class="sub">아주 짧게 번쩍이는 숫자를 읽고 그대로 입력하세요. 맞힐수록 점점 빨라져요.</p>
 
     <div id="introScreen">
@@ -113,7 +113,7 @@
     </div>
 
     <div id="resultPanel" class="result-panel">
-      <div class="emoji">👁️</div>
+      <div class="result-icon"><svg class="ticon" viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 12c3-5 7-7 10-7s7 2 10 7c-3 5-7 7-10 7s-7-2-10-7zM9 12a3 3 0 1 0 6 0a3 3 0 1 0-6 0"></path></svg></div>
       <h2 id="resultTitle"></h2>
       <div class="desc" id="resultDesc"></div>
       <div class="persona-label" id="personaLabel"></div>
@@ -127,10 +127,10 @@
         <div class="other-tests">
           <div class="label">다른 능력 테스트도 해보세요</div>
           <div class="other-tests-links">
-            <a href="/ko/tests/hearing-age">👂 청력 나이</a>
-            <a href="/ko/tests/aim-trainer">🎯 에임 테스트</a>
-            <a href="/ko/tests/visual-memory">🧠 순간 기억력</a>
-            <a href="/ko/tests/reaction-time">⚡ 반응 속도</a>
+            <a href="/ko/tests/hearing-age"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 9v6M8 6v12M12 3v18M16 6v12M20 9v6"></path></svg><span>청력 나이</span></a>
+            <a href="/ko/tests/aim-trainer"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0M12 2v4M12 18v4M2 12h4M18 12h4"></path></svg><span>에임 테스트</span></a>
+            <a href="/ko/tests/visual-memory"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"></path></svg><span>순간 기억력</span></a>
+            <a href="/ko/tests/reaction-time"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0M9.5 12a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0-5 0"></path></svg><span>반응 속도</span></a>
           </div>
         </div>
     </div>
@@ -168,7 +168,7 @@
       <p>동체시력은 타고나는 부분도 있지만, 반복적인 시각 훈련과 게임・스포츠 경험을 통해 어느 정도 개선될 수 있다고 알려져 있습니다. 다만 이 테스트 결과는 화면 주사율, 기기 성능, 컨디션에 따라 달라질 수 있으니 재미로 참고해주세요.</p>
     </section>
 
-    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 역대 기록 순위 (최대 30위)</h2>
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">역대 기록 순위 (최대 30위)</h2>
     <div id="topLeaderboard"></div>
   </div>
 
@@ -230,11 +230,11 @@
   let stats = loadStats(STORE_KEY, { count: 0, best: null, sum: 0, scoredCount: 0 });
 
   const GRADES = [
-    { key: 'PRO', max: 50, label: '프로게이머급', persona: '👁️ 매의 눈' },
-    { key: 'TOP', max: 80, label: '최상위', persona: '🦅 동체시력 상위권' },
-    { key: 'GREAT', max: 130, label: '우수', persona: '🎯 예리한 시야' },
-    { key: 'GOOD', max: 200, label: '양호', persona: '🙂 무난한 동체시력' },
-    { key: 'NORMAL', max: Infinity, label: '일반', persona: '🐢 여유로운 시야' },
+    { key: 'PRO', max: 50, label : '프로게이머급', persona : '매의 눈' },
+    { key: 'TOP', max: 80, label : '최상위', persona : '동체시력 상위권' },
+    { key: 'GREAT', max: 130, label : '우수', persona : '예리한 시야' },
+    { key: 'GOOD', max: 200, label : '양호', persona : '무난한 동체시력' },
+    { key: 'NORMAL', max: Infinity, label : '일반', persona : '여유로운 시야' },
   ];
 
   function gradeFor(ms) {
@@ -365,7 +365,7 @@
   }
 
   document.getElementById('submitBtn').addEventListener('click', submitAnswer);
-  answerInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') submitAnswer(); });
+  answerInput.addEventListener('keydown', (e) => { if (e.key ==='Enter') submitAnswer(); });
 
   function recordRound(correct) {
     history.push({ round: roundIndex, exposureMs, actualMs: lastActualMs, correct });
@@ -433,11 +433,11 @@
     document.getElementById('chartContainer').innerHTML = buildChartSvg(history);
 
     if (bestScore === null) {
-      document.getElementById('resultTitle').textContent = '정답을 맞히지 못했어요';
-      document.getElementById('resultDesc').textContent = '아쉽게도 이번엔 기록이 없어요. 다시 도전해보세요!';
-      document.getElementById('personaLabel').textContent = '';
-      document.getElementById('resultNote').textContent = '';
-      document.getElementById('gradeTable').innerHTML = '';
+      document.getElementById('resultTitle').textContent ='정답을 맞히지 못했어요';
+      document.getElementById('resultDesc').textContent ='아쉽게도 이번엔 기록이 없어요. 다시 도전해보세요!';
+      document.getElementById('personaLabel').textContent ='';
+      document.getElementById('resultNote').textContent ='';
+      document.getElementById('gradeTable').innerHTML ='';
       resultPanel.classList.add('show');
       resultPanel.dataset.share = '';
       return;
@@ -447,7 +447,7 @@
     document.getElementById('resultTitle').textContent = `당신이 읽어낸 최소 노출 시간: ${Math.round(bestScore)}ms`;
     document.getElementById('resultDesc').textContent = `도달 라운드 ${roundIndex} · ${grade.label}`;
     document.getElementById('personaLabel').textContent = grade.persona;
-    document.getElementById('resultNote').textContent = reason === 'device-limit'
+    document.getElementById('resultNote').textContent = reason ==='device-limit'
       ? '모든 문제를 맞혀서 이 기기의 측정 한계(약 20ms)에 도달했어요! 대단해요.'
       : '';
     renderGradeTable(bestScore);

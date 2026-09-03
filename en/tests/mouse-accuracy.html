@@ -109,7 +109,7 @@
       <span class="here">Mouse Accuracy Test</span>
       <span class="idx">12 / 15</span>
     </nav>
-    <h1>🖲️ Mouse Accuracy Test</h1>
+    <h1>Mouse Accuracy Test</h1>
     <p class="sub">Start at the green dot and follow the path all the way to the end.</p>
 
     <div class="info-box" id="howto">
@@ -131,7 +131,7 @@
     <div class="status-line" id="statusLine">Move your cursor onto the start dot</div>
 
     <div id="resultPanel" class="result-panel">
-      <div class="emoji">🖲️</div>
+      <div class="result-icon"><svg class="ticon" viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 17c3 0 3-10 6-10s3 10 6 10 3-10 6-10"></path></svg></div>
       <h2 id="resultTitle"></h2>
       <div class="stars" id="resultStars"></div>
       <div class="desc" id="resultDesc"></div>
@@ -144,10 +144,10 @@
         <div class="other-tests">
           <div class="label">Try another ability test</div>
           <div class="other-tests-links">
-            <a href="/en/tests/click-speed">🖱️ CPS Click Speed</a>
-            <a href="/en/tests/aim-trainer">🎯 Aim Test</a>
-            <a href="/en/tests/apm">🎹 APM</a>
-            <a href="/en/tests/spacebar-counter">⌨️ Spacebar Speed</a>
+            <a href="/en/tests/click-speed"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 3h8a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zM12 3v7"></path></svg><span>CPS Click Speed</span></a>
+            <a href="/en/tests/aim-trainer"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0M12 2v4M12 18v4M2 12h4M18 12h4"></path></svg><span>Aim Test</span></a>
+            <a href="/en/tests/apm"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 20V10M10 20V4M16 20V13M22 20V8"></path></svg><span>APM</span></a>
+            <a href="/en/tests/spacebar-counter"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 9h18v6H3zM7 12h10"></path></svg><span>Spacebar Speed</span></a>
           </div>
         </div>
     </div>
@@ -186,13 +186,13 @@
       <p>Your score combines the share of time you stayed inside the path (accuracy) with how quickly you finished. Move too fast and you'll drift off the track; move too cautiously and the clock runs, so balancing speed against precision is the whole challenge. If your mouse sensitivity is very high, fine adjustments get harder — it can be worth dialing it down.</p>
     </section>
 
-    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 All-Time Top Records (Top 30)</h2>
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">All-Time Top Records (Top 30)</h2>
     <div id="topLeaderboard"></div>
 <h2 style="text-align:center; font-size:15px; margin-top:28px;">Other click tests</h2>
     <div class="related-links">
-      <a href="/en/tests/click-speed">🖱️ CPS Click Speed</a>
-      <a href="/en/tests/spacebar-counter">⌨️ Spacebar Speed</a>
-      <a href="/en/tests/apm">🎹 APM Test</a>
+      <a href="/en/tests/click-speed"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 3h8a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zM12 3v7"></path></svg><span>CPS Click Speed</span></a>
+      <a href="/en/tests/spacebar-counter"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 9h18v6H3zM7 12h10"></path></svg><span>Spacebar Speed</span></a>
+      <a href="/en/tests/apm"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 20V10M10 20V4M16 20V13M22 20V8"></path></svg><span>APM Test</span></a>
     </div>
   </div>
 
@@ -254,12 +254,12 @@
   let allStats = loadStats(STORE_KEY, {});
 
   const GRADES = [
-    { key: 'SS', min: 90, label: 'SS · Surgical' },
-    { key: 'S', min: 80, label: 'S · Very steady' },
-    { key: 'A', min: 68, label: 'A · Steady' },
-    { key: 'B', min: 55, label: 'B · Above average' },
-    { key: 'C', min: 40, label: 'C · Average' },
-    { key: 'D', min: 0, label: 'D · Needs practice' },
+    { key: 'SS', min: 90, label : 'SS · Surgical' },
+    { key: 'S', min: 80, label : 'S · Very steady' },
+    { key: 'A', min: 68, label : 'A · Steady' },
+    { key: 'B', min: 55, label : 'B · Above average' },
+    { key: 'C', min: 40, label : 'C · Average' },
+    { key: 'D', min: 0, label : 'D · Needs practice' },
   ];
 
   function gradeFor(score) {
@@ -344,7 +344,7 @@
     startTime = performance.now();
     lastFrame = startTime;
     resultPanel.classList.remove('show');
-    document.getElementById('howto').style.display = 'none';
+    document.getElementById('howto').style.display ='none';
     rafId = requestAnimationFrame(frame);
   }
 
@@ -359,7 +359,7 @@
       const inside = trackPath.isPointInStroke(lastPoint);
       if (inside) onTime += delta; else offTime += delta;
       statusLine.textContent = inside ? 'On the path ✓' : 'Off the path!';
-      statusLine.className = 'status-line ' + (inside ? 'on' : 'off');
+      statusLine.className = 'status-line' + (inside ? 'on' : 'off');
     }
     rafId = requestAnimationFrame(frame);
   }
@@ -398,10 +398,10 @@
     const grade = gradeFor(score);
     const stars = starsFor(score);
     document.getElementById('resultTitle').textContent = `${Math.round(score)} pts · ${accuracy.toFixed(0)}% accuracy`;
-    document.getElementById('resultStars').textContent = '★'.repeat(stars) + '☆'.repeat(5 - stars);
+    document.getElementById('resultStars').textContent ='★'.repeat(stars) + '☆'.repeat(5 - stars);
     document.getElementById('resultDesc').textContent =
       `Finished in ${seconds.toFixed(1)}s · ${(offTime / 1000).toFixed(1)}s off the path — ${grade.label}`;
-    document.getElementById('resultMobileNote').style.display = mode === 'touch' ? '' : 'none';
+    document.getElementById('resultMobileNote').style.display = mode ==='touch' ? '' : 'none';
     renderGradeTable(score);
     resultPanel.classList.add('show');
     resultPanel.dataset.share = `I scored ${Math.round(score)} pts (${accuracy.toFixed(0)}% accuracy) on the mouse accuracy test! Try it yourself → `;
@@ -426,7 +426,7 @@
     cursorDot.setAttribute('cx', -100);
     cursorDot.setAttribute('cy', -100);
     resultPanel.classList.remove('show');
-    document.getElementById('howto').style.display = '';
+    document.getElementById('howto').style.display ='';
     statusLine.textContent = 'Move your cursor onto the start dot';
     statusLine.className = 'status-line';
   });

@@ -123,7 +123,7 @@
       <span class="here">Aim Test</span>
       <span class="idx">09 / 15</span>
     </nav>
-    <h1>🎯 Aim Test</h1>
+    <h1>Aim Test</h1>
     <p class="sub">Click 30 targets as fast and accurately as you can.</p>
 
     <div class="mode-select" id="modeSelect">
@@ -134,7 +134,7 @@
     <p class="mode-hint" id="modeHint">Targets appear one at a time. Click each one as fast and accurately as you can.</p>
 
     <div id="introScreen">
-      <div class="info-box">💻 Desktop and mouse are recommended. You can still play on mobile.</div>
+      <div class="info-box">Desktop and mouse are recommended. You can still play on mobile.</div>
       <div class="level-card" style="text-align:left;">
         <div class="label" style="text-align:center; margin-bottom:10px;">Target size</div>
         <div class="duration-select" id="sizeSelect">
@@ -160,7 +160,7 @@
     </div>
 
     <div id="resultPanel" class="result-panel">
-      <div class="emoji">🎯</div>
+      <div class="result-icon"><svg class="ticon" viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0M12 2v4M12 18v4M2 12h4M18 12h4"></path></svg></div>
       <h2 id="resultTitle"></h2>
       <div class="desc" id="resultDesc"></div>
       <div class="persona-label" id="personaLabel"></div>
@@ -174,10 +174,10 @@
         <div class="other-tests">
           <div class="label">Try another ability test</div>
           <div class="other-tests-links">
-            <a href="/en/tests/click-speed">🖱️ CPS Click Speed</a>
-            <a href="/en/tests/chimp-test">🐵 Chimp Test</a>
-            <a href="/en/tests/dynamic-vision">👁️ Dynamic Vision</a>
-            <a href="/en/tests/reaction-time">⚡ Reaction Time</a>
+            <a href="/en/tests/click-speed"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 3h8a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zM12 3v7"></path></svg><span>CPS Click Speed</span></a>
+            <a href="/en/tests/chimp-test"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 14h6v6H3zM9 8h6v6H9zM15 3h6v6h-6z"></path></svg><span>Chimp Test</span></a>
+            <a href="/en/tests/dynamic-vision"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 12c3-5 7-7 10-7s7 2 10 7c-3 5-7 7-10 7s-7-2-10-7zM9 12a3 3 0 1 0 6 0a3 3 0 1 0-6 0"></path></svg><span>Dynamic Vision</span></a>
+            <a href="/en/tests/reaction-time"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0M9.5 12a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0-5 0"></path></svg><span>Reaction Time</span></a>
           </div>
         </div>
     </div>
@@ -219,11 +219,11 @@
     <div class="side-panel" id="ladderPanel"></div>
     <div class="side-panel" id="achPanel"></div>
     <div class="side-panel">
-      <div class="ach-head">🕒 Recent runs</div>
+      <div class="ach-head">Recent runs</div>
       <div id="recentPanel"></div>
     </div>
 
-    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 All-Time Top Records (Top 30)</h2>
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">All-Time Top Records (Top 30)</h2>
     <div id="topLeaderboard"></div>
   </div>
 
@@ -290,9 +290,9 @@
   let allStats = loadStats(STORE_KEY, {});
 
   const SIZES = [
-    { key: 'large', label: 'Large', radius: 24 },
-    { key: 'medium', label: 'Medium', radius: 16 },
-    { key: 'small', label: 'Small', radius: 10 },
+    { key: 'large', label : 'Large', radius: 24 },
+    { key: 'medium', label : 'Medium', radius: 16 },
+    { key: 'small', label : 'Small', radius: 10 },
   ];
 
   // Each mode measures something different.
@@ -301,36 +301,36 @@
   //  tracking - keep the cursor on a moving target for 20s. Higher on-target % is better.
   const MODES = [
     {
-      key: 'flick', label: 'Flick', metric: 'ms', targets: 30,
+      key: 'flick', label : 'Flick', metric : 'ms', targets: 30,
       hint: 'Targets appear one at a time. Click each one as fast and accurately as you can.',
       grades: [
-        { key: 'PRO', max: 300, label: 'Pro-level', persona: '🎯 Ambush Sniper' },
-        { key: 'TOP', max: 350, label: 'Top-tier', persona: '🏹 Precision Marksman' },
-        { key: 'SKILLED', max: 450, label: 'Skilled', persona: '🔫 Seasoned Shooter' },
-        { key: 'NORMAL', max: 600, label: 'Average', persona: '🙂 Average Aimer' },
-        { key: 'BEGINNER', max: Infinity, label: 'Beginner', persona: '🌱 Rookie Agent' },
+        { key: 'PRO', max: 300, label : 'Pro-level', persona : 'Ambush Sniper' },
+        { key: 'TOP', max: 350, label : 'Top-tier', persona : 'Precision Marksman' },
+        { key: 'SKILLED', max: 450, label : 'Skilled', persona : 'Seasoned Shooter' },
+        { key: 'NORMAL', max: 600, label : 'Average', persona : 'Average Aimer' },
+        { key: 'BEGINNER', max: Infinity, label : 'Beginner', persona : 'Rookie Agent' },
       ],
     },
     {
-      key: 'gridshot', label: 'Grid Shot', metric: 'tps', duration: 30,
+      key: 'gridshot', label : 'Grid Shot', metric : 'tps', duration: 30,
       hint: 'Three targets are up at once. Clear as many as you can in 30 seconds - each hit respawns elsewhere.',
       grades: [
-        { key: 'PRO', min: 2.5, label: 'Pro-level', persona: '🎯 Grid Dominator' },
-        { key: 'TOP', min: 2.0, label: 'Top-tier', persona: '🏹 Rapid Marksman' },
-        { key: 'SKILLED', min: 1.5, label: 'Skilled', persona: '🔫 Skilled Rapid-fire' },
-        { key: 'NORMAL', min: 1.0, label: 'Average', persona: '🙂 Average Rapid-fire' },
-        { key: 'BEGINNER', min: 0, label: 'Beginner', persona: '🌱 Rookie Agent' },
+        { key: 'PRO', min: 2.5, label : 'Pro-level', persona : 'Grid Dominator' },
+        { key: 'TOP', min: 2.0, label : 'Top-tier', persona : 'Rapid Marksman' },
+        { key: 'SKILLED', min: 1.5, label : 'Skilled', persona : 'Skilled Rapid-fire' },
+        { key: 'NORMAL', min: 1.0, label : 'Average', persona : 'Average Rapid-fire' },
+        { key: 'BEGINNER', min: 0, label : 'Beginner', persona : 'Rookie Agent' },
       ],
     },
     {
-      key: 'tracking', label: 'Tracking', metric: 'pct', duration: 20,
+      key: 'tracking', label : 'Tracking', metric : 'pct', duration: 20,
       hint: 'Keep your cursor on the moving target. We measure how much of the 20 seconds you stayed on it.',
       grades: [
-        { key: 'PRO', min: 85, label: 'Pro-level', persona: '🎯 Perfect Tracker' },
-        { key: 'TOP', min: 70, label: 'Top-tier', persona: '🏹 Relentless Tracker' },
-        { key: 'SKILLED', min: 55, label: 'Skilled', persona: '🔫 Steady Hand' },
-        { key: 'NORMAL', min: 40, label: 'Average', persona: '🙂 Average Tracking' },
-        { key: 'BEGINNER', min: 0, label: 'Beginner', persona: '🌱 Rookie Agent' },
+        { key: 'PRO', min: 85, label : 'Pro-level', persona : 'Perfect Tracker' },
+        { key: 'TOP', min: 70, label : 'Top-tier', persona : 'Relentless Tracker' },
+        { key: 'SKILLED', min: 55, label : 'Skilled', persona : 'Steady Hand' },
+        { key: 'NORMAL', min: 40, label : 'Average', persona : 'Average Tracking' },
+        { key: 'BEGINNER', min: 0, label : 'Beginner', persona : 'Rookie Agent' },
       ],
     },
   ];
@@ -617,7 +617,7 @@
     onTargetMs = 0;
     cleanup();
 
-    if (mode.key === 'flick') updateHud(`0 / ${mode.targets}`, 'Hits');
+    if (mode.key === 'flick') updateHud(`0 / ${mode.targets}`,'Hits');
     else if (mode.key === 'gridshot') updateHud('0', `cleared · ${mode.duration}s`);
     else updateHud('0%', `on target · ${mode.duration}s`);
 
@@ -686,12 +686,12 @@
 
   // ---- Achievements / ladder / recent runs ----
   const ACH_DEFS = (() => {
-    const defs = [{ id: 'first', label: 'First run' }];
+    const defs = [{ id: 'first', label : 'First run' }];
     [1, 5, 10, 25, 50].forEach(n => defs.push({ id: 'plays' + n, label: n + ' plays' }));
     MODES.forEach(m => m.grades.forEach(g => {
       defs.push({ id: `${m.key}_${g.key}`, label: `${m.label} · ${g.label}` });
     }));
-    defs.push({ id: 'allmodes', label: 'Tried all 3 modes' });
+    defs.push({ id: 'allmodes', label : 'Tried all 3 modes' });
     return defs;
   })();
 
@@ -713,7 +713,7 @@
   function bestForMode() {
     let best = null;
     SIZES.forEach(s => {
-      ['mouse', 'touch'].forEach(inp => {
+      ['mouse','touch'].forEach(inp => {
         const st = allStats[`${mode.key}_${s.key}_${inp}`];
         if (!st || st.best === null) return;
         if (best === null) best = st.best;
@@ -726,11 +726,11 @@
     const tiers = mode.grades.map(g => ({ key: g.key, label: g.label, min: g.min, max: g.max }));
     renderRankLadder('ladderPanel', tiers, bestForMode(), {
       title: `${mode.label} rank`,
-      unit: mode.metric === 'ms' ? 'ms' : (mode.metric === 'tps' ? '/s' : '%'),
+      unit: mode.metric === 'ms' ? 'ms' : (mode.metric ==='tps' ? '/s' : '%'),
       digits: mode.metric === 'tps' ? 2 : 0,
       betterIsLower: mode.metric === 'ms',
     });
-    renderAchievements('achPanel', ACH_KEY, ACH_DEFS, '🏅 Achievements');
+    renderAchievements('achPanel', ACH_KEY, ACH_DEFS,'Achievements');
     renderRecentRecords('recentPanel', loadStats(ACH_KEY + '_recent', []),
       e => `${e.score} · ${e.mode} · accuracy ${e.acc}%`, 'No runs yet');
   }
@@ -774,8 +774,8 @@
       (avgMissDist !== null ? ` · avg miss ${avgMissDist.toFixed(0)}px` : '') +
       (invalidClicks > 0 ? ` · invalid clicks: ${invalidClicks}` : '');
     document.getElementById('personaLabel').textContent = grade.persona;
-    document.getElementById('resultMobileNote').style.display = inputType === 'touch' ? '' : 'none';
-    document.getElementById('chartContainer').innerHTML = mode.key === 'flick' ? buildBarChart(reactionTimes) : '';
+    document.getElementById('resultMobileNote').style.display = inputType ==='touch' ? '' : 'none';
+    document.getElementById('chartContainer').innerHTML = mode.key ==='flick' ? buildBarChart(reactionTimes) : '';
     renderGradeTable(score, accuracy);
     resultPanel.classList.add('show');
     resultPanel.dataset.share = `I am a ${grade.persona}! Scored on the ${mode.label} aim test: ${formatScore(score)}! Try it → `;

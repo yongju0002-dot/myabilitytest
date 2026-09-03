@@ -140,9 +140,9 @@
       <span class="here">反応速度テスト</span>
       <span class="idx">01 / 15</span>
     </nav>
-    <h1>⚡ 反応速度テスト</h1>
+    <h1>反応速度テスト</h1>
     <p class="sub">画面の色が変わった瞬間にクリックしてください</p>
-    <p class="disclaimer">⚠️ モニター・マウス・タッチスクリーンの遅延で機器ごとに10〜50ms、テレビでは100ms以上増えることがあります</p>
+    <p class="disclaimer">モニター・マウス・タッチスクリーンの遅延で機器ごとに10〜50ms、テレビでは100ms以上増えることがあります</p>
 
     <div class="mode-select" id="modeSelect">
       <button data-mode="simple" class="active">単純反応</button>
@@ -221,11 +221,11 @@
     <div class="side-panel" id="ladderPanel"></div>
     <div class="side-panel" id="achPanel"></div>
     <div class="side-panel">
-      <div class="ach-head">🕒 最近の記録</div>
+      <div class="ach-head">最近の記録</div>
       <div id="recentPanel"></div>
     </div>
 
-    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 歴代記録ランキング(最大30位)</h2>
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">歴代記録ランキング(最大30位)</h2>
     <div id="topLeaderboard"></div>
   </div>
 
@@ -291,15 +291,15 @@
   const modeSelect = document.getElementById('modeSelect');
   const modeHint = document.getElementById('modeHint');
 
-  const STATE = { SETUP: 'setup', WAIT: 'wait', GO: 'go', EARLY: 'early', ROUND_RESULT: 'round_result', SUMMARY: 'summary' };
+  const STATE = { SETUP: 'setup', WAIT : 'wait', GO : 'go', EARLY : 'early', ROUND_RESULT : 'round_result', SUMMARY : 'summary' };
   let state = STATE.SETUP;
 
   // ---- 반응 모드 ----
   // 백분위(RT_CURVE)는 단순 반응 기준으로만 만든 곡선이라 단순 모드에서만 표시한다.
   const MODES = [
-    { key: 'simple', label: '単純反応', hint: '色が変わった瞬間にクリックする定番方式です。', percentile: true },
-    { key: 'f1', label: 'F1スタート', hint: '赤いライトが5つ順番に点灯し、すべて消えた瞬間にクリック。F1のスタート方式です。', percentile: false },
-    { key: 'gonogo', label: '選択反応', hint: '緑のときだけクリック。赤でクリックすると失敗です。', percentile: false },
+    { key: 'simple', label : '単純反応', hint : '色が変わった瞬間にクリックする定番方式です。', percentile: true },
+    { key: 'f1', label : 'F1スタート', hint : '赤いライトが5つ順番に点灯し、すべて消えた瞬間にクリック。F1のスタート方式です。', percentile: false },
+    { key: 'gonogo', label : '選択反応', hint : '緑のときだけクリック。赤でクリックすると失敗です。', percentile: false },
   ];
   let mode = MODES[0];
   let noGoRound = false;
@@ -312,9 +312,9 @@
 
   // 待ち時間(前期間)が長いほど反応は遅くなるため、範囲ごとに記録を分けます。
   const RANGES = [
-    { key: 'short', label: '短め', min: 800, span: 1200, hint: '0.8~2.0秒のあいだのランダムなタイミングで合図が出ます。' },
-    { key: 'normal', label: '標準', min: 1200, span: 2800, hint: '1.2~4.0秒のあいだのランダムなタイミングで合図が出ます。' },
-    { key: 'long', label: '長め', min: 2000, span: 5000, hint: '2.0~7.0秒のあいだのランダムなタイミングで合図が出ます。集中を長く保つ必要があります。' },
+    { key: 'short', label : '短め', min: 800, span: 1200, hint : '0.8~2.0秒のあいだのランダムなタイミングで合図が出ます。' },
+    { key: 'normal', label : '標準', min: 1200, span: 2800, hint : '1.2~4.0秒のあいだのランダムなタイミングで合図が出ます。' },
+    { key: 'long', label : '長め', min: 2000, span: 5000, hint : '2.0~7.0秒のあいだのランダムなタイミングで合図が出ます。集中を長く保つ必要があります。' },
   ];
   let range = RANGES[1];
   function randomDelay() { return range.min + Math.random() * range.span; }
@@ -345,7 +345,7 @@
       return;
     }
     el.innerHTML = '<ul class="leaderboard">' + list.map((entry, i) => {
-      const medal = ['🥇', '🥈', '🥉'][i] || (i + 1) + '.';
+      const medal = ['01','02','03'][i] || (i + 1) + '.';
       const d = new Date(entry.date);
       const dateStr = `${d.getMonth() + 1}/${d.getDate()}`;
       return `<li class="${i === 0 ? 'winner' : ''}"><span class="rank">${medal}</span><span class="lb-name">${entry.value} ms</span><span class="lb-detail">${dateStr}</span></li>`;
@@ -389,20 +389,20 @@
   // ---- 업적 / 사다리 / 최근 기록 ----
   const ACH_KEY = 'reaction';
   const RT_TIERS = [
-    { key: 'S', max: 150, label: '非常に速い' },
-    { key: 'A', max: 200, label: '速い' },
-    { key: 'B', max: 250, label: '良い' },
-    { key: 'C', max: 300, label: '平均的' },
-    { key: 'D', max: 400, label: 'のんびり' },
-    { key: 'E', max: Infinity, label: 'とてものんびり' },
+    { key: 'S', max: 150, label : '非常に速い' },
+    { key: 'A', max: 200, label : '速い' },
+    { key: 'B', max: 250, label : '良い' },
+    { key: 'C', max: 300, label : '平均的' },
+    { key: 'D', max: 400, label : 'のんびり' },
+    { key: 'E', max: Infinity, label : 'とてものんびり' },
   ];
   const ACH_DEFS = (() => {
-    const defs = [{ id: 'first', label: '初挑戦' }];
+    const defs = [{ id: 'first', label : '初挑戦' }];
     [1, 5, 10, 25, 50].forEach(n => defs.push({ id: 'plays' + n, label: n + '回プレイ' }));
     MODES.forEach(m => RT_TIERS.forEach(t => {
       defs.push({ id: `${m.key}_${t.key}`, label: `${m.label} · ${t.key}`, hint: `${m.label} · ${t.label}` });
     }));
-    defs.push({ id: 'allmodes', label: '3モードすべて体験' });
+    defs.push({ id: 'allmodes', label : '3モードすべて体験' });
     return defs;
   })();
 
@@ -434,7 +434,7 @@
     renderRankLadder('ladderPanel', RT_TIERS, bestForMode(), {
       title: `${mode.label} ランク`, unit: 'ms', digits: 0, betterIsLower: true,
     });
-    renderAchievements('achPanel', ACH_KEY, ACH_DEFS, '🏅 実績');
+    renderAchievements('achPanel', ACH_KEY, ACH_DEFS,'実績');
     renderRecentRecords('recentPanel', loadStats(ACH_KEY + '_recent', []),
       e => `${e.avg}ms · ${e.mode} · ${e.rounds}ラウンド`, 'まだ記録がありません');
   }
@@ -552,11 +552,11 @@
   }
 
   function rateFeedback(ms) {
-    if (ms < 200) return 'すごく速い! 🚀';
-    if (ms < 250) return '素晴らしい! 💪';
-    if (ms < 300) return 'いいね 👍';
+    if (ms < 200) return 'すごく速い!';
+    if (ms < 250) return '素晴らしい!';
+    if (ms < 300) return 'いいね';
     if (ms < 400) return '平均的です';
-    return 'ちょっと遅め 🐢';
+    return 'ちょっと遅め';
   }
 
   function gradeFor(avg) {
@@ -656,11 +656,11 @@
 
     setStage('round', `
       <div class="summary">
-        <h2>テスト完了 🎉 平均 ${avg} ms</h2>
+        <h2>テスト完了 平均 ${avg} ms</h2>
         <div class="grade">${mode.label} · ${gradeFor(avg)}</div>
         ${percentileBlock}
 
-        <div class="hw-disclaimer">⚠️ この結果は推定値です。モニター・マウス・タッチスクリーンの遅延で機器ごとに10〜50ms、テレビでは100ms以上増えることがあります。同じ機器で何度か測定して比較することをおすすめします。</div>
+        <div class="hw-disclaimer">この結果は推定値です。モニター・マウス・タッチスクリーンの遅延で機器ごとに10〜50ms、テレビでは100ms以上増えることがあります。同じ機器で何度か測定して比較することをおすすめします。</div>
         <div class="round-table">${roundTableHtml}</div>
         <div class="summary-actions">
           <button id="retryBtn">もう一度挑戦</button>
@@ -669,10 +669,10 @@
         <div class="other-tests">
           <div class="label">他の能力テストも試してみよう</div>
           <div class="other-tests-links">
-            <a href="/ja/tests/click-speed">🖱️ CPSクリック速度</a>
-            <a href="/ja/tests/visual-memory">🧠 瞬間記憶力</a>
-            <a href="/ja/tests/chimp-test">🐵 チンパンジーテスト</a>
-            <a href="/ja/tests/aim-trainer">🎯 エイムテスト</a>
+            <a href="/ja/tests/click-speed"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 3h8a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zM12 3v7"></path></svg><span>CPSクリック速度</span></a>
+            <a href="/ja/tests/visual-memory"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"></path></svg><span>瞬間記憶力</span></a>
+            <a href="/ja/tests/chimp-test"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 14h6v6H3zM9 8h6v6H9zM15 3h6v6h-6z"></path></svg><span>チンパンジーテスト</span></a>
+            <a href="/ja/tests/aim-trainer"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0M12 2v4M12 18v4M2 12h4M18 12h4"></path></svg><span>エイムテスト</span></a>
           </div>
         </div>
       </div>

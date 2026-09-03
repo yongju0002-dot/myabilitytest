@@ -83,7 +83,7 @@
       <span class="here">Visual Memory Test</span>
       <span class="idx">02 / 15</span>
     </nav>
-    <h1>🧠 Visual Memory Test</h1>
+    <h1>Visual Memory Test</h1>
     <p class="sub">Remember the tiles shown in green, then click those same tiles.</p>
 
     <div class="mode-select" id="modeSelect">
@@ -107,7 +107,7 @@
     </div>
 
     <div id="resultPanel" class="result-panel">
-      <div class="emoji">💥</div>
+      <div class="result-icon"><svg class="ticon" viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"></path></svg></div>
       <h2 id="resultTitle"></h2>
       <div class="stars" id="resultStars"></div>
       <div class="desc" id="resultDesc"></div>
@@ -120,10 +120,10 @@
         <div class="other-tests">
           <div class="label">Try another ability test</div>
           <div class="other-tests-links">
-            <a href="/en/tests/chimp-test">🐵 Chimp Test</a>
-            <a href="/en/tests/reaction-time">⚡ Reaction Time</a>
-            <a href="/en/tests/dynamic-vision">👁️ Dynamic Vision</a>
-            <a href="/en/tests/click-speed">🖱️ CPS Click Speed</a>
+            <a href="/en/tests/chimp-test"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 14h6v6H3zM9 8h6v6H9zM15 3h6v6h-6z"></path></svg><span>Chimp Test</span></a>
+            <a href="/en/tests/reaction-time"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0M9.5 12a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0-5 0"></path></svg><span>Reaction Time</span></a>
+            <a href="/en/tests/dynamic-vision"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 12c3-5 7-7 10-7s7 2 10 7c-3 5-7 7-10 7s-7-2-10-7zM9 12a3 3 0 1 0 6 0a3 3 0 1 0-6 0"></path></svg><span>Dynamic Vision</span></a>
+            <a href="/en/tests/click-speed"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 3h8a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zM12 3v7"></path></svg><span>CPS Click Speed</span></a>
           </div>
         </div>
     </div>
@@ -173,7 +173,7 @@
       <p>Chunking - grouping tiles into a shape (a triangle, a diagonal line, a cross) instead of memorizing each one individually - is a classic memory technique that tends to help here. Keeping your eyes fixed near the center of the grid and using peripheral vision to take in the whole layout at once is another approach that works well for a lot of players.</p>
     </section>
 
-    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 All-Time Top Records (Top 30)</h2>
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">All-Time Top Records (Top 30)</h2>
     <div id="topLeaderboard"></div>
   </div>
 
@@ -232,13 +232,13 @@
 <script>
   const ACH_KEY = 'skillMemoryAchV1';
   const MODES = [
-    { key: 'classic', label: 'Classic', fixed: null, hint: 'Grid grows as you level up. The default mode.' },
-    { key: 'g4', label: '4x4', fixed: 4, hint: '16 tiles, fixed. Small grid fills up fast.' },
-    { key: 'g5', label: '5x5', fixed: 5, hint: '25 tiles, fixed. A balanced challenge.' },
-    { key: 'g6', label: '6x6', fixed: 6, hint: '36 tiles, fixed. Scan a wide board at a glance.' },
+    { key: 'classic', label : 'Classic', fixed: null, hint : 'Grid grows as you level up. The default mode.' },
+    { key: 'g4', label : '4x4', fixed: 4, hint : '16 tiles, fixed. Small grid fills up fast.' },
+    { key: 'g5', label : '5x5', fixed: 5, hint : '25 tiles, fixed. A balanced challenge.' },
+    { key: 'g6', label : '6x6', fixed: 6, hint : '36 tiles, fixed. Scan a wide board at a glance.' },
   ];
-  const LB_KEYS = { classic: 'skillMemoryLeaderboardV1', g4: 'skillMemoryLbG4V1', g5: 'skillMemoryLbG5V1', g6: 'skillMemoryLbG6V1' };
-  const STAT_KEYS = { classic: 'skillMemoryStats', g4: 'skillMemoryStatsG4', g5: 'skillMemoryStatsG5', g6: 'skillMemoryStatsG6' };
+  const LB_KEYS = { classic: 'skillMemoryLeaderboardV1', g4 : 'skillMemoryLbG4V1', g5 : 'skillMemoryLbG5V1', g6 : 'skillMemoryLbG6V1' };
+  const STAT_KEYS = { classic: 'skillMemoryStats', g4 : 'skillMemoryStatsG4', g5 : 'skillMemoryStatsG5', g6 : 'skillMemoryStatsG6' };
 
   let mode = MODES[0];
   let stats = loadStats(STAT_KEYS[mode.key], { count: 0, best: 0 });
@@ -286,13 +286,13 @@
   }
 
   const GRADES = [
-    { key: 'SS', min: 20, label: 'SS · Genius' },
-    { key: 'S', min: 16, label: 'S · Outstanding' },
-    { key: 'A', min: 13, label: 'A · Excellent' },
-    { key: 'B', min: 9, label: 'B · Good' },
-    { key: 'C', min: 5, label: 'C · Average' },
-    { key: 'D', min: 2, label: 'D · Below average' },
-    { key: 'F', min: 0, label: 'F · Early fail' },
+    { key: 'SS', min: 20, label : 'SS · Genius' },
+    { key: 'S', min: 16, label : 'S · Outstanding' },
+    { key: 'A', min: 13, label : 'A · Excellent' },
+    { key: 'B', min: 9, label : 'B · Good' },
+    { key: 'C', min: 5, label : 'C · Average' },
+    { key: 'D', min: 2, label : 'D · Below average' },
+    { key: 'F', min: 0, label : 'F · Early fail' },
   ];
 
   function gradeFor(lv) {
@@ -351,14 +351,14 @@
     if (locked || over || cell.classList.contains('disabled')) return;
 
     if (targets.has(i)) {
-      cell.classList.add('disabled', 'picked-correct');
+      cell.classList.add('disabled','picked-correct');
       remaining.delete(i);
       if (remaining.size === 0) {
         locked = true;
         setTimeout(() => { level += 1; buildGrid(); showTargets(); }, 600);
       }
     } else {
-      cell.classList.add('disabled', 'picked-wrong');
+      cell.classList.add('disabled','picked-wrong');
       locked = true;
       targets.forEach(idx => grid.children[idx].classList.add('show-target'));
       [...grid.children].forEach(c => c.classList.add('disabled'));
@@ -367,12 +367,12 @@
   }
 
   const ACH_DEFS = (() => {
-    const defs = [{ id: 'first', label: 'First attempt' }];
+    const defs = [{ id: 'first', label : 'First attempt' }];
     [1, 5, 10, 25, 50].forEach(n => defs.push({ id: 'plays' + n, label: n + ' plays' }));
     MODES.forEach(m => GRADES.forEach(g => {
       defs.push({ id: `${m.key}_${g.key}`, label: `${m.label} - ${g.label}` });
     }));
-    defs.push({ id: 'allmodes', label: 'Tried all 4 modes' });
+    defs.push({ id: 'allmodes', label : 'Tried all 4 modes' });
     return defs;
   })();
 
@@ -394,7 +394,7 @@
   function renderPanels() {
     renderRankLadder('ladderPanel', GRADES.map(g => ({ key: g.key, label: g.label, min: g.min })),
       stats.best || null, { title: `${mode.label} rank`, unit: ' lv', digits: 0 });
-    renderAchievements('achPanel', ACH_KEY, ACH_DEFS, 'Achievements');
+    renderAchievements('achPanel', ACH_KEY, ACH_DEFS,'Achievements');
     renderRecentRecords('recentPanel', loadStats(ACH_KEY + '_recent', []),
       e => `${e.mode} - level ${e.level} - ${e.tiles} tiles`, 'No records yet');
   }
@@ -411,7 +411,7 @@
     startRow.style.display = '';
     grid.innerHTML = '';
     grid.style.gridTemplateColumns = '';
-    document.getElementById('levelNum').textContent = '1';
+    document.getElementById('levelNum').textContent ='1';
     document.getElementById('tilesSub').textContent = `Tiles to remember: ${tilesFor(1)}`;
     renderStats();
     renderTopLeaderboard(loadStats(LB_KEYS[mode.key], []));
@@ -432,8 +432,8 @@
 
     const grade = gradeFor(reached);
     const stars = starsFor(reached);
-    document.getElementById('resultTitle').textContent = 'Failed at level ' + reached + '!';
-    document.getElementById('resultStars').textContent = '★'.repeat(stars) + '☆'.repeat(5 - stars);
+    document.getElementById('resultTitle').textContent ='Failed at level ' + reached + '!';
+    document.getElementById('resultStars').textContent ='★'.repeat(stars) + '☆'.repeat(5 - stars);
     document.getElementById('resultDesc').textContent = `You needed to remember ${tilesFor(reached)} tiles.`;
     document.getElementById('resultPercentile').textContent = rankText(reached);
     renderGradeTable(reached);

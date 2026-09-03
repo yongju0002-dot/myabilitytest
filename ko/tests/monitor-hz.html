@@ -104,11 +104,11 @@
       <span class="here">모니터 주사율 테스트</span>
       <span class="idx">13 / 15</span>
     </nav>
-    <h1>🖥️ 모니터 주사율 테스트</h1>
+    <h1>모니터 주사율 테스트</h1>
     <p class="sub">브라우저가 실제로 그리는 프레임 간격을 재서 주사율을 추정합니다.</p>
 
     <div class="info-box">
-      💻 설치할 것 없이 바로 측정합니다. 정확도를 위해 <strong>다른 탭을 닫고, 노트북은 전원을 연결한 뒤</strong> 측정해주세요.
+      설치할 것 없이 바로 측정합니다. 정확도를 위해 <strong>다른 탭을 닫고, 노트북은 전원을 연결한 뒤</strong> 측정해주세요.
     </div>
 
     <div class="level-card">
@@ -183,17 +183,17 @@
 
     <div class="side-panel" id="ladderPanel"></div>
     <div class="side-panel">
-      <div class="ach-head">🕒 최근 측정</div>
+      <div class="ach-head">최근 측정</div>
       <div id="recentPanel"></div>
     </div>
 
     <div class="other-tests">
       <div class="label">다른 테스트도 해보세요</div>
       <div class="other-tests-links">
-        <a href="/ko/tests/reaction-time">⚡ 반응 속도</a>
-        <a href="/ko/tests/aim-trainer">🎯 에임 테스트</a>
-        <a href="/ko/tests/dynamic-vision">👁️ 동체시력</a>
-        <a href="/ko/tests/click-speed">🖱️ CPS 클릭 속도</a>
+        <a href="/ko/tests/reaction-time"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0M9.5 12a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0-5 0"></path></svg><span>반응 속도</span></a>
+        <a href="/ko/tests/aim-trainer"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0M12 2v4M12 18v4M2 12h4M18 12h4"></path></svg><span>에임 테스트</span></a>
+        <a href="/ko/tests/dynamic-vision"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 12c3-5 7-7 10-7s7 2 10 7c-3 5-7 7-10 7s-7-2-10-7zM9 12a3 3 0 1 0 6 0a3 3 0 1 0-6 0"></path></svg><span>동체시력</span></a>
+        <a href="/ko/tests/click-speed"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 3h8a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zM12 3v7"></path></svg><span>CPS 클릭 속도</span></a>
       </div>
     </div>
   </div>
@@ -266,12 +266,12 @@
 
   // 주사율 구간 (사다리 표시용). 높을수록 좋음.
   const HZ_TIERS = [
-    { key: '240', min: 200, label: '240Hz급' },
-    { key: '165', min: 150, label: '165Hz급' },
-    { key: '144', min: 110, label: '120~144Hz급' },
-    { key: '75', min: 70, label: '75Hz급' },
-    { key: '60', min: 50, label: '60Hz급' },
-    { key: 'low', min: 0, label: '50Hz 미만 (절전·제한 의심)' },
+    { key: '240', min: 200, label : '240Hz급' },
+    { key: '165', min: 150, label : '165Hz급' },
+    { key: '144', min: 110, label : '120~144Hz급' },
+    { key: '75', min: 70, label : '75Hz급' },
+    { key: '60', min: 50, label : '60Hz급' },
+    { key: 'low', min: 0, label : '50Hz 미만 (절전·제한 의심)' },
   ];
 
   function renderStats() {
@@ -282,7 +282,7 @@
 
   function renderPanels() {
     renderRankLadder('ladderPanel', HZ_TIERS, stats.best || null, {
-      title: '측정 구간', unit: 'Hz', digits: 0,
+      title: '측정 구간', unit : 'Hz', digits: 0,
     });
     renderRecentRecords('recentPanel', loadStats(STORE_KEY + '_recent', []),
       e => `${e.hz} Hz · 간격 ${e.avg}ms`, '아직 측정 기록이 없어요');
@@ -351,8 +351,8 @@
 
     if (gaps.length < 20) {
       hzLabel.textContent = '측정 실패';
-      document.getElementById('hzVerdict').textContent = '';
-      document.getElementById('hzNote').textContent = '프레임이 충분히 수집되지 않았어요. 이 탭을 활성 상태로 두고 다시 시도해주세요.';
+      document.getElementById('hzVerdict').textContent ='';
+      document.getElementById('hzNote').textContent ='프레임이 충분히 수집되지 않았어요. 이 탭을 활성 상태로 두고 다시 시도해주세요.';
       return;
     }
 

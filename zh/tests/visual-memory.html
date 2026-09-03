@@ -83,7 +83,7 @@
       <span class="here">瞬间记忆力测试</span>
       <span class="idx">02 / 15</span>
     </nav>
-    <h1>🧠 瞬间记忆力测试</h1>
+    <h1>瞬间记忆力测试</h1>
     <p class="sub">记住显示为绿色的格子位置,然后点击相同的格子。</p>
 
     <div class="mode-select" id="modeSelect">
@@ -107,7 +107,7 @@
     </div>
 
     <div id="resultPanel" class="result-panel">
-      <div class="emoji">💥</div>
+      <div class="result-icon"><svg class="ticon" viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"></path></svg></div>
       <h2 id="resultTitle"></h2>
       <div class="stars" id="resultStars"></div>
       <div class="desc" id="resultDesc"></div>
@@ -120,10 +120,10 @@
         <div class="other-tests">
           <div class="label">也来试试其他能力测试</div>
           <div class="other-tests-links">
-            <a href="/zh/tests/chimp-test">🐵 黑猩猩测试</a>
-            <a href="/zh/tests/reaction-time">⚡ 反应速度</a>
-            <a href="/zh/tests/dynamic-vision">👁️ 动态视力</a>
-            <a href="/zh/tests/click-speed">🖱️ CPS点击速度</a>
+            <a href="/zh/tests/chimp-test"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 14h6v6H3zM9 8h6v6H9zM15 3h6v6h-6z"></path></svg><span>黑猩猩测试</span></a>
+            <a href="/zh/tests/reaction-time"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0M9.5 12a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0-5 0"></path></svg><span>反应速度</span></a>
+            <a href="/zh/tests/dynamic-vision"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 12c3-5 7-7 10-7s7 2 10 7c-3 5-7 7-10 7s-7-2-10-7zM9 12a3 3 0 1 0 6 0a3 3 0 1 0-6 0"></path></svg><span>动态视力</span></a>
+            <a href="/zh/tests/click-speed"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 3h8a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zM12 3v7"></path></svg><span>CPS点击速度</span></a>
           </div>
         </div>
     </div>
@@ -173,7 +173,7 @@
       <p>心理学中常提到的"组块化"(chunking)技巧在这里很有用——与其一个个死记方块,不如把它们看成一个整体图形(比如三角形、对角线或十字形)来记忆,这样能一次记住更多方块。把视线固定在屏幕中央、用余光扫视整体布局的练习,也有玩家反馈很有帮助。</p>
     </section>
 
-    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 历代记录排行(最多30位)</h2>
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">历代记录排行(最多30位)</h2>
     <div id="topLeaderboard"></div>
   </div>
 
@@ -232,13 +232,13 @@
 <script>
   const ACH_KEY = 'skillMemoryAchV1';
   const MODES = [
-    { key: 'classic', label: '经典', fixed: null, hint: '等级提升时格子也会变大。默认模式。' },
-    { key: 'g4', label: '4x4', fixed: 4, hint: '16格固定。格子小,很快就会变密。' },
-    { key: 'g5', label: '5x5', fixed: 5, hint: '25格固定。难度均衡。' },
-    { key: 'g6', label: '6x6', fixed: 6, hint: '36格固定。需要一眼扫过整个大格子。' },
+    { key: 'classic', label : '经典', fixed: null, hint : '等级提升时格子也会变大。默认模式。' },
+    { key: 'g4', label : '4x4', fixed: 4, hint : '16格固定。格子小,很快就会变密。' },
+    { key: 'g5', label : '5x5', fixed: 5, hint : '25格固定。难度均衡。' },
+    { key: 'g6', label : '6x6', fixed: 6, hint : '36格固定。需要一眼扫过整个大格子。' },
   ];
-  const LB_KEYS = { classic: 'skillMemoryLeaderboardV1', g4: 'skillMemoryLbG4V1', g5: 'skillMemoryLbG5V1', g6: 'skillMemoryLbG6V1' };
-  const STAT_KEYS = { classic: 'skillMemoryStats', g4: 'skillMemoryStatsG4', g5: 'skillMemoryStatsG5', g6: 'skillMemoryStatsG6' };
+  const LB_KEYS = { classic: 'skillMemoryLeaderboardV1', g4 : 'skillMemoryLbG4V1', g5 : 'skillMemoryLbG5V1', g6 : 'skillMemoryLbG6V1' };
+  const STAT_KEYS = { classic: 'skillMemoryStats', g4 : 'skillMemoryStatsG4', g5 : 'skillMemoryStatsG5', g6 : 'skillMemoryStatsG6' };
 
   let mode = MODES[0];
   let stats = loadStats(STAT_KEYS[mode.key], { count: 0, best: 0 });
@@ -286,13 +286,13 @@
   }
 
   const GRADES = [
-    { key: 'SS', min: 20, label: 'SS · 天才级' },
-    { key: 'S', min: 16, label: 'S · 出色' },
-    { key: 'A', min: 13, label: 'A · 优秀' },
-    { key: 'B', min: 9, label: 'B · 良好' },
-    { key: 'C', min: 5, label: 'C · 普通' },
-    { key: 'D', min: 2, label: 'D · 略逊' },
-    { key: 'F', min: 0, label: 'F · 早期失败' },
+    { key: 'SS', min: 20, label : 'SS · 天才级' },
+    { key: 'S', min: 16, label : 'S · 出色' },
+    { key: 'A', min: 13, label : 'A · 优秀' },
+    { key: 'B', min: 9, label : 'B · 良好' },
+    { key: 'C', min: 5, label : 'C · 普通' },
+    { key: 'D', min: 2, label : 'D · 略逊' },
+    { key: 'F', min: 0, label : 'F · 早期失败' },
   ];
 
   function gradeFor(lv) {
@@ -351,14 +351,14 @@
     if (locked || over || cell.classList.contains('disabled')) return;
 
     if (targets.has(i)) {
-      cell.classList.add('disabled', 'picked-correct');
+      cell.classList.add('disabled','picked-correct');
       remaining.delete(i);
       if (remaining.size === 0) {
         locked = true;
         setTimeout(() => { level += 1; buildGrid(); showTargets(); }, 600);
       }
     } else {
-      cell.classList.add('disabled', 'picked-wrong');
+      cell.classList.add('disabled','picked-wrong');
       locked = true;
       targets.forEach(idx => grid.children[idx].classList.add('show-target'));
       [...grid.children].forEach(c => c.classList.add('disabled'));
@@ -367,12 +367,12 @@
   }
 
   const ACH_DEFS = (() => {
-    const defs = [{ id: 'first', label: '首次挑战' }];
+    const defs = [{ id: 'first', label : '首次挑战' }];
     [1, 5, 10, 25, 50].forEach(n => defs.push({ id: 'plays' + n, label: n + '次游戏' }));
     MODES.forEach(m => GRADES.forEach(g => {
       defs.push({ id: `${m.key}_${g.key}`, label: `${m.label} - ${g.label}` });
     }));
-    defs.push({ id: 'allmodes', label: '体验全部4种模式' });
+    defs.push({ id: 'allmodes', label : '体验全部4种模式' });
     return defs;
   })();
 
@@ -394,7 +394,7 @@
   function renderPanels() {
     renderRankLadder('ladderPanel', GRADES.map(g => ({ key: g.key, label: g.label, min: g.min })),
       stats.best || null, { title: `${mode.label}等级阶梯`, unit: '级', digits: 0 });
-    renderAchievements('achPanel', ACH_KEY, ACH_DEFS, '成就');
+    renderAchievements('achPanel', ACH_KEY, ACH_DEFS,'成就');
     renderRecentRecords('recentPanel', loadStats(ACH_KEY + '_recent', []),
       e => `等级${e.level} - ${e.mode} - ${e.tiles}个`, '还没有记录');
   }
@@ -411,7 +411,7 @@
     startRow.style.display = '';
     grid.innerHTML = '';
     grid.style.gridTemplateColumns = '';
-    document.getElementById('levelNum').textContent = '1';
+    document.getElementById('levelNum').textContent ='1';
     document.getElementById('tilesSub').textContent = `需记忆格子数: ${tilesFor(1)}个`;
     renderStats();
     renderTopLeaderboard(loadStats(LB_KEYS[mode.key], []));
@@ -432,8 +432,8 @@
 
     const grade = gradeFor(reached);
     const stars = starsFor(reached);
-    document.getElementById('resultTitle').textContent = '在等级' + reached + '失败!';
-    document.getElementById('resultStars').textContent = '★'.repeat(stars) + '☆'.repeat(5 - stars);
+    document.getElementById('resultTitle').textContent ='在等级' + reached + '失败!';
+    document.getElementById('resultStars').textContent ='★'.repeat(stars) + '☆'.repeat(5 - stars);
     document.getElementById('resultDesc').textContent = `需要记住${tilesFor(reached)}个格子。`;
     document.getElementById('resultPercentile').textContent = rankText(reached);
     renderGradeTable(reached);

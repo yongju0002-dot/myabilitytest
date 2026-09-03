@@ -89,7 +89,7 @@
       <span class="here">CPS 클릭 속도 테스트</span>
       <span class="idx">03 / 15</span>
     </nav>
-    <h1>🖱️ CPS 클릭 속도 테스트</h1>
+    <h1>CPS 클릭 속도 테스트</h1>
     <p class="sub">제한 시간 동안 최대한 빠르게 클릭하세요!</p>
 
     <div class="mode-select" id="modeSelect">
@@ -115,7 +115,7 @@
     </button>
 
     <div id="resultPanel" class="result-panel">
-      <div class="emoji" id="resultEmoji">🖱️</div>
+      <div class="result-icon"><svg class="ticon" viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 3h8a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zM12 3v7"></path></svg></div>
       <h2 id="resultTitle"></h2>
       <div class="stars" id="resultStars"></div>
       <div class="desc" id="resultDesc"></div>
@@ -129,10 +129,10 @@
       <div class="other-tests">
         <div class="label">다른 능력 테스트도 해보세요</div>
         <div class="other-tests-links">
-          <a href="/ko/tests/apm">🎹 APM</a>
-          <a href="/ko/tests/mouse-accuracy">🖲️ 마우스 정확도</a>
-          <a href="/ko/tests/spacebar-counter">⌨️ 스페이스바 연타</a>
-          <a href="/ko/tests/reaction-time">⚡ 반응 속도</a>
+          <a href="/ko/tests/apm"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 20V10M10 20V4M16 20V13M22 20V8"></path></svg><span>APM</span></a>
+          <a href="/ko/tests/mouse-accuracy"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 17c3 0 3-10 6-10s3 10 6 10 3-10 6-10"></path></svg><span>마우스 정확도</span></a>
+          <a href="/ko/tests/spacebar-counter"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 9h18v6H3zM7 12h10"></path></svg><span>스페이스바 연타</span></a>
+          <a href="/ko/tests/reaction-time"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0M9.5 12a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0-5 0"></path></svg><span>반응 속도</span></a>
         </div>
       </div>
     </div>
@@ -189,17 +189,17 @@
       <p>1~3초처럼 매우 짧은 테스트는 순간적인 폭발력만 반영되기 때문에 10초 이상의 지속적인 테스트보다 CPS가 더 높게 측정되는 경향이 있습니다. 오래 클릭할수록 손가락 피로가 누적돼 평균 CPS는 자연스럽게 낮아집니다. 그래서 이 페이지는 지속시간별로 기록을 따로 저장합니다.</p>
 
       <h2>CPS를 올리는 방법이 있나요?</h2>
-      <p>손가락 하나로만 클릭하기보다 검지·중지를 번갈아 쓰는 '버터플라이 클릭'이나, 팔 근육을 떨어 클릭하는 '지터 클릭' 같은 기법이 커뮤니티에서 널리 알려져 있습니다. 위 모드 탭에서 해당 기술을 고르면 기술별 등급표로 바로 측정해볼 수 있어요. 다만 이런 기법은 손목과 팔에 부담을 주기 쉬우니 무리해서 반복 연습하지 않는 걸 권합니다.</p>
+      <p>손가락 하나로만 클릭하기보다 검지·중지를 번갈아 쓰는 '버터플라이 클릭'이나, 팔 근육을 떨어 클릭하는'지터 클릭' 같은 기법이 커뮤니티에서 널리 알려져 있습니다. 위 모드 탭에서 해당 기술을 고르면 기술별 등급표로 바로 측정해볼 수 있어요. 다만 이런 기법은 손목과 팔에 부담을 주기 쉬우니 무리해서 반복 연습하지 않는 걸 권합니다.</p>
     </section>
 
     <div class="side-panel" id="ladderPanel"></div>
     <div class="side-panel" id="achPanel"></div>
     <div class="side-panel">
-      <div class="ach-head">🕒 최근 기록</div>
+      <div class="ach-head">최근 기록</div>
       <div id="recentPanel"></div>
     </div>
 
-    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 역대 기록 순위 (최대 30위)</h2>
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">역대 기록 순위 (최대 30위)</h2>
     <div id="topLeaderboard"></div>
   </div>
 
@@ -272,52 +272,52 @@
   // 클릭 기술 모드. 등급 경계는 공식 통계가 아니라 커뮤니티 통념 기반 자체 기준.
   const MODES = [
     {
-      key: 'classic', label: '클래식',
+      key: 'classic', label : '클래식',
       hint: '검지 하나로 누르는 일반 클릭. 쓰는 기술을 고르면 그 기술에 맞는 등급표로 채점돼요.',
       grades: [
-        { key: 'SS', min: 12, label: 'SS · 초고속', persona: '🖱️ 클릭 머신' },
-        { key: 'S', min: 10, label: 'S · 매우 빠름', persona: '⚡ 스피드 클리커' },
-        { key: 'A', min: 8, label: 'A · 빠름', persona: '🎯 빠른 손' },
-        { key: 'B', min: 6, label: 'B · 평균 이상', persona: '👍 안정적인 손' },
-        { key: 'C', min: 4, label: 'C · 평균', persona: '🙂 평범한 클릭러' },
-        { key: 'D', min: 2, label: 'D · 느긋함', persona: '🐢 여유형 클리커' },
-        { key: 'F', min: 0, label: 'F · 매우 느긋함', persona: '🌙 느긋한 감상형' },
+        { key: 'SS', min: 12, label : 'SS · 초고속', persona : '클릭 머신' },
+        { key: 'S', min: 10, label : 'S · 매우 빠름', persona : '스피드 클리커' },
+        { key: 'A', min: 8, label : 'A · 빠름', persona : '빠른 손' },
+        { key: 'B', min: 6, label : 'B · 평균 이상', persona : '안정적인 손' },
+        { key: 'C', min: 4, label : 'C · 평균', persona : '평범한 클릭러' },
+        { key: 'D', min: 2, label : 'D · 느긋함', persona : '여유형 클리커' },
+        { key: 'F', min: 0, label : 'F · 매우 느긋함', persona : '느긋한 감상형' },
       ],
     },
     {
-      key: 'jitter', label: '지터',
+      key: 'jitter', label : '지터',
       hint: '팔·손목 근육을 떨어 클릭. 결과에 클릭 간격의 일관성도 표시돼요. 손목 부담이 크니 무리하지 마세요.',
       grades: [
-        { key: 'SS', min: 13, label: 'SS · 지터 마스터', persona: '🌀 지터클릭 마스터' },
-        { key: 'S', min: 11, label: 'S · 매우 빠름', persona: '⚡ 진동의 달인' },
-        { key: 'A', min: 9, label: 'A · 빠름', persona: '🎯 능숙한 손목' },
-        { key: 'B', min: 7, label: 'B · 평균 이상', persona: '👍 안정적인 손목' },
-        { key: 'C', min: 5, label: 'C · 평균', persona: '🙂 평범한 손목' },
-        { key: 'D', min: 0, label: 'D · 연습 필요', persona: '🐢 연습이 필요한 손목' },
+        { key: 'SS', min: 13, label : 'SS · 지터 마스터', persona : '지터클릭 마스터' },
+        { key: 'S', min: 11, label : 'S · 매우 빠름', persona : '진동의 달인' },
+        { key: 'A', min: 9, label : 'A · 빠름', persona : '능숙한 손목' },
+        { key: 'B', min: 7, label : 'B · 평균 이상', persona : '안정적인 손목' },
+        { key: 'C', min: 5, label : 'C · 평균', persona : '평범한 손목' },
+        { key: 'D', min: 0, label : 'D · 연습 필요', persona : '연습이 필요한 손목' },
       ],
     },
     {
-      key: 'butterfly', label: '버터플라이',
+      key: 'butterfly', label : '버터플라이',
       hint: '검지·중지를 번갈아 누르는 클릭. 리듬이 일정할수록 CPS가 안정적으로 나와요.',
       grades: [
-        { key: 'SS', min: 20, label: 'SS · 버터플라이 마스터', persona: '🦋 버터플라이 마스터' },
-        { key: 'S', min: 16, label: 'S · 매우 빠름', persona: '⚡ 두 손가락의 달인' },
-        { key: 'A', min: 13, label: 'A · 빠름', persona: '🎯 리듬 클리커' },
-        { key: 'B', min: 10, label: 'B · 평균 이상', persona: '👍 안정적인 교차' },
-        { key: 'C', min: 7, label: 'C · 평균', persona: '🙂 평범한 교차' },
-        { key: 'D', min: 0, label: 'D · 연습 필요', persona: '🐢 연습이 필요한 손가락' },
+        { key: 'SS', min: 20, label : 'SS · 버터플라이 마스터', persona : '버터플라이 마스터' },
+        { key: 'S', min: 16, label : 'S · 매우 빠름', persona : '두 손가락의 달인' },
+        { key: 'A', min: 13, label : 'A · 빠름', persona : '리듬 클리커' },
+        { key: 'B', min: 10, label : 'B · 평균 이상', persona : '안정적인 교차' },
+        { key: 'C', min: 7, label : 'C · 평균', persona : '평범한 교차' },
+        { key: 'D', min: 0, label : 'D · 연습 필요', persona : '연습이 필요한 손가락' },
       ],
     },
     {
-      key: 'drag', label: '드래그',
+      key: 'drag', label : '드래그',
       hint: '버튼 위로 손가락을 끌어 마찰로 연타를 내는 클릭. 마우스 종류에 따라 편차가 커요.',
       grades: [
-        { key: 'SS', min: 40, label: 'SS · 드래그 마스터', persona: '🔥 드래그 폭주' },
-        { key: 'S', min: 30, label: 'S · 매우 빠름', persona: '⚡ 마찰의 달인' },
-        { key: 'A', min: 22, label: 'A · 빠름', persona: '🎯 드래그 숙련자' },
-        { key: 'B', min: 15, label: 'B · 평균 이상', persona: '👍 감 잡은 드래그' },
-        { key: 'C', min: 8, label: 'C · 평균', persona: '🙂 평범한 드래그' },
-        { key: 'D', min: 0, label: 'D · 연습 필요', persona: '🐢 드래그 입문' },
+        { key: 'SS', min: 40, label : 'SS · 드래그 마스터', persona : '드래그 폭주' },
+        { key: 'S', min: 30, label : 'S · 매우 빠름', persona : '마찰의 달인' },
+        { key: 'A', min: 22, label : 'A · 빠름', persona : '드래그 숙련자' },
+        { key: 'B', min: 15, label : 'B · 평균 이상', persona : '감 잡은 드래그' },
+        { key: 'C', min: 8, label : 'C · 평균', persona : '평범한 드래그' },
+        { key: 'D', min: 0, label : 'D · 연습 필요', persona : '드래그 입문' },
       ],
     },
   ];
@@ -366,8 +366,8 @@
       localStorage.removeItem(oldKey);
       saveStats(STORE_KEY, allStats);
     };
-    mergeStats('skillJitterClickStats', 'jitter_10');
-    mergeStats('skillKohiClickStats', '10');
+    mergeStats('skillJitterClickStats','jitter_10');
+    mergeStats('skillKohiClickStats','10');
     const kohiLb = loadStats('skillKohiClickLeaderboardV1', null);
     if (kohiLb && kohiLb.length) {
       kohiLb.forEach(e => addToLeaderboard(LB_KEYS.classic, { value: e.value, duration: 10, date: e.date }, false));
@@ -516,7 +516,7 @@
     const grade = gradeFor(cps);
     const stars = starsFor(grade);
     document.getElementById('resultTitle').textContent = cps.toFixed(1) + ' CPS';
-    document.getElementById('resultStars').textContent = '★'.repeat(stars) + '☆'.repeat(5 - stars);
+    document.getElementById('resultStars').textContent ='★'.repeat(stars) + '☆'.repeat(5 - stars);
     document.getElementById('resultDesc').textContent = `총 클릭 ${clicks}회 / ${duration}초 · ${mode.label} — ${grade.label}`;
     document.getElementById('personaLabel').textContent = grade.persona;
 
@@ -544,12 +544,12 @@
   // ---- 업적 정의: 이미 현지화된 MODES/grades에서 자동 생성 ----
   const ACH_KEY = 'skillCps';
   const ACH_DEFS = (() => {
-    const defs = [{ id: 'first', label: '첫 도전' }];
+    const defs = [{ id: 'first', label : '첫 도전' }];
     [1, 5, 10, 25, 50].forEach(n => defs.push({ id: 'plays' + n, label: n + '회 플레이' }));
     MODES.forEach(m => m.grades.forEach(g => {
       defs.push({ id: `${m.key}_${g.key}`, label: `${m.label} · ${g.key}` , hint: `${m.label} · ${g.label}` });
     }));
-    defs.push({ id: 'allmodes', label: '4개 기술 모두 체험' });
+    defs.push({ id: 'allmodes', label : '4개 기술 모두 체험' });
     return defs;
   })();
 
@@ -582,7 +582,7 @@
     renderRankLadder('ladderPanel', mode.grades, bestForMode(), {
       title: `${mode.label} 랭크`, unit: ' CPS', digits: 1,
     });
-    renderAchievements('achPanel', ACH_KEY, ACH_DEFS, '🏅 업적');
+    renderAchievements('achPanel', ACH_KEY, ACH_DEFS,'업적');
     renderRecentRecords('recentPanel', loadStats(ACH_KEY + '_recent', []),
       e => `${e.cps.toFixed(1)} CPS · ${e.mode} · ${e.duration}초`, '아직 기록이 없어요');
   }
@@ -610,7 +610,7 @@
       if (finished) {
         finished = false;
         resultPanel.classList.remove('show');
-        setPad('START', '', false);
+        setPad('START','', false);
         timeLeftEl.textContent = duration.toFixed(1);
         clickCountLine.textContent = '클릭 수: 0 · 실시간 CPS: 0.0';
         graphCtx.clearRect(0, 0, graphCanvas.width, graphCanvas.height);
@@ -634,7 +634,7 @@
     finished = false;
     samples = [];
     resultPanel.classList.remove('show');
-    setPad('START', '', false);
+    setPad('START','', false);
     timeLeftEl.textContent = duration.toFixed(1);
     clickCountLine.textContent = '클릭 수: 0 · 실시간 CPS: 0.0';
     graphCtx.clearRect(0, 0, graphCanvas.width, graphCanvas.height);

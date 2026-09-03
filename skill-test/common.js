@@ -83,7 +83,7 @@ function renderLeaderboard(containerId, list, formatRow, emptyText) {
     return;
   }
   el.innerHTML = '<ul class="leaderboard">' + list.map((entry, i) => {
-    const medal = ['🥇', '🥈', '🥉'][i] || (i + 1) + '.';
+    const medal = String(i + 1).padStart(2, '0');
     return `<li class="${i === 0 ? 'winner' : ''}"><span class="rank">${medal}</span>${formatRow(entry, i)}</li>`;
   }).join('') + '</ul>';
 }

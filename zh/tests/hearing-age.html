@@ -134,12 +134,12 @@
       <span class="here">听力年龄测试</span>
       <span class="idx">06 / 15</span>
     </nav>
-    <h1>👂 听力年龄测试</h1>
+    <h1>听力年龄测试</h1>
     <p class="sub">听着音调逐渐升高的声音,看看你能听到多高。</p>
 
     <div id="introScreen">
       <div class="warn-box">
-        <div class="warn-title">⚠️ 必须佩戴耳机</div>
+        <div class="warn-title">必须佩戴耳机</div>
         扬声器无法准确还原高频声音,测试结果会失去意义。请务必佩戴耳机后再开始。
       </div>
       <div class="btn-row">
@@ -150,7 +150,7 @@
     <div id="calibScreen" style="display:none;">
       <div class="level-card">
         <div class="label">调整音量</div>
-        <div class="num" style="font-size:32px;">🔊 1000Hz</div>
+        <div class="num" style="font-size:32px;">1000Hz</div>
         <div class="sub">请将设备音量调整到听起来舒适的水平。<br>调好后按下方按钮,之后请不要再改变音量。</div>
       </div>
       <div class="btn-row">
@@ -173,7 +173,7 @@
     </div>
 
     <div id="resultPanel" class="result-panel">
-      <div class="emoji">👂</div>
+      <div class="result-icon"><svg class="ticon" viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 9v6M8 6v12M12 3v18M16 6v12M20 9v6"></path></svg></div>
       <h2 id="resultTitle"></h2>
       <div class="desc" id="resultDesc"></div>
       <div class="percentile" id="resultComment"></div>
@@ -188,10 +188,10 @@
         <div class="other-tests">
           <div class="label">也来试试其他能力测试</div>
           <div class="other-tests-links">
-            <a href="/zh/tests/dynamic-vision">👁️ 动态视力</a>
-            <a href="/zh/tests/reaction-time">⚡ 反应速度</a>
-            <a href="/zh/tests/visual-memory">🧠 瞬间记忆力</a>
-            <a href="/zh/tests/chimp-test">🐵 黑猩猩测试</a>
+            <a href="/zh/tests/dynamic-vision"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 12c3-5 7-7 10-7s7 2 10 7c-3 5-7 7-10 7s-7-2-10-7zM9 12a3 3 0 1 0 6 0a3 3 0 1 0-6 0"></path></svg><span>动态视力</span></a>
+            <a href="/zh/tests/reaction-time"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0M9.5 12a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0-5 0"></path></svg><span>反应速度</span></a>
+            <a href="/zh/tests/visual-memory"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"></path></svg><span>瞬间记忆力</span></a>
+            <a href="/zh/tests/chimp-test"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 14h6v6H3zM9 8h6v6H9zM15 3h6v6h-6z"></path></svg><span>黑猩猩测试</span></a>
           </div>
         </div>
     </div>
@@ -230,7 +230,7 @@
       <p>这个测试结果会因扬声器/耳机性能、设备音量、浏览器的音频处理方式以及周围噪音而有很大差异,请仅作为娱乐参考。如果想要更稳定的结果,建议在安静的地方使用有线耳机进行测试。</p>
     </section>
 
-    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 历代记录排行(最多30位)</h2>
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">历代记录排行(最多30位)</h2>
     <div id="topLeaderboard"></div>
   </div>
 
@@ -295,17 +295,17 @@
   const STEP_DURATION = 4;
 
   const AGE_MAP = [
-    { freq: 20000, age: '18岁以下', comment: '比同龄人更敏锐,非常好的听力。' },
-    { freq: 19000, age: '20岁', comment: '年轻健康的听力。' },
-    { freq: 18000, age: '24岁', comment: '非常好。' },
-    { freq: 17000, age: '30岁', comment: '优于平均水平。' },
-    { freq: 16000, age: '35岁', comment: '正常范围。' },
-    { freq: 15000, age: '40岁', comment: '正常范围。' },
-    { freq: 14000, age: '45岁', comment: '自然变化范围内。' },
-    { freq: 12000, age: '50岁', comment: '自然变化范围内。' },
-    { freq: 10000, age: '55岁', comment: '高频听力正在逐渐减弱。' },
-    { freq: 8000, age: '60岁以上', comment: '也可能是设备或环境影响,轻松看待就好。' },
-    { freq: 0, age: '60岁以上', comment: '也可能是设备或环境影响,轻松看待就好。' },
+    { freq: 20000, age: '18岁以下', comment : '比同龄人更敏锐,非常好的听力。' },
+    { freq: 19000, age: '20岁', comment : '年轻健康的听力。' },
+    { freq: 18000, age: '24岁', comment : '非常好。' },
+    { freq: 17000, age: '30岁', comment : '优于平均水平。' },
+    { freq: 16000, age: '35岁', comment : '正常范围。' },
+    { freq: 15000, age: '40岁', comment : '正常范围。' },
+    { freq: 14000, age: '45岁', comment : '自然变化范围内。' },
+    { freq: 12000, age: '50岁', comment : '自然变化范围内。' },
+    { freq: 10000, age: '55岁', comment : '高频听力正在逐渐减弱。' },
+    { freq: 8000, age: '60岁以上', comment : '也可能是设备或环境影响,轻松看待就好。' },
+    { freq: 0, age: '60岁以上', comment : '也可能是设备或环境影响,轻松看待就好。' },
   ];
 
   function ageFor(maxHeard) {

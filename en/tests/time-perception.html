@@ -83,7 +83,7 @@
       <span class="here">Time Sense Test</span>
       <span class="idx">05 / 15</span>
     </nav>
-    <h1>🧭 Time Sense Test</h1>
+    <h1>Time Sense Test</h1>
     <p class="sub">A hidden amount of time passes without showing you how long. Once it stops, guess the time!</p>
 
     <div id="setupScreen">
@@ -117,7 +117,7 @@
     </div>
 
     <div id="resultPanel" class="result-panel">
-      <div class="emoji">🏆</div>
+      <div class="result-icon"><svg class="ticon" viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 3h12M6 21h12M7 3c0 6 5 6 5 9s-5 3-5 9M17 3c0 6-5 6-5 9s5 3 5 9"></path></svg></div>
       <h2>Final results</h2>
       <div class="desc" id="actualReveal"></div>
       <ul class="leaderboard" id="leaderboard"></ul>
@@ -128,10 +128,10 @@
         <div class="other-tests">
           <div class="label">Try another ability test</div>
           <div class="other-tests-links">
-            <a href="/en/tests/time-stop">⏱️ Stop the Timer</a>
-            <a href="/en/tests/reaction-time">⚡ Reaction Time</a>
-            <a href="/en/tests/hearing-age">👂 Hearing Age</a>
-            <a href="/en/tests/click-speed">🖱️ CPS Click Speed</a>
+            <a href="/en/tests/time-stop"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0M12 7v5h4"></path></svg><span>Stop the Timer</span></a>
+            <a href="/en/tests/reaction-time"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0M9.5 12a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0-5 0"></path></svg><span>Reaction Time</span></a>
+            <a href="/en/tests/hearing-age"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 9v6M8 6v12M12 3v18M16 6v12M20 9v6"></path></svg><span>Hearing Age</span></a>
+            <a href="/en/tests/click-speed"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 3h8a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zM12 3v7"></path></svg><span>CPS Click Speed</span></a>
           </div>
         </div>
     </div>
@@ -158,11 +158,11 @@
       <h2>Error guide</h2>
       <table>
         <tr><th>Error</th><th>Rating</th></tr>
-        <tr><td>Under 0.1s</td><td>⏱️ Time-sense superpower</td></tr>
-        <tr><td>0.1 - 0.3s</td><td>🎯 Sharp time sense</td></tr>
-        <tr><td>0.3 - 0.6s</td><td>🙂 Average time sense</td></tr>
-        <tr><td>0.6 - 1.0s</td><td>🌀 A bit off</td></tr>
-        <tr><td>Over 1.0s</td><td>🐢 Free spirit</td></tr>
+        <tr><td>Under 0.1s</td><td>Time-sense superpower</td></tr>
+        <tr><td>0.1 - 0.3s</td><td>Sharp time sense</td></tr>
+        <tr><td>0.3 - 0.6s</td><td>Average time sense</td></tr>
+        <tr><td>0.6 - 1.0s</td><td>A bit off</td></tr>
+        <tr><td>Over 1.0s</td><td>Free spirit</td></tr>
       </table>
 
       <h2>How is it measured?</h2>
@@ -172,7 +172,7 @@
       <p>A lot of people count a steady beat in their head ("one, two, three...") or use their breathing rhythm to track time. That said, some argue this measures counting ability more than pure time perception - if you want to test the real thing, try guessing without counting at all.</p>
     </section>
 
-    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 All-Time Top Records (Top 30)</h2>
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">All-Time Top Records (Top 30)</h2>
     <div id="topLeaderboard"></div>
   </div>
 
@@ -326,7 +326,7 @@
   }
 
   document.getElementById('submitGuessBtn').addEventListener('click', submitAllGuesses);
-  guessList.addEventListener('keydown', (e) => { if (e.key === 'Enter') submitAllGuesses(); });
+  guessList.addEventListener('keydown', (e) => { if (e.key ==='Enter') submitAllGuesses(); });
 
   function finishGame(results) {
     playScreen.style.display = 'none';
@@ -343,7 +343,7 @@
 
     const lb = document.getElementById('leaderboard');
     lb.innerHTML = sorted.map((r, i) => {
-      const medal = ['🥇', '🥈', '🥉'][i] || (i + 1) + '.';
+      const medal = ['01','02','03'][i] || (i + 1) + '.';
       return `<li class="${i === 0 ? 'winner' : ''}">
         <span class="rank">${medal}</span>
         <span class="lb-name">Player ${r.player}</span>

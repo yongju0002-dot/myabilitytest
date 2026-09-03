@@ -112,7 +112,7 @@
       <span class="here">APM测试</span>
       <span class="idx">11 / 15</span>
     </nav>
-    <h1>🎹 APM测试</h1>
+    <h1>APM测试</h1>
     <p class="sub">60秒内,鼠标点击和键盘输入全部计入。</p>
 
     <div class="info-box">
@@ -124,14 +124,14 @@
       <div class="countdown-num" id="timeLeft">60.0</div>
       <div class="sub" id="apmLine">操作数: 0 · 实时APM: 0</div>
       <div class="apm-split">
-        <span>🖱️ 点击 <b id="mouseCount">0</b></span>
-        <span>⌨️ 按键 <b id="keyCount">0</b></span>
+        <span>点击 <b id="mouseCount">0</b></span>
+        <span>按键 <b id="keyCount">0</b></span>
       </div>
     </div>
     <button class="apm-pad" id="apmPad"><div class="pad-main">按任意键或点击这里开始</div><div class="pad-sub">实时APM将显示在这里</div></button>
 
     <div id="resultPanel" class="result-panel">
-      <div class="emoji">🎹</div>
+      <div class="result-icon"><svg class="ticon" viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 20V10M10 20V4M16 20V13M22 20V8"></path></svg></div>
       <h2 id="resultTitle"></h2>
       <div class="stars" id="resultStars"></div>
       <div class="desc" id="resultDesc"></div>
@@ -145,10 +145,10 @@
         <div class="other-tests">
           <div class="label">也来试试其他能力测试</div>
           <div class="other-tests-links">
-            <a href="/zh/tests/click-speed">🖱️ CPS点击速度</a>
-            <a href="/zh/tests/spacebar-counter">⌨️ 空格键连打</a>
-            <a href="/zh/tests/mouse-accuracy">🖲️ 鼠标精准度</a>
-            <a href="/zh/tests/aim-trainer">🎯 瞄准测试</a>
+            <a href="/zh/tests/click-speed"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 3h8a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zM12 3v7"></path></svg><span>CPS点击速度</span></a>
+            <a href="/zh/tests/spacebar-counter"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 9h18v6H3zM7 12h10"></path></svg><span>空格键连打</span></a>
+            <a href="/zh/tests/mouse-accuracy"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 17c3 0 3-10 6-10s3 10 6 10 3-10 6-10"></path></svg><span>鼠标精准度</span></a>
+            <a href="/zh/tests/aim-trainer"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0M12 2v4M12 18v4M2 12h4M18 12h4"></path></svg><span>瞄准测试</span></a>
           </div>
         </div>
     </div>
@@ -187,13 +187,13 @@
       <p>不过APM高并不等于水平高。毫无意义的重复输入同样能把数值刷上去,实际上更重要的是有效操作所占的比例。本测试会以10秒为区间绘制APM图表,因此也能看出你的速度是否在后半段下滑(耐力)。</p>
     </section>
 
-    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 历代记录排行(最多30位)</h2>
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">历代记录排行(最多30位)</h2>
     <div id="topLeaderboard"></div>
 <h2 style="text-align:center; font-size:15px; margin-top:28px;">其他点击测试</h2>
     <div class="related-links">
-      <a href="/zh/tests/click-speed">🖱️ CPS点击速度</a>
-      <a href="/zh/tests/spacebar-counter">⌨️ 空格键连打</a>
-      <a href="/zh/tests/mouse-accuracy">🖲️ 鼠标精准度</a>
+      <a href="/zh/tests/click-speed"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 3h8a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zM12 3v7"></path></svg><span>CPS点击速度</span></a>
+      <a href="/zh/tests/spacebar-counter"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 9h18v6H3zM7 12h10"></path></svg><span>空格键连打</span></a>
+      <a href="/zh/tests/mouse-accuracy"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 17c3 0 3-10 6-10s3 10 6 10 3-10 6-10"></path></svg><span>鼠标精准度</span></a>
     </div>
   </div>
 
@@ -258,12 +258,12 @@
   let stats = loadStats(STORE_KEY, { plays: 0, bestApm: 0, bestActions: 0 });
 
   const GRADES = [
-    { key: 'PRO', min: 300, label: '职业选手级 (300~400)' },
-    { key: 'S', min: 220, label: 'S · 非常快' },
-    { key: 'A', min: 160, label: 'A · 快' },
-    { key: 'B', min: 110, label: 'B · 高于平均' },
-    { key: 'C', min: 60, label: 'C · 平均' },
-    { key: 'D', min: 0, label: 'D · 慢悠悠' },
+    { key: 'PRO', min: 300, label : '职业选手级 (300~400)' },
+    { key: 'S', min: 220, label : 'S · 非常快' },
+    { key: 'A', min: 160, label : 'A · 快' },
+    { key: 'B', min: 110, label : 'B · 高于平均' },
+    { key: 'C', min: 60, label : 'C · 平均' },
+    { key: 'D', min: 0, label : 'D · 慢悠悠' },
   ];
 
   function gradeFor(apm) {
@@ -349,8 +349,8 @@
   window.addEventListener('keydown', (e) => {
     // Let the browser keep its own shortcuts; only count plain key presses.
     if (e.ctrlKey || e.metaKey || e.altKey) return;
-    if (e.key === 'Tab' || e.key === 'F5') return;
-    if (e.code === 'Space' || e.key === ' ') e.preventDefault();
+    if (e.key === 'Tab' || e.key ==='F5') return;
+    if (e.code === 'Space' || e.key ===' ') e.preventDefault();
     if (e.repeat) return;
     registerAction('key');
   });
@@ -384,7 +384,7 @@
     finished = true;
     cancelAnimationFrame(rafId);
     timeLeftEl.textContent = '0.0';
-    setPad('完成!', '点击下方按钮重新开始', false);
+    setPad('完成!','点击下方按钮重新开始', false);
 
     const apm = (actions / DURATION) * 60;
     stats.plays += 1;
@@ -401,9 +401,9 @@
     const dropPct = firstSeg > 0 ? ((firstSeg - lastSeg) / firstSeg) * 100 : 0;
 
     document.getElementById('resultTitle').textContent = Math.round(apm) + ' APM';
-    document.getElementById('resultStars').textContent = '★'.repeat(stars) + '☆'.repeat(5 - stars);
+    document.getElementById('resultStars').textContent ='★'.repeat(stars) + '☆'.repeat(5 - stars);
     document.getElementById('resultDesc').textContent =
-      `共${actions}次操作 (🖱️ ${mouseActions} / ⌨️ ${keyActions}) — ${grade.label}`;
+      `共${actions}次操作 (${mouseActions} / ${keyActions}) — ${grade.label}`;
     document.getElementById('resultStamina').textContent = dropPct > 0
       ? `后段耐力: 最后10秒比最初10秒下降了${dropPct.toFixed(0)}%`
       : `后段耐力: 全程保持住了速度!`;
@@ -428,11 +428,11 @@
     finished = false;
     actions = 0; mouseActions = 0; keyActions = 0;
     resultPanel.classList.remove('show');
-    setPad('按任意键或点击这里开始', '实时APM将显示在这里', false);
+    setPad('按任意键或点击这里开始','实时APM将显示在这里', false);
     timeLeftEl.textContent = DURATION.toFixed(1);
     apmLine.textContent = '操作数: 0 · 实时APM: 0';
-    document.getElementById('mouseCount').textContent = '0';
-    document.getElementById('keyCount').textContent = '0';
+    document.getElementById('mouseCount').textContent ='0';
+    document.getElementById('keyCount').textContent ='0';
   });
 
   document.getElementById('shareBtn').addEventListener('click', () => {

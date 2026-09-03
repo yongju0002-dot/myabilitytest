@@ -123,7 +123,7 @@
       <span class="here">瞄准测试</span>
       <span class="idx">09 / 15</span>
     </nav>
-    <h1>🎯 瞄准测试</h1>
+    <h1>瞄准测试</h1>
     <p class="sub">尽可能快速且精准地点击30个目标。</p>
 
     <div class="mode-select" id="modeSelect">
@@ -134,7 +134,7 @@
     <p class="mode-hint" id="modeHint">逐个出现的目标,请尽可能又快又准地点击。</p>
 
     <div id="introScreen">
-      <div class="info-box">💻 推荐使用电脑和鼠标。手机上也可以进行测试。</div>
+      <div class="info-box">推荐使用电脑和鼠标。手机上也可以进行测试。</div>
       <div class="level-card" style="text-align:left;">
         <div class="label" style="text-align:center; margin-bottom:10px;">目标大小</div>
         <div class="duration-select" id="sizeSelect">
@@ -160,7 +160,7 @@
     </div>
 
     <div id="resultPanel" class="result-panel">
-      <div class="emoji">🎯</div>
+      <div class="result-icon"><svg class="ticon" viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0M12 2v4M12 18v4M2 12h4M18 12h4"></path></svg></div>
       <h2 id="resultTitle"></h2>
       <div class="desc" id="resultDesc"></div>
       <div class="persona-label" id="personaLabel"></div>
@@ -174,10 +174,10 @@
         <div class="other-tests">
           <div class="label">也来试试其他能力测试</div>
           <div class="other-tests-links">
-            <a href="/zh/tests/click-speed">🖱️ CPS点击速度</a>
-            <a href="/zh/tests/chimp-test">🐵 黑猩猩测试</a>
-            <a href="/zh/tests/dynamic-vision">👁️ 动态视力</a>
-            <a href="/zh/tests/reaction-time">⚡ 反应速度</a>
+            <a href="/zh/tests/click-speed"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 3h8a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zM12 3v7"></path></svg><span>CPS点击速度</span></a>
+            <a href="/zh/tests/chimp-test"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 14h6v6H3zM9 8h6v6H9zM15 3h6v6h-6z"></path></svg><span>黑猩猩测试</span></a>
+            <a href="/zh/tests/dynamic-vision"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 12c3-5 7-7 10-7s7 2 10 7c-3 5-7 7-10 7s-7-2-10-7zM9 12a3 3 0 1 0 6 0a3 3 0 1 0-6 0"></path></svg><span>动态视力</span></a>
+            <a href="/zh/tests/reaction-time"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0M9.5 12a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0-5 0"></path></svg><span>反应速度</span></a>
           </div>
         </div>
     </div>
@@ -219,11 +219,11 @@
     <div class="side-panel" id="ladderPanel"></div>
     <div class="side-panel" id="achPanel"></div>
     <div class="side-panel">
-      <div class="ach-head">🕒 最近记录</div>
+      <div class="ach-head">最近记录</div>
       <div id="recentPanel"></div>
     </div>
 
-    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 历代记录排行(最多30位)</h2>
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">历代记录排行(最多30位)</h2>
     <div id="topLeaderboard"></div>
   </div>
 
@@ -290,9 +290,9 @@
   let allStats = loadStats(STORE_KEY, {});
 
   const SIZES = [
-    { key: 'large', label: '大', radius: 24 },
-    { key: 'medium', label: '中', radius: 16 },
-    { key: 'small', label: '小', radius: 10 },
+    { key: 'large', label : '大', radius: 24 },
+    { key: 'medium', label : '中', radius: 16 },
+    { key: 'small', label : '小', radius: 10 },
   ];
 
   // 每种模式测量的内容不同。
@@ -301,36 +301,36 @@
   //  tracking - 在移动目标上保持光标20秒。停留率(%)越高越好。
   const MODES = [
     {
-      key: 'flick', label: '甩枪', metric: 'ms', targets: 30,
+      key: 'flick', label : '甩枪', metric : 'ms', targets: 30,
       hint: '逐个出现的目标,请尽可能又快又准地点击。',
       grades: [
-        { key: 'PRO', max: 300, label: '职业级', persona: '🎯 伏击狙击手' },
-        { key: 'TOP', max: 350, label: '高手', persona: '🏹 精准射手' },
-        { key: 'SKILLED', max: 450, label: '熟练', persona: '🔫 老练神射手' },
-        { key: 'NORMAL', max: 600, label: '一般', persona: '🙂 普通射手' },
-        { key: 'BEGINNER', max: Infinity, label: '入门', persona: '🌱 新人特工' },
+        { key: 'PRO', max: 300, label : '职业级', persona : '伏击狙击手' },
+        { key: 'TOP', max: 350, label : '高手', persona : '精准射手' },
+        { key: 'SKILLED', max: 450, label : '熟练', persona : '老练神射手' },
+        { key: 'NORMAL', max: 600, label : '一般', persona : '普通射手' },
+        { key: 'BEGINNER', max: Infinity, label : '入门', persona : '新人特工' },
       ],
     },
     {
-      key: 'gridshot', label: '网格射击', metric: 'tps', duration: 30,
+      key: 'gridshot', label : '网格射击', metric : 'tps', duration: 30,
       hint: '同时有3个目标,30秒内尽可能多地清除。击中后会在别处重新出现。',
       grades: [
-        { key: 'PRO', min: 2.5, label: '职业级', persona: '🎯 网格统治者' },
-        { key: 'TOP', min: 2.0, label: '高手', persona: '🏹 速射高手' },
-        { key: 'SKILLED', min: 1.5, label: '熟练', persona: '🔫 熟练速射手' },
-        { key: 'NORMAL', min: 1.0, label: '一般', persona: '🙂 普通速射' },
-        { key: 'BEGINNER', min: 0, label: '入门', persona: '🌱 新人特工' },
+        { key: 'PRO', min: 2.5, label : '职业级', persona : '网格统治者' },
+        { key: 'TOP', min: 2.0, label : '高手', persona : '速射高手' },
+        { key: 'SKILLED', min: 1.5, label : '熟练', persona : '熟练速射手' },
+        { key: 'NORMAL', min: 1.0, label : '一般', persona : '普通速射' },
+        { key: 'BEGINNER', min: 0, label : '入门', persona : '新人特工' },
       ],
     },
     {
-      key: 'tracking', label: '追踪', metric: 'pct', duration: 20,
+      key: 'tracking', label : '追踪', metric : 'pct', duration: 20,
       hint: '把光标一直放在移动的目标上。测量20秒内你停留了多久。',
       grades: [
-        { key: 'PRO', min: 85, label: '职业级', persona: '🎯 完美追踪者' },
-        { key: 'TOP', min: 70, label: '高手', persona: '🏹 执着追踪者' },
-        { key: 'SKILLED', min: 55, label: '熟练', persona: '🔫 稳定的手' },
-        { key: 'NORMAL', min: 40, label: '一般', persona: '🙂 普通追踪' },
-        { key: 'BEGINNER', min: 0, label: '入门', persona: '🌱 新人特工' },
+        { key: 'PRO', min: 85, label : '职业级', persona : '完美追踪者' },
+        { key: 'TOP', min: 70, label : '高手', persona : '执着追踪者' },
+        { key: 'SKILLED', min: 55, label : '熟练', persona : '稳定的手' },
+        { key: 'NORMAL', min: 40, label : '一般', persona : '普通追踪' },
+        { key: 'BEGINNER', min: 0, label : '入门', persona : '新人特工' },
       ],
     },
   ];
@@ -617,7 +617,7 @@
     onTargetMs = 0;
     cleanup();
 
-    if (mode.key === 'flick') updateHud(`0 / ${mode.targets}`, '命中');
+    if (mode.key === 'flick') updateHud(`0 / ${mode.targets}`,'命中');
     else if (mode.key === 'gridshot') updateHud('0', `清除 · ${mode.duration}秒`);
     else updateHud('0%', `停留率 · ${mode.duration}秒`);
 
@@ -686,12 +686,12 @@
 
   // ---- 成就 / 评级阶梯 / 最近记录 ----
   const ACH_DEFS = (() => {
-    const defs = [{ id: 'first', label: '首次挑战' }];
+    const defs = [{ id: 'first', label : '首次挑战' }];
     [1, 5, 10, 25, 50].forEach(n => defs.push({ id: 'plays' + n, label: n + '次游玩' }));
     MODES.forEach(m => m.grades.forEach(g => {
       defs.push({ id: `${m.key}_${g.key}`, label: `${m.label} · ${g.label}` });
     }));
-    defs.push({ id: 'allmodes', label: '体验全部3种模式' });
+    defs.push({ id: 'allmodes', label : '体验全部3种模式' });
     return defs;
   })();
 
@@ -713,7 +713,7 @@
   function bestForMode() {
     let best = null;
     SIZES.forEach(s => {
-      ['mouse', 'touch'].forEach(inp => {
+      ['mouse','touch'].forEach(inp => {
         const st = allStats[`${mode.key}_${s.key}_${inp}`];
         if (!st || st.best === null) return;
         if (best === null) best = st.best;
@@ -726,11 +726,11 @@
     const tiers = mode.grades.map(g => ({ key: g.key, label: g.label, min: g.min, max: g.max }));
     renderRankLadder('ladderPanel', tiers, bestForMode(), {
       title: `${mode.label} 评级`,
-      unit: mode.metric === 'ms' ? 'ms' : (mode.metric === 'tps' ? '/秒' : '%'),
+      unit: mode.metric === 'ms' ? 'ms' : (mode.metric ==='tps' ? '/秒' : '%'),
       digits: mode.metric === 'tps' ? 2 : 0,
       betterIsLower: mode.metric === 'ms',
     });
-    renderAchievements('achPanel', ACH_KEY, ACH_DEFS, '🏅 成就');
+    renderAchievements('achPanel', ACH_KEY, ACH_DEFS,'成就');
     renderRecentRecords('recentPanel', loadStats(ACH_KEY + '_recent', []),
       e => `${e.score} · ${e.mode} · 精准度 ${e.acc}%`, '还没有记录');
   }
@@ -774,8 +774,8 @@
       (avgMissDist !== null ? ` · 平均 误差 ${avgMissDist.toFixed(0)}px` : '') +
       (invalidClicks > 0 ? ` · 无效点击 ${invalidClicks}次` : '');
     document.getElementById('personaLabel').textContent = grade.persona;
-    document.getElementById('resultMobileNote').style.display = inputType === 'touch' ? '' : 'none';
-    document.getElementById('chartContainer').innerHTML = mode.key === 'flick' ? buildBarChart(reactionTimes) : '';
+    document.getElementById('resultMobileNote').style.display = inputType ==='touch' ? '' : 'none';
+    document.getElementById('chartContainer').innerHTML = mode.key ==='flick' ? buildBarChart(reactionTimes) : '';
     renderGradeTable(score, accuracy);
     resultPanel.classList.add('show');
     resultPanel.dataset.share = `我是 ${grade.persona}!在瞄准测试(${mode.label})中取得 ${formatScore(score)}!你也来试试 → `;

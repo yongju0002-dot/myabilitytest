@@ -83,7 +83,7 @@
       <span class="here">瞬間記憶力テスト</span>
       <span class="idx">02 / 15</span>
     </nav>
-    <h1>🧠 瞬間記憶力テスト</h1>
+    <h1>瞬間記憶力テスト</h1>
     <p class="sub">緑色に表示されたマスの位置を覚えて、同じマスをクリックしてください。</p>
 
     <div class="mode-select" id="modeSelect">
@@ -107,7 +107,7 @@
     </div>
 
     <div id="resultPanel" class="result-panel">
-      <div class="emoji">💥</div>
+      <div class="result-icon"><svg class="ticon" viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"></path></svg></div>
       <h2 id="resultTitle"></h2>
       <div class="stars" id="resultStars"></div>
       <div class="desc" id="resultDesc"></div>
@@ -120,10 +120,10 @@
         <div class="other-tests">
           <div class="label">他の能力テストも試してみよう</div>
           <div class="other-tests-links">
-            <a href="/ja/tests/chimp-test">🐵 チンパンジーテスト</a>
-            <a href="/ja/tests/reaction-time">⚡ 反応速度</a>
-            <a href="/ja/tests/dynamic-vision">👁️ 動体視力</a>
-            <a href="/ja/tests/click-speed">🖱️ CPSクリック速度</a>
+            <a href="/ja/tests/chimp-test"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 14h6v6H3zM9 8h6v6H9zM15 3h6v6h-6z"></path></svg><span>チンパンジーテスト</span></a>
+            <a href="/ja/tests/reaction-time"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0M9.5 12a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0-5 0"></path></svg><span>反応速度</span></a>
+            <a href="/ja/tests/dynamic-vision"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 12c3-5 7-7 10-7s7 2 10 7c-3 5-7 7-10 7s-7-2-10-7zM9 12a3 3 0 1 0 6 0a3 3 0 1 0-6 0"></path></svg><span>動体視力</span></a>
+            <a href="/ja/tests/click-speed"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 3h8a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zM12 3v7"></path></svg><span>CPSクリック速度</span></a>
           </div>
         </div>
     </div>
@@ -173,7 +173,7 @@
       <p>心理学でよく言われる「チャンキング(chunking)」が有効とされています。マスを1つずつ覚えるのではなく、三角形・対角線・十字のような1つの形として捉えると、より多くのマスを一度に記憶しやすくなります。画面中央に視線を固定し、周辺視野で全体の配置を捉える練習も役立つと言われています。</p>
     </section>
 
-    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 歴代記録ランキング(最大30位)</h2>
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">歴代記録ランキング(最大30位)</h2>
     <div id="topLeaderboard"></div>
   </div>
 
@@ -232,13 +232,13 @@
 <script>
   const ACH_KEY = 'skillMemoryAchV1';
   const MODES = [
-    { key: 'classic', label: 'クラシック', fixed: null, hint: 'レベルが上がると格子も大きくなります。標準モードです。' },
-    { key: 'g4', label: '4x4', fixed: 4, hint: '16マス固定。狭いので一気に埋まります。' },
-    { key: 'g5', label: '5x5', fixed: 5, hint: '25マス固定。バランスの取れた難易度です。' },
-    { key: 'g6', label: '6x6', fixed: 6, hint: '36マス固定。広い盤面を一目で見渡す必要があります。' },
+    { key: 'classic', label : 'クラシック', fixed: null, hint : 'レベルが上がると格子も大きくなります。標準モードです。' },
+    { key: 'g4', label : '4x4', fixed: 4, hint : '16マス固定。狭いので一気に埋まります。' },
+    { key: 'g5', label : '5x5', fixed: 5, hint : '25マス固定。バランスの取れた難易度です。' },
+    { key: 'g6', label : '6x6', fixed: 6, hint : '36マス固定。広い盤面を一目で見渡す必要があります。' },
   ];
-  const LB_KEYS = { classic: 'skillMemoryLeaderboardV1', g4: 'skillMemoryLbG4V1', g5: 'skillMemoryLbG5V1', g6: 'skillMemoryLbG6V1' };
-  const STAT_KEYS = { classic: 'skillMemoryStats', g4: 'skillMemoryStatsG4', g5: 'skillMemoryStatsG5', g6: 'skillMemoryStatsG6' };
+  const LB_KEYS = { classic: 'skillMemoryLeaderboardV1', g4 : 'skillMemoryLbG4V1', g5 : 'skillMemoryLbG5V1', g6 : 'skillMemoryLbG6V1' };
+  const STAT_KEYS = { classic: 'skillMemoryStats', g4 : 'skillMemoryStatsG4', g5 : 'skillMemoryStatsG5', g6 : 'skillMemoryStatsG6' };
 
   let mode = MODES[0];
   let stats = loadStats(STAT_KEYS[mode.key], { count: 0, best: 0 });
@@ -286,13 +286,13 @@
   }
 
   const GRADES = [
-    { key: 'SS', min: 20, label: 'SS · 天才的' },
-    { key: 'S', min: 16, label: 'S · 卓越' },
-    { key: 'A', min: 13, label: 'A · 素晴らしい' },
-    { key: 'B', min: 9, label: 'B · 良い' },
-    { key: 'C', min: 5, label: 'C · 平均' },
-    { key: 'D', min: 2, label: 'D · やや残念' },
-    { key: 'F', min: 0, label: 'F · 序盤で失敗' },
+    { key: 'SS', min: 20, label : 'SS · 天才的' },
+    { key: 'S', min: 16, label : 'S · 卓越' },
+    { key: 'A', min: 13, label : 'A · 素晴らしい' },
+    { key: 'B', min: 9, label : 'B · 良い' },
+    { key: 'C', min: 5, label : 'C · 平均' },
+    { key: 'D', min: 2, label : 'D · やや残念' },
+    { key: 'F', min: 0, label : 'F · 序盤で失敗' },
   ];
 
   function gradeFor(lv) {
@@ -351,14 +351,14 @@
     if (locked || over || cell.classList.contains('disabled')) return;
 
     if (targets.has(i)) {
-      cell.classList.add('disabled', 'picked-correct');
+      cell.classList.add('disabled','picked-correct');
       remaining.delete(i);
       if (remaining.size === 0) {
         locked = true;
         setTimeout(() => { level += 1; buildGrid(); showTargets(); }, 600);
       }
     } else {
-      cell.classList.add('disabled', 'picked-wrong');
+      cell.classList.add('disabled','picked-wrong');
       locked = true;
       targets.forEach(idx => grid.children[idx].classList.add('show-target'));
       [...grid.children].forEach(c => c.classList.add('disabled'));
@@ -367,12 +367,12 @@
   }
 
   const ACH_DEFS = (() => {
-    const defs = [{ id: 'first', label: '初挑戦' }];
+    const defs = [{ id: 'first', label : '初挑戦' }];
     [1, 5, 10, 25, 50].forEach(n => defs.push({ id: 'plays' + n, label: n + '回プレイ' }));
     MODES.forEach(m => GRADES.forEach(g => {
       defs.push({ id: `${m.key}_${g.key}`, label: `${m.label} - ${g.label}` });
     }));
-    defs.push({ id: 'allmodes', label: '4モードすべて体験' });
+    defs.push({ id: 'allmodes', label : '4モードすべて体験' });
     return defs;
   })();
 
@@ -394,7 +394,7 @@
   function renderPanels() {
     renderRankLadder('ladderPanel', GRADES.map(g => ({ key: g.key, label: g.label, min: g.min })),
       stats.best || null, { title: `${mode.label}ランク`, unit: 'レベル', digits: 0 });
-    renderAchievements('achPanel', ACH_KEY, ACH_DEFS, '実績');
+    renderAchievements('achPanel', ACH_KEY, ACH_DEFS,'実績');
     renderRecentRecords('recentPanel', loadStats(ACH_KEY + '_recent', []),
       e => `レベル${e.level} - ${e.mode} - ${e.tiles}個`, 'まだ記録がありません');
   }
@@ -411,7 +411,7 @@
     startRow.style.display = '';
     grid.innerHTML = '';
     grid.style.gridTemplateColumns = '';
-    document.getElementById('levelNum').textContent = '1';
+    document.getElementById('levelNum').textContent ='1';
     document.getElementById('tilesSub').textContent = `覚えるマス: ${tilesFor(1)}個`;
     renderStats();
     renderTopLeaderboard(loadStats(LB_KEYS[mode.key], []));
@@ -432,8 +432,8 @@
 
     const grade = gradeFor(reached);
     const stars = starsFor(reached);
-    document.getElementById('resultTitle').textContent = 'レベル' + reached + 'で失敗!';
-    document.getElementById('resultStars').textContent = '★'.repeat(stars) + '☆'.repeat(5 - stars);
+    document.getElementById('resultTitle').textContent ='レベル' + reached + 'で失敗!';
+    document.getElementById('resultStars').textContent ='★'.repeat(stars) + '☆'.repeat(5 - stars);
     document.getElementById('resultDesc').textContent = `${tilesFor(reached)}個のマスを覚える必要がありました。`;
     document.getElementById('resultPercentile').textContent = rankText(reached);
     renderGradeTable(reached);

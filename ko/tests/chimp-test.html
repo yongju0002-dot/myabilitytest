@@ -87,7 +87,7 @@
       <span class="here">침팬지 테스트</span>
       <span class="idx">08 / 15</span>
     </nav>
-    <h1>🐵 침팬지 테스트</h1>
+    <h1>침팬지 테스트</h1>
     <p class="sub">숫자가 동시에 나타났다 첫 클릭과 함께 가려집니다. 순서대로 기억해서 눌러보세요.</p>
 
     <div id="introScreen">
@@ -111,7 +111,7 @@
     </div>
 
     <div id="resultPanel" class="result-panel">
-      <div class="emoji">🐵</div>
+      <div class="result-icon"><svg class="ticon" viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 14h6v6H3zM9 8h6v6H9zM15 3h6v6h-6z"></path></svg></div>
       <h2 id="resultTitle"></h2>
       <div class="desc" id="resultDesc"></div>
       <div class="persona-label" id="personaLabel"></div>
@@ -124,10 +124,10 @@
         <div class="other-tests">
           <div class="label">다른 능력 테스트도 해보세요</div>
           <div class="other-tests-links">
-            <a href="/ko/tests/visual-memory">🧠 순간 기억력</a>
-            <a href="/ko/tests/aim-trainer">🎯 에임 테스트</a>
-            <a href="/ko/tests/reaction-time">⚡ 반응 속도</a>
-            <a href="/ko/tests/click-speed">🖱️ CPS 클릭 속도</a>
+            <a href="/ko/tests/visual-memory"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"></path></svg><span>순간 기억력</span></a>
+            <a href="/ko/tests/aim-trainer"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0M12 2v4M12 18v4M2 12h4M18 12h4"></path></svg><span>에임 테스트</span></a>
+            <a href="/ko/tests/reaction-time"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0M9.5 12a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0-5 0"></path></svg><span>반응 속도</span></a>
+            <a href="/ko/tests/click-speed"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 3h8a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zM12 3v7"></path></svg><span>CPS 클릭 속도</span></a>
           </div>
         </div>
     </div>
@@ -165,7 +165,7 @@
       <p>이 실험은 인간과 침팬지의 작업기억(순간적으로 정보를 붙잡아두는 능력)이 어떻게 다른지를 보여주는 대표적인 사례로 꼽힙니다. 순간 기억력은 눈으로 본 정보를 아주 짧은 시간 동안 유지하고 조작하는 능력으로, 암산이나 대화, 학습 등 일상 곳곳에서 쓰입니다.</p>
     </section>
 
-    <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 역대 기록 순위 (최대 30위)</h2>
+    <h2 style="text-align:center; font-size:16px; margin-top:28px;">역대 기록 순위 (최대 30위)</h2>
     <div id="topLeaderboard"></div>
   </div>
 
@@ -227,11 +227,11 @@
   let stats = loadStats(STORE_KEY, { count: 0, best: 0, sum: 0 });
 
   const GRADES = [
-    { key: 'TOP1', min: 12, label: '상위 1%', persona: '🧠 인간계 최상위 기억력' },
-    { key: 'GREAT', min: 10, label: '우수', persona: '🦉 비상한 기억력' },
-    { key: 'CHIMP', min: 9, label: '침팬지와 동급', persona: '🐵 침팬지급 기억력' },
-    { key: 'AVG', min: 7, label: '평균', persona: '🙂 평범한 기억력' },
-    { key: 'BELOW', min: 0, label: '평균 이하', persona: '🐌 여유로운 기억력' },
+    { key: 'TOP1', min: 12, label : '상위 1%', persona : '인간계 최상위 기억력' },
+    { key: 'GREAT', min: 10, label : '우수', persona : '비상한 기억력' },
+    { key: 'CHIMP', min: 9, label : '침팬지와 동급', persona : '침팬지급 기억력' },
+    { key: 'AVG', min: 7, label : '평균', persona : '평범한 기억력' },
+    { key: 'BELOW', min: 0, label : '평균 이하', persona : '여유로운 기억력' },
   ];
 
   function gradeFor(score) {
@@ -255,7 +255,7 @@
 
   function renderStats() {
     document.getElementById('statCount').textContent = stats.count;
-    document.getElementById('statBest').textContent = stats.best || '-';
+    document.getElementById('statBest').textContent = stats.best ||'-';
     document.getElementById('statAvg').textContent = stats.count ? (stats.sum / stats.count).toFixed(1) : '-';
   }
 

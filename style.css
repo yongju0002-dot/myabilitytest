@@ -539,7 +539,7 @@ h2 { font-size: clamp(22px, 3vw, 30px); font-weight: 900; letter-spacing: -0.03e
   border: 1px solid var(--line);
   color: var(--muted);
 }
-.ach.got { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 700; }
+.ach.got { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 700; }
 .ladder { display: flex; flex-direction: column; gap: 4px; }
 .rung {
   display: grid;
@@ -580,7 +580,7 @@ h2 { font-size: clamp(22px, 3vw, 30px); font-weight: 900; letter-spacing: -0.03e
 .leaderboard li.winner { border-color: var(--accent); background: var(--accent-soft); }
 .leaderboard .rank { font-size: 18px; width: 28px; text-align: center; }
 .leaderboard .lb-name { flex: 1; font-family: var(--mono); font-weight: 700; }
-.leaderboard .lb-detail { font-family: var(--mono); font-size: 12px; color: var(--muted); text-align: right; }
+.leaderboard .lb-detail { font-family: var(--mono); font-size: 12px; color: var(--body); text-align: right; }
 
 /* ---- 입력 ---- */
 .guess-input-row { display: flex; gap: 10px; justify-content: center; align-items: center; margin: 18px 0; }
@@ -823,7 +823,7 @@ h2 { font-size: clamp(22px, 3vw, 30px); font-weight: 900; letter-spacing: -0.03e
   color: var(--ink);
   transition: background 0.08s ease;
 }
-.preview-pad .pv-big { font-family: var(--mono); font-size: clamp(42px, 6vw, 68px); font-weight: 700; line-height: 1; letter-spacing: -0.03em; }
+.preview-pad .pv-big { font-variant-numeric: tabular-nums; font-size: clamp(42px, 6vw, 68px); font-weight: 700; line-height: 1; letter-spacing: -0.03em; }
 .preview-pad .pv-hint { font-size: 14px; opacity: 0.8; max-width: 32ch; line-height: 1.5; }
 .preview-pad[data-phase="wait"] { background: var(--ink); color: var(--bg); }
 .preview-pad[data-phase="go"] { background: var(--accent); color: #fff; }

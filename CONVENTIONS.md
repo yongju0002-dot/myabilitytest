@@ -481,3 +481,64 @@ CSS는 `/skill-test/style.css`의 `.click-pad, .space-pad, .apm-pad` 규칙 하�
   치환 대상·치환 문자열이 모두 ASCII일 때만 perl을 쓰고, 아니면 PowerShell + `UTF8Encoding($false)`를 쓴다.
 - 일괄 수정 후에는 항상 **4개 언어 전부** 문법(`new Function`) + JSON-LD + `getElementById` 대상 존재 +
   깨진 인코딩(`Ã|â€|ã‚|æ¥`)을 검사할 것.
+
+---
+
+## 13. 디자인 시스템 전면 교체 (2026-09-03)
+
+사용자가 제공한 재설계 시안(`MyAbilityTest 홈페이지 재설계.zip`, Claude Design 캔버스 아트보드)에 맞춰
+**다크 테마 → 에디토리얼 라이트 테마**로 전면 교체했다.
+
+### 토큰 (두 CSS 파일 모두 동일한 `:root`)
+
+| 역할 | 값 |
+|---|---|
+| 배경 | `--bg #f4f2ec` (크림) |
+| 카드 | `--card-bg #fbfaf7` / `--card-bg-2 #efece3` |
+| 글자 | `--ink #17181c` / `--body #55534d` / `--muted #8a877f` |
+| 선 | `--line #d9d5ca` / `--line-strong #17181c` |
+| 강조 | `--accent #d94f2f` (테라코타) |
+| 의미색 | `--good #15803d` / `--danger #b91c1c` / `--gold #b45309` |
+
+- 폰트: **Noto Sans KR**(400/500/700/900) + **JetBrains Mono**(500/700). 모든 페이지가
+  Google Fonts를 `<link>`로 불러온다.
+- **숫자는 모노**(`var(--mono)` + `tabular-nums`), **문장은 산세리프**.
+  긴 한국어/일본어 문장에 모노를 쓰면 자간이 벌어져 어색하므로,
+  `.stage .big`과 `.preview-pad .pv-big`처럼 문장도 들어가는 자리는 산세리프 + `tabular-nums`로 둔다.
+- 모서리는 `--radius 6px`(카드) / `999px`(버튼·칩). 예전의 16~20px 라운드는 쓰지 않는다.
+
+### 페이지 뼈대 (허브·테스트·privacy 공통)
+
+```html
+<body>
+  <header class="site-header"> 로고 · nav(능력12/하드웨어03/내 기록) · KO EN JA ZH </header>
+  <div class="wrap">
+    <nav class="breadcrumb"> 홈 / 분류 / 테스트명 <span class="idx">NN / 15</span> </nav>
+    … 본문 …
+  </div>
+  <footer class="site-footer">
+    <div class="footer-inner"> 브랜드 소개 + 3열 사이트맵 </div>
+    <div class="footer-bottom"> © · 개인정보처리방침 · 언어 </div>
+  </footer>
+</body>
+```
+
+- `.wrap`은 `max-width: 940px`. 헤더/푸터는 `.wrap` **밖**에 둔다.
+- 허브에만 추가로 `.hero`(좌 카피 + 우 `.preview-card` 반응속도 미리보기)와
+  `.record-strip`(내 기록 4칸), `.test-list > .test-row`(카드 대신 목록 행)가 있다.
+- **허브 히어로의 미리보기는 장식이 아니다** — `reactionStatsV2` / `reactionLeaderboardV1`,
+  즉 반응속도 테스트와 **같은 저장소 키**에 기록을 남긴다. 여기서 잰 기록이 테스트 페이지에도 반영된다.
+
+### 이 교체에서 실제로 겪은 함정
+
+- **CSS 파일이 두 벌**이라는 걸 잊지 말 것. 허브는 `/style.css`, 테스트는 `/skill-test/style.css`.
+  둘은 지금 같은 내용이며(허브 전용 `.hero` 계열만 `/style.css`에 더 있음), 토큰을 고칠 때는 **양쪽 다** 고쳐야 한다.
+- **`reaction-time.html`은 예외적으로 자체 CSS 346줄을 갖고 있었다.** 공용 시트를 링크하지 않아
+  일괄 치환에서 빠졌다. 지금은 공용 시트 + 전용 규칙(무대·신호등·점·히스토그램)만 남겼다.
+- **색상은 CSS에만 있는 게 아니다.** SVG `fill`/`stroke`(반응속도 히스토그램, 에임, 동체시력)와
+  캔버스 `strokeStyle`(CPS 그래프)에도 하드코딩돼 있다. 인라인 `<style>`만 치환하면 이것들이 남는다.
+- **HTML에서 이름을 뽑을 때 중첩 `<span>` 주의.** `<span class="rt-name">이름<span class="badge">인기</span></span>`에서
+  `([\s\S]*?)</span>`로 잡으면 배지 여는 태그까지 딸려온다. 실제로 배지 마크업이 escape된 채
+  빵부스러기·푸터 192곳에 박혔다. 이름을 뽑을 땐 첫 `<` 이후를 잘라내는 편이 안전하다.
+- 대비 검사를 자동화할 때 **`rgba()`의 알파를 반영하지 않으면 오탐**이 난다.
+  `rgba(185,28,28,0.08)` 배경을 진한 빨강으로 읽어 "대비 부족"이라고 잘못 보고했다.

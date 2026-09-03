@@ -489,33 +489,32 @@ CSS는 `/skill-test/style.css`의 `.click-pad, .space-pad, .apm-pad` 규칙 하�
 사용자가 제공한 재설계 시안(`MyAbilityTest 홈페이지 재설계.zip`, Claude Design 캔버스 아트보드)에 맞춰
 **다크 테마 → 에디토리얼 라이트 테마**로 전면 교체했다.
 
-### 토큰 (두 CSS 파일 모두 동일한 ) — 2026-09-03 다크로 전환
+### 토큰 (두 CSS 파일 모두 동일한 `:root`) — 2026-09-03 다크로 전환
 
 | 역할 | 값 |
 |---|---|
-| 배경 |  (따뜻한 근접 블랙) |
-| 카드 |  /  |
-| 글자 |  /  /  |
-| 선 |  /  |
-| 강조 |  (테라코타) |
-| 의미색 |  /  /  |
+| 배경 | `--bg #131418` (따뜻한 근접 블랙) |
+| 카드 | `--card-bg #1b1c21` / `--card-bg-2 #232429` |
+| 글자 | `--ink #f1efe8` / `--body #b5b1a8` / `--muted #918d85` |
+| 선 | `--line #2c2d33` / `--line-strong #4a4b53` |
+| 강조 | `--accent #e05a37` (테라코타) |
+| 의미색 | `--good #35a35a` / `--danger #e0524f` / `--gold #cf9433` |
 
 **테마가 뒤집힐 때 깨지는 자리는 전용 토큰으로 분리해 두었다.**
-       푸터가  를 쓰고 있어서 그대로 두면 다크에서 크림색으로 반전됐다.
+`--header-bg` `--footer-bg` `--footer-fg` `--footer-muted` `--footer-link` `--footer-line`
+`--pad-wait-bg` `--pad-wait-fg` `--on-accent`
+
+푸터가 `background: var(--ink)` 를 쓰고 있어서 그대로 두면 다크에서 크림색으로 반전됐다.
 같은 이유로 미리보기 패드의 대기 상태도 따로 뺐다.
 
-**테라코타 위 글자는 (#17181c, 어두운 색)를 쓴다.**
+**테라코타 위 글자는 `--on-accent`(#17181c, 어두운 색)를 쓴다.**
 흰 글자는 대비 3.7:1로 AA 미달이고, 어두운 글자면 5.0:1이 된다.
-      가 모두 여기 해당한다.
+`.btn.share` `.ach.got` `.rung.current` `.grade-table tr.current-row` `.tier-strip .tier.on`
+`.preview-pad[data-phase="go"]` `.state-go` 가 모두 여기 해당한다.
 
-| 역할 | 값 |
-|---|---|
-| 배경 | `--bg #f4f2ec` (크림) |
-| 카드 | `--card-bg #fbfaf7` / `--card-bg-2 #efece3` |
-| 글자 | `--ink #17181c` / `--body #55534d` / `--muted #8a877f` |
-| 선 | `--line #d9d5ca` / `--line-strong #17181c` |
-| 강조 | `--accent #d94f2f` (테라코타) |
-| 의미색 | `--good #15803d` / `--danger #b91c1c` / `--gold #b45309` |
+> 2026-09-03 이전에는 크림 배경(`#f4f2ec`) + 잉크 글자(`#17181c`)의 라이트 테마였다.
+> 구조·타이포·아이콘은 그대로이고 팔레트만 뒤집은 것이므로, 되돌릴 일이 생기면
+> `:root` 블록과 위의 전용 토큰만 원래 값으로 돌리면 된다.
 
 - 폰트: **Noto Sans KR**(400/500/700/900) + **JetBrains Mono**(500/700). 모든 페이지가
   Google Fonts를 `<link>`로 불러온다.

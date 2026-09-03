@@ -92,7 +92,7 @@
     font-size: 72px;
     font-weight: 800;
     color: #fff;
-    background: rgba(23, 24, 28, 0.55);
+    background: rgba(8, 8, 10, 0.72);
     z-index: 2;
     pointer-events: none;
   }
@@ -665,9 +665,9 @@
       const h = maxMs > 0 ? (t / maxMs) * (H - PAD * 2) : 0;
       const x = PAD + i * barW;
       const y = H - PAD - h;
-      let fill = '#d94f2f';
-      if (t === maxMs) fill = '#b91c1c';
-      if (t === minMs) fill = '#15803d';
+      let fill = '#e05a37';
+      if (t === maxMs) fill = '#e0524f';
+      if (t === minMs) fill = '#35a35a';
       return `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${(barW * 0.75).toFixed(1)}" height="${Math.max(h, 1).toFixed(1)}" fill="${fill}" rx="2"/>`;
     }).join('');
     return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;margin:14px 0;">${bars}</svg>`;

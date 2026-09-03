@@ -404,9 +404,9 @@
       correct: h.correct,
     }));
     const linePoints = points.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
-    const dots = points.map(p => `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4" fill="${p.correct ? '#15803d' : '#b91c1c'}"/>`).join('');
+    const dots = points.map(p => `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4" fill="${p.correct ? '#35a35a' : '#e0524f'}"/>`).join('');
     return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;margin:14px 0;">
-      <polyline points="${linePoints}" fill="none" stroke="#d94f2f" stroke-width="2"/>
+      <polyline points="${linePoints}" fill="none" stroke="#e05a37" stroke-width="2"/>
       ${dots}
     </svg>`;
   }

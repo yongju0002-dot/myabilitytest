@@ -293,8 +293,8 @@
     if (maxHeld === 0) { v.textContent = ''; return; }
     if (maxHeld <= 2) { v.textContent = `${maxHeld} keys held - press more to find your limit`; v.style.color = 'var(--text-dim)'; }
     else if (maxHeld <= 5) { v.textContent = `${maxHeld} keys held - this combination may be hitting ghosting`; v.style.color = '#fbbf24'; }
-    else if (maxHeld === 6) { v.textContent = '6 keys held - the standard figure for the default USB spec (6KRO)'; v.style.color ='#15803d'; }
-    else { v.textContent = `${maxHeld} keys held - past six, so this is running as NKRO`; v.style.color = '#15803d'; }
+    else if (maxHeld === 6) { v.textContent = '6 keys held - the standard figure for the default USB spec (6KRO)'; v.style.color ='#35a35a'; }
+    else { v.textContent = `${maxHeld} keys held - past six, so this is running as NKRO`; v.style.color = '#35a35a'; }
   }
 
   window.addEventListener('keydown', (e) => {

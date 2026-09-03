@@ -293,8 +293,8 @@
     if (maxHeld === 0) { v.textContent = ''; return; }
     if (maxHeld <= 2) { v.textContent = `최대 ${maxHeld}개 동시 입력 — 더 눌러서 한계를 확인해보세요`; v.style.color = 'var(--text-dim)'; }
     else if (maxHeld <= 5) { v.textContent = `최대 ${maxHeld}개 동시 입력 — 고스팅 가능성이 있는 조합일 수 있어요`; v.style.color = '#fbbf24'; }
-    else if (maxHeld === 6) { v.textContent = '최대 6개 동시 입력 — USB 기본 규격(6KRO)의 표준값이에요'; v.style.color ='#15803d'; }
-    else { v.textContent = `최대 ${maxHeld}개 동시 입력 — 6키를 넘겼어요. NKRO로 동작하고 있습니다`; v.style.color = '#15803d'; }
+    else if (maxHeld === 6) { v.textContent = '최대 6개 동시 입력 — USB 기본 규격(6KRO)의 표준값이에요'; v.style.color ='#35a35a'; }
+    else { v.textContent = `최대 ${maxHeld}개 동시 입력 — 6키를 넘겼어요. NKRO로 동작하고 있습니다`; v.style.color = '#35a35a'; }
   }
 
   window.addEventListener('keydown', (e) => {

@@ -45,14 +45,14 @@
 <style>
   /* 반응 속도 전용 — 공통 규칙은 /skill-test/style.css 참고 */
   :root {
-    --wait-color: #17181c;
-    --go-color: #d94f2f;
-    --early-color: #efece3;
+    --wait-color: #08080a;
+    --go-color: #e05a37;
+    --early-color: #2b2c32;
   }
   body.colorblind {
-    --wait-color: #1f2937;
-    --go-color: #1d4ed8;
-    --early-color: #e7e2d4;
+    --wait-color: #0b1220;
+    --go-color: #3b82f6;
+    --early-color: #2a2b31;
   }
   .toolbar {
     display: flex; justify-content: center; align-items: center; gap: 8px;
@@ -72,8 +72,8 @@
   .stage .big { font-variant-numeric: tabular-nums; font-size: clamp(34px, 6vw, 56px); font-weight: 700; line-height: 1.05; letter-spacing: -0.03em; }
   .stage .small { font-size: 14px; opacity: 0.85; max-width: 36ch; line-height: 1.5; }
   .state-idle  { background: var(--card-bg); color: var(--ink); }
-  .state-wait  { background: var(--wait-color); color: var(--bg); }
-  .state-go    { background: var(--go-color); color: #fff; }
+  .state-wait  { background: var(--wait-color); color: var(--ink); }
+  .state-go    { background: var(--go-color); color: #17181c; }
   .state-early { background: var(--early-color); color: var(--ink); }
   .state-round { background: var(--card-bg); color: var(--ink); }
 
@@ -631,20 +631,20 @@
     const barsHtml = bins.map(b => {
       const x0 = xScale(b.x0), x1 = xScale(b.x1);
       const h = (b.density / maxDensity) * (H - 30);
-      return `<rect x="${x0.toFixed(1)}" y="${(H - 20 - h).toFixed(1)}" width="${(x1 - x0 - 1).toFixed(1)}" height="${h.toFixed(1)}" fill="rgba(23, 24, 28, 0.30)" rx="2"/>`;
+      return `<rect x="${x0.toFixed(1)}" y="${(H - 20 - h).toFixed(1)}" width="${(x1 - x0 - 1).toFixed(1)}" height="${h.toFixed(1)}" fill="rgba(241, 239, 232, 0.26)" rx="2"/>`;
     }).join('');
 
     const pinX = xScale(userMs);
     const pinHtml = `
-      <line x1="${pinX.toFixed(1)}" y1="14" x2="${pinX.toFixed(1)}" y2="${H - 20}" stroke="#d94f2f" stroke-width="2" stroke-dasharray="3 3"/>
-      <circle cx="${pinX.toFixed(1)}" cy="12" r="5" fill="#d94f2f"/>
-      <text x="${pinX.toFixed(1)}" y="4" text-anchor="middle" font-size="10" fill="#d94f2f" font-weight="700">나</text>
+      <line x1="${pinX.toFixed(1)}" y1="14" x2="${pinX.toFixed(1)}" y2="${H - 20}" stroke="#e05a37" stroke-width="2" stroke-dasharray="3 3"/>
+      <circle cx="${pinX.toFixed(1)}" cy="12" r="5" fill="#e05a37"/>
+      <text x="${pinX.toFixed(1)}" y="4" text-anchor="middle" font-size="10" fill="#e05a37" font-weight="700">나</text>
     `;
     const baseline = `<line x1="${PAD}" y1="${H - 20}" x2="${W - PAD}" y2="${H - 20}" stroke="rgba(255,255,255,0.15)"/>`;
     const axisLabels = `
-      <text x="${xScale(150)}" y="${H - 6}" text-anchor="middle" font-size="9" fill="#8a877f">150</text>
-      <text x="${xScale(273)}" y="${H - 6}" text-anchor="middle" font-size="9" fill="#8a877f">273(중앙값)</text>
-      <text x="${xScale(450)}" y="${H - 6}" text-anchor="middle" font-size="9" fill="#8a877f">450+</text>
+      <text x="${xScale(150)}" y="${H - 6}" text-anchor="middle" font-size="9" fill="#918d85">150</text>
+      <text x="${xScale(273)}" y="${H - 6}" text-anchor="middle" font-size="9" fill="#918d85">273(중앙값)</text>
+      <text x="${xScale(450)}" y="${H - 6}" text-anchor="middle" font-size="9" fill="#918d85">450+</text>
     `;
     return `<svg viewBox="0 0 ${W} ${H}">${baseline}${barsHtml}${pinHtml}${axisLabels}</svg>`;
   }

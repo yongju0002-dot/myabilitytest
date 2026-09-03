@@ -293,8 +293,8 @@
     if (maxHeld === 0) { v.textContent = ''; return; }
     if (maxHeld <= 2) { v.textContent = `最多同时按下${maxHeld}个 — 再多按一些来确认上限`; v.style.color = 'var(--text-dim)'; }
     else if (maxHeld <= 5) { v.textContent = `最多同时按下${maxHeld}个 — 这个组合可能存在按键冲突`; v.style.color = '#fbbf24'; }
-    else if (maxHeld === 6) { v.textContent = '最多同时按下6个 — 这是USB默认规范(6KRO)的标准值'; v.style.color ='#15803d'; }
-    else { v.textContent = `最多同时按下${maxHeld}个 — 已超过6键,正以NKRO模式工作`; v.style.color = '#15803d'; }
+    else if (maxHeld === 6) { v.textContent = '最多同时按下6个 — 这是USB默认规范(6KRO)的标准值'; v.style.color ='#35a35a'; }
+    else { v.textContent = `最多同时按下${maxHeld}个 — 已超过6键,正以NKRO模式工作`; v.style.color = '#35a35a'; }
   }
 
   window.addEventListener('keydown', (e) => {

@@ -34,129 +34,405 @@
 <meta name="google-site-verification" content="5rmfmVXUrsQx-EnnYSbe-JIkBU8F7JOklRc89lEDChs" />
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
 </head>
 <body>
+  <header class="site-header">
+    <a class="brand" href="/ko/"><span class="dot"></span>능력 테스트</a>
+    <nav>
+      <a href="#ability">능력 <span class="count">12</span></a>
+      <a href="#hardware">하드웨어 <span class="count">03</span></a>
+      <a href="#records">내 기록</a>
+    </nav>
+    <span class="spacer"></span>
+    <div class="langs">
+      <span class="active">KO</span>
+      <a href="/en/">EN</a>
+      <a href="/ja/">JA</a>
+      <a href="/zh/">ZH</a>
+    </div>
+  </header>
+
   <div class="wrap">
-    <div class="lang-switch">
-      <a class="active" href="/ko/">한국어</a>
-      <a href="/en/">English</a>
-      <a href="/ja/">日本語</a>
-      <a href="/zh/">中文</a>
-    </div>
-    <h1>🎯 능력 테스트 모음</h1>
-    <p class="sub">반응 속도부터 기억력, 클릭 속도까지 — 나의 능력을 확인해보세요.</p>
-
-    <div class="hub-section"><h2>능력 테스트</h2><span class="note">반응·기억·정확도를 재는 12가지 테스트</span></div>
-    <div class="hub-grid">
-      <a class="game-card" href="/ko/tests/reaction-time">
-        <span class="badge badge-recommend">추천</span>
-        <span class="icon">⚡</span>
-        <div class="title">반응 속도 테스트</div>
-        <div class="desc">색이 바뀌는 순간 클릭! 몇 ms일까?</div>
-      </a>
-
-      <a class="game-card" href="/ko/tests/visual-memory">
-        <span class="icon">🧠</span>
-        <div class="title">순간 기억력 테스트</div>
-        <div class="desc">잠깐 보여준 칸의 위치를 기억하기</div>
-      </a>
-
-      <a class="game-card" href="/ko/tests/click-speed">
-        <span class="icon">🖱️</span>
-        <div class="title">CPS 클릭 속도 테스트</div>
-        <div class="desc">제한 시간 안에 최대한 빠르게 클릭</div>
-      </a>
-
-      <a class="game-card" href="/ko/tests/time-stop">
-        <span class="icon">⏱️</span>
-        <div class="title">시간 정지 게임</div>
-        <div class="desc">목표 시간에 딱 맞춰 정지! 여럿이 대결 가능</div>
-      </a>
-
-      <a class="game-card" href="/ko/tests/time-perception">
-        <span class="icon">🧭</span>
-        <div class="title">시간 감각 테스트</div>
-        <div class="desc">몰래 흐른 시간, 얼마나 지났는지 맞혀보세요</div>
-      </a>
-
-      <a class="game-card" href="/ko/tests/hearing-age">
-        <span class="icon">👂</span>
-        <div class="title">청력 나이 테스트</div>
-        <div class="desc">고주파 소리, 어디까지 들리나요?</div>
-      </a>
-
-      <a class="game-card" href="/ko/tests/dynamic-vision">
-        <span class="icon">👁️</span>
-        <div class="title">동체시력 테스트</div>
-        <div class="desc">번쩍이는 숫자, 몇 ms까지 읽을 수 있나요?</div>
-      </a>
-
-      <a class="game-card" href="/ko/tests/chimp-test">
-        <span class="icon">🐵</span>
-        <div class="title">침팬지 테스트</div>
-        <div class="desc">숫자 순서 기억하기, 침팬지 아유무를 이겨보세요</div>
-      </a>
-
-      <a class="game-card" href="/ko/tests/aim-trainer">
-        <span class="icon">🎯</span>
-        <div class="title">에임 테스트</div>
-        <div class="desc">타겟 30개, 얼마나 빠르고 정확하게 맞히나요?</div>
-      </a>
-
-      <a class="game-card" href="/ko/tests/spacebar-counter">
-        <span class="icon">⌨️</span>
-        <div class="title">스페이스바 연타 테스트</div>
-        <div class="desc">제한 시간 동안 스페이스바를 몇 번이나?</div>
-      </a>
-
-      <a class="game-card" href="/ko/tests/apm">
-        <span class="icon">🎹</span>
-        <div class="title">APM 테스트</div>
-        <div class="desc">60초 분당 액션 수, 프로게이머는 300~400</div>
-      </a>
-
-      <a class="game-card" href="/ko/tests/mouse-accuracy">
-        <span class="icon">🖲️</span>
-        <div class="title">마우스 정확도 테스트</div>
-        <div class="desc">구불구불한 경로를 커서로 따라가기</div>
-      </a>
-    </div>
-
-    <div class="hub-section"><h2>하드웨어 테스트</h2><span class="note">내 모니터·마우스·키보드가 제대로 동작하는지 점검</span></div>
-    <div class="hub-grid">
-      <a class="game-card" href="/ko/tests/monitor-hz">
-        <span class="icon">🖥️</span>
-        <div class="title">모니터 주사율 테스트</div>
-        <div class="desc">내 모니터가 진짜 몇 Hz인지 재보기</div>
-      </a>
-
-      <a class="game-card" href="/ko/tests/mouse-tester">
-        <span class="icon">🖱️</span>
-        <div class="title">마우스 테스트</div>
-        <div class="desc">버튼·휠 점검과 더블클릭 오작동 확인</div>
-      </a>
-
-      <a class="game-card" href="/ko/tests/keyboard-tester">
-        <span class="icon">⌨️</span>
-        <div class="title">키보드 테스트</div>
-        <div class="desc">모든 키 입력과 동시 입력(N키롤오버) 확인</div>
-      </a>
-
-    </div>
-
-    <div class="info-box">
-      모든 테스트 결과는 기기와 브라우저 상태에 따라 달라질 수 있습니다. 친구와 결과를 비교하며 재미로 즐겨보세요.
-    </div>
-    <footer class="site-footer">
-      <div class="footer-links">
-        <a href="/ko/">홈</a>
-        <a href="/ko/privacy">개인정보처리방침</a>
-        <a href="mailto:yongju0002@gmail.com">문의</a>
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <div class="eyebrow">15 TESTS · 무료 · 설치 없음</div>
+        <h1>내 반응 속도,<br>숫자로 확인하기.</h1>
+        <p class="lede">반응·기억·클릭·에임에서 모니터 주사율까지. 기록은 이 브라우저에 저장되고, 등급표로 바로 비교됩니다. 오른쪽 상자에서 한 번만 눌러보세요.</p>
+        <div class="hero-cta">
+          <a class="btn" href="#ability">테스트 전체 보기</a>
+          <a class="btn secondary" href="/ko/tests/reaction-time">반응 속도 테스트 페이지 →</a>
+        </div>
       </div>
-      <div class="copyright">© 2026 MyAbilityTest. 모든 테스트는 재미와 참고용입니다.</div>
-    </footer>
+
+      <div class="preview-card">
+        <div class="play-head">
+          <span class="t">반응 속도 · 미리보기</span>
+          <span class="m"><span id="pvTries">0</span> 시도 · <span id="pvBest">—</span> 최고</span>
+        </div>
+        <button class="preview-pad" id="pvPad" type="button">
+          <span class="pv-big" id="pvBig">준비</span>
+          <span class="pv-hint" id="pvHint">상자를 클릭하고, 색이 바뀌는 순간 다시 클릭</span>
+        </button>
+        <div class="tier-strip" id="pvTiers">
+          <div class="tier" data-i="0"><b>매우 빠름</b><span>&lt;150</span></div>
+          <div class="tier" data-i="1"><b>빠름</b><span>150–199</span></div>
+          <div class="tier" data-i="2"><b>평균</b><span>200–299</span></div>
+          <div class="tier" data-i="3"><b>보통</b><span>300–399</span></div>
+          <div class="tier" data-i="4"><b>느림</b><span>400+</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="hub-section" id="records">
+      <h2>내 기록</h2><span class="note">이 브라우저에 저장된 최고 기록</span>
+    </div>
+    <div class="record-strip">
+        <a class="rec" href="/ko/tests/reaction-time" data-rec="reaction-time">
+          <span class="rec-top"><span>반응 속도</span><span class="tag">내 최고</span></span>
+          <span class="rec-val">—</span>
+          <span class="rec-note">평균 273ms</span>
+        </a>
+        <a class="rec" href="/ko/tests/click-speed" data-rec="click-speed">
+          <span class="rec-top"><span>CPS 클릭 속도</span><span class="tag">내 최고</span></span>
+          <span class="rec-val">—</span>
+          <span class="rec-note">평균 6.8 CPS</span>
+        </a>
+        <a class="rec" href="/ko/tests/visual-memory" data-rec="visual-memory">
+          <span class="rec-top"><span>순간 기억력</span><span class="tag">내 최고</span></span>
+          <span class="rec-val">—</span>
+          <span class="rec-note">평균 9레벨</span>
+        </a>
+        <a class="rec" href="/ko/tests/aim-trainer" data-rec="aim-trainer">
+          <span class="rec-top"><span>에임</span><span class="tag">내 최고</span></span>
+          <span class="rec-val">—</span>
+          <span class="rec-note">타겟당 평균 612ms</span>
+        </a>
+    </div>
+
+    <div class="hub-section" id="ability">
+      <h2>능력 테스트</h2><span class="note">12 · 반응 / 기억 / 정확도</span>
+    </div>
+    <div class="test-list">
+      <a class="test-row" href="/ko/tests/reaction-time">
+        <span class="no">01</span>
+        <span class="icon">⚡</span>
+        <span>
+          <span class="rt-name">반응 속도 테스트<span class="badge">인기</span></span>
+          <span class="rt-desc">색이 바뀌는 순간 클릭! 몇 ms일까?</span>
+        </span>
+        <span class="meta">
+          <span><span class="k">단위</span><span class="v">ms</span></span>
+          <span><span class="k">소요</span><span class="v">30s</span></span>
+          <span><span class="k">평균</span><span class="v">273ms</span></span>
+        </span>
+      </a>
+      <a class="test-row" href="/ko/tests/visual-memory">
+        <span class="no">02</span>
+        <span class="icon">🧠</span>
+        <span>
+          <span class="rt-name">순간 기억력 테스트</span>
+          <span class="rt-desc">잠깐 보여준 칸의 위치를 기억하기</span>
+        </span>
+        <span class="meta">
+          <span><span class="k">단위</span><span class="v">lv</span></span>
+          <span><span class="k">소요</span><span class="v">2m</span></span>
+          <span><span class="k">평균</span><span class="v">9</span></span>
+        </span>
+      </a>
+      <a class="test-row" href="/ko/tests/click-speed">
+        <span class="no">03</span>
+        <span class="icon">🖱️</span>
+        <span>
+          <span class="rt-name">CPS 클릭 속도 테스트<span class="badge">인기</span></span>
+          <span class="rt-desc">제한 시간 안에 최대한 빠르게 클릭</span>
+        </span>
+        <span class="meta">
+          <span><span class="k">단위</span><span class="v">CPS</span></span>
+          <span><span class="k">소요</span><span class="v">10s</span></span>
+          <span><span class="k">평균</span><span class="v">6.8</span></span>
+        </span>
+      </a>
+      <a class="test-row" href="/ko/tests/time-stop">
+        <span class="no">04</span>
+        <span class="icon">⏱️</span>
+        <span>
+          <span class="rt-name">시간 정지 게임</span>
+          <span class="rt-desc">목표 시간에 딱 맞춰 정지! 여럿이 대결 가능</span>
+        </span>
+        <span class="meta">
+          <span><span class="k">단위</span><span class="v">s</span></span>
+          <span><span class="k">소요</span><span class="v">1m</span></span>
+          <span><span class="k">평균</span><span class="v">±0.12</span></span>
+        </span>
+      </a>
+      <a class="test-row" href="/ko/tests/time-perception">
+        <span class="no">05</span>
+        <span class="icon">🧭</span>
+        <span>
+          <span class="rt-name">시간 감각 테스트</span>
+          <span class="rt-desc">몰래 흐른 시간, 얼마나 지났는지 맞혀보세요</span>
+        </span>
+        <span class="meta">
+          <span><span class="k">단위</span><span class="v">s</span></span>
+          <span><span class="k">소요</span><span class="v">1m</span></span>
+          <span><span class="k">평균</span><span class="v">±1.4</span></span>
+        </span>
+      </a>
+      <a class="test-row" href="/ko/tests/hearing-age">
+        <span class="no">06</span>
+        <span class="icon">👂</span>
+        <span>
+          <span class="rt-name">청력 나이 테스트</span>
+          <span class="rt-desc">고주파 소리, 어디까지 들리나요?</span>
+        </span>
+        <span class="meta">
+          <span><span class="k">단위</span><span class="v">kHz</span></span>
+          <span><span class="k">소요</span><span class="v">1m</span></span>
+          <span><span class="k">평균</span><span class="v">15.8</span></span>
+        </span>
+      </a>
+      <a class="test-row" href="/ko/tests/dynamic-vision">
+        <span class="no">07</span>
+        <span class="icon">👁️</span>
+        <span>
+          <span class="rt-name">동체시력 테스트</span>
+          <span class="rt-desc">번쩍이는 숫자, 몇 ms까지 읽을 수 있나요?</span>
+        </span>
+        <span class="meta">
+          <span><span class="k">단위</span><span class="v">ms</span></span>
+          <span><span class="k">소요</span><span class="v">2m</span></span>
+          <span><span class="k">평균</span><span class="v">48</span></span>
+        </span>
+      </a>
+      <a class="test-row" href="/ko/tests/chimp-test">
+        <span class="no">08</span>
+        <span class="icon">🐵</span>
+        <span>
+          <span class="rt-name">침팬지 테스트</span>
+          <span class="rt-desc">숫자 순서 기억하기, 침팬지 아유무를 이겨보세요</span>
+        </span>
+        <span class="meta">
+          <span><span class="k">단위</span><span class="v">lv</span></span>
+          <span><span class="k">소요</span><span class="v">3m</span></span>
+          <span><span class="k">평균</span><span class="v">8</span></span>
+        </span>
+      </a>
+      <a class="test-row" href="/ko/tests/aim-trainer">
+        <span class="no">09</span>
+        <span class="icon">🎯</span>
+        <span>
+          <span class="rt-name">에임 테스트<span class="badge">인기</span></span>
+          <span class="rt-desc">타겟 30개, 얼마나 빠르고 정확하게 맞히나요?</span>
+        </span>
+        <span class="meta">
+          <span><span class="k">단위</span><span class="v">ms</span></span>
+          <span><span class="k">소요</span><span class="v">1m</span></span>
+          <span><span class="k">평균</span><span class="v">612</span></span>
+        </span>
+      </a>
+      <a class="test-row" href="/ko/tests/spacebar-counter">
+        <span class="no">10</span>
+        <span class="icon">⌨️</span>
+        <span>
+          <span class="rt-name">스페이스바 연타 테스트</span>
+          <span class="rt-desc">제한 시간 동안 스페이스바를 몇 번이나?</span>
+        </span>
+        <span class="meta">
+          <span><span class="k">단위</span><span class="v">hits</span></span>
+          <span><span class="k">소요</span><span class="v">10s</span></span>
+          <span><span class="k">평균</span><span class="v">62</span></span>
+        </span>
+      </a>
+      <a class="test-row" href="/ko/tests/apm">
+        <span class="no">11</span>
+        <span class="icon">🎹</span>
+        <span>
+          <span class="rt-name">APM 테스트</span>
+          <span class="rt-desc">60초 분당 액션 수, 프로게이머는 300~400</span>
+        </span>
+        <span class="meta">
+          <span><span class="k">단위</span><span class="v">APM</span></span>
+          <span><span class="k">소요</span><span class="v">60s</span></span>
+          <span><span class="k">평균</span><span class="v">180</span></span>
+        </span>
+      </a>
+      <a class="test-row" href="/ko/tests/mouse-accuracy">
+        <span class="no">12</span>
+        <span class="icon">🖲️</span>
+        <span>
+          <span class="rt-name">마우스 정확도 테스트</span>
+          <span class="rt-desc">구불구불한 경로를 커서로 따라가기</span>
+        </span>
+        <span class="meta">
+          <span><span class="k">단위</span><span class="v">%</span></span>
+          <span><span class="k">소요</span><span class="v">1m</span></span>
+          <span><span class="k">평균</span><span class="v">84</span></span>
+        </span>
+      </a>
+    </div>
+
+    <div class="hub-section" id="hardware">
+      <h2>하드웨어 테스트</h2><span class="note">03 · 모니터 / 마우스 / 키보드</span>
+    </div>
+    <div class="test-list">
+      <a class="test-row" href="/ko/tests/monitor-hz">
+        <span class="no">13</span>
+        <span class="icon">🖥️</span>
+        <span>
+          <span class="rt-name">모니터 주사율 테스트</span>
+          <span class="rt-desc">내 모니터가 진짜 몇 Hz인지 재보기</span>
+        </span>
+        <span class="meta">
+          <span><span class="k">소요</span><span class="v">30s</span></span>
+        </span>
+      </a>
+      <a class="test-row" href="/ko/tests/mouse-tester">
+        <span class="no">14</span>
+        <span class="icon">🖱️</span>
+        <span>
+          <span class="rt-name">마우스 테스트</span>
+          <span class="rt-desc">버튼·휠 점검과 더블클릭 오작동 확인</span>
+        </span>
+        <span class="meta">
+          <span><span class="k">소요</span><span class="v">1m</span></span>
+        </span>
+      </a>
+      <a class="test-row" href="/ko/tests/keyboard-tester">
+        <span class="no">15</span>
+        <span class="icon">⌨️</span>
+        <span>
+          <span class="rt-name">키보드 테스트</span>
+          <span class="rt-desc">모든 키 입력과 동시 입력(N키롤오버) 확인</span>
+        </span>
+        <span class="meta">
+          <span><span class="k">소요</span><span class="v">1m</span></span>
+        </span>
+      </a>
+    </div>
   </div>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <div class="fbrand"><span class="dot"></span>능력 테스트</div>
+        <p class="fdesc">브라우저에서 바로 재는 15가지 무료 테스트. 결과는 기기·브라우저 상태에 따라 달라질 수 있으며, 재미와 참고용입니다.</p>
+        <a class="fmail" href="mailto:yongju0002@gmail.com">버그 제보 · 제안</a>
+      </div>
+      <div>
+        <div class="fhead">반응 · 정확도</div>
+        <div class="fcol">
+          <a href="/ko/tests/reaction-time">반응 속도 테스트</a>
+          <a href="/ko/tests/aim-trainer">에임 테스트</a>
+          <a href="/ko/tests/dynamic-vision">동체시력 테스트</a>
+          <a href="/ko/tests/mouse-accuracy">마우스 정확도 테스트</a>
+        </div>
+      </div>
+      <div>
+        <div class="fhead">속도 · 기억</div>
+        <div class="fcol">
+          <a href="/ko/tests/click-speed">CPS 클릭 속도 테스트</a>
+          <a href="/ko/tests/spacebar-counter">스페이스바 연타 테스트</a>
+          <a href="/ko/tests/apm">APM 테스트</a>
+          <a href="/ko/tests/visual-memory">순간 기억력 테스트</a>
+          <a href="/ko/tests/chimp-test">침팬지 테스트</a>
+        </div>
+      </div>
+      <div>
+        <div class="fhead">감각 · 하드웨어</div>
+        <div class="fcol">
+          <a href="/ko/tests/hearing-age">청력 나이 테스트</a>
+          <a href="/ko/tests/time-stop">시간 정지 게임</a>
+          <a href="/ko/tests/time-perception">시간 감각 테스트</a>
+          <a href="/ko/tests/monitor-hz">모니터 주사율 테스트</a>
+          <a href="/ko/tests/mouse-tester">마우스 테스트</a>
+          <a href="/ko/tests/keyboard-tester">키보드 테스트</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 MyAbilityTest</span>
+      <span class="links">
+        <a href="/ko/privacy">개인정보처리방침</a>
+        <a href="/ko/">한국어</a>
+        <a href="/en/">English</a>
+        <a href="/ja/">日本語</a>
+        <a href="/zh/">中文</a>
+      </span>
+    </div>
+  </footer>
+
+<script src="/skill-test/common.js"></script>
+<script>
+  // ---- 히어로 미리보기: 간단 반응 속도 (기록은 reaction-time과 같은 키를 쓴다) ----
+  (function () {
+    var LB = 'reactionLeaderboardV1', ST = 'reactionStatsV2';
+    var pad = document.getElementById('pvPad');
+    var big = document.getElementById('pvBig'), hint = document.getElementById('pvHint');
+    var triesEl = document.getElementById('pvTries'), bestEl = document.getElementById('pvBest');
+    var tiers = document.getElementById('pvTiers');
+    var TXT = {"idle":"준비","wait":"···","go":"클릭!","early":"너무 빨라요","hIdle":"상자를 클릭하고, 색이 바뀌는 순간 다시 클릭","hWait":"기다리세요","hGo":"지금!","hResult":"다시 클릭하면 한 번 더","hEarly":"신호 전에 눌렀어요. 클릭해서 재시도"};
+    var phase = 'idle', timer = null, goAt = 0, tries = 0, best = null;
+
+    function read(key, fb) { try { return JSON.parse(localStorage.getItem(key) || 'null') || fb; } catch (e) { return fb; } }
+    function tierOf(ms) { return ms < 150 ? 0 : ms < 200 ? 1 : ms < 300 ? 2 : ms < 400 ? 3 : 4; }
+    function markTier(i) {
+      var cells = tiers.querySelectorAll('.tier');
+      for (var k = 0; k < cells.length; k++) cells[k].classList.toggle('on', k === i);
+    }
+    function paint(p) { pad.dataset.phase = p; }
+
+    var st = read(ST, null);
+    if (st && st.best) { best = st.best; bestEl.textContent = best + 'ms'; }
+
+    pad.addEventListener('click', function () {
+      if (phase === 'idle' || phase === 'result' || phase === 'early') {
+        phase = 'wait'; paint('wait'); big.textContent = TXT.wait; hint.textContent = TXT.hWait; markTier(-1);
+        timer = setTimeout(function () {
+          goAt = performance.now(); phase = 'go'; paint('go');
+          big.textContent = TXT.go; hint.textContent = TXT.hGo;
+        }, 1200 + Math.random() * 2600);
+      } else if (phase === 'wait') {
+        clearTimeout(timer); phase = 'early'; paint('early');
+        big.textContent = TXT.early; hint.textContent = TXT.hEarly;
+      } else if (phase === 'go') {
+        var ms = Math.round(performance.now() - goAt);
+        phase = 'result'; paint('result');
+        big.textContent = ms + 'ms'; hint.textContent = TXT.hResult;
+        tries += 1; triesEl.textContent = tries;
+        markTier(tierOf(ms));
+        if (best === null || ms < best) { best = ms; bestEl.textContent = ms + 'ms'; }
+        // 반응 속도 테스트 페이지와 같은 저장소에 기록을 남긴다
+        var s = read(ST, { count: 0, sum: 0, best: null });
+        s.count += 1; s.sum += ms; s.best = s.best === null ? ms : Math.min(s.best, ms);
+        try { localStorage.setItem(ST, JSON.stringify(s)); } catch (e) {}
+        var list = read(LB, []);
+        list.push({ value: ms, date: Date.now() });
+        list.sort(function (a, b) { return a.value - b.value; });
+        try { localStorage.setItem(LB, JSON.stringify(list.slice(0, 30))); } catch (e) {}
+      }
+    });
+
+    // ---- 내 기록 띠 채우기 ----
+    var SOURCES = {
+      'reaction-time': function () { var s = read(ST, null); return s && s.best ? s.best + 'ms' : null; },
+      'click-speed': function () { var l = read('skillCpsLeaderboardV1', []); return l.length ? l[0].value + ' CPS' : null; },
+      'visual-memory': function () { var l = read('skillMemoryLeaderboardV1', []); return l.length ? l[0].value + '레벨' : null; },
+      'aim-trainer': function () { var l = read('skillAimLeaderboardV1', []); return l.length ? Math.round(l[0].value) + 'ms' : null; }
+    };
+    var recEls = document.querySelectorAll('[data-rec]');
+    for (var i = 0; i < recEls.length; i++) {
+      var slug = recEls[i].dataset.rec, fn = SOURCES[slug];
+      if (!fn) continue;
+      var v = null;
+      try { v = fn(); } catch (e) {}
+      if (v) recEls[i].querySelector('.rec-val').textContent = v;
+    }
+  })();
+</script>
 </body>
 </html>

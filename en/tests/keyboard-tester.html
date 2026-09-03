@@ -38,20 +38,23 @@
 </script>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/skill-test/style.css">
 <style>
-  .info { margin-top: 40px; color: #cbd5e1; font-size: 14px; line-height: 1.7; }
-  .info h2 { font-size: 17px; color: #f1f5f9; margin: 28px 0 8px; }
+  .info { margin-top: 40px; color: var(--body); font-size: 14px; line-height: 1.7; }
+  .info h2 { font-size: 17px; color: var(--ink); margin: 28px 0 8px; }
   .info table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
-  .info th, .info td { border: 1px solid #334155; padding: 8px; text-align: left; }
+  .info th, .info td { border: 1px solid var(--line); padding: 8px; text-align: left; }
   .info th { background: var(--card-bg); }
   .info ul { padding-left: 20px; }
   .other-tests { margin-top: 16px; }
   .other-tests .label { text-align: center; font-size: 12px; color: var(--text-dim); margin-bottom: 8px; }
   .other-tests-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
   .other-tests-links a {
-    font-size: 12px; color: #cbd5e1; text-decoration: none;
-    background: var(--card-bg-2); border: 1px solid rgba(255,255,255,0.08);
+    font-size: 12px; color: var(--body); text-decoration: none;
+    background: var(--card-bg-2); border: 1px solid var(--line);
     border-radius: 999px; padding: 6px 12px;
   }
   .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
@@ -62,7 +65,7 @@
   }
   .kb-row { display: flex; gap: 5px; margin-bottom: 5px; justify-content: center; min-width: 640px; }
   .key {
-    background: var(--card-bg); border: 1px solid rgba(255,255,255,0.14);
+    background: var(--card-bg); border: 1px solid var(--line);
     border-radius: 7px; min-width: 38px; height: 38px;
     display: flex; align-items: center; justify-content: center;
     font-size: 11px; color: var(--text-dim); padding: 0 6px; white-space: nowrap;
@@ -70,8 +73,8 @@
   }
   .key.w15 { min-width: 58px; } .key.w20 { min-width: 78px; }
   .key.w25 { min-width: 98px; } .key.w60 { min-width: 236px; }
-  .key.down { background: var(--accent); color: #fff; border-color: #c7d2fe; }
-  .key.used { border-color: #22c55e; color: #cbd5e1; }
+  .key.down { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .key.used { border-color: var(--good); color: var(--body); }
 
   .live-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 14px; }
   .live-box { background: var(--card-bg); border-radius: 12px; padding: 12px 10px; text-align: center; }
@@ -87,14 +90,29 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
 </head>
 <body>
-  <div class="wrap">
-    <a class="back-link" href="/en/">← Back to Main</a>
-    <div class="lang-switch">
-      <a href="/ko/tests/keyboard-tester">한국어</a>
-      <a class="active" href="/en/tests/keyboard-tester">English</a>
-      <a href="/ja/tests/keyboard-tester">日本語</a>
-      <a href="/zh/tests/keyboard-tester">中文</a>
+  <header class="site-header">
+    <a class="brand" href="/en/"><span class="dot"></span>Ability Test</a>
+    <nav>
+      <a href="/en/#ability">Skill <span class="count">12</span></a>
+      <a href="/en/#hardware">Hardware <span class="count">03</span></a>
+      <a href="/en/#records">My records</a>
+    </nav>
+    <span class="spacer"></span>
+    <div class="langs">
+      <a href="/ko/">KO</a>
+      <span class="active">EN</span>
+      <a href="/ja/">JA</a>
+      <a href="/zh/">ZH</a>
     </div>
+  </header>
+
+  <div class="wrap">
+    <nav class="breadcrumb">
+      <a href="/en/">Home</a><span>/</span>
+      <a href="/en/#hardware">Hardware tests</a><span>/</span>
+      <span class="here">Keyboard Test</span>
+      <span class="idx">15 / 15</span>
+    </nav>
     <h1>⌨️ Keyboard Test</h1>
     <p class="sub">Press any key. It lights up, and any key that has registered at least once keeps a green outline.</p>
 
@@ -171,16 +189,58 @@
         <a href="/en/tests/apm">🎹 APM Test</a>
       </div>
     </div>
-
-    <footer class="site-footer">
-      <div class="footer-links">
-        <a href="/en/">Home</a>
-        <a href="/en/privacy">Privacy Policy</a>
-        <a href="mailto:yongju0002@gmail.com">Contact</a>
-      </div>
-      <div class="copyright">© 2026 MyAbilityTest. All tests are for fun and general reference.</div>
-    </footer>
   </div>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <div class="fbrand"><span class="dot"></span>Ability Test</div>
+        <p class="fdesc">15 free tests you can run straight in the browser. Results vary with your device and browser, and are for fun and reference.</p>
+        <a class="fmail" href="mailto:yongju0002@gmail.com">Report a bug · suggest a test</a>
+      </div>
+      <div>
+        <div class="fhead">Reaction · accuracy</div>
+        <div class="fcol">
+          <a href="/en/tests/reaction-time">Reaction Time Test</a>
+          <a href="/en/tests/aim-trainer">Aim Test</a>
+          <a href="/en/tests/dynamic-vision">Dynamic Vision Test</a>
+          <a href="/en/tests/mouse-accuracy">Mouse Accuracy Test</a>
+        </div>
+      </div>
+      <div>
+        <div class="fhead">Speed · memory</div>
+        <div class="fcol">
+          <a href="/en/tests/click-speed">CPS Click Speed Test</a>
+          <a href="/en/tests/spacebar-counter">Spacebar Speed Test</a>
+          <a href="/en/tests/apm">APM Test</a>
+          <a href="/en/tests/visual-memory">Visual Memory Test</a>
+          <a href="/en/tests/chimp-test">Chimp Test</a>
+        </div>
+      </div>
+      <div>
+        <div class="fhead">Senses · hardware</div>
+        <div class="fcol">
+          <a href="/en/tests/hearing-age">Hearing Age Test</a>
+          <a href="/en/tests/time-stop">Stop the Timer</a>
+          <a href="/en/tests/time-perception">Time Sense Test</a>
+          <a href="/en/tests/monitor-hz">Monitor Refresh Rate Test</a>
+          <a href="/en/tests/mouse-tester">Mouse Test</a>
+          <a href="/en/tests/keyboard-tester">Keyboard Test</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 MyAbilityTest</span>
+      <span class="links">
+        <a href="/en/">Home</a>
+        <a href="/en/privacy">Privacy policy</a>
+        <a href="/ko/">한국어</a>
+        <a href="/en/">English</a>
+        <a href="/ja/">日本語</a>
+        <a href="/zh/">中文</a>
+      </span>
+    </div>
+  </footer>
 
 <script src="/skill-test/common.js"></script>
 <script>
@@ -232,8 +292,8 @@
     if (maxHeld === 0) { v.textContent = ''; return; }
     if (maxHeld <= 2) { v.textContent = `${maxHeld} keys held - press more to find your limit`; v.style.color = 'var(--text-dim)'; }
     else if (maxHeld <= 5) { v.textContent = `${maxHeld} keys held - this combination may be hitting ghosting`; v.style.color = '#fbbf24'; }
-    else if (maxHeld === 6) { v.textContent = '6 keys held - the standard figure for the default USB spec (6KRO)'; v.style.color = '#22c55e'; }
-    else { v.textContent = `${maxHeld} keys held - past six, so this is running as NKRO`; v.style.color = '#22c55e'; }
+    else if (maxHeld === 6) { v.textContent = '6 keys held - the standard figure for the default USB spec (6KRO)'; v.style.color = '#15803d'; }
+    else { v.textContent = `${maxHeld} keys held - past six, so this is running as NKRO`; v.style.color = '#15803d'; }
   }
 
   window.addEventListener('keydown', (e) => {

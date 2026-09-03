@@ -33,6 +33,9 @@
 </script>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/skill-test/style.css">
 <style>
   .other-tests { margin-top: 16px; }
@@ -40,24 +43,24 @@
   .other-tests-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
   .other-tests-links a {
     font-size: 12px;
-    color: #cbd5e1;
+    color: var(--body);
     text-decoration: none;
     background: var(--card-bg-2);
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid var(--line);
     border-radius: 999px;
     padding: 6px 12px;
   }
   .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
-  .info { margin-top: 40px; color: #cbd5e1; font-size: 14px; line-height: 1.7; }
-  .info h2 { font-size: 17px; color: #f1f5f9; margin: 28px 0 8px; }
+  .info { margin-top: 40px; color: var(--body); font-size: 14px; line-height: 1.7; }
+  .info h2 { font-size: 17px; color: var(--ink); margin: 28px 0 8px; }
   .info table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
-  .info th, .info td { border: 1px solid #334155; padding: 8px; text-align: left; }
+  .info th, .info td { border: 1px solid var(--line); padding: 8px; text-align: left; }
   .info th { background: var(--card-bg); }
 </style>
 <style>
   .warn-box {
-    background: rgba(239,68,68,0.14);
-    border: 1px solid rgba(239,68,68,0.4);
+    background: rgba(185, 28, 28, 0.18);
+    border: 1px solid rgba(185, 28, 28, 0.18);
     border-radius: 14px;
     padding: 16px 18px;
     font-size: 14px;
@@ -108,14 +111,29 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
 </head>
 <body>
-  <div class="wrap">
-    <a class="back-link" href="/ja/">← メインへ</a>
-    <div class="lang-switch">
-      <a href="/ko/tests/hearing-age">한국어</a>
-      <a href="/en/tests/hearing-age">English</a>
-      <a class="active" href="/ja/tests/hearing-age">日本語</a>
-      <a href="/zh/tests/hearing-age">中文</a>
+  <header class="site-header">
+    <a class="brand" href="/ja/"><span class="dot"></span>能力テスト</a>
+    <nav>
+      <a href="/ja/#ability">能力 <span class="count">12</span></a>
+      <a href="/ja/#hardware">ハードウェア <span class="count">03</span></a>
+      <a href="/ja/#records">自分の記録</a>
+    </nav>
+    <span class="spacer"></span>
+    <div class="langs">
+      <a href="/ko/">KO</a>
+      <a href="/en/">EN</a>
+      <span class="active">JA</span>
+      <a href="/zh/">ZH</a>
     </div>
+  </header>
+
+  <div class="wrap">
+    <nav class="breadcrumb">
+      <a href="/ja/">ホーム</a><span>/</span>
+      <a href="/ja/#ability">能力テスト</a><span>/</span>
+      <span class="here">聴力年齢テスト</span>
+      <span class="idx">06 / 15</span>
+    </nav>
     <h1>👂 聴力年齢テスト</h1>
     <p class="sub">だんだん高くなる音を聞いて、どこまで聞こえるか確かめてみましょう。</p>
 
@@ -215,16 +233,58 @@
 
     <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 歴代記録ランキング(最大30位)</h2>
     <div id="topLeaderboard"></div>
+  </div>
 
-    <footer class="site-footer">
-      <div class="footer-links">
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <div class="fbrand"><span class="dot"></span>能力テスト</div>
+        <p class="fdesc">ブラウザですぐ測れる15種類の無料テスト。結果は端末やブラウザの状態で変わることがあり、娯楽・参考用です。</p>
+        <a class="fmail" href="mailto:yongju0002@gmail.com">バグ報告 · ご提案</a>
+      </div>
+      <div>
+        <div class="fhead">反応 · 正確さ</div>
+        <div class="fcol">
+          <a href="/ja/tests/reaction-time">反応速度テスト</a>
+          <a href="/ja/tests/aim-trainer">エイムテスト</a>
+          <a href="/ja/tests/dynamic-vision">動体視力テスト</a>
+          <a href="/ja/tests/mouse-accuracy">マウス精度テスト</a>
+        </div>
+      </div>
+      <div>
+        <div class="fhead">速度 · 記憶</div>
+        <div class="fcol">
+          <a href="/ja/tests/click-speed">CPSクリック速度テスト</a>
+          <a href="/ja/tests/spacebar-counter">スペースキー連打テスト</a>
+          <a href="/ja/tests/apm">APMテスト</a>
+          <a href="/ja/tests/visual-memory">瞬間記憶力テスト</a>
+          <a href="/ja/tests/chimp-test">チンパンジーテスト</a>
+        </div>
+      </div>
+      <div>
+        <div class="fhead">感覚 · ハードウェア</div>
+        <div class="fcol">
+          <a href="/ja/tests/hearing-age">聴力年齢テスト</a>
+          <a href="/ja/tests/time-stop">時間ストップゲーム</a>
+          <a href="/ja/tests/time-perception">時間感覚テスト</a>
+          <a href="/ja/tests/monitor-hz">モニターリフレッシュレートテスト</a>
+          <a href="/ja/tests/mouse-tester">マウステスト</a>
+          <a href="/ja/tests/keyboard-tester">キーボードテスト</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 MyAbilityTest</span>
+      <span class="links">
         <a href="/ja/">ホーム</a>
         <a href="/ja/privacy">プライバシーポリシー</a>
-        <a href="mailto:yongju0002@gmail.com">お問い合わせ</a>
-      </div>
-      <div class="copyright">© 2026 MyAbilityTest. すべてのテストは娯楽および参考用です。</div>
-    </footer>
-  </div>
+        <a href="/ko/">한국어</a>
+        <a href="/en/">English</a>
+        <a href="/ja/">日本語</a>
+        <a href="/zh/">中文</a>
+      </span>
+    </div>
+  </footer>
 
 <script src="/skill-test/common.js"></script>
 <script>

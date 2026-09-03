@@ -38,20 +38,23 @@
 </script>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/skill-test/style.css">
 <style>
-  .info { margin-top: 40px; color: #cbd5e1; font-size: 14px; line-height: 1.7; }
-  .info h2 { font-size: 17px; color: #f1f5f9; margin: 28px 0 8px; }
+  .info { margin-top: 40px; color: var(--body); font-size: 14px; line-height: 1.7; }
+  .info h2 { font-size: 17px; color: var(--ink); margin: 28px 0 8px; }
   .info table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
-  .info th, .info td { border: 1px solid #334155; padding: 8px; text-align: left; }
+  .info th, .info td { border: 1px solid var(--line); padding: 8px; text-align: left; }
   .info th { background: var(--card-bg); }
   .info ul { padding-left: 20px; }
   .other-tests { margin-top: 16px; }
   .other-tests .label { text-align: center; font-size: 12px; color: var(--text-dim); margin-bottom: 8px; }
   .other-tests-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
   .other-tests-links a {
-    font-size: 12px; color: #cbd5e1; text-decoration: none;
-    background: var(--card-bg-2); border: 1px solid rgba(255,255,255,0.08);
+    font-size: 12px; color: var(--body); text-decoration: none;
+    background: var(--card-bg-2); border: 1px solid var(--line);
     border-radius: 999px; padding: 6px 12px;
   }
   .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
@@ -62,7 +65,7 @@
   }
   .kb-row { display: flex; gap: 5px; margin-bottom: 5px; justify-content: center; min-width: 640px; }
   .key {
-    background: var(--card-bg); border: 1px solid rgba(255,255,255,0.14);
+    background: var(--card-bg); border: 1px solid var(--line);
     border-radius: 7px; min-width: 38px; height: 38px;
     display: flex; align-items: center; justify-content: center;
     font-size: 11px; color: var(--text-dim); padding: 0 6px; white-space: nowrap;
@@ -70,8 +73,8 @@
   }
   .key.w15 { min-width: 58px; } .key.w20 { min-width: 78px; }
   .key.w25 { min-width: 98px; } .key.w60 { min-width: 236px; }
-  .key.down { background: var(--accent); color: #fff; border-color: #c7d2fe; }
-  .key.used { border-color: #22c55e; color: #cbd5e1; }
+  .key.down { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .key.used { border-color: var(--good); color: var(--body); }
 
   .live-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 14px; }
   .live-box { background: var(--card-bg); border-radius: 12px; padding: 12px 10px; text-align: center; }
@@ -87,14 +90,29 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
 </head>
 <body>
-  <div class="wrap">
-    <a class="back-link" href="/ko/">← 메인으로</a>
-    <div class="lang-switch">
-      <a class="active" href="/ko/tests/keyboard-tester">한국어</a>
-      <a href="/en/tests/keyboard-tester">English</a>
-      <a href="/ja/tests/keyboard-tester">日本語</a>
-      <a href="/zh/tests/keyboard-tester">中文</a>
+  <header class="site-header">
+    <a class="brand" href="/ko/"><span class="dot"></span>능력 테스트</a>
+    <nav>
+      <a href="/ko/#ability">능력 <span class="count">12</span></a>
+      <a href="/ko/#hardware">하드웨어 <span class="count">03</span></a>
+      <a href="/ko/#records">내 기록</a>
+    </nav>
+    <span class="spacer"></span>
+    <div class="langs">
+      <span class="active">KO</span>
+      <a href="/en/">EN</a>
+      <a href="/ja/">JA</a>
+      <a href="/zh/">ZH</a>
     </div>
+  </header>
+
+  <div class="wrap">
+    <nav class="breadcrumb">
+      <a href="/ko/">홈</a><span>/</span>
+      <a href="/ko/#hardware">하드웨어 테스트</a><span>/</span>
+      <span class="here">키보드 테스트</span>
+      <span class="idx">15 / 15</span>
+    </nav>
     <h1>⌨️ 키보드 테스트</h1>
     <p class="sub">키를 눌러보세요. 눌린 키에 불이 들어오고, 한 번이라도 인식된 키는 초록 테두리로 남습니다.</p>
 
@@ -171,16 +189,58 @@
         <a href="/ko/tests/apm">🎹 APM 테스트</a>
       </div>
     </div>
+  </div>
 
-    <footer class="site-footer">
-      <div class="footer-links">
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <div class="fbrand"><span class="dot"></span>능력 테스트</div>
+        <p class="fdesc">브라우저에서 바로 재는 15가지 무료 테스트. 결과는 기기·브라우저 상태에 따라 달라질 수 있으며, 재미와 참고용입니다.</p>
+        <a class="fmail" href="mailto:yongju0002@gmail.com">버그 제보 · 제안</a>
+      </div>
+      <div>
+        <div class="fhead">반응 · 정확도</div>
+        <div class="fcol">
+          <a href="/ko/tests/reaction-time">반응 속도 테스트</a>
+          <a href="/ko/tests/aim-trainer">에임 테스트</a>
+          <a href="/ko/tests/dynamic-vision">동체시력 테스트</a>
+          <a href="/ko/tests/mouse-accuracy">마우스 정확도 테스트</a>
+        </div>
+      </div>
+      <div>
+        <div class="fhead">속도 · 기억</div>
+        <div class="fcol">
+          <a href="/ko/tests/click-speed">CPS 클릭 속도 테스트</a>
+          <a href="/ko/tests/spacebar-counter">스페이스바 연타 테스트</a>
+          <a href="/ko/tests/apm">APM 테스트</a>
+          <a href="/ko/tests/visual-memory">순간 기억력 테스트</a>
+          <a href="/ko/tests/chimp-test">침팬지 테스트</a>
+        </div>
+      </div>
+      <div>
+        <div class="fhead">감각 · 하드웨어</div>
+        <div class="fcol">
+          <a href="/ko/tests/hearing-age">청력 나이 테스트</a>
+          <a href="/ko/tests/time-stop">시간 정지 게임</a>
+          <a href="/ko/tests/time-perception">시간 감각 테스트</a>
+          <a href="/ko/tests/monitor-hz">모니터 주사율 테스트</a>
+          <a href="/ko/tests/mouse-tester">마우스 테스트</a>
+          <a href="/ko/tests/keyboard-tester">키보드 테스트</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 MyAbilityTest</span>
+      <span class="links">
         <a href="/ko/">홈</a>
         <a href="/ko/privacy">개인정보처리방침</a>
-        <a href="mailto:yongju0002@gmail.com">문의</a>
-      </div>
-      <div class="copyright">© 2026 MyAbilityTest. 모든 테스트는 재미와 참고용입니다.</div>
-    </footer>
-  </div>
+        <a href="/ko/">한국어</a>
+        <a href="/en/">English</a>
+        <a href="/ja/">日本語</a>
+        <a href="/zh/">中文</a>
+      </span>
+    </div>
+  </footer>
 
 <script src="/skill-test/common.js"></script>
 <script>
@@ -232,8 +292,8 @@
     if (maxHeld === 0) { v.textContent = ''; return; }
     if (maxHeld <= 2) { v.textContent = `최대 ${maxHeld}개 동시 입력 — 더 눌러서 한계를 확인해보세요`; v.style.color = 'var(--text-dim)'; }
     else if (maxHeld <= 5) { v.textContent = `최대 ${maxHeld}개 동시 입력 — 고스팅 가능성이 있는 조합일 수 있어요`; v.style.color = '#fbbf24'; }
-    else if (maxHeld === 6) { v.textContent = '최대 6개 동시 입력 — USB 기본 규격(6KRO)의 표준값이에요'; v.style.color = '#22c55e'; }
-    else { v.textContent = `최대 ${maxHeld}개 동시 입력 — 6키를 넘겼어요. NKRO로 동작하고 있습니다`; v.style.color = '#22c55e'; }
+    else if (maxHeld === 6) { v.textContent = '최대 6개 동시 입력 — USB 기본 규격(6KRO)의 표준값이에요'; v.style.color = '#15803d'; }
+    else { v.textContent = `최대 ${maxHeld}개 동시 입력 — 6키를 넘겼어요. NKRO로 동작하고 있습니다`; v.style.color = '#15803d'; }
   }
 
   window.addEventListener('keydown', (e) => {

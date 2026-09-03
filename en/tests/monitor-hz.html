@@ -38,20 +38,23 @@
 </script>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/skill-test/style.css">
 <style>
-  .info { margin-top: 40px; color: #cbd5e1; font-size: 14px; line-height: 1.7; }
-  .info h2 { font-size: 17px; color: #f1f5f9; margin: 28px 0 8px; }
+  .info { margin-top: 40px; color: var(--body); font-size: 14px; line-height: 1.7; }
+  .info h2 { font-size: 17px; color: var(--ink); margin: 28px 0 8px; }
   .info table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
-  .info th, .info td { border: 1px solid #334155; padding: 8px; text-align: left; }
+  .info th, .info td { border: 1px solid var(--line); padding: 8px; text-align: left; }
   .info th { background: var(--card-bg); }
   .info ul { padding-left: 20px; }
   .other-tests { margin-top: 16px; }
   .other-tests .label { text-align: center; font-size: 12px; color: var(--text-dim); margin-bottom: 8px; }
   .other-tests-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
   .other-tests-links a {
-    font-size: 12px; color: #cbd5e1; text-decoration: none;
-    background: var(--card-bg-2); border: 1px solid rgba(255,255,255,0.08);
+    font-size: 12px; color: var(--body); text-decoration: none;
+    background: var(--card-bg-2); border: 1px solid var(--line);
     border-radius: 999px; padding: 6px 12px;
   }
   .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
@@ -78,14 +81,29 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
 </head>
 <body>
-  <div class="wrap">
-    <a class="back-link" href="/en/">← Back to Main</a>
-    <div class="lang-switch">
-      <a href="/ko/tests/monitor-hz">한국어</a>
-      <a class="active" href="/en/tests/monitor-hz">English</a>
-      <a href="/ja/tests/monitor-hz">日本語</a>
-      <a href="/zh/tests/monitor-hz">中文</a>
+  <header class="site-header">
+    <a class="brand" href="/en/"><span class="dot"></span>Ability Test</a>
+    <nav>
+      <a href="/en/#ability">Skill <span class="count">12</span></a>
+      <a href="/en/#hardware">Hardware <span class="count">03</span></a>
+      <a href="/en/#records">My records</a>
+    </nav>
+    <span class="spacer"></span>
+    <div class="langs">
+      <a href="/ko/">KO</a>
+      <span class="active">EN</span>
+      <a href="/ja/">JA</a>
+      <a href="/zh/">ZH</a>
     </div>
+  </header>
+
+  <div class="wrap">
+    <nav class="breadcrumb">
+      <a href="/en/">Home</a><span>/</span>
+      <a href="/en/#hardware">Hardware tests</a><span>/</span>
+      <span class="here">Monitor Refresh Rate Test</span>
+      <span class="idx">13 / 15</span>
+    </nav>
     <h1>🖥️ Monitor Refresh Rate Test</h1>
     <p class="sub">We measure the gaps between frames your browser actually draws, and estimate your refresh rate from them.</p>
 
@@ -178,16 +196,58 @@
         <a href="/en/tests/click-speed">🖱️ CPS Click Speed</a>
       </div>
     </div>
-
-    <footer class="site-footer">
-      <div class="footer-links">
-        <a href="/en/">Home</a>
-        <a href="/en/privacy">Privacy Policy</a>
-        <a href="mailto:yongju0002@gmail.com">Contact</a>
-      </div>
-      <div class="copyright">© 2026 MyAbilityTest. All tests are for fun and general reference.</div>
-    </footer>
   </div>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <div class="fbrand"><span class="dot"></span>Ability Test</div>
+        <p class="fdesc">15 free tests you can run straight in the browser. Results vary with your device and browser, and are for fun and reference.</p>
+        <a class="fmail" href="mailto:yongju0002@gmail.com">Report a bug · suggest a test</a>
+      </div>
+      <div>
+        <div class="fhead">Reaction · accuracy</div>
+        <div class="fcol">
+          <a href="/en/tests/reaction-time">Reaction Time Test</a>
+          <a href="/en/tests/aim-trainer">Aim Test</a>
+          <a href="/en/tests/dynamic-vision">Dynamic Vision Test</a>
+          <a href="/en/tests/mouse-accuracy">Mouse Accuracy Test</a>
+        </div>
+      </div>
+      <div>
+        <div class="fhead">Speed · memory</div>
+        <div class="fcol">
+          <a href="/en/tests/click-speed">CPS Click Speed Test</a>
+          <a href="/en/tests/spacebar-counter">Spacebar Speed Test</a>
+          <a href="/en/tests/apm">APM Test</a>
+          <a href="/en/tests/visual-memory">Visual Memory Test</a>
+          <a href="/en/tests/chimp-test">Chimp Test</a>
+        </div>
+      </div>
+      <div>
+        <div class="fhead">Senses · hardware</div>
+        <div class="fcol">
+          <a href="/en/tests/hearing-age">Hearing Age Test</a>
+          <a href="/en/tests/time-stop">Stop the Timer</a>
+          <a href="/en/tests/time-perception">Time Sense Test</a>
+          <a href="/en/tests/monitor-hz">Monitor Refresh Rate Test</a>
+          <a href="/en/tests/mouse-tester">Mouse Test</a>
+          <a href="/en/tests/keyboard-tester">Keyboard Test</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 MyAbilityTest</span>
+      <span class="links">
+        <a href="/en/">Home</a>
+        <a href="/en/privacy">Privacy policy</a>
+        <a href="/ko/">한국어</a>
+        <a href="/en/">English</a>
+        <a href="/ja/">日本語</a>
+        <a href="/zh/">中文</a>
+      </span>
+    </div>
+  </footer>
 
 <script src="/skill-test/common.js"></script>
 <script>
@@ -311,7 +371,7 @@
     const v = verdictFor(hz);
     const verdictEl = document.getElementById('hzVerdict');
     verdictEl.textContent = v.text;
-    verdictEl.style.color = v.warn ? '#fbbf24' : '#22c55e';
+    verdictEl.style.color = v.warn ? '#fbbf24' : '#15803d';
     document.getElementById('hzNote').textContent =
       'An estimate based on the frames your browser draws. It can differ from your monitor\'s configured setting.';
 

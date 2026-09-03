@@ -38,365 +38,111 @@
 </script>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/skill-test/style.css">
 <style>
+  /* 반응 속도 전용 — 공통 규칙은 /skill-test/style.css 참고 */
   :root {
-    --bg-top: #0f172a;
-    --bg-bottom: #1e293b;
-    --card-bg: #1e293b;
-    --card-bg-2: #172033;
-    --accent: #6366f1;
-    --text-dim: #94a3b8;
-    --text-dim2: #64748b;
-    --wait-color: #7f1d1d;
-    --go-color: #15803d;
-    --early-color: #b91c1c;
+    --wait-color: #17181c;
+    --go-color: #d94f2f;
+    --early-color: #efece3;
   }
   body.colorblind {
-    --wait-color: #b45309;
+    --wait-color: #1f2937;
     --go-color: #1d4ed8;
-    --early-color: #92400e;
-  }
-  * { box-sizing: border-box; }
-  html { overflow-x: hidden; }
-  body {
-    margin: 0;
-    min-height: 100vh;
-    overflow-x: hidden;
-    background: linear-gradient(160deg, var(--bg-top), var(--bg-bottom));
-    font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-    color: #f1f5f9;
-    padding: 20px 16px 60px;
-  }
-  .wrap {
-    width: 100%;
-    max-width: 520px;
-    margin: 0 auto;
-  }
-  h1 {
-    text-align: center;
-    font-size: 26px;
-    margin: 10px 0 4px;
-  }
-  .back-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    color: var(--text-dim);
-    text-decoration: none;
-    font-size: 13px;
-  }
-  .back-link:hover { color: #fff; }
-  .lang-switch { display: flex; justify-content: center; gap: 10px; margin-bottom: 10px; font-size: 12px; }
-  .lang-switch a { color: var(--text-dim); text-decoration: none; padding: 2px 4px; }
-  .lang-switch a.active { color: #fff; font-weight: 700; }
-  .lang-switch a:hover { color: #fff; }
-  .sub {
-    text-align: center;
-    color: var(--text-dim);
-    font-size: 14px;
-    margin-bottom: 18px;
+    --early-color: #e7e2d4;
   }
   .toolbar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 14px;
-    font-size: 13px;
-    color: var(--text-dim);
+    display: flex; justify-content: center; align-items: center; gap: 8px;
+    margin-bottom: 14px; font-size: 13px; color: var(--body);
   }
   .toolbar label { display: flex; align-items: center; gap: 6px; cursor: pointer; }
-.mode-select { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; margin-bottom: 8px; }
-  .mode-select button {
-    background: transparent; border: 1px solid rgba(255,255,255,0.18); color: var(--text-dim);
-    padding: 7px 14px; border-radius: 999px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit;
+
+  /* 무대 */
+  .stage {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; gap: 10px;
+    min-height: 300px; margin: 16px 0; padding: 24px;
+    border: 1px solid var(--line-strong); border-radius: var(--radius);
+    cursor: pointer; user-select: none;
+    transition: background 0.08s ease, color 0.08s ease;
   }
-  .mode-select button:hover { color: #fff; border-color: rgba(255,255,255,0.4); }
-  .mode-select button.active { background: rgba(99,102,241,0.18); border-color: var(--accent); color: #fff; }
-  .mode-hint { text-align: center; color: var(--text-dim); font-size: 12.5px; margin: 0 0 12px; line-height: 1.5; }
-  .setting-row { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px 10px; margin-bottom: 8px; }
-  .setting-label { font-size: 12.5px; color: var(--text-dim); font-weight: 600; }
-  .duration-select { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; }
-  .duration-select button {
-    background: transparent; border: 1px solid rgba(255,255,255,0.18); color: var(--text-dim);
-    padding: 5px 12px; border-radius: 999px; font-size: 12.5px; font-weight: 600; cursor: pointer; font-family: inherit;
-  }
-  .duration-select button:hover { color: #fff; border-color: rgba(255,255,255,0.4); }
-  .duration-select button.active { background: rgba(99,102,241,0.18); border-color: var(--accent); color: #fff; }
+  .stage .big { font-variant-numeric: tabular-nums; font-size: clamp(34px, 6vw, 56px); font-weight: 700; line-height: 1.05; letter-spacing: -0.03em; }
+  .stage .small { font-size: 14px; opacity: 0.85; max-width: 36ch; line-height: 1.5; }
+  .state-idle  { background: var(--card-bg); color: var(--ink); }
+  .state-wait  { background: var(--wait-color); color: var(--bg); }
+  .state-go    { background: var(--go-color); color: #fff; }
+  .state-early { background: var(--early-color); color: var(--ink); }
+  .state-round { background: var(--card-bg); color: var(--ink); }
 
   /* F1 스타트 라이트 */
   .f1-lights { display: flex; gap: 14px; justify-content: center; margin-bottom: 18px; }
-  .f1-light { width: 44px; height: 44px; border-radius: 50%; background: rgba(0,0,0,0.35); border: 2px solid rgba(255,255,255,0.25); }
-  .f1-light.on { background: #ef4444; border-color: #fca5a5; box-shadow: 0 0 18px rgba(239,68,68,0.7); }
+  .f1-light { width: 44px; height: 44px; border-radius: 50%; background: var(--card-bg-2); border: 1px solid var(--line); }
+  .f1-light.on { background: var(--accent); border-color: var(--accent); }
   @media (max-width: 420px) { .f1-light { width: 32px; height: 32px; } .f1-lights { gap: 9px; } }
 
-  /* 공용 패널 (업적/사다리/최근기록) */
-  .side-panel { background: var(--card-bg); border-radius: 16px; padding: 16px 18px; margin-top: 16px; }
-  .ach-head, .ladder-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; font-size: 13px; font-weight: 700; color: #cbd5e1; margin-bottom: 10px; }
-  .ach-count, .ladder-best { font-size: 12px; font-weight: 600; color: var(--accent); font-variant-numeric: tabular-nums; }
-  .ach-grid { display: flex; flex-wrap: wrap; gap: 6px; }
-  .ach { font-size: 11.5px; padding: 5px 10px; border-radius: 999px; background: var(--card-bg-2); border: 1px solid rgba(255,255,255,0.07); color: var(--text-dim2); }
-  .ach.got { background: rgba(99,102,241,0.16); border-color: var(--accent); color: #c7d2fe; font-weight: 600; }
-  .ladder { display: flex; flex-direction: column; gap: 4px; }
-  .rung { display: grid; grid-template-columns: 18px 1fr auto; gap: 10px; align-items: center; padding: 7px 10px; border-radius: 8px; font-size: 12.5px; background: var(--card-bg-2); color: var(--text-dim); }
-  .rung-mark { text-align: center; color: var(--text-dim2); }
-  .rung.reached { color: #e2e8f0; }
-  .rung.reached .rung-mark { color: #22c55e; }
-  .rung.current { background: rgba(99,102,241,0.18); color: #fff; font-weight: 700; }
-  .rung-bound { font-size: 11.5px; color: var(--text-dim2); font-variant-numeric: tabular-nums; }
-  .rung.current .rung-bound { color: #c7d2fe; }
-  .recent-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 3px; }
-  .recent-list li { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; padding: 6px 10px; border-radius: 8px; background: var(--card-bg-2); font-size: 12.5px; }
-  .rec-main { color: #e2e8f0; }
-  .rec-time { color: var(--text-dim2); font-size: 11.5px; font-variant-numeric: tabular-nums; }
-  .rec-empty { text-align: center; color: var(--text-dim); font-size: 12.5px; margin: 4px 0; }
-  .toast { position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%) translateY(20px); background: #0f172a; border: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 10px 18px; border-radius: 999px; font-size: 13px; opacity: 0; pointer-events: none; transition: opacity 0.2s ease, transform 0.2s ease; z-index: 50; }
-  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-
-  .stage {
-    height: min(1020px, 85vh);
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
-    border-radius: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    cursor: pointer;
-    user-select: none;
-    transition: background-color 0.15s ease;
-    padding: 24px;
-    overflow-y: auto;
-  }
-  .stage .big {
-    font-size: 36px;
-    font-weight: 700;
-    margin-bottom: 14px;
-  }
-  .stage .small {
-    font-size: 18px;
-    opacity: 0.85;
-  }
-  .state-idle   { background: #334155; }
-  .state-wait   { background: var(--wait-color); }
-  .state-go     { background: var(--go-color); }
-  .state-early  { background: var(--early-color); }
-  .state-round  { background: #4338ca; }
-
-  .round-select {
-    display: flex;
-    gap: 10px;
-    margin-top: 18px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .round-select button {
-    background: rgba(255,255,255,0.12);
-    border: 1px solid rgba(255,255,255,0.25);
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 999px;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-  }
-  .round-select button:hover { background: rgba(255,255,255,0.22); }
-
-  .dots {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 14px;
-  }
+  /* 라운드 진행 점 */
+  .dots { display: flex; justify-content: center; gap: 8px; margin: 12px 0; }
   .dots.hidden { display: none; }
-  .dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: #334155;
-  }
-  .dot.done { background: var(--accent); }
-  .dot.current { background: #fff; }
+  .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--line); }
+  .dot.ok { background: var(--accent); }
 
-  .stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    margin-top: 20px;
-  }
-  .stat-box {
-    background: var(--card-bg);
-    border-radius: 12px;
-    padding: 12px 8px;
-    text-align: center;
-  }
-  .stat-box .label {
-    font-size: 12px;
-    color: var(--text-dim);
-    margin-bottom: 4px;
-  }
-  .stat-box .value {
-    font-size: 18px;
-    font-weight: 700;
-  }
-
-  .summary {
-    width: 100%;
-    max-width: 460px;
-  }
-  .summary h2 {
-    margin: 0 0 6px;
-    font-size: 30px;
-    text-align: center;
-  }
-  .summary .grade {
-    text-align: center;
-    color: #fff;
-    opacity: 0.9;
-    font-weight: 700;
-    margin-bottom: 20px;
-  }
-  .round-table {
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-bottom: 18px;
-  }
+  /* 요약 */
+  .summary { text-align: center; }
+  .summary h2 { margin: 0 0 6px; font-size: 24px; }
+  .summary .grade { color: var(--body); font-size: 14px; margin-top: 4px; }
+  .summary-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 18px; }
+  .round-table { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin: 14px 0; }
   .round-chip {
-    background: var(--card-bg-2);
-    border-radius: 8px;
-    padding: 8px 10px;
-    font-size: 13px;
-    text-align: center;
-    min-width: 64px;
+    font-family: var(--mono); font-size: 13px; font-weight: 700;
+    padding: 7px 11px; border-radius: 4px;
+    background: var(--card-bg-2); color: var(--ink);
   }
-  .round-chip .r { color: var(--text-dim2); font-size: 11px; }
-  .round-chip.best { outline: 2px solid #22c55e; }
-  .round-chip.worst { outline: 2px solid #ef4444; }
+  .round-chip .r { color: var(--muted); font-size: 11px; }
+  .round-chip.best { outline: 2px solid var(--good); }
+  .round-chip.worst { outline: 2px solid var(--danger); }
 
+  /* 분포 막대 */
   .bars { display: flex; flex-direction: column; gap: 10px; margin-bottom: 18px; }
   .bar-row { font-size: 12px; }
-  .bar-row .bar-label { display: flex; justify-content: space-between; margin-bottom: 4px; color: var(--text-dim); }
-  .bar-track { background: var(--card-bg-2); border-radius: 6px; height: 10px; overflow: hidden; }
-  .bar-fill { height: 100%; border-radius: 6px; background: var(--accent); }
-  .bar-fill.you { background: #22c55e; }
-
-  .percentile-line { text-align: center; color: #fbbf24; font-weight: 700; font-size: 15px; margin: 2px 0 6px; }
-  .population-line { text-align: center; color: var(--text-dim); font-size: 12.5px; margin-bottom: 14px; }
-  .hw-disclaimer {
-    background: var(--card-bg);
-    border-radius: 10px;
-    padding: 10px 14px;
-    font-size: 12px;
-    color: var(--text-dim);
-    line-height: 1.6;
-    margin-bottom: 18px;
-  }
+  .bar-row .bar-label { display: flex; justify-content: space-between; margin-bottom: 4px; color: var(--body); }
+  .bar-track { background: var(--card-bg-2); border-radius: 4px; height: 10px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 4px; background: var(--line-strong); }
+  .bar-fill.you { background: var(--accent); }
   .histogram { margin-bottom: 4px; }
   .histogram svg { width: 100%; height: auto; display: block; }
-  .other-tests { margin-top: 16px; }
-  .other-tests .label { text-align: center; font-size: 12px; color: var(--text-dim); margin-bottom: 8px; }
-  .other-tests-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
-  .other-tests-links a {
-    font-size: 12px;
-    color: #cbd5e1;
-    text-decoration: none;
-    background: var(--card-bg-2);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 999px;
-    padding: 6px 12px;
-  }
-  .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
-
-  .summary-actions {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-  }
-  .summary-actions button {
-    background: var(--accent);
-    border: none;
-    color: #fff;
-    padding: 10px 18px;
-    border-radius: 10px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-  }
-  .summary-actions button.secondary {
-    background: rgba(255,255,255,0.12);
-  }
-
-  .info {
-    margin-top: 40px;
-    color: #cbd5e1;
-    font-size: 14px;
-    line-height: 1.7;
-  }
-  .info h2 {
-    font-size: 17px;
-    color: #f1f5f9;
-    margin: 28px 0 8px;
-  }
-  .info table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 10px 0;
-    font-size: 13px;
-  }
-  .info th, .info td {
-    border: 1px solid #334155;
-    padding: 8px;
-    text-align: left;
-  }
-  .info th { background: var(--card-bg); }
-  .info details {
-    background: var(--card-bg);
-    border-radius: 10px;
-    padding: 10px 14px;
-    margin-bottom: 8px;
-  }
-  .info summary { cursor: pointer; font-weight: 600; }
-
-  footer.note {
-    text-align: center;
-    color: var(--text-dim2);
-    font-size: 12px;
-    margin-top: 24px;
-  }
-
-  .leaderboard { list-style: none; padding: 0; margin: 16px 0; }
-  .leaderboard li {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background: var(--card-bg-2);
-    border-radius: 12px;
-    padding: 12px 16px;
-    margin-bottom: 8px;
-  }
-  .leaderboard li.winner { outline: 2px solid #fbbf24; background: rgba(251,191,36,0.12); }
-  .leaderboard .rank { font-size: 20px; width: 28px; text-align: center; }
-  .leaderboard .lb-name { flex: 1; font-weight: 700; }
-  .leaderboard .lb-detail { font-size: 13px; color: var(--text-dim); text-align: right; }
 </style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
 </head>
 <body>
-  <div class="wrap">
-    <a class="back-link" href="/en/">← Back to Main</a>
-    <div class="lang-switch">
-      <a href="/ko/tests/reaction-time">한국어</a>
-      <a class="active" href="/en/tests/reaction-time">English</a>
-      <a href="/ja/tests/reaction-time">日本語</a>
-      <a href="/zh/tests/reaction-time">中文</a>
+  <header class="site-header">
+    <a class="brand" href="/en/"><span class="dot"></span>Ability Test</a>
+    <nav>
+      <a href="/en/#ability">Skill <span class="count">12</span></a>
+      <a href="/en/#hardware">Hardware <span class="count">03</span></a>
+      <a href="/en/#records">My records</a>
+    </nav>
+    <span class="spacer"></span>
+    <div class="langs">
+      <a href="/ko/">KO</a>
+      <span class="active">EN</span>
+      <a href="/ja/">JA</a>
+      <a href="/zh/">ZH</a>
     </div>
+  </header>
+
+  <div class="wrap">
+    <nav class="breadcrumb">
+      <a href="/en/">Home</a><span>/</span>
+      <a href="/en/#ability">Skill tests</a><span>/</span>
+      <span class="here">Reaction Time Test</span>
+      <span class="idx">01 / 15</span>
+    </nav>
     <h1>⚡ Reaction Time Test</h1>
     <p class="sub">Click the instant the screen color changes</p>
-    <p class="sub" style="margin-top:-12px; font-size:12px;">⚠️ Monitor, mouse, and touchscreen lag can add 10–50ms depending on your device — 100ms+ on a TV</p>
+    <p class="disclaimer">⚠️ Monitor, mouse, and touchscreen lag can add 10–50ms depending on your device — 100ms+ on a TV</p>
 
     <div class="mode-select" id="modeSelect">
       <button data-mode="simple" class="active">Simple</button>
@@ -481,16 +227,58 @@
 
     <h2 style="text-align:center; font-size:16px; margin-top:28px;">🏆 All-Time Top Records (Top 30)</h2>
     <div id="topLeaderboard"></div>
-
-    <footer class="site-footer">
-      <div class="footer-links">
-        <a href="/en/">Home</a>
-        <a href="/en/privacy">Privacy Policy</a>
-        <a href="mailto:yongju0002@gmail.com">Contact</a>
-      </div>
-      <div class="copyright">© 2026 MyAbilityTest. All tests are for fun and general reference.</div>
-    </footer>
   </div>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <div class="fbrand"><span class="dot"></span>Ability Test</div>
+        <p class="fdesc">15 free tests you can run straight in the browser. Results vary with your device and browser, and are for fun and reference.</p>
+        <a class="fmail" href="mailto:yongju0002@gmail.com">Report a bug · suggest a test</a>
+      </div>
+      <div>
+        <div class="fhead">Reaction · accuracy</div>
+        <div class="fcol">
+          <a href="/en/tests/reaction-time">Reaction Time Test</a>
+          <a href="/en/tests/aim-trainer">Aim Test</a>
+          <a href="/en/tests/dynamic-vision">Dynamic Vision Test</a>
+          <a href="/en/tests/mouse-accuracy">Mouse Accuracy Test</a>
+        </div>
+      </div>
+      <div>
+        <div class="fhead">Speed · memory</div>
+        <div class="fcol">
+          <a href="/en/tests/click-speed">CPS Click Speed Test</a>
+          <a href="/en/tests/spacebar-counter">Spacebar Speed Test</a>
+          <a href="/en/tests/apm">APM Test</a>
+          <a href="/en/tests/visual-memory">Visual Memory Test</a>
+          <a href="/en/tests/chimp-test">Chimp Test</a>
+        </div>
+      </div>
+      <div>
+        <div class="fhead">Senses · hardware</div>
+        <div class="fcol">
+          <a href="/en/tests/hearing-age">Hearing Age Test</a>
+          <a href="/en/tests/time-stop">Stop the Timer</a>
+          <a href="/en/tests/time-perception">Time Sense Test</a>
+          <a href="/en/tests/monitor-hz">Monitor Refresh Rate Test</a>
+          <a href="/en/tests/mouse-tester">Mouse Test</a>
+          <a href="/en/tests/keyboard-tester">Keyboard Test</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 MyAbilityTest</span>
+      <span class="links">
+        <a href="/en/">Home</a>
+        <a href="/en/privacy">Privacy policy</a>
+        <a href="/ko/">한국어</a>
+        <a href="/en/">English</a>
+        <a href="/ja/">日本語</a>
+        <a href="/zh/">中文</a>
+      </span>
+    </div>
+  </footer>
 
 <script src="/skill-test/common.js"></script>
 <script>
@@ -829,20 +617,20 @@
     const barsHtml = bins.map(b => {
       const x0 = xScale(b.x0), x1 = xScale(b.x1);
       const h = (b.density / maxDensity) * (H - 30);
-      return `<rect x="${x0.toFixed(1)}" y="${(H - 20 - h).toFixed(1)}" width="${(x1 - x0 - 1).toFixed(1)}" height="${h.toFixed(1)}" fill="rgba(99,102,241,0.55)" rx="2"/>`;
+      return `<rect x="${x0.toFixed(1)}" y="${(H - 20 - h).toFixed(1)}" width="${(x1 - x0 - 1).toFixed(1)}" height="${h.toFixed(1)}" fill="rgba(23, 24, 28, 0.30)" rx="2"/>`;
     }).join('');
 
     const pinX = xScale(userMs);
     const pinHtml = `
-      <line x1="${pinX.toFixed(1)}" y1="14" x2="${pinX.toFixed(1)}" y2="${H - 20}" stroke="#22c55e" stroke-width="2" stroke-dasharray="3 3"/>
-      <circle cx="${pinX.toFixed(1)}" cy="12" r="5" fill="#22c55e"/>
-      <text x="${pinX.toFixed(1)}" y="4" text-anchor="middle" font-size="10" fill="#22c55e" font-weight="700">You</text>
+      <line x1="${pinX.toFixed(1)}" y1="14" x2="${pinX.toFixed(1)}" y2="${H - 20}" stroke="#d94f2f" stroke-width="2" stroke-dasharray="3 3"/>
+      <circle cx="${pinX.toFixed(1)}" cy="12" r="5" fill="#d94f2f"/>
+      <text x="${pinX.toFixed(1)}" y="4" text-anchor="middle" font-size="10" fill="#d94f2f" font-weight="700">You</text>
     `;
     const baseline = `<line x1="${PAD}" y1="${H - 20}" x2="${W - PAD}" y2="${H - 20}" stroke="rgba(255,255,255,0.15)"/>`;
     const axisLabels = `
-      <text x="${xScale(150)}" y="${H - 6}" text-anchor="middle" font-size="9" fill="#94a3b8">150</text>
-      <text x="${xScale(273)}" y="${H - 6}" text-anchor="middle" font-size="9" fill="#94a3b8">273 (median)</text>
-      <text x="${xScale(450)}" y="${H - 6}" text-anchor="middle" font-size="9" fill="#94a3b8">450+</text>
+      <text x="${xScale(150)}" y="${H - 6}" text-anchor="middle" font-size="9" fill="#8a877f">150</text>
+      <text x="${xScale(273)}" y="${H - 6}" text-anchor="middle" font-size="9" fill="#8a877f">273 (median)</text>
+      <text x="${xScale(450)}" y="${H - 6}" text-anchor="middle" font-size="9" fill="#8a877f">450+</text>
     `;
     return `<svg viewBox="0 0 ${W} ${H}">${baseline}${barsHtml}${pinHtml}${axisLabels}</svg>`;
   }

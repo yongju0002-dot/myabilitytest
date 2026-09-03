@@ -570,3 +570,39 @@ CSS는 `/skill-test/style.css`의 `.click-pad, .space-pad, .apm-pad` 규칙 하�
 `<span>0</span> 시도` 가 `<span>0</span>시도` 로 붙어버렸고,
 `'a' + 'b'` 가 `'a' +'b'` 로 바뀌었다(문법은 유효하지만 diff가 지저분해진다).
 공백 정리는 **따옴표 문자열 내부**로 한정하고, 태그 사이 공백은 손대지 않는다.
+
+## 15. 애널리틱스 (2026-09-03)
+
+Google Analytics 4, 측정 ID `G-VKKRHCN307`.
+
+- **ID는 `/skill-test/analytics.js` 맨 위 한 줄에만 있다.** 68개 페이지가 이 파일을 공유하므로
+  ID를 바꿀 일이 생기면 그 한 줄만 고치면 된다. 자리표시자(`G-XXXXXXXXXX`)면 아무 요청도 보내지 않는다.
+- 모든 페이지 `<head>`에 `<script src="/skill-test/analytics.js" defer>`로 연결돼 있다.
+
+### 이벤트
+
+| 이벤트 | 언제 |
+|---|---|
+| `test_start` | 플레이 영역을 처음 건드렸을 때 (페이지당 1회) |
+| `test_complete` | 결과가 나왔을 때 |
+| `test_mode_change` | 모드 탭을 눌렀을 때 |
+
+파라미터: `test_slug` `test_lang` `test_mode` `test_option` `test_grade` `play_index` `verdict`
+
+### 완료를 감지하는 방법 — 60개 파일을 고치지 않았다
+
+테스트마다 게임 로직이 제각각이라 개별 계측 대신 **공용 클래스를 MutationObserver로 감시**한다.
+
+1. `#resultPanel`에 `.show`가 붙는 순간 — 능력 테스트 11종
+2. `#stage` 안에 `.summary`가 나타나는 순간 — 반응 속도
+3. `#hzVerdict` `#chatterVerdict` `#kroVerdict`의 **문구가 초기값에서 달라지는** 순간 — 하드웨어 3종
+   (마우스 테스터는 처음부터 안내 문구가 들어 있어서 '비어있음→채워짐'으로는 안 잡힌다)
+
+**새 테스트를 추가할 때** 위 셋 중 하나의 관례만 따르면 계측이 자동으로 붙는다.
+`.duration-select` 버튼에 최고기록 라벨(`.d-best`)을 넣는 경우, `test_option`이 그걸 같이 읽지 않도록
+`data-d` 같은 속성을 주거나 값 span을 `.d-best`가 아닌 클래스로 둘 것.
+
+### 보내지 않는 것
+
+**점수·순위 기록은 애널리틱스로 보내지 않는다.** 등급(`test_grade`)만 보내고 원점수는 localStorage에만 남긴다.
+개인정보처리방침 4개 언어 3번 항목 뒤에 GA4 사용·쿠키·옵트아웃 방법을 명시해 두었다.

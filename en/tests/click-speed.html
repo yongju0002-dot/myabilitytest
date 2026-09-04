@@ -87,13 +87,6 @@
     <h1>CPS Click Speed Test</h1>
     <p class="sub">Click as fast as you can within the time limit!</p>
 
-    <div class="mode-select" id="modeSelect">
-      <button data-mode="classic" class="active">Classic</button>
-      <button data-mode="jitter">Jitter</button>
-      <button data-mode="butterfly">Butterfly</button>
-      <button data-mode="drag">Drag</button>
-    </div>
-    <p class="mode-hint" id="modeHint">Normal clicking with one index finger. Pick the technique you actually use and you'll be graded on that technique's scale.</p>
 
     <div class="duration-select" id="durationSelect"></div>
 
@@ -175,28 +168,21 @@
         <p>On normal clicking (Classic), 4-6 CPS is typical, 8+ is fast, and 10+ is very fast. Above 12 CPS is this site's top grade (SS). Techniques like jitter, butterfly and drag clicking produce much higher numbers, so each one is graded on its own scale.</p>
       </div>
       <div class="guide-box">
-        <h3>Result interpretation table (per technique)</h3>
+        <h3>Result interpretation table</h3>
         <p>These numbers aren't from an official study — they're this site's own scale, calibrated against the general sense of speed reported across click-test communities.</p>
         <table>
-        <tr><th>Grade</th><th>Classic</th><th>Jitter</th><th>Butterfly</th><th>Drag</th></tr>
-        <tr><td>SS</td><td>12+</td><td>13+</td><td>20+</td><td>40+</td></tr>
-        <tr><td>S</td><td>10+</td><td>11+</td><td>16+</td><td>30+</td></tr>
-        <tr><td>A</td><td>8+</td><td>9+</td><td>13+</td><td>22+</td></tr>
-        <tr><td>B</td><td>6+</td><td>7+</td><td>10+</td><td>15+</td></tr>
-        <tr><td>C</td><td>4+</td><td>5+</td><td>7+</td><td>8+</td></tr>
-        <tr><td>D</td><td>2 – 4</td><td>Under 5</td><td>Under 7</td><td>Under 8</td></tr>
-        <tr><td>F</td><td>Under 2</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><th>Grade</th><th>CPS threshold</th></tr>
+        <tr><td>SS</td><td>12+</td></tr>
+        <tr><td>S</td><td>10+</td></tr>
+        <tr><td>A</td><td>8+</td></tr>
+        <tr><td>B</td><td>6+</td></tr>
+        <tr><td>C</td><td>4+</td></tr>
+        <tr><td>D</td><td>2 – 4</td></tr>
+        <tr><td>F</td><td>Under 2</td></tr>
         </table>
       </div>
       <div class="guide-box">
-        <h3>What are the click technique modes?</h3>
-        <p>Pick the technique you actually use from the mode tabs above and you'll be graded on that technique's scale. The technique isn't auto-detected — you choose it — and records are stored separately per technique and duration.</p>
-        <ul>
-        <li><strong>Classic</strong> — normal clicking with one index finger. Usually 4-13 CPS.</li>
-        <li><strong>Jitter</strong> — tensing your arm and wrist to create a vibration. Your result also reports click-interval consistency (standard deviation). It's hard on the wrist, so repeated drilling isn't recommended.</li>
-        <li><strong>Butterfly</strong> — alternating index and middle finger. Usually 12-25 CPS.</li>
-        <li><strong>Drag</strong> — dragging a finger across the button so friction fires repeated clicks. Can go well past 20 CPS depending on the mouse.</li>
-        </ul>
+        <h3>Which duration should I pick?</h3>
         <p>A very short test like 1-3 seconds only captures a quick burst of speed, so it tends to score higher than a sustained test of 10 seconds or more — your fingers fatigue the longer you click, which naturally pulls the average down. That's why this page tracks records separately per duration.</p>
       </div>
       <div class="guide-box wide">
@@ -292,42 +278,6 @@
         { key: 'F', min: 0, label : 'F · Very relaxed', persona : 'Just Here to Watch' },
       ],
     },
-    {
-      key: 'jitter', label : 'Jitter',
-      hint: 'Tensing your arm and wrist to vibrate the click. Your result also shows click-interval consistency. Hard on the wrist, so don’t overdo it.',
-      grades: [
-        { key: 'SS', min: 13, label : 'SS · Jitter master', persona : 'Jitter Master' },
-        { key: 'S', min: 11, label : 'S · Very fast', persona : 'Vibration Expert' },
-        { key: 'A', min: 9, label : 'A · Fast', persona : 'Skilled Wrist' },
-        { key: 'B', min: 7, label : 'B · Above average', persona : 'Steady Wrist' },
-        { key: 'C', min: 5, label : 'C · Average', persona : 'Average Wrist' },
-        { key: 'D', min: 0, label : 'D · Needs practice', persona : 'Wrist in Training' },
-      ],
-    },
-    {
-      key: 'butterfly', label : 'Butterfly',
-      hint: 'Alternating your index and middle finger. The steadier your rhythm, the more consistent your CPS.',
-      grades: [
-        { key: 'SS', min: 20, label : 'SS · Butterfly master', persona : 'Butterfly Master' },
-        { key: 'S', min: 16, label : 'S · Very fast', persona : 'Two-Finger Expert' },
-        { key: 'A', min: 13, label : 'A · Fast', persona : 'Rhythm Clicker' },
-        { key: 'B', min: 10, label : 'B · Above average', persona : 'Steady Alternator' },
-        { key: 'C', min: 7, label : 'C · Average', persona : 'Average Alternator' },
-        { key: 'D', min: 0, label : 'D · Needs practice', persona : 'Fingers in Training' },
-      ],
-    },
-    {
-      key: 'drag', label : 'Drag',
-      hint: 'Dragging a finger across the button so friction fires repeated clicks. Results vary a lot by mouse.',
-      grades: [
-        { key: 'SS', min: 40, label : 'SS · Drag master', persona : 'Drag Overdrive' },
-        { key: 'S', min: 30, label : 'S · Very fast', persona : 'Friction Expert' },
-        { key: 'A', min: 22, label : 'A · Fast', persona : 'Skilled Dragger' },
-        { key: 'B', min: 15, label : 'B · Above average', persona : 'Getting the Hang of It' },
-        { key: 'C', min: 8, label : 'C · Average', persona : 'Average Dragger' },
-        { key: 'D', min: 0, label : 'D · Needs practice', persona : 'Drag Beginner' },
-      ],
-    },
   ];
 
   const modeSelect = document.getElementById('modeSelect');
@@ -408,6 +358,7 @@
   }
 
   function renderModeButtons() {
+    if (!modeSelect) return;   // 모드 버튼은 제거됨(클래식만)
     modeSelect.querySelectorAll('button').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.mode === mode.key);
     });
@@ -417,11 +368,10 @@
   function renderDurationButtons() {
     durationSelect.innerHTML = '';
     DURATIONS.forEach(d => {
-      const ds = getStats(mode, d);
       const btn = document.createElement('button');
       btn.dataset.d = d;
       if (d === duration) btn.classList.add('active');
-      btn.innerHTML = `<span>${d}s</span><span class="d-best">${ds.plays ? ds.bestCps.toFixed(1) + ' CPS' : '-'}</span>`;
+      btn.innerHTML = `<span>${d}s</span>`;
       btn.addEventListener('click', () => {
         if (running) return;
         duration = d;
@@ -435,7 +385,7 @@
 
   function renderStats() {
     const ds = getStats(mode, duration);
-    document.getElementById('statCountLabel').textContent = `${mode.label} ${duration}s plays`;
+    document.getElementById('statCountLabel').textContent = `${duration}s plays`;
     document.getElementById('statCount').textContent = ds.plays;
     document.getElementById('statBest').textContent = ds.plays ? ds.bestCps.toFixed(1) : '-';
     document.getElementById('statBestClicks').textContent = ds.plays ? ds.bestClicks : '-';
@@ -472,7 +422,7 @@
     timeLeftEl.textContent = left.toFixed(1);
     const liveCps = elapsed > 0 ? clicks / elapsed : 0;
     clickCountLine.textContent = `Clicks: ${clicks} · Live CPS: ${liveCps.toFixed(1)}`;
-    setPad(liveCps.toFixed(1), `CPS · ${clicks} clicks · ${mode.label}`, true);
+    setPad(liveCps.toFixed(1), `CPS · ${clicks} clicks`, true);
     if (elapsed > 0.03) samples.push({ t: Math.min(elapsed, duration), cps: liveCps });
     drawGraph();
     if (left <= 0) {
@@ -492,14 +442,14 @@
     resizeGraph();
     clickCountLine.textContent = 'Clicks: 1 · Live CPS: 0.0';
     resultPanel.classList.remove('show');
-    setPad('0.0', `CPS · 1 click · ${mode.label}`, true);
+    setPad('0.0', `CPS · 1 click`, true);
     rafId = requestAnimationFrame(tick);
   }
 
   function renderGradeTable(cps) {
     const grade = gradeFor(cps);
     const table = document.getElementById('gradeTable');
-    table.innerHTML = `<tr><th>Grade (${mode.label})</th><th>CPS threshold</th></tr>` +
+    table.innerHTML = `<tr><th>Grade</th><th>CPS threshold</th></tr>` +
       mode.grades.map(g => `<tr class="${g.key === grade.key ? 'current-row' : ''}"><td>${g.label}</td><td>${g.min}+</td></tr>`).join('');
   }
 
@@ -526,7 +476,7 @@
     const stars = starsFor(grade);
     document.getElementById('resultTitle').textContent = cps.toFixed(1) + ' CPS';
     document.getElementById('resultStars').textContent ='★'.repeat(stars) + '☆'.repeat(5 - stars);
-    document.getElementById('resultDesc').textContent = `${clicks} clicks / ${duration}s · ${mode.label} — ${grade.label}`;
+    document.getElementById('resultDesc').textContent = `${clicks} clicks / ${duration}s — ${grade.label}`;
 
     // Peak second (the old Kohi stat) + click consistency in jitter mode (the old jitter stat)
     const peak = Math.max(...perSecondCps(timestamps, startTime, duration));
@@ -537,7 +487,7 @@
 
     renderGradeTable(cps);
     resultPanel.classList.add('show');
-    resultPanel.dataset.share = `I got ${cps.toFixed(1)} CPS (${clicks} clicks/${duration}s, grade ${grade.key}) on the ${mode.label} CPS test! Try it yourself → `;
+    resultPanel.dataset.share = `I got ${cps.toFixed(1)} CPS (${clicks} clicks/${duration}s, grade ${grade.key}) on the CPS test! Try it yourself → `;
 
     addRecentRecord(ACH_KEY, { cps, mode: mode.label, duration, date: Date.now() });
     renderPanels();
@@ -555,7 +505,7 @@
 
   function renderPanels() {
     renderRecentRecords('recentPanel', loadStats(ACH_KEY + '_recent', []),
-      e => `${e.cps.toFixed(1)} CPS · ${e.mode} · ${e.duration}s`, 'No runs yet');
+      e => `${e.cps.toFixed(1)} CPS · ${e.duration}s`, 'No runs yet');
   }
   function renderTopLeaderboard(list) {
     renderLeaderboard('topLeaderboard', list, (entry) => {
@@ -569,7 +519,7 @@
     renderTopLeaderboard(loadStats(LB_KEYS[mode.key], []));
   }
 
-  modeSelect.querySelectorAll('button').forEach(btn => {
+  (modeSelect ? modeSelect.querySelectorAll('button') : []).forEach(btn => {
     btn.addEventListener('click', () => {
       if (running) return;
       mode = MODES.find(m => m.key === btn.dataset.mode) || MODES[0];

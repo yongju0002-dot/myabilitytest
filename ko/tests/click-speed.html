@@ -88,13 +88,6 @@
     <h1>CPS 클릭 속도 테스트</h1>
     <p class="sub">제한 시간 동안 최대한 빠르게 클릭하세요!</p>
 
-    <div class="mode-select" id="modeSelect">
-      <button data-mode="classic" class="active">클래식</button>
-      <button data-mode="jitter">지터</button>
-      <button data-mode="butterfly">버터플라이</button>
-      <button data-mode="drag">드래그</button>
-    </div>
-    <p class="mode-hint" id="modeHint">검지 하나로 누르는 일반 클릭. 쓰는 기술을 고르면 그 기술에 맞는 등급표로 채점돼요.</p>
 
     <div class="duration-select" id="durationSelect"></div>
 
@@ -177,28 +170,21 @@
         <p>일반적인 클릭(클래식) 기준으로 4~6 CPS는 평균적인 수준이고, 8 CPS 이상이면 빠른 편, 10 CPS 이상이면 매우 빠른 축에 속합니다. 12 CPS를 넘기면 이 사이트 등급 기준으로 최고 등급(SS)입니다. 지터·버터플라이·드래그 같은 기술을 쓰면 훨씬 높은 수치가 나오기 때문에 등급표를 기술별로 따로 둡니다.</p>
       </div>
       <div class="guide-box">
-        <h3>결과 해석표 (기술별)</h3>
+        <h3>결과 해석표</h3>
         <p>아래 숫자는 공식 통계가 아니라, 여러 클릭 테스트 커뮤니티에서 통용되는 감각을 참고해 만든 이 사이트의 자체 기준입니다.</p>
         <table>
-        <tr><th>등급</th><th>클래식</th><th>지터</th><th>버터플라이</th><th>드래그</th></tr>
-        <tr><td>SS</td><td>12+</td><td>13+</td><td>20+</td><td>40+</td></tr>
-        <tr><td>S</td><td>10+</td><td>11+</td><td>16+</td><td>30+</td></tr>
-        <tr><td>A</td><td>8+</td><td>9+</td><td>13+</td><td>22+</td></tr>
-        <tr><td>B</td><td>6+</td><td>7+</td><td>10+</td><td>15+</td></tr>
-        <tr><td>C</td><td>4+</td><td>5+</td><td>7+</td><td>8+</td></tr>
-        <tr><td>D</td><td>2 ~ 4</td><td>5 미만</td><td>7 미만</td><td>8 미만</td></tr>
-        <tr><td>F</td><td>2 미만</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><th>등급</th><th>기준 CPS</th></tr>
+        <tr><td>SS</td><td>12+</td></tr>
+        <tr><td>S</td><td>10+</td></tr>
+        <tr><td>A</td><td>8+</td></tr>
+        <tr><td>B</td><td>6+</td></tr>
+        <tr><td>C</td><td>4+</td></tr>
+        <tr><td>D</td><td>2 ~ 4</td></tr>
+        <tr><td>F</td><td>2 미만</td></tr>
         </table>
       </div>
       <div class="guide-box">
-        <h3>클릭 기술 모드란?</h3>
-        <p>상단의 모드 탭에서 본인이 쓰는 클릭 기술을 고르면 그 기술에 맞는 등급표로 채점됩니다. 기술은 자동으로 감지되지 않고 본인이 선택하는 것이며, 기록은 기술·지속시간별로 따로 저장됩니다.</p>
-        <ul>
-        <li><strong>클래식</strong> — 검지 하나로 누르는 일반 클릭. 대체로 4~13 CPS.</li>
-        <li><strong>지터</strong> — 팔·손목 근육을 긴장시켜 떨림을 만들어 클릭. 결과 화면에 클릭 간격의 일관성(표준편차)도 함께 표시됩니다. 손목 부담이 커서 반복 연습은 권하지 않습니다.</li>
-        <li><strong>버터플라이</strong> — 검지·중지를 번갈아 누르는 클릭. 대체로 12~25 CPS.</li>
-        <li><strong>드래그</strong> — 버튼 위로 손가락을 끌어 마찰로 연타를 만드는 클릭. 마우스에 따라 20 CPS를 훌쩍 넘기도 합니다.</li>
-        </ul>
+        <h3>몇 초로 재는 게 좋을까?</h3>
         <p>1~3초처럼 매우 짧은 테스트는 순간적인 폭발력만 반영되기 때문에 10초 이상의 지속적인 테스트보다 CPS가 더 높게 측정되는 경향이 있습니다. 오래 클릭할수록 손가락 피로가 누적돼 평균 CPS는 자연스럽게 낮아집니다. 그래서 이 페이지는 지속시간별로 기록을 따로 저장합니다.</p>
       </div>
       <div class="guide-box wide">
@@ -293,42 +279,6 @@
         { key: 'F', min: 0, label : 'F · 매우 느긋함', persona : '느긋한 감상형' },
       ],
     },
-    {
-      key: 'jitter', label : '지터',
-      hint: '팔·손목 근육을 떨어 클릭. 결과에 클릭 간격의 일관성도 표시돼요. 손목 부담이 크니 무리하지 마세요.',
-      grades: [
-        { key: 'SS', min: 13, label : 'SS · 지터 마스터', persona : '지터클릭 마스터' },
-        { key: 'S', min: 11, label : 'S · 매우 빠름', persona : '진동의 달인' },
-        { key: 'A', min: 9, label : 'A · 빠름', persona : '능숙한 손목' },
-        { key: 'B', min: 7, label : 'B · 평균 이상', persona : '안정적인 손목' },
-        { key: 'C', min: 5, label : 'C · 평균', persona : '평범한 손목' },
-        { key: 'D', min: 0, label : 'D · 연습 필요', persona : '연습이 필요한 손목' },
-      ],
-    },
-    {
-      key: 'butterfly', label : '버터플라이',
-      hint: '검지·중지를 번갈아 누르는 클릭. 리듬이 일정할수록 CPS가 안정적으로 나와요.',
-      grades: [
-        { key: 'SS', min: 20, label : 'SS · 버터플라이 마스터', persona : '버터플라이 마스터' },
-        { key: 'S', min: 16, label : 'S · 매우 빠름', persona : '두 손가락의 달인' },
-        { key: 'A', min: 13, label : 'A · 빠름', persona : '리듬 클리커' },
-        { key: 'B', min: 10, label : 'B · 평균 이상', persona : '안정적인 교차' },
-        { key: 'C', min: 7, label : 'C · 평균', persona : '평범한 교차' },
-        { key: 'D', min: 0, label : 'D · 연습 필요', persona : '연습이 필요한 손가락' },
-      ],
-    },
-    {
-      key: 'drag', label : '드래그',
-      hint: '버튼 위로 손가락을 끌어 마찰로 연타를 내는 클릭. 마우스 종류에 따라 편차가 커요.',
-      grades: [
-        { key: 'SS', min: 40, label : 'SS · 드래그 마스터', persona : '드래그 폭주' },
-        { key: 'S', min: 30, label : 'S · 매우 빠름', persona : '마찰의 달인' },
-        { key: 'A', min: 22, label : 'A · 빠름', persona : '드래그 숙련자' },
-        { key: 'B', min: 15, label : 'B · 평균 이상', persona : '감 잡은 드래그' },
-        { key: 'C', min: 8, label : 'C · 평균', persona : '평범한 드래그' },
-        { key: 'D', min: 0, label : 'D · 연습 필요', persona : '드래그 입문' },
-      ],
-    },
   ];
 
   const modeSelect = document.getElementById('modeSelect');
@@ -408,6 +358,7 @@
   }
 
   function renderModeButtons() {
+    if (!modeSelect) return;   // 모드 버튼은 제거됨(클래식만)
     modeSelect.querySelectorAll('button').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.mode === mode.key);
     });
@@ -417,11 +368,10 @@
   function renderDurationButtons() {
     durationSelect.innerHTML = '';
     DURATIONS.forEach(d => {
-      const ds = getStats(mode, d);
       const btn = document.createElement('button');
       btn.dataset.d = d;
       if (d === duration) btn.classList.add('active');
-      btn.innerHTML = `<span>${d}초</span><span class="d-best">${ds.plays ? ds.bestCps.toFixed(1) + ' CPS' : '-'}</span>`;
+      btn.innerHTML = `<span>${d}초</span>`;
       btn.addEventListener('click', () => {
         if (running) return;
         duration = d;
@@ -435,7 +385,7 @@
 
   function renderStats() {
     const ds = getStats(mode, duration);
-    document.getElementById('statCountLabel').textContent = `${mode.label} ${duration}초 플레이`;
+    document.getElementById('statCountLabel').textContent = `${duration}초 플레이`;
     document.getElementById('statCount').textContent = ds.plays;
     document.getElementById('statBest').textContent = ds.plays ? ds.bestCps.toFixed(1) : '-';
     document.getElementById('statBestClicks').textContent = ds.plays ? ds.bestClicks : '-';
@@ -472,7 +422,7 @@
     timeLeftEl.textContent = left.toFixed(1);
     const liveCps = elapsed > 0 ? clicks / elapsed : 0;
     clickCountLine.textContent = `클릭 수: ${clicks} · 실시간 CPS: ${liveCps.toFixed(1)}`;
-    setPad(liveCps.toFixed(1), `CPS · 클릭 ${clicks} · ${mode.label}`, true);
+    setPad(liveCps.toFixed(1), `CPS · 클릭 ${clicks}`, true);
     if (elapsed > 0.03) samples.push({ t: Math.min(elapsed, duration), cps: liveCps });
     drawGraph();
     if (left <= 0) {
@@ -492,14 +442,14 @@
     resizeGraph();
     clickCountLine.textContent = '클릭 수: 1 · 실시간 CPS: 0.0';
     resultPanel.classList.remove('show');
-    setPad('0.0', `CPS · 클릭 1 · ${mode.label}`, true);
+    setPad('0.0', `CPS · 클릭 1`, true);
     rafId = requestAnimationFrame(tick);
   }
 
   function renderGradeTable(cps) {
     const grade = gradeFor(cps);
     const table = document.getElementById('gradeTable');
-    table.innerHTML = `<tr><th>등급 (${mode.label})</th><th>기준 CPS</th></tr>` +
+    table.innerHTML = `<tr><th>등급</th><th>기준 CPS</th></tr>` +
       mode.grades.map(g => `<tr class="${g.key === grade.key ? 'current-row' : ''}"><td>${g.label}</td><td>${g.min}+</td></tr>`).join('');
   }
 
@@ -526,7 +476,7 @@
     const stars = starsFor(grade);
     document.getElementById('resultTitle').textContent = cps.toFixed(1) + ' CPS';
     document.getElementById('resultStars').textContent ='★'.repeat(stars) + '☆'.repeat(5 - stars);
-    document.getElementById('resultDesc').textContent = `총 클릭 ${clicks}회 / ${duration}초 · ${mode.label} — ${grade.label}`;
+    document.getElementById('resultDesc').textContent = `총 클릭 ${clicks}회 / ${duration}초 — ${grade.label}`;
     document.getElementById('personaLabel').textContent = grade.persona;
 
     // 초당 최고 구간(옛 Kohi 통계) + 지터 모드면 떨림 일관성(옛 지터 통계)
@@ -538,7 +488,7 @@
 
     renderGradeTable(cps);
     resultPanel.classList.add('show');
-    resultPanel.dataset.share = `나는 ${grade.persona}! CPS 테스트(${mode.label})에서 ${cps.toFixed(1)} CPS (${clicks}클릭/${duration}초, ${grade.key}등급) 기록! 너도 해봐 → `;
+    resultPanel.dataset.share = `나는 ${grade.persona}! CPS 테스트에서 ${cps.toFixed(1)} CPS (${clicks}클릭/${duration}초, ${grade.key}등급) 기록! 너도 해봐 → `;
 
     addRecentRecord(ACH_KEY, { cps, mode: mode.label, duration, date: Date.now() });
     renderPanels();
@@ -556,7 +506,7 @@
 
   function renderPanels() {
     renderRecentRecords('recentPanel', loadStats(ACH_KEY + '_recent', []),
-      e => `${e.cps.toFixed(1)} CPS · ${e.mode} · ${e.duration}초`, '아직 기록이 없어요');
+      e => `${e.cps.toFixed(1)} CPS · ${e.duration}초`, '아직 기록이 없어요');
   }
   function renderTopLeaderboard(list) {
     renderLeaderboard('topLeaderboard', list, (entry) => {
@@ -570,7 +520,7 @@
     renderTopLeaderboard(loadStats(LB_KEYS[mode.key], []));
   }
 
-  modeSelect.querySelectorAll('button').forEach(btn => {
+  (modeSelect ? modeSelect.querySelectorAll('button') : []).forEach(btn => {
     btn.addEventListener('click', () => {
       if (running) return;
       mode = MODES.find(m => m.key === btn.dataset.mode) || MODES[0];

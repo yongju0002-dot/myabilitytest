@@ -129,8 +129,6 @@
         </div>
     </div>
 
-    <div class="side-panel" id="ladderPanel"></div>
-    <div class="side-panel" id="achPanel"></div>
     <div class="side-panel">
       <div class="ach-head">最近の記録</div>
       <div id="recentPanel"></div>
@@ -367,35 +365,8 @@
     }
   }
 
-  const ACH_DEFS = (() => {
-    const defs = [{ id: 'first', label : '初挑戦' }];
-    [1, 5, 10, 25, 50].forEach(n => defs.push({ id: 'plays' + n, label: n + '回プレイ' }));
-    MODES.forEach(m => GRADES.forEach(g => {
-      defs.push({ id: `${m.key}_${g.key}`, label: `${m.label} - ${g.label}` });
-    }));
-    defs.push({ id: 'allmodes', label : '4モードすべて体験' });
-    return defs;
-  })();
 
-  function totalPlays() {
-    return MODES.reduce((a, m) => a + (loadStats(STAT_KEYS[m.key], { count: 0 }).count || 0), 0);
-  }
-  function modesTried() {
-    return MODES.filter(m => (loadStats(STAT_KEYS[m.key], { count: 0 }).count || 0) > 0).length;
-  }
-  function earnedIds(grade) {
-    const ids = ['first'];
-    const tp = totalPlays();
-    [1, 5, 10, 25, 50].forEach(n => { if (tp >= n) ids.push('plays' + n); });
-    const idx = GRADES.findIndex(g => g.key === grade.key);
-    GRADES.slice(idx).forEach(g => ids.push(`${mode.key}_${g.key}`));
-    if (modesTried() >= MODES.length) ids.push('allmodes');
-    return ids;
-  }
   function renderPanels() {
-    renderRankLadder('ladderPanel', GRADES.map(g => ({ key: g.key, label: g.label, min: g.min })),
-      stats.best || null, { title: `${mode.label}ランク`, unit: 'レベル', digits: 0 });
-    renderAchievements('achPanel', ACH_KEY, ACH_DEFS,'実績');
     renderRecentRecords('recentPanel', loadStats(ACH_KEY + '_recent', []),
       e => `レベル${e.level} - ${e.mode} - ${e.tiles}個`, 'まだ記録がありません');
   }
@@ -445,9 +416,7 @@
     renderTopLeaderboard(lbList);
 
     addRecentRecord(ACH_KEY, { level: reached, mode: mode.label, tiles: tilesFor(reached), date: Date.now() });
-    const newly = unlockAchievements(ACH_KEY, earnedIds(grade));
     renderPanels();
-    if (newly.length) showAchievementToast(newly.map(id => (ACH_DEFS.find(d => d.id === id) || {}).label).filter(Boolean), '実績解除');
   }
 
   function renderTopLeaderboard(list) {

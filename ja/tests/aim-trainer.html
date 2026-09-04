@@ -217,8 +217,6 @@
       <p>マウスのDPIとゲーム内感度(センシティビティ)を自分の手の動きに合わせて調整することも大切です。感度が高すぎると速いけれど不正確になり、低すぎると正確だけど遅くなります。エイムトレーナーで継続的に練習すると、反応速度と正確度の両方が徐々に改善すると言われています。</p>
     </section>
 
-    <div class="side-panel" id="ladderPanel"></div>
-    <div class="side-panel" id="achPanel"></div>
     <div class="side-panel">
       <div class="ach-head">最近の記録</div>
       <div id="recentPanel"></div>
@@ -686,52 +684,9 @@
   }
 
   // ---- 実績 / ランクラダー / 最近の記録 ----
-  const ACH_DEFS = (() => {
-    const defs = [{ id: 'first', label : '初挑戦' }];
-    [1, 5, 10, 25, 50].forEach(n => defs.push({ id: 'plays' + n, label: n + '回プレイ' }));
-    MODES.forEach(m => m.grades.forEach(g => {
-      defs.push({ id: `${m.key}_${g.key}`, label: `${m.label} · ${g.label}` });
-    }));
-    defs.push({ id: 'allmodes', label : '3モードすべて体験' });
-    return defs;
-  })();
 
-  function totalPlays() {
-    return Object.values(allStats).reduce((a, s) => a + (s.plays || 0), 0);
-  }
-  function modesTried() {
-    return MODES.filter(m => Object.keys(allStats).some(k => k.startsWith(m.key + '_'))).length;
-  }
-  function earnedIds(grade) {
-    const ids = ['first'];
-    const tp = totalPlays();
-    [1, 5, 10, 25, 50].forEach(n => { if (tp >= n) ids.push('plays' + n); });
-    const idx = mode.grades.findIndex(g => g.key === grade.key);
-    mode.grades.slice(idx).forEach(g => ids.push(`${mode.key}_${g.key}`));
-    if (modesTried() >= 3) ids.push('allmodes');
-    return ids;
-  }
-  function bestForMode() {
-    let best = null;
-    SIZES.forEach(s => {
-      ['mouse','touch'].forEach(inp => {
-        const st = allStats[`${mode.key}_${s.key}_${inp}`];
-        if (!st || st.best === null) return;
-        if (best === null) best = st.best;
-        else best = mode.metric === 'ms' ? Math.min(best, st.best) : Math.max(best, st.best);
-      });
-    });
-    return best;
-  }
   function renderPanels() {
     const tiers = mode.grades.map(g => ({ key: g.key, label: g.label, min: g.min, max: g.max }));
-    renderRankLadder('ladderPanel', tiers, bestForMode(), {
-      title: `${mode.label} ランク`,
-      unit: mode.metric === 'ms' ? 'ms' : (mode.metric ==='tps' ? '/秒' : '%'),
-      digits: mode.metric === 'tps' ? 2 : 0,
-      betterIsLower: mode.metric === 'ms',
-    });
-    renderAchievements('achPanel', ACH_KEY, ACH_DEFS,'実績');
     renderRecentRecords('recentPanel', loadStats(ACH_KEY + '_recent', []),
       e => `${e.score} · ${e.mode} · 正確度 ${e.acc}%`, 'まだ記録がありません');
   }
@@ -785,12 +740,8 @@
     const lbList = addToLeaderboard(LB_KEYS[mode.key], { value: score, accuracy, date: Date.now() }, lbBetterIsLower);
     renderTopLeaderboard(lbList);
 
-    const fresh = unlockAchievements(ACH_KEY, earnedIds(grade));
     addRecentRecord(ACH_KEY, { score: formatScore(score), mode: mode.label, acc: accuracy.toFixed(0), date: Date.now() });
     renderPanels();
-    if (fresh.length) {
-      showAchievementToast(fresh.map(id => (ACH_DEFS.find(a => a.id === id) || {}).label).filter(Boolean), '実績を解除!');
-    }
   }
 
   function renderTopLeaderboard(list) {

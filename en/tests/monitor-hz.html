@@ -182,7 +182,6 @@
       <p>A higher refresh rate shortens the wait before new information appears on screen. One frame is about 16.7ms at 60Hz and about 6.9ms at 144Hz, so in theory you see new information that much sooner. This is part of why <a href="/en/tests/reaction-time">reaction time test</a> results can shift by 10-50ms between devices.</p>
     </section>
 
-    <div class="side-panel" id="ladderPanel"></div>
     <div class="side-panel">
       <div class="ach-head">Recent measurements</div>
       <div id="recentPanel"></div>
@@ -282,9 +281,6 @@
   }
 
   function renderPanels() {
-    renderRankLadder('ladderPanel', HZ_TIERS, stats.best || null, {
-      title: 'Measured band', unit : 'Hz', digits: 0,
-    });
     renderRecentRecords('recentPanel', loadStats(STORE_KEY + '_recent', []),
       e => `${e.hz} Hz · gap ${e.avg}ms`, 'No measurements yet');
   }

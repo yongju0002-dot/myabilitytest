@@ -219,8 +219,6 @@
 
     </section>
 
-    <div class="side-panel" id="ladderPanel"></div>
-    <div class="side-panel" id="achPanel"></div>
     <div class="side-panel">
       <div class="ach-head">最近の記録</div>
       <div id="recentPanel"></div>
@@ -387,7 +385,6 @@
     stage.innerHTML = html;
   }
 
-  // ---- 업적 / 사다리 / 최근 기록 ----
   const ACH_KEY = 'reaction';
   const RT_TIERS = [
     { key: 'S', max: 150, label : '非常に速い' },
@@ -397,21 +394,8 @@
     { key: 'D', max: 400, label : 'のんびり' },
     { key: 'E', max: Infinity, label : 'とてものんびり' },
   ];
-  const ACH_DEFS = (() => {
-    const defs = [{ id: 'first', label : '初挑戦' }];
-    [1, 5, 10, 25, 50].forEach(n => defs.push({ id: 'plays' + n, label: n + '回プレイ' }));
-    MODES.forEach(m => RT_TIERS.forEach(t => {
-      defs.push({ id: `${m.key}_${t.key}`, label: `${m.label} · ${t.key}`, hint: `${m.label} · ${t.label}` });
-    }));
-    defs.push({ id: 'allmodes', label : '3モードすべて体験' });
-    return defs;
-  })();
 
   function modeStats() { return loadStats(ACH_KEY + '_modes', {}); }
-  function bestForMode() {
-    const s = modeStats()[mode.key];
-    return s && s.best != null ? s.best : null;
-  }
   function recordModeResult(avg) {
     const all = modeStats();
     const cur = all[mode.key] || { plays: 0, best: null };
@@ -421,21 +405,7 @@
     saveStats(ACH_KEY + '_modes', all);
     return all;
   }
-  function earnedIds(avg) {
-    const all = recordModeResult(avg);
-    const ids = ['first'];
-    const tp = Object.values(all).reduce((a, s) => a + (s.plays || 0), 0);
-    [1, 5, 10, 25, 50].forEach(n => { if (tp >= n) ids.push('plays' + n); });
-    const idx = RT_TIERS.findIndex(t => avg <= t.max);
-    RT_TIERS.slice(idx).forEach(t => ids.push(`${mode.key}_${t.key}`));
-    if (Object.keys(all).length >= 3) ids.push('allmodes');
-    return ids;
-  }
   function renderPanels() {
-    renderRankLadder('ladderPanel', RT_TIERS, bestForMode(), {
-      title: `${mode.label} ランク`, unit: 'ms', digits: 0, betterIsLower: true,
-    });
-    renderAchievements('achPanel', ACH_KEY, ACH_DEFS,'実績');
     renderRecentRecords('recentPanel', loadStats(ACH_KEY + '_recent', []),
       e => `${e.avg}ms · ${e.mode} · ${e.rounds}ラウンド`, 'まだ記録がありません');
   }
@@ -693,12 +663,8 @@
     const lbList = rtAddToLeaderboard(avg);
     renderTopLeaderboard(lbList);
 
-    const fresh = unlockAchievements(ACH_KEY, earnedIds(avg));
     addRecentRecord(ACH_KEY, { avg, mode: mode.label, rounds: totalRounds, date: Date.now() });
     renderPanels();
-    if (fresh.length) {
-      showAchievementToast(fresh.map(id => (ACH_DEFS.find(a => a.id === id) || {}).label).filter(Boolean), '実績を解除!');
-    }
   }
 
   function handleClick() {

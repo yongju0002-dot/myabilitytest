@@ -217,8 +217,6 @@
       <p>마우스 DPI와 인게임 감도(센시티비티)를 자신의 손 움직임에 맞게 조절하는 것도 중요합니다. 감도가 너무 높으면 빠르지만 부정확해지고, 너무 낮으면 정확하지만 느려져요. 꾸준히 에임 트레이너로 연습하면 반응 속도와 정확도 모두 점진적으로 개선할 수 있다고 알려져 있습니다.</p>
     </section>
 
-    <div class="side-panel" id="ladderPanel"></div>
-    <div class="side-panel" id="achPanel"></div>
     <div class="side-panel">
       <div class="ach-head">최근 기록</div>
       <div id="recentPanel"></div>
@@ -685,53 +683,9 @@
     table.innerHTML = '<tr><th>등급</th><th>기준</th></tr>' + rows;
   }
 
-  // ---- 업적 / 사다리 / 최근 기록 ----
-  const ACH_DEFS = (() => {
-    const defs = [{ id: 'first', label : '첫 도전' }];
-    [1, 5, 10, 25, 50].forEach(n => defs.push({ id: 'plays' + n, label: n + '회 플레이' }));
-    MODES.forEach(m => m.grades.forEach(g => {
-      defs.push({ id: `${m.key}_${g.key}`, label: `${m.label} · ${g.label}` });
-    }));
-    defs.push({ id: 'allmodes', label : '3개 모드 모두 체험' });
-    return defs;
-  })();
 
-  function totalPlays() {
-    return Object.values(allStats).reduce((a, s) => a + (s.plays || 0), 0);
-  }
-  function modesTried() {
-    return MODES.filter(m => Object.keys(allStats).some(k => k.startsWith(m.key + '_'))).length;
-  }
-  function earnedIds(grade) {
-    const ids = ['first'];
-    const tp = totalPlays();
-    [1, 5, 10, 25, 50].forEach(n => { if (tp >= n) ids.push('plays' + n); });
-    const idx = mode.grades.findIndex(g => g.key === grade.key);
-    mode.grades.slice(idx).forEach(g => ids.push(`${mode.key}_${g.key}`));
-    if (modesTried() >= 3) ids.push('allmodes');
-    return ids;
-  }
-  function bestForMode() {
-    let best = null;
-    SIZES.forEach(s => {
-      ['mouse','touch'].forEach(inp => {
-        const st = allStats[`${mode.key}_${s.key}_${inp}`];
-        if (!st || st.best === null) return;
-        if (best === null) best = st.best;
-        else best = mode.metric === 'ms' ? Math.min(best, st.best) : Math.max(best, st.best);
-      });
-    });
-    return best;
-  }
   function renderPanels() {
     const tiers = mode.grades.map(g => ({ key: g.key, label: g.label, min: g.min, max: g.max }));
-    renderRankLadder('ladderPanel', tiers, bestForMode(), {
-      title: `${mode.label} 랭크`,
-      unit: mode.metric === 'ms' ? 'ms' : (mode.metric ==='tps' ? '/초' : '%'),
-      digits: mode.metric === 'tps' ? 2 : 0,
-      betterIsLower: mode.metric === 'ms',
-    });
-    renderAchievements('achPanel', ACH_KEY, ACH_DEFS,'업적');
     renderRecentRecords('recentPanel', loadStats(ACH_KEY + '_recent', []),
       e => `${e.score} · ${e.mode} · 정확도 ${e.acc}%`, '아직 기록이 없어요');
   }
@@ -785,12 +739,8 @@
     const lbList = addToLeaderboard(LB_KEYS[mode.key], { value: score, accuracy, date: Date.now() }, lbBetterIsLower);
     renderTopLeaderboard(lbList);
 
-    const fresh = unlockAchievements(ACH_KEY, earnedIds(grade));
     addRecentRecord(ACH_KEY, { score: formatScore(score), mode: mode.label, acc: accuracy.toFixed(0), date: Date.now() });
     renderPanels();
-    if (fresh.length) {
-      showAchievementToast(fresh.map(id => (ACH_DEFS.find(a => a.id === id) || {}).label).filter(Boolean), '새 업적 해금!');
-    }
   }
 
   function renderTopLeaderboard(list) {

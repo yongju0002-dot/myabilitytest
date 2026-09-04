@@ -182,7 +182,6 @@
       <p>주사율이 높으면 화면에 새로운 정보가 표시되기까지의 대기 시간이 짧아집니다. 60Hz에서는 한 프레임이 약 16.7ms, 144Hz에서는 약 6.9ms이므로 이론상 그 차이만큼 정보를 더 일찍 볼 수 있습니다. 이 때문에 <a href="/ko/tests/reaction-time">반응 속도 테스트</a> 결과도 기기에 따라 10~50ms가량 달라질 수 있습니다.</p>
     </section>
 
-    <div class="side-panel" id="ladderPanel"></div>
     <div class="side-panel">
       <div class="ach-head">최근 측정</div>
       <div id="recentPanel"></div>
@@ -282,9 +281,6 @@
   }
 
   function renderPanels() {
-    renderRankLadder('ladderPanel', HZ_TIERS, stats.best || null, {
-      title: '측정 구간', unit : 'Hz', digits: 0,
-    });
     renderRecentRecords('recentPanel', loadStats(STORE_KEY + '_recent', []),
       e => `${e.hz} Hz · 간격 ${e.avg}ms`, '아직 측정 기록이 없어요');
   }

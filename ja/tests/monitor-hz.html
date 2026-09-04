@@ -182,7 +182,6 @@
       <p>リフレッシュレートが高いと、画面に新しい情報が表示されるまでの待ち時間が短くなります。60Hzでは1フレーム約16.7ms、144Hzでは約6.9msなので、理論上その分だけ早く情報を見られます。そのため<a href="/ja/tests/reaction-time">反応速度テスト</a>の結果も端末によって10〜50ms程度変わることがあります。</p>
     </section>
 
-    <div class="side-panel" id="ladderPanel"></div>
     <div class="side-panel">
       <div class="ach-head">最近の測定</div>
       <div id="recentPanel"></div>
@@ -282,9 +281,6 @@
   }
 
   function renderPanels() {
-    renderRankLadder('ladderPanel', HZ_TIERS, stats.best || null, {
-      title: '測定帯域', unit : 'Hz', digits: 0,
-    });
     renderRecentRecords('recentPanel', loadStats(STORE_KEY + '_recent', []),
       e => `${e.hz} Hz · 間隔 ${e.avg}ms`, 'まだ測定記録がありません');
   }

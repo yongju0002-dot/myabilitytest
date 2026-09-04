@@ -218,8 +218,6 @@
       <p style="font-size:13px; color:var(--text-dim2);">参考文献:Der, G., & Deary, I. J. (2006). Age and sex differences in reaction time in adulthood. <em>Psychology and Aging, 21</em>(1), 62–73(英国 Health & Lifestyle Survey,n=7,130)。Talboom, J. S., et al. (2021). MindCrowd:通过在线方式测量反应速度等指标的大规模队列研究。<em>npj Aging and Mechanisms of Disease</em>(n=75,666)。两项研究都支持"成人反应速度大致分布在200~300ms"这一普遍结论,但均未发表本页所用的具体百分位曲线。</p>
     </section>
 
-    <div class="side-panel" id="ladderPanel"></div>
-    <div class="side-panel" id="achPanel"></div>
     <div class="side-panel">
       <div class="ach-head">最近记录</div>
       <div id="recentPanel"></div>
@@ -386,7 +384,6 @@
     stage.innerHTML = html;
   }
 
-  // ---- 업적 / 사다리 / 최근 기록 ----
   const ACH_KEY = 'reaction';
   const RT_TIERS = [
     { key: 'S', max: 150, label : '非常快' },
@@ -396,21 +393,8 @@
     { key: 'D', max: 400, label : '慢悠悠' },
     { key: 'E', max: Infinity, label : '非常慢' },
   ];
-  const ACH_DEFS = (() => {
-    const defs = [{ id: 'first', label : '首次挑战' }];
-    [1, 5, 10, 25, 50].forEach(n => defs.push({ id: 'plays' + n, label: n + '次游玩' }));
-    MODES.forEach(m => RT_TIERS.forEach(t => {
-      defs.push({ id: `${m.key}_${t.key}`, label: `${m.label} · ${t.key}`, hint: `${m.label} · ${t.label}` });
-    }));
-    defs.push({ id: 'allmodes', label : '体验全部3种模式' });
-    return defs;
-  })();
 
   function modeStats() { return loadStats(ACH_KEY + '_modes', {}); }
-  function bestForMode() {
-    const s = modeStats()[mode.key];
-    return s && s.best != null ? s.best : null;
-  }
   function recordModeResult(avg) {
     const all = modeStats();
     const cur = all[mode.key] || { plays: 0, best: null };
@@ -420,21 +404,7 @@
     saveStats(ACH_KEY + '_modes', all);
     return all;
   }
-  function earnedIds(avg) {
-    const all = recordModeResult(avg);
-    const ids = ['first'];
-    const tp = Object.values(all).reduce((a, s) => a + (s.plays || 0), 0);
-    [1, 5, 10, 25, 50].forEach(n => { if (tp >= n) ids.push('plays' + n); });
-    const idx = RT_TIERS.findIndex(t => avg <= t.max);
-    RT_TIERS.slice(idx).forEach(t => ids.push(`${mode.key}_${t.key}`));
-    if (Object.keys(all).length >= 3) ids.push('allmodes');
-    return ids;
-  }
   function renderPanels() {
-    renderRankLadder('ladderPanel', RT_TIERS, bestForMode(), {
-      title: `${mode.label} 评级`, unit: 'ms', digits: 0, betterIsLower: true,
-    });
-    renderAchievements('achPanel', ACH_KEY, ACH_DEFS,'成就');
     renderRecentRecords('recentPanel', loadStats(ACH_KEY + '_recent', []),
       e => `${e.avg}ms · ${e.mode} · ${e.rounds}轮`, '还没有记录');
   }
@@ -692,12 +662,8 @@
     const lbList = rtAddToLeaderboard(avg);
     renderTopLeaderboard(lbList);
 
-    const fresh = unlockAchievements(ACH_KEY, earnedIds(avg));
     addRecentRecord(ACH_KEY, { avg, mode: mode.label, rounds: totalRounds, date: Date.now() });
     renderPanels();
-    if (fresh.length) {
-      showAchievementToast(fresh.map(id => (ACH_DEFS.find(a => a.id === id) || {}).label).filter(Boolean), '解锁新成就!');
-    }
   }
 
   function handleClick() {

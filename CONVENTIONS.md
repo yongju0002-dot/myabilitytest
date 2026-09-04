@@ -670,3 +670,8 @@ Google Analytics 4, 측정 ID `G-VKKRHCN307`.
 **`addRecentRecord(key, entry)`는 내부에서 `key + '_recent'`에 저장한다.** 호출할 때 기본 키(`LB_KEY`)를 넘기고,
 읽을 때만 `loadStats(LB_KEY + '_recent')`를 쓴다. 이미 `_recent`가 붙은 키를 넘기면 `…_recent_recent`에 저장돼 화면이 영원히 비어 있는데,
 심어놓은 데이터로 하는 렌더 검사는 읽는 쪽 키에 직접 넣기 때문에 이 불일치를 잡지 못한다 — **저장 경로는 반드시 실제 결과를 내서 검증할 것.**
+
+## 19. 저장 형식이 바뀌면 렌더러는 옛 항목을 견뎌야 한다
+- 순위/최근 기록은 localStorage 에 그대로 남으므로, 새 필드를 추가해 저장하기 시작해도 옛 항목엔 그 필드가 없다. `entry.x.toFixed()` 처럼 필드를 무조건 쓰면 페이지 로드 시 Uncaught TypeError (에임: 09-02 이전 기록 사용자 전원 영향, 04a6cf5 에서 수정).
+- 숫자 필드는 `fmtNum(entry.x, 자릿수)` (common.js, 숫자 아니면 '–') 로 그린다. 새 필드를 넣을 때 렌더러도 같이 방어할 것.
+- 마크업 배치 스크립트는 "삽입 후 조상 검사" 로 끝낸다: 삽입한 요소가 `#resultPanel`/`#playScreen`/`display:none` 안에 들어가지 않았는지 DOMParser 로 60페이지 확인 (ko/chimp-test 의 `>` 누락이 그렇게 잡혔다).

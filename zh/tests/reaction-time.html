@@ -507,12 +507,6 @@
     return '有点慢';
   }
 
-  function gradeFor(avg) {
-    if (avg <= 150) return '非常快';
-    if (avg <= 220) return '比较快';
-    if (avg <= 300) return '一般平均范围';
-    return '稍微有点慢';
-  }
 
   // Approximate percentile curve for simple visual "click when it turns green"
   // reaction time, built from the median (~273ms) that's consistently reported
@@ -615,24 +609,20 @@
       return `<div class="${cls}"><div class="r">第 ${i + 1} 轮</div>${t} ms</div>`;
     }).join('');
 
-    const percentileBlock = (mode.percentile && range.key === 'normal') ? `
+    const percentileBlock = mode.percentile ? `
         <div class="percentile-line">你排在前 ${topPct.toFixed(topPct < 1 ? 1 : 0)}%</div>
         <div class="population-line">人们的反应速度中位数约为273ms(基于在线点击测试的大规模统计)</div>
-        <div class="histogram">${buildHistogram(avg)}</div>` : (mode.percentile ? `
-        <div class="population-line">等待时间「${range.label}」与标准测量条件不同,因此不显示百分位和分布。请在相同设置下比较。</div>` : `
-        <div class="population-line">${mode.label}模式与单纯反应的测量方式不同,因此不显示百分位和分布。请在同一模式内比较。</div>`);
+        <div class="histogram">${buildHistogram(avg)}</div>` : '';
 
     setStage('round', `
       <div class="summary">
         <h2>测试完成 平均 ${avg} ms</h2>
-        <div class="grade">${mode.label} · ${gradeFor(avg)}</div>
         ${percentileBlock}
 
-        <div class="hw-disclaimer">此结果为估计值。显示器、鼠标、触屏延迟会因设备不同增加10~50ms,电视上可能增加100ms以上。建议用同一设备多次测量后再比较。</div>
         <div class="round-table">${roundTableHtml}</div>
         <div class="summary-actions">
-          <button id="retryBtn">再次挑战</button>
-          <button id="changeRoundsBtn" class="secondary">更改轮数</button>
+          <button class="btn" id="retryBtn">再次挑战</button>
+          <button class="btn secondary" id="changeRoundsBtn">更改轮数</button>
         </div>
         <div class="other-tests">
           <div class="label">也来试试其他能力测试</div>

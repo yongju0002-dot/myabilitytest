@@ -508,12 +508,6 @@
     return 'A bit slow';
   }
 
-  function gradeFor(avg) {
-    if (avg <= 150) return 'Very fast';
-    if (avg <= 220) return 'Fast';
-    if (avg <= 300) return 'Typical average range';
-    return 'A bit on the slow side';
-  }
 
   // Approximate percentile curve for simple visual "click when it turns green"
   // reaction time, built from the median (~273ms) that's consistently reported
@@ -621,24 +615,20 @@
       return `<div class="${cls}"><div class="r">Round ${i + 1}</div>${t} ms</div>`;
     }).join('');
 
-    const percentileBlock = (mode.percentile && range.key === 'normal') ? `
+    const percentileBlock = mode.percentile ? `
         <div class="percentile-line">You're in the top ${topPct.toFixed(topPct < 1 ? 1 : 0)}%</div>
         <div class="population-line">The median reaction time across large online click tests is about 273ms</div>
-        <div class="histogram">${buildHistogram(avg)}</div>` : (mode.percentile ? `
-        <div class="population-line">Wait time '${range.label}' differs from the standard measurement condition, so no percentile or distribution is shown. Compare within the same setting.</div>` : `
-        <div class="population-line">${mode.label} mode measures differently from Simple, so no percentile or distribution is shown. Compare within the same mode.</div>`);
+        <div class="histogram">${buildHistogram(avg)}</div>` : '';
 
     setStage('round', `
       <div class="summary">
         <h2>Test complete Average ${avg} ms</h2>
-        <div class="grade">${mode.label} · ${gradeFor(avg)}</div>
         ${percentileBlock}
 
-        <div class="hw-disclaimer">This result is an estimate. Monitor, mouse, and touchscreen lag can add 10–50ms depending on your device — 100ms+ on a TV. Repeat on the same device to compare fairly.</div>
         <div class="round-table">${roundTableHtml}</div>
         <div class="summary-actions">
-          <button id="retryBtn">Try again</button>
-          <button id="changeRoundsBtn" class="secondary">Change rounds</button>
+          <button class="btn" id="retryBtn">Try again</button>
+          <button class="btn secondary" id="changeRoundsBtn">Change rounds</button>
         </div>
         <div class="other-tests">
           <div class="label">Try another ability test</div>

@@ -508,12 +508,6 @@
     return 'ちょっと遅め';
   }
 
-  function gradeFor(avg) {
-    if (avg <= 150) return '非常に速いほうです';
-    if (avg <= 220) return '速いほうです';
-    if (avg <= 300) return '一般的な平均範囲です';
-    return 'やや遅めです';
-  }
 
   // Approximate percentile curve for simple visual "click when it turns green"
   // reaction time, built from the median (~273ms) that's consistently reported
@@ -616,24 +610,20 @@
       return `<div class="${cls}"><div class="r">ラウンド ${i + 1}</div>${t} ms</div>`;
     }).join('');
 
-    const percentileBlock = (mode.percentile && range.key === 'normal') ? `
+    const percentileBlock = mode.percentile ? `
         <div class="percentile-line">上位 ${topPct.toFixed(topPct < 1 ? 1 : 0)}% です</div>
         <div class="population-line">人々の反応速度の中央値は約273msと言われています(オンラインクリックテストの大規模集計基準)</div>
-        <div class="histogram">${buildHistogram(avg)}</div>` : (mode.percentile ? `
-        <div class="population-line">待ち時間「${range.label}」は標準の測定条件と異なるため、パーセンタイルや分布は表示しません。同じ設定どうしで比べてください。</div>` : `
-        <div class="population-line">${mode.label}モードは単純反応と測定方式が違うため、パーセンタイルや分布は表示しません。同じモード同士で比較してください。</div>`);
+        <div class="histogram">${buildHistogram(avg)}</div>` : '';
 
     setStage('round', `
       <div class="summary">
         <h2>テスト完了 平均 ${avg} ms</h2>
-        <div class="grade">${mode.label} · ${gradeFor(avg)}</div>
         ${percentileBlock}
 
-        <div class="hw-disclaimer">この結果は推定値です。モニター・マウス・タッチスクリーンの遅延で機器ごとに10〜50ms、テレビでは100ms以上増えることがあります。同じ機器で何度か測定して比較することをおすすめします。</div>
         <div class="round-table">${roundTableHtml}</div>
         <div class="summary-actions">
-          <button id="retryBtn">もう一度挑戦</button>
-          <button id="changeRoundsBtn" class="secondary">ラウンド数を変更</button>
+          <button class="btn" id="retryBtn">もう一度挑戦</button>
+          <button class="btn secondary" id="changeRoundsBtn">ラウンド数を変更</button>
         </div>
         <div class="other-tests">
           <div class="label">他の能力テストも試してみよう</div>

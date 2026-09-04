@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>APM Test | Ability Test</title>
-<meta name="description" content="Measure your actions per minute over 60 seconds, counting both mouse clicks and key presses. Free APM test for StarCraft and MOBA players.">
+<meta name="description" content="Measure your actions per minute (APM) by hitting green tiles on a 3×3, 4×4 or 5×5 grid or the QWEASD keys as fast as you can. 15 seconds to 5 minutes, with accuracy, peak APM and per-mode ranks. Free APM test.">
 <link rel="canonical" href="https://myabilitytest.com/en/tests/apm">
 <link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/apm">
 <link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/apm">
@@ -14,7 +14,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="MyAbilityTest">
 <meta property="og:title" content="APM Test | Ability Test">
-<meta property="og:description" content="Measure your actions per minute over 60 seconds, counting both mouse clicks and key presses. Free APM test for StarCraft and MOBA players.">
+<meta property="og:description" content="Measure your actions per minute (APM) by hitting green tiles on a 3×3, 4×4 or 5×5 grid or the QWEASD keys as fast as you can. 15 seconds to 5 minutes, with accuracy, peak APM and per-mode ranks. Free APM test.">
 <meta property="og:url" content="https://myabilitytest.com/en/tests/apm">
 <meta property="og:image" content="https://myabilitytest.com/og-default.png">
 <meta property="og:image:width" content="1200">
@@ -22,7 +22,7 @@
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="APM Test | Ability Test">
-<meta name="twitter:description" content="Measure your actions per minute over 60 seconds, counting both mouse clicks and key presses. Free APM test for StarCraft and MOBA players.">
+<meta name="twitter:description" content="Measure your actions per minute (APM) by hitting green tiles on a 3×3, 4×4 or 5×5 grid or the QWEASD keys as fast as you can. 15 seconds to 5 minutes, with accuracy, peak APM and per-mode ranks. Free APM test.">
 <meta name="twitter:image" content="https://myabilitytest.com/og-default.png">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
@@ -56,6 +56,32 @@
   .info table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
   .info th, .info td { border: 1px solid var(--line); padding: 8px; text-align: left; }
   .info th { background: var(--card-bg); }
+  /* APM: 그리드/키보드 스테이지 */
+  .apm-custom { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 6px 0 4px; font-size: 13px; color: var(--muted); }
+  .apm-custom input { width: 84px; padding: 6px 8px; background: var(--card-bg-2); border: 1px solid var(--line); border-radius: 6px; color: var(--ink); font-family: var(--mono); font-size: 13px; }
+  .apm-custom button { padding: 6px 12px; border-radius: 6px; border: 1px solid var(--line-strong); background: transparent; color: var(--ink); cursor: pointer; font-size: 13px; }
+  .apm-hud { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px 22px; font-family: var(--mono); }
+  .apm-hud > div { display: flex; flex-direction: column; align-items: center; min-width: 64px; }
+  .apm-hud .k { font-size: 11px; color: var(--muted); }
+  .apm-hud b { font-size: 20px; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .apm-hud b.live { color: var(--accent); }
+  .apm-reset { padding: 6px 12px; border-radius: 6px; border: 1px solid var(--line-strong); background: transparent; color: var(--body); cursor: pointer; font-size: 12px; font-family: inherit; }
+  .apm-reset:hover { border-color: var(--ink); color: var(--ink); }
+  .apm-grid { display: grid; gap: 8px; margin: 14px auto 0; width: 100%; max-width: 420px; cursor: pointer; user-select: none; touch-action: manipulation; }
+  .apm-grid.size-s { max-width: 300px; }
+  .apm-grid.size-l { max-width: 560px; }
+  .apm-tile { aspect-ratio: 1; background: var(--card-bg-2); border: 1px solid var(--line-strong); border-radius: 8px; transition: background 0.08s ease; }
+  .apm-tile.target { background: var(--good); border-color: var(--good); box-shadow: 0 0 0 2px rgba(53, 163, 90, 0.35); }
+  .apm-tile.miss { background: var(--danger); border-color: var(--danger); }
+  .apm-keys { display: grid; grid-template-columns: repeat(3, 76px); gap: 8px; justify-content: center; margin: 18px auto 0; }
+  .apm-key { height: 68px; display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 24px; font-weight: 700; background: var(--card-bg-2); border: 1px solid var(--line-strong); border-radius: 8px; color: var(--ink); user-select: none; }
+  .apm-key.target { background: var(--good); border-color: var(--good); color: #fff; }
+  .apm-key.miss { background: var(--danger); border-color: var(--danger); color: #fff; }
+  .apm-hint { margin-top: 14px; font-size: 13px; color: var(--muted); }
+  .apm-size { display: flex; gap: 6px; justify-content: center; align-items: center; margin-top: 10px; font-size: 12px; color: var(--muted); }
+  .apm-size button { padding: 3px 10px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--body); cursor: pointer; font-size: 12px; font-family: inherit; }
+  .apm-size button.active { border-color: var(--ink); color: var(--ink); }
+  .apm-chart { width: 100%; max-width: 520px; height: 120px; margin: 12px auto 0; display: block; }
 </style>
 <style>
   .related-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
@@ -114,23 +140,30 @@
       <span class="idx">11 / 15</span>
     </nav>
     <h1>APM Test</h1>
-    <p class="sub">60 seconds, counting every mouse click and key press together.</p>
+    <p class="sub">Hit the green tile (or key) as fast and accurately as you can. Misses lower your accuracy.</p>
 
-    <div class="info-box">
-      Press any key or click the area below — both count as actions.
+    <div class="mode-select" id="modeSelect">
+      <button data-mode="g3" class="active">3×3</button>
+      <button data-mode="g4">4×4</button>
+      <button data-mode="g5">5×5</button>
+      <button data-mode="kb">Keyboard</button>
     </div>
+    <div class="duration-select" id="durationSelect"></div>
+    <div class="apm-custom"><span>Custom</span><input type="number" id="customSec" min="5" max="600" placeholder="sec"><button type="button" id="customApply">Apply</button></div>
 
     <div class="stage">
-    <div class="level-card">
-      <div class="label">Time left</div>
-      <div class="countdown-num" id="timeLeft">60.0</div>
-      <div class="sub" id="apmLine">Actions: 0 · Live APM: 0</div>
-      <div class="apm-split">
-        <span>Clicks <b id="mouseCount">0</b></span>
-        <span>Keys <b id="keyCount">0</b></span>
+      <div class="apm-hud">
+        <div><span class="k">APM</span><b id="hudApm">0</b></div>
+        <div><span class="k">Accuracy</span><b id="hudAcc">0%</b></div>
+        <div><span class="k">Max APM</span><b id="hudMax">0</b></div>
+        <div><span class="k">Targets</span><b id="hudHits">0</b></div>
+        <div><span class="k">Time left</span><b id="hudTime">60s</b></div>
+        <button type="button" class="apm-reset" id="resetBtn">Reset</button>
       </div>
-    </div>
-    <button class="apm-pad" id="apmPad"><div class="pad-main">Press any key or click here to start</div><div class="pad-sub">Live APM appears here</div></button>
+      <div class="apm-grid size-m" id="apmGrid"></div>
+      <div class="apm-keys" id="apmKeys" style="display:none;"></div>
+      <div class="apm-hint" id="apmHint">Click anywhere to start • hit the green tile as fast as you can</div>
+      <div class="apm-size" id="sizeSelect"><span>Tile size</span><button type="button" data-size="s">Small</button><button type="button" data-size="m" class="active">Medium</button><button type="button" data-size="l">Large</button></div>
     </div>
 
     <div id="resultPanel" class="result-panel">
@@ -166,7 +199,7 @@
         <div class="value" id="statBest">-</div>
       </div>
       <div class="stat-box">
-        <div class="label">Most actions</div>
+        <div class="label">Best targets</div>
         <div class="value" id="statBestActions">-</div>
       </div>
     </div>
@@ -187,37 +220,23 @@
     <div class="guide-grid">
       <div class="guide-box">
         <h3>What is APM (Actions Per Minute)?</h3>
-        <p>It's the number of actions — mouse clicks plus key presses — you perform in one minute. It became widely known as a measure of pro-player skill in StarCraft, and it's still used as a yardstick for control speed in RTS and MOBA games. StarCraft pros are generally reported to average somewhere around 300–400 APM during matches.</p>
+        <p>The number of actions you perform in one minute. The metric comes from RTS games like StarCraft and is now a standard measure of gaming mechanics. This test measures it by clicking the green tile on a grid (3×3, 4×4, 5×5) or pressing the green key among Q W E A S D.</p><p>Accuracy counts as well as speed: final APM = raw APM × accuracy.</p>
       </div>
       <div class="guide-box">
-        <h3>What's average, and what's a good score?</h3>
-        <p>On this site's scale, <strong>60–110 APM is average (C)</strong>, 110–160 is above average, and over 220 is very fast. StarCraft pros are widely reported to play at roughly 300–400 APM, so 300+ is graded as pro level.</p>
-        <p>Note that APM here is raw input speed, not meaningful in-game actions, so the same person can score differently from their real game APM.</p>
+        <h3>What is a good APM?</h3>
+        <p>Smaller grids mean shorter mouse travel and higher APM, so the rank thresholds differ per mode. On 3×3, <strong>111–160 is Skilled and 200+ is Master</strong>; on keyboard, 81–120 is Skilled and 160+ is Master.</p><p>Pro players are known to reach 300–400 APM in real games, but that number includes meaningful commands, so it is not directly comparable to this test.</p>
       </div>
       <div class="guide-box">
-        <h3>Score guide</h3>
-        <table>
-        <tr><th>APM</th><th>Grade</th></tr>
-        <tr><td>300+</td><td>Pro-gamer level</td></tr>
-        <tr><td>220 - 300</td><td>S · Very fast</td></tr>
-        <tr><td>160 - 220</td><td>A · Fast</td></tr>
-        <tr><td>110 - 160</td><td>B · Above average</td></tr>
-        <tr><td>60 - 110</td><td>C · Average</td></tr>
-        <tr><td>Under 60</td><td>D · Relaxed</td></tr>
-        </table>
+        <h3>Result table (rank by mode)</h3>
+        <table><tr><th>Rank</th><th>3×3</th><th>4×4</th><th>5×5</th><th>Keyboard</th></tr><tr><td>Master</td><td>200+</td><td>180+</td><td>160+</td><td>160+</td></tr><tr><td>Expert</td><td>161–199</td><td>141–179</td><td>126–159</td><td>121–159</td></tr><tr><td>Skilled</td><td>111–160</td><td>101–140</td><td>91–125</td><td>81–120</td></tr><tr><td>Beginner</td><td>65–110</td><td>55–100</td><td>45–90</td><td>40–80</td></tr><tr><td>Starter</td><td>under 65</td><td>under 55</td><td>under 45</td><td>under 40</td></tr></table>
       </div>
       <div class="guide-box">
         <h3>How to measure accurately</h3>
-        <ul>
-          <li>Keep the pace for the full 60 seconds — a fast start and a slow finish lowers the average.</li>
-          <li>Use the keyboard <strong>and</strong> the mouse; both count as actions.</li>
-          <li>Holding a key down doesn't auto-count. Each press-and-release is one action.</li>
-          <li>Check the 10-second chart to see where you slow down.</li>
-        </ul>
+        <ul><li>Build a base with 60 seconds on the 3×3 grid before moving to bigger grids or keyboard mode.</li><li>Missed clicks lower accuracy and cut your final APM. Get accuracy first; speed follows.</li><li>Short tests like 15 seconds only reflect burst speed. Use 60 seconds or more to check endurance.</li><li>Max APM is the fastest 5-second window. A big gap from the average means your rhythm broke.</li></ul>
       </div>
       <div class="guide-box wide">
-        <h3>Why high APM isn't the whole story</h3>
-        <p>That said, high APM doesn't automatically mean high skill. Meaningless repeated inputs inflate the number just as easily, so what really matters is the share of actions that accomplish something. This test graphs your APM in 10-second segments, so you can also see whether your speed fades toward the end.</p>
+        <h3>How to raise your APM</h3>
+        <p>Practice often in short, focused sessions and keep a proper posture and grip. Rushing and missing costs points, so lock in accuracy first and then add speed. Rotate through the modes to find what suits you, and use a comfortable key layout in keyboard mode. On long tests a steady rhythm raises your average more than chasing a peak. Keep in mind that a high APM alone does not make you a better player; meaningful actions have to grow with it.</p>
       </div>
     </div>
     </div>
@@ -285,202 +304,299 @@
 <script src="/skill-test/common.js"></script>
 <script src="/skill-test/games/shared/click-core.js"></script>
 <script>
-  const STORE_KEY = 'skillApmStats';
-  const LB_KEY = 'skillApmLeaderboardV1';
-  const DURATION = 60;
-  const SEGMENT = 10;
-  let stats = loadStats(STORE_KEY, { plays: 0, bestApm: 0, bestActions: 0 });
-
-  const GRADES = [
-    { key: 'PRO', min: 300, label : 'Pro tier (300–400)' },
-    { key: 'S', min: 220, label : 'S · Very fast' },
-    { key: 'A', min: 160, label : 'A · Fast' },
-    { key: 'B', min: 110, label : 'B · Above average' },
-    { key: 'C', min: 60, label : 'C · Average' },
-    { key: 'D', min: 0, label : 'D · Relaxed' },
+  // 모드별 랭크 기준(초보자/숙련자/전문가/마스터의 최소 APM). 그리드가 작을수록 마우스 이동이 짧아 기준이 높다.
+  const MODES = [
+    { key: 'g3', label: '3×3', n: 3, ranks: [65, 111, 161, 200] },
+    { key: 'g4', label: '4×4', n: 4, ranks: [55, 101, 141, 180] },
+    { key: 'g5', label: '5×5', n: 5, ranks: [45, 91, 126, 160] },
+    { key: 'kb', label: "Keyboard", n: 0, ranks: [40, 81, 121, 160] },
   ];
+  const RANKS = ["Starter","Beginner","Skilled","Expert","Master"];   // 0 입문 … 4 마스터
+  const DURATIONS = [15, 30, 60, 120, 180, 300];
+  const KEYS = ['Q', 'W', 'E', 'A', 'S', 'D'];
+  const STATS_KEY = 'skillApmStatsV2';            // { g3: {plays, bestApm, bestHits}, ... }
+  const LB_KEYS = { g3: 'skillApmLeaderboardV2_g3', g4: 'skillApmLeaderboardV2_g4', g5: 'skillApmLeaderboardV2_g5', kb: 'skillApmLeaderboardV2_kb' };
+  const RECENT_KEY = 'skillApmLeaderboardV2';     // addRecentRecord 가 _recent 를 붙인다
+  const SIZE_KEY = 'skillApmTileSize';
 
-  function gradeFor(apm) {
-    return GRADES.find(g => apm >= g.min) || GRADES[GRADES.length - 1];
-  }
+  let allStats = loadStats(STATS_KEY, {});
+  let mode = MODES[0];
+  let duration = 60;
+  let running = false, finished = false;
+  let hits = 0, misses = 0, startTime = 0, rafId = null, maxApm = 0;
+  let target = -1;
+  let hitTimes = [];
 
-  function starsFor(apm) {
-    if (apm >= 300) return 5;
-    if (apm >= 220) return 4;
-    if (apm >= 160) return 3;
-    if (apm >= 110) return 2;
-    return 1;
-  }
-
-  const apmPad = document.getElementById('apmPad');
-  const timeLeftEl = document.getElementById('timeLeft');
-  const apmLine = document.getElementById('apmLine');
+  const grid = document.getElementById('apmGrid');
+  const keysEl = document.getElementById('apmKeys');
+  const hint = document.getElementById('apmHint');
   const resultPanel = document.getElementById('resultPanel');
+  const hud = { apm: document.getElementById('hudApm'), acc: document.getElementById('hudAcc'), max: document.getElementById('hudMax'), hits: document.getElementById('hudHits'), time: document.getElementById('hudTime') };
 
-  let running = false;
-  let finished = false;
-  let actions = 0;
-  let mouseActions = 0;
-  let keyActions = 0;
-  let startTime = 0;
-  let rafId = null;
-  let timestamps = [];
+  function modeStats() { return allStats[mode.key] || { plays: 0, bestApm: 0, bestHits: 0 }; }
+  function rankIdx(apm) { return mode.ranks.filter(th => apm >= th).length; }
+  function tileCount() { return mode.n ? mode.n * mode.n : KEYS.length; }
 
   function renderStats() {
-    document.getElementById('statCount').textContent = stats.plays;
-    document.getElementById('statBest').textContent = stats.plays ? Math.round(stats.bestApm) : '-';
-    document.getElementById('statBestActions').textContent = stats.plays ? stats.bestActions : '-';
+    const s = modeStats();
+    document.getElementById('statCount').textContent = s.plays;
+    document.getElementById('statBest').textContent = s.plays ? Math.round(s.bestApm) : '-';
+    document.getElementById('statBestActions').textContent = s.plays ? s.bestHits : '-';
   }
 
-  function setPad(main, sub, live) {
-    apmPad.innerHTML = "";
-    const m = document.createElement("div");
-    m.className = "pad-main" + (live ? " live" : "");
-    m.textContent = main;
-    const s = document.createElement("div");
-    s.className = "pad-sub";
-    s.textContent = sub;
-    apmPad.append(m, s);
+  function buildBoard() {
+    grid.innerHTML = '';
+    keysEl.innerHTML = '';
+    if (mode.n) {
+      grid.style.display = '';
+      keysEl.style.display = 'none';
+      grid.style.gridTemplateColumns = 'repeat(' + mode.n + ', 1fr)';
+      for (let i = 0; i < mode.n * mode.n; i++) {
+        const el = document.createElement('div');
+        el.className = 'apm-tile';
+        el.dataset.i = i;
+        grid.appendChild(el);
+      }
+      hint.textContent = "Click anywhere to start • hit the green tile as fast as you can";
+    } else {
+      grid.style.display = 'none';
+      keysEl.style.display = '';
+      KEYS.forEach((k, i) => {
+        const el = document.createElement('div');
+        el.className = 'apm-key';
+        el.dataset.i = i;
+        el.textContent = k;
+        keysEl.appendChild(el);
+      });
+      hint.textContent = "Press any of Q W E A S D to start • press the green key as fast as you can";
+    }
+    target = -1;
+  }
+
+  function cells() { return (mode.n ? grid : keysEl).children; }
+
+  function placeTarget() {
+    const n = tileCount();
+    let next;
+    do { next = Math.floor(Math.random() * n); } while (n > 1 && next === target);
+    if (target >= 0) cells()[target].classList.remove('target');
+    target = next;
+    cells()[target].classList.add('target');
+  }
+
+  function setHud() {
+    const elapsed = running ? (performance.now() - startTime) / 1000 : 0;
+    const total = hits + misses;
+    const acc = total ? Math.round((hits / total) * 100) : 0;
+    const live = elapsed > 0.5 ? Math.round((hits / elapsed) * 60) : 0;
+    hud.apm.textContent = live;
+    hud.acc.textContent = acc + '%';
+    hud.max.textContent = Math.round(maxApm);
+    hud.hits.textContent = hits;
+    hud.apm.classList.toggle('live', running);
   }
 
   function tick() {
     if (!running) return;
     const elapsed = (performance.now() - startTime) / 1000;
-    const left = Math.max(0, DURATION - elapsed);
-    timeLeftEl.textContent = left.toFixed(1);
-    const liveApm = elapsed > 0 ? (actions / elapsed) * 60 : 0;
-    apmLine.textContent = `Actions: ${actions} · Live APM: ${Math.round(liveApm)}`;
-    document.getElementById('mouseCount').textContent = mouseActions;
-    document.getElementById('keyCount').textContent = keyActions;
-    setPad(Math.round(liveApm), `${left.toFixed(1)}s left - ${actions} actions`, true);
+    const left = Math.max(0, duration - elapsed);
+    hud.time.textContent = Math.ceil(left) + 's';
+    setHud();
     if (left <= 0) { finish(); return; }
     rafId = requestAnimationFrame(tick);
   }
 
   function start() {
-    running = true;
-    finished = false;
-    actions = 1;
+    running = true; finished = false;
+    hits = 0; misses = 0; maxApm = 0; hitTimes = [];
     startTime = performance.now();
-    timestamps = [startTime];
     resultPanel.classList.remove('show');
-    setPad(0, `${DURATION.toFixed(1)}s left - keep going!`, true);
+    placeTarget();
+    setHud();
     rafId = requestAnimationFrame(tick);
   }
 
-  function registerAction(kind) {
-    if (finished) return;
-    if (!running) {
-      if (kind === 'mouse') mouseActions = 1; else keyActions = 1;
-      start();
-      return;
-    }
-    actions += 1;
-    if (kind === 'mouse') mouseActions += 1; else keyActions += 1;
-    timestamps.push(performance.now());
+  // 최대 APM: 최근 5초 구간의 속도 (5초가 안 됐으면 경과 시간 기준)
+  function updateMax(now) {
+    hitTimes.push(now);
+    const elapsed = (now - startTime) / 1000;
+    const win = Math.min(5, Math.max(elapsed, 0.5));
+    const from = now - win * 1000;
+    const inWin = hitTimes.filter(ts => ts >= from).length;
+    maxApm = Math.max(maxApm, (inWin / win) * 60);
   }
+
+  function flashMiss(el) {
+    if (!el) return;
+    el.classList.add('miss');
+    setTimeout(() => el.classList.remove('miss'), 140);
+  }
+
+  function act(i, el) {
+    if (finished) return;
+    if (!running) { start(); return; }   // 첫 입력은 시작 신호일 뿐 집계하지 않는다
+    if (i === target) {
+      hits += 1;
+      updateMax(performance.now());
+      placeTarget();
+    } else {
+      misses += 1;
+      flashMiss(el);
+    }
+    setHud();
+  }
+
+  grid.addEventListener('pointerdown', (e) => {
+    e.preventDefault();
+    const el = e.target.closest('.apm-tile');
+    if (!el) { if (!running && !finished) start(); return; }
+    act(Number(el.dataset.i), el);
+  });
+  grid.addEventListener('contextmenu', (e) => e.preventDefault());
 
   window.addEventListener('keydown', (e) => {
-    // Let the browser keep its own shortcuts; only count plain key presses.
-    if (e.ctrlKey || e.metaKey || e.altKey) return;
-    if (e.key === 'Tab' || e.key ==='F5') return;
-    if (e.code === 'Space' || e.key ===' ') e.preventDefault();
-    if (e.repeat) return;
-    registerAction('key');
-  });
-
-  apmPad.addEventListener('pointerdown', (e) => {
+    if (mode.n) return;
+    if (e.ctrlKey || e.metaKey || e.altKey || e.repeat) return;
+    const i = KEYS.indexOf(e.key.toUpperCase());
+    if (i < 0) return;
     e.preventDefault();
-    registerAction('mouse');
+    act(i, keysEl.children[i]);
   });
-  apmPad.addEventListener('contextmenu', (e) => e.preventDefault());
 
-  function renderGradeTable(apm) {
-    const grade = gradeFor(apm);
-    const table = document.getElementById('gradeTable');
-    table.innerHTML = '<tr><th>Grade</th><th>APM threshold</th></tr>' +
-      GRADES.map(g => `<tr class="${g.key === grade.key ? 'current-row' : ''}"><td>${g.label}</td><td>${g.min}+</td></tr>`).join('');
+  function reset() {
+    running = false; finished = false;
+    cancelAnimationFrame(rafId);
+    hits = 0; misses = 0; maxApm = 0; hitTimes = [];
+    resultPanel.classList.remove('show');
+    buildBoard();
+    hud.time.textContent = duration + 's';
+    setHud();
   }
 
-  // Actions per minute within each 10-second segment.
-  function segmentApms() {
-    const segCount = DURATION / SEGMENT;
-    const segs = new Array(segCount).fill(0);
-    timestamps.forEach(ts => {
-      const idx = Math.floor((ts - startTime) / 1000 / SEGMENT);
-      if (idx >= 0 && idx < segCount) segs[idx] += 1;
-    });
-    return segs.map(c => c * (60 / SEGMENT));
+  function buildSegChart() {
+    // 구간(6개)별 APM 막대
+    const segs = 6, segLen = duration / segs, counts = new Array(segs).fill(0);
+    hitTimes.forEach(ts => { const i = Math.min(segs - 1, Math.floor((ts - startTime) / 1000 / segLen)); if (i >= 0) counts[i] += 1; });
+    const apms = counts.map(c => (c / segLen) * 60);
+    const max = Math.max(1, ...apms);
+    const W = 520, H = 120, pad = 8, bw = (W - pad * 2) / segs;
+    const bars = apms.map((a, i) => { const h = Math.max(2, (a / max) * (H - 34)); const x = pad + i * bw + bw * 0.15; return '<rect x="' + x.toFixed(1) + '" y="' + (H - 22 - h).toFixed(1) + '" width="' + (bw * 0.7).toFixed(1) + '" height="' + h.toFixed(1) + '" rx="3" fill="var(--accent)"/>' +
+      '<text x="' + (x + bw * 0.35).toFixed(1) + '" y="' + (H - 8) + '" text-anchor="middle" font-size="10" fill="var(--muted)">' + Math.round(segLen * (i + 1)) + 's</text>' +
+      '<text x="' + (x + bw * 0.35).toFixed(1) + '" y="' + (H - 26 - h).toFixed(1) + '" text-anchor="middle" font-size="10" fill="var(--ink)">' + Math.round(a) + '</text>'; }).join('');
+    return '<svg class="apm-chart" viewBox="0 0 ' + W + ' ' + H + '" aria-hidden="true">' + bars + '</svg>';
+  }
+
+  function renderGradeTable(apm) {
+    const cur = rankIdx(apm);
+    const rows = [4, 3, 2, 1, 0].map(r => '<tr class="' + (r === cur ? 'current-row' : '') + '"><td>' + RANKS[r] + '</td><td>' + (r === 0 ? '< ' + mode.ranks[0] : mode.ranks[r - 1] + '+') + '</td></tr>').join('');
+    document.getElementById('gradeTable').innerHTML = '<tr><th>' + "Rank" + '</th><th>' + "APM threshold" + '</th></tr>' + rows;
   }
 
   function finish() {
-    running = false;
-    finished = true;
+    running = false; finished = true;
     cancelAnimationFrame(rafId);
-    timeLeftEl.textContent = '0.0';
-    setPad('Done!','Press the button below to restart', false);
+    hud.time.textContent = '0s';
+    if (target >= 0) cells()[target].classList.remove('target');
+    hint.textContent = "Done!";
 
-    const apm = (actions / DURATION) * 60;
-    stats.plays += 1;
-    if (apm > stats.bestApm) stats.bestApm = apm;
-    if (actions > stats.bestActions) stats.bestActions = actions;
-    saveStats(STORE_KEY, stats);
+    const total = hits + misses;
+    const acc = total ? hits / total : 0;
+    const raw = (hits / duration) * 60;
+    const apm = Math.round(raw * acc);
+    const accPct = Math.round(acc * 100);
+    const r = rankIdx(apm);
+
+    const s = modeStats();
+    s.plays += 1;
+    if (apm > s.bestApm) s.bestApm = apm;
+    if (hits > s.bestHits) s.bestHits = hits;
+    allStats[mode.key] = s;
+    saveStats(STATS_KEY, allStats);
     renderStats();
 
-    const grade = gradeFor(apm);
-    const stars = starsFor(apm);
-    const segs = segmentApms();
-    const firstSeg = segs[0];
-    const lastSeg = segs[segs.length - 1];
-    const dropPct = firstSeg > 0 ? ((firstSeg - lastSeg) / firstSeg) * 100 : 0;
-
-    document.getElementById('resultTitle').textContent = Math.round(apm) + ' APM';
-    document.getElementById('resultStars').textContent ='★'.repeat(stars) + '☆'.repeat(5 - stars);
-    document.getElementById('resultDesc').textContent =
-      `${actions} actions total (${mouseActions} / ${keyActions}) — ${grade.label}`;
-    document.getElementById('resultStamina').textContent = dropPct > 0
-      ? `Stamina: last 10s was ${dropPct.toFixed(0)}% slower than your first 10s`
-      : `Stamina: you held your pace all the way through!`;
-    document.getElementById('chartContainer').innerHTML = buildBucketBarChart(segs);
+    document.getElementById('resultTitle').textContent = apm + ' APM';
+    document.getElementById('resultStars').textContent = '★'.repeat(r + 1) + '☆'.repeat(4 - r);
+    document.getElementById('resultDesc').textContent = ((h, a, m, mode, d) => `${h} targets · ${a}% accuracy · max APM ${m} · ${mode} ${d}s`)(hits, accPct, Math.round(maxApm), mode.label, duration);
+    document.getElementById('personaLabel').textContent = RANKS[r];
+    document.getElementById('resultStamina').textContent = ((raw, a, miss, apm) => `Raw APM ${raw} × accuracy ${a}% = final ${apm} APM (${miss} misses)`)(Math.round(raw), accPct, misses, apm);
+    document.getElementById('chartContainer').innerHTML = buildSegChart();
     renderGradeTable(apm);
     resultPanel.classList.add('show');
-    resultPanel.dataset.share = `I hit ${Math.round(apm)} APM (${actions} actions in 60s) on the APM test! Try it yourself → `;
+    resultPanel.dataset.share = ((rank, apm, mode, d) => `I'm an APM ${rank}! ${apm} APM on the APM test (${mode}, ${d}s). Try it yourself → `)(RANKS[r], apm, mode.label, duration);
 
-    const lbList = addToLeaderboard(LB_KEY, { value: apm, actions, date: Date.now() }, false);
-    addRecentRecord('skillApmLeaderboardV1', { value: apm, actions, date: Date.now() });
+    const entry = { value: apm, hits, acc: accPct, duration, date: Date.now() };
+    const lbList = addToLeaderboard(LB_KEYS[mode.key], entry, false);
+    addRecentRecord(RECENT_KEY, { value: apm, mode: mode.label, duration, date: Date.now() });
     renderRecent();
     renderTopLeaderboard(lbList);
   }
 
   function renderRecent() {
-    renderRecentRecords('recentPanel', loadStats('skillApmLeaderboardV1_recent', []), (entry) => `${Math.round(entry.value)} APM · ${entry.actions} actions`, 'No records yet. Try your first challenge!', 8);
+    renderRecentRecords('recentPanel', loadStats(RECENT_KEY + '_recent', []), (e) => ((v, mode, d) => `${v} APM · ${mode} · ${d}s`)(Math.round(e.value), e.mode, e.duration), "No runs yet", 8);
   }
 
   function renderTopLeaderboard(list) {
     renderLeaderboard('topLeaderboard', list, (entry) => {
       const d = new Date(entry.date);
-      const dateStr = `${d.getMonth() + 1}/${d.getDate()}`;
-      return `<span class="lb-name">${Math.round(entry.value)} APM</span><span class="lb-detail">${entry.actions} actions · ${dateStr}</span>`;
-    }, 'No records yet. Try your first challenge!');
+      const dateStr = (d.getMonth() + 1) + '/' + d.getDate();
+      return '<span class="lb-name">' + Math.round(entry.value) + ' APM</span><span class="lb-detail">' + ((h, a) => `${h} targets · ${a}%`)(entry.hits ?? '–', entry.acc ?? '–') + ' · ' + dateStr + '</span>';
+    }, "No records yet. Try your first challenge!");
   }
 
-  document.getElementById('retryBtn').addEventListener('click', () => {
-    finished = false;
-    actions = 0; mouseActions = 0; keyActions = 0;
-    resultPanel.classList.remove('show');
-    setPad('Press any key or click here to start','Live APM appears here', false);
-    timeLeftEl.textContent = DURATION.toFixed(1);
-    apmLine.textContent = 'Actions: 0 · Live APM: 0';
-    document.getElementById('mouseCount').textContent ='0';
-    document.getElementById('keyCount').textContent ='0';
+  // 모드 / 시간 / 타일 크기
+  const modeSelect = document.getElementById('modeSelect');
+  modeSelect.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      mode = MODES.find(m => m.key === btn.dataset.mode) || MODES[0];
+      modeSelect.querySelectorAll('button').forEach(b => b.classList.toggle('active', b === btn));
+      reset();
+      renderStats();
+      renderTopLeaderboard(loadStats(LB_KEYS[mode.key], []));
+    });
   });
 
+  const durationSelect = document.getElementById('durationSelect');
+  function renderDurationButtons() {
+    durationSelect.innerHTML = '';
+    DURATIONS.forEach(d => {
+      const btn = document.createElement('button');
+      btn.textContent = d + 's';
+      if (d === duration) btn.classList.add('active');
+      btn.addEventListener('click', () => { duration = d; renderDurationButtons(); reset(); });
+      durationSelect.appendChild(btn);
+    });
+  }
+  document.getElementById('customApply').addEventListener('click', () => {
+    const v = Math.round(Number(document.getElementById('customSec').value));
+    if (!v || v < 5 || v > 600) return;
+    duration = v;
+    renderDurationButtons();
+    reset();
+  });
+
+  const sizeSelect = document.getElementById('sizeSelect');
+  function applySize(sz) {
+    grid.classList.remove('size-s', 'size-m', 'size-l');
+    grid.classList.add('size-' + sz);
+    sizeSelect.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.size === sz));
+    try { localStorage.setItem(SIZE_KEY, sz); } catch (e) {}
+  }
+  sizeSelect.querySelectorAll('button').forEach(b => b.addEventListener('click', () => applySize(b.dataset.size)));
+
+  document.getElementById('resetBtn').addEventListener('click', reset);
+  document.getElementById('retryBtn').addEventListener('click', reset);
   document.getElementById('shareBtn').addEventListener('click', () => {
     shareResult((resultPanel.dataset.share || '') + location.href);
   });
 
+  let savedSize = 'm';
+  try { savedSize = localStorage.getItem(SIZE_KEY) || 'm'; } catch (e) {}
+  applySize(['s', 'm', 'l'].includes(savedSize) ? savedSize : 'm');
+  renderDurationButtons();
+  buildBoard();
+  hud.time.textContent = duration + 's';
   renderStats();
-  renderTopLeaderboard(loadStats(LB_KEY, []));
+  renderTopLeaderboard(loadStats(LB_KEYS[mode.key], []));
   renderRecent();
 </script>
 </body>

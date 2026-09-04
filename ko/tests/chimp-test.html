@@ -60,6 +60,18 @@
 </style>
 <style>
   .pick-cell { touch-action: manipulation; font-weight: 800; font-size: 26px; }
+  /* 반응속도 테스트의 .stage 와 같은 상자 안에 시작 화면과 격자를 넣는다 */
+  .stage {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; gap: 10px;
+    min-height: 390px; margin: 16px 0; padding: 24px;
+    background: var(--card-bg); border: 1px solid var(--line-strong); border-radius: var(--radius);
+    user-select: none;
+  }
+  .stage #introScreen, .stage #playScreen { width: 100%; }
+  .stage .note-box { background: transparent; border: 0; padding: 0; max-width: 52ch; margin: 0 auto 8px; }
+  .stage .level-card { background: transparent; border: 0; padding: 0; margin: 0 0 4px; }
+  .stage .pick-grid { margin: 12px auto 0; }
 </style>
 <script src="/skill-test/analytics.js" defer></script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
@@ -91,6 +103,7 @@
     <h1>침팬지 테스트</h1>
     <p class="sub">숫자가 동시에 나타났다 첫 클릭과 함께 가려집니다. 순서대로 기억해서 눌러보세요.</p>
 
+    <div class="stage">
     <div id="introScreen">
       <div class="note-box" style="text-align:center;">
         1부터 시작하는 숫자들이 격자 위에 동시에 나타납니다. 숫자 1을 누르는 순간 나머지
@@ -109,6 +122,7 @@
         <div class="sub" id="livesSub">❤️❤️❤️</div>
       </div>
       <div class="pick-grid" id="chimpGrid"></div>
+    </div>
     </div>
 
     <div id="resultPanel" class="result-panel">

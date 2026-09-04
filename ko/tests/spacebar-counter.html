@@ -451,14 +451,14 @@
   }
 
   function renderRecent() {
-    renderRecentRecords('recentPanel', loadStats('skillSpacebarLeaderboardV1_recent', []), (entry) => `${entry.value}회 · 초당 ${entry.rate.toFixed(1)}`, '아직 기록이 없어요. 첫 도전을 해보세요!', 8);
+    renderRecentRecords('recentPanel', loadStats('skillSpacebarLeaderboardV1_recent', []), (entry) => `${entry.value}회 · 초당 ${fmtNum(entry.rate, 1)}`, '아직 기록이 없어요. 첫 도전을 해보세요!', 8);
   }
 
   function renderTopLeaderboard(list) {
     renderLeaderboard('topLeaderboard', list, (entry) => {
       const d = new Date(entry.date);
       const dateStr = `${d.getMonth() + 1}/${d.getDate()}`;
-      return `<span class="lb-name">${entry.value}회</span><span class="lb-detail">초당 ${entry.rate.toFixed(1)} · ${dateStr}</span>`;
+      return `<span class="lb-name">${entry.value}회</span><span class="lb-detail">초당 ${fmtNum(entry.rate, 1)} · ${dateStr}</span>`;
     }, '아직 기록이 없어요. 첫 도전을 해보세요!');
   }
 

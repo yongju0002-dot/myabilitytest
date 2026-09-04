@@ -776,9 +776,9 @@
       const d = new Date(entry.date);
       const dateStr = `${d.getMonth() + 1}/${d.getDate()}`;
       const v = mode.metric === 'ms' ? Math.round(entry.value) + ' ms'
-        : mode.metric === 'tps' ? entry.value.toFixed(2) + ' /秒'
-        : entry.value.toFixed(0) + '%';
-      return `<span class="lb-name">${v}</span><span class="lb-detail">正確度 ${entry.accuracy.toFixed(0)}% · ${dateStr}</span>`;
+        : mode.metric === 'tps' ? fmtNum(entry.value, 2) + ' /秒'
+        : fmtNum(entry.value, 0) + '%';
+      return `<span class="lb-name">${v}</span><span class="lb-detail">正確度 ${fmtNum(entry.accuracy, 0)}% · ${dateStr}</span>`;
     }, 'まだ記録がありません。最初の挑戦をしてみましょう!');
   }
 

@@ -428,14 +428,14 @@
   }
 
   function renderRecent() {
-    renderRecentRecords('recentPanel', loadStats('skillSpacebarLeaderboardV1_recent', []), (entry) => `${entry.value}次 · 每秒${entry.rate.toFixed(1)}`, '还没有记录。快来挑战第一次吧!', 8);
+    renderRecentRecords('recentPanel', loadStats('skillSpacebarLeaderboardV1_recent', []), (entry) => `${entry.value}次 · 每秒${fmtNum(entry.rate, 1)}`, '还没有记录。快来挑战第一次吧!', 8);
   }
 
   function renderTopLeaderboard(list) {
     renderLeaderboard('topLeaderboard', list, (entry) => {
       const d = new Date(entry.date);
       const dateStr = `${d.getMonth() + 1}/${d.getDate()}`;
-      return `<span class="lb-name">${entry.value}次</span><span class="lb-detail">每秒${entry.rate.toFixed(1)} · ${dateStr}</span>`;
+      return `<span class="lb-name">${entry.value}次</span><span class="lb-detail">每秒${fmtNum(entry.rate, 1)} · ${dateStr}</span>`;
     }, '还没有记录。快来挑战第一次吧!');
   }
 

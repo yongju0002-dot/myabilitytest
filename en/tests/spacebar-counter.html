@@ -428,14 +428,14 @@
   }
 
   function renderRecent() {
-    renderRecentRecords('recentPanel', loadStats('skillSpacebarLeaderboardV1_recent', []), (entry) => `${entry.value} presses · ${entry.rate.toFixed(1)}/s`, 'No records yet. Try your first challenge!', 8);
+    renderRecentRecords('recentPanel', loadStats('skillSpacebarLeaderboardV1_recent', []), (entry) => `${entry.value} presses · ${fmtNum(entry.rate, 1)}/s`, 'No records yet. Try your first challenge!', 8);
   }
 
   function renderTopLeaderboard(list) {
     renderLeaderboard('topLeaderboard', list, (entry) => {
       const d = new Date(entry.date);
       const dateStr = `${d.getMonth() + 1}/${d.getDate()}`;
-      return `<span class="lb-name">${entry.value} presses</span><span class="lb-detail">${entry.rate.toFixed(1)}/s · ${dateStr}</span>`;
+      return `<span class="lb-name">${entry.value} presses</span><span class="lb-detail">${fmtNum(entry.rate, 1)}/s · ${dateStr}</span>`;
     }, 'No records yet. Try your first challenge!');
   }
 

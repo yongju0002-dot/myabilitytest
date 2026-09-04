@@ -440,14 +440,14 @@
   }
 
   function renderRecent() {
-    renderRecentRecords('recentPanel', loadStats('skillMouseAccuracyLeaderboardV1_recent', []), (entry) => `${Math.round(entry.value)}分 · 精准度${entry.accuracy.toFixed(0)}% · ${entry.seconds.toFixed(1)}秒`, '还没有记录。快来挑战第一次吧!', 8);
+    renderRecentRecords('recentPanel', loadStats('skillMouseAccuracyLeaderboardV1_recent', []), (entry) => `${Math.round(entry.value)}分 · 精准度${fmtNum(entry.accuracy, 0)}% · ${fmtNum(entry.seconds, 1)}秒`, '还没有记录。快来挑战第一次吧!', 8);
   }
 
   function renderTopLeaderboard(list) {
     renderLeaderboard('topLeaderboard', list, (entry) => {
       const d = new Date(entry.date);
       const dateStr = `${d.getMonth() + 1}/${d.getDate()}`;
-      return `<span class="lb-name">${Math.round(entry.value)}分</span><span class="lb-detail">精准度${entry.accuracy.toFixed(0)}% · ${entry.seconds.toFixed(1)}秒 · ${dateStr}</span>`;
+      return `<span class="lb-name">${Math.round(entry.value)}分</span><span class="lb-detail">精准度${fmtNum(entry.accuracy, 0)}% · ${fmtNum(entry.seconds, 1)}秒 · ${dateStr}</span>`;
     }, '还没有记录。快来挑战第一次吧!');
   }
 

@@ -441,14 +441,14 @@
   }
 
   function renderRecent() {
-    renderRecentRecords('recentPanel', loadStats('skillMouseAccuracyLeaderboardV1_recent', []), (entry) => `${Math.round(entry.value)} pts · ${entry.accuracy.toFixed(0)}% · ${entry.seconds.toFixed(1)}s`, 'No records yet. Try your first challenge!', 8);
+    renderRecentRecords('recentPanel', loadStats('skillMouseAccuracyLeaderboardV1_recent', []), (entry) => `${Math.round(entry.value)} pts · ${fmtNum(entry.accuracy, 0)}% · ${fmtNum(entry.seconds, 1)}s`, 'No records yet. Try your first challenge!', 8);
   }
 
   function renderTopLeaderboard(list) {
     renderLeaderboard('topLeaderboard', list, (entry) => {
       const d = new Date(entry.date);
       const dateStr = `${d.getMonth() + 1}/${d.getDate()}`;
-      return `<span class="lb-name">${Math.round(entry.value)} pts</span><span class="lb-detail">${entry.accuracy.toFixed(0)}% · ${entry.seconds.toFixed(1)}s · ${dateStr}</span>`;
+      return `<span class="lb-name">${Math.round(entry.value)} pts</span><span class="lb-detail">${fmtNum(entry.accuracy, 0)}% · ${fmtNum(entry.seconds, 1)}s · ${dateStr}</span>`;
     }, 'No records yet. Try your first challenge!');
   }
 

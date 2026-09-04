@@ -215,3 +215,9 @@ function renderRankLadder(containerId, grades, best, opts = {}) {
     }).join('') +
     '</div>';
 }
+
+// 저장 형식이 바뀌기 전의 옛 순위/최근 기록 항목에는 일부 필드가 없을 수 있다.
+// 숫자가 아니면 toFixed 로 죽는 대신 '–' 를 돌려준다.
+function fmtNum(v, digits) {
+  return typeof v === 'number' && isFinite(v) ? v.toFixed(digits) : '–';
+}

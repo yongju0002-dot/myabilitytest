@@ -418,7 +418,7 @@ h2 { font-size: clamp(22px, 3vw, 30px); font-weight: 900; letter-spacing: -0.03e
 .choice-btn.wrong { background: var(--danger); border-color: var(--danger); color: var(--on-accent); }
 
 /* ---- 픽 그리드 ---- */
-.pick-grid { display: grid; gap: 6px; margin: 20px 0; }
+.pick-grid { display: grid; gap: 6px; margin: 20px auto; max-width: 640px; }   /* 칸이 1fr 로 1128px 를 채우면 220px 짜리가 되어 세로 스크롤이 필요해진다 */
 .pick-cell {
   aspect-ratio: 1;
   background: var(--card-bg);

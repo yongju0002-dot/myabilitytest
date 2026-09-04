@@ -292,8 +292,8 @@
 
   function buildGrid() {
     const isMobile = window.innerWidth < 768;
-    const cols = 5;
-    const rows = isMobile ? 6 : 8;
+    const cols = isMobile ? 5 : 8;   // 데스크톱은 가로로 눕혀 격자 높이를 줄인다 (칸 수 40 동일)
+    const rows = isMobile ? 6 : 5;
     totalCells = cols * rows;
     grid.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
     grid.innerHTML = '';

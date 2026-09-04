@@ -172,7 +172,6 @@
       </div>
     </div>
 
-    <footer class="note">예측 클릭(초록색이 되기 전 클릭)은 기록으로 인정되지 않습니다</footer>
 
     <div class="guide">
     <div class="section-head"><h2>반응 속도 테스트 가이드</h2><span class="note">무엇을 재는지 · 평균 · 측정 요령 · 향상 방법</span></div>
@@ -286,7 +285,7 @@
   const MODES = [
     { key: 'simple', label : '단순 반응', hint : '색이 바뀌는 순간 클릭하는 고전 방식입니다.', percentile: true },
     { key: 'f1', label : 'F1 스타트', hint : '빨간 불 5개가 순서대로 켜지고, 모두 꺼지는 순간 클릭하세요. F1 출발 신호 방식이에요.', percentile: false },
-    { key: 'gonogo', label : '선택 반응', hint : '초록일 때만 클릭하세요. 빨강에 클릭하면 실패입니다.', percentile: false },
+    { key: 'gonogo', label : '선택 반응', hint : '주황일 때만 클릭하세요. 회색에 클릭하면 실패입니다.', percentile: false },
   ];
   let mode = MODES[0];
   let noGoRound = false;   // 이번 라운드가 No-Go(클릭하면 안 되는 라운드)인지
@@ -467,7 +466,7 @@
       timeoutId = setTimeout(() => {
         state = STATE.GO;
         startTime = performance.now();
-        setStage('go', `
+        setStage('wait', `
           <div class="f1-lights">${'<div class="f1-light"></div>'.repeat(5)}</div>
           <div class="big">지금 클릭!</div>
         `);
@@ -478,11 +477,11 @@
     if (mode.key === 'gonogo') {
       setStage('wait', `
         <div class="big">기다리세요...</div>
-        <div class="small">라운드 ${currentRound} / ${totalRounds} — 초록일 때만 클릭!</div>
+        <div class="small">라운드 ${currentRound} / ${totalRounds} — 주황일 때만 클릭!</div>
       `);
       const delay = randomDelay();
       timeoutId = setTimeout(() => {
-        // 30% 확률로 No-Go(빨강) 라운드
+        // 30% 확률로 No-Go(회색) 라운드
         noGoRound = Math.random() < 0.3;
         if (noGoRound) {
           state = STATE.GO;
@@ -690,7 +689,7 @@
       clearTimeout(timeoutId);
       noGoRound = false;
       state = STATE.EARLY;
-      setStage('early', `<div class="big">빨강엔 누르면 안 돼요!</div><div class="small">다시 클릭하면 이번 라운드를 재시도합니다</div>`);
+      setStage('early', `<div class="big">회색엔 누르면 안 돼요!</div><div class="small">다시 클릭하면 이번 라운드를 재시도합니다</div>`);
       return;
     }
 

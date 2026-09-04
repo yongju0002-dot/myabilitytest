@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>마우스 정확도 테스트 | 능력 테스트</title>
-<meta name="description" content="구불구불한 경로를 커서로 따라가세요. 경로 이탈률과 완주 시간으로 마우스 컨트롤 정확도를 재는 무료 테스트.">
+<meta name="description" content="경로 따라가기, 도형 그리기, 정밀 클릭, 정밀한 손놀림 4가지 모드로 마우스 커서 정밀도를 측정합니다. 난이도 3단계와 연속 도전, 정확도·편차·시간, 6단계 등급. 무료 마우스 정확도 테스트.">
 <link rel="canonical" href="https://myabilitytest.com/ko/tests/mouse-accuracy">
 <link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/mouse-accuracy">
 <link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/mouse-accuracy">
@@ -14,7 +14,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="MyAbilityTest">
 <meta property="og:title" content="마우스 정확도 테스트 | 능력 테스트">
-<meta property="og:description" content="구불구불한 경로를 커서로 따라가세요. 경로 이탈률과 완주 시간으로 마우스 컨트롤 정확도를 재는 무료 테스트.">
+<meta property="og:description" content="경로 따라가기, 도형 그리기, 정밀 클릭, 정밀한 손놀림 4가지 모드로 마우스 커서 정밀도를 측정합니다. 난이도 3단계와 연속 도전, 정확도·편차·시간, 6단계 등급. 무료 마우스 정확도 테스트.">
 <meta property="og:url" content="https://myabilitytest.com/ko/tests/mouse-accuracy">
 <meta property="og:image" content="https://myabilitytest.com/og-default.png">
 <meta property="og:image:width" content="1200">
@@ -22,7 +22,7 @@
 <meta property="og:locale" content="ko_KR">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="마우스 정확도 테스트 | 능력 테스트">
-<meta name="twitter:description" content="구불구불한 경로를 커서로 따라가세요. 경로 이탈률과 완주 시간으로 마우스 컨트롤 정확도를 재는 무료 테스트.">
+<meta name="twitter:description" content="경로 따라가기, 도형 그리기, 정밀 클릭, 정밀한 손놀림 4가지 모드로 마우스 커서 정밀도를 측정합니다. 난이도 3단계와 연속 도전, 정확도·편차·시간, 6단계 등급. 무료 마우스 정확도 테스트.">
 <meta name="twitter:image" content="https://myabilitytest.com/og-default.png">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
@@ -57,6 +57,30 @@
   .info th, .info td { border: 1px solid var(--line); padding: 8px; text-align: left; }
   .info th { background: var(--card-bg); }
   .persona-label { margin-top: 6px; font-size: 19px; font-weight: 700; color: var(--accent); }
+  /* 마우스 정확도: 캔버스 스테이지 */
+  .macc-row { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; margin: 4px 0; }
+  .macc-row .duration-select { margin: 0; }
+  .macc-lbl { font-size: 12px; color: var(--muted); }
+  .macc-stage { padding: 18px; }
+  .macc-hud { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px 20px; font-family: var(--mono); margin-bottom: 12px; }
+  .macc-hud > div { display: flex; flex-direction: column; align-items: center; min-width: 64px; }
+  .macc-hud .k { font-size: 11px; color: var(--muted); }
+  .macc-hud b { font-size: 18px; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .macc-hud b.good { color: var(--good); }
+  .macc-reset { padding: 6px 12px; border-radius: 6px; border: 1px solid var(--line-strong); background: transparent; color: var(--body); cursor: pointer; font-size: 12px; font-family: inherit; }
+  .macc-reset:hover { border-color: var(--ink); color: var(--ink); }
+  .macc-box { position: relative; width: 100%; max-width: 600px; margin: 0 auto; }
+  #maccCanvas { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; cursor: crosshair; touch-action: none; user-select: none; }
+  .macc-hint { position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%); text-align: center; pointer-events: none; padding: 0 16px; }
+  .macc-hint b { display: block; font-size: 16px; color: var(--ink); margin-bottom: 4px; }
+  .macc-hint span { font-size: 12.5px; color: var(--muted); }
+  .macc-modal { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); background: var(--card-bg); border: 1px solid var(--line-strong); border-radius: 12px; padding: 20px 26px; text-align: center; min-width: 220px; box-shadow: 0 12px 40px rgba(0,0,0,0.45); }
+  .mm-title { font-size: 20px; font-weight: 800; margin-bottom: 12px; }
+  .mm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 22px; margin-bottom: 10px; }
+  .mm-grid .k { display: block; font-size: 11px; color: var(--muted); }
+  .mm-grid .v { display: block; font-family: var(--mono); font-size: 22px; font-weight: 700; }
+  .mm-grid .v.good { color: var(--good); }
+  .mm-sub { font-size: 12.5px; color: var(--muted); margin-bottom: 12px; min-height: 1em; }
 </style>
 <style>
   .related-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
@@ -112,25 +136,36 @@
       <span class="idx">12 / 15</span>
     </nav>
     <h1>마우스 정확도 테스트</h1>
-    <p class="sub">초록 시작 지점에서 출발해 경로를 따라 끝까지 이동하세요.</p>
+    <p class="sub">경로 따라가기 · 도형 그리기 · 정밀 클릭 · 정밀한 손놀림 — 커서를 얼마나 정밀하게 다루는지 확인하세요.</p>
 
-    <div class="info-box" id="howto">
-      커서(또는 손가락)를 <b>초록색 시작 지점</b>에 올리면 시작됩니다. 경로를 벗어나도
-      실패하지 않지만 이탈 시간이 기록돼요. <b>빨간 도착 지점</b>에 닿으면 완주입니다.
+    <div class="mode-select" id="modeSelect">
+      <button data-mode="path" class="active">경로 따라가기</button>
+      <button data-mode="draw">도형 그리기</button>
+      <button data-mode="click">정밀 클릭</button>
+      <button data-mode="steady">정밀한 손놀림</button>
     </div>
+    <div class="macc-row"><span class="macc-lbl">난이도</span><div class="duration-select" id="diffSelect"></div></div>
+    <div class="macc-row" id="shapeRow"><div class="duration-select" id="shapeSelect"></div></div>
 
-    <div class="stage">
-    <div class="track-box" id="trackBox">
-      <svg id="trackSvg" viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg">
-        <path id="trackPath" class="track-stroke" d="M 40 160 C 130 40, 190 280, 300 160 S 470 40, 560 160" stroke-width="44"></path>
-        <path class="track-guide" d="M 40 160 C 130 40, 190 280, 300 160 S 470 40, 560 160"></path>
-        <circle class="zone" id="startZone" cx="40" cy="160" r="24" fill="#35a35a"></circle>
-        <circle class="zone" id="endZone" cx="560" cy="160" r="24" fill="#e0524f"></circle>
-        <circle class="cursor-dot" id="cursorDot" cx="-100" cy="-100" r="6"></circle>
-      </svg>
-    </div>
-
-    <div class="status-line" id="statusLine">시작 지점에 커서를 올리세요</div>
+    <div class="stage macc-stage">
+      <div class="macc-hud">
+        <div><span class="k">정확도</span><b id="hudAcc">0.0%</b></div>
+        <div><span class="k">편차</span><b id="hudDev">0px</b></div>
+        <div><span class="k">시간</span><b id="hudTime">0.0s</b></div>
+        <div><span class="k">진행률</span><b id="hudProg">0%</b></div>
+        <div><span class="k">등급</span><b id="hudGrade">초보자</b></div>
+        <button type="button" class="macc-reset" id="resetBtn">초기화</button>
+      </div>
+      <div class="macc-box">
+        <canvas id="maccCanvas" width="600" height="400"></canvas>
+        <div class="macc-hint" id="maccHint"><b id="hintMain">녹색 시작 지점을 클릭하여 시작하세요</b><span id="hintSub">중앙선을 유지하세요 - 너무 멀리 벗어나면 실패입니다!</span></div>
+        <div class="macc-modal" id="maccModal" style="display:none;">
+          <div class="mm-title" id="mmTitle"></div>
+          <div class="mm-grid" id="mmGrid"></div>
+          <div class="mm-sub" id="mmSub"></div>
+          <button type="button" class="btn" id="mmRetry">다시 시도</button>
+        </div>
+      </div>
     </div>
 
     <div id="resultPanel" class="result-panel">
@@ -162,11 +197,11 @@
         <div class="value" id="statCount">0</div>
       </div>
       <div class="stat-box">
-        <div class="label">최고 점수</div>
+        <div class="label">최고 정확도</div>
         <div class="value" id="statBest">-</div>
       </div>
       <div class="stat-box">
-        <div class="label">최고 정확도</div>
+        <div class="label">최소 편차</div>
         <div class="value" id="statBestAcc">-</div>
       </div>
     </div>
@@ -187,33 +222,23 @@
     <div class="guide-grid">
       <div class="guide-box">
         <h3>마우스 정확도란?</h3>
-        <p>목표 지점을 정확히 클릭하는 능력(플리킹)과 달리, 이 테스트는 커서를 의도한 궤적 위에 <strong>유지</strong>하는 능력을 봅니다. FPS 게임의 트래킹 에임, 그래픽 툴의 펜 작업, 드래그 조작처럼 "정확히 따라가는" 상황에 필요한 컨트롤이에요.</p>
+        <p>커서를 얼마나 정밀하게 제어할 수 있는지를 뜻합니다. 속도와 반사 신경을 보는 에임 테스트와 달리, 이 테스트는 미세 운동 조절과 안정성, 정해진 경로를 정교하게 따라가는 능력을 봅니다.</p><p>사진 편집·디지털 드로잉처럼 정밀한 커서 조작이 필요한 작업이나, 게임 내 세밀한 움직임을 연습하려는 분에게 맞습니다.</p>
       </div>
       <div class="guide-box">
-        <h3>평균은 어느 정도인가요? 좋은 점수는?</h3>
-        <p>이 사이트 기준으로 <strong>종합 점수 40~55점이 평균(C)</strong>, 55~68점이면 평균 이상, 80점을 넘으면 매우 안정적인 편입니다. 공식 통계가 아니라 이 사이트의 자체 등급 기준입니다.</p>
-        <p>점수는 경로 안에 머문 시간 비율과 완주 시간을 함께 반영하므로, 느리더라도 경로를 벗어나지 않으면 생각보다 점수가 잘 나옵니다.</p>
+        <h3>테스트 모드 4가지</h3>
+        <ul><li><strong>경로 따라가기</strong> — 중앙선에서 벗어나지 않게 경로를 따라 이동합니다. 너무 멀어지면 즉시 실패.</li><li><strong>도형 그리기</strong> — 원·사각형·삼각형·별의 외곽선을 최대한 정확하게 그립니다.</li><li><strong>정밀 클릭</strong> — 점점 작아지는 표적 10개의 중심에 최대한 가깝게 클릭합니다.</li><li><strong>정밀한 손놀림</strong> — 벽에 닿지 않고 좁은 터널을 통과합니다. 통로는 넓지만 닿는 즉시 실패.</li></ul>
       </div>
       <div class="guide-box">
-        <h3>결과 해석표</h3>
-        <table>
-        <tr><th>종합 점수</th><th>등급</th></tr>
-        <tr><td>90점 이상</td><td>SS · 정밀 조작</td></tr>
-        <tr><td>80 ~ 90점</td><td>S · 매우 안정적</td></tr>
-        <tr><td>68 ~ 80점</td><td>A · 안정적</td></tr>
-        <tr><td>55 ~ 68점</td><td>B · 평균 이상</td></tr>
-        <tr><td>40 ~ 55점</td><td>C · 평균</td></tr>
-        <tr><td>40점 미만</td><td>D · 연습 필요</td></tr>
-        </table>
+        <h3>등급 분류</h3>
+        <table><tr><th>등급</th><th>정확도</th></tr><tr><td>마스터</td><td>92~100%</td></tr><tr><td>전문가</td><td>85~91%</td></tr><tr><td>숙련자</td><td>75~84%</td></tr><tr><td>우수</td><td>65~74%</td></tr><tr><td>일반</td><td>50~64%</td></tr><tr><td>초보자</td><td>0~49%</td></tr></table>
       </div>
       <div class="guide-box">
         <h3>점수는 어떻게 계산되나요?</h3>
-        <p>점수는 경로 안에 머문 시간 비율(정확도)과 완주 시간을 함께 반영합니다. 너무 빨리 움직이면 경로를 벗어나기 쉽고, 너무 조심스러우면 시간이 길어지기 때문에 속도와 정확성의 균형이 중요합니다. 마우스 감도가 지나치게 높으면 미세 조정이 어려우니 감도를 조절해보는 것도 도움이 됩니다.</p>
+        <ul><li><strong>정확도(%)</strong> — 이상적인 경로나 표적 중심에 얼마나 가까운지. 높을수록 좋습니다.</li><li><strong>편차(px)</strong> — 완벽한 선으로부터의 평균 거리. 낮을수록 좋습니다.</li><li><strong>시간</strong> — 완료까지 걸린 시간. 속도와 정확도의 균형을 맞추세요.</li><li>난이도가 높을수록 경로가 좁아지고 표적이 작아지며 허용 오차가 줄어듭니다. "모두 (연속 도전)"은 모든 경로·도형을 차례로 이어서 테스트합니다.</li></ul>
       </div>
       <div class="guide-box wide">
-        <h3>실력을 높일 수 있나요?</h3>
-        <p>됩니다. 트래킹은 에임 중에서도 연습 효과가 비교적 잘 나타나는 쪽으로 알려져 있어요. 마우스 감도를 살짝 낮춰 미세 조정 여유를 만들고, 손목이 아니라 <strong>팔꿈치를 축으로 팔 전체</strong>를 쓰는 습관이 곡선 구간에서 특히 도움이 됩니다.</p>
-        <p>처음엔 속도를 포기하고 경로를 벗어나지 않는 데만 집중한 뒤, 정확도가 안정되면 조금씩 속도를 올리는 순서가 결과적으로 점수를 가장 빨리 올립니다.</p>
+        <h3>정밀도 향상 팁</h3>
+        <p><strong>DPI 낮추기</strong>: 400~800 DPI가 정밀한 움직임을 제어하기에 유리합니다. <strong>팔 전체 사용</strong>: 손목만 쓰기보다 팔을 이용한 큰 움직임이 더 안정적입니다. <strong>힘 빼기</strong>: 손에 힘이 들어가면 떨림이 생기니 단단하되 편안하게 쥐세요. <strong>좋은 마우스패드</strong>: 일관된 마찰력이 정밀한 컨트롤의 기본입니다. <strong>매일 연습</strong>: 하루 10분이면 근육 기억을 쌓는 데 충분합니다.</p>
       </div>
     </div>
     </div>
@@ -280,201 +305,411 @@
 
 <script src="/skill-test/common.js"></script>
 <script>
-  const STORE_KEY = 'skillMouseAccuracyStats';
-  const LB_KEY = 'skillMouseAccuracyLeaderboardV1';
-  let allStats = loadStats(STORE_KEY, {});
+  const T = {"modes":{"path":"경로 따라가기","draw":"도형 그리기","click":"정밀 클릭","steady":"정밀한 손놀림"},"diffs":{"easy":"쉬움","normal":"보통","hard":"어려움","all":"모두 (연속 도전)"},"shapes":{"line":"직선","curve":"곡선","zigzag":"지그재그","spiral":"나선형","wave":"물결","circle":"원","square":"사각형","triangle":"삼각형","star":"별"},"grades":["초보자","일반","우수","숙련자","전문가","마스터"],"hint":{"path":["녹색 시작 지점을 클릭하여 시작하세요","중앙선을 유지하세요 - 너무 멀리 벗어나면 실패입니다!"],"steady":["녹색 시작 지점을 클릭하여 시작하세요","터널을 통과하세요 - 벽에 닿으면 실패입니다!"],"draw":["아무 곳이나 클릭하여 그리기를 시작하세요","도형의 외곽선을 따라 정밀하게 그리세요 (다시 클릭하면 마침)"],"click":["아무 곳이나 클릭하여 시작하세요","표적의 중심에 최대한 가깝게 클릭하세요 (표적 10개, 점점 작아짐)"]},"done":"테스트 완료!","fail":"실패!","failPath":"경로에서 너무 멀리 벗어났습니다","failSteady":"벽에 닿았습니다","next":"다음 코스로…","gauntletTag":"연속 도전","rankTh":"등급","thTh":"정확도","emptyLb":"아직 기록이 없어요. 첫 도전을 해보세요!","emptyRecent":"아직 기록이 없어요","hud":{"acc":"정확도","dev":"편차","time":"시간","prog":"진행률","grade":"등급"}};
+  const fmtDesc = (mode, shape, diff, t, dev) => `${mode}${shape ? ' · ' + shape : ''} · ${diff} · ${t}초 · 편차 ${dev}px`;
+  const fmtShare = (grade, acc, mode) => `나는 마우스 정확도 ${grade}! ${mode}에서 정확도 ${acc}% 기록! 너도 해봐 → `;
+  const fmtLb = (diff, t, dev) => `${diff} · ${t}초 · ${dev}px`;
+  const fmtRecent = (acc, mode, diff, t) => `${acc}% · ${mode} · ${diff} · ${t}초`;
 
-  const GRADES = [
-    { key: 'SS', min: 90, label : 'SS · 정밀 조작', persona : '정밀 조작의 신' },
-    { key: 'S', min: 80, label : 'S · 매우 안정적', persona : '안정적인 손' },
-    { key: 'A', min: 68, label : 'A · 안정적', persona : '능숙한 컨트롤러' },
-    { key: 'B', min: 55, label : 'B · 평균 이상', persona : '무난한 조작' },
-    { key: 'C', min: 40, label : 'C · 평균', persona : '흔들리는 손' },
-    { key: 'D', min: 0, label : 'D · 연습 필요', persona : '연습이 필요한 손' },
-  ];
+  const W = 600, H = 400;
+  const MODES = ['path', 'draw', 'click', 'steady'];
+  const DIFFS = ['easy', 'normal', 'hard'];
+  const PATH_SHAPES = ['line', 'curve', 'zigzag', 'spiral', 'wave'];
+  const DRAW_SHAPES = ['circle', 'square', 'triangle', 'star'];
+  // 허용 오차(px): 경로 중심선에서 이만큼 벗어나면 실패 / 그리기·클릭은 점수 감산 기준
+  const TOL = { path: { easy: 34, normal: 24, hard: 16 }, steady: { easy: 56, normal: 40, hard: 26 }, draw: { easy: 34, normal: 24, hard: 16 } };
+  const CLICK_R = { easy: [52, 18], normal: [44, 14], hard: [36, 10] };   // 표적 반지름: 첫 → 열 번째
+  const CLICK_N = 10;
+  const GRADE_MIN = [0, 50, 65, 75, 85, 92];
+  const STATS_KEY = 'skillMouseAccStatsV2';
+  const LB_PREFIX = 'skillMouseAccLeaderboardV2_';
+  const RECENT_KEY = 'skillMouseAccLeaderboardV2';
 
-  function gradeFor(score) {
-    return GRADES.find(g => score >= g.min) || GRADES[GRADES.length - 1];
-  }
+  let allStats = loadStats(STATS_KEY, {});
+  let mode = 'path', diff = 'normal', gauntlet = false;
+  let shape = 'line';
+  let state = 'idle';   // idle | running | done | failed
+  let startTime = 0, rafId = null;
+  let samples = [];     // 이동 표본의 편차(px)
+  let trail = [];       // 최근 궤적
+  let pts = [];         // 경로/도형 표본점
+  let covered = [];     // 도형 그리기: 표본점 덮음 여부
+  let maxIdx = 0;       // 경로 진행 인덱스
+  let clicks = [];      // 정밀 클릭: {acc, dist}
+  let target = null;    // 정밀 클릭 표적 {x, y, r}
+  let gRuns = [];       // 연속 도전 결과
+  let gIdx = 0;
+  let lastResult = null;
 
-  function starsFor(score) {
-    if (score >= 90) return 5;
-    if (score >= 80) return 4;
-    if (score >= 68) return 3;
-    if (score >= 55) return 2;
-    return 1;
-  }
-
-  const svg = document.getElementById('trackSvg');
-  const trackPath = document.getElementById('trackPath');
-  const cursorDot = document.getElementById('cursorDot');
-  const statusLine = document.getElementById('statusLine');
+  const canvas = document.getElementById('maccCanvas');
+  const ctx = canvas.getContext('2d');
+  const hud = { acc: document.getElementById('hudAcc'), dev: document.getElementById('hudDev'), time: document.getElementById('hudTime'), prog: document.getElementById('hudProg'), grade: document.getElementById('hudGrade') };
+  const hintEl = document.getElementById('maccHint');
+  const modal = document.getElementById('maccModal');
   const resultPanel = document.getElementById('resultPanel');
-  const START = { x: 40, y: 160, r: 24 };
-  const END = { x: 560, y: 160, r: 24 };
 
-  let running = false;
-  let finished = false;
-  let inputType = null;
-  let lastPoint = null;
-  let onTime = 0;
-  let offTime = 0;
-  let startTime = 0;
-  let lastFrame = 0;
-  let rafId = null;
+  function gradeIdx(acc) { return GRADE_MIN.filter(m => acc >= m).length - 1; }
+  function tol() { return TOL[mode === 'steady' ? 'steady' : mode === 'draw' ? 'draw' : 'path'][diff]; }
+  function shapesFor() { return mode === 'draw' ? DRAW_SHAPES : mode === 'click' ? [] : PATH_SHAPES; }
+  function statKey() { return mode + '_' + (gauntlet ? 'all' : diff); }
+  function modeStats() { return allStats[statKey()] || { plays: 0, best: 0, bestDev: null }; }
+  function shapeLabel() { return mode === 'click' ? '' : T.shapes[shape]; }
+  function diffLabel() { return gauntlet ? T.diffs.all : T.diffs[diff]; }
 
-  function getBucket(mode) {
-    return allStats[mode] || { plays: 0, bestScore: 0, bestAcc: 0 };
+  // ---------- 경로/도형 표본점 ----------
+  function buildPoints() {
+    const N = 400, out = [];
+    const cx = 300, cy = 200;
+    const lerpPoly = (poly) => {
+      const segs = []; let total = 0;
+      for (let i = 1; i < poly.length; i++) { const d = Math.hypot(poly[i][0] - poly[i - 1][0], poly[i][1] - poly[i - 1][1]); segs.push(d); total += d; }
+      for (let k = 0; k < N; k++) {
+        let d = (k / (N - 1)) * total, i = 0;
+        while (i < segs.length - 1 && d > segs[i]) { d -= segs[i]; i++; }
+        const f = segs[i] ? d / segs[i] : 0;
+        out.push([poly[i][0] + (poly[i + 1][0] - poly[i][0]) * f, poly[i][1] + (poly[i + 1][1] - poly[i][1]) * f]);
+      }
+    };
+    if (mode === 'draw') {
+      if (shape === 'circle') { for (let k = 0; k < N; k++) { const a = -Math.PI / 2 + (k / N) * Math.PI * 2; out.push([cx + 130 * Math.cos(a), cy + 130 * Math.sin(a)]); } }
+      else if (shape === 'square') lerpPoly([[180, 80], [420, 80], [420, 320], [180, 320], [180, 80]]);
+      else if (shape === 'triangle') lerpPoly([[300, 60], [450, 330], [150, 330], [300, 60]]);
+      else { const poly = []; for (let k = 0; k <= 10; k++) { const a = -Math.PI / 2 + (k / 10) * Math.PI * 2; const r = k % 2 === 0 ? 145 : 62; poly.push([cx + r * Math.cos(a), cy + r * Math.sin(a)]); } lerpPoly(poly); }
+    } else {
+      if (shape === 'line') lerpPoly([[50, 200], [550, 200]]);
+      else if (shape === 'curve') { for (let k = 0; k < N; k++) { const u = k / (N - 1); out.push([50 + 500 * u, 200 - 110 * Math.sin(u * Math.PI * 2)]); } }
+      else if (shape === 'zigzag') lerpPoly([[50, 300], [175, 100], [300, 300], [425, 100], [550, 300]]);
+      else if (shape === 'spiral') { for (let k = 0; k < N; k++) { const u = k / (N - 1); const a = u * Math.PI * 3; const r = 160 - 145 * u; out.push([cx + r * Math.cos(Math.PI + a), cy + r * Math.sin(Math.PI + a) * 0.85]); } }
+      else { for (let k = 0; k < N; k++) { const u = k / (N - 1); out.push([50 + 500 * u, 200 - 70 * Math.sin(u * Math.PI * 6)]); } }
+    }
+    pts = out;
+    covered = new Array(out.length).fill(false);
   }
 
-  function renderStats() {
-    const bs = getBucket(inputType || 'mouse');
-    document.getElementById('statCount').textContent = bs.plays;
-    document.getElementById('statBest').textContent = bs.plays ? Math.round(bs.bestScore) : '-';
-    document.getElementById('statBestAcc').textContent = bs.plays ? bs.bestAcc.toFixed(0) + '%' : '-';
+  function nearest(x, y) {
+    let best = 0, bd = Infinity;
+    for (let i = 0; i < pts.length; i++) { const d = (pts[i][0] - x) ** 2 + (pts[i][1] - y) ** 2; if (d < bd) { bd = d; best = i; } }
+    return { i: best, d: Math.sqrt(bd) };
   }
 
-  // Convert a client-space point into the SVG's own user coordinate space,
-  // so isPointInStroke() works regardless of how the SVG is scaled by CSS.
-  function toSvgPoint(clientX, clientY) {
-    const pt = svg.createSVGPoint();
-    pt.x = clientX;
-    pt.y = clientY;
-    return pt.matrixTransform(svg.getScreenCTM().inverse());
-  }
-
-  function dist(p, c) {
-    return Math.hypot(p.x - c.x, p.y - c.y);
-  }
-
-  function onPointerMove(e) {
-    if (finished) return;
-    if (inputType === null) inputType = e.pointerType === 'touch' ? 'touch' : 'mouse';
-    const p = toSvgPoint(e.clientX, e.clientY);
-    lastPoint = p;
-    cursorDot.setAttribute('cx', p.x);
-    cursorDot.setAttribute('cy', p.y);
-
-    if (!running && dist(p, START) <= START.r) {
-      startRun();
+  // ---------- 그리기 ----------
+  function cssVar(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim() || '#888'; }
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    const accent = cssVar('--accent'), good = cssVar('--good'), danger = cssVar('--danger'), line = cssVar('--line-strong'), muted = cssVar('--muted');
+    if (mode === 'click') {
+      if (target && state === 'running') {
+        ctx.strokeStyle = accent; ctx.lineWidth = 1.5;
+        [1, 0.66, 0.33].forEach(f => { ctx.beginPath(); ctx.arc(target.x, target.y, target.r * f, 0, Math.PI * 2); ctx.stroke(); });
+        ctx.fillStyle = accent; ctx.beginPath(); ctx.arc(target.x, target.y, 3, 0, Math.PI * 2); ctx.fill();
+      }
+      clicks.forEach(c => { ctx.fillStyle = c.acc > 0 ? good : danger; ctx.globalAlpha = 0.5; ctx.beginPath(); ctx.arc(c.x, c.y, 4, 0, Math.PI * 2); ctx.fill(); ctx.globalAlpha = 1; });
       return;
     }
-    if (running && dist(p, END) <= END.r) {
-      finish(true);
+    if (!pts.length) return;
+    const t = tol();
+    // 허용 띠(경로/터널) 또는 도형 외곽선
+    if (mode === 'steady') {
+      ctx.strokeStyle = line; ctx.lineWidth = t * 2 + 6; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+      pathStroke();
+      ctx.strokeStyle = cssVar('--bg'); ctx.lineWidth = t * 2; pathStroke();
+    } else if (mode === 'path') {
+      ctx.strokeStyle = accent; ctx.globalAlpha = 0.18; ctx.lineWidth = t * 2; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; pathStroke(); ctx.globalAlpha = 1;
+      ctx.strokeStyle = accent; ctx.lineWidth = 2; ctx.setLineDash([6, 6]); pathStroke(); ctx.setLineDash([]);
+    } else {
+      ctx.strokeStyle = accent; ctx.globalAlpha = 0.18; ctx.lineWidth = t * 2; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; pathStroke(true); ctx.globalAlpha = 1;
+      ctx.strokeStyle = accent; ctx.lineWidth = 2; ctx.setLineDash([6, 6]); pathStroke(true); ctx.setLineDash([]);
+      // 덮은 부분은 초록 점
+      ctx.fillStyle = good;
+      for (let i = 0; i < pts.length; i += 4) if (covered[i]) { ctx.beginPath(); ctx.arc(pts[i][0], pts[i][1], 2.5, 0, Math.PI * 2); ctx.fill(); }
+    }
+    // 궤적
+    if (trail.length > 1) {
+      ctx.lineWidth = 2.5; ctx.lineCap = 'round';
+      for (let i = 1; i < trail.length; i++) {
+        const p = trail[i];
+        ctx.strokeStyle = p.d > t ? danger : p.d > t * 0.6 ? accent : good;
+        ctx.beginPath(); ctx.moveTo(trail[i - 1].x, trail[i - 1].y); ctx.lineTo(p.x, p.y); ctx.stroke();
+      }
+    }
+    if (mode !== 'draw') {
+      const s = pts[0], e = pts[pts.length - 1];
+      ctx.fillStyle = good; ctx.beginPath(); ctx.arc(s[0], s[1], 12, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = danger; ctx.beginPath(); ctx.arc(e[0], e[1], 12, 0, Math.PI * 2); ctx.fill();
     }
   }
+  function pathStroke(closed) {
+    ctx.beginPath(); ctx.moveTo(pts[0][0], pts[0][1]);
+    for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i][0], pts[i][1]);
+    if (closed) ctx.closePath();
+    ctx.stroke();
+  }
 
-  svg.addEventListener('pointermove', onPointerMove);
-  svg.addEventListener('pointerdown', onPointerMove);
-  svg.addEventListener('contextmenu', (e) => e.preventDefault());
+  // ---------- 상태/HUD ----------
+  function curAcc() {
+    if (mode === 'click') return clicks.length ? clicks.reduce((a, c) => a + c.acc, 0) / clicks.length : 0;
+    if (!samples.length) return 0;
+    const t = tol();
+    let acc = samples.reduce((a, d) => a + Math.max(0, 1 - d / t), 0) / samples.length * 100;
+    if (mode === 'draw') acc *= coverage();
+    return acc;
+  }
+  function curDev() {
+    if (mode === 'click') return clicks.length ? clicks.reduce((a, c) => a + c.dist, 0) / clicks.length : 0;
+    return samples.length ? samples.reduce((a, d) => a + d, 0) / samples.length : 0;
+  }
+  function coverage() { return covered.length ? covered.filter(Boolean).length / covered.length : 0; }
+  function progress() {
+    if (mode === 'click') return clicks.length / CLICK_N;
+    if (mode === 'draw') return coverage();
+    return pts.length ? maxIdx / (pts.length - 1) : 0;
+  }
+  function elapsed() { return state === 'running' ? (performance.now() - startTime) / 1000 : (lastResult ? lastResult.t : 0); }
+  function setHud() {
+    const acc = curAcc();
+    hud.acc.textContent = acc.toFixed(1) + '%';
+    hud.acc.classList.toggle('good', acc >= 85);
+    hud.dev.textContent = Math.round(curDev()) + 'px';
+    hud.time.textContent = elapsed().toFixed(1) + 's';
+    hud.prog.textContent = Math.round(progress() * 100) + '%';
+    hud.grade.textContent = T.grades[gradeIdx(acc)];
+  }
+  function setHint(show) {
+    hintEl.style.display = show ? '' : 'none';
+    const h = T.hint[mode];
+    document.getElementById('hintMain').textContent = h[0];
+    document.getElementById('hintSub').textContent = h[1];
+  }
+  function tick() {
+    if (state !== 'running') return;
+    setHud();
+    rafId = requestAnimationFrame(tick);
+  }
 
-  function startRun() {
-    running = true;
-    onTime = 0;
-    offTime = 0;
+  function toCanvas(e) {
+    const r = canvas.getBoundingClientRect();
+    return { x: (e.clientX - r.left) * (W / r.width), y: (e.clientY - r.top) * (H / r.height) };
+  }
+
+  // ---------- 진행 ----------
+  function begin() {
+    state = 'running';
     startTime = performance.now();
-    lastFrame = startTime;
+    samples = []; trail = []; maxIdx = 0; clicks = []; lastResult = null;
+    if (mode === 'draw') covered = covered.map(() => false);
+    modal.style.display = 'none';
     resultPanel.classList.remove('show');
-    document.getElementById('howto').style.display ='none';
-    rafId = requestAnimationFrame(frame);
+    setHint(false);
+    if (mode === 'click') spawnTarget();
+    draw();
+    rafId = requestAnimationFrame(tick);
+  }
+  function spawnTarget() {
+    const [r0, r1] = CLICK_R[diff];
+    const r = r0 - (r0 - r1) * (clicks.length / (CLICK_N - 1));
+    const m = r + 24;
+    target = { x: m + Math.random() * (W - m * 2), y: m + Math.random() * (H - m * 2), r };
   }
 
-  // Sample every frame using the last known pointer position and accumulate the
-  // real elapsed delta — counting frames would skew on different refresh rates,
-  // and judging only inside pointermove would stop scoring when the cursor rests.
-  function frame(now) {
-    if (!running) return;
-    const delta = now - lastFrame;
-    lastFrame = now;
-    if (lastPoint) {
-      const inside = trackPath.isPointInStroke(lastPoint);
-      if (inside) onTime += delta; else offTime += delta;
-      statusLine.textContent = inside ? '경로 위 ✓' : '경로 이탈!';
-      statusLine.className = 'status-line' + (inside ? 'on' : 'off');
+  function onDown(e) {
+    e.preventDefault();
+    if (state === 'done' || state === 'failed') return;
+    const p = toCanvas(e);
+    if (state === 'idle') {
+      if (mode === 'path' || mode === 'steady') {
+        const s = pts[0];
+        if (Math.hypot(p.x - s[0], p.y - s[1]) > 18) return;   // 초록 시작 지점에서만 시작
+      }
+      begin();
+      if (mode === 'path' || mode === 'steady') onMove(e);
+      return;
     }
-    rafId = requestAnimationFrame(frame);
+    if (mode === 'click') {
+      const dist = Math.hypot(p.x - target.x, p.y - target.y);
+      const acc = Math.max(0, 1 - dist / target.r) * 100;
+      clicks.push({ x: p.x, y: p.y, dist, acc });
+      if (clicks.length >= CLICK_N) { target = null; finish(true); } else spawnTarget();
+      draw(); setHud();
+      return;
+    }
+    if (mode === 'draw') { finish(true); }
   }
 
-  function renderGradeTable(score) {
-    const grade = gradeFor(score);
-    const table = document.getElementById('gradeTable');
-    table.innerHTML = '<tr><th>등급</th><th>기준 점수</th></tr>' +
-      GRADES.map(g => `<tr class="${g.key === grade.key ? 'current-row' : ''}"><td>${g.label}</td><td>${g.min}+</td></tr>`).join('');
+  function onMove(e) {
+    if (state !== 'running' || mode === 'click') return;
+    const p = toCanvas(e);
+    const n = nearest(p.x, p.y);
+    samples.push(n.d);
+    trail.push({ x: p.x, y: p.y, d: n.d });
+    if (trail.length > 400) trail.shift();
+    const t = tol();
+    if (mode === 'draw') {
+      if (n.d <= t) for (let i = Math.max(0, n.i - 3); i <= Math.min(pts.length - 1, n.i + 3); i++) covered[i] = true;
+      if (coverage() >= 0.97) { finish(true); return; }
+    } else {
+      if (n.d > t) { finish(false); return; }
+      if (n.i > maxIdx && n.i <= maxIdx + 60) maxIdx = n.i;
+      const end = pts[pts.length - 1];
+      if (maxIdx >= pts.length - 4 && Math.hypot(p.x - end[0], p.y - end[1]) <= 16) { finish(true); return; }
+    }
+    draw();
   }
 
-  function finish(completed) {
-    running = false;
-    finished = true;
+  canvas.addEventListener('pointerdown', onDown);
+  canvas.addEventListener('pointermove', onMove);
+  canvas.addEventListener('contextmenu', (e) => e.preventDefault());
+
+  // ---------- 종료 ----------
+  function finish(ok) {
     cancelAnimationFrame(rafId);
-    statusLine.textContent = '';
-    statusLine.className = 'status-line';
+    const t = (performance.now() - startTime) / 1000;
+    const acc = ok ? curAcc() : (mode === 'click' ? curAcc() : curAcc() * progress());
+    lastResult = { ok, acc, dev: curDev(), t, shape: shapeLabel() };
+    state = ok ? 'done' : 'failed';
+    draw(); setHud();
 
-    const totalMs = performance.now() - startTime;
-    const tracked = onTime + offTime;
-    const accuracy = tracked > 0 ? (onTime / tracked) * 100 : 0;
-    const seconds = totalMs / 1000;
-    // Reward staying on the path, with a mild speed bonus that fades after ~8s.
-    const speedBonus = Math.max(0, Math.min(10, (8 - seconds) * 1.5));
-    const score = Math.max(0, Math.min(100, accuracy + speedBonus));
+    if (gauntlet && ok) {
+      gRuns.push(lastResult);
+      const list = shapesFor();
+      if (gIdx < list.length - 1) {
+        gIdx += 1; shape = list[gIdx];
+        showModal(true, lastResult, T.next);
+        setTimeout(() => { if (state === 'done' && gauntlet) { prepare(); begin(); } }, 900);
+        return;
+      }
+      // 연속 도전 완료: 평균
+      const n = gRuns.length;
+      lastResult = { ok: true, acc: gRuns.reduce((a, r) => a + r.acc, 0) / n, dev: gRuns.reduce((a, r) => a + r.dev, 0) / n, t: gRuns.reduce((a, r) => a + r.t, 0), shape: '' };
+    }
+    showModal(lastResult.ok, lastResult, lastResult.ok ? '' : (mode === 'steady' ? T.failSteady : T.failPath));
+    if (lastResult.ok) record(lastResult);
+  }
 
-    const mode = inputType || 'mouse';
-    const bs = getBucket(mode);
-    bs.plays += 1;
-    if (score > bs.bestScore) bs.bestScore = score;
-    if (accuracy > bs.bestAcc) bs.bestAcc = accuracy;
-    allStats[mode] = bs;
-    saveStats(STORE_KEY, allStats);
+  function showModal(ok, r, sub) {
+    document.getElementById('mmTitle').textContent = ok ? T.done : T.fail;
+    const g = T.grades[gradeIdx(r.acc)];
+    document.getElementById('mmGrid').innerHTML =
+      '<div><span class="k">' + T.hud.acc + '</span><span class="v' + (r.acc >= 85 ? ' good' : '') + '">' + r.acc.toFixed(1) + '%</span></div>' +
+      '<div><span class="k">' + T.hud.time + '</span><span class="v">' + r.t.toFixed(2) + 's</span></div>' +
+      '<div><span class="k">' + T.hud.dev + '</span><span class="v">' + r.dev.toFixed(1) + 'px</span></div>' +
+      '<div><span class="k">' + T.hud.grade + '</span><span class="v">' + g + '</span></div>';
+    document.getElementById('mmSub').textContent = sub || '';
+    document.getElementById('mmRetry').style.display = sub === T.next ? 'none' : '';
+    modal.style.display = '';
+  }
+
+  function record(r) {
+    const acc = Math.round(r.acc * 10) / 10, dev = Math.round(r.dev * 10) / 10, sec = Math.round(r.t * 10) / 10;
+    const gi = gradeIdx(acc);
+    const s = modeStats();
+    s.plays += 1;
+    if (acc > s.best) s.best = acc;
+    if (s.bestDev === null || dev < s.bestDev) s.bestDev = dev;
+    allStats[statKey()] = s;
+    saveStats(STATS_KEY, allStats);
     renderStats();
 
-    const grade = gradeFor(score);
-    const stars = starsFor(score);
-    document.getElementById('resultTitle').textContent = `${Math.round(score)}점 · 정확도 ${accuracy.toFixed(0)}%`;
-    document.getElementById('resultStars').textContent ='★'.repeat(stars) + '☆'.repeat(5 - stars);
-    document.getElementById('resultDesc').textContent =
-      `완주 ${seconds.toFixed(1)}초 · 경로 이탈 ${(offTime / 1000).toFixed(1)}초 — ${grade.label}`;
-    document.getElementById('personaLabel').textContent = grade.persona;
-    document.getElementById('resultMobileNote').style.display = mode ==='touch' ? '' : 'none';
-    renderGradeTable(score);
+    document.getElementById('resultTitle').textContent = acc.toFixed(1) + '%';
+    document.getElementById('resultStars').textContent = '★'.repeat(Math.min(5, gi + 1)) + '☆'.repeat(Math.max(0, 4 - gi));
+    document.getElementById('resultDesc').textContent = fmtDesc(T.modes[mode], r.shape, diffLabel(), sec, dev);
+    document.getElementById('personaLabel').textContent = T.grades[gi];
+    renderGradeTable(acc);
     resultPanel.classList.add('show');
-    resultPanel.dataset.share = `나는 ${grade.persona}! 마우스 정확도 테스트에서 ${Math.round(score)}점 (정확도 ${accuracy.toFixed(0)}%) 기록! 너도 해봐 → `;
+    resultPanel.dataset.share = fmtShare(T.grades[gi], acc, T.modes[mode]);
 
-    const lbList = addToLeaderboard(LB_KEY + '_' + mode, { value: score, accuracy, seconds, date: Date.now() }, false);
-    addRecentRecord('skillMouseAccuracyLeaderboardV1', { value: score, accuracy, seconds, date: Date.now() });
+    const lbList = addToLeaderboard(LB_PREFIX + mode, { value: acc, diff: diffLabel(), shape: r.shape, seconds: sec, dev, date: Date.now() }, false);
+    addRecentRecord(RECENT_KEY, { value: acc, mode: T.modes[mode], diff: diffLabel(), seconds: sec, date: Date.now() });
     renderRecent();
     renderTopLeaderboard(lbList);
   }
 
-  function renderRecent() {
-    renderRecentRecords('recentPanel', loadStats('skillMouseAccuracyLeaderboardV1_recent', []), (entry) => `${Math.round(entry.value)}점 · 정확도 ${fmtNum(entry.accuracy, 0)}% · ${fmtNum(entry.seconds, 1)}초`, '아직 기록이 없어요. 첫 도전을 해보세요!', 8);
+  function renderGradeTable(acc) {
+    const cur = gradeIdx(acc);
+    const rows = [5, 4, 3, 2, 1, 0].map(i => '<tr class="' + (i === cur ? 'current-row' : '') + '"><td>' + T.grades[i] + '</td><td>' + GRADE_MIN[i] + '%+</td></tr>').join('');
+    document.getElementById('gradeTable').innerHTML = '<tr><th>' + T.rankTh + '</th><th>' + T.thTh + '</th></tr>' + rows;
   }
-
+  function renderStats() {
+    const s = modeStats();
+    document.getElementById('statCount').textContent = s.plays;
+    document.getElementById('statBest').textContent = s.plays ? s.best.toFixed(1) + '%' : '-';
+    document.getElementById('statBestAcc').textContent = s.plays && s.bestDev !== null ? s.bestDev.toFixed(1) + 'px' : '-';
+  }
+  function renderRecent() {
+    renderRecentRecords('recentPanel', loadStats(RECENT_KEY + '_recent', []), (e) => fmtRecent(fmtNum(e.value, 1), e.mode, e.diff, e.seconds), T.emptyRecent, 8);
+  }
   function renderTopLeaderboard(list) {
     renderLeaderboard('topLeaderboard', list, (entry) => {
       const d = new Date(entry.date);
-      const dateStr = `${d.getMonth() + 1}/${d.getDate()}`;
-      return `<span class="lb-name">${Math.round(entry.value)}점</span><span class="lb-detail">정확도 ${fmtNum(entry.accuracy, 0)}% · ${fmtNum(entry.seconds, 1)}초 · ${dateStr}</span>`;
-    }, '아직 기록이 없어요. 첫 도전을 해보세요!');
+      const dateStr = (d.getMonth() + 1) + '/' + d.getDate();
+      return '<span class="lb-name">' + fmtNum(entry.value, 1) + '%</span><span class="lb-detail">' + fmtLb(entry.diff || '–', fmtNum(entry.seconds, 1), fmtNum(entry.dev, 1)) + ' · ' + dateStr + '</span>';
+    }, T.emptyLb);
   }
 
-  document.getElementById('retryBtn').addEventListener('click', () => {
-    finished = false;
-    running = false;
-    lastPoint = null;
-    onTime = 0; offTime = 0;
-    cursorDot.setAttribute('cx', -100);
-    cursorDot.setAttribute('cy', -100);
+  // ---------- 준비/초기화/컨트롤 ----------
+  function prepare() {
+    cancelAnimationFrame(rafId);
+    state = 'idle';
+    samples = []; trail = []; maxIdx = 0; clicks = []; target = null; lastResult = null;
+    modal.style.display = 'none';
+    buildPoints();
+    setHint(true);
+    draw(); setHud();
+  }
+  function reset() {
+    gRuns = []; gIdx = 0;
+    if (gauntlet) shape = shapesFor()[0];
     resultPanel.classList.remove('show');
-    document.getElementById('howto').style.display ='';
-    statusLine.textContent = '시작 지점에 커서를 올리세요';
-    statusLine.className = 'status-line';
-  });
+    prepare();
+  }
 
+  const modeSelect = document.getElementById('modeSelect');
+  modeSelect.querySelectorAll('button').forEach(btn => btn.addEventListener('click', () => {
+    mode = btn.dataset.mode;
+    modeSelect.querySelectorAll('button').forEach(b => b.classList.toggle('active', b === btn));
+    if (mode === 'click') gauntlet = false;
+    shape = shapesFor()[0] || '';
+    renderControls(); reset(); renderStats();
+    renderTopLeaderboard(loadStats(LB_PREFIX + mode, []));
+  }));
+
+  const diffSelect = document.getElementById('diffSelect');
+  const shapeSelect = document.getElementById('shapeSelect');
+  function renderControls() {
+    diffSelect.innerHTML = '';
+    DIFFS.forEach(d => {
+      const b = document.createElement('button'); b.textContent = T.diffs[d];
+      if (d === diff && !gauntlet) b.classList.add('active');
+      b.addEventListener('click', () => { diff = d; gauntlet = false; renderControls(); reset(); renderStats(); });
+      diffSelect.appendChild(b);
+    });
+    if (mode !== 'click') {
+      const b = document.createElement('button'); b.textContent = T.diffs.all;
+      if (gauntlet) b.classList.add('active');
+      b.addEventListener('click', () => { gauntlet = true; renderControls(); reset(); renderStats(); });
+      diffSelect.appendChild(b);
+    }
+    shapeSelect.innerHTML = '';
+    const list = shapesFor();
+    document.getElementById('shapeRow').style.display = list.length && !gauntlet ? '' : 'none';
+    list.forEach(s => {
+      const b = document.createElement('button'); b.textContent = T.shapes[s];
+      if (s === shape) b.classList.add('active');
+      b.addEventListener('click', () => { shape = s; renderControls(); reset(); });
+      shapeSelect.appendChild(b);
+    });
+  }
+
+  document.getElementById('resetBtn').addEventListener('click', reset);
+  document.getElementById('mmRetry').addEventListener('click', reset);
+  document.getElementById('retryBtn').addEventListener('click', reset);
   document.getElementById('shareBtn').addEventListener('click', () => {
     shareResult((resultPanel.dataset.share || '') + location.href);
   });
 
+  renderControls();
+  prepare();
   renderStats();
-  renderTopLeaderboard(loadStats(LB_KEY + '_mouse', []));
+  renderTopLeaderboard(loadStats(LB_PREFIX + mode, []));
   renderRecent();
 </script>
 </body>

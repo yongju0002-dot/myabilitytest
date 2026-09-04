@@ -82,7 +82,7 @@ function renderLeaderboard(containerId, list, formatRow, emptyText, maxRows) {
     el.innerHTML = `<p style="text-align:center;color:var(--text-dim);font-size:13px;">${emptyText}</p>`;
     return;
   }
-  el.innerHTML = '<ul class="leaderboard">' + list.slice(0, maxRows || 8).map((entry, i) => {
+  el.innerHTML = '<ul class="leaderboard">' + list.slice(0, maxRows || 6).map((entry, i) => {
     const medal = String(i + 1).padStart(2, '0');
     return `<li class="${i === 0 ? 'winner' : ''}"><span class="rank">${medal}</span>${formatRow(entry, i)}</li>`;
   }).join('') + '</ul>';

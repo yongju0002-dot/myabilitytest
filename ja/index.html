@@ -62,30 +62,13 @@
       <div class="hero-copy">
         <div class="eyebrow">15 TESTS · 無料 · インストール不要</div>
         <h1>自分の反応速度を、<br>数字で確かめる。</h1>
-        <p class="lede">反応・記憶・クリック・エイムからモニターのリフレッシュレートまで。記録はこのブラウザに保存され、等級表ですぐ比べられます。右の箱を一度押してみてください。</p>
+        <p class="lede">反応・記憶・クリック・エイムからモニターのリフレッシュレートまで。記録はこのブラウザに保存され、等級表ですぐ比べられます。</p>
         <div class="hero-cta">
           <a class="btn" href="#ability">テストを全部見る</a>
           <a class="btn secondary" href="/ja/tests/reaction-time">反応速度テストへ →</a>
         </div>
       </div>
 
-      <div class="preview-card">
-        <div class="play-head">
-          <span class="t">反応速度 · プレビュー</span>
-          <span class="m"><span id="pvTries">0</span> 試行 · <span id="pvBest">—</span> 最高</span>
-        </div>
-        <button class="preview-pad" id="pvPad" type="button">
-          <span class="pv-big" id="pvBig">準備</span>
-          <span class="pv-hint" id="pvHint">箱をクリックし、色が変わった瞬間にもう一度クリック</span>
-        </button>
-        <div class="tier-strip" id="pvTiers">
-          <div class="tier" data-i="0"><b>とても速い</b><span>&lt;150</span></div>
-          <div class="tier" data-i="1"><b>速い</b><span>150–199</span></div>
-          <div class="tier" data-i="2"><b>平均</b><span>200–299</span></div>
-          <div class="tier" data-i="3"><b>ふつう</b><span>300–399</span></div>
-          <div class="tier" data-i="4"><b>遅い</b><span>400+</span></div>
-        </div>
-      </div>
     </section>
 
     <div class="hub-section" id="records">
@@ -366,60 +349,12 @@
     </div>
   </footer>
 
-<script src="/skill-test/common.js"></script>
 <script>
-  // ---- 히어로 미리보기: 간단 반응 속도 (기록은 reaction-time과 같은 키를 쓴다) ----
+  // ---- 내 기록 띠 채우기: 각 테스트의 저장소에서 개인 최고 기록을 읽는다 ----
   (function () {
-    var LB = 'reactionLeaderboardV1', ST ='reactionStatsV2';
-    var pad = document.getElementById('pvPad');
-    var big = document.getElementById('pvBig'), hint = document.getElementById('pvHint');
-    var triesEl = document.getElementById('pvTries'), bestEl = document.getElementById('pvBest');
-    var tiers = document.getElementById('pvTiers');
-    var TXT = {"idle":"準備","wait":"···","go":"クリック!","early":"早すぎます","hIdle":"箱をクリックし、色が変わった瞬間にもう一度クリック","hWait":"待ってください","hGo":"今!","hResult":"もう一度クリックで再挑戦","hEarly":"合図の前に押しました。クリックで再挑戦"};
-    var phase = 'idle', timer = null, goAt = 0, tries = 0, best = null;
-
     function read(key, fb) { try { return JSON.parse(localStorage.getItem(key) || 'null') || fb; } catch (e) { return fb; } }
-    function tierOf(ms) { return ms < 150 ? 0 : ms < 200 ? 1 : ms < 300 ? 2 : ms < 400 ? 3 : 4; }
-    function markTier(i) {
-      var cells = tiers.querySelectorAll('.tier');
-      for (var k = 0; k < cells.length; k++) cells[k].classList.toggle('on', k === i);
-    }
-    function paint(p) { pad.dataset.phase = p; }
-
-    var st = read(ST, null);
-    if (st && st.best) { best = st.best; bestEl.textContent = best + 'ms'; }
-
-    pad.addEventListener('click', function () {
-      if (phase === 'idle' || phase ==='result' || phase ==='early') {
-        phase = 'wait'; paint('wait'); big.textContent = TXT.wait; hint.textContent = TXT.hWait; markTier(-1);
-        timer = setTimeout(function () {
-          goAt = performance.now(); phase = 'go'; paint('go');
-          big.textContent = TXT.go; hint.textContent = TXT.hGo;
-        }, 1200 + Math.random() * 2600);
-      } else if (phase === 'wait') {
-        clearTimeout(timer); phase = 'early'; paint('early');
-        big.textContent = TXT.early; hint.textContent = TXT.hEarly;
-      } else if (phase === 'go') {
-        var ms = Math.round(performance.now() - goAt);
-        phase = 'result'; paint('result');
-        big.textContent = ms + 'ms'; hint.textContent = TXT.hResult;
-        tries += 1; triesEl.textContent = tries;
-        markTier(tierOf(ms));
-        if (best === null || ms < best) { best = ms; bestEl.textContent = ms + 'ms'; }
-        // 반응 속도 테스트 페이지와 같은 저장소에 기록을 남긴다
-        var s = read(ST, { count: 0, sum: 0, best: null });
-        s.count += 1; s.sum += ms; s.best = s.best === null ? ms : Math.min(s.best, ms);
-        try { localStorage.setItem(ST, JSON.stringify(s)); } catch (e) {}
-        var list = read(LB, []);
-        list.push({ value: ms, date: Date.now() });
-        list.sort(function (a, b) { return a.value - b.value; });
-        try { localStorage.setItem(LB, JSON.stringify(list.slice(0, 30))); } catch (e) {}
-      }
-    });
-
-    // ---- 내 기록 띠 채우기 ----
     var SOURCES = {
-      'reaction-time': function () { var s = read(ST, null); return s && s.best ? s.best + 'ms' : null; },
+      'reaction-time': function () { var s = read('reactionStatsV2', null); return s && s.best ? s.best + 'ms' : null; },
       'click-speed': function () { var l = read('skillCpsLeaderboardV1', []); return l.length ? l[0].value + ' CPS' : null; },
       'visual-memory': function () { var l = read('skillMemoryLeaderboardV1', []); return l.length ? l[0].value + 'レベル' : null; },
       'aim-trainer': function () { var l = read('skillAimLeaderboardV1', []); return l.length ? Math.round(l[0].value) + 'ms' : null; }

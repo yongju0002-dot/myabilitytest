@@ -788,89 +788,14 @@ h2 { font-size: clamp(22px, 3vw, 30px); font-weight: 900; letter-spacing: -0.03e
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr));
   gap: clamp(24px, 4vw, 56px);
   align-items: stretch;
-  padding: clamp(24px, 4vw, 44px) 0 clamp(28px, 4vw, 48px);
+  padding: clamp(28px, 5vw, 64px) 0 clamp(32px, 5vw, 56px);
 }
-.hero-copy { display: flex; flex-direction: column; justify-content: space-between; gap: 28px; }
+.hero-copy { display: flex; flex-direction: column; justify-content: center; gap: 28px; }
 .hero .eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; color: var(--muted); }
 .hero h1 { margin: 18px 0 0; font-size: clamp(36px, 5.4vw, 68px); line-height: 1.02; }
 .hero .lede { margin: 20px 0 0; max-width: 44ch; font-size: 17px; line-height: 1.7; color: var(--body); text-wrap: pretty; }
 .hero-cta { display: flex; flex-wrap: wrap; gap: 10px; }
-
-.preview-card {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid var(--line-strong);
-  border-radius: var(--radius);
-  background: var(--card-bg);
-  overflow: hidden;
-}
-.preview-card .play-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--line-strong);
-  font-size: 13px;
-}
-.preview-card .play-head .t { font-weight: 700; }
-.preview-card .play-head .m { font-family: var(--mono); font-size: 12px; color: var(--muted); }
-
-.preview-pad {
-  flex: 1;
-  min-height: 240px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  gap: 12px;
-  padding: 24px;
-  border: none;
-  cursor: pointer;
-  user-select: none;
-  font-family: inherit;
-  background: var(--card-bg);
-  color: var(--ink);
-  transition: background 0.08s ease;
-}
-.preview-pad .pv-big { font-variant-numeric: tabular-nums; font-size: clamp(42px, 6vw, 68px); font-weight: 700; line-height: 1; letter-spacing: -0.03em; }
-.preview-pad .pv-hint { font-size: 14px; opacity: 0.8; max-width: 32ch; line-height: 1.5; }
-.preview-pad[data-phase="wait"] { background: var(--pad-wait-bg); color: var(--pad-wait-fg); }
-.preview-pad[data-phase="go"] { background: var(--accent); color: var(--on-accent); }
-.preview-pad[data-phase="early"] { background: var(--card-bg-2); color: var(--ink); }
-
-.tier-strip { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border-top: 1px solid var(--line-strong); }
-.tier-strip .tier {
-  padding: 10px 6px;
-  text-align: center;
-  border-right: 1px solid var(--line);
-  background: var(--card-bg);
-}
-.tier-strip .tier:last-child { border-right: none; }
-.tier-strip .tier b { display: block; font-size: 11px; font-weight: 700; }
-.tier-strip .tier span { display: block; margin-top: 2px; font-family: var(--mono); font-size: 10px; color: var(--muted); }
-.tier-strip .tier.on { background: var(--accent); color: var(--on-accent); }
-.tier-strip .tier.on span { color: rgba(23, 24, 28, 0.7); }
-
-/* ---- 라인 아이콘 ---- */
-.ticon { display: block; color: var(--accent); flex: none; }
-.test-row .icon { display: flex; align-items: center; justify-content: center; }
-.result-icon { display: flex; justify-content: center; margin-bottom: 12px; color: var(--accent); }
-.other-tests-links a, .related-links a { display: flex; align-items: center; gap: 10px; }
-.other-tests-links a .ticon, .related-links a .ticon { color: var(--accent); }
-.leaderboard .rank { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--muted); }
-
-/* ---- CPS 실시간 그래프 & 클릭 물결 (스타일시트 재작성 때 누락됐던 규칙) ---- */
-.cps-graph {
-  width: 100%;
-  height: 90px;
-  display: block;
-  background: var(--card-bg-2);
-  border-radius: var(--radius);
-  margin-top: 12px;
-}
-.click-pad { position: relative; overflow: hidden; }
+.click-pad { position: relative; overflow: hidden; }
 .ripple {
   position: absolute;
   width: 16px;

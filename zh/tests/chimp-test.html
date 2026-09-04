@@ -59,18 +59,6 @@
 </style>
 <style>
   .pick-cell { touch-action: manipulation; font-weight: 800; font-size: 26px; }
-  /* 반응속도 테스트의 .stage 와 같은 상자 안에 시작 화면과 격자를 넣는다 */
-  .stage {
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    text-align: center; gap: 10px;
-    min-height: 390px; margin: 16px 0; padding: 24px;
-    background: var(--card-bg); border: 1px solid var(--line-strong); border-radius: var(--radius);
-    user-select: none;
-  }
-  .stage #introScreen, .stage #playScreen { width: 100%; }
-  .stage .note-box { background: transparent; border: 0; padding: 0; max-width: 52ch; margin: 0 auto 8px; }
-  .stage .level-card { background: transparent; border: 0; padding: 0; margin: 0 0 4px; }
-  .stage .pick-grid { margin: 12px auto 0; }
 </style>
 <script src="/skill-test/analytics.js" defer></script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
@@ -104,10 +92,6 @@
 
     <div class="stage">
     <div id="introScreen">
-      <div class="note-box" style="text-align:center;">
-        从1开始的数字会同时出现在格子上。点击"1"的瞬间,其余数字会全部隐藏,你需要记住
-        位置并按顺序点击。共有3条生命,答错可以重新挑战同一关。
-      </div>
       <div class="btn-row">
         <button class="btn" id="startBtn">开始</button>
       </div>

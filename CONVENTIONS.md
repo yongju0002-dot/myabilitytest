@@ -675,3 +675,8 @@ Google Analytics 4, 측정 ID `G-VKKRHCN307`.
 - 순위/최근 기록은 localStorage 에 그대로 남으므로, 새 필드를 추가해 저장하기 시작해도 옛 항목엔 그 필드가 없다. `entry.x.toFixed()` 처럼 필드를 무조건 쓰면 페이지 로드 시 Uncaught TypeError (에임: 09-02 이전 기록 사용자 전원 영향, 04a6cf5 에서 수정).
 - 숫자 필드는 `fmtNum(entry.x, 자릿수)` (common.js, 숫자 아니면 '–') 로 그린다. 새 필드를 넣을 때 렌더러도 같이 방어할 것.
 - 마크업 배치 스크립트는 "삽입 후 조상 검사" 로 끝낸다: 삽입한 요소가 `#resultPanel`/`#playScreen`/`display:none` 안에 들어가지 않았는지 DOMParser 로 60페이지 확인 (ko/chimp-test 의 `>` 누락이 그렇게 잡혔다).
+
+## 20. 플레이 영역은 `.stage` 상자 하나에 (2026-09-04)
+- 15개 테스트 모두 시작 화면·HUD(level-card)·패드/격자를 `<div class="stage">` 하나로 감싼다. 모드 버튼(.mode-select/.mode-hint/.duration-select)과 설명(.info-box)은 상자 밖, 결과(#resultPanel)·통계·기록도 밖.
+- 스타일은 skill-test/style.css 의 `.stage`(공용). 반응속도만 페이지 안에서 상태별 배경(state-go 등)을 덧입힌다. 상자 안 level-card/note-box 는 배경·테두리를 없애 상자 속 상자를 피한다.
+- 새 테스트를 만들 때도 같은 구조로. 일괄 감싸기 스크립트: 스크래치 stage_wrap.js (첫 블록~마지막 블록 지정, 4칸 들여쓰기 최상위 요소 기준).

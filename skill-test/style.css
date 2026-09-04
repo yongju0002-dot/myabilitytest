@@ -890,3 +890,14 @@ h2 { font-size: clamp(22px, 3vw, 30px); font-weight: 900; letter-spacing: -0.03e
 @media (max-width: 620px) {
   .guide { width: 100%; margin-top: 150px; }
 }
+
+/* 플레이 영역 상자 — 반응속도 테스트의 .stage 와 같은 모양. 모드 버튼·설명은 밖에, 시작 화면·HUD·패드·격자는 안에 */
+.stage {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; gap: 10px;
+  min-height: 390px; margin: 16px 0; padding: 24px;
+  background: var(--card-bg); border: 1px solid var(--line-strong); border-radius: var(--radius);
+}
+.stage > * { width: 100%; }
+.stage .level-card, .stage .note-box { background: transparent; border: 0; padding: 0; margin: 0 0 4px; }
+.stage .pick-grid { margin: 12px auto 0; }

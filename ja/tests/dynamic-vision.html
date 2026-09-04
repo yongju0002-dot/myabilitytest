@@ -154,6 +154,10 @@
         <div class="rb-head">記録ランキング</div>
         <div id="topLeaderboard"></div>
       </div>
+      <div class="record-box">
+        <div class="rb-head">最近の記録</div>
+        <div id="recentPanel"></div>
+      </div>
     </div>
 
     <div class="guide">
@@ -479,7 +483,13 @@
     resultPanel.dataset.share = `動体視力テストで${Math.round(bestScore)}msまで読み取れました!(${grade.label}) あなたもどうぞ → `;
 
     const lbList = addToLeaderboard(LB_KEY, { value: bestScore, date: Date.now() }, true);
+    addRecentRecord('skillDynamicVisionLeaderboardV1', { value: bestScore, date: Date.now() });
+    renderRecent();
     renderTopLeaderboard(lbList);
+  }
+
+  function renderRecent() {
+    renderRecentRecords('recentPanel', loadStats('skillDynamicVisionLeaderboardV1_recent', []), (entry) => `${Math.round(entry.value)} ms`, 'まだ記録がありません。最初の挑戦をしてみましょう!', 8);
   }
 
   function renderTopLeaderboard(list) {
@@ -502,6 +512,7 @@
 
   renderStats();
   renderTopLeaderboard(loadStats(LB_KEY, []));
+  renderRecent();
 </script>
 </body>
 </html>

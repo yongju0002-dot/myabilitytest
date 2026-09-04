@@ -219,6 +219,10 @@
         <div class="rb-head">Top records</div>
         <div id="topLeaderboard"></div>
       </div>
+      <div class="record-box">
+        <div class="rb-head">Recent runs</div>
+        <div id="recentPanel"></div>
+      </div>
     </div>
 
     <div class="guide">
@@ -462,7 +466,13 @@
     resultPanel.dataset.share = `My hearing age test result: ${result.age}! (heard up to ${maxHeard || 8000}Hz) Try it yourself → `;
 
     const lbList = addToLeaderboard(LB_KEY, { value: maxHeard, date: Date.now() }, false);
+    addRecentRecord('skillHearingAgeLeaderboardV1', { value: maxHeard, date: Date.now() });
+    renderRecent();
     renderTopLeaderboard(lbList);
+  }
+
+  function renderRecent() {
+    renderRecentRecords('recentPanel', loadStats('skillHearingAgeLeaderboardV1_recent', []), (entry) => `${entry.value} Hz · ${ageFor(entry.value).age}`, 'No records yet. Try your first challenge!', 8);
   }
 
   function renderTopLeaderboard(list) {
@@ -484,6 +494,7 @@
 
   renderStats();
   renderTopLeaderboard(loadStats(LB_KEY, []));
+  renderRecent();
 </script>
 </body>
 </html>

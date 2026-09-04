@@ -175,6 +175,10 @@
         <div class="rb-head">기록 순위</div>
         <div id="topLeaderboard"></div>
       </div>
+      <div class="record-box">
+        <div class="rb-head">최근 기록</div>
+        <div id="recentPanel"></div>
+      </div>
     </div>
 
     <div class="guide">
@@ -400,7 +404,13 @@
       : `${personaFor(best.diff)} 참가자 ${best.player}이(가) 오차 ${best.diff.toFixed(2)}초로 우승! 너도 해봐 → `;
 
     const lbList = addToLeaderboard(LB_KEY, { value: best.diff, targetTime, playerCount, date: Date.now() }, true);
+    addRecentRecord('skillTimeStopLeaderboardV1', { value: best.diff, targetTime, playerCount, date: Date.now() });
+    renderRecent();
     renderTopLeaderboard(lbList);
+  }
+
+  function renderRecent() {
+    renderRecentRecords('recentPanel', loadStats('skillTimeStopLeaderboardV1_recent', []), (entry) => `오차 ${entry.value.toFixed(2)}초 · 목표 ${entry.targetTime}초 · ${entry.playerCount}인`, '아직 기록이 없어요. 첫 도전을 해보세요!', 8);
   }
 
   function renderTopLeaderboard(list) {
@@ -422,6 +432,7 @@
 
   renderStats();
   renderTopLeaderboard(loadStats(LB_KEY, []));
+  renderRecent();
 </script>
 </body>
 </html>

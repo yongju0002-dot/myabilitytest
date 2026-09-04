@@ -172,6 +172,10 @@
         <div class="rb-head">记录排行</div>
         <div id="topLeaderboard"></div>
       </div>
+      <div class="record-box">
+        <div class="rb-head">最近记录</div>
+        <div id="recentPanel"></div>
+      </div>
     </div>
 
     <div class="guide">
@@ -430,7 +434,13 @@
     resultPanel.dataset.share = `我在鼠标精准度测试中得了${Math.round(score)}分(精准度${accuracy.toFixed(0)}%)!你也来试试 → `;
 
     const lbList = addToLeaderboard(LB_KEY + '_' + mode, { value: score, accuracy, seconds, date: Date.now() }, false);
+    addRecentRecord('skillMouseAccuracyLeaderboardV1', { value: score, accuracy, seconds, date: Date.now() });
+    renderRecent();
     renderTopLeaderboard(lbList);
+  }
+
+  function renderRecent() {
+    renderRecentRecords('recentPanel', loadStats('skillMouseAccuracyLeaderboardV1_recent', []), (entry) => `${Math.round(entry.value)}分 · 精准度${entry.accuracy.toFixed(0)}% · ${entry.seconds.toFixed(1)}秒`, '还没有记录。快来挑战第一次吧!', 8);
   }
 
   function renderTopLeaderboard(list) {
@@ -460,6 +470,7 @@
 
   renderStats();
   renderTopLeaderboard(loadStats(LB_KEY + '_mouse', []));
+  renderRecent();
 </script>
 </body>
 </html>

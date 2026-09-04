@@ -172,6 +172,10 @@
         <div class="rb-head">記録ランキング</div>
         <div id="topLeaderboard"></div>
       </div>
+      <div class="record-box">
+        <div class="rb-head">最近の記録</div>
+        <div id="recentPanel"></div>
+      </div>
     </div>
 
     <div class="guide">
@@ -430,7 +434,13 @@
     resultPanel.dataset.share = `マウス精度テストで${Math.round(score)}点(精度${accuracy.toFixed(0)}%)を記録!あなたもどうぞ → `;
 
     const lbList = addToLeaderboard(LB_KEY + '_' + mode, { value: score, accuracy, seconds, date: Date.now() }, false);
+    addRecentRecord('skillMouseAccuracyLeaderboardV1', { value: score, accuracy, seconds, date: Date.now() });
+    renderRecent();
     renderTopLeaderboard(lbList);
+  }
+
+  function renderRecent() {
+    renderRecentRecords('recentPanel', loadStats('skillMouseAccuracyLeaderboardV1_recent', []), (entry) => `${Math.round(entry.value)}点 · 精度${entry.accuracy.toFixed(0)}% ・ ${entry.seconds.toFixed(1)}秒`, 'まだ記録がありません。最初の挑戦をしてみましょう!', 8);
   }
 
   function renderTopLeaderboard(list) {
@@ -460,6 +470,7 @@
 
   renderStats();
   renderTopLeaderboard(loadStats(LB_KEY + '_mouse', []));
+  renderRecent();
 </script>
 </body>
 </html>

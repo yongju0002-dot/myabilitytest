@@ -168,6 +168,10 @@
         <div class="rb-head">기록 순위</div>
         <div id="topLeaderboard"></div>
       </div>
+      <div class="record-box">
+        <div class="rb-head">최근 기록</div>
+        <div id="recentPanel"></div>
+      </div>
     </div>
 
     <div class="guide">
@@ -441,7 +445,13 @@
     resultPanel.dataset.share = `나는 ${grade.persona}! 스페이스바 연타 테스트에서 ${duration}초 동안 ${presses}회(초당 ${rate.toFixed(1)}) 기록! 너도 해봐 → `;
 
     const lbList = addToLeaderboard(LB_KEY + '_' + bk, { value: presses, rate, date: Date.now() }, false);
+    addRecentRecord('skillSpacebarLeaderboardV1', { value: presses, rate, date: Date.now() });
+    renderRecent();
     renderTopLeaderboard(lbList);
+  }
+
+  function renderRecent() {
+    renderRecentRecords('recentPanel', loadStats('skillSpacebarLeaderboardV1_recent', []), (entry) => `${entry.value}회 · 초당 ${entry.rate.toFixed(1)}`, '아직 기록이 없어요. 첫 도전을 해보세요!', 8);
   }
 
   function renderTopLeaderboard(list) {
@@ -468,6 +478,7 @@
   renderDurationButtons();
   renderStats();
   renderTopLeaderboard(loadStats(LB_KEY + '_' + bucketKey(duration,'keyboard'), []));
+  renderRecent();
 </script>
 </body>
 </html>

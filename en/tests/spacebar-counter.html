@@ -165,6 +165,10 @@
         <div class="rb-head">Top records</div>
         <div id="topLeaderboard"></div>
       </div>
+      <div class="record-box">
+        <div class="rb-head">Recent runs</div>
+        <div id="recentPanel"></div>
+      </div>
     </div>
 
     <div class="guide">
@@ -418,7 +422,13 @@
     resultPanel.dataset.share = `I hit the spacebar ${presses} times in ${duration}s (${rate.toFixed(1)}/s)! Try it yourself → `;
 
     const lbList = addToLeaderboard(LB_KEY + '_' + bk, { value: presses, rate, date: Date.now() }, false);
+    addRecentRecord('skillSpacebarLeaderboardV1', { value: presses, rate, date: Date.now() });
+    renderRecent();
     renderTopLeaderboard(lbList);
+  }
+
+  function renderRecent() {
+    renderRecentRecords('recentPanel', loadStats('skillSpacebarLeaderboardV1_recent', []), (entry) => `${entry.value} presses · ${entry.rate.toFixed(1)}/s`, 'No records yet. Try your first challenge!', 8);
   }
 
   function renderTopLeaderboard(list) {
@@ -445,6 +455,7 @@
   renderDurationButtons();
   renderStats();
   renderTopLeaderboard(loadStats(LB_KEY + '_' + bucketKey(duration,'keyboard'), []));
+  renderRecent();
 </script>
 </body>
 </html>

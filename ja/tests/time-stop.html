@@ -173,6 +173,10 @@
         <div class="rb-head">記録ランキング</div>
         <div id="topLeaderboard"></div>
       </div>
+      <div class="record-box">
+        <div class="rb-head">最近の記録</div>
+        <div id="recentPanel"></div>
+      </div>
     </div>
 
     <div class="guide">
@@ -389,7 +393,13 @@
       : `時間ストップゲームで参加者${best.player}が誤差${best.diff.toFixed(2)}秒で優勝!あなたもどうぞ → `;
 
     const lbList = addToLeaderboard(LB_KEY, { value: best.diff, targetTime, playerCount, date: Date.now() }, true);
+    addRecentRecord('skillTimeStopLeaderboardV1', { value: best.diff, targetTime, playerCount, date: Date.now() });
+    renderRecent();
     renderTopLeaderboard(lbList);
+  }
+
+  function renderRecent() {
+    renderRecentRecords('recentPanel', loadStats('skillTimeStopLeaderboardV1_recent', []), (entry) => `誤差${entry.value.toFixed(2)}秒 · 目標${entry.targetTime}秒 · ${entry.playerCount}人`, 'まだ記録がありません。最初の挑戦をしてみましょう!', 8);
   }
 
   function renderTopLeaderboard(list) {
@@ -411,6 +421,7 @@
 
   renderStats();
   renderTopLeaderboard(loadStats(LB_KEY, []));
+  renderRecent();
 </script>
 </body>
 </html>

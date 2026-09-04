@@ -173,6 +173,10 @@
         <div class="rb-head">Top records</div>
         <div id="topLeaderboard"></div>
       </div>
+      <div class="record-box">
+        <div class="rb-head">Recent runs</div>
+        <div id="recentPanel"></div>
+      </div>
     </div>
 
     <div class="guide">
@@ -431,7 +435,13 @@
     resultPanel.dataset.share = `I scored ${Math.round(score)} pts (${accuracy.toFixed(0)}% accuracy) on the mouse accuracy test! Try it yourself → `;
 
     const lbList = addToLeaderboard(LB_KEY + '_' + mode, { value: score, accuracy, seconds, date: Date.now() }, false);
+    addRecentRecord('skillMouseAccuracyLeaderboardV1', { value: score, accuracy, seconds, date: Date.now() });
+    renderRecent();
     renderTopLeaderboard(lbList);
+  }
+
+  function renderRecent() {
+    renderRecentRecords('recentPanel', loadStats('skillMouseAccuracyLeaderboardV1_recent', []), (entry) => `${Math.round(entry.value)} pts · ${entry.accuracy.toFixed(0)}% · ${entry.seconds.toFixed(1)}s`, 'No records yet. Try your first challenge!', 8);
   }
 
   function renderTopLeaderboard(list) {
@@ -461,6 +471,7 @@
 
   renderStats();
   renderTopLeaderboard(loadStats(LB_KEY + '_mouse', []));
+  renderRecent();
 </script>
 </body>
 </html>

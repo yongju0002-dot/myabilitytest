@@ -220,6 +220,10 @@
         <div class="rb-head">기록 순위</div>
         <div id="topLeaderboard"></div>
       </div>
+      <div class="record-box">
+        <div class="rb-head">최근 기록</div>
+        <div id="recentPanel"></div>
+      </div>
     </div>
 
     <div class="guide">
@@ -464,7 +468,13 @@
     resultPanel.dataset.share = `나는 ${result.persona}! 청력 나이 테스트 결과 ${result.age}! (최고 ${maxHeard || 8000}Hz 청취) 너도 해봐 → `;
 
     const lbList = addToLeaderboard(LB_KEY, { value: maxHeard, date: Date.now() }, false);
+    addRecentRecord('skillHearingAgeLeaderboardV1', { value: maxHeard, date: Date.now() });
+    renderRecent();
     renderTopLeaderboard(lbList);
+  }
+
+  function renderRecent() {
+    renderRecentRecords('recentPanel', loadStats('skillHearingAgeLeaderboardV1_recent', []), (entry) => `${entry.value} Hz · ${ageFor(entry.value).age}`, '아직 기록이 없어요. 첫 도전을 해보세요!', 8);
   }
 
   function renderTopLeaderboard(list) {
@@ -486,6 +496,7 @@
 
   renderStats();
   renderTopLeaderboard(loadStats(LB_KEY, []));
+  renderRecent();
 </script>
 </body>
 </html>

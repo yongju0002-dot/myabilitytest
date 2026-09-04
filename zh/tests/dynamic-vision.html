@@ -154,6 +154,10 @@
         <div class="rb-head">记录排行</div>
         <div id="topLeaderboard"></div>
       </div>
+      <div class="record-box">
+        <div class="rb-head">最近记录</div>
+        <div id="recentPanel"></div>
+      </div>
     </div>
 
     <div class="guide">
@@ -479,7 +483,13 @@
     resultPanel.dataset.share = `我在动态视力测试中读到了${Math.round(bestScore)}ms的数字!(${grade.label}) 你也来试试 → `;
 
     const lbList = addToLeaderboard(LB_KEY, { value: bestScore, date: Date.now() }, true);
+    addRecentRecord('skillDynamicVisionLeaderboardV1', { value: bestScore, date: Date.now() });
+    renderRecent();
     renderTopLeaderboard(lbList);
+  }
+
+  function renderRecent() {
+    renderRecentRecords('recentPanel', loadStats('skillDynamicVisionLeaderboardV1_recent', []), (entry) => `${Math.round(entry.value)} ms`, '还没有记录。快来挑战第一次吧!', 8);
   }
 
   function renderTopLeaderboard(list) {
@@ -502,6 +512,7 @@
 
   renderStats();
   renderTopLeaderboard(loadStats(LB_KEY, []));
+  renderRecent();
 </script>
 </body>
 </html>

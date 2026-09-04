@@ -155,6 +155,10 @@
         <div class="rb-head">Top records</div>
         <div id="topLeaderboard"></div>
       </div>
+      <div class="record-box">
+        <div class="rb-head">Recent runs</div>
+        <div id="recentPanel"></div>
+      </div>
     </div>
 
     <div class="guide">
@@ -480,7 +484,13 @@
     resultPanel.dataset.share = `I read a number flashed for just ${Math.round(bestScore)}ms on the dynamic vision test! (${grade.label}) Try it yourself → `;
 
     const lbList = addToLeaderboard(LB_KEY, { value: bestScore, date: Date.now() }, true);
+    addRecentRecord('skillDynamicVisionLeaderboardV1', { value: bestScore, date: Date.now() });
+    renderRecent();
     renderTopLeaderboard(lbList);
+  }
+
+  function renderRecent() {
+    renderRecentRecords('recentPanel', loadStats('skillDynamicVisionLeaderboardV1_recent', []), (entry) => `${Math.round(entry.value)} ms`, 'No records yet. Try your first challenge!', 8);
   }
 
   function renderTopLeaderboard(list) {
@@ -503,6 +513,7 @@
 
   renderStats();
   renderTopLeaderboard(loadStats(LB_KEY, []));
+  renderRecent();
 </script>
 </body>
 </html>

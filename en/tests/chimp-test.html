@@ -151,6 +151,10 @@
         <div class="rb-head">Top records</div>
         <div id="topLeaderboard"></div>
       </div>
+      <div class="record-box">
+        <div class="rb-head">Recent runs</div>
+        <div id="recentPanel"></div>
+      </div>
     </div>
 
     <div class="guide">
@@ -396,7 +400,13 @@
     resultPanel.dataset.share = `I remembered ${score} numbers on the chimp test! (${grade.label}) Ayumu the chimpanzee got 9 right at 80% accuracy. Try it yourself → `;
 
     const lbList = addToLeaderboard(LB_KEY, { value: score, date: Date.now() }, false);
+    addRecentRecord('skillChimpLeaderboardV1', { value: score, date: Date.now() });
+    renderRecent();
     renderTopLeaderboard(lbList);
+  }
+
+  function renderRecent() {
+    renderRecentRecords('recentPanel', loadStats('skillChimpLeaderboardV1_recent', []), (entry) => `${entry.value}`, 'No records yet. Try your first challenge!', 8);
   }
 
   function renderTopLeaderboard(list) {
@@ -428,6 +438,7 @@
 
   renderStats();
   renderTopLeaderboard(loadStats(LB_KEY, []));
+  renderRecent();
 </script>
 </body>
 </html>

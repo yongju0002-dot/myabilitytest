@@ -153,6 +153,10 @@
         <div class="rb-head">기록 순위</div>
         <div id="topLeaderboard"></div>
       </div>
+      <div class="record-box">
+        <div class="rb-head">최근 기록</div>
+        <div id="recentPanel"></div>
+      </div>
     </div>
 
     <div class="guide">
@@ -399,7 +403,13 @@
     resultPanel.dataset.share = `나는 ${grade.persona}! 침팬지 테스트에서 숫자 ${score}개를 기억했어요! (${grade.label}) 침팬지 아유무는 9개를 80% 정확도로 성공했대요. 너도 해봐 → `;
 
     const lbList = addToLeaderboard(LB_KEY, { value: score, date: Date.now() }, false);
+    addRecentRecord('skillChimpLeaderboardV1', { value: score, date: Date.now() });
+    renderRecent();
     renderTopLeaderboard(lbList);
+  }
+
+  function renderRecent() {
+    renderRecentRecords('recentPanel', loadStats('skillChimpLeaderboardV1_recent', []), (entry) => `${entry.value}개`, '아직 기록이 없어요. 첫 도전을 해보세요!', 8);
   }
 
   function renderTopLeaderboard(list) {
@@ -431,6 +441,7 @@
 
   renderStats();
   renderTopLeaderboard(loadStats(LB_KEY, []));
+  renderRecent();
 </script>
 </body>
 </html>

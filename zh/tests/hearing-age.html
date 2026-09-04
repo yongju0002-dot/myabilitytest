@@ -217,6 +217,10 @@
         <div class="rb-head">记录排行</div>
         <div id="topLeaderboard"></div>
       </div>
+      <div class="record-box">
+        <div class="rb-head">最近记录</div>
+        <div id="recentPanel"></div>
+      </div>
     </div>
 
     <div class="guide">
@@ -460,7 +464,13 @@
     resultPanel.dataset.share = `我的听力年龄测试结果是${result.age}!(听到了${maxHeard || 8000}Hz)你也来试试 → `;
 
     const lbList = addToLeaderboard(LB_KEY, { value: maxHeard, date: Date.now() }, false);
+    addRecentRecord('skillHearingAgeLeaderboardV1', { value: maxHeard, date: Date.now() });
+    renderRecent();
     renderTopLeaderboard(lbList);
+  }
+
+  function renderRecent() {
+    renderRecentRecords('recentPanel', loadStats('skillHearingAgeLeaderboardV1_recent', []), (entry) => `${entry.value} Hz · ${ageFor(entry.value).age}`, '还没有记录。快来挑战第一次吧!', 8);
   }
 
   function renderTopLeaderboard(list) {
@@ -482,6 +492,7 @@
 
   renderStats();
   renderTopLeaderboard(loadStats(LB_KEY, []));
+  renderRecent();
 </script>
 </body>
 </html>

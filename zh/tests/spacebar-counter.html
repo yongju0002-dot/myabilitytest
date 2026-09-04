@@ -165,6 +165,10 @@
         <div class="rb-head">记录排行</div>
         <div id="topLeaderboard"></div>
       </div>
+      <div class="record-box">
+        <div class="rb-head">最近记录</div>
+        <div id="recentPanel"></div>
+      </div>
     </div>
 
     <div class="guide">
@@ -418,7 +422,13 @@
     resultPanel.dataset.share = `我在空格键连打测试中${duration}秒按了${presses}次(每秒${rate.toFixed(1)})!你也来试试 → `;
 
     const lbList = addToLeaderboard(LB_KEY + '_' + bk, { value: presses, rate, date: Date.now() }, false);
+    addRecentRecord('skillSpacebarLeaderboardV1', { value: presses, rate, date: Date.now() });
+    renderRecent();
     renderTopLeaderboard(lbList);
+  }
+
+  function renderRecent() {
+    renderRecentRecords('recentPanel', loadStats('skillSpacebarLeaderboardV1_recent', []), (entry) => `${entry.value}次 · 每秒${entry.rate.toFixed(1)}`, '还没有记录。快来挑战第一次吧!', 8);
   }
 
   function renderTopLeaderboard(list) {
@@ -445,6 +455,7 @@
   renderDurationButtons();
   renderStats();
   renderTopLeaderboard(loadStats(LB_KEY + '_' + bucketKey(duration,'keyboard'), []));
+  renderRecent();
 </script>
 </body>
 </html>

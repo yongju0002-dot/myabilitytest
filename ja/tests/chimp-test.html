@@ -151,6 +151,10 @@
         <div class="rb-head">記録ランキング</div>
         <div id="topLeaderboard"></div>
       </div>
+      <div class="record-box">
+        <div class="rb-head">最近の記録</div>
+        <div id="recentPanel"></div>
+      </div>
     </div>
 
     <div class="guide">
@@ -396,7 +400,13 @@
     resultPanel.dataset.share = `チンパンジーテストで数字を${score}個記憶しました!(${grade.label}) チンパンジーのアユムは9個を正解率80%で成功したそうです。あなたもどうぞ → `;
 
     const lbList = addToLeaderboard(LB_KEY, { value: score, date: Date.now() }, false);
+    addRecentRecord('skillChimpLeaderboardV1', { value: score, date: Date.now() });
+    renderRecent();
     renderTopLeaderboard(lbList);
+  }
+
+  function renderRecent() {
+    renderRecentRecords('recentPanel', loadStats('skillChimpLeaderboardV1_recent', []), (entry) => `${entry.value}個`, 'まだ記録がありません。最初の挑戦をしてみましょう!', 8);
   }
 
   function renderTopLeaderboard(list) {
@@ -428,6 +438,7 @@
 
   renderStats();
   renderTopLeaderboard(loadStats(LB_KEY, []));
+  renderRecent();
 </script>
 </body>
 </html>

@@ -157,6 +157,10 @@
         <div class="rb-head">记录排行</div>
         <div id="topLeaderboard"></div>
       </div>
+      <div class="record-box">
+        <div class="rb-head">最近记录</div>
+        <div id="recentPanel"></div>
+      </div>
     </div>
 
     <div class="guide">
@@ -377,7 +381,13 @@
       : `参与者${best.player}以${best.diff.toFixed(2)}秒的误差赢得了时间感知测试!你也来试试 → `;
 
     const lbList = addToLeaderboard(LB_KEY, { value: best.diff, playerCount, date: Date.now() }, true);
+    addRecentRecord('skillTimeGuessLeaderboardV1', { value: best.diff, playerCount, date: Date.now() });
+    renderRecent();
     renderTopLeaderboard(lbList);
+  }
+
+  function renderRecent() {
+    renderRecentRecords('recentPanel', loadStats('skillTimeGuessLeaderboardV1_recent', []), (entry) => `误差${entry.value.toFixed(2)}秒 · ${entry.playerCount}人`, '还没有记录。快来挑战第一次吧!', 8);
   }
 
   function renderTopLeaderboard(list) {
@@ -399,6 +409,7 @@
 
   renderStats();
   renderTopLeaderboard(loadStats(LB_KEY, []));
+  renderRecent();
 </script>
 </body>
 </html>

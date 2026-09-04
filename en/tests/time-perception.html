@@ -157,6 +157,10 @@
         <div class="rb-head">Top records</div>
         <div id="topLeaderboard"></div>
       </div>
+      <div class="record-box">
+        <div class="rb-head">Recent runs</div>
+        <div id="recentPanel"></div>
+      </div>
     </div>
 
     <div class="guide">
@@ -377,7 +381,13 @@
       : `Player ${best.player} won the Time Sense Test with a ${best.diff.toFixed(2)}s error! Try it yourself → `;
 
     const lbList = addToLeaderboard(LB_KEY, { value: best.diff, playerCount, date: Date.now() }, true);
+    addRecentRecord('skillTimeGuessLeaderboardV1', { value: best.diff, playerCount, date: Date.now() });
+    renderRecent();
     renderTopLeaderboard(lbList);
+  }
+
+  function renderRecent() {
+    renderRecentRecords('recentPanel', loadStats('skillTimeGuessLeaderboardV1_recent', []), (entry) => `Error ${entry.value.toFixed(2)}s · ${entry.playerCount}p`, 'No records yet. Try your first challenge!', 8);
   }
 
   function renderTopLeaderboard(list) {
@@ -399,6 +409,7 @@
 
   renderStats();
   renderTopLeaderboard(loadStats(LB_KEY, []));
+  renderRecent();
 </script>
 </body>
 </html>

@@ -75,14 +75,14 @@ function addToLeaderboard(key, entry, betterIsLower, max = 30) {
   return list;
 }
 
-function renderLeaderboard(containerId, list, formatRow, emptyText) {
+function renderLeaderboard(containerId, list, formatRow, emptyText, maxRows) {
   const el = document.getElementById(containerId);
   if (!el) return;
   if (!list || !list.length) {
     el.innerHTML = `<p style="text-align:center;color:var(--text-dim);font-size:13px;">${emptyText}</p>`;
     return;
   }
-  el.innerHTML = '<ul class="leaderboard">' + list.map((entry, i) => {
+  el.innerHTML = '<ul class="leaderboard">' + list.slice(0, maxRows || 8).map((entry, i) => {
     const medal = String(i + 1).padStart(2, '0');
     return `<li class="${i === 0 ? 'winner' : ''}"><span class="rank">${medal}</span>${formatRow(entry, i)}</li>`;
   }).join('') + '</ul>';
@@ -133,14 +133,14 @@ function addRecentRecord(key, entry, max = 20) {
   return list;
 }
 
-function renderRecentRecords(containerId, list, formatRow, emptyText) {
+function renderRecentRecords(containerId, list, formatRow, emptyText, maxRows) {
   const el = document.getElementById(containerId);
   if (!el) return;
   if (!list || !list.length) {
     el.innerHTML = `<p class="rec-empty">${emptyText}</p>`;
     return;
   }
-  el.innerHTML = '<ul class="recent-list">' + list.map(entry => {
+  el.innerHTML = '<ul class="recent-list">' + list.slice(0, maxRows || 8).map(entry => {
     const d = new Date(entry.date);
     const time = `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
     return `<li><span class="rec-main">${formatRow(entry)}</span><span class="rec-time">${time}</span></li>`;

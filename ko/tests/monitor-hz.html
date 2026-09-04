@@ -182,10 +182,6 @@
       <p>주사율이 높으면 화면에 새로운 정보가 표시되기까지의 대기 시간이 짧아집니다. 60Hz에서는 한 프레임이 약 16.7ms, 144Hz에서는 약 6.9ms이므로 이론상 그 차이만큼 정보를 더 일찍 볼 수 있습니다. 이 때문에 <a href="/ko/tests/reaction-time">반응 속도 테스트</a> 결과도 기기에 따라 10~50ms가량 달라질 수 있습니다.</p>
     </section>
 
-    <div class="side-panel">
-      <div class="ach-head">최근 측정</div>
-      <div id="recentPanel"></div>
-    </div>
 
     <div class="other-tests">
       <div class="label">다른 테스트도 해보세요</div>
@@ -194,6 +190,13 @@
         <a href="/ko/tests/aim-trainer"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0M12 2v4M12 18v4M2 12h4M18 12h4"></path></svg><span>에임 테스트</span></a>
         <a href="/ko/tests/dynamic-vision"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 12c3-5 7-7 10-7s7 2 10 7c-3 5-7 7-10 7s-7-2-10-7zM9 12a3 3 0 1 0 6 0a3 3 0 1 0-6 0"></path></svg><span>동체시력</span></a>
         <a href="/ko/tests/click-speed"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 3h8a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zM12 3v7"></path></svg><span>CPS 클릭 속도</span></a>
+      </div>
+    </div>
+
+    <div class="record-grid">
+      <div class="record-box">
+        <div class="rb-head">최근 측정</div>
+        <div id="recentPanel"></div>
       </div>
     </div>
   </div>

@@ -813,3 +813,28 @@ h2 { font-size: clamp(22px, 3vw, 30px); font-weight: 900; letter-spacing: -0.03e
 @keyframes rippleAnim {
   to { transform: translate(-50%, -50%) scale(9); opacity: 0; }
 }
+
+/* ---- 기록 순위 · 최근 기록 (나란한 두 상자) ---- */
+.record-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: 16px;
+  align-items: start;
+  margin-top: 28px;
+}
+.record-box {
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--card-bg);
+  padding: 16px 18px;
+}
+.record-box .rb-head {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+/* 상자 안에서는 카드 배경이 겹치지 않게 한 톤 낮춘다 */
+.record-box .leaderboard { margin: 0; }
+.record-box .leaderboard li { background: var(--card-bg-2); border-color: transparent; }
+.record-box .leaderboard li.winner { border-color: var(--accent); background: var(--accent-soft); }

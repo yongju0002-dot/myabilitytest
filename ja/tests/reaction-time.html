@@ -584,11 +584,13 @@
 
     // 구간마다 폭이 달라서(30ms~150ms) 인원 비율을 그대로 높이로 쓰면 모양이 왜곡된다.
     // 폭으로 나눈 밀도를 써야 실제 분포 모양이 나온다.
+    // RT_CURVE의 원래 구간은 폭이 30~150ms로 제각각이라 그대로 그리면 막대 너비가 들쭉날쭉하다.
+    // 40ms 등간격으로 다시 나눠 모든 막대의 가로 길이를 같게 만든다.
+    const STEP = 40;
     const bins = [];
-    for (let i = 0; i < RT_CURVE.length - 1; i++) {
-      const x0 = RT_CURVE[i].ms, x1 = RT_CURVE[i + 1].ms;
-      const share = RT_CURVE[i].pct - RT_CURVE[i + 1].pct;
-      bins.push({ x0, x1, density: share / (x1 - x0) });
+    for (let ms = MIN; ms < MAX; ms += STEP) {
+      const x0 = ms, x1 = Math.min(MAX, ms + STEP);
+      bins.push({ x0, x1, density: percentileForMs(x0) - percentileForMs(x1) });
     }
     const maxDensity = Math.max(...bins.map(b => b.density));
     const xScale = (ms) => PAD_L + (Math.max(MIN, Math.min(MAX, ms)) - MIN) / (MAX - MIN) * (W - PAD_L - PAD_R);

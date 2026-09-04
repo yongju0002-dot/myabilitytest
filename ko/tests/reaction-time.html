@@ -49,16 +49,6 @@
     --go-color: #e05a37;
     --early-color: #2b2c32;
   }
-  body.colorblind {
-    --wait-color: #0b1220;
-    --go-color: #3b82f6;
-    --early-color: #2a2b31;
-  }
-  .toolbar {
-    display: flex; justify-content: center; align-items: center; gap: 8px;
-    margin-bottom: 14px; font-size: 13px; color: var(--body);
-  }
-  .toolbar label { display: flex; align-items: center; gap: 6px; cursor: pointer; }
 
   /* 무대 */
   .stage {
@@ -143,27 +133,11 @@
     </nav>
     <h1>반응 속도 테스트</h1>
     <p class="sub">화면 색이 바뀌는 순간 바로 클릭하세요</p>
-    <p class="disclaimer">모니터·마우스·터치스크린 지연으로 기기마다 10~50ms, TV는 100ms 이상 늘어날 수 있어요</p>
 
     <div class="mode-select" id="modeSelect">
       <button data-mode="simple" class="active">단순 반응</button>
       <button data-mode="f1">F1 스타트</button>
       <button data-mode="gonogo">선택 반응</button>
-    </div>
-    <p class="mode-hint" id="modeHint">색이 바뀌는 순간 클릭하는 고전 방식입니다.</p>
-
-    <div class="setting-row">
-      <span class="setting-label">대기 시간</span>
-      <div class="duration-select" id="rangeSelect">
-        <button data-range="short">짧게</button>
-        <button data-range="normal" class="active">보통</button>
-        <button data-range="long">길게</button>
-      </div>
-    </div>
-    <p class="mode-hint" id="rangeHint">1.2~4.0초 사이에서 무작위로 신호가 나옵니다.</p>
-
-    <div class="toolbar">
-      <label><input type="checkbox" id="colorblindToggle"> 색약 모드 (파랑/주황)</label>
     </div>
 
     <div id="stage" class="stage state-idle">
@@ -292,9 +266,7 @@
   const statCount = document.getElementById('statCount');
   const statAvg = document.getElementById('statAvg');
   const statBest = document.getElementById('statBest');
-  const colorblindToggle = document.getElementById('colorblindToggle');
   const modeSelect = document.getElementById('modeSelect');
-  const modeHint = document.getElementById('modeHint');
 
   const STATE = { SETUP: 'setup', WAIT : 'wait', GO : 'go', EARLY : 'early', ROUND_RESULT : 'round_result', SUMMARY : 'summary' };
   let state = STATE.SETUP;
@@ -321,7 +293,8 @@
     { key: 'normal', label : '보통', min: 1200, span: 2800, hint : '1.2~4.0초 사이에서 무작위로 신호가 나옵니다.' },
     { key: 'long', label : '길게', min: 2000, span: 5000, hint : '2.0~7.0초 사이에서 무작위로 신호가 나옵니다. 집중을 오래 유지해야 해요.' },
   ];
-  let range = RANGES[1];
+  // 대기 시간 설정은 화면에서 뺐고 '보통'으로 고정한다 (기록 저장 키도 그대로 유지)
+  const range = RANGES[1];
   function randomDelay() { return range.min + Math.random() * range.span; }
 
   // '보통'은 기존 저장 키를 그대로 써서 예전 기록을 유지합니다.
@@ -423,7 +396,6 @@
     modeSelect.querySelectorAll('button').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.mode === mode.key);
     });
-    modeHint.textContent = mode.hint;
   }
 
   function showSetup() {
@@ -751,9 +723,6 @@
 
   stage.addEventListener('click', handleClick);
 
-  colorblindToggle.addEventListener('change', () => {
-    document.body.classList.toggle('colorblind', colorblindToggle.checked);
-  });
 
   modeSelect.querySelectorAll('button').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -766,23 +735,6 @@
     });
   });
 
-  const rangeSelect = document.getElementById('rangeSelect');
-  const rangeHint = document.getElementById('rangeHint');
-  rangeSelect.querySelectorAll('button').forEach(btn => {
-    btn.addEventListener('click', () => {
-      range = RANGES.find(r => r.key === btn.dataset.range) || RANGES[1];
-      rangeSelect.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.range === range.key));
-      rangeHint.textContent = range.hint;
-      // 범위마다 기록이 따로이므로 통계·순위를 다시 읽어온다.
-      stats = JSON.parse(localStorage.getItem(storeKey()) || 'null') || { count: 0, sum: 0, best: null };
-      renderStats();
-      renderTopLeaderboard(loadLB());
-      renderPanels();
-      roundTimes = [];
-      currentRound = 0;
-      showSetup();
-    });
-  });
 
   renderStats();
   renderModeButtons();

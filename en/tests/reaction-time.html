@@ -49,16 +49,6 @@
     --go-color: #e05a37;
     --early-color: #2b2c32;
   }
-  body.colorblind {
-    --wait-color: #0b1220;
-    --go-color: #3b82f6;
-    --early-color: #2a2b31;
-  }
-  .toolbar {
-    display: flex; justify-content: center; align-items: center; gap: 8px;
-    margin-bottom: 14px; font-size: 13px; color: var(--body);
-  }
-  .toolbar label { display: flex; align-items: center; gap: 6px; cursor: pointer; }
 
   /* 무대 */
   .stage {
@@ -143,27 +133,11 @@
     </nav>
     <h1>Reaction Time Test</h1>
     <p class="sub">Click the instant the screen color changes</p>
-    <p class="disclaimer">Monitor, mouse, and touchscreen lag can add 10–50ms depending on your device — 100ms+ on a TV</p>
 
     <div class="mode-select" id="modeSelect">
       <button data-mode="simple" class="active">Simple</button>
       <button data-mode="f1">F1 Start</button>
       <button data-mode="gonogo">Go / No-Go</button>
-    </div>
-    <p class="mode-hint" id="modeHint">The classic test: click the moment the colour changes.</p>
-
-    <div class="setting-row">
-      <span class="setting-label">Wait time</span>
-      <div class="duration-select" id="rangeSelect">
-        <button data-range="short">Short</button>
-        <button data-range="normal" class="active">Normal</button>
-        <button data-range="long">Long</button>
-      </div>
-    </div>
-    <p class="mode-hint" id="rangeHint">The signal appears at a random point between 1.2 and 4.0 seconds.</p>
-
-    <div class="toolbar">
-      <label><input type="checkbox" id="colorblindToggle"> Colorblind mode (blue/orange)</label>
     </div>
 
     <div id="stage" class="stage state-idle">
@@ -292,9 +266,7 @@
   const statCount = document.getElementById('statCount');
   const statAvg = document.getElementById('statAvg');
   const statBest = document.getElementById('statBest');
-  const colorblindToggle = document.getElementById('colorblindToggle');
   const modeSelect = document.getElementById('modeSelect');
-  const modeHint = document.getElementById('modeHint');
 
   const STATE = { SETUP: 'setup', WAIT : 'wait', GO : 'go', EARLY : 'early', ROUND_RESULT : 'round_result', SUMMARY : 'summary' };
   let state = STATE.SETUP;
@@ -321,7 +293,8 @@
     { key: 'normal', label : 'Normal', min: 1200, span: 2800, hint : 'The signal appears at a random point between 1.2 and 4.0 seconds.' },
     { key: 'long', label : 'Long', min: 2000, span: 5000, hint : 'The signal appears at a random point between 2.0 and 7.0 seconds. You have to hold your focus longer.' },
   ];
-  let range = RANGES[1];
+  // 대기 시간 설정은 화면에서 뺐고 '보통'으로 고정한다 (기록 저장 키도 그대로 유지)
+  const range = RANGES[1];
   function randomDelay() { return range.min + Math.random() * range.span; }
 
   // 'Normal' keeps the original storage keys so existing records survive.
@@ -420,7 +393,6 @@
     modeSelect.querySelectorAll('button').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.mode === mode.key);
     });
-    modeHint.textContent = mode.hint;
   }
 
   function showSetup() {
@@ -737,9 +709,6 @@
 
   stage.addEventListener('click', handleClick);
 
-  colorblindToggle.addEventListener('change', () => {
-    document.body.classList.toggle('colorblind', colorblindToggle.checked);
-  });
 
   modeSelect.querySelectorAll('button').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -752,23 +721,6 @@
     });
   });
 
-  const rangeSelect = document.getElementById('rangeSelect');
-  const rangeHint = document.getElementById('rangeHint');
-  rangeSelect.querySelectorAll('button').forEach(btn => {
-    btn.addEventListener('click', () => {
-      range = RANGES.find(r => r.key === btn.dataset.range) || RANGES[1];
-      rangeSelect.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.range === range.key));
-      rangeHint.textContent = range.hint;
-      // Records are per range, so reload the stats and rankings.
-      stats = JSON.parse(localStorage.getItem(storeKey()) || 'null') || { count: 0, sum: 0, best: null };
-      renderStats();
-      renderTopLeaderboard(loadLB());
-      renderPanels();
-      roundTimes = [];
-      currentRound = 0;
-      showSetup();
-    });
-  });
 
   renderStats();  renderModeButtons();
   showSetup();

@@ -49,16 +49,6 @@
     --go-color: #e05a37;
     --early-color: #2b2c32;
   }
-  body.colorblind {
-    --wait-color: #0b1220;
-    --go-color: #3b82f6;
-    --early-color: #2a2b31;
-  }
-  .toolbar {
-    display: flex; justify-content: center; align-items: center; gap: 8px;
-    margin-bottom: 14px; font-size: 13px; color: var(--body);
-  }
-  .toolbar label { display: flex; align-items: center; gap: 6px; cursor: pointer; }
 
   /* 무대 */
   .stage {
@@ -143,27 +133,11 @@
     </nav>
     <h1>反应速度测试</h1>
     <p class="sub">画面颜色变化的瞬间立刻点击</p>
-    <p class="disclaimer">显示器、鼠标、触屏延迟会因设备不同增加10~50ms,电视上可能增加100ms以上</p>
 
     <div class="mode-select" id="modeSelect">
       <button data-mode="simple" class="active">单纯反应</button>
       <button data-mode="f1">F1起步</button>
       <button data-mode="gonogo">选择反应</button>
-    </div>
-    <p class="mode-hint" id="modeHint">颜色一变就点击的经典方式。</p>
-
-    <div class="setting-row">
-      <span class="setting-label">等待时间</span>
-      <div class="duration-select" id="rangeSelect">
-        <button data-range="short">短</button>
-        <button data-range="normal" class="active">标准</button>
-        <button data-range="long">长</button>
-      </div>
-    </div>
-    <p class="mode-hint" id="rangeHint">信号会在1.2~4.0秒之间随机出现。</p>
-
-    <div class="toolbar">
-      <label><input type="checkbox" id="colorblindToggle"> 色盲模式(蓝色/橙色)</label>
     </div>
 
     <div id="stage" class="stage state-idle">
@@ -291,9 +265,7 @@
   const statCount = document.getElementById('statCount');
   const statAvg = document.getElementById('statAvg');
   const statBest = document.getElementById('statBest');
-  const colorblindToggle = document.getElementById('colorblindToggle');
   const modeSelect = document.getElementById('modeSelect');
-  const modeHint = document.getElementById('modeHint');
 
   const STATE = { SETUP: 'setup', WAIT : 'wait', GO : 'go', EARLY : 'early', ROUND_RESULT : 'round_result', SUMMARY : 'summary' };
   let state = STATE.SETUP;
@@ -320,7 +292,8 @@
     { key: 'normal', label : '标准', min: 1200, span: 2800, hint : '信号会在1.2~4.0秒之间随机出现。' },
     { key: 'long', label : '长', min: 2000, span: 5000, hint : '信号会在2.0~7.0秒之间随机出现。需要保持更长时间的专注。' },
   ];
-  let range = RANGES[1];
+  // 대기 시간 설정은 화면에서 뺐고 '보통'으로 고정한다 (기록 저장 키도 그대로 유지)
+  const range = RANGES[1];
   function randomDelay() { return range.min + Math.random() * range.span; }
 
   // 「标准」沿用原有的存储键,保留此前的记录。
@@ -419,7 +392,6 @@
     modeSelect.querySelectorAll('button').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.mode === mode.key);
     });
-    modeHint.textContent = mode.hint;
   }
 
   function showSetup() {
@@ -731,9 +703,6 @@
 
   stage.addEventListener('click', handleClick);
 
-  colorblindToggle.addEventListener('change', () => {
-    document.body.classList.toggle('colorblind', colorblindToggle.checked);
-  });
 
   modeSelect.querySelectorAll('button').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -746,23 +715,6 @@
     });
   });
 
-  const rangeSelect = document.getElementById('rangeSelect');
-  const rangeHint = document.getElementById('rangeHint');
-  rangeSelect.querySelectorAll('button').forEach(btn => {
-    btn.addEventListener('click', () => {
-      range = RANGES.find(r => r.key === btn.dataset.range) || RANGES[1];
-      rangeSelect.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.range === range.key));
-      rangeHint.textContent = range.hint;
-      // 各范围记录独立,因此重新读取统计与排行。
-      stats = JSON.parse(localStorage.getItem(storeKey()) || 'null') || { count: 0, sum: 0, best: null };
-      renderStats();
-      renderTopLeaderboard(loadLB());
-      renderPanels();
-      roundTimes = [];
-      currentRound = 0;
-      showSetup();
-    });
-  });
 
   renderStats();  renderModeButtons();
   showSetup();

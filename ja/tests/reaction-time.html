@@ -49,16 +49,6 @@
     --go-color: #e05a37;
     --early-color: #2b2c32;
   }
-  body.colorblind {
-    --wait-color: #0b1220;
-    --go-color: #3b82f6;
-    --early-color: #2a2b31;
-  }
-  .toolbar {
-    display: flex; justify-content: center; align-items: center; gap: 8px;
-    margin-bottom: 14px; font-size: 13px; color: var(--body);
-  }
-  .toolbar label { display: flex; align-items: center; gap: 6px; cursor: pointer; }
 
   /* 무대 */
   .stage {
@@ -143,27 +133,11 @@
     </nav>
     <h1>反応速度テスト</h1>
     <p class="sub">画面の色が変わった瞬間にクリックしてください</p>
-    <p class="disclaimer">モニター・マウス・タッチスクリーンの遅延で機器ごとに10〜50ms、テレビでは100ms以上増えることがあります</p>
 
     <div class="mode-select" id="modeSelect">
       <button data-mode="simple" class="active">単純反応</button>
       <button data-mode="f1">F1スタート</button>
       <button data-mode="gonogo">選択反応</button>
-    </div>
-    <p class="mode-hint" id="modeHint">色が変わった瞬間にクリックする定番方式です。</p>
-
-    <div class="setting-row">
-      <span class="setting-label">待ち時間</span>
-      <div class="duration-select" id="rangeSelect">
-        <button data-range="short">短め</button>
-        <button data-range="normal" class="active">標準</button>
-        <button data-range="long">長め</button>
-      </div>
-    </div>
-    <p class="mode-hint" id="rangeHint">1.2~4.0秒のあいだのランダムなタイミングで合図が出ます。</p>
-
-    <div class="toolbar">
-      <label><input type="checkbox" id="colorblindToggle"> 色覚配慮モード(青/オレンジ)</label>
     </div>
 
     <div id="stage" class="stage state-idle">
@@ -292,9 +266,7 @@
   const statCount = document.getElementById('statCount');
   const statAvg = document.getElementById('statAvg');
   const statBest = document.getElementById('statBest');
-  const colorblindToggle = document.getElementById('colorblindToggle');
   const modeSelect = document.getElementById('modeSelect');
-  const modeHint = document.getElementById('modeHint');
 
   const STATE = { SETUP: 'setup', WAIT : 'wait', GO : 'go', EARLY : 'early', ROUND_RESULT : 'round_result', SUMMARY : 'summary' };
   let state = STATE.SETUP;
@@ -321,7 +293,8 @@
     { key: 'normal', label : '標準', min: 1200, span: 2800, hint : '1.2~4.0秒のあいだのランダムなタイミングで合図が出ます。' },
     { key: 'long', label : '長め', min: 2000, span: 5000, hint : '2.0~7.0秒のあいだのランダムなタイミングで合図が出ます。集中を長く保つ必要があります。' },
   ];
-  let range = RANGES[1];
+  // 대기 시간 설정은 화면에서 뺐고 '보통'으로 고정한다 (기록 저장 키도 그대로 유지)
+  const range = RANGES[1];
   function randomDelay() { return range.min + Math.random() * range.span; }
 
   // 「標準」は既存の保存キーをそのまま使い、これまでの記録を保持します。
@@ -420,7 +393,6 @@
     modeSelect.querySelectorAll('button').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.mode === mode.key);
     });
-    modeHint.textContent = mode.hint;
   }
 
   function showSetup() {
@@ -732,9 +704,6 @@
 
   stage.addEventListener('click', handleClick);
 
-  colorblindToggle.addEventListener('change', () => {
-    document.body.classList.toggle('colorblind', colorblindToggle.checked);
-  });
 
   modeSelect.querySelectorAll('button').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -747,23 +716,6 @@
     });
   });
 
-  const rangeSelect = document.getElementById('rangeSelect');
-  const rangeHint = document.getElementById('rangeHint');
-  rangeSelect.querySelectorAll('button').forEach(btn => {
-    btn.addEventListener('click', () => {
-      range = RANGES.find(r => r.key === btn.dataset.range) || RANGES[1];
-      rangeSelect.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.range === range.key));
-      rangeHint.textContent = range.hint;
-      // 範囲ごとに記録が別なので、統計とランキングを読み直します。
-      stats = JSON.parse(localStorage.getItem(storeKey()) || 'null') || { count: 0, sum: 0, best: null };
-      renderStats();
-      renderTopLeaderboard(loadLB());
-      renderPanels();
-      roundTimes = [];
-      currentRound = 0;
-      showSetup();
-    });
-  });
 
   renderStats();  renderModeButtons();
   showSetup();

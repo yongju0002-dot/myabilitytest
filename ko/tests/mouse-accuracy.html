@@ -574,7 +574,7 @@
       if (gIdx < list.length - 1) {
         gIdx += 1; shape = list[gIdx];
         showModal(true, lastResult, T.next);
-        setTimeout(() => { if (state === 'done' && gauntlet) { prepare(); begin(); } }, 900);
+        setTimeout(() => { if (state === 'done' && gauntlet) prepare(); }, 900);   // 다음 코스는 대기 상태로 두고, 시작 지점을 클릭해야 시작한다
         return;
       }
       // 연속 도전 완료: 평균

@@ -28,12 +28,7 @@
 {"@context":"https://schema.org","@graph":[
 {"@type":"Organization","@id":"https://myabilitytest.com/#organization","name":"MyAbilityTest","url":"https://myabilitytest.com/","logo":{"@type":"ImageObject","url":"https://myabilitytest.com/og-default.png","width":1200,"height":630}},
 {"@type":"WebSite","@id":"https://myabilitytest.com/#website","name":"MyAbilityTest","url":"https://myabilitytest.com/","inLanguage":["ko","en","ja","zh-Hant"],"publisher":{"@id":"https://myabilitytest.com/#organization"}},
-{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://myabilitytest.com/en/"},{"@type":"ListItem","position":2,"name":"Monitor Refresh Rate Test | Ability Test","item":"https://myabilitytest.com/en/tests/monitor-hz"}]},{"@type":"WebApplication","name":"Monitor Refresh Rate Test | Ability Test","url":"https://myabilitytest.com/en/tests/monitor-hz","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"en"},
-{"@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"Can the browser reading differ from my real refresh rate?","acceptedAnswer":{"@type":"Answer","text":"Yes. The browser draws frames in step with the display, but power-saving modes, load from other tabs, and browser frame-throttling policies can all make the reading come out lower than your monitor actually runs. Plug in, close other tabs, and measure again."}},
-{"@type":"Question","name":"My monitor is 144Hz but this shows 60Hz.","acceptedAnswer":{"@type":"Answer","text":"Most likely your OS display settings are still set to 60Hz. On Windows check Settings > System > Display > Advanced display; on macOS check Settings > Displays. A cable that does not support the higher rate at your resolution can also cap it."}},
-{"@type":"Question","name":"Does a higher refresh rate help in games?","acceptedAnswer":{"@type":"Answer","text":"The screen updates more often, so motion looks smoother and new information reaches your eyes with less delay. How much you notice depends on the person and the genre, and refresh rate alone does not decide skill."}}
-]}
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://myabilitytest.com/en/"},{"@type":"ListItem","position":2,"name":"Monitor Refresh Rate Test | Ability Test","item":"https://myabilitytest.com/en/tests/monitor-hz"}]},{"@type":"WebApplication","name":"Monitor Refresh Rate Test | Ability Test","url":"https://myabilitytest.com/en/tests/monitor-hz","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"en"}
 ]}
 </script>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -159,35 +154,44 @@
       </div>
     </div>
 
-    <section class="info">
-      <h2>What is refresh rate (Hz)?</h2>
-      <p>Refresh rate is how many times per second your monitor redraws the screen. At 60Hz that is 60 times a second; at 144Hz, 144 times. Higher numbers mean motion looks smoother and new frames reach your eyes with less delay.</p>
-
-      <h2>How does this test measure it?</h2>
-      <p>The browser calls <code>requestAnimationFrame</code> in step with each screen refresh. This test records every gap between those calls for 5 seconds, then computes frames per second from the <strong>median</strong> gap. The median is used instead of the average so that one or two stray frames during the run cannot skew the result.</p>
-
-      <h2>Reading the result</h2>
-      <table>
+    <div class="guide">
+    <div class="section-head"><h2>Monitor Refresh Rate Test guide</h2></div>
+    <div class="guide-grid">
+      <div class="guide-box">
+        <h3>What is refresh rate (Hz)?</h3>
+        <p>Refresh rate is how many times per second your monitor redraws the screen. At 60Hz that is 60 times a second; at 144Hz, 144 times. Higher numbers mean motion looks smoother and new frames reach your eyes with less delay.</p>
+      </div>
+      <div class="guide-box">
+        <h3>How does refresh rate relate to reaction time?</h3>
+        <p>A higher refresh rate shortens the wait before new information appears on screen. One frame is about 16.7ms at 60Hz and about 6.9ms at 144Hz, so in theory you see new information that much sooner. This is part of why <a href="/en/tests/reaction-time">reaction time test</a> results can shift by 10-50ms between devices.</p>
+      </div>
+      <div class="guide-box">
+        <h3>Reading the result</h3>
+        <table>
         <tr><th>Reading</th><th>What it usually means</th></tr>
         <tr><td>Under ~50Hz</td><td>Likely a power-saving mode or browser frame throttling</td></tr>
         <tr><td>Around 60Hz</td><td>Standard for office and entry-level monitors, and most laptop panels</td></tr>
         <tr><td>Around 75Hz</td><td>Common on entry-level gaming monitors</td></tr>
         <tr><td>Around 120-144Hz</td><td>The typical gaming monitor band</td></tr>
         <tr><td>165Hz and above</td><td>High-refresh gaming monitor</td></tr>
-      </table>
-
-      <h2>Why the reading can come out low</h2>
-      <ul>
+        </table>
+      </div>
+      <div class="guide-box">
+        <h3>How does this test measure it?</h3>
+        <p>The browser calls <code>requestAnimationFrame</code> in step with each screen refresh. This test records every gap between those calls for 5 seconds, then computes frames per second from the <strong>median</strong> gap. The median is used instead of the average so that one or two stray frames during the run cannot skew the result.</p>
+      </div>
+      <div class="guide-box wide">
+        <h3>Why the reading can come out low</h3>
+        <ul>
         <li><strong>Power saving</strong> - many laptops drop the refresh rate when running on battery.</li>
         <li><strong>Browser throttling</strong> - a background tab, or heavy load in another tab, reduces the frame rate.</li>
         <li><strong>OS settings</strong> - a 144Hz monitor still runs at 60Hz if the display settings say so.</li>
         <li><strong>Cable and port</strong> - a lower-spec cable may not carry a high refresh rate at your resolution.</li>
-      </ul>
-      <p>If the reading is not what you expected, plug in, close every other tab, and measure again. If it is still low, check your OS display settings.</p>
-
-      <h2>How does refresh rate relate to reaction time?</h2>
-      <p>A higher refresh rate shortens the wait before new information appears on screen. One frame is about 16.7ms at 60Hz and about 6.9ms at 144Hz, so in theory you see new information that much sooner. This is part of why <a href="/en/tests/reaction-time">reaction time test</a> results can shift by 10-50ms between devices.</p>
-    </section>
+        </ul>
+        <p>If the reading is not what you expected, plug in, close every other tab, and measure again. If it is still low, check your OS display settings.</p>
+      </div>
+    </div>
+    </div>
 
 
     <div class="other-tests">

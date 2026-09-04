@@ -28,12 +28,7 @@
 {"@context":"https://schema.org","@graph":[
 {"@type":"Organization","@id":"https://myabilitytest.com/#organization","name":"MyAbilityTest","url":"https://myabilitytest.com/","logo":{"@type":"ImageObject","url":"https://myabilitytest.com/og-default.png","width":1200,"height":630}},
 {"@type":"WebSite","@id":"https://myabilitytest.com/#website","name":"MyAbilityTest","url":"https://myabilitytest.com/","inLanguage":["ko","en","ja","zh-Hant"],"publisher":{"@id":"https://myabilitytest.com/#organization"}},
-{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://myabilitytest.com/zh/"},{"@type":"ListItem","position":2,"name":"鼠标测试 | 能力测试","item":"https://myabilitytest.com/ko/tests/mouse-tester"}]},{"@type":"WebApplication","name":"鼠标测试 | 能力测试","url":"https://myabilitytest.com/zh/tests/mouse-tester","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"zh"},
-{"@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"为什么按一次却算成两次点击?","acceptedAnswer":{"@type":"Answer","text":"鼠标微动开关老化后,触点会出现轻微抖动,一次点击被识别成两次,这就是所谓的连击(双击失灵)。本页会测量点击间隔,把人难以刻意做到的极短间隔(默认小于70ms)的连续点击标记为可疑。"}},
-{"@type":"Question","name":"侧键检测不到。","acceptedAnswer":{"@type":"Answer","text":"浏览器常把第4、5键(前进/后退)当作页面导航处理,网页因此收不到信号。此外,如果你在鼠标驱动里给这些键绑定了宏或键盘按键,它们会被识别为那个按键而不是鼠标键。"}},
-{"@type":"Question","name":"确认有连击问题后该怎么办?","acceptedAnswer":{"@type":"Answer","text":"在保修期内换新或维修最为稳妥。部分鼠标可在驱动中调大去抖(debounce)时间来缓解,也有些型号可以更换微动开关。不过本测试仅供参考,不能替代正式的硬件检测。"}}
-]}
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://myabilitytest.com/zh/"},{"@type":"ListItem","position":2,"name":"鼠标测试 | 能力测试","item":"https://myabilitytest.com/ko/tests/mouse-tester"}]},{"@type":"WebApplication","name":"鼠标测试 | 能力测试","url":"https://myabilitytest.com/zh/tests/mouse-tester","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"zh"}
 ]}
 </script>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -188,35 +183,42 @@
       </div>
     </div>
 
-    <section class="info">
-      <h2>这个测试能看出什么?</h2>
-      <p>可以确认鼠标各按键是否向浏览器发出信号、滚轮上下是否都被识别,以及一次点击是否被算成两次的<strong>连击</strong>问题。无需安装,直接在浏览器中检测。</p>
-
-      <h2>什么是双击失灵(连击)?</h2>
-      <p>鼠标按键内部是带金属触点的微动开关。用久之后触点在断开时会轻微抖动,若硬件和驱动没能过滤掉,一次点击就会以<strong>两次点击</strong>的形式传出去。表现为拖拽中的文件中途掉落,或者游戏里想开一枪却打出两发。</p>
-
-      <h2>本页是如何判断的?</h2>
-      <p>记录每次左键按下的时刻,计算<strong>相邻两次点击的间隔</strong>。出现人难以刻意做到的<strong>小于70ms</strong>间隔时标记为可疑。不过使用蝴蝶点击、抖动点击等刻意求快的技巧时,正常鼠标也会出现这种数值,所以判定时请务必<strong>一次一次慢慢按</strong>。</p>
-
-      <h2>结果解读</h2>
-      <table>
+    <div class="guide">
+    <div class="section-head"><h2>鼠标测试指南</h2></div>
+    <div class="guide-grid">
+      <div class="guide-box">
+        <h3>这个测试能看出什么?</h3>
+        <p>可以确认鼠标各按键是否向浏览器发出信号、滚轮上下是否都被识别,以及一次点击是否被算成两次的<strong>连击</strong>问题。无需安装,直接在浏览器中检测。</p>
+        <p>鼠标按键内部是带金属触点的微动开关。用久之后触点在断开时会轻微抖动,若硬件和驱动没能过滤掉,一次点击就会以<strong>两次点击</strong>的形式传出去。表现为拖拽中的文件中途掉落,或者游戏里想开一枪却打出两发。</p>
+      </div>
+      <div class="guide-box">
+        <h3>侧键无法识别时</h3>
+        <p>浏览器可能把第4、5键当作页面前进/后退处理,信号到不了网页。另外,若鼠标驱动把这些键绑定为键盘按键或宏,它们会被识别成那个按键。这种情况下可以用<a href="/zh/tests/keyboard-tester">键盘测试</a>看看它们被识别成了哪个键。</p>
+      </div>
+      <div class="guide-box">
+        <h3>结果解读</h3>
+        <table>
         <tr><th>结果</th><th>含义</th></tr>
         <tr><td>可疑0次(20次点击以上)</td><td>未观察到连击迹象</td></tr>
         <tr><td>可疑1~2次</td><td>可能是偶然。请放慢速度重新确认</td></tr>
         <tr><td>可疑3次以上</td><td>怀疑存在连击。请参考下方处理方式</td></tr>
-      </table>
-
-      <h2>如果怀疑有连击</h2>
-      <ul>
+        </table>
+      </div>
+      <div class="guide-box">
+        <h3>本页是如何判断的?</h3>
+        <p>记录每次左键按下的时刻,计算<strong>相邻两次点击的间隔</strong>。出现人难以刻意做到的<strong>小于70ms</strong>间隔时标记为可疑。不过使用蝴蝶点击、抖动点击等刻意求快的技巧时,正常鼠标也会出现这种数值,所以判定时请务必<strong>一次一次慢慢按</strong>。</p>
+      </div>
+      <div class="guide-box wide">
+        <h3>如果怀疑有连击</h3>
+        <ul>
         <li><strong>确认保修</strong> — 在保修期内换新或维修最为稳妥。</li>
         <li><strong>去抖设置</strong> — 部分鼠标可在驱动中调大点击去抖时间来缓解症状。</li>
         <li><strong>更换微动</strong> — 采用热插拔微动的型号可以更换,但有些需要焊接。</li>
-      </ul>
-      <p>本测试仅供参考,不能替代正式的硬件检测。浏览器与系统设置,或其他软件的宏,都可能改变结果。</p>
-
-      <h2>侧键无法识别时</h2>
-      <p>浏览器可能把第4、5键当作页面前进/后退处理,信号到不了网页。另外,若鼠标驱动把这些键绑定为键盘按键或宏,它们会被识别成那个按键。这种情况下可以用<a href="/zh/tests/keyboard-tester">键盘测试</a>看看它们被识别成了哪个键。</p>
-    </section>
+        </ul>
+        <p>本测试仅供参考,不能替代正式的硬件检测。浏览器与系统设置,或其他软件的宏,都可能改变结果。</p>
+      </div>
+    </div>
+    </div>
 
     <div class="other-tests">
       <div class="label">也来试试其他测试</div>

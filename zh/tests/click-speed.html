@@ -28,12 +28,7 @@
 {"@context":"https://schema.org","@graph":[
 {"@type":"Organization","@id":"https://myabilitytest.com/#organization","name":"MyAbilityTest","url":"https://myabilitytest.com/","logo":{"@type":"ImageObject","url":"https://myabilitytest.com/og-default.png","width":1200,"height":630}},
 {"@type":"WebSite","@id":"https://myabilitytest.com/#website","name":"MyAbilityTest","url":"https://myabilitytest.com/","inLanguage":["ko","en","ja","zh-Hant"],"publisher":{"@id":"https://myabilitytest.com/#organization"}},
-{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://myabilitytest.com/zh/"},{"@type":"ListItem","position":2,"name":"CPS点击速度测试 | 能力测试","item":"https://myabilitytest.com/zh/tests/click-speed"}]},{"@type":"WebApplication","name":"CPS点击速度测试 | 能力测试","url":"https://myabilitytest.com/zh/tests/click-speed","applicationCategory":"GameApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"zh"},
-{"@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"多少CPS算是好成绩?","acceptedAnswer":{"@type":"Answer","text":"一般来说4~6 CPS属于平均水平,8 CPS以上算快,10 CPS以上属于非常快。超过12 CPS就是本站的最高等级(SS)。"}},
-{"@type":"Question","name":"CPS是怎么计算的?","acceptedAnswer":{"@type":"Answer","text":"CPS(Clicks Per Second)是点击次数除以时间(秒)得到的值。例如10秒内点击了80次,CPS就是8.0。"}},
-{"@type":"Question","name":"为什么测试时间越短CPS越高?","acceptedAnswer":{"@type":"Answer","text":"1~3秒这样极短的测试只反映瞬间爆发力,所以往往比10秒以上的持续测试测出更高的CPS。"}}
-]}
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://myabilitytest.com/zh/"},{"@type":"ListItem","position":2,"name":"CPS点击速度测试 | 能力测试","item":"https://myabilitytest.com/zh/tests/click-speed"}]},{"@type":"WebApplication","name":"CPS点击速度测试 | 能力测试","url":"https://myabilitytest.com/zh/tests/click-speed","applicationCategory":"GameApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"zh"}
 ]}
 </script>
 <style>
@@ -166,22 +161,21 @@
       CPS = 点击数 ÷ 时间(秒)。像1~3秒这样的短测试,因为是爆发力所以CPS往往更高。
     </div>
 
-    <section class="info">
-      <h2>多少CPS算是好成绩?</h2>
-      <p>一般来说4~6 CPS属于平均水平,8 CPS以上算快,10 CPS以上属于非常快。超过12 CPS就是本站的最高等级(SS)。</p>
-
-      <h2>什么是点击技巧模式?</h2>
-      <p>在上方的模式标签中选择你实际使用的技巧,系统就会按该技巧对应的等级表评分。技巧不会自动识别,由你自己选择,记录也会按技巧和时长分别保存。</p>
-      <ul>
-        <li><strong>经典</strong> — 用一根食指按的普通点击。大约4~13 CPS。</li>
-        <li><strong>抖动</strong> — 绷紧手臂和手腕肌肉制造震颤来点击。结果页还会显示点击间隔的稳定性(标准差)。对手腕负担较大,不建议反复练习。</li>
-        <li><strong>蝴蝶</strong> — 食指与中指交替按压。大约12~25 CPS。</li>
-        <li><strong>拖拽</strong> — 手指在按键上滑动,靠摩擦产生连击。视鼠标不同,有时能远超20 CPS。</li>
-      </ul>
-
-      <h2>结果解读表(按技巧)</h2>
-      <p>下列数值并非官方统计,而是参考各点击测试社区通行的感受制定的本站自有标准。</p>
-      <table>
+    <div class="guide">
+    <div class="section-head"><h2>CPS点击速度测试指南</h2></div>
+    <div class="guide-grid">
+      <div class="guide-box">
+        <h3>CPS是怎么计算的?</h3>
+        <p>CPS(Clicks Per Second)是点击次数除以时间(秒)得到的值。例如10秒内点击了80次,CPS就是8.0。本站的等级标准并非来自正式发表的研究,而是参考各大点击速度测试网站的普遍感受制定的自有标准。</p>
+      </div>
+      <div class="guide-box">
+        <h3>多少CPS算是好成绩?</h3>
+        <p>一般来说4~6 CPS属于平均水平,8 CPS以上算快,10 CPS以上属于非常快。超过12 CPS就是本站的最高等级(SS)。</p>
+      </div>
+      <div class="guide-box">
+        <h3>结果解读表(按技巧)</h3>
+        <p>下列数值并非官方统计,而是参考各点击测试社区通行的感受制定的本站自有标准。</p>
+        <table>
         <tr><th>等级</th><th>经典</th><th>抖动</th><th>蝴蝶</th><th>拖拽</th></tr>
         <tr><td>SS</td><td>12+</td><td>13+</td><td>20+</td><td>40+</td></tr>
         <tr><td>S</td><td>10+</td><td>11+</td><td>16+</td><td>30+</td></tr>
@@ -190,17 +184,25 @@
         <tr><td>C</td><td>4+</td><td>5+</td><td>7+</td><td>8+</td></tr>
         <tr><td>D</td><td>2~4</td><td>低于5</td><td>低于7</td><td>低于8</td></tr>
         <tr><td>F</td><td>低于2</td><td>—</td><td>—</td><td>—</td></tr>
-      </table>
-
-      <h2>CPS是怎么计算的?</h2>
-      <p>CPS(Clicks Per Second)是点击次数除以时间(秒)得到的值。例如10秒内点击了80次,CPS就是8.0。本站的等级标准并非来自正式发表的研究,而是参考各大点击速度测试网站的普遍感受制定的自有标准。</p>
-
-      <h2>为什么测试时间越短CPS越高?</h2>
-      <p>1~3秒这样极短的测试只反映瞬间爆发力,所以往往比10秒以上的持续测试测出更高的CPS。点击时间越长,手指疲劳积累越多,平均CPS自然会下降。因此本页面按不同时长分别保存记录。</p>
-
-      <h2>有办法提高CPS吗?</h2>
-      <p>交替使用食指和中指的"拖拽点击",以及靠手臂肌肉震颤点击的"抖动点击",是社区中广为人知的技巧。不过这些技巧对手腕和手臂负担较大,不建议勉强反复练习。</p>
-    </section>
+        </table>
+      </div>
+      <div class="guide-box">
+        <h3>什么是点击技巧模式?</h3>
+        <p>在上方的模式标签中选择你实际使用的技巧,系统就会按该技巧对应的等级表评分。技巧不会自动识别,由你自己选择,记录也会按技巧和时长分别保存。</p>
+        <ul>
+        <li><strong>经典</strong> — 用一根食指按的普通点击。大约4~13 CPS。</li>
+        <li><strong>抖动</strong> — 绷紧手臂和手腕肌肉制造震颤来点击。结果页还会显示点击间隔的稳定性(标准差)。对手腕负担较大,不建议反复练习。</li>
+        <li><strong>蝴蝶</strong> — 食指与中指交替按压。大约12~25 CPS。</li>
+        <li><strong>拖拽</strong> — 手指在按键上滑动,靠摩擦产生连击。视鼠标不同,有时能远超20 CPS。</li>
+        </ul>
+        <p>1~3秒这样极短的测试只反映瞬间爆发力,所以往往比10秒以上的持续测试测出更高的CPS。点击时间越长,手指疲劳积累越多,平均CPS自然会下降。因此本页面按不同时长分别保存记录。</p>
+      </div>
+      <div class="guide-box wide">
+        <h3>有办法提高CPS吗?</h3>
+        <p>交替使用食指和中指的"拖拽点击",以及靠手臂肌肉震颤点击的"抖动点击",是社区中广为人知的技巧。不过这些技巧对手腕和手臂负担较大,不建议勉强反复练习。</p>
+      </div>
+    </div>
+    </div>
 
 
 

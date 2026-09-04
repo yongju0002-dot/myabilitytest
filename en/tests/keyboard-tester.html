@@ -28,12 +28,7 @@
 {"@context":"https://schema.org","@graph":[
 {"@type":"Organization","@id":"https://myabilitytest.com/#organization","name":"MyAbilityTest","url":"https://myabilitytest.com/","logo":{"@type":"ImageObject","url":"https://myabilitytest.com/og-default.png","width":1200,"height":630}},
 {"@type":"WebSite","@id":"https://myabilitytest.com/#website","name":"MyAbilityTest","url":"https://myabilitytest.com/","inLanguage":["ko","en","ja","zh-Hant"],"publisher":{"@id":"https://myabilitytest.com/#organization"}},
-{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://myabilitytest.com/en/"},{"@type":"ListItem","position":2,"name":"Keyboard Test | Ability Test","item":"https://myabilitytest.com/ko/tests/keyboard-tester"}]},{"@type":"WebApplication","name":"Keyboard Test | Ability Test","url":"https://myabilitytest.com/en/tests/keyboard-tester","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"en"},
-{"@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"What is ghosting?","acceptedAnswer":{"@type":"Answer","text":"It is when some keys simply do not register while several are held at once. Cheaper keyboards read keys through a shared matrix, and certain combinations that span the same row or column cannot be told apart, so an input is dropped. It shows up in games when you hold a movement key and press jump plus something else."}},
-{"@type":"Question","name":"What is N-key rollover?","acceptedAnswer":{"@type":"Answer","text":"It is how many simultaneously held keys the keyboard can tell apart. 6-key rollover (6KRO) handles six at once excluding modifiers; NKRO handles effectively any number. Over USB the default spec often caps this at six, so even an NKRO keyboard may report only six depending on its settings or firmware."}},
-{"@type":"Question","name":"A particular key does nothing when I press it.","acceptedAnswer":{"@type":"Answer","text":"The browser or OS may be intercepting it first. F11 (fullscreen), F12 (devtools), the Win/Cmd key and Alt+Tab, for example, never reach the page. If a key still does nothing once you rule those out, the keyboard itself may be at fault."}}
-]}
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://myabilitytest.com/en/"},{"@type":"ListItem","position":2,"name":"Keyboard Test | Ability Test","item":"https://myabilitytest.com/ko/tests/keyboard-tester"}]},{"@type":"WebApplication","name":"Keyboard Test | Ability Test","url":"https://myabilitytest.com/en/tests/keyboard-tester","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"en"}
 ]}
 </script>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -152,34 +147,49 @@
       </div>
     </div>
 
-    <section class="info">
-      <h2>What does this test tell you?</h2>
-      <p>You can check each key one by one to see whether it reaches the browser, and at the same time find how many keys are told apart when held together (<strong>N-key rollover</strong>) and whether certain combinations drop inputs (<strong>ghosting</strong>).</p>
-
-      <h2>Ghosting and N-key rollover</h2>
-      <p>Most keyboards do not read each key on its own wire - they read them through a shared <strong>matrix</strong>. In that design, certain combinations spanning the same row or column cannot be distinguished when held together, so an input is dropped: that is ghosting. Keyboards that add a diode per key can tell them all apart, and that capability is called rollover.</p>
-      <table>
+    <div class="guide">
+    <div class="section-head"><h2>Keyboard Test guide</h2></div>
+    <div class="guide-grid">
+      <div class="guide-box">
+        <h3>What does this test tell you?</h3>
+        <p>You can check each key one by one to see whether it reaches the browser, and at the same time find how many keys are told apart when held together (<strong>N-key rollover</strong>) and whether certain combinations drop inputs (<strong>ghosting</strong>).</p>
+      </div>
+      <div class="guide-box">
+        <h3>Why some keys are never detected</h3>
+        <p>Keys the browser or OS intercepts first never reach the page - F11 (fullscreen), F12 (devtools), the Win/Cmd key, Alt+Tab and PrtSc are the usual ones. If a particular key still never responds once you exclude those, the keyboard itself may be the problem.</p>
+        <p>This page also highlights by physical key position (<code>event.code</code>), so the same physical key lights up regardless of your input language or layout (QWERTY, QWERTZ and so on).</p>
+      </div>
+      <div class="guide-box">
+        <h3>Ghosting and N-key rollover</h3>
+        <p>Most keyboards do not read each key on its own wire - they read them through a shared <strong>matrix</strong>. In that design, certain combinations spanning the same row or column cannot be distinguished when held together, so an input is dropped: that is ghosting. Keyboards that add a diode per key can tell them all apart, and that capability is called rollover.</p>
+        <table>
         <tr><th>Term</th><th>Meaning</th></tr>
         <tr><td>2KRO</td><td>Only two keys beyond modifiers are reliably distinguished. Common on budget boards</td></tr>
         <tr><td>6KRO</td><td>Six at once. The standard figure for the default USB spec</td></tr>
         <tr><td>NKRO</td><td>Effectively unlimited. Common on gaming and mechanical keyboards</td></tr>
-      </table>
-      <p>Even an NKRO keyboard can appear capped at six over USB because of the default spec. Depending on the model you may need to enable NKRO in its software, its firmware, or with a specific key combination.</p>
-
-      <h2>If you stop at six</h2>
-      <ul>
+        </table>
+        <p>Even an NKRO keyboard can appear capped at six over USB because of the default spec. Depending on the model you may need to enable NKRO in its software, its firmware, or with a specific key combination.</p>
+      </div>
+      <div class="guide-box">
+        <h3>How to measure accurately</h3>
+        <ul>
+          <li>Press every key <strong>once</strong> and check that each one lights up on the on-screen keyboard.</li>
+          <li>For rollover, hold 6, then 7, then more keys and see where it stops registering.</li>
+          <li>Keys the browser or OS intercepts first — F11, F12, the Win key — won't show up by design.</li>
+          <li>On a wireless keyboard, check battery and connection first.</li>
+        </ul>
+        <p>This check works only from the signals the browser receives, and is not a substitute for proper hardware diagnostics. If you want to measure how fast you can hit a key repeatedly, try the <a href="/en/tests/spacebar-counter">spacebar speed test</a> or the <a href="/en/tests/apm">APM test</a>.</p>
+      </div>
+      <div class="guide-box wide">
+        <h3>If you stop at six</h3>
+        <ul>
         <li><strong>It may be normal</strong> - the default USB HID spec is six keys, so many keyboards stop there.</li>
         <li><strong>Check for an NKRO mode</strong> - gaming keyboards often enable it through their software or an Fn combination.</li>
         <li><strong>Modifiers are separate</strong> - Shift, Ctrl and Alt are usually handled apart from the rollover count.</li>
-      </ul>
-
-      <h2>Why some keys are never detected</h2>
-      <p>Keys the browser or OS intercepts first never reach the page - F11 (fullscreen), F12 (devtools), the Win/Cmd key, Alt+Tab and PrtSc are the usual ones. If a particular key still never responds once you exclude those, the keyboard itself may be the problem.</p>
-      <p>This page also highlights by physical key position (<code>event.code</code>), so the same physical key lights up regardless of your input language or layout (QWERTY, QWERTZ and so on).</p>
-
-      <h2>Note</h2>
-      <p>This check works only from the signals the browser receives, and is not a substitute for proper hardware diagnostics. If you want to measure how fast you can hit a key repeatedly, try the <a href="/en/tests/spacebar-counter">spacebar speed test</a> or the <a href="/en/tests/apm">APM test</a>.</p>
-    </section>
+        </ul>
+      </div>
+    </div>
+    </div>
 
     <div class="other-tests">
       <div class="label">Try another test</div>

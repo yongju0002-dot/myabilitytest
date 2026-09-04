@@ -28,12 +28,7 @@
 {"@context":"https://schema.org","@graph":[
 {"@type":"Organization","@id":"https://myabilitytest.com/#organization","name":"MyAbilityTest","url":"https://myabilitytest.com/","logo":{"@type":"ImageObject","url":"https://myabilitytest.com/og-default.png","width":1200,"height":630}},
 {"@type":"WebSite","@id":"https://myabilitytest.com/#website","name":"MyAbilityTest","url":"https://myabilitytest.com/","inLanguage":["ko","en","ja","zh-Hant"],"publisher":{"@id":"https://myabilitytest.com/#organization"}},
-{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://myabilitytest.com/ja/"},{"@type":"ListItem","position":2,"name":"CPSクリック速度テスト | 能力テスト","item":"https://myabilitytest.com/ja/tests/click-speed"}]},{"@type":"WebApplication","name":"CPSクリック速度テスト | 能力テスト","url":"https://myabilitytest.com/ja/tests/click-speed","applicationCategory":"GameApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"ja"},
-{"@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"良いCPSスコアはどれくらいですか?","acceptedAnswer":{"@type":"Answer","text":"一般的に4〜6 CPSは平均的な水準で、8 CPS以上なら速いほう、10 CPS以上ならとても速い部類に入ります。12 CPSを超えるとこのサイトの最高ランク(SS)です。"}},
-{"@type":"Question","name":"CPSはどうやって計算しますか?","acceptedAnswer":{"@type":"Answer","text":"CPS(Clicks Per Second)は、一定時間内のクリック数をその時間(秒)で割った値です。例えば10秒間に80回クリックした場合、CPSは8.0になります。"}},
-{"@type":"Question","name":"短い時間のテストほどCPSが高く出るのはなぜですか?","acceptedAnswer":{"@type":"Answer","text":"1〜3秒のような非常に短いテストは瞬間的な爆発力だけを反映するため、10秒以上の持続的なテストよりCPSが高く測定される傾向があります。"}}
-]}
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://myabilitytest.com/ja/"},{"@type":"ListItem","position":2,"name":"CPSクリック速度テスト | 能力テスト","item":"https://myabilitytest.com/ja/tests/click-speed"}]},{"@type":"WebApplication","name":"CPSクリック速度テスト | 能力テスト","url":"https://myabilitytest.com/ja/tests/click-speed","applicationCategory":"GameApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"ja"}
 ]}
 </script>
 <style>
@@ -166,22 +161,21 @@
       CPS = クリック数 ÷ 時間(秒)。1〜3秒のような短いテストは瞬発力のためCPSが高く出やすい傾向があります。
     </div>
 
-    <section class="info">
-      <h2>良いCPSスコアはどれくらい?</h2>
-      <p>一般的に4〜6 CPSは平均的な水準で、8 CPS以上なら速いほう、10 CPS以上ならとても速い部類に入ります。12 CPSを超えるとこのサイトの最高ランク(SS)です。</p>
-
-      <h2>クリック技術モードとは?</h2>
-      <p>上部のモードタブで自分が使っている技術を選ぶと、その技術に合ったランク表で採点されます。技術は自動判別ではなく自分で選ぶ方式で、記録は技術・持続時間ごとに分けて保存されます。</p>
-      <ul>
-        <li><strong>クラシック</strong> — 人差し指1本で押す通常のクリック。おおむね4〜13 CPS。</li>
-        <li><strong>ジター</strong> — 腕や手首の筋肉を緊張させ、震えを作ってクリック。結果画面にクリック間隔の安定性(標準偏差)も表示されます。手首への負担が大きいので繰り返しの練習はおすすめしません。</li>
-        <li><strong>バタフライ</strong> — 人差し指と中指を交互に押すクリック。おおむね12〜25 CPS。</li>
-        <li><strong>ドラッグ</strong> — ボタンの上で指を滑らせ、摩擦で連打を作るクリック。マウスによっては20 CPSを大きく超えることもあります。</li>
-      </ul>
-
-      <h2>結果の解釈表(技術別)</h2>
-      <p>以下の数値は公式な統計ではなく、各クリックテストコミュニティで通用している感覚を参考にした当サイト独自の基準です。</p>
-      <table>
+    <div class="guide">
+    <div class="section-head"><h2>CPSクリック速度テストガイド</h2></div>
+    <div class="guide-grid">
+      <div class="guide-box">
+        <h3>CPSはどうやって計算しますか?</h3>
+        <p>CPS(Clicks Per Second)は、一定時間内のクリック数をその時間(秒)で割った値です。例えば10秒間に80回クリックした場合、CPSは8.0になります。このサイトのランク基準は公式な研究発表ではなく、クリック速度テストサイト全般の一般的な感覚を参考にした独自の基準です。</p>
+      </div>
+      <div class="guide-box">
+        <h3>良いCPSスコアはどれくらい?</h3>
+        <p>一般的に4〜6 CPSは平均的な水準で、8 CPS以上なら速いほう、10 CPS以上ならとても速い部類に入ります。12 CPSを超えるとこのサイトの最高ランク(SS)です。</p>
+      </div>
+      <div class="guide-box">
+        <h3>結果の解釈表(技術別)</h3>
+        <p>以下の数値は公式な統計ではなく、各クリックテストコミュニティで通用している感覚を参考にした当サイト独自の基準です。</p>
+        <table>
         <tr><th>ランク</th><th>クラシック</th><th>ジター</th><th>バタフライ</th><th>ドラッグ</th></tr>
         <tr><td>SS</td><td>12+</td><td>13+</td><td>20+</td><td>40+</td></tr>
         <tr><td>S</td><td>10+</td><td>11+</td><td>16+</td><td>30+</td></tr>
@@ -190,17 +184,25 @@
         <tr><td>C</td><td>4+</td><td>5+</td><td>7+</td><td>8+</td></tr>
         <tr><td>D</td><td>2〜4</td><td>5未満</td><td>7未満</td><td>8未満</td></tr>
         <tr><td>F</td><td>2未満</td><td>—</td><td>—</td><td>—</td></tr>
-      </table>
-
-      <h2>CPSはどうやって計算しますか?</h2>
-      <p>CPS(Clicks Per Second)は、一定時間内のクリック数をその時間(秒)で割った値です。例えば10秒間に80回クリックした場合、CPSは8.0になります。このサイトのランク基準は公式な研究発表ではなく、クリック速度テストサイト全般の一般的な感覚を参考にした独自の基準です。</p>
-
-      <h2>短い時間のテストほどCPSが高く出るのはなぜ?</h2>
-      <p>1〜3秒のような非常に短いテストは瞬間的な爆発力だけを反映するため、10秒以上の持続的なテストよりCPSが高く測定される傾向があります。クリックし続けるほど指の疲労が蓄積し、平均CPSは自然と下がっていきます。そのためこのページでは持続時間ごとに記録を分けて保存しています。</p>
-
-      <h2>CPSを上げる方法はありますか?</h2>
-      <p>人差し指と中指を交互に使う「ドラッグクリック」や、腕の筋肉を震わせてクリックする「ジタークリック」といった技法がコミュニティで広く知られています。ただし、これらは手首や腕に負担がかかりやすいので、無理に繰り返し練習しないことをおすすめします。</p>
-    </section>
+        </table>
+      </div>
+      <div class="guide-box">
+        <h3>クリック技術モードとは?</h3>
+        <p>上部のモードタブで自分が使っている技術を選ぶと、その技術に合ったランク表で採点されます。技術は自動判別ではなく自分で選ぶ方式で、記録は技術・持続時間ごとに分けて保存されます。</p>
+        <ul>
+        <li><strong>クラシック</strong> — 人差し指1本で押す通常のクリック。おおむね4〜13 CPS。</li>
+        <li><strong>ジター</strong> — 腕や手首の筋肉を緊張させ、震えを作ってクリック。結果画面にクリック間隔の安定性(標準偏差)も表示されます。手首への負担が大きいので繰り返しの練習はおすすめしません。</li>
+        <li><strong>バタフライ</strong> — 人差し指と中指を交互に押すクリック。おおむね12〜25 CPS。</li>
+        <li><strong>ドラッグ</strong> — ボタンの上で指を滑らせ、摩擦で連打を作るクリック。マウスによっては20 CPSを大きく超えることもあります。</li>
+        </ul>
+        <p>1〜3秒のような非常に短いテストは瞬間的な爆発力だけを反映するため、10秒以上の持続的なテストよりCPSが高く測定される傾向があります。クリックし続けるほど指の疲労が蓄積し、平均CPSは自然と下がっていきます。そのためこのページでは持続時間ごとに記録を分けて保存しています。</p>
+      </div>
+      <div class="guide-box wide">
+        <h3>CPSを上げる方法はありますか?</h3>
+        <p>人差し指と中指を交互に使う「ドラッグクリック」や、腕の筋肉を震わせてクリックする「ジタークリック」といった技法がコミュニティで広く知られています。ただし、これらは手首や腕に負担がかかりやすいので、無理に繰り返し練習しないことをおすすめします。</p>
+      </div>
+    </div>
+    </div>
 
 
 

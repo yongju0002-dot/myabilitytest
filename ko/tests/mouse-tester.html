@@ -28,12 +28,7 @@
 {"@context":"https://schema.org","@graph":[
 {"@type":"Organization","@id":"https://myabilitytest.com/#organization","name":"MyAbilityTest","url":"https://myabilitytest.com/","logo":{"@type":"ImageObject","url":"https://myabilitytest.com/og-default.png","width":1200,"height":630}},
 {"@type":"WebSite","@id":"https://myabilitytest.com/#website","name":"MyAbilityTest","url":"https://myabilitytest.com/","inLanguage":["ko","en","ja","zh-Hant"],"publisher":{"@id":"https://myabilitytest.com/#organization"}},
-{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://myabilitytest.com/ko/"},{"@type":"ListItem","position":2,"name":"마우스 테스트 | 능력 테스트","item":"https://myabilitytest.com/ko/tests/mouse-tester"}]},{"@type":"WebApplication","name":"마우스 테스트 | 능력 테스트","url":"https://myabilitytest.com/ko/tests/mouse-tester","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"ko"},
-{"@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"한 번 눌렀는데 두 번 클릭되는 건 왜 그런가요?","acceptedAnswer":{"@type":"Answer","text":"마우스 스위치가 낡으면 접점이 미세하게 튀면서 한 번의 클릭이 두 번으로 인식되는 '채터링(더블클릭 오작동)'이 생깁니다. 이 페이지는 클릭 간격을 재서 사람이 의도하기 어려운 아주 짧은 간격(기본 70ms 미만)의 연속 클릭을 의심 사례로 표시합니다."}},
-{"@type":"Question","name":"사이드 버튼이 감지되지 않아요.","acceptedAnswer":{"@type":"Answer","text":"브라우저는 4번·5번 버튼(앞으로/뒤로)을 페이지 이동으로 처리하는 경우가 있어 웹에서 감지되지 않을 수 있습니다. 또한 마우스 전용 소프트웨어에서 해당 버튼에 매크로나 키보드 키를 할당했다면 마우스 버튼이 아니라 그 키로 인식됩니다."}},
-{"@type":"Question","name":"채터링이 확인되면 어떻게 하나요?","acceptedAnswer":{"@type":"Answer","text":"보증 기간이면 교환·수리를 받는 것이 가장 확실합니다. 일부 마우스는 전용 소프트웨어에서 디바운스 시간을 늘려 증상을 줄일 수 있고, 스위치 교체가 가능한 모델도 있습니다. 다만 이 테스트는 참고용 점검이며 하드웨어 진단을 대체하지 않습니다."}}
-]}
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://myabilitytest.com/ko/"},{"@type":"ListItem","position":2,"name":"마우스 테스트 | 능력 테스트","item":"https://myabilitytest.com/ko/tests/mouse-tester"}]},{"@type":"WebApplication","name":"마우스 테스트 | 능력 테스트","url":"https://myabilitytest.com/ko/tests/mouse-tester","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"ko"}
 ]}
 </script>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -188,35 +183,42 @@
       </div>
     </div>
 
-    <section class="info">
-      <h2>이 테스트로 무엇을 알 수 있나요?</h2>
-      <p>마우스의 각 버튼이 브라우저에 신호를 제대로 보내는지, 휠이 위아래로 인식되는지, 그리고 한 번의 클릭이 두 번으로 잡히는 <strong>채터링</strong>이 있는지를 확인할 수 있습니다. 설치 없이 브라우저에서 바로 점검합니다.</p>
-
-      <h2>더블클릭 오작동(채터링)이란?</h2>
-      <p>마우스 버튼 안에는 금속 접점이 있는 스위치가 들어 있습니다. 오래 쓰면 이 접점이 눌렸다 떨어질 때 미세하게 튀는데, 이걸 하드웨어와 드라이버가 걸러내지 못하면 한 번의 클릭이 <strong>두 번의 클릭</strong>으로 전달됩니다. 드래그하던 파일이 도중에 놓이거나, 게임에서 한 발만 쏘려 했는데 두 발이 나가는 식으로 나타납니다.</p>
-
-      <h2>이 페이지는 어떻게 판단하나요?</h2>
-      <p>좌클릭이 눌린 시각을 기록해 <strong>연속된 두 클릭의 간격</strong>을 계산합니다. 사람이 의도적으로 누르기 어려운 <strong>70ms 미만</strong> 간격이 나오면 의심 사례로 표시합니다. 다만 버터플라이·지터 클릭처럼 일부러 빠르게 누르는 기법을 쓰면 정상 마우스에서도 이 값이 나올 수 있으므로, 판정할 때는 반드시 <strong>한 번씩 천천히</strong> 눌러주세요.</p>
-
-      <h2>결과 해석</h2>
-      <table>
+    <div class="guide">
+    <div class="section-head"><h2>마우스 테스트 가이드</h2></div>
+    <div class="guide-grid">
+      <div class="guide-box">
+        <h3>이 테스트로 무엇을 알 수 있나요?</h3>
+        <p>마우스의 각 버튼이 브라우저에 신호를 제대로 보내는지, 휠이 위아래로 인식되는지, 그리고 한 번의 클릭이 두 번으로 잡히는 <strong>채터링</strong>이 있는지를 확인할 수 있습니다. 설치 없이 브라우저에서 바로 점검합니다.</p>
+        <p>마우스 버튼 안에는 금속 접점이 있는 스위치가 들어 있습니다. 오래 쓰면 이 접점이 눌렸다 떨어질 때 미세하게 튀는데, 이걸 하드웨어와 드라이버가 걸러내지 못하면 한 번의 클릭이 <strong>두 번의 클릭</strong>으로 전달됩니다. 드래그하던 파일이 도중에 놓이거나, 게임에서 한 발만 쏘려 했는데 두 발이 나가는 식으로 나타납니다.</p>
+      </div>
+      <div class="guide-box">
+        <h3>사이드 버튼이 안 잡히는 경우</h3>
+        <p>브라우저가 4번·5번 버튼을 페이지 앞으로/뒤로 이동으로 처리해 웹페이지까지 신호가 오지 않을 수 있습니다. 또 마우스 전용 소프트웨어에서 해당 버튼에 키보드 키나 매크로를 할당했다면, 마우스 버튼이 아니라 그 키 입력으로 인식됩니다. 이 경우 <a href="/ko/tests/keyboard-tester">키보드 테스트</a>에서 어떤 키로 잡히는지 확인해볼 수 있어요.</p>
+      </div>
+      <div class="guide-box">
+        <h3>결과 해석</h3>
+        <table>
         <tr><th>결과</th><th>의미</th></tr>
         <tr><td>의심 0회 (20클릭 이상)</td><td>채터링 징후가 관찰되지 않았습니다</td></tr>
         <tr><td>의심 1~2회</td><td>우연일 수 있습니다. 천천히 눌러 다시 확인해보세요</td></tr>
         <tr><td>의심 3회 이상</td><td>채터링이 의심됩니다. 아래 대처를 참고하세요</td></tr>
-      </table>
-
-      <h2>채터링이 의심되면</h2>
-      <ul>
+        </table>
+      </div>
+      <div class="guide-box">
+        <h3>이 페이지는 어떻게 판단하나요?</h3>
+        <p>좌클릭이 눌린 시각을 기록해 <strong>연속된 두 클릭의 간격</strong>을 계산합니다. 사람이 의도적으로 누르기 어려운 <strong>70ms 미만</strong> 간격이 나오면 의심 사례로 표시합니다. 다만 버터플라이·지터 클릭처럼 일부러 빠르게 누르는 기법을 쓰면 정상 마우스에서도 이 값이 나올 수 있으므로, 판정할 때는 반드시 <strong>한 번씩 천천히</strong> 눌러주세요.</p>
+      </div>
+      <div class="guide-box wide">
+        <h3>채터링이 의심되면</h3>
+        <ul>
         <li><strong>보증 확인</strong> — 보증 기간 내라면 교환·수리가 가장 확실합니다.</li>
         <li><strong>디바운스 설정</strong> — 일부 마우스는 전용 소프트웨어에서 클릭 인식 지연(디바운스)을 늘려 증상을 줄일 수 있습니다.</li>
         <li><strong>스위치 교체</strong> — 스위치가 소켓식인 모델은 교체가 가능하지만, 납땜이 필요한 경우도 있습니다.</li>
-      </ul>
-      <p>이 테스트는 참고용 점검이며 정식 하드웨어 진단을 대체하지 않습니다. 브라우저·OS 설정이나 다른 프로그램의 매크로 때문에 결과가 달라질 수도 있습니다.</p>
-
-      <h2>사이드 버튼이 안 잡히는 경우</h2>
-      <p>브라우저가 4번·5번 버튼을 페이지 앞으로/뒤로 이동으로 처리해 웹페이지까지 신호가 오지 않을 수 있습니다. 또 마우스 전용 소프트웨어에서 해당 버튼에 키보드 키나 매크로를 할당했다면, 마우스 버튼이 아니라 그 키 입력으로 인식됩니다. 이 경우 <a href="/ko/tests/keyboard-tester">키보드 테스트</a>에서 어떤 키로 잡히는지 확인해볼 수 있어요.</p>
-    </section>
+        </ul>
+        <p>이 테스트는 참고용 점검이며 정식 하드웨어 진단을 대체하지 않습니다. 브라우저·OS 설정이나 다른 프로그램의 매크로 때문에 결과가 달라질 수도 있습니다.</p>
+      </div>
+    </div>
+    </div>
 
     <div class="other-tests">
       <div class="label">다른 테스트도 해보세요</div>

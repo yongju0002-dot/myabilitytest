@@ -28,12 +28,7 @@
 {"@context":"https://schema.org","@graph":[
 {"@type":"Organization","@id":"https://myabilitytest.com/#organization","name":"MyAbilityTest","url":"https://myabilitytest.com/","logo":{"@type":"ImageObject","url":"https://myabilitytest.com/og-default.png","width":1200,"height":630}},
 {"@type":"WebSite","@id":"https://myabilitytest.com/#website","name":"MyAbilityTest","url":"https://myabilitytest.com/","inLanguage":["ko","en","ja","zh-Hant"],"publisher":{"@id":"https://myabilitytest.com/#organization"}},
-{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://myabilitytest.com/en/"},{"@type":"ListItem","position":2,"name":"CPS Click Speed Test | Ability Test","item":"https://myabilitytest.com/en/tests/click-speed"}]},{"@type":"WebApplication","name":"CPS Click Speed Test | Ability Test","url":"https://myabilitytest.com/en/tests/click-speed","applicationCategory":"GameApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"en"},
-{"@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"What's a good CPS score?","acceptedAnswer":{"@type":"Answer","text":"4-6 CPS is typical. 8+ is fast, and 10+ is very fast. Above 12 CPS is this site's top grade (SS)."}},
-{"@type":"Question","name":"How is CPS calculated?","acceptedAnswer":{"@type":"Answer","text":"CPS (Clicks Per Second) is your click count divided by the time in seconds. For example, 80 clicks in 10 seconds is 8.0 CPS."}},
-{"@type":"Question","name":"Why do shorter tests show a higher CPS?","acceptedAnswer":{"@type":"Answer","text":"A 1-3 second test only captures a short burst of speed, so it tends to score higher than a sustained 10-second-plus test."}}
-]}
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://myabilitytest.com/en/"},{"@type":"ListItem","position":2,"name":"CPS Click Speed Test | Ability Test","item":"https://myabilitytest.com/en/tests/click-speed"}]},{"@type":"WebApplication","name":"CPS Click Speed Test | Ability Test","url":"https://myabilitytest.com/en/tests/click-speed","applicationCategory":"GameApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"en"}
 ]}
 </script>
 <style>
@@ -166,22 +161,21 @@
       CPS = clicks ÷ time (seconds). Shorter tests like 1–3s tend to show higher CPS due to burst speed.
     </div>
 
-    <section class="info">
-      <h2>What's a good CPS score?</h2>
-      <p>On normal clicking (Classic), 4-6 CPS is typical, 8+ is fast, and 10+ is very fast. Above 12 CPS is this site's top grade (SS). Techniques like jitter, butterfly and drag clicking produce much higher numbers, so each one is graded on its own scale.</p>
-
-      <h2>What are the click technique modes?</h2>
-      <p>Pick the technique you actually use from the mode tabs above and you'll be graded on that technique's scale. The technique isn't auto-detected — you choose it — and records are stored separately per technique and duration.</p>
-      <ul>
-        <li><strong>Classic</strong> — normal clicking with one index finger. Usually 4-13 CPS.</li>
-        <li><strong>Jitter</strong> — tensing your arm and wrist to create a vibration. Your result also reports click-interval consistency (standard deviation). It's hard on the wrist, so repeated drilling isn't recommended.</li>
-        <li><strong>Butterfly</strong> — alternating index and middle finger. Usually 12-25 CPS.</li>
-        <li><strong>Drag</strong> — dragging a finger across the button so friction fires repeated clicks. Can go well past 20 CPS depending on the mouse.</li>
-      </ul>
-
-      <h2>Result interpretation table (per technique)</h2>
-      <p>These numbers aren't from an official study — they're this site's own scale, calibrated against the general sense of speed reported across click-test communities.</p>
-      <table>
+    <div class="guide">
+    <div class="section-head"><h2>CPS Click Speed Test guide</h2></div>
+    <div class="guide-grid">
+      <div class="guide-box">
+        <h3>How is CPS calculated?</h3>
+        <p>CPS (Clicks Per Second) is your click count divided by the time in seconds. For example, 80 clicks in 10 seconds is 8.0 CPS. This site's grade bands aren't from an official published study — they're our own scale, calibrated against the general sense of speed reported across click-speed test sites.</p>
+      </div>
+      <div class="guide-box">
+        <h3>What's a good CPS score?</h3>
+        <p>On normal clicking (Classic), 4-6 CPS is typical, 8+ is fast, and 10+ is very fast. Above 12 CPS is this site's top grade (SS). Techniques like jitter, butterfly and drag clicking produce much higher numbers, so each one is graded on its own scale.</p>
+      </div>
+      <div class="guide-box">
+        <h3>Result interpretation table (per technique)</h3>
+        <p>These numbers aren't from an official study — they're this site's own scale, calibrated against the general sense of speed reported across click-test communities.</p>
+        <table>
         <tr><th>Grade</th><th>Classic</th><th>Jitter</th><th>Butterfly</th><th>Drag</th></tr>
         <tr><td>SS</td><td>12+</td><td>13+</td><td>20+</td><td>40+</td></tr>
         <tr><td>S</td><td>10+</td><td>11+</td><td>16+</td><td>30+</td></tr>
@@ -190,17 +184,25 @@
         <tr><td>C</td><td>4+</td><td>5+</td><td>7+</td><td>8+</td></tr>
         <tr><td>D</td><td>2 – 4</td><td>Under 5</td><td>Under 7</td><td>Under 8</td></tr>
         <tr><td>F</td><td>Under 2</td><td>—</td><td>—</td><td>—</td></tr>
-      </table>
-
-      <h2>How is CPS calculated?</h2>
-      <p>CPS (Clicks Per Second) is your click count divided by the time in seconds. For example, 80 clicks in 10 seconds is 8.0 CPS. This site's grade bands aren't from an official published study — they're our own scale, calibrated against the general sense of speed reported across click-speed test sites.</p>
-
-      <h2>Why do shorter tests show a higher CPS?</h2>
-      <p>A very short test like 1-3 seconds only captures a quick burst of speed, so it tends to score higher than a sustained test of 10 seconds or more — your fingers fatigue the longer you click, which naturally pulls the average down. That's why this page tracks records separately per duration.</p>
-
-      <h2>Can I train to click faster?</h2>
-      <p>Alternating your index and middle finger ("butterfly clicking") or vibrating your forearm ("jitter clicking") are widely known community techniques. Pick either from the mode tabs above to measure it on its own scale right away. Both put real strain on the wrist and forearm, though, so it's worth not drilling them too hard.</p>
-    </section>
+        </table>
+      </div>
+      <div class="guide-box">
+        <h3>What are the click technique modes?</h3>
+        <p>Pick the technique you actually use from the mode tabs above and you'll be graded on that technique's scale. The technique isn't auto-detected — you choose it — and records are stored separately per technique and duration.</p>
+        <ul>
+        <li><strong>Classic</strong> — normal clicking with one index finger. Usually 4-13 CPS.</li>
+        <li><strong>Jitter</strong> — tensing your arm and wrist to create a vibration. Your result also reports click-interval consistency (standard deviation). It's hard on the wrist, so repeated drilling isn't recommended.</li>
+        <li><strong>Butterfly</strong> — alternating index and middle finger. Usually 12-25 CPS.</li>
+        <li><strong>Drag</strong> — dragging a finger across the button so friction fires repeated clicks. Can go well past 20 CPS depending on the mouse.</li>
+        </ul>
+        <p>A very short test like 1-3 seconds only captures a quick burst of speed, so it tends to score higher than a sustained test of 10 seconds or more — your fingers fatigue the longer you click, which naturally pulls the average down. That's why this page tracks records separately per duration.</p>
+      </div>
+      <div class="guide-box wide">
+        <h3>Can I train to click faster?</h3>
+        <p>Alternating your index and middle finger ("butterfly clicking") or vibrating your forearm ("jitter clicking") are widely known community techniques. Pick either from the mode tabs above to measure it on its own scale right away. Both put real strain on the wrist and forearm, though, so it's worth not drilling them too hard.</p>
+      </div>
+    </div>
+    </div>
 
 
 

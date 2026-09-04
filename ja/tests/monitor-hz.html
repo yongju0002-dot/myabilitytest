@@ -28,12 +28,7 @@
 {"@context":"https://schema.org","@graph":[
 {"@type":"Organization","@id":"https://myabilitytest.com/#organization","name":"MyAbilityTest","url":"https://myabilitytest.com/","logo":{"@type":"ImageObject","url":"https://myabilitytest.com/og-default.png","width":1200,"height":630}},
 {"@type":"WebSite","@id":"https://myabilitytest.com/#website","name":"MyAbilityTest","url":"https://myabilitytest.com/","inLanguage":["ko","en","ja","zh-Hant"],"publisher":{"@id":"https://myabilitytest.com/#organization"}},
-{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://myabilitytest.com/ja/"},{"@type":"ListItem","position":2,"name":"モニターリフレッシュレートテスト | 能力テスト","item":"https://myabilitytest.com/ja/tests/monitor-hz"}]},{"@type":"WebApplication","name":"モニターリフレッシュレートテスト | 能力テスト","url":"https://myabilitytest.com/ja/tests/monitor-hz","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"ja"},
-{"@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"ブラウザで測ったリフレッシュレートは実際と違うことがありますか?","acceptedAnswer":{"@type":"Answer","text":"はい。ブラウザは画面の更新に合わせてフレームを描画しますが、省電力モードや他のタブの負荷、ブラウザのフレーム制限により、実際のモニターのリフレッシュレートより低く測定されることがあります。電源を接続し、他のタブを閉じてから測り直してください。"}},
-{"@type":"Question","name":"144Hzのモニターなのに60Hzと表示されます。","acceptedAnswer":{"@type":"Answer","text":"OSのディスプレイ設定が60Hzのままである可能性が高いです。Windowsは設定 > システム > ディスプレイ > ディスプレイの詳細設定、Macは設定 > ディスプレイでリフレッシュレートを確認・変更できます。ケーブルの規格が高いリフレッシュレートに対応していない場合もあります。"}},
-{"@type":"Question","name":"リフレッシュレートが高いとゲームで有利ですか?","acceptedAnswer":{"@type":"Answer","text":"画面がより頻繁に更新されるため、動く対象が滑らかに見え、新しい情報が目に届くまでの遅延が短くなります。ただし体感の差は人やジャンルによって異なり、リフレッシュレートだけで実力が決まるわけではありません。"}}
-]}
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://myabilitytest.com/ja/"},{"@type":"ListItem","position":2,"name":"モニターリフレッシュレートテスト | 能力テスト","item":"https://myabilitytest.com/ja/tests/monitor-hz"}]},{"@type":"WebApplication","name":"モニターリフレッシュレートテスト | 能力テスト","url":"https://myabilitytest.com/ja/tests/monitor-hz","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"ja"}
 ]}
 </script>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -159,35 +154,44 @@
       </div>
     </div>
 
-    <section class="info">
-      <h2>リフレッシュレート(Hz)とは?</h2>
-      <p>リフレッシュレートは、モニターが1秒間に何回画面を描き直すかを表す値です。60Hzなら1秒に60回、144Hzなら144回更新します。数値が大きいほど動きが滑らかに見え、新しい映像が目に届くまでの遅延が短くなります。</p>
-
-      <h2>このテストはどうやって測定しますか?</h2>
-      <p>ブラウザの<code>requestAnimationFrame</code>は画面が更新される周期に合わせて呼び出されます。このテストは5秒間その呼び出し間隔をすべて記録し、<strong>中央値</strong>を基準に毎秒のフレーム数を計算します。平均ではなく中央値を使うのは、測定中に一度や二度跳ねたフレームが結果を歪めないようにするためです。</p>
-
-      <h2>結果の見方</h2>
-      <table>
+    <div class="guide">
+    <div class="section-head"><h2>モニターリフレッシュレートテストガイド</h2></div>
+    <div class="guide-grid">
+      <div class="guide-box">
+        <h3>リフレッシュレート(Hz)とは?</h3>
+        <p>リフレッシュレートは、モニターが1秒間に何回画面を描き直すかを表す値です。60Hzなら1秒に60回、144Hzなら144回更新します。数値が大きいほど動きが滑らかに見え、新しい映像が目に届くまでの遅延が短くなります。</p>
+      </div>
+      <div class="guide-box">
+        <h3>リフレッシュレートと反応速度の関係は?</h3>
+        <p>リフレッシュレートが高いと、画面に新しい情報が表示されるまでの待ち時間が短くなります。60Hzでは1フレーム約16.7ms、144Hzでは約6.9msなので、理論上その分だけ早く情報を見られます。そのため<a href="/ja/tests/reaction-time">反応速度テスト</a>の結果も端末によって10〜50ms程度変わることがあります。</p>
+      </div>
+      <div class="guide-box">
+        <h3>結果の見方</h3>
+        <table>
         <tr><th>測定値</th><th>一般的な解釈</th></tr>
         <tr><td>約50Hz未満</td><td>省電力モード、またはブラウザがフレームを制限している可能性が高いです</td></tr>
         <tr><td>約60Hz</td><td>一般的な事務用・普及型モニター、またはノートPC内蔵画面の標準値</td></tr>
         <tr><td>約75Hz</td><td>普及型ゲーミングモニターでよく見る値</td></tr>
         <tr><td>約120〜144Hz</td><td>ゲーミングモニターの代表的な帯域</td></tr>
         <tr><td>165Hz以上</td><td>高リフレッシュレートのゲーミングモニター</td></tr>
-      </table>
-
-      <h2>実際より低く出る理由</h2>
-      <ul>
+        </table>
+      </div>
+      <div class="guide-box">
+        <h3>このテストはどうやって測定しますか?</h3>
+        <p>ブラウザの<code>requestAnimationFrame</code>は画面が更新される周期に合わせて呼び出されます。このテストは5秒間その呼び出し間隔をすべて記録し、<strong>中央値</strong>を基準に毎秒のフレーム数を計算します。平均ではなく中央値を使うのは、測定中に一度や二度跳ねたフレームが結果を歪めないようにするためです。</p>
+      </div>
+      <div class="guide-box wide">
+        <h3>実際より低く出る理由</h3>
+        <ul>
         <li><strong>省電力モード</strong> — ノートPCがバッテリー駆動中はリフレッシュレートを下げる機種が多いです。</li>
         <li><strong>ブラウザのフレーム制限</strong> — バックグラウンドタブや他のタブが重いとフレームが減ります。</li>
         <li><strong>OSの設定</strong> — 144Hzのモニターでもディスプレイ設定が60Hzなら60Hzで動作します。</li>
         <li><strong>ケーブル・ポート</strong> — 規格の低いケーブルは高解像度で高いリフレッシュレートを伝えられないことがあります。</li>
-      </ul>
-      <p>測定値が期待と違う場合は、電源を接続し他のタブをすべて閉じてから測り直してください。それでも低い場合はOSのディスプレイ設定を確認しましょう。</p>
-
-      <h2>リフレッシュレートと反応速度の関係は?</h2>
-      <p>リフレッシュレートが高いと、画面に新しい情報が表示されるまでの待ち時間が短くなります。60Hzでは1フレーム約16.7ms、144Hzでは約6.9msなので、理論上その分だけ早く情報を見られます。そのため<a href="/ja/tests/reaction-time">反応速度テスト</a>の結果も端末によって10〜50ms程度変わることがあります。</p>
-    </section>
+        </ul>
+        <p>測定値が期待と違う場合は、電源を接続し他のタブをすべて閉じてから測り直してください。それでも低い場合はOSのディスプレイ設定を確認しましょう。</p>
+      </div>
+    </div>
+    </div>
 
 
     <div class="other-tests">

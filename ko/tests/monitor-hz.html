@@ -28,12 +28,7 @@
 {"@context":"https://schema.org","@graph":[
 {"@type":"Organization","@id":"https://myabilitytest.com/#organization","name":"MyAbilityTest","url":"https://myabilitytest.com/","logo":{"@type":"ImageObject","url":"https://myabilitytest.com/og-default.png","width":1200,"height":630}},
 {"@type":"WebSite","@id":"https://myabilitytest.com/#website","name":"MyAbilityTest","url":"https://myabilitytest.com/","inLanguage":["ko","en","ja","zh-Hant"],"publisher":{"@id":"https://myabilitytest.com/#organization"}},
-{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://myabilitytest.com/ko/"},{"@type":"ListItem","position":2,"name":"모니터 주사율 테스트 | 능력 테스트","item":"https://myabilitytest.com/ko/tests/monitor-hz"}]},{"@type":"WebApplication","name":"모니터 주사율 테스트 | 능력 테스트","url":"https://myabilitytest.com/ko/tests/monitor-hz","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"ko"},
-{"@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"브라우저에서 잰 주사율이 실제와 다를 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. 브라우저는 화면 갱신에 맞춰 프레임을 그리지만, 배터리 절약 모드나 다른 탭의 부하, 브라우저의 프레임 제한 정책 때문에 실제 모니터 주사율보다 낮게 측정될 수 있습니다. 전원을 연결하고 다른 탭을 닫은 뒤 다시 측정해보세요."}},
-{"@type":"Question","name":"144Hz 모니터인데 60Hz로 나와요.","acceptedAnswer":{"@type":"Answer","text":"운영체제 디스플레이 설정에서 주사율이 60Hz로 잡혀 있을 가능성이 높습니다. 윈도우는 설정 > 시스템 > 디스플레이 > 고급 디스플레이에서, 맥은 설정 > 디스플레이에서 주사율을 확인하고 변경할 수 있습니다. 케이블 규격(HDMI 버전 등)이 높은 주사율을 지원하지 않는 경우도 있습니다."}},
-{"@type":"Question","name":"주사율이 높으면 게임에 유리한가요?","acceptedAnswer":{"@type":"Answer","text":"화면이 더 자주 갱신되므로 움직이는 대상이 더 부드럽게 보이고, 새로운 정보가 눈에 닿기까지의 지연이 줄어듭니다. 다만 체감 차이는 사람과 게임 장르에 따라 다르며, 주사율만으로 실력이 결정되지는 않습니다."}}
-]}
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://myabilitytest.com/ko/"},{"@type":"ListItem","position":2,"name":"모니터 주사율 테스트 | 능력 테스트","item":"https://myabilitytest.com/ko/tests/monitor-hz"}]},{"@type":"WebApplication","name":"모니터 주사율 테스트 | 능력 테스트","url":"https://myabilitytest.com/ko/tests/monitor-hz","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"ko"}
 ]}
 </script>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -159,35 +154,44 @@
       </div>
     </div>
 
-    <section class="info">
-      <h2>주사율(Hz)이란?</h2>
-      <p>주사율은 모니터가 1초에 화면을 몇 번 새로 그리는지를 나타내는 값입니다. 60Hz면 1초에 60번, 144Hz면 144번 갱신합니다. 숫자가 클수록 움직이는 화면이 부드럽게 보이고, 새로운 장면이 눈에 도달하기까지의 지연이 줄어듭니다.</p>
-
-      <h2>이 테스트는 어떻게 측정하나요?</h2>
-      <p>브라우저의 <code>requestAnimationFrame</code>은 화면이 갱신되는 주기에 맞춰 호출됩니다. 이 테스트는 5초 동안 그 호출 간격을 모두 기록한 뒤, <strong>중앙값</strong>을 기준으로 초당 프레임 수를 계산합니다. 평균 대신 중앙값을 쓰는 이유는 측정 중 한두 번 튀는 프레임이 결과를 왜곡하지 않게 하기 위해서입니다.</p>
-
-      <h2>결과 해석표</h2>
-      <table>
+    <div class="guide">
+    <div class="section-head"><h2>모니터 주사율 테스트 가이드</h2></div>
+    <div class="guide-grid">
+      <div class="guide-box">
+        <h3>주사율(Hz)이란?</h3>
+        <p>주사율은 모니터가 1초에 화면을 몇 번 새로 그리는지를 나타내는 값입니다. 60Hz면 1초에 60번, 144Hz면 144번 갱신합니다. 숫자가 클수록 움직이는 화면이 부드럽게 보이고, 새로운 장면이 눈에 도달하기까지의 지연이 줄어듭니다.</p>
+      </div>
+      <div class="guide-box">
+        <h3>주사율과 반응 속도는 어떤 관계인가요?</h3>
+        <p>주사율이 높으면 화면에 새로운 정보가 표시되기까지의 대기 시간이 짧아집니다. 60Hz에서는 한 프레임이 약 16.7ms, 144Hz에서는 약 6.9ms이므로 이론상 그 차이만큼 정보를 더 일찍 볼 수 있습니다. 이 때문에 <a href="/ko/tests/reaction-time">반응 속도 테스트</a> 결과도 기기에 따라 10~50ms가량 달라질 수 있습니다.</p>
+      </div>
+      <div class="guide-box">
+        <h3>결과 해석표</h3>
+        <table>
         <tr><th>측정값</th><th>일반적인 해석</th></tr>
         <tr><td>~50Hz 미만</td><td>절전 모드이거나 브라우저가 프레임을 제한하는 상태일 가능성이 큽니다</td></tr>
         <tr><td>약 60Hz</td><td>일반 사무용·보급형 모니터, 또는 노트북 내장 화면의 표준값</td></tr>
         <tr><td>약 75Hz</td><td>보급형 게이밍 모니터에서 흔한 값</td></tr>
         <tr><td>약 120~144Hz</td><td>게이밍 모니터의 대표적인 구간</td></tr>
         <tr><td>165Hz 이상</td><td>고주사율 게이밍 모니터</td></tr>
-      </table>
-
-      <h2>실제 주사율보다 낮게 나오는 이유</h2>
-      <ul>
+        </table>
+      </div>
+      <div class="guide-box">
+        <h3>이 테스트는 어떻게 측정하나요?</h3>
+        <p>브라우저의 <code>requestAnimationFrame</code>은 화면이 갱신되는 주기에 맞춰 호출됩니다. 이 테스트는 5초 동안 그 호출 간격을 모두 기록한 뒤, <strong>중앙값</strong>을 기준으로 초당 프레임 수를 계산합니다. 평균 대신 중앙값을 쓰는 이유는 측정 중 한두 번 튀는 프레임이 결과를 왜곡하지 않게 하기 위해서입니다.</p>
+      </div>
+      <div class="guide-box wide">
+        <h3>실제 주사율보다 낮게 나오는 이유</h3>
+        <ul>
         <li><strong>절전 모드</strong> — 노트북이 배터리로 동작 중이면 주사율을 낮추는 기종이 많습니다.</li>
         <li><strong>브라우저 프레임 제한</strong> — 백그라운드 탭이거나 다른 탭이 무거우면 프레임이 줄어듭니다.</li>
         <li><strong>OS 설정</strong> — 144Hz 모니터라도 디스플레이 설정이 60Hz로 잡혀 있으면 60Hz로 동작합니다.</li>
         <li><strong>케이블·포트</strong> — 규격이 낮은 케이블은 높은 해상도에서 높은 주사율을 전달하지 못할 수 있습니다.</li>
-      </ul>
-      <p>측정값이 기대와 다르면 전원을 연결하고 다른 탭을 모두 닫은 뒤 다시 재보세요. 그래도 낮게 나온다면 OS의 디스플레이 설정을 확인하는 것이 좋습니다.</p>
-
-      <h2>주사율과 반응 속도는 어떤 관계인가요?</h2>
-      <p>주사율이 높으면 화면에 새로운 정보가 표시되기까지의 대기 시간이 짧아집니다. 60Hz에서는 한 프레임이 약 16.7ms, 144Hz에서는 약 6.9ms이므로 이론상 그 차이만큼 정보를 더 일찍 볼 수 있습니다. 이 때문에 <a href="/ko/tests/reaction-time">반응 속도 테스트</a> 결과도 기기에 따라 10~50ms가량 달라질 수 있습니다.</p>
-    </section>
+        </ul>
+        <p>측정값이 기대와 다르면 전원을 연결하고 다른 탭을 모두 닫은 뒤 다시 재보세요. 그래도 낮게 나온다면 OS의 디스플레이 설정을 확인하는 것이 좋습니다.</p>
+      </div>
+    </div>
+    </div>
 
 
     <div class="other-tests">

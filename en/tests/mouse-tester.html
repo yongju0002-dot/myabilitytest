@@ -28,12 +28,7 @@
 {"@context":"https://schema.org","@graph":[
 {"@type":"Organization","@id":"https://myabilitytest.com/#organization","name":"MyAbilityTest","url":"https://myabilitytest.com/","logo":{"@type":"ImageObject","url":"https://myabilitytest.com/og-default.png","width":1200,"height":630}},
 {"@type":"WebSite","@id":"https://myabilitytest.com/#website","name":"MyAbilityTest","url":"https://myabilitytest.com/","inLanguage":["ko","en","ja","zh-Hant"],"publisher":{"@id":"https://myabilitytest.com/#organization"}},
-{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://myabilitytest.com/en/"},{"@type":"ListItem","position":2,"name":"Mouse Test | Ability Test","item":"https://myabilitytest.com/ko/tests/mouse-tester"}]},{"@type":"WebApplication","name":"Mouse Test | Ability Test","url":"https://myabilitytest.com/en/tests/mouse-tester","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"en"},
-{"@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"Why does one press register as two clicks?","acceptedAnswer":{"@type":"Answer","text":"As a mouse switch wears out, its contacts can bounce, so a single press is delivered as two clicks - known as chatter, or double-click failure. This page times the gaps between clicks and flags consecutive clicks closer together than a person could reasonably intend (under 70ms by default)."}},
-{"@type":"Question","name":"My side buttons are not detected.","acceptedAnswer":{"@type":"Answer","text":"Browsers often treat buttons 4 and 5 as back/forward navigation, so the page never sees them. Also, if your mouse software maps those buttons to a macro or a keyboard key, they arrive as that key rather than as a mouse button."}},
-{"@type":"Question","name":"What should I do if chatter is confirmed?","acceptedAnswer":{"@type":"Answer","text":"If it is still under warranty, a replacement or repair is the surest fix. Some mice let you raise the debounce time in their software to mask the symptom, and on some models the switch can be replaced. This test is a rough check, not a substitute for proper hardware diagnostics."}}
-]}
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://myabilitytest.com/en/"},{"@type":"ListItem","position":2,"name":"Mouse Test | Ability Test","item":"https://myabilitytest.com/ko/tests/mouse-tester"}]},{"@type":"WebApplication","name":"Mouse Test | Ability Test","url":"https://myabilitytest.com/en/tests/mouse-tester","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"en"}
 ]}
 </script>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -188,35 +183,42 @@
       </div>
     </div>
 
-    <section class="info">
-      <h2>What does this test tell you?</h2>
-      <p>You can check whether each mouse button sends a signal the browser sees, whether the wheel registers up and down, and whether a single click is being counted twice - <strong>chatter</strong>. It all runs in the browser with nothing to install.</p>
-
-      <h2>What is double-click failure (chatter)?</h2>
-      <p>Each mouse button contains a switch with metal contacts. As it ages those contacts can bounce as they open and close, and if the hardware and driver fail to filter that bounce, one press is delivered as <strong>two clicks</strong>. In practice a file you are dragging gets dropped mid-drag, or a single shot in a game fires twice.</p>
-
-      <h2>How does this page decide?</h2>
-      <p>It timestamps every left-click and measures the <strong>gap between consecutive clicks</strong>. A gap under <strong>70ms</strong> - faster than a person can deliberately press twice - is flagged as suspected. Techniques like butterfly or jitter clicking will produce those gaps on a perfectly healthy mouse, so press <strong>slowly, one at a time</strong> when you want a verdict.</p>
-
-      <h2>Reading the result</h2>
-      <table>
+    <div class="guide">
+    <div class="section-head"><h2>Mouse Test guide</h2></div>
+    <div class="guide-grid">
+      <div class="guide-box">
+        <h3>What does this test tell you?</h3>
+        <p>You can check whether each mouse button sends a signal the browser sees, whether the wheel registers up and down, and whether a single click is being counted twice - <strong>chatter</strong>. It all runs in the browser with nothing to install.</p>
+        <p>Each mouse button contains a switch with metal contacts. As it ages those contacts can bounce as they open and close, and if the hardware and driver fail to filter that bounce, one press is delivered as <strong>two clicks</strong>. In practice a file you are dragging gets dropped mid-drag, or a single shot in a game fires twice.</p>
+      </div>
+      <div class="guide-box">
+        <h3>When side buttons do not register</h3>
+        <p>Browsers often treat buttons 4 and 5 as back/forward navigation, so the signal never reaches the page. And if your mouse software maps them to a keyboard key or macro, they arrive as that key instead. In that case the <a href="/en/tests/keyboard-tester">keyboard test</a> will show you which key they land on.</p>
+      </div>
+      <div class="guide-box">
+        <h3>Reading the result</h3>
+        <table>
         <tr><th>Result</th><th>Meaning</th></tr>
         <tr><td>0 suspected (20+ clicks)</td><td>No sign of chatter observed</td></tr>
         <tr><td>1-2 suspected</td><td>Could be coincidence. Press slowly and check again</td></tr>
         <tr><td>3 or more suspected</td><td>Chatter is likely. See the options below</td></tr>
-      </table>
-
-      <h2>If chatter is likely</h2>
-      <ul>
+        </table>
+      </div>
+      <div class="guide-box">
+        <h3>How does this page decide?</h3>
+        <p>It timestamps every left-click and measures the <strong>gap between consecutive clicks</strong>. A gap under <strong>70ms</strong> - faster than a person can deliberately press twice - is flagged as suspected. Techniques like butterfly or jitter clicking will produce those gaps on a perfectly healthy mouse, so press <strong>slowly, one at a time</strong> when you want a verdict.</p>
+      </div>
+      <div class="guide-box wide">
+        <h3>If chatter is likely</h3>
+        <ul>
         <li><strong>Check the warranty</strong> - if it is still covered, replacement or repair is the surest fix.</li>
         <li><strong>Debounce setting</strong> - some mice let you raise the click debounce time in their software to mask the symptom.</li>
         <li><strong>Switch replacement</strong> - models with socketed switches can be swapped, though some require soldering.</li>
-      </ul>
-      <p>This is a rough check, not a substitute for proper hardware diagnostics. Browser or OS settings, and macros from other software, can all change the result.</p>
-
-      <h2>When side buttons do not register</h2>
-      <p>Browsers often treat buttons 4 and 5 as back/forward navigation, so the signal never reaches the page. And if your mouse software maps them to a keyboard key or macro, they arrive as that key instead. In that case the <a href="/en/tests/keyboard-tester">keyboard test</a> will show you which key they land on.</p>
-    </section>
+        </ul>
+        <p>This is a rough check, not a substitute for proper hardware diagnostics. Browser or OS settings, and macros from other software, can all change the result.</p>
+      </div>
+    </div>
+    </div>
 
     <div class="other-tests">
       <div class="label">Try another test</div>

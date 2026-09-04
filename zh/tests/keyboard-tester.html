@@ -28,12 +28,7 @@
 {"@context":"https://schema.org","@graph":[
 {"@type":"Organization","@id":"https://myabilitytest.com/#organization","name":"MyAbilityTest","url":"https://myabilitytest.com/","logo":{"@type":"ImageObject","url":"https://myabilitytest.com/og-default.png","width":1200,"height":630}},
 {"@type":"WebSite","@id":"https://myabilitytest.com/#website","name":"MyAbilityTest","url":"https://myabilitytest.com/","inLanguage":["ko","en","ja","zh-Hant"],"publisher":{"@id":"https://myabilitytest.com/#organization"}},
-{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://myabilitytest.com/zh/"},{"@type":"ListItem","position":2,"name":"键盘测试 | 能力测试","item":"https://myabilitytest.com/ko/tests/keyboard-tester"}]},{"@type":"WebApplication","name":"键盘测试 | 能力测试","url":"https://myabilitytest.com/zh/tests/keyboard-tester","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"zh"},
-{"@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"什么是按键冲突(ghosting)?","acceptedAnswer":{"@type":"Answer","text":"指同时按下多个键时,部分按键完全不被识别的现象。低价键盘通过矩阵电路统一读取按键,当同时按下位于同一行或同一列的组合时无法区分,输入就会丢失。在游戏中一边移动一边按跳跃和其他动作时最容易出现。"}},
-{"@type":"Question","name":"什么是全键无冲(NKRO)?","acceptedAnswer":{"@type":"Answer","text":"指同时按下的按键最多能被准确区分几个。6键无冲(6KRO)在不含修饰键的情况下支持6个,NKRO则基本没有限制。USB连接受标准规范限制常被限定为6个,因此即便是NKRO键盘,也可能因设置或固件只识别到6个。"}},
-{"@type":"Question","name":"某个按键按了没有反应。","acceptedAnswer":{"@type":"Answer","text":"可能是浏览器或操作系统先行拦截的按键。例如F11(全屏)、F12(开发者工具)、Win/Cmd键、Alt+Tab等,信号不会传到网页。排除这些之后仍然没有反应,则可能是键盘本身的问题。"}}
-]}
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://myabilitytest.com/zh/"},{"@type":"ListItem","position":2,"name":"键盘测试 | 能力测试","item":"https://myabilitytest.com/ko/tests/keyboard-tester"}]},{"@type":"WebApplication","name":"键盘测试 | 能力测试","url":"https://myabilitytest.com/zh/tests/keyboard-tester","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"zh"}
 ]}
 </script>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -152,34 +147,49 @@
       </div>
     </div>
 
-    <section class="info">
-      <h2>这个测试能看出什么?</h2>
-      <p>可以逐个确认键盘上每个键是否向浏览器发出信号,同时还能检测同时按下时最多能准确区分几个(<strong>全键无冲</strong>),以及某些组合下输入丢失的<strong>按键冲突</strong>。</p>
-
-      <h2>按键冲突与全键无冲</h2>
-      <p>大多数键盘并非为每个键单独走线,而是通过共享的<strong>矩阵电路</strong>读取。在这种结构下,同时按下位于同一行或同一列的特定组合时无法区分是哪个键被按下,输入因此丢失,这就是按键冲突。为每个键加入二极管的键盘则能全部区分,这种能力称为无冲(rollover)。</p>
-      <table>
+    <div class="guide">
+    <div class="section-head"><h2>键盘测试指南</h2></div>
+    <div class="guide-grid">
+      <div class="guide-box">
+        <h3>这个测试能看出什么?</h3>
+        <p>可以逐个确认键盘上每个键是否向浏览器发出信号,同时还能检测同时按下时最多能准确区分几个(<strong>全键无冲</strong>),以及某些组合下输入丢失的<strong>按键冲突</strong>。</p>
+      </div>
+      <div class="guide-box">
+        <h3>某些键始终检测不到的原因</h3>
+        <p>被浏览器或操作系统先行拦截的按键,信号无法到达网页。常见的有F11(全屏)、F12(开发者工具)、Win/Cmd键、Alt+Tab、PrtSc等。排除这些之后仍有特定键毫无反应,则可怀疑是键盘的问题。</p>
+        <p>另外,本页面按物理按键位置(<code>event.code</code>)高亮,因此无论输入语言或键盘布局(QWERTY、QWERTZ等)如何,亮起的都是同一个物理位置的键。</p>
+      </div>
+      <div class="guide-box">
+        <h3>按键冲突与全键无冲</h3>
+        <p>大多数键盘并非为每个键单独走线,而是通过共享的<strong>矩阵电路</strong>读取。在这种结构下,同时按下位于同一行或同一列的特定组合时无法区分是哪个键被按下,输入因此丢失,这就是按键冲突。为每个键加入二极管的键盘则能全部区分,这种能力称为无冲(rollover)。</p>
+        <table>
         <tr><th>标记</th><th>含义</th></tr>
         <tr><td>2KRO</td><td>除修饰键外仅能可靠区分2个。低价键盘常见</td></tr>
         <tr><td>6KRO</td><td>可区分6个。USB默认规范的标准值</td></tr>
         <tr><td>NKRO</td><td>基本没有数量限制。电竞与机械键盘广泛支持</td></tr>
-      </table>
-      <p>即便是NKRO键盘,在USB连接下也可能因默认规范而看起来被限制为6个。视机型不同,可能需要在专用软件、固件设置或特定按键组合中开启NKRO模式。</p>
-
-      <h2>如果同时输入停在6个</h2>
-      <ul>
+        </table>
+        <p>即便是NKRO键盘,在USB连接下也可能因默认规范而看起来被限制为6个。视机型不同,可能需要在专用软件、固件设置或特定按键组合中开启NKRO模式。</p>
+      </div>
+      <div class="guide-box">
+        <h3>如何准确测量</h3>
+        <ul>
+          <li>把每个键<strong>各按一次</strong>,确认屏幕键盘全部亮起。</li>
+          <li>同时按下6个、7个、更多键,看看在哪里开始不再识别。</li>
+          <li>F11、F12、Win键这类会被浏览器或系统先截获的键,本来就不会显示。</li>
+          <li>无线键盘请先检查电池和连接状态。</li>
+        </ul>
+        <p>本测试仅依据浏览器接收到的信号判断,仅供参考,不能替代正式的硬件检测。如果想测量按键连打速度,可以试试<a href="/zh/tests/spacebar-counter">空格键连打测试</a>或<a href="/zh/tests/apm">APM测试</a>。</p>
+      </div>
+      <div class="guide-box wide">
+        <h3>如果同时输入停在6个</h3>
+        <ul>
         <li><strong>可能是正常的</strong> — USB HID默认规范就是6键,很多键盘会停在这里。</li>
         <li><strong>确认NKRO模式</strong> — 电竞键盘常可通过专用软件或Fn组合开启NKRO。</li>
         <li><strong>修饰键另计</strong> — Shift、Ctrl、Alt通常不计入无冲数量,而是单独处理。</li>
-      </ul>
-
-      <h2>某些键始终检测不到的原因</h2>
-      <p>被浏览器或操作系统先行拦截的按键,信号无法到达网页。常见的有F11(全屏)、F12(开发者工具)、Win/Cmd键、Alt+Tab、PrtSc等。排除这些之后仍有特定键毫无反应,则可怀疑是键盘的问题。</p>
-      <p>另外,本页面按物理按键位置(<code>event.code</code>)高亮,因此无论输入语言或键盘布局(QWERTY、QWERTZ等)如何,亮起的都是同一个物理位置的键。</p>
-
-      <h2>说明</h2>
-      <p>本测试仅依据浏览器接收到的信号判断,仅供参考,不能替代正式的硬件检测。如果想测量按键连打速度,可以试试<a href="/zh/tests/spacebar-counter">空格键连打测试</a>或<a href="/zh/tests/apm">APM测试</a>。</p>
-    </section>
+        </ul>
+      </div>
+    </div>
+    </div>
 
     <div class="other-tests">
       <div class="label">也来试试其他测试</div>

@@ -28,12 +28,7 @@
 {"@context":"https://schema.org","@graph":[
 {"@type":"Organization","@id":"https://myabilitytest.com/#organization","name":"MyAbilityTest","url":"https://myabilitytest.com/","logo":{"@type":"ImageObject","url":"https://myabilitytest.com/og-default.png","width":1200,"height":630}},
 {"@type":"WebSite","@id":"https://myabilitytest.com/#website","name":"MyAbilityTest","url":"https://myabilitytest.com/","inLanguage":["ko","en","ja","zh-Hant"],"publisher":{"@id":"https://myabilitytest.com/#organization"}},
-{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://myabilitytest.com/ja/"},{"@type":"ListItem","position":2,"name":"マウステスト | 能力テスト","item":"https://myabilitytest.com/ko/tests/mouse-tester"}]},{"@type":"WebApplication","name":"マウステスト | 能力テスト","url":"https://myabilitytest.com/ja/tests/mouse-tester","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"ja"},
-{"@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"1回押したのに2回クリックされるのはなぜ?","acceptedAnswer":{"@type":"Answer","text":"マウスのスイッチが劣化すると接点が微妙に跳ね、1回のクリックが2回として認識される「チャタリング」が起こります。このページはクリック間隔を測り、人が意図しては押しにくい非常に短い間隔(既定で70ms未満)の連続クリックを疑い例として表示します。"}},
-{"@type":"Question","name":"サイドボタンが検出されません。","acceptedAnswer":{"@type":"Answer","text":"ブラウザは4番・5番ボタン(進む/戻る)をページ移動として処理することがあり、Web側で検出されない場合があります。またマウス専用ソフトでそのボタンにマクロやキーボードのキーを割り当てていると、マウスボタンではなくそのキーとして認識されます。"}},
-{"@type":"Question","name":"チャタリングが確認されたらどうすれば?","acceptedAnswer":{"@type":"Answer","text":"保証期間内であれば交換・修理が最も確実です。一部のマウスは専用ソフトでデバウンス時間を延ばして症状を抑えられ、スイッチを交換できるモデルもあります。ただしこのテストは参考用の点検であり、ハードウェア診断の代わりにはなりません。"}}
-]}
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://myabilitytest.com/ja/"},{"@type":"ListItem","position":2,"name":"マウステスト | 能力テスト","item":"https://myabilitytest.com/ko/tests/mouse-tester"}]},{"@type":"WebApplication","name":"マウステスト | 能力テスト","url":"https://myabilitytest.com/ja/tests/mouse-tester","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"ja"}
 ]}
 </script>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -188,35 +183,42 @@
       </div>
     </div>
 
-    <section class="info">
-      <h2>このテストで何が分かる?</h2>
-      <p>マウスの各ボタンがブラウザに信号を送れているか、ホイールが上下とも認識されるか、そして1回のクリックが2回として拾われる<strong>チャタリング</strong>がないかを確認できます。インストール不要でブラウザからすぐ点検できます。</p>
-
-      <h2>チャタリングとは?</h2>
-      <p>マウスのボタンには金属接点を持つスイッチが入っています。長く使うと接点が離れる際に微妙に跳ね、ハードウェアやドライバがそれを取り除けないと、1回のクリックが<strong>2回のクリック</strong>として伝わります。ドラッグ中のファイルが途中で落ちる、ゲームで1発だけ撃つつもりが2発出る、といった形で現れます。</p>
-
-      <h2>このページはどう判定していますか?</h2>
-      <p>左クリックの時刻を記録し、<strong>連続する2クリックの間隔</strong>を計算します。人が意図的に押すのが難しい<strong>70ms未満</strong>の間隔が出たら疑い例として表示します。ただしバタフライやジタークリックのように意図的に速く押す技法を使うと正常なマウスでもこの値が出るため、判定の際は必ず<strong>1回ずつゆっくり</strong>押してください。</p>
-
-      <h2>結果の見方</h2>
-      <table>
+    <div class="guide">
+    <div class="section-head"><h2>マウステストガイド</h2></div>
+    <div class="guide-grid">
+      <div class="guide-box">
+        <h3>このテストで何が分かる?</h3>
+        <p>マウスの各ボタンがブラウザに信号を送れているか、ホイールが上下とも認識されるか、そして1回のクリックが2回として拾われる<strong>チャタリング</strong>がないかを確認できます。インストール不要でブラウザからすぐ点検できます。</p>
+        <p>マウスのボタンには金属接点を持つスイッチが入っています。長く使うと接点が離れる際に微妙に跳ね、ハードウェアやドライバがそれを取り除けないと、1回のクリックが<strong>2回のクリック</strong>として伝わります。ドラッグ中のファイルが途中で落ちる、ゲームで1発だけ撃つつもりが2発出る、といった形で現れます。</p>
+      </div>
+      <div class="guide-box">
+        <h3>サイドボタンが反応しない場合</h3>
+        <p>ブラウザが4番・5番ボタンをページの進む/戻るとして処理し、Webページまで信号が届かないことがあります。またマウス専用ソフトでそのボタンにキーボードのキーやマクロを割り当てていると、マウスボタンではなくそのキー入力として認識されます。その場合は<a href="/ja/tests/keyboard-tester">キーボードテスト</a>でどのキーとして拾われるか確認できます。</p>
+      </div>
+      <div class="guide-box">
+        <h3>結果の見方</h3>
+        <table>
         <tr><th>結果</th><th>意味</th></tr>
         <tr><td>疑い0件(20クリック以上)</td><td>チャタリングの兆候は見られませんでした</td></tr>
         <tr><td>疑い1〜2件</td><td>偶然の可能性があります。ゆっくり押して再確認してください</td></tr>
         <tr><td>疑い3件以上</td><td>チャタリングが疑われます。下の対処を参考にしてください</td></tr>
-      </table>
-
-      <h2>チャタリングが疑われたら</h2>
-      <ul>
+        </table>
+      </div>
+      <div class="guide-box">
+        <h3>このページはどう判定していますか?</h3>
+        <p>左クリックの時刻を記録し、<strong>連続する2クリックの間隔</strong>を計算します。人が意図的に押すのが難しい<strong>70ms未満</strong>の間隔が出たら疑い例として表示します。ただしバタフライやジタークリックのように意図的に速く押す技法を使うと正常なマウスでもこの値が出るため、判定の際は必ず<strong>1回ずつゆっくり</strong>押してください。</p>
+      </div>
+      <div class="guide-box wide">
+        <h3>チャタリングが疑われたら</h3>
+        <ul>
         <li><strong>保証の確認</strong> — 保証期間内なら交換・修理が最も確実です。</li>
         <li><strong>デバウンス設定</strong> — 一部のマウスは専用ソフトでクリック認識の遅延(デバウンス)を延ばし、症状を抑えられます。</li>
         <li><strong>スイッチ交換</strong> — ソケット式のモデルは交換できますが、はんだ付けが必要な場合もあります。</li>
-      </ul>
-      <p>このテストは参考用の点検であり、正式なハードウェア診断の代わりにはなりません。ブラウザやOSの設定、他のソフトのマクロによって結果が変わることもあります。</p>
-
-      <h2>サイドボタンが反応しない場合</h2>
-      <p>ブラウザが4番・5番ボタンをページの進む/戻るとして処理し、Webページまで信号が届かないことがあります。またマウス専用ソフトでそのボタンにキーボードのキーやマクロを割り当てていると、マウスボタンではなくそのキー入力として認識されます。その場合は<a href="/ja/tests/keyboard-tester">キーボードテスト</a>でどのキーとして拾われるか確認できます。</p>
-    </section>
+        </ul>
+        <p>このテストは参考用の点検であり、正式なハードウェア診断の代わりにはなりません。ブラウザやOSの設定、他のソフトのマクロによって結果が変わることもあります。</p>
+      </div>
+    </div>
+    </div>
 
     <div class="other-tests">
       <div class="label">他のテストも試してみよう</div>

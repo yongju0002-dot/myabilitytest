@@ -28,12 +28,7 @@
 {"@context":"https://schema.org","@graph":[
 {"@type":"Organization","@id":"https://myabilitytest.com/#organization","name":"MyAbilityTest","url":"https://myabilitytest.com/","logo":{"@type":"ImageObject","url":"https://myabilitytest.com/og-default.png","width":1200,"height":630}},
 {"@type":"WebSite","@id":"https://myabilitytest.com/#website","name":"MyAbilityTest","url":"https://myabilitytest.com/","inLanguage":["ko","en","ja","zh-Hant"],"publisher":{"@id":"https://myabilitytest.com/#organization"}},
-{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://myabilitytest.com/zh/"},{"@type":"ListItem","position":2,"name":"显示器刷新率测试 | 能力测试","item":"https://myabilitytest.com/zh/tests/monitor-hz"}]},{"@type":"WebApplication","name":"显示器刷新率测试 | 能力测试","url":"https://myabilitytest.com/zh/tests/monitor-hz","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"zh"},
-{"@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"浏览器测出的刷新率会和实际不同吗?","acceptedAnswer":{"@type":"Answer","text":"会。浏览器按照屏幕刷新节奏绘制帧,但省电模式、其他标签页的负载以及浏览器的限帧策略,都可能让读数低于显示器的实际刷新率。请接上电源、关闭其他标签页后重新测量。"}},
-{"@type":"Question","name":"我是144Hz显示器,却显示60Hz。","acceptedAnswer":{"@type":"Answer","text":"多半是操作系统的显示设置仍停留在60Hz。Windows 可在 设置 > 系统 > 显示 > 高级显示设置 中查看修改,Mac 可在 设置 > 显示器 中调整。线材规格不支持高刷新率时也会被限制。"}},
-{"@type":"Question","name":"刷新率高对游戏有利吗?","acceptedAnswer":{"@type":"Answer","text":"屏幕更新更频繁,移动画面看起来更顺滑,新信息到达眼睛的延迟更短。不过体感差异因人和游戏类型而异,刷新率本身并不决定水平。"}}
-]}
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://myabilitytest.com/zh/"},{"@type":"ListItem","position":2,"name":"显示器刷新率测试 | 能力测试","item":"https://myabilitytest.com/zh/tests/monitor-hz"}]},{"@type":"WebApplication","name":"显示器刷新率测试 | 能力测试","url":"https://myabilitytest.com/zh/tests/monitor-hz","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"zh"}
 ]}
 </script>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -159,35 +154,44 @@
       </div>
     </div>
 
-    <section class="info">
-      <h2>什么是刷新率(Hz)?</h2>
-      <p>刷新率表示显示器每秒重绘屏幕的次数。60Hz就是每秒60次,144Hz则是144次。数值越大,移动画面看起来越顺滑,新画面到达眼睛的延迟也越短。</p>
-
-      <h2>这个测试是怎么测量的?</h2>
-      <p>浏览器的<code>requestAnimationFrame</code>会跟随屏幕刷新周期被调用。本测试在5秒内记录所有调用间隔,然后以<strong>中位数</strong>为准计算每秒帧数。使用中位数而非平均值,是为了避免测量过程中偶尔跳变的帧影响结果。</p>
-
-      <h2>结果解读</h2>
-      <table>
+    <div class="guide">
+    <div class="section-head"><h2>显示器刷新率测试指南</h2></div>
+    <div class="guide-grid">
+      <div class="guide-box">
+        <h3>什么是刷新率(Hz)?</h3>
+        <p>刷新率表示显示器每秒重绘屏幕的次数。60Hz就是每秒60次,144Hz则是144次。数值越大,移动画面看起来越顺滑,新画面到达眼睛的延迟也越短。</p>
+      </div>
+      <div class="guide-box">
+        <h3>刷新率和反应速度有什么关系?</h3>
+        <p>刷新率越高,新信息出现在屏幕上的等待时间就越短。60Hz下一帧约16.7ms,144Hz下约6.9ms,理论上你能提前这么多看到新信息。这也是<a href="/zh/tests/reaction-time">反应速度测试</a>结果会因设备不同而相差10~50ms的原因之一。</p>
+      </div>
+      <div class="guide-box">
+        <h3>结果解读</h3>
+        <table>
         <tr><th>读数</th><th>通常含义</th></tr>
         <tr><td>低于约50Hz</td><td>很可能处于省电模式,或浏览器正在限制帧数</td></tr>
         <tr><td>约60Hz</td><td>普通办公/入门显示器,以及笔记本内置屏幕的标准值</td></tr>
         <tr><td>约75Hz</td><td>入门级电竞显示器上常见的数值</td></tr>
         <tr><td>约120~144Hz</td><td>电竞显示器的典型区间</td></tr>
         <tr><td>165Hz以上</td><td>高刷新率电竞显示器</td></tr>
-      </table>
-
-      <h2>为什么读数会偏低</h2>
-      <ul>
+        </table>
+      </div>
+      <div class="guide-box">
+        <h3>这个测试是怎么测量的?</h3>
+        <p>浏览器的<code>requestAnimationFrame</code>会跟随屏幕刷新周期被调用。本测试在5秒内记录所有调用间隔,然后以<strong>中位数</strong>为准计算每秒帧数。使用中位数而非平均值,是为了避免测量过程中偶尔跳变的帧影响结果。</p>
+      </div>
+      <div class="guide-box wide">
+        <h3>为什么读数会偏低</h3>
+        <ul>
         <li><strong>省电模式</strong> — 笔记本用电池供电时,很多机型会降低刷新率。</li>
         <li><strong>浏览器限帧</strong> — 处于后台标签页,或其他标签页负载过重时帧数会下降。</li>
         <li><strong>系统设置</strong> — 即便是144Hz显示器,若显示设置为60Hz就只会以60Hz运行。</li>
         <li><strong>线材与接口</strong> — 规格较低的线材在高分辨率下可能无法传输高刷新率。</li>
-      </ul>
-      <p>如果读数和预期不符,请接上电源、关闭所有其他标签页后重新测量。若仍然偏低,建议检查系统的显示设置。</p>
-
-      <h2>刷新率和反应速度有什么关系?</h2>
-      <p>刷新率越高,新信息出现在屏幕上的等待时间就越短。60Hz下一帧约16.7ms,144Hz下约6.9ms,理论上你能提前这么多看到新信息。这也是<a href="/zh/tests/reaction-time">反应速度测试</a>结果会因设备不同而相差10~50ms的原因之一。</p>
-    </section>
+        </ul>
+        <p>如果读数和预期不符,请接上电源、关闭所有其他标签页后重新测量。若仍然偏低,建议检查系统的显示设置。</p>
+      </div>
+    </div>
+    </div>
 
 
     <div class="other-tests">

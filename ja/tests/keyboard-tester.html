@@ -28,12 +28,7 @@
 {"@context":"https://schema.org","@graph":[
 {"@type":"Organization","@id":"https://myabilitytest.com/#organization","name":"MyAbilityTest","url":"https://myabilitytest.com/","logo":{"@type":"ImageObject","url":"https://myabilitytest.com/og-default.png","width":1200,"height":630}},
 {"@type":"WebSite","@id":"https://myabilitytest.com/#website","name":"MyAbilityTest","url":"https://myabilitytest.com/","inLanguage":["ko","en","ja","zh-Hant"],"publisher":{"@id":"https://myabilitytest.com/#organization"}},
-{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://myabilitytest.com/ja/"},{"@type":"ListItem","position":2,"name":"キーボードテスト | 能力テスト","item":"https://myabilitytest.com/ko/tests/keyboard-tester"}]},{"@type":"WebApplication","name":"キーボードテスト | 能力テスト","url":"https://myabilitytest.com/ja/tests/keyboard-tester","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"ja"},
-{"@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"ゴースティングとは?","acceptedAnswer":{"@type":"Answer","text":"複数のキーを同時に押したとき、一部のキーがまったく認識されない現象です。安価なキーボードはキーをマトリクス回路でまとめて読むため、同じ行・列にまたがる組み合わせを同時に押すと区別できず入力が欠落します。ゲームで移動しながらジャンプと別の操作を同時に押すときに現れやすいです。"}},
-{"@type":"Question","name":"Nキーロールオーバーとは?","acceptedAnswer":{"@type":"Answer","text":"同時に押したキーを何個まで正確に区別できるかを指します。6キーロールオーバー(6KRO)は修飾キーを除いて6個まで、NKROは事実上制限なく認識します。USB接続では標準仕様上6個に制限されることが多く、NKRO対応キーボードでも設定やファームウェア次第で6個までしか拾えない場合があります。"}},
-{"@type":"Question","name":"特定のキーを押しても反応しません。","acceptedAnswer":{"@type":"Answer","text":"ブラウザやOSが先に横取りするキーかもしれません。たとえばF11(全画面)、F12(開発者ツール)、Win/Cmdキー、Alt+Tabなどはウェブページまで信号が届きません。これらを除いても反応がない場合は、キーボード自体の問題の可能性があります。"}}
-]}
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://myabilitytest.com/ja/"},{"@type":"ListItem","position":2,"name":"キーボードテスト | 能力テスト","item":"https://myabilitytest.com/ko/tests/keyboard-tester"}]},{"@type":"WebApplication","name":"キーボードテスト | 能力テスト","url":"https://myabilitytest.com/ja/tests/keyboard-tester","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"ja"}
 ]}
 </script>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -152,34 +147,49 @@
       </div>
     </div>
 
-    <section class="info">
-      <h2>このテストで何が分かる?</h2>
-      <p>キーボードの各キーがブラウザに信号を送っているかを一つずつ確認でき、同時に押したときに何個まで正確に区別されるか(<strong>Nキーロールオーバー</strong>)、一部の組み合わせで入力が消える<strong>ゴースティング</strong>も併せて点検できます。</p>
-
-      <h2>ゴースティングとNキーロールオーバー</h2>
-      <p>多くのキーボードはキーを個別の配線で読むのではなく、<strong>マトリクス回路</strong>でまとめて読みます。この構造では同じ行・列にまたがる特定の組み合わせを同時に押すと、どのキーが押されたか区別できず入力が欠落します。これがゴースティングです。各キーにダイオードを入れたキーボードは同時に押してもすべて区別でき、この能力をロールオーバーと呼びます。</p>
-      <table>
+    <div class="guide">
+    <div class="section-head"><h2>キーボードテストガイド</h2></div>
+    <div class="guide-grid">
+      <div class="guide-box">
+        <h3>このテストで何が分かる?</h3>
+        <p>キーボードの各キーがブラウザに信号を送っているかを一つずつ確認でき、同時に押したときに何個まで正確に区別されるか(<strong>Nキーロールオーバー</strong>)、一部の組み合わせで入力が消える<strong>ゴースティング</strong>も併せて点検できます。</p>
+      </div>
+      <div class="guide-box">
+        <h3>特定のキーが検出されない理由</h3>
+        <p>ブラウザやOSが先に横取りするキーはウェブページまで信号が届きません。F11(全画面)、F12(開発者ツール)、Win/Cmdキー、Alt+Tab、PrtScなどが代表例です。これらを除いても特定のキーだけ反応がない場合は、キーボード側の問題を疑えます。</p>
+        <p>またこのページは物理的なキー位置(<code>event.code</code>)を基準に表示するため、入力言語やキー配列(QWERTY・QWERTZなど)に関係なく同じ位置のキーが光ります。</p>
+      </div>
+      <div class="guide-box">
+        <h3>ゴースティングとNキーロールオーバー</h3>
+        <p>多くのキーボードはキーを個別の配線で読むのではなく、<strong>マトリクス回路</strong>でまとめて読みます。この構造では同じ行・列にまたがる特定の組み合わせを同時に押すと、どのキーが押されたか区別できず入力が欠落します。これがゴースティングです。各キーにダイオードを入れたキーボードは同時に押してもすべて区別でき、この能力をロールオーバーと呼びます。</p>
+        <table>
         <tr><th>表記</th><th>意味</th></tr>
         <tr><td>2KRO</td><td>修飾キー以外は2個までしか確実に区別できない。安価な製品で多い</td></tr>
         <tr><td>6KRO</td><td>6個まで区別。USB標準仕様の基準値です</td></tr>
         <tr><td>NKRO</td><td>事実上制限なく区別。ゲーミング・メカニカルで広く対応</td></tr>
-      </table>
-      <p>NKRO対応キーボードでも、USB接続では標準仕様のため6個に制限されて見えることがあります。機種によっては専用ソフトやファームウェア設定、特定のキー組み合わせでNKROモードを有効にする必要があります。</p>
-
-      <h2>同時入力が6個で止まる場合</h2>
-      <ul>
+        </table>
+        <p>NKRO対応キーボードでも、USB接続では標準仕様のため6個に制限されて見えることがあります。機種によっては専用ソフトやファームウェア設定、特定のキー組み合わせでNKROモードを有効にする必要があります。</p>
+      </div>
+      <div class="guide-box">
+        <h3>正確に測定する方法</h3>
+        <ul>
+          <li>すべてのキーを<strong>一度ずつ</strong>押して、画面上のキーボードが全部点灯するか確認しましょう。</li>
+          <li>同時入力は6個、7個、それ以上と数を増やしながら、どこで止まるか見てみましょう。</li>
+          <li>F11・F12・WinキーのようにブラウザやOSが先に受け取るキーは、もともと反応しません。</li>
+          <li>ワイヤレスキーボードなら、まず電池と接続状態を確認しましょう。</li>
+        </ul>
+        <p>このテストはブラウザが受け取った信号だけで判断する参考用の点検であり、正式なハードウェア診断の代わりにはなりません。キーをどれだけ速く連打できるか測りたい場合は<a href="/ja/tests/spacebar-counter">スペースキー連打テスト</a>や<a href="/ja/tests/apm">APMテスト</a>をお試しください。</p>
+      </div>
+      <div class="guide-box wide">
+        <h3>同時入力が6個で止まる場合</h3>
+        <ul>
         <li><strong>正常な場合があります</strong> — USB HIDの標準仕様が6キーのため、多くのキーボードはここで止まります。</li>
         <li><strong>NKROモードの確認</strong> — ゲーミングキーボードは専用ソフトやFn組み合わせでNKROを有効にできる場合があります。</li>
         <li><strong>修飾キーは別扱い</strong> — Shift・Ctrl・Altは通常ロールオーバーの数に含まれず別に処理されます。</li>
-      </ul>
-
-      <h2>特定のキーが検出されない理由</h2>
-      <p>ブラウザやOSが先に横取りするキーはウェブページまで信号が届きません。F11(全画面)、F12(開発者ツール)、Win/Cmdキー、Alt+Tab、PrtScなどが代表例です。これらを除いても特定のキーだけ反応がない場合は、キーボード側の問題を疑えます。</p>
-      <p>またこのページは物理的なキー位置(<code>event.code</code>)を基準に表示するため、入力言語やキー配列(QWERTY・QWERTZなど)に関係なく同じ位置のキーが光ります。</p>
-
-      <h2>参考</h2>
-      <p>このテストはブラウザが受け取った信号だけで判断する参考用の点検であり、正式なハードウェア診断の代わりにはなりません。キーをどれだけ速く連打できるか測りたい場合は<a href="/ja/tests/spacebar-counter">スペースキー連打テスト</a>や<a href="/ja/tests/apm">APMテスト</a>をお試しください。</p>
-    </section>
+        </ul>
+      </div>
+    </div>
+    </div>
 
     <div class="other-tests">
       <div class="label">他のテストも試してみよう</div>

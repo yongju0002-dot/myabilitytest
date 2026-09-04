@@ -421,8 +421,8 @@ h2 { font-size: clamp(22px, 3vw, 30px); font-weight: 900; letter-spacing: -0.03e
 .pick-grid { display: grid; gap: 6px; margin: 20px auto; max-width: 640px; }   /* 칸이 1fr 로 1128px 를 채우면 220px 짜리가 되어 세로 스크롤이 필요해진다 */
 .pick-cell {
   aspect-ratio: 1;
-  background: var(--card-bg);
-  border: 1px solid var(--line);
+  background: var(--card-bg-2);
+  border: 1px solid var(--line-strong);
   border-radius: 4px;
   display: flex;
   align-items: center;
@@ -432,7 +432,7 @@ h2 { font-size: clamp(22px, 3vw, 30px); font-weight: 900; letter-spacing: -0.03e
   user-select: none;
   transition: transform 0.1s ease, background 0.15s ease;
 }
-.pick-cell:hover:not(.disabled) { transform: scale(1.06); background: var(--card-bg-2); }
+.pick-cell:hover:not(.disabled) { transform: scale(1.06); background: var(--line); }
 .pick-cell.disabled { cursor: default; opacity: 0.4; }
 .pick-cell.picked { outline: 2px solid var(--accent); }
 .pick-cell.tier-jackpot { background: rgba(207, 148, 51, 0.26); }
@@ -445,13 +445,13 @@ h2 { font-size: clamp(22px, 3vw, 30px); font-weight: 900; letter-spacing: -0.03e
 .memory-grid { display: grid; gap: 8px; margin: 18px auto; max-width: 504px; }
 .memory-cell {
   aspect-ratio: 1;
-  background: var(--card-bg);
-  border: 1px solid var(--line);
+  background: var(--card-bg-2);   /* 상자(.stage) 배경과 구분되도록 한 단계 밝게 */
+  border: 1px solid var(--line-strong);
   border-radius: 4px;
   cursor: pointer;
   transition: transform 0.1s ease, background 0.12s ease;
 }
-.memory-cell:hover:not(.disabled):not(.show-target) { transform: scale(1.05); background: var(--card-bg-2); }
+.memory-cell:hover:not(.disabled):not(.show-target) { transform: scale(1.05); background: var(--line); }
 .memory-cell.disabled { cursor: default; }
 .memory-cell.show-target { background: var(--good); border-color: var(--good); }
 .memory-cell.picked-correct { background: var(--good); border-color: var(--good); }

@@ -292,6 +292,16 @@
   let f1Timers = [];
   let timeoutId = null;
   let startTime = 0;
+  let startToken = 0;
+  // 신호 화면이 실제로 그려진 뒤(rAF 두 번 = 첫 프레임이 표시된 직후)에 시작 시각을 찍는다.
+  // setStage 직후에 찍으면 모니터 주사율만큼(60Hz 최대 16.7ms) 기록이 부풀기 때문.
+  function armStart() {
+    startTime = 0;
+    const token = ++startToken;
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      if (token === startToken && state === STATE.GO) startTime = performance.now();
+    }));
+  }
   let totalRounds = 5;
   let currentRound = 0;
   let roundTimes = [];
@@ -461,11 +471,11 @@
       const outAt = step * 5 + 800 + Math.random() * 2500;
       timeoutId = setTimeout(() => {
         state = STATE.GO;
-        startTime = performance.now();
         setStage('wait', `
           <div class="f1-lights">${'<div class="f1-light"></div>'.repeat(5)}</div>
           <div class="big">今すぐクリック!</div>
         `);
+        armStart();
       }, outAt);
       return;
     }
@@ -491,8 +501,8 @@
           return;
         }
         state = STATE.GO;
-        startTime = performance.now();
         setStage('go', `<div class="big">今すぐクリック!</div>`);
+        armStart();
       }, delay);
       return;
     }
@@ -504,8 +514,8 @@
     const delay = randomDelay();
     timeoutId = setTimeout(() => {
       state = STATE.GO;
-      startTime = performance.now();
       setStage('go', `<div class="big">今すぐクリック!</div>`);
+      armStart();
     }, delay);
   }
 
@@ -611,6 +621,8 @@
     const worst = Math.max(...roundTimes);
     const pct = percentileForMs(avg);
     const topPct = Math.max(0.1, 100 - pct);
+    const bottomPct = Math.max(0.1, 100 - topPct);
+    const fmtPct = (v) => v.toFixed(v < 1 ? 1 : 0);
 
     const roundTableHtml = roundTimes.map((t, i) => {
       let cls = 'round-chip';
@@ -620,7 +632,7 @@
     }).join('');
 
     const percentileBlock = mode.percentile ? `
-        <div class="percentile-line">上位 ${topPct.toFixed(topPct < 1 ? 1 : 0)}% です</div>
+        <div class="percentile-line">${topPct <= 50 ? `上位 ${fmtPct(topPct)}% です` : `下位 ${fmtPct(bottomPct)}% です・平均より遅め`}</div>
         <div class="population-line">人々の反応速度の中央値は約273msと言われています(オンラインクリックテストの大規模集計基準)</div>
         <div class="histogram">${buildHistogram(avg)}</div>` : '';
 
@@ -664,7 +676,7 @@
     renderPanels();
   }
 
-  function handleClick() {
+  function handleClick(e) {
     if (state === STATE.WAIT) {
       clearTimeout(timeoutId);
       clearF1();
@@ -688,7 +700,9 @@
     }
 
     if (state === STATE.GO) {
-      const reaction = Math.round(performance.now() - startTime);
+      if (!startTime) return;   // 신호가 아직 화면에 그려지기 전(두 프레임 안)의 클릭은 무시
+      const clickAt = (e && e.timeStamp > 0 && e.timeStamp < 1e12) ? e.timeStamp : performance.now();
+      const reaction = Math.max(0, Math.round(clickAt - startTime));
       roundTimes.push(reaction);
       rtSaveStats(reaction);
       renderStats();

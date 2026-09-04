@@ -30,9 +30,11 @@
 {"@type":"WebSite","@id":"https://myabilitytest.com/#website","name":"MyAbilityTest","url":"https://myabilitytest.com/","inLanguage":["ko","en","ja","zh-Hant"],"publisher":{"@id":"https://myabilitytest.com/#organization"}},
 {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://myabilitytest.com/ja/"},{"@type":"ListItem","position":2,"name":"反応速度テスト | 能力テスト","item":"https://myabilitytest.com/ja/tests/reaction-time"}]},{"@type":"WebApplication","name":"反応速度テスト | 能力テスト","url":"https://myabilitytest.com/ja/tests/reaction-time","applicationCategory":"GameApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"ja"},
 {"@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"平均反応速度はどれくらいですか?","acceptedAnswer":{"@type":"Answer","text":"オンラインのクリックテストでは中央値は約273ミリ秒です。一般的には250〜300msが平均的な範囲とされています。"}},
-{"@type":"Question","name":"良い反応速度は何msですか?","acceptedAnswer":{"@type":"Answer","text":"150ms以下は非常に速い(世界記録は約120ms)、150〜220msは速い、220〜300msは一般的な平均範囲です。300ms以上は疲労や機器の遅延の影響の可能性があります。"}},
-{"@type":"Question","name":"反応速度の結果が機器によって変わるのはなぜですか?","acceptedAnswer":{"@type":"Answer","text":"モニターのリフレッシュレートやマウス・タッチスクリーンの入力遅延によって結果が10〜50msほど変わることがあり、テレビのように遅延の大きい画面では100ms以上差が出ることもあります。"}}
+{"@type":"Question","name":"平均的な反応速度はどれくらいですか?","acceptedAnswer":{"@type":"Answer","text":"オンラインのクリックテスト基準で中央値は約273ミリ秒です。一般的に250〜300msが平均的な範囲とされています。"}},
+{"@type":"Question","name":"良い反応速度は何msですか?","acceptedAnswer":{"@type":"Answer","text":"150ms以下は非常に速い部類(世界記録は約120ms)、150〜220msは速い部類、220〜300msは一般的な平均範囲です。300ms以上は疲労や機器の遅延の影響かもしれません。"}},
+{"@type":"Question","name":"機器によって結果が違うのはなぜ?","acceptedAnswer":{"@type":"Answer","text":"モニターのリフレッシュレート、マウスやタッチスクリーンの入力遅延などによって結果が10〜50msほど変わり、テレビのように遅延の大きい画面では100ms以上の差が出ることがあります。"}},
+{"@type":"Question","name":"F1スタートと選択反応モードは何が違う?","acceptedAnswer":{"@type":"Answer","text":"F1スタートは赤いランプ5個が順に点灯し、すべて消えた瞬間に反応する方式で、タイミングを予測しやすいため単純反応より速く出る傾向があります。選択反応(Go/No-Go)は緑のときだけ押し、赤では我慢する必要があるため判断時間が加わり遅くなります。測定方式が異なるので、パーセンタイルと分布は単純反応でのみ表示します。"}},
+{"@type":"Question","name":"結果の「上位OO%」はどう計算していますか?","acceptedAnswer":{"@type":"Answer","text":"中央値約273msを基準に、オンライン反応速度テストで共通して観察される分布形状(220〜320msに集中し、遅い側に長い裾を持つ非対称分布)を参考に作った推定曲線です。特定の単一研究の公式な数値表ではなく、体調や機器環境によって誤差が生じることがあります。"}}
 ]}
 ]}
 </script>
@@ -179,30 +181,67 @@
 
     <footer class="note">緑色になる前のクリック(予測クリック)は記録として認められません</footer>
 
-    <section class="info">
-      <h2>反応速度テストとは?</h2>
-      <p>反応速度テストは、画面の色が変わった瞬間を目で確認し、どれだけ速くクリックできるかをミリ秒(ms)単位で測定するテストです。数値が低いほど反応速度が速いことを意味し、ゲームやスポーツのような瞬間的な判断が必要な場面での俊敏さの指標としてよく使われます。</p>
-
-      <h2>平均反応速度は何msくらい?</h2>
-      <p>一般的に、視覚刺激に対する反応速度は250〜300ms程度が平均的な範囲とされています。200ms前半なら平均より速く、150〜200msはかなり訓練された水準です。ただし、使用している機器やモニターのリフレッシュレート、タッチスクリーンの遅延などによって結果が10〜50msほど変わることがあります。</p>
-
-      <h2>結果の解釈表</h2>
-      <table>
-        <tr><th>平均記録</th><th>解釈</th></tr>
-        <tr><td>150ms以下</td><td>非常に速い(世界記録は約120ms)</td></tr>
-        <tr><td>150〜220ms</td><td>速い、ゲーム・スポーツで良い俊敏さ</td></tr>
-        <tr><td>220〜300ms</td><td>一般的な平均範囲</td></tr>
-        <tr><td>300ms以上</td><td>疲労・集中力低下・機器の遅延の影響の可能性</td></tr>
-      </table>
-
-      <h2>正確に測定する方法</h2>
-      <p>1回の記録より5回以上測定した平均値を見るほうが正確です。手が冷たい時や眠い時、ワイヤレスマウスやモバイルタッチで測定する時は遅延が加わることがあるため、同じ機器・環境で何度も繰り返して比較してみてください。画面が変わる前に予測してクリックすると、正確な反応速度は測れません。</p>
-
-      <h2>この百分位はどう計算していますか?</h2>
-      <p>結果画面の「上位OO%」は、オンライン反応速度テストで広く報告されている中央値(約273ms)を基準に、そのデータでよく見られる右に裾を引く分布形状(速い側は220〜320msに集中し、遅い側に長い裾を持つ)を参考にして作った推定曲線です。特定の単一研究の公式な数値表ではなく、実際の結果はそのときの体調や機器環境によって変わります。</p>
-      <p style="font-size:13px; color:var(--text-dim2);">参考文献: Der, G., & Deary, I. J. (2006). Age and sex differences in reaction time in adulthood. <em>Psychology and Aging, 21</em>(1), 62–73(英国 Health & Lifestyle Survey, n=7,130)。Talboom, J. S., et al. (2021). MindCrowd: 反応速度などをオンラインで測定した大規模コホート研究。<em>npj Aging and Mechanisms of Disease</em>(n=75,666)。いずれも成人の反応速度がおおむね200〜300ms台に分布するという一般的傾向を裏付けていますが、このページの百分位曲線そのものを発表したものではありません。</p>
-
-    </section>
+    <div class="section-head"><h2>反応速度テストガイド</h2><span class="note">何を測るか · 平均 · 測定のコツ · よくある質問</span></div>
+    <div class="guide-grid">
+      <div class="guide-box">
+        <h3>反応速度テストとは?</h3>
+        <p>反応速度テストは、画面の色が変わった瞬間を目で確認し、どれだけ速くクリックできるかをミリ秒(ms)単位で測定するテストです。数値が低いほど反応速度が速いことを意味し、ゲームやスポーツのような瞬間的な判断が必要な場面での俊敏さの指標としてよく使われます。</p>
+      </div>
+      <div class="guide-box">
+        <h3>平均反応速度は何msですか?</h3>
+        <p><strong>中央値は約273ms</strong>です。オンライン反応速度テストの大規模集計で観察される値で、250〜300msが一般的な平均範囲です。</p>
+        <p>200ms前半なら平均より速く、150〜200msはかなり訓練された水準です。ただし、使用している機器やモニターのリフレッシュレート、タッチスクリーンの遅延などによって結果が10〜50msほど変わることがあります。</p>
+      </div>
+      <div class="guide-box">
+        <h3>結果の解釈表</h3>
+        <table>
+          <tr><th>平均記録</th><th>解釈</th></tr>
+          <tr><td>150ms以下</td><td>非常に速い(世界記録は約120ms)</td></tr>
+          <tr><td>150〜220ms</td><td>速い、ゲーム・スポーツで良い俊敏さ</td></tr>
+          <tr><td>220〜300ms</td><td>一般的な平均範囲</td></tr>
+          <tr><td>300ms以上</td><td>疲労・集中力低下・機器の遅延の影響の可能性</td></tr>
+        </table>
+      </div>
+      <div class="guide-box">
+        <h3>正確に測定する方法</h3>
+        <ul>
+          <li>1回の記録より<strong>5回以上測定した平均値</strong>を見ましょう。</li>
+          <li>同じ機器・同じ環境で繰り返して比較しましょう。</li>
+          <li>ワイヤレスマウスやモバイルのタッチ入力は遅延が加わることがあります。</li>
+          <li>画面が変わる前に予測してクリックすると、正確な反応速度は測れません。</li>
+          <li>手が冷たい時や眠い時は普段より遅くなります。</li>
+        </ul>
+      </div>
+      <div class="guide-box wide">
+        <h3>反応速度は速くできますか?</h3>
+        <p>ある程度は可能です。反応速度は生まれつきの要素が大きいものの、同じ課題を繰り返すと慣れて少し速くなることがよくあります。ただしこれはこのテストに慣れたという面が強く、全体的な俊敏さがその分向上したとは言いにくいです。</p>
+        <p>睡眠不足・疲労・カフェインの摂りすぎは反応を遅らせるため、体調管理がもっとも確実な方法です。年齢とともに遅くなる傾向もあり、同じ人でも時期によって結果が変わります。</p>
+      </div>
+      <div class="guide-box wide">
+        <h3>よくある質問</h3>
+        <div class="faq-item">
+          <div class="faq-q">平均的な反応速度はどれくらいですか?</div>
+          <div class="faq-a">オンラインのクリックテスト基準で中央値は約273ミリ秒です。一般的に250〜300msが平均的な範囲とされています。</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">良い反応速度は何msですか?</div>
+          <div class="faq-a">150ms以下は非常に速い部類(世界記録は約120ms)、150〜220msは速い部類、220〜300msは一般的な平均範囲です。300ms以上は疲労や機器の遅延の影響かもしれません。</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">機器によって結果が違うのはなぜ?</div>
+          <div class="faq-a">モニターのリフレッシュレート、マウスやタッチスクリーンの入力遅延などによって結果が10〜50msほど変わり、テレビのように遅延の大きい画面では100ms以上の差が出ることがあります。</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">F1スタートと選択反応モードは何が違う?</div>
+          <div class="faq-a">F1スタートは赤いランプ5個が順に点灯し、すべて消えた瞬間に反応する方式で、タイミングを予測しやすいため単純反応より速く出る傾向があります。選択反応(Go/No-Go)は緑のときだけ押し、赤では我慢する必要があるため判断時間が加わり遅くなります。測定方式が異なるので、パーセンタイルと分布は単純反応でのみ表示します。</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">結果の「上位OO%」はどう計算していますか?</div>
+          <div class="faq-a">中央値約273msを基準に、オンライン反応速度テストで共通して観察される分布形状(220〜320msに集中し、遅い側に長い裾を持つ非対称分布)を参考に作った推定曲線です。特定の単一研究の公式な数値表ではなく、体調や機器環境によって誤差が生じることがあります。</div>
+        </div>
+        <p class="refs">参考文献: Der, G., & Deary, I. J. (2006). Age and sex differences in reaction time in adulthood. <em>Psychology and Aging, 21</em>(1), 62–73(英国 Health & Lifestyle Survey, n=7,130)。Talboom, J. S., et al. (2021). MindCrowd: 反応速度などをオンラインで測定した大規模コホート研究。<em>npj Aging and Mechanisms of Disease</em>(n=75,666)。いずれも成人の反応速度がおおむね200〜300ms台に分布するという一般的傾向を裏付けていますが、このページの百分位曲線そのものを発表したものではありません。</p>
+      </div>
+    </div>
 
 
 

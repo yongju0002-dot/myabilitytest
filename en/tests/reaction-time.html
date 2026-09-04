@@ -581,35 +581,53 @@
   }
 
   function buildHistogram(userMs) {
-    const W = 320, H = 120, PAD = 6;
-    const edges = RT_CURVE.map(p => p.ms);
-    const minMs = edges[0], maxMs = edges[edges.length - 1];
+    const W = 320, H = 132;
+    const PAD_L = 10, PAD_R = 10;
+    const TOP = 24;                 // 'You' 라벨이 잘리지 않게 위쪽을 비워 둔다
+    const BASE = H - 20;            // 가로축 위치
+    const MIN = 120, MAX = 600;     // 그래프가 다루는 구간
+
+    // 구간마다 폭이 달라서(30ms~150ms) 인원 비율을 그대로 높이로 쓰면 모양이 왜곡된다.
+    // 폭으로 나눈 밀도를 써야 실제 분포 모양이 나온다.
     const bins = [];
     for (let i = 0; i < RT_CURVE.length - 1; i++) {
-      bins.push({ x0: RT_CURVE[i].ms, x1: RT_CURVE[i + 1].ms, density: RT_CURVE[i].pct - RT_CURVE[i + 1].pct });
+      const x0 = RT_CURVE[i].ms, x1 = RT_CURVE[i + 1].ms;
+      const share = RT_CURVE[i].pct - RT_CURVE[i + 1].pct;
+      bins.push({ x0, x1, density: share / (x1 - x0) });
     }
     const maxDensity = Math.max(...bins.map(b => b.density));
-    const xScale = (ms) => PAD + (Math.max(minMs, Math.min(maxMs, ms)) - minMs) / (maxMs - minMs) * (W - PAD * 2);
+    const xScale = (ms) => PAD_L + (Math.max(MIN, Math.min(MAX, ms)) - MIN) / (MAX - MIN) * (W - PAD_L - PAD_R);
 
-    const barsHtml = bins.map(b => {
+    const bars = bins.map(b => {
       const x0 = xScale(b.x0), x1 = xScale(b.x1);
-      const h = (b.density / maxDensity) * (H - 30);
-      return `<rect x="${x0.toFixed(1)}" y="${(H - 20 - h).toFixed(1)}" width="${(x1 - x0 - 1).toFixed(1)}" height="${h.toFixed(1)}" fill="rgba(241, 239, 232, 0.26)" rx="2"/>`;
+      const h = (b.density / maxDensity) * (BASE - TOP);
+      return `<rect x="${x0.toFixed(1)}" y="${(BASE - h).toFixed(1)}" width="${Math.max(1, x1 - x0 - 1).toFixed(1)}" height="${h.toFixed(1)}" fill="rgba(241,239,232,0.22)" rx="2"/>`;
     }).join('');
 
+    // 중앙값 기준선
+    const medX = xScale(273);
+    const median = `<line x1="${medX.toFixed(1)}" y1="${TOP}" x2="${medX.toFixed(1)}" y2="${BASE}" stroke="rgba(241,239,232,0.28)" stroke-width="1" stroke-dasharray="2 3"/>`;
+
+    // 내 위치. 구간을 벗어나면 끝에 붙이고 실제 값을 같이 적는다.
+    const over = userMs > MAX;
     const pinX = xScale(userMs);
-    const pinHtml = `
-      <line x1="${pinX.toFixed(1)}" y1="14" x2="${pinX.toFixed(1)}" y2="${H - 20}" stroke="#e05a37" stroke-width="2" stroke-dasharray="3 3"/>
-      <circle cx="${pinX.toFixed(1)}" cy="12" r="5" fill="#e05a37"/>
-      <text x="${pinX.toFixed(1)}" y="4" text-anchor="middle" font-size="10" fill="#e05a37" font-weight="700">You</text>
-    `;
-    const baseline = `<line x1="${PAD}" y1="${H - 20}" x2="${W - PAD}" y2="${H - 20}" stroke="rgba(255,255,255,0.15)"/>`;
-    const axisLabels = `
+    // 범위를 벗어난 기록은 라벨이 길어지므로 오른쪽 끝에 붙여 정렬한다
+    const labelAnchor = over ? "end" : "middle";
+    const labelX = over ? (W - PAD_R) : Math.min(W - 22, Math.max(22, pinX));
+    const meText = over ? 'You ' + userMs + 'ms' : 'You';
+    const pin = `
+      <line x1="${pinX.toFixed(1)}" y1="${TOP - 4}" x2="${pinX.toFixed(1)}" y2="${BASE}" stroke="#e05a37" stroke-width="2" stroke-dasharray="3 3"/>
+      <circle cx="${pinX.toFixed(1)}" cy="${TOP - 4}" r="4.5" fill="#e05a37"/>
+      <text x="${labelX.toFixed(1)}" y="${TOP - 12}" text-anchor="${labelAnchor}" font-size="10" fill="#e05a37" font-weight="700">${meText}</text>`;
+
+    const baseline = `<line x1="${PAD_L}" y1="${BASE}" x2="${W - PAD_R}" y2="${BASE}" stroke="rgba(241,239,232,0.18)"/>`;
+    const axis = `
       <text x="${xScale(150)}" y="${H - 6}" text-anchor="middle" font-size="9" fill="#918d85">150</text>
-      <text x="${xScale(273)}" y="${H - 6}" text-anchor="middle" font-size="9" fill="#918d85">273 (median)</text>
-      <text x="${xScale(450)}" y="${H - 6}" text-anchor="middle" font-size="9" fill="#918d85">450+</text>
-    `;
-    return `<svg viewBox="0 0 ${W} ${H}">${baseline}${barsHtml}${pinHtml}${axisLabels}</svg>`;
+      <text x="${medX}" y="${H - 6}" text-anchor="middle" font-size="9" fill="#918d85">273 (median)</text>
+      <text x="${xScale(450)}" y="${H - 6}" text-anchor="middle" font-size="9" fill="#918d85">450</text>
+      <text x="${W - PAD_R}" y="${H - 6}" text-anchor="end" font-size="9" fill="#918d85">600+</text>`;
+
+    return `<svg viewBox="0 0 ${W} ${H}" role="img">${baseline}${bars}${median}${pin}${axis}</svg>`;
   }
 
   function showSummary() {

@@ -881,8 +881,8 @@ h2 { font-size: clamp(22px, 3vw, 30px); font-weight: 900; letter-spacing: -0.03e
 }
 
 /* 가이드 묶음: 본문보다 30% 좁게(70%) 가운데 정렬하고, 위 여백을 크게 줘 아래로 내린다 */
-.guide { width: 70%; margin: 96px auto 0; }
+.guide { width: 70%; margin: 160px auto 0; }
 .guide .section-head { margin-top: 0; }
 @media (max-width: 620px) {
-  .guide { width: 100%; margin-top: 56px; }
+  .guide { width: 100%; margin-top: 80px; }
 }

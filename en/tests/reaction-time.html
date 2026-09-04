@@ -28,14 +28,7 @@
 {"@context":"https://schema.org","@graph":[
 {"@type":"Organization","@id":"https://myabilitytest.com/#organization","name":"MyAbilityTest","url":"https://myabilitytest.com/","logo":{"@type":"ImageObject","url":"https://myabilitytest.com/og-default.png","width":1200,"height":630}},
 {"@type":"WebSite","@id":"https://myabilitytest.com/#website","name":"MyAbilityTest","url":"https://myabilitytest.com/","inLanguage":["ko","en","ja","zh-Hant"],"publisher":{"@id":"https://myabilitytest.com/#organization"}},
-{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://myabilitytest.com/en/"},{"@type":"ListItem","position":2,"name":"Reaction Time Test | Ability Test","item":"https://myabilitytest.com/en/tests/reaction-time"}]},{"@type":"WebApplication","name":"Reaction Time Test | Ability Test","url":"https://myabilitytest.com/en/tests/reaction-time","applicationCategory":"GameApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"en"},
-{"@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"What is the average reaction time?","acceptedAnswer":{"@type":"Answer","text":"Based on online click tests, the median is about 273 milliseconds. A range of 250–300ms is generally considered average."}},
-{"@type":"Question","name":"What counts as a good reaction time?","acceptedAnswer":{"@type":"Answer","text":"150ms or less is very fast (the world record is around 120ms), 150–220ms is fast, and 220–300ms is the typical average range. 300ms or more may reflect fatigue or device lag."}},
-{"@type":"Question","name":"Why do results differ between devices?","acceptedAnswer":{"@type":"Answer","text":"Monitor refresh rate and mouse or touchscreen input lag can shift results by 10–50ms, and on a high-latency screen such as a TV the difference can exceed 100ms."}},
-{"@type":"Question","name":"How do the F1 Start and Go/No-Go modes differ?","acceptedAnswer":{"@type":"Answer","text":"F1 Start lights five red lamps in sequence and you react when they all go out; because the timing is easier to anticipate, results tend to be faster than Simple. Go/No-Go asks you to click only on green and hold back on red, so decision time is added and results are slower. Because they measure differently, percentiles and the distribution chart are shown only for Simple mode."}},
-{"@type":"Question","name":"How is the \"top X%\" figure calculated?","acceptedAnswer":{"@type":"Answer","text":"It's an estimated curve built around the ~273ms median, shaped to match the right-skewed pattern commonly seen in online reaction-time data (a cluster around 220–320ms with a long slow-side tail). It isn't a published table from a single study, and real results vary with condition and device."}}
-]}
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://myabilitytest.com/en/"},{"@type":"ListItem","position":2,"name":"Reaction Time Test | Ability Test","item":"https://myabilitytest.com/en/tests/reaction-time"}]},{"@type":"WebApplication","name":"Reaction Time Test | Ability Test","url":"https://myabilitytest.com/en/tests/reaction-time","applicationCategory":"GameApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"en"}
 ]}
 </script>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -181,7 +174,8 @@
 
     <footer class="note">Clicking before the color changes doesn't count as a valid record</footer>
 
-    <div class="section-head"><h2>Reaction time guide</h2><span class="note">What it measures · averages · how to test · FAQ</span></div>
+    <div class="guide">
+    <div class="section-head"><h2>Reaction time guide</h2><span class="note">What it measures · averages · how to test · improving</span></div>
     <div class="guide-grid">
       <div class="guide-box">
         <h3>What is a reaction time test?</h3>
@@ -191,6 +185,7 @@
         <h3>What's the average reaction time in ms?</h3>
         <p><strong>The median is about 273ms.</strong> That's the figure observed across large online reaction-time datasets, and 250–300ms is the typical average range.</p>
         <p>Low 200s is faster than average, and 150–200ms is a well-trained level. Results can shift by 10–50ms depending on your device, monitor refresh rate, and touchscreen latency.</p>
+        <p class="refs">References: Der, G., & Deary, I. J. (2006). Age and sex differences in reaction time in adulthood. <em>Psychology and Aging, 21</em>(1), 62–73 (UK Health & Lifestyle Survey, n=7,130). Talboom, J. S., et al. (2021). MindCrowd, a large-scale online cognitive assessment cohort measuring reaction time and related measures. <em>npj Aging and Mechanisms of Disease</em> (n=75,666). Both support the general finding that adult reaction times cluster in the 200–300ms range, but neither publishes the exact percentile curve used on this page.</p>
       </div>
       <div class="guide-box">
         <h3>Result interpretation table</h3>
@@ -217,30 +212,7 @@
         <p>To a degree. Reaction time is largely innate, but repeating the same task usually makes you a little faster as you get used to it. That said, this is mostly familiarity with this test rather than a broad gain in reflexes.</p>
         <p>Lack of sleep, fatigue, and too much caffeine all slow reactions, so looking after your condition is the most reliable lever. Reaction time also tends to slow with age, so the same person will see different results over time.</p>
       </div>
-      <div class="guide-box wide">
-        <h3>Frequently asked questions</h3>
-        <div class="faq-item">
-          <div class="faq-q">What is the average reaction time?</div>
-          <div class="faq-a">Based on online click tests, the median is about 273 milliseconds. A range of 250–300ms is generally considered average.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q">What counts as a good reaction time?</div>
-          <div class="faq-a">150ms or less is very fast (the world record is around 120ms), 150–220ms is fast, and 220–300ms is the typical average range. 300ms or more may reflect fatigue or device lag.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q">Why do results differ between devices?</div>
-          <div class="faq-a">Monitor refresh rate and mouse or touchscreen input lag can shift results by 10–50ms, and on a high-latency screen such as a TV the difference can exceed 100ms.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q">How do the F1 Start and Go/No-Go modes differ?</div>
-          <div class="faq-a">F1 Start lights five red lamps in sequence and you react when they all go out; because the timing is easier to anticipate, results tend to be faster than Simple. Go/No-Go asks you to click only on green and hold back on red, so decision time is added and results are slower. Because they measure differently, percentiles and the distribution chart are shown only for Simple mode.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q">How is the "top X%" figure calculated?</div>
-          <div class="faq-a">It's an estimated curve built around the ~273ms median, shaped to match the right-skewed pattern commonly seen in online reaction-time data (a cluster around 220–320ms with a long slow-side tail). It isn't a published table from a single study, and real results vary with condition and device.</div>
-        </div>
-        <p class="refs">References: Der, G., & Deary, I. J. (2006). Age and sex differences in reaction time in adulthood. <em>Psychology and Aging, 21</em>(1), 62–73 (UK Health & Lifestyle Survey, n=7,130). Talboom, J. S., et al. (2021). MindCrowd, a large-scale online cognitive assessment cohort measuring reaction time and related measures. <em>npj Aging and Mechanisms of Disease</em> (n=75,666). Both support the general finding that adult reaction times cluster in the 200–300ms range, but neither publishes the exact percentile curve used on this page.</p>
-      </div>
+    </div>
     </div>
 
 

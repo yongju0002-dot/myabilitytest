@@ -28,14 +28,7 @@
 {"@context":"https://schema.org","@graph":[
 {"@type":"Organization","@id":"https://myabilitytest.com/#organization","name":"MyAbilityTest","url":"https://myabilitytest.com/","logo":{"@type":"ImageObject","url":"https://myabilitytest.com/og-default.png","width":1200,"height":630}},
 {"@type":"WebSite","@id":"https://myabilitytest.com/#website","name":"MyAbilityTest","url":"https://myabilitytest.com/","inLanguage":["ko","en","ja","zh-Hant"],"publisher":{"@id":"https://myabilitytest.com/#organization"}},
-{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://myabilitytest.com/ja/"},{"@type":"ListItem","position":2,"name":"反応速度テスト | 能力テスト","item":"https://myabilitytest.com/ja/tests/reaction-time"}]},{"@type":"WebApplication","name":"反応速度テスト | 能力テスト","url":"https://myabilitytest.com/ja/tests/reaction-time","applicationCategory":"GameApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"ja"},
-{"@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"平均的な反応速度はどれくらいですか?","acceptedAnswer":{"@type":"Answer","text":"オンラインのクリックテスト基準で中央値は約273ミリ秒です。一般的に250〜300msが平均的な範囲とされています。"}},
-{"@type":"Question","name":"良い反応速度は何msですか?","acceptedAnswer":{"@type":"Answer","text":"150ms以下は非常に速い部類(世界記録は約120ms)、150〜220msは速い部類、220〜300msは一般的な平均範囲です。300ms以上は疲労や機器の遅延の影響かもしれません。"}},
-{"@type":"Question","name":"機器によって結果が違うのはなぜ?","acceptedAnswer":{"@type":"Answer","text":"モニターのリフレッシュレート、マウスやタッチスクリーンの入力遅延などによって結果が10〜50msほど変わり、テレビのように遅延の大きい画面では100ms以上の差が出ることがあります。"}},
-{"@type":"Question","name":"F1スタートと選択反応モードは何が違う?","acceptedAnswer":{"@type":"Answer","text":"F1スタートは赤いランプ5個が順に点灯し、すべて消えた瞬間に反応する方式で、タイミングを予測しやすいため単純反応より速く出る傾向があります。選択反応(Go/No-Go)は緑のときだけ押し、赤では我慢する必要があるため判断時間が加わり遅くなります。測定方式が異なるので、パーセンタイルと分布は単純反応でのみ表示します。"}},
-{"@type":"Question","name":"結果の「上位OO%」はどう計算していますか?","acceptedAnswer":{"@type":"Answer","text":"中央値約273msを基準に、オンライン反応速度テストで共通して観察される分布形状(220〜320msに集中し、遅い側に長い裾を持つ非対称分布)を参考に作った推定曲線です。特定の単一研究の公式な数値表ではなく、体調や機器環境によって誤差が生じることがあります。"}}
-]}
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://myabilitytest.com/ja/"},{"@type":"ListItem","position":2,"name":"反応速度テスト | 能力テスト","item":"https://myabilitytest.com/ja/tests/reaction-time"}]},{"@type":"WebApplication","name":"反応速度テスト | 能力テスト","url":"https://myabilitytest.com/ja/tests/reaction-time","applicationCategory":"GameApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"ja"}
 ]}
 </script>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -181,7 +174,8 @@
 
     <footer class="note">緑色になる前のクリック(予測クリック)は記録として認められません</footer>
 
-    <div class="section-head"><h2>反応速度テストガイド</h2><span class="note">何を測るか · 平均 · 測定のコツ · よくある質問</span></div>
+    <div class="guide">
+    <div class="section-head"><h2>反応速度テストガイド</h2><span class="note">何を測るか · 平均 · 測定のコツ · 速くする方法</span></div>
     <div class="guide-grid">
       <div class="guide-box">
         <h3>反応速度テストとは?</h3>
@@ -191,6 +185,7 @@
         <h3>平均反応速度は何msですか?</h3>
         <p><strong>中央値は約273ms</strong>です。オンライン反応速度テストの大規模集計で観察される値で、250〜300msが一般的な平均範囲です。</p>
         <p>200ms前半なら平均より速く、150〜200msはかなり訓練された水準です。ただし、使用している機器やモニターのリフレッシュレート、タッチスクリーンの遅延などによって結果が10〜50msほど変わることがあります。</p>
+        <p class="refs">参考文献: Der, G., & Deary, I. J. (2006). Age and sex differences in reaction time in adulthood. <em>Psychology and Aging, 21</em>(1), 62–73(英国 Health & Lifestyle Survey, n=7,130)。Talboom, J. S., et al. (2021). MindCrowd: 反応速度などをオンラインで測定した大規模コホート研究。<em>npj Aging and Mechanisms of Disease</em>(n=75,666)。いずれも成人の反応速度がおおむね200〜300ms台に分布するという一般的傾向を裏付けていますが、このページの百分位曲線そのものを発表したものではありません。</p>
       </div>
       <div class="guide-box">
         <h3>結果の解釈表</h3>
@@ -217,30 +212,7 @@
         <p>ある程度は可能です。反応速度は生まれつきの要素が大きいものの、同じ課題を繰り返すと慣れて少し速くなることがよくあります。ただしこれはこのテストに慣れたという面が強く、全体的な俊敏さがその分向上したとは言いにくいです。</p>
         <p>睡眠不足・疲労・カフェインの摂りすぎは反応を遅らせるため、体調管理がもっとも確実な方法です。年齢とともに遅くなる傾向もあり、同じ人でも時期によって結果が変わります。</p>
       </div>
-      <div class="guide-box wide">
-        <h3>よくある質問</h3>
-        <div class="faq-item">
-          <div class="faq-q">平均的な反応速度はどれくらいですか?</div>
-          <div class="faq-a">オンラインのクリックテスト基準で中央値は約273ミリ秒です。一般的に250〜300msが平均的な範囲とされています。</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q">良い反応速度は何msですか?</div>
-          <div class="faq-a">150ms以下は非常に速い部類(世界記録は約120ms)、150〜220msは速い部類、220〜300msは一般的な平均範囲です。300ms以上は疲労や機器の遅延の影響かもしれません。</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q">機器によって結果が違うのはなぜ?</div>
-          <div class="faq-a">モニターのリフレッシュレート、マウスやタッチスクリーンの入力遅延などによって結果が10〜50msほど変わり、テレビのように遅延の大きい画面では100ms以上の差が出ることがあります。</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q">F1スタートと選択反応モードは何が違う?</div>
-          <div class="faq-a">F1スタートは赤いランプ5個が順に点灯し、すべて消えた瞬間に反応する方式で、タイミングを予測しやすいため単純反応より速く出る傾向があります。選択反応(Go/No-Go)は緑のときだけ押し、赤では我慢する必要があるため判断時間が加わり遅くなります。測定方式が異なるので、パーセンタイルと分布は単純反応でのみ表示します。</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q">結果の「上位OO%」はどう計算していますか?</div>
-          <div class="faq-a">中央値約273msを基準に、オンライン反応速度テストで共通して観察される分布形状(220〜320msに集中し、遅い側に長い裾を持つ非対称分布)を参考に作った推定曲線です。特定の単一研究の公式な数値表ではなく、体調や機器環境によって誤差が生じることがあります。</div>
-        </div>
-        <p class="refs">参考文献: Der, G., & Deary, I. J. (2006). Age and sex differences in reaction time in adulthood. <em>Psychology and Aging, 21</em>(1), 62–73(英国 Health & Lifestyle Survey, n=7,130)。Talboom, J. S., et al. (2021). MindCrowd: 反応速度などをオンラインで測定した大規模コホート研究。<em>npj Aging and Mechanisms of Disease</em>(n=75,666)。いずれも成人の反応速度がおおむね200〜300ms台に分布するという一般的傾向を裏付けていますが、このページの百分位曲線そのものを発表したものではありません。</p>
-      </div>
+    </div>
     </div>
 
 

@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tes waktu reaksi | Tes Kemampuan</title>
+<meta name="description" content="Klik begitu layar berubah warna! Berapa waktu reaksimu dalam ms? Tes waktu reaksi gratis.">
+<link rel="canonical" href="https://myabilitytest.com/id/tests/reaction-time">
+<link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/reaction-time">
+<link rel="alternate" hreflang="es" href="https://myabilitytest.com/es/tests/reaction-time">
+<link rel="alternate" hreflang="fr" href="https://myabilitytest.com/fr/tests/reaction-time">
+<link rel="alternate" hreflang="de" href="https://myabilitytest.com/de/tests/reaction-time">
+<link rel="alternate" hreflang="pt-BR" href="https://myabilitytest.com/pt/tests/reaction-time">
+<link rel="alternate" hreflang="pl" href="https://myabilitytest.com/pl/tests/reaction-time">
+<link rel="alternate" hreflang="it" href="https://myabilitytest.com/it/tests/reaction-time">
+<link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/reaction-time">
+<link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/reaction-time">
+<link rel="alternate" hreflang="vi" href="https://myabilitytest.com/vi/tests/reaction-time">
+<link rel="alternate" hreflang="id" href="https://myabilitytest.com/id/tests/reaction-time">
+<link rel="alternate" hreflang="tr" href="https://myabilitytest.com/tr/tests/reaction-time">
+<link rel="alternate" hreflang="uk" href="https://myabilitytest.com/uk/tests/reaction-time">
+<link rel="alternate" hreflang="zh-Hans" href="https://myabilitytest.com/zh/tests/reaction-time">
+<link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/tw/tests/reaction-time">
+<link rel="alternate" hreflang="th" href="https://myabilitytest.com/th/tests/reaction-time">
+<link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/reaction-time">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MyAbilityTest">
+<meta property="og:title" content="Tes waktu reaksi | Tes Kemampuan">
+<meta property="og:description" content="Klik begitu layar berubah warna! Berapa waktu reaksimu dalam ms? Tes waktu reaksi gratis.">
+<meta property="og:url" content="https://myabilitytest.com/id/tests/reaction-time">
+<meta property="og:image" content="https://myabilitytest.com/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="id_ID">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tes waktu reaksi | Tes Kemampuan">
+<meta name="twitter:description" content="Klik begitu layar berubah warna! Berapa waktu reaksimu dalam ms? Tes waktu reaksi gratis.">
+<meta name="twitter:image" content="https://myabilitytest.com/og-default.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"Organization","@id":"https://myabilitytest.com/#organization","name":"MyAbilityTest","url":"https://myabilitytest.com/","logo":{"@type":"ImageObject","url":"https://myabilitytest.com/og-default.png","width":1200,"height":630}},
+{"@type":"WebSite","@id":"https://myabilitytest.com/#website","name":"MyAbilityTest","url":"https://myabilitytest.com/","inLanguage":["en","es","fr","de","pt-BR","pl","it","ko","ja","vi","id","tr","uk","zh-Hans","zh-Hant","th"],"publisher":{"@id":"https://myabilitytest.com/#organization"}},
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://myabilitytest.com/id/"},{"@type":"ListItem","position":2,"name":"Tes waktu reaksi | Tes Kemampuan","item":"https://myabilitytest.com/id/tests/reaction-time"}]},{"@type":"WebApplication","name":"Tes waktu reaksi | Tes Kemampuan","url":"https://myabilitytest.com/id/tests/reaction-time","applicationCategory":"GameApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"id"}
+]}
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/skill-test/style.css">
+<style>
+  /* 반응 속도 전용 — 공통 규칙은 /skill-test/style.css 참고 */
+  :root {
+    --wait-color: #08080a;
+    --go-color: #e05a37;
+    --early-color: #2b2c32;
+  }
+
+  /* 무대 */
+  .stage {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; gap: 10px;
+    min-height: 390px; margin: 16px 0; padding: 24px;
+    border: 1px solid var(--line-strong); border-radius: var(--radius);
+    cursor: pointer; user-select: none;
+    transition: background 0.08s ease, color 0.08s ease;
+  }
+  .stage .big { font-variant-numeric: tabular-nums; font-size: clamp(34px, 6vw, 56px); font-weight: 700; line-height: 1.05; letter-spacing: -0.03em; }
+  .stage .small { font-size: 14px; opacity: 0.85; max-width: 36ch; line-height: 1.5; }
+  .state-idle  { background: var(--card-bg); color: var(--ink); }
+  .state-wait  { background: var(--wait-color); color: var(--ink); }
+  .state-go    { background: var(--go-color); color: #17181c; }
+  .state-early { background: var(--early-color); color: var(--ink); }
+  .state-round { background: var(--card-bg); color: var(--ink); }
+
+  /* F1 스타트 라이트 */
+  .f1-lights { display: flex; gap: 14px; justify-content: center; margin-bottom: 18px; }
+  .f1-light { width: 44px; height: 44px; border-radius: 50%; background: var(--card-bg-2); border: 1px solid var(--line); }
+  .f1-light.on { background: var(--accent); border-color: var(--accent); }
+  @media (max-width: 420px) { .f1-light { width: 32px; height: 32px; } .f1-lights { gap: 9px; } }
+
+  /* 라운드 진행 점 */
+  .dots { display: flex; justify-content: center; gap: 8px; margin: 12px 0; }
+  .dots.hidden { display: none; }
+  .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--line); }
+  .dot.ok { background: var(--accent); }
+
+  /* 요약 */
+  .summary { text-align: center; }
+  .summary h2 { margin: 0 0 6px; font-size: 24px; }
+  .summary .grade { color: var(--body); font-size: 14px; margin-top: 4px; }
+  .summary-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 18px; }
+  .round-table { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin: 14px 0; }
+  .round-chip {
+    font-family: var(--mono); font-size: 13px; font-weight: 700;
+    padding: 7px 11px; border-radius: 4px;
+    background: var(--card-bg-2); color: var(--ink);
+  }
+  .round-chip .r { color: var(--muted); font-size: 11px; }
+  .round-chip.best { outline: 2px solid var(--good); }
+  .round-chip.worst { outline: 2px solid var(--danger); }
+
+  /* 분포 막대 */
+  .bars { display: flex; flex-direction: column; gap: 10px; margin-bottom: 18px; }
+  .bar-row { font-size: 12px; }
+  .bar-row .bar-label { display: flex; justify-content: space-between; margin-bottom: 4px; color: var(--body); }
+  .bar-track { background: var(--card-bg-2); border-radius: 4px; height: 10px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 4px; background: var(--line-strong); }
+  .bar-fill.you { background: var(--accent); }
+  .histogram { margin-bottom: 4px; }
+  .histogram svg { width: 100%; height: auto; display: block; }
+</style>
+<script src="/skill-test/analytics.js" defer></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/id/"><span class="dot"></span>Tes Kemampuan</a>
+    <nav>
+      <a href="/id/#ability">Kemampuan <span class="count">12</span></a>
+      <a href="/id/#hardware">Hardware <span class="count">03</span></a>
+      <a href="/id/#records">Rekor saya</a>
+    </nav>
+    <span class="spacer"></span>
+    <details class="langs">
+      <summary title="Language"><b>ID</b><span class="caret">▾</span></summary>
+      <div class="lang-pop">
+        <a href="/en/tests/reaction-time"><b>US</b><span>English</span></a>
+        <a href="/es/tests/reaction-time"><b>ES</b><span>Español</span></a>
+        <a href="/fr/tests/reaction-time"><b>FR</b><span>Français</span></a>
+        <a href="/de/tests/reaction-time"><b>DE</b><span>Deutsch</span></a>
+        <a href="/pt/tests/reaction-time"><b>BR</b><span>Português</span></a>
+        <a href="/pl/tests/reaction-time"><b>PL</b><span>Polski</span></a>
+        <a href="/it/tests/reaction-time"><b>IT</b><span>Italiano</span></a>
+        <a href="/ko/tests/reaction-time"><b>KR</b><span>한국어</span></a>
+        <a href="/ja/tests/reaction-time"><b>JP</b><span>日本語</span></a>
+        <a href="/vi/tests/reaction-time"><b>VN</b><span>Tiếng Việt</span></a>
+        <span class="on"><b>ID</b><span>Bahasa Indonesia</span></span>
+        <a href="/tr/tests/reaction-time"><b>TR</b><span>Türkçe</span></a>
+        <a href="/uk/tests/reaction-time"><b>UA</b><span>Українська</span></a>
+        <a href="/zh/tests/reaction-time"><b>CN</b><span>简体中文</span></a>
+        <a href="/tw/tests/reaction-time"><b>TW</b><span>繁體中文</span></a>
+        <a href="/th/tests/reaction-time"><b>TH</b><span>ไทย</span></a>
+      </div>
+    </details>
+  </header>
+
+  <div class="wrap">
+    <nav class="breadcrumb">
+      <a href="/id/">Beranda</a><span>/</span>
+      <a href="/id/#ability">Tes kemampuan</a><span>/</span>
+      <span class="here">Tes waktu reaksi</span>
+      <span class="idx">01 / 15</span>
+    </nav>
+    <h1>Tes waktu reaksi</h1>
+    <p class="sub">Klik begitu warna layar berubah</p>
+
+    <div class="mode-select" id="modeSelect">
+      <button data-mode="simple" class="active">Sederhana</button>
+      <button data-mode="f1">Start F1</button>
+      <button data-mode="gonogo">Go / No-Go</button>
+    </div>
+
+    <div id="stage" class="stage state-idle">
+      <div class="big">Pilih jumlah ronde</div>
+      <div class="round-select">
+        <button data-rounds="3">3</button>
+        <button data-rounds="5">5</button>
+        <button data-rounds="10">10</button>
+      </div>
+    </div>
+
+    <div id="dots" class="dots hidden"></div>
+
+    <div class="stats">
+      <div class="stat-box">
+        <div class="label">Total percobaan</div>
+        <div class="value" id="statCount">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">Rata-rata keseluruhan</div>
+        <div class="value" id="statAvg">- ms</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">Rekor terbaik</div>
+        <div class="value" id="statBest">- ms</div>
+      </div>
+    </div>
+
+    <div class="record-grid">
+      <div class="record-box">
+        <div class="rb-head">Rekor terbaik</div>
+        <div id="topLeaderboard"></div>
+      </div>
+      <div class="record-box">
+        <div class="rb-head">Percobaan terbaru</div>
+        <div id="recentPanel"></div>
+      </div>
+    </div>
+
+
+    <div class="guide">
+    <div class="section-head"><h2>Panduan waktu reaksi</h2></div>
+    <div class="guide-grid">
+      <div class="guide-box">
+        <h3>Apa itu tes waktu reaksi?</h3>
+        <p>Tes waktu reaksi mengukur, dalam milidetik (ms), seberapa cepat kamu mengeklik setelah melihat perubahan warna di layar. Makin kecil angkanya, makin cepat reaksimu. Ini indikator umum untuk kesigapan sepersekian detik yang dipakai di dunia game dan olahraga.</p>
+      </div>
+      <div class="guide-box">
+        <h3>Berapa rata-rata waktu reaksi dalam ms?</h3>
+        <p><strong>Nilai tengahnya sekitar 273 ms.</strong> Itu angka yang teramati pada kumpulan data besar tes reaksi daring, dan 250–300 ms adalah rentang rata-rata yang umum.</p>
+        <p>Sedikit di atas 200 ms sudah lebih cepat dari rata-rata, dan 150–200 ms setara level yang terlatih. Hasilnya bisa bergeser 10–50 ms tergantung perangkat, refresh rate monitor, dan latensi layar sentuh.</p>
+      </div>
+      <div class="guide-box">
+        <h3>Tabel penafsiran hasil</h3>
+        <table>
+          <tr><th>Waktu rata-rata</th><th>Penafsiran</th></tr>
+          <tr><td>150 ms atau kurang</td><td>Sangat cepat (rekor dunia sekitar 120 ms)</td></tr>
+          <tr><td>150–220 ms</td><td>Cepat — refleks bagus untuk game dan olahraga</td></tr>
+          <tr><td>220–300 ms</td><td>Rentang rata-rata yang umum</td></tr>
+          <tr><td>300 ms+</td><td>Bisa mencerminkan kelelahan, fokus rendah, atau lag perangkat</td></tr>
+        </table>
+      </div>
+      <div class="guide-box">
+        <h3>Cara mengukur dengan tepat</h3>
+        <ul>
+          <li>Lihat <strong>rata-rata dari 5 percobaan atau lebih</strong>, bukan satu percobaan saja.</li>
+          <li>Ulangi di perangkat dan pengaturan yang sama supaya perbandingannya adil.</li>
+          <li>Mouse nirkabel dan masukan sentuh di ponsel bisa menambah jeda.</li>
+          <li>Mengeklik sebelum warnanya benar-benar berubah tidak memberi hasil yang sahih.</li>
+          <li>Tangan dingin atau mengantuk akan memperlambatmu.</li>
+        </ul>
+      </div>
+      <div class="guide-box wide">
+        <h3>Bisakah waktu reaksi diperbaiki?</h3>
+        <p>Sampai batas tertentu. Waktu reaksi sebagian besar bawaan, tapi mengulang tugas yang sama biasanya membuatmu sedikit lebih cepat karena terbiasa. Meski begitu, ini lebih ke keakraban dengan tes ini, bukan peningkatan refleks secara luas.</p>
+        <p>Kurang tidur, kelelahan, dan kafein berlebih memperlambat reaksi, jadi menjaga kondisi tubuh adalah pengungkit paling andal. Waktu reaksi juga cenderung melambat seiring usia, jadi orang yang sama akan melihat hasil berbeda dari waktu ke waktu.</p>
+      </div>
+    </div>
+    </div>
+
+
+
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <div class="fbrand"><span class="dot"></span>Tes Kemampuan</div>
+        <p class="fdesc">15 tes gratis yang bisa langsung dijalankan di peramban. Hasilnya bergantung pada perangkat dan peramban, dan hanya untuk hiburan serta gambaran umum.</p>
+        <a class="fmail" href="mailto:yongju0002@gmail.com">Laporkan bug · usulkan tes</a>
+      </div>
+      <div>
+        <div class="fhead">Reaksi · akurasi</div>
+        <div class="fcol">
+          <a href="/id/tests/reaction-time">Tes waktu reaksi</a>
+          <a href="/id/tests/aim-trainer">Tes bidikan</a>
+          <a href="/id/tests/dynamic-vision">Tes penglihatan dinamis</a>
+          <a href="/id/tests/mouse-accuracy">Tes akurasi mouse</a>
+        </div>
+      </div>
+      <div>
+        <div class="fhead">Kecepatan · memori</div>
+        <div class="fcol">
+          <a href="/id/tests/click-speed">Tes kecepatan klik CPS</a>
+          <a href="/id/tests/spacebar-counter">Tes tombol spasi</a>
+          <a href="/id/tests/apm">Tes APM</a>
+          <a href="/id/tests/visual-memory">Tes memori visual</a>
+          <a href="/id/tests/chimp-test">Tes simpanse</a>
+        </div>
+      </div>
+      <div>
+        <div class="fhead">Indra · perangkat keras</div>
+        <div class="fcol">
+          <a href="/id/tests/hearing-age">Tes usia pendengaran</a>
+          <a href="/id/tests/time-stop">Hentikan pengatur waktu</a>
+          <a href="/id/tests/time-perception">Tes naluri waktu</a>
+          <a href="/id/tests/monitor-hz">Tes refresh rate</a>
+          <a href="/id/tests/mouse-tester">Tes mouse</a>
+          <a href="/id/tests/keyboard-tester">Tes keyboard</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 MyAbilityTest</span>
+      <span class="links">
+        <a href="/id/">Beranda</a>
+        <a href="/id/privacy">Kebijakan privasi</a>
+        <a href="/ko/">한국어</a>
+        <a href="/id/">English</a>
+        <a href="/ja/">日本語</a>
+        <a href="/zh/">中文</a>
+      </span>
+    </div>
+  </footer>
+
+<script src="/skill-test/common.js"></script>
+<script>
+  const stage = document.getElementById('stage');
+  const dotsEl = document.getElementById('dots');
+  const statCount = document.getElementById('statCount');
+  const statAvg = document.getElementById('statAvg');
+  const statBest = document.getElementById('statBest');
+  const modeSelect = document.getElementById('modeSelect');
+
+  const STATE = { SETUP: 'setup', WAIT : 'wait', GO : 'go', EARLY : 'early', ROUND_RESULT : 'round_result', SUMMARY : 'summary' };
+  let state = STATE.SETUP;
+
+  // ---- 반응 모드 ----
+  // 백분위(RT_CURVE)는 단순 반응 기준으로만 만든 곡선이라 단순 모드에서만 표시한다.
+  const MODES = [
+    { key: 'simple', label : 'Sederhana', hint : 'Tes klasik: klik begitu warnanya berubah.', percentile: true },
+    { key: 'f1', label : 'Start F1', hint : 'Lima lampu merah menyala berurutan. Klik tepat saat semuanya padam — prosedur start Formula 1.', percentile: false },
+    { key: 'gonogo', label : 'Go / No-Go', hint : 'Klik hanya saat oranye. Mengeklik saat abu-abu berarti gagal.', percentile: false },
+  ];
+  let mode = MODES[0];
+  let noGoRound = false;
+  let f1Timers = [];
+  let timeoutId = null;
+  let startTime = 0;
+  let startToken = 0;
+  // 신호 화면이 실제로 그려진 뒤(rAF 두 번 = 첫 프레임이 표시된 직후)에 시작 시각을 찍는다.
+  // setStage 직후에 찍으면 모니터 주사율만큼(60Hz 최대 16.7ms) 기록이 부풀기 때문.
+  function armStart() {
+    startTime = 0;
+    const token = ++startToken;
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      if (token === startToken && state === STATE.GO) startTime = performance.now();
+    }));
+  }
+  let totalRounds = 5;
+  let currentRound = 0;
+  let roundTimes = [];
+
+  // A longer foreperiod slows reactions, so each range keeps its own records.
+  const RANGES = [
+    { key: 'short', label : 'Pendek', min: 800, span: 1200, hint : 'Sinyal muncul pada waktu acak antara 0,8 dan 2,0 detik.' },
+    { key: 'normal', label : 'Normal', min: 1200, span: 2800, hint : 'Sinyal muncul pada waktu acak antara 1,2 dan 4,0 detik.' },
+    { key: 'long', label : 'Panjang', min: 2000, span: 5000, hint : 'Sinyal muncul pada waktu acak antara 2,0 dan 7,0 detik. Kamu harus menjaga fokus lebih lama.' },
+  ];
+  // 대기 시간 설정은 화면에서 뺐고 '보통'으로 고정한다 (기록 저장 키도 그대로 유지)
+  const range = RANGES[1];
+  function randomDelay() { return range.min + Math.random() * range.span; }
+
+  // 'Normal' keeps the original storage keys so existing records survive.
+  function storeKey() { return range.key === 'normal' ? 'reactionStatsV2' : 'reactionStatsV2_' + range.key; }
+  function lbKey() { return range.key === 'normal' ? 'reactionLeaderboardV1' : 'reactionLeaderboardV1_' + range.key; }
+
+  let stats = JSON.parse(localStorage.getItem(storeKey()) || 'null') || { count: 0, sum: 0, best: null };
+
+  function loadLB() {
+    try { return JSON.parse(localStorage.getItem(lbKey()) || '[]'); } catch (e) { return []; }
+  }
+
+  function rtAddToLeaderboard(value) {
+    let list = loadLB();
+    list.push({ value, date: Date.now() });
+    list.sort((a, b) => a.value - b.value);
+    list = list.slice(0, 30);
+    localStorage.setItem(lbKey(), JSON.stringify(list));
+    return list;
+  }
+
+  function renderTopLeaderboard(list) {
+    const el = document.getElementById('topLeaderboard');
+    if (!list.length) {
+      el.innerHTML = '<p style="text-align:center;color:var(--text-dim);font-size:13px;">Belum ada rekor. Coba percobaan pertamamu!</p>';
+      return;
+    }
+    el.innerHTML = '<ul class="leaderboard">' + list.map((entry, i) => {
+      const medal = ['01','02','03'][i] || (i + 1) + '.';
+      const d = new Date(entry.date);
+      const dateStr = `${d.getMonth() + 1}/${d.getDate()}`;
+      return `<li class="${i === 0 ? 'winner' : ''}"><span class="rank">${medal}</span><span class="lb-name">${entry.value} ms</span><span class="lb-detail">${dateStr}</span></li>`;
+    }).join('') + '</ul>';
+  }
+
+  function rtSaveStats(ms) {
+    stats.count += 1;
+    stats.sum += ms;
+    stats.best = stats.best === null ? ms : Math.min(stats.best, ms);
+    localStorage.setItem(storeKey(), JSON.stringify(stats));
+  }
+
+  function renderStats() {
+    statCount.textContent = stats.count;
+    statAvg.textContent = stats.count ? Math.round(stats.sum / stats.count) + ' ms' : '- ms';
+    statBest.textContent = stats.best !== null ? stats.best + ' ms' : '- ms';
+  }
+
+  function renderDots() {
+    if (state === STATE.SETUP || state === STATE.SUMMARY) {
+      dotsEl.classList.add('hidden');
+      return;
+    }
+    dotsEl.classList.remove('hidden');
+    dotsEl.innerHTML = '';
+    for (let i = 0; i < totalRounds; i++) {
+      const d = document.createElement('div');
+      d.className = 'dot';
+      if (i < roundTimes.length) d.classList.add('done');
+      else if (i === roundTimes.length) d.classList.add('current');
+      dotsEl.appendChild(d);
+    }
+  }
+
+  function setStage(cls, html) {
+    stage.className = 'stage state-' + cls;
+    stage.innerHTML = html;
+  }
+
+  const ACH_KEY = 'reaction';
+  const RT_TIERS = [
+    { key: 'S', max: 150, label : 'Sangat cepat' },
+    { key: 'A', max: 200, label : 'Cepat' },
+    { key: 'B', max: 250, label : 'Bagus' },
+    { key: 'C', max: 300, label : 'Rata-rata' },
+    { key: 'D', max: 400, label : 'Santai' },
+    { key: 'E', max: Infinity, label : 'Sangat santai' },
+  ];
+
+  function modeStats() { return loadStats(ACH_KEY + '_modes', {}); }
+  function recordModeResult(avg) {
+    const all = modeStats();
+    const cur = all[mode.key] || { plays: 0, best: null };
+    cur.plays += 1;
+    cur.best = cur.best === null ? avg : Math.min(cur.best, avg);
+    all[mode.key] = cur;
+    saveStats(ACH_KEY + '_modes', all);
+    return all;
+  }
+  function renderPanels() {
+    renderRecentRecords('recentPanel', loadStats(ACH_KEY + '_recent', []),
+      e => `${e.avg}ms · ${e.mode} · ${e.rounds} ronde`, 'Belum ada percobaan');
+  }
+
+  function renderModeButtons() {
+    modeSelect.querySelectorAll('button').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.mode === mode.key);
+    });
+  }
+
+  function showSetup() {
+    state = STATE.SETUP;
+    clearTimeout(timeoutId);
+    clearF1();
+    setStage('idle', `
+      <div class="big">Pilih jumlah ronde</div>
+      <div class="round-select">
+        <button data-rounds="3">3</button>
+        <button data-rounds="5">5</button>
+        <button data-rounds="10">10</button>
+      </div>
+    `);
+    stage.querySelectorAll('[data-rounds]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        totalRounds = parseInt(btn.dataset.rounds, 10);
+        roundTimes = [];
+        currentRound = 0;
+        nextRound();
+      });
+    });
+    renderDots();
+  }
+
+  function nextRound() {
+    currentRound++;
+    if (currentRound > totalRounds) {
+      showSummary();
+      return;
+    }
+    startWaiting();
+  }
+
+  function clearF1() {
+    f1Timers.forEach(t => clearTimeout(t));
+    f1Timers = [];
+  }
+
+  function startWaiting() {
+    state = STATE.WAIT;
+    clearF1();
+    noGoRound = false;
+    renderDots();
+
+    if (mode.key === 'f1') {
+      setStage('wait', `
+        <div class="f1-lights">${'<div class="f1-light"></div>'.repeat(5)}</div>
+        <div class="small">Ronde ${currentRound} / ${totalRounds} — klik saat semua lampu padam!</div>
+      `);
+      const lights = stage.querySelectorAll('.f1-light');
+      const step = 600 + Math.random() * 400;
+      lights.forEach((el, i) => {
+        f1Timers.push(setTimeout(() => el.classList.add('on'), step * (i + 1)));
+      });
+      const outAt = step * 5 + 800 + Math.random() * 2500;
+      timeoutId = setTimeout(() => {
+        state = STATE.GO;
+        setStage('wait', `
+          <div class="f1-lights">${'<div class="f1-light"></div>'.repeat(5)}</div>
+          <div class="big">Klik sekarang!</div>
+        `);
+        armStart();
+      }, outAt);
+      return;
+    }
+
+    if (mode.key === 'gonogo') {
+      setStage('wait', `
+        <div class="big">Tunggu...</div>
+        <div class="small">Ronde ${currentRound} / ${totalRounds} — klik hanya saat oranye!</div>
+      `);
+      const delay = randomDelay();
+      timeoutId = setTimeout(() => {
+        noGoRound = Math.random() < 0.3;
+        if (noGoRound) {
+          state = STATE.GO;
+          startTime = performance.now();
+          setStage('early', `<div class="big">Jangan tekan!</div><div class="small">Diam saja supaya lolos</div>`);
+          timeoutId = setTimeout(() => {
+            if (state !== STATE.GO) return;
+            state = STATE.ROUND_RESULT;
+            setStage('round', `<div class="big">Bagus, tertahan ✓</div><div class="small">Ronde ini tidak dihitung dalam skormu</div>`);
+            setTimeout(() => { if (state === STATE.ROUND_RESULT) nextRound(); }, 900);
+          }, 1200);
+          return;
+        }
+        state = STATE.GO;
+        setStage('go', `<div class="big">Klik sekarang!</div>`);
+        armStart();
+      }, delay);
+      return;
+    }
+
+    setStage('wait', `
+      <div class="big">Tunggu...</div>
+      <div class="small">Ronde ${currentRound} / ${totalRounds} — klik begitu warnanya berubah!</div>
+    `);
+    const delay = randomDelay();
+    timeoutId = setTimeout(() => {
+      state = STATE.GO;
+      setStage('go', `<div class="big">Klik sekarang!</div>`);
+      armStart();
+    }, delay);
+  }
+
+  function rateFeedback(ms) {
+    if (ms < 200) return 'Cepat sekali!';
+    if (ms < 250) return 'Mantap!';
+    if (ms < 300) return 'Bagus';
+    if (ms < 400) return 'Sekitar rata-rata';
+    return 'Agak lambat';
+  }
+
+
+  // Approximate percentile curve for simple visual "click when it turns green"
+  // reaction time, built from the median (~273ms) that's consistently reported
+  // across large-scale online reaction-time test aggregates, shaped using the
+  // right-skewed spread (fast cluster ~220-320ms, long slow tail) reported in
+  // that same literature. This is an estimate synthesized from multiple public
+  // sources, not a single peer-reviewed table — see the note below the chart.
+  // General adult simple-RT ranges are consistent with lab findings summarized
+  // in reaction-time aging research (e.g. Der & Deary, 2006, Psychology and
+  // Aging) and large web cohorts such as MindCrowd (Talboom et al., 2021,
+  // npj Aging and Mechanisms of Disease, n=75,666), though neither publishes
+  // this exact online-test curve.
+  const RT_CURVE = [
+    { ms: 120, pct: 99.9 },
+    { ms: 150, pct: 99 },
+    { ms: 180, pct: 95 },
+    { ms: 200, pct: 90 },
+    { ms: 230, pct: 75 },
+    { ms: 273, pct: 50 },
+    { ms: 320, pct: 25 },
+    { ms: 380, pct: 10 },
+    { ms: 450, pct: 3 },
+    { ms: 600, pct: 1 },
+  ];
+
+  function percentileForMs(ms) {
+    if (ms <= RT_CURVE[0].ms) return RT_CURVE[0].pct;
+    if (ms >= RT_CURVE[RT_CURVE.length - 1].ms) return RT_CURVE[RT_CURVE.length - 1].pct;
+    for (let i = 0; i < RT_CURVE.length - 1; i++) {
+      const a = RT_CURVE[i], b = RT_CURVE[i + 1];
+      if (ms >= a.ms && ms <= b.ms) {
+        const t = (ms - a.ms) / (b.ms - a.ms);
+        return a.pct + t * (b.pct - a.pct);
+      }
+    }
+    return 50;
+  }
+
+  function buildHistogram(userMs) {
+    const W = 320, H = 132;
+    const PAD_L = 10, PAD_R = 10;
+    const TOP = 24;                 // 'You' 라벨이 잘리지 않게 위쪽을 비워 둔다
+    const BASE = H - 20;            // 가로축 위치
+    const MIN = 120, MAX = 600;     // 그래프가 다루는 구간
+
+    // 구간마다 폭이 달라서(30ms~150ms) 인원 비율을 그대로 높이로 쓰면 모양이 왜곡된다.
+    // 폭으로 나눈 밀도를 써야 실제 분포 모양이 나온다.
+    // RT_CURVE의 원래 구간은 폭이 30~150ms로 제각각이라 그대로 그리면 막대 너비가 들쭉날쭉하다.
+    // 40ms 등간격으로 다시 나눠 모든 막대의 가로 길이를 같게 만든다.
+    const STEP = 40;
+    const bins = [];
+    for (let ms = MIN; ms < MAX; ms += STEP) {
+      const x0 = ms, x1 = Math.min(MAX, ms + STEP);
+      bins.push({ x0, x1, density: percentileForMs(x0) - percentileForMs(x1) });
+    }
+    const maxDensity = Math.max(...bins.map(b => b.density));
+    const xScale = (ms) => PAD_L + (Math.max(MIN, Math.min(MAX, ms)) - MIN) / (MAX - MIN) * (W - PAD_L - PAD_R);
+
+    const bars = bins.map(b => {
+      const x0 = xScale(b.x0), x1 = xScale(b.x1);
+      const h = (b.density / maxDensity) * (BASE - TOP);
+      return `<rect x="${x0.toFixed(1)}" y="${(BASE - h).toFixed(1)}" width="${Math.max(1, x1 - x0 - 1).toFixed(1)}" height="${h.toFixed(1)}" fill="rgba(241,239,232,0.22)" rx="2"/>`;
+    }).join('');
+
+    // 중앙값 기준선
+    const medX = xScale(273);
+    const median = `<line x1="${medX.toFixed(1)}" y1="${TOP}" x2="${medX.toFixed(1)}" y2="${BASE}" stroke="rgba(241,239,232,0.28)" stroke-width="1" stroke-dasharray="2 3"/>`;
+
+    // 내 위치. 구간을 벗어나면 끝에 붙이고 실제 값을 같이 적는다.
+    const over = userMs > MAX;
+    const pinX = xScale(userMs);
+    // 범위를 벗어난 기록은 라벨이 길어지므로 오른쪽 끝에 붙여 정렬한다
+    const labelAnchor = over ? "end" : "middle";
+    const labelX = over ? (W - PAD_R) : Math.min(W - 22, Math.max(22, pinX));
+    const meText = over ? 'Kamu ' + userMs + 'ms' : 'Kamu';
+    const pin = `
+      <line x1="${pinX.toFixed(1)}" y1="${TOP - 4}" x2="${pinX.toFixed(1)}" y2="${BASE}" stroke="#e05a37" stroke-width="2" stroke-dasharray="3 3"/>
+      <circle cx="${pinX.toFixed(1)}" cy="${TOP - 4}" r="4.5" fill="#e05a37"/>
+      <text x="${labelX.toFixed(1)}" y="${TOP - 12}" text-anchor="${labelAnchor}" font-size="10" fill="#e05a37" font-weight="700">${meText}</text>`;
+
+    const baseline = `<line x1="${PAD_L}" y1="${BASE}" x2="${W - PAD_R}" y2="${BASE}" stroke="rgba(241,239,232,0.18)"/>`;
+    const axis = `
+      <text x="${xScale(150)}" y="${H - 6}" text-anchor="middle" font-size="9" fill="#918d85">150</text>
+      <text x="${medX}" y="${H - 6}" text-anchor="middle" font-size="9" fill="#918d85">273 (median)</text>
+      <text x="${xScale(450)}" y="${H - 6}" text-anchor="middle" font-size="9" fill="#918d85">450</text>
+      <text x="${W - PAD_R}" y="${H - 6}" text-anchor="end" font-size="9" fill="#918d85">600+</text>`;
+
+    return `<svg viewBox="0 0 ${W} ${H}" role="img">${baseline}${bars}${median}${pin}${axis}</svg>`;
+  }
+
+  function showSummary() {
+    state = STATE.SUMMARY;
+    renderDots();
+
+    const avg = Math.round(roundTimes.reduce((a, b) => a + b, 0) / roundTimes.length);
+    const best = Math.min(...roundTimes);
+    const worst = Math.max(...roundTimes);
+    const pct = percentileForMs(avg);
+    const topPct = Math.max(0.1, 100 - pct);
+    const bottomPct = Math.max(0.1, 100 - topPct);
+    const fmtPct = (v) => v.toFixed(v < 1 ? 1 : 0);
+
+    const roundTableHtml = roundTimes.map((t, i) => {
+      let cls = 'round-chip';
+      if (t === best) cls += ' best';
+      if (t === worst && worst !== best) cls += ' worst';
+      return `<div class="${cls}"><div class="r">Ronde ${i + 1}</div>${t} ms</div>`;
+    }).join('');
+
+    const percentileBlock = mode.percentile ? `
+        <div class="percentile-line">${topPct <= 50 ? `Kamu masuk ${fmtPct(topPct)} % teratas` : `Kamu masuk ${fmtPct(bottomPct)} % terbawah · lebih lambat dari rata-rata`}</div>
+        <div class="population-line">Median waktu reaksi pada tes klik daring berskala besar sekitar 273 ms</div>
+        <div class="histogram">${buildHistogram(avg)}</div>` : '';
+
+    setStage('round', `
+      <div class="summary">
+        <h2>Tes selesai Rata-rata ${avg} ms</h2>
+        ${percentileBlock}
+
+        <div class="round-table">${roundTableHtml}</div>
+        <div class="summary-actions">
+          <button class="btn" id="retryBtn">Coba lagi</button>
+          <button class="btn secondary" id="changeRoundsBtn">Ubah jumlah ronde</button>
+        </div>
+        <div class="other-tests">
+          <div class="label">Coba tes kemampuan lain</div>
+          <div class="other-tests-links">
+            <a href="/id/tests/click-speed"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 3h8a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zM12 3v7"></path></svg><span>Kecepatan klik CPS</span></a>
+            <a href="/id/tests/visual-memory"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"></path></svg><span>Memori visual</span></a>
+            <a href="/id/tests/chimp-test"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 14h6v6H3zM9 8h6v6H9zM15 3h6v6h-6z"></path></svg><span>Tes simpanse</span></a>
+            <a href="/id/tests/aim-trainer"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0M12 2v4M12 18v4M2 12h4M18 12h4"></path></svg><span>Tes bidikan</span></a>
+          </div>
+        </div>
+      </div>
+    `);
+
+    stage.querySelector('#retryBtn').addEventListener('click', (e) => {
+      e.stopPropagation();
+      roundTimes = [];
+      currentRound = 0;
+      nextRound();
+    });
+    stage.querySelector('#changeRoundsBtn').addEventListener('click', (e) => {
+      e.stopPropagation();
+      showSetup();
+    });
+
+    const lbList = rtAddToLeaderboard(avg);
+    renderTopLeaderboard(lbList);
+
+    addRecentRecord(ACH_KEY, { avg, mode: mode.label, rounds: totalRounds, date: Date.now() });
+    renderPanels();
+  }
+
+  function handleClick(e) {
+    if (state === STATE.WAIT) {
+      clearTimeout(timeoutId);
+      clearF1();
+      state = STATE.EARLY;
+      setStage('early', `<div class="big">Terlalu cepat!</div><div class="small">Klik lagi untuk mengulang ronde ini</div>`);
+      return;
+    }
+
+    if (state === STATE.GO && noGoRound) {
+      clearTimeout(timeoutId);
+      noGoRound = false;
+      state = STATE.EARLY;
+      setStage('early', `<div class="big">Jangan klik saat abu-abu!</div><div class="small">Klik lagi untuk mengulang ronde ini</div>`);
+      return;
+    }
+
+    if (state === STATE.EARLY) {
+      currentRound--;
+      nextRound();
+      return;
+    }
+
+    if (state === STATE.GO) {
+      if (!startTime) return;   // 신호가 아직 화면에 그려지기 전(두 프레임 안)의 클릭은 무시
+      const clickAt = (e && e.timeStamp > 0 && e.timeStamp < 1e12) ? e.timeStamp : performance.now();
+      const reaction = Math.max(0, Math.round(clickAt - startTime));
+      roundTimes.push(reaction);
+      rtSaveStats(reaction);
+      renderStats();
+      state = STATE.ROUND_RESULT;
+      setStage('round', `<div class="big">${reaction} ms</div><div class="small">${rateFeedback(reaction)}</div>`);
+      renderDots();
+      setTimeout(() => {
+        if (state === STATE.ROUND_RESULT) nextRound();
+      }, 900);
+    }
+  }
+
+  stage.addEventListener('click', handleClick);
+
+
+  modeSelect.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      mode = MODES.find(m => m.key === btn.dataset.mode) || MODES[0];
+      renderModeButtons();
+      renderPanels();
+      roundTimes = [];
+      currentRound = 0;
+      showSetup();
+    });
+  });
+
+
+  renderStats();  renderModeButtons();
+  showSetup();
+  renderTopLeaderboard(loadLB());
+  renderPanels();
+</script>
+</body>
+</html>

@@ -680,3 +680,12 @@ Google Analytics 4, 측정 ID `G-VKKRHCN307`.
 - 15개 테스트 모두 시작 화면·HUD(level-card)·패드/격자를 `<div class="stage">` 하나로 감싼다. 모드 버튼(.mode-select/.mode-hint/.duration-select)과 설명(.info-box)은 상자 밖, 결과(#resultPanel)·통계·기록도 밖.
 - 스타일은 skill-test/style.css 의 `.stage`(공용). 반응속도만 페이지 안에서 상태별 배경(state-go 등)을 덧입힌다. 상자 안 level-card/note-box 는 배경·테두리를 없애 상자 속 상자를 피한다.
 - 새 테스트를 만들 때도 같은 구조로. 일괄 감싸기 스크립트: 스크래치 stage_wrap.js (첫 블록~마지막 블록 지정, 4칸 들여쓰기 최상위 요소 기준).
+
+## 21. 16개 언어 구조와 번역 파이프라인 (2026-09-05)
+- 로케일 16개: en es fr de pt(pt-BR) pl it ko ja vi id tr uk zh(zh-Hans) tw(zh-Hant) th. 로케일당 17페이지(허브·privacy·테스트 15) = 272페이지.
+- zh 는 내용이 간체인데 hreflang 이 zh-Hant 로 잘못 달려 있던 것을 zh-Hans 로 바로잡고, 번체는 tw 로 새로 만들었다.
+- 헤더 언어 전환은 `<details class="langs">` 드롭다운(16개, 같은 페이지의 다른 언어로 연결). CSS 는 두 스타일시트의 `.langs`/`.lang-pop`.
+- 새 언어 추가/수정은 스크래치의 파이프라인으로: `locales.js`(로케일 표) → `i18n_lib.js`(en/ja/zh 를 LCS 로 맞춰 번역 슬롯만 추출) → `tr_<dir>.N.json`(슬롯번호→번역, 여러 조각 병합, 뒤 번호가 우선) → `build_locale.js`(en 에서 생성 + 경로/언어 치환) → `chrome.js`(lang·canonical·hreflang·og·전환기) → `sitemap.js`.
+- 번역값이 배열이면 `[["찾을 말","바꿀 말"], ...]` 로 해석해 긴 HTML/템플릿 문자열의 보이는 말만 갈아끼운다.
+- **삽입 시 이스케이프 필수**: 프랑스어 `l'écran` 같은 아포스트로피가 작은따옴표 JS 문자열을 깨뜨렸다. `escapeFor()` 가 ' " 문자열은 구분자만(이미 \ 로 막힌 것은 제외) 이스케이프하고, 백틱 문자열은 손대지 않는다(안의 백틱은 `${}` 속 중첩 템플릿이라 이미 올바름). 텍스트/속성은 & < " 를 엔티티로.
+- 새 언어를 만들면 반드시 272페이지 정적 검사: div 열림/닫힘, hreflang 17줄, 각 `<script>` 를 `new Function` 으로 파싱.

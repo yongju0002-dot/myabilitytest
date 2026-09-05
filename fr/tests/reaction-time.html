@@ -119,7 +119,7 @@
     <a class="brand" href="/fr/"><span class="dot"></span>Test d'Aptitude</a>
     <nav>
       <a href="/fr/#ability">Aptitude <span class="count">12</span></a>
-      <a href="/fr/#hardware">Hardware <span class="count">03</span></a>
+      <a href="/fr/#hardware">Matériel <span class="count">03</span></a>
       <a href="/fr/#records">Mes records</a>
     </nav>
     <span class="spacer"></span>
@@ -311,8 +311,8 @@
   // 백분위(RT_CURVE)는 단순 반응 기준으로만 만든 곡선이라 단순 모드에서만 표시한다.
   const MODES = [
     { key: 'simple', label : 'Simple', hint : 'Le test classique : cliquez dès que la couleur change.', percentile: true },
-    { key: 'f1', label : 'Départ F1', hint : 'Cinq feux rouges s'allument l'un après l'autre. Cliquez dès qu'ils s'éteignent tous — la procédure de départ de la Formule 1.', percentile: false },
-    { key: 'gonogo', label : 'Go / No-Go', hint : 'Cliquez seulement sur l'orange. Cliquer sur le gris est une erreur.', percentile: false },
+    { key: 'f1', label : 'Départ F1', hint : 'Cinq feux rouges s\'allument l\'un après l\'autre. Cliquez dès qu\'ils s\'éteignent tous — la procédure de départ de la Formule 1.', percentile: false },
+    { key: 'gonogo', label : 'Go / No-Go', hint : 'Cliquez seulement sur l\'orange. Cliquer sur le gris est une erreur.', percentile: false },
   ];
   let mode = MODES[0];
   let noGoRound = false;
@@ -432,7 +432,7 @@
   }
   function renderPanels() {
     renderRecentRecords('recentPanel', loadStats(ACH_KEY + '_recent', []),
-      e => `${e.avg}ms · ${e.mode} · ${e.rounds} manches`, 'Aucune partie pour l'instant');
+      e => `${e.avg}ms · ${e.mode} · ${e.rounds} manches`, 'Aucune partie pour l\'instant');
   }
 
   function renderModeButtons() {

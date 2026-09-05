@@ -119,7 +119,7 @@
     <a class="brand" href="/tr/"><span class="dot"></span>Yetenek Testi</a>
     <nav>
       <a href="/tr/#ability">Yetenek <span class="count">12</span></a>
-      <a href="/tr/#hardware">Hardware <span class="count">03</span></a>
+      <a href="/tr/#hardware">Donanım <span class="count">03</span></a>
       <a href="/tr/#records">Rekorlarım</a>
     </nav>
     <span class="spacer"></span>
@@ -157,7 +157,7 @@
     <p class="sub">Ekranın rengi değişir değişmez tıkla</p>
 
     <div class="mode-select" id="modeSelect">
-      <button data-mode="simple" class="active">Simple</button>
+      <button data-mode="simple" class="active">Basit</button>
       <button data-mode="f1">F1 çıkışı</button>
       <button data-mode="gonogo">Go / No-Go</button>
     </div>
@@ -310,7 +310,7 @@
   // ---- 반응 모드 ----
   // 백분위(RT_CURVE)는 단순 반응 기준으로만 만든 곡선이라 단순 모드에서만 표시한다.
   const MODES = [
-    { key: 'simple', label : 'Simple', hint : 'Klasik test: renk değiştiği anda tıkla.', percentile: true },
+    { key: 'simple', label : 'Basit', hint : 'Klasik test: renk değiştiği anda tıkla.', percentile: true },
     { key: 'f1', label : 'F1 çıkışı', hint : 'Beş kırmızı ışık sırayla yanar. Hepsi söndüğü anda tıkla — Formula 1 çıkış prosedürü.', percentile: false },
     { key: 'gonogo', label : 'Go / No-Go', hint : 'Yalnızca turuncuda tıkla. Gride tıklamak hatadır.', percentile: false },
   ];

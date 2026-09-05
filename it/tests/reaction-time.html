@@ -157,7 +157,7 @@
     <p class="sub">Clicca appena lo schermo cambia colore</p>
 
     <div class="mode-select" id="modeSelect">
-      <button data-mode="simple" class="active">Simple</button>
+      <button data-mode="simple" class="active">Semplice</button>
       <button data-mode="f1">Partenza F1</button>
       <button data-mode="gonogo">Go / No-Go</button>
     </div>
@@ -310,9 +310,9 @@
   // ---- 반응 모드 ----
   // 백분위(RT_CURVE)는 단순 반응 기준으로만 만든 곡선이라 단순 모드에서만 표시한다.
   const MODES = [
-    { key: 'simple', label : 'Simple', hint : 'Il test classico: clicca appena cambia il colore.', percentile: true },
+    { key: 'simple', label : 'Semplice', hint : 'Il test classico: clicca appena cambia il colore.', percentile: true },
     { key: 'f1', label : 'Partenza F1', hint : 'Cinque luci rosse si accendono in sequenza. Clicca appena si spengono tutte: la procedura di partenza della Formula 1.', percentile: false },
-    { key: 'gonogo', label : 'Go / No-Go', hint : 'Clicca solo sull'arancione. Cliccare sul grigio è un errore.', percentile: false },
+    { key: 'gonogo', label : 'Go / No-Go', hint : 'Clicca solo sull\'arancione. Cliccare sul grigio è un errore.', percentile: false },
   ];
   let mode = MODES[0];
   let noGoRound = false;
@@ -551,7 +551,7 @@
     if (ms < 250) return 'Ottimo!';
     if (ms < 300) return 'Bene';
     if (ms < 400) return 'Nella media';
-    return 'Un po' lento';
+    return 'Un po\' lento';
   }
 
 

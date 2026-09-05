@@ -93,7 +93,7 @@
     <a class="brand" href="/fr/"><span class="dot"></span>Test d'Aptitude</a>
     <nav>
       <a href="/fr/#ability">Aptitude <span class="count">12</span></a>
-      <a href="/fr/#hardware">Hardware <span class="count">03</span></a>
+      <a href="/fr/#hardware">Matériel <span class="count">03</span></a>
       <a href="/fr/#records">Mes records</a>
     </nav>
     <span class="spacer"></span>
@@ -329,9 +329,9 @@
   }
 
   function verdictFor(hz) {
-    if (hz < 50) return { text: 'Probablement un mode d'économie d'énergie, ou le navigateur limite les images', warn: true };
+    if (hz < 50) return { text: 'Probablement un mode d\'économie d\'énergie, ou le navigateur limite les images', warn: true };
     if (hz < 65) return { text: 'Classe 60 Hz - standard sur les écrans bureautiques et les dalles de portable', warn: false };
-    if (hz < 90) return { text: 'Classe 75 Hz - courant sur les écrans gaming d'entrée de gamme', warn: false };
+    if (hz < 90) return { text: 'Classe 75 Hz - courant sur les écrans gaming d\'entrée de gamme', warn: false };
     if (hz < 150) return { text: 'Classe 120-144 Hz - la plage des écrans gaming', warn: false };
     return { text: 'Classe écran gaming à haute fréquence', warn: false };
   }
@@ -386,7 +386,7 @@
     if (gaps.length < 20) {
       hzLabel.textContent = 'Échec de la mesure';
       document.getElementById('hzVerdict').textContent ='';
-      document.getElementById('hzNote').textContent ='Pas assez d'images collectées. Gardez cet onglet au premier plan et réessayez.';
+      document.getElementById('hzNote').textContent ='Pas assez d\'images collectées. Gardez cet onglet au premier plan et réessayez.';
       return;
     }
 

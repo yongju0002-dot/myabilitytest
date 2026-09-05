@@ -1,0 +1,379 @@
+﻿<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test della tastiera | Test di Abilità</title>
+<meta name="description" content="Verifica che ogni tasto della tastiera venga rilevato e quanti riesci a tenere premuti insieme (ghosting e N-key rollover), direttamente nel browser. Gratis, senza installare nulla.">
+<link rel="canonical" href="https://myabilitytest.com/it/tests/keyboard-tester">
+<link rel="alternate" hreflang="en" href="https://myabilitytest.com/en/tests/keyboard-tester">
+<link rel="alternate" hreflang="es" href="https://myabilitytest.com/es/tests/keyboard-tester">
+<link rel="alternate" hreflang="fr" href="https://myabilitytest.com/fr/tests/keyboard-tester">
+<link rel="alternate" hreflang="de" href="https://myabilitytest.com/de/tests/keyboard-tester">
+<link rel="alternate" hreflang="pt-BR" href="https://myabilitytest.com/pt/tests/keyboard-tester">
+<link rel="alternate" hreflang="pl" href="https://myabilitytest.com/pl/tests/keyboard-tester">
+<link rel="alternate" hreflang="it" href="https://myabilitytest.com/it/tests/keyboard-tester">
+<link rel="alternate" hreflang="ko" href="https://myabilitytest.com/ko/tests/keyboard-tester">
+<link rel="alternate" hreflang="ja" href="https://myabilitytest.com/ja/tests/keyboard-tester">
+<link rel="alternate" hreflang="vi" href="https://myabilitytest.com/vi/tests/keyboard-tester">
+<link rel="alternate" hreflang="id" href="https://myabilitytest.com/id/tests/keyboard-tester">
+<link rel="alternate" hreflang="tr" href="https://myabilitytest.com/tr/tests/keyboard-tester">
+<link rel="alternate" hreflang="uk" href="https://myabilitytest.com/uk/tests/keyboard-tester">
+<link rel="alternate" hreflang="zh-Hans" href="https://myabilitytest.com/zh/tests/keyboard-tester">
+<link rel="alternate" hreflang="zh-Hant" href="https://myabilitytest.com/tw/tests/keyboard-tester">
+<link rel="alternate" hreflang="th" href="https://myabilitytest.com/th/tests/keyboard-tester">
+<link rel="alternate" hreflang="x-default" href="https://myabilitytest.com/en/tests/keyboard-tester">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MyAbilityTest">
+<meta property="og:title" content="Test della tastiera | Test di Abilità">
+<meta property="og:description" content="Verifica che ogni tasto venga rilevato e quanti tasti riesci a tenere premuti insieme, direttamente nel browser.">
+<meta property="og:url" content="https://myabilitytest.com/it/tests/keyboard-tester">
+<meta property="og:image" content="https://myabilitytest.com/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="it_IT">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Test della tastiera | Test di Abilità">
+<meta name="twitter:description" content="Verifica che ogni tasto venga rilevato e quanti tasti riesci a tenere premuti insieme, direttamente nel browser.">
+<meta name="twitter:image" content="https://myabilitytest.com/og-default.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"Organization","@id":"https://myabilitytest.com/#organization","name":"MyAbilityTest","url":"https://myabilitytest.com/","logo":{"@type":"ImageObject","url":"https://myabilitytest.com/og-default.png","width":1200,"height":630}},
+{"@type":"WebSite","@id":"https://myabilitytest.com/#website","name":"MyAbilityTest","url":"https://myabilitytest.com/","inLanguage":["en","es","fr","de","pt-BR","pl","it","ko","ja","vi","id","tr","uk","zh-Hans","zh-Hant","th"],"publisher":{"@id":"https://myabilitytest.com/#organization"}},
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://myabilitytest.com/it/"},{"@type":"ListItem","position":2,"name":"Test della tastiera | Test di Abilità","item":"https://myabilitytest.com/ko/tests/keyboard-tester"}]},{"@type":"WebApplication","name":"Test della tastiera | Test di Abilità","url":"https://myabilitytest.com/it/tests/keyboard-tester","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"it"}
+]}
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/skill-test/style.css">
+<style>
+  .info { margin-top: 40px; color: var(--body); font-size: 14px; line-height: 1.7; }
+  .info h2 { font-size: 17px; color: var(--ink); margin: 28px 0 8px; }
+  .info table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
+  .info th, .info td { border: 1px solid var(--line); padding: 8px; text-align: left; }
+  .info th { background: var(--card-bg); }
+  .info ul { padding-left: 20px; }
+  .other-tests { margin-top: 16px; }
+  .other-tests .label { text-align: center; font-size: 12px; color: var(--text-dim); margin-bottom: 8px; }
+  .other-tests-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .other-tests-links a {
+    font-size: 12px; color: var(--body); text-decoration: none;
+    background: var(--card-bg-2); border: 1px solid var(--line);
+    border-radius: 999px; padding: 6px 12px;
+  }
+  .other-tests-links a:hover { border-color: var(--accent); color: #fff; }
+
+  .kb {
+    background: var(--card-bg-2); border-radius: 16px; padding: 14px;
+    overflow-x: auto; user-select: none;
+  }
+  .kb-row { display: flex; gap: 5px; margin-bottom: 5px; justify-content: center; min-width: 640px; }
+  .key {
+    background: var(--card-bg); border: 1px solid var(--line);
+    border-radius: 7px; min-width: 38px; height: 38px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: var(--text-dim); padding: 0 6px; white-space: nowrap;
+    transition: background 0.06s ease, color 0.06s ease, border-color 0.06s ease;
+  }
+  .key.w15 { min-width: 58px; } .key.w20 { min-width: 78px; }
+  .key.w25 { min-width: 98px; } .key.w60 { min-width: 236px; }
+  .key.down { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .key.used { border-color: var(--good); color: var(--body); }
+
+  .live-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 14px; }
+  .live-box { background: var(--card-bg); border-radius: 12px; padding: 12px 10px; text-align: center; }
+  .live-box .k { font-size: 11.5px; color: var(--text-dim); margin-bottom: 4px; }
+  .live-box .v { font-size: 20px; font-weight: 800; font-variant-numeric: tabular-nums; }
+  .live-box .v.small { font-size: 13px; font-weight: 600; word-break: break-all; }
+
+  .held { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-top: 12px; min-height: 30px; }
+  .held span { background: var(--accent); color: #fff; border-radius: 999px; padding: 5px 12px; font-size: 12px; font-weight: 600; }
+  .kro-note { text-align: center; color: var(--text-dim); font-size: 12.5px; margin-top: 10px; line-height: 1.6; }
+  .kro-verdict { text-align: center; font-size: 15px; font-weight: 700; margin-top: 8px; }
+</style>
+<script src="/skill-test/analytics.js" defer></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993734713843733" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/it/"><span class="dot"></span>Test di Abilità</a>
+    <nav>
+      <a href="/it/#ability">Abilità <span class="count">12</span></a>
+      <a href="/it/#hardware">Hardware <span class="count">03</span></a>
+      <a href="/it/#records">I miei record</a>
+    </nav>
+    <span class="spacer"></span>
+    <details class="langs">
+      <summary title="Language"><b>IT</b><span class="caret">▾</span></summary>
+      <div class="lang-pop">
+        <a href="/en/tests/keyboard-tester"><b>US</b><span>English</span></a>
+        <a href="/es/tests/keyboard-tester"><b>ES</b><span>Español</span></a>
+        <a href="/fr/tests/keyboard-tester"><b>FR</b><span>Français</span></a>
+        <a href="/de/tests/keyboard-tester"><b>DE</b><span>Deutsch</span></a>
+        <a href="/pt/tests/keyboard-tester"><b>BR</b><span>Português</span></a>
+        <a href="/pl/tests/keyboard-tester"><b>PL</b><span>Polski</span></a>
+        <span class="on"><b>IT</b><span>Italiano</span></span>
+        <a href="/ko/tests/keyboard-tester"><b>KR</b><span>한국어</span></a>
+        <a href="/ja/tests/keyboard-tester"><b>JP</b><span>日本語</span></a>
+        <a href="/vi/tests/keyboard-tester"><b>VN</b><span>Tiếng Việt</span></a>
+        <a href="/id/tests/keyboard-tester"><b>ID</b><span>Bahasa Indonesia</span></a>
+        <a href="/tr/tests/keyboard-tester"><b>TR</b><span>Türkçe</span></a>
+        <a href="/uk/tests/keyboard-tester"><b>UA</b><span>Українська</span></a>
+        <a href="/zh/tests/keyboard-tester"><b>CN</b><span>简体中文</span></a>
+        <a href="/tw/tests/keyboard-tester"><b>TW</b><span>繁體中文</span></a>
+        <a href="/th/tests/keyboard-tester"><b>TH</b><span>ไทย</span></a>
+      </div>
+    </details>
+  </header>
+
+  <div class="wrap">
+    <nav class="breadcrumb">
+      <a href="/it/">Home</a><span>/</span>
+      <a href="/it/#hardware">Test hardware</a><span>/</span>
+      <span class="here">Test della tastiera</span>
+      <span class="idx">15 / 15</span>
+    </nav>
+    <h1>Test della tastiera</h1>
+    <p class="sub">Premi un tasto qualsiasi. Si illumina, e ogni tasto rilevato almeno una volta mantiene un bordo verde.</p>
+
+    <div class="info-box">
+      ⌨️ Premi un tasto qualsiasi. Tenere premuti più tasti <strong>insieme</strong> mostra anche quanti vengono rilevati contemporaneamente (ghosting e N-key rollover). Alcuni tasti come F11, F12 e Win vengono intercettati prima dal browser e non saranno rilevati.
+    </div>
+
+    <div class="stage">
+    <div class="kb" id="kb"></div>
+
+    <div class="held" id="heldKeys"></div>
+    <div class="kro-verdict" id="kroVerdict"></div>
+    <p class="kro-note">Tieni premuti più tasti insieme per trovare il tuo massimo. Molte tastiere si fermano a sei per via delle specifiche USB.</p>
+
+    <div class="live-row">
+      <div class="live-box"><div class="k">Premuti ora</div><div class="v" id="nowHeld">0</div></div>
+      <div class="live-box"><div class="k">Max contemporanei</div><div class="v" id="maxHeld">0</div></div>
+      <div class="live-box"><div class="k">Ultimo tasto</div><div class="v small" id="lastKey">-</div></div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn secondary" id="resetBtn">Azzera</button>
+    </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat-box">
+        <div class="label">Tasti distinti rilevati</div>
+        <div class="value" id="statUnique">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">Pressioni totali</div>
+        <div class="value" id="statTotal">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">Tasti non ancora rilevati</div>
+        <div class="value" id="statMissing">-</div>
+      </div>
+    </div>
+
+    <div class="guide">
+    <div class="section-head"><h2>Guida al test della tastiera</h2></div>
+    <div class="guide-grid">
+      <div class="guide-box">
+        <h3>Che cosa ti dice questo test?</h3>
+        <p>Puoi verificare tasto per tasto se il segnale arriva al browser e, allo stesso tempo, quanti tasti vengono distinti quando li tieni premuti insieme (<strong>N-key rollover</strong>) e se certe combinazioni perdono input (<strong>ghosting</strong>).</p>
+      </div>
+      <div class="guide-box">
+        <h3>Perché alcuni tasti non vengono mai rilevati</h3>
+        <p>I tasti che browser o sistema operativo intercettano per primi non arrivano mai alla pagina: F11 (schermo intero), F12 (strumenti di sviluppo), il tasto Win/Cmd, Alt+Tab e Stamp sono i soliti. Se un tasto continua a non rispondere dopo aver escluso questi, il problema potrebbe essere la tastiera stessa.</p>
+        <p>Questa pagina evidenzia anche in base alla posizione fisica del tasto (<code>event.code</code>), quindi lo stesso tasto fisico si illumina indipendentemente dalla lingua di input o dal layout (QWERTY, QWERTZ e così via).</p>
+      </div>
+      <div class="guide-box">
+        <h3>Ghosting e N-key rollover</h3>
+        <p>La maggior parte delle tastiere non legge ogni tasto con un filo dedicato: li legge attraverso una <strong>matrice</strong> condivisa. In questo schema certe combinazioni sulla stessa riga o colonna non possono essere distinte quando vengono tenute premute insieme, e un input viene perso: questo è il ghosting. Le tastiere che aggiungono un diodo per tasto riescono a distinguerli tutti, e questa capacità si chiama rollover.</p>
+        <table>
+        <tr><th>Termine</th><th>Significato</th></tr>
+        <tr><td>2KRO</td><td>Solo due tasti oltre ai modificatori vengono distinti in modo affidabile. Comune sulle tastiere economiche</td></tr>
+        <tr><td>6KRO</td><td>Sei alla volta. Il valore standard delle specifiche USB predefinite</td></tr>
+        <tr><td>NKRO</td><td>Di fatto illimitato. Comune su tastiere da gioco e meccaniche</td></tr>
+        </table>
+        <p>Anche una tastiera NKRO può sembrare limitata a sei via USB per via delle specifiche predefinite. A seconda del modello potresti dover attivare l'NKRO nel software, nel firmware o con una combinazione di tasti.</p>
+      </div>
+      <div class="guide-box">
+        <h3>Come misurare correttamente</h3>
+        <ul>
+          <li>Premi ogni tasto <strong>una volta</strong> e controlla che si illumini sulla tastiera a schermo.</li>
+          <li>Per il rollover, tieni premuti 6, poi 7 e più tasti e guarda dove smette di rilevarli.</li>
+          <li>I tasti che browser o sistema intercettano per primi — F11, F12, il tasto Win — non compariranno, per come funziona.</li>
+          <li>Su una tastiera senza fili, controlla prima batteria e connessione.</li>
+        </ul>
+        <p>Questa verifica si basa solo sui segnali che il browser riceve e non sostituisce una diagnosi hardware. Se vuoi misurare quanto velocemente premi un tasto ripetutamente, prova il <a href="/it/tests/spacebar-counter">test della barra spaziatrice</a> o il <a href="/it/tests/apm">test APM</a>.</p>
+      </div>
+      <div class="guide-box wide">
+        <h3>Se ti fermi a sei</h3>
+        <ul>
+        <li><strong>Può essere normale</strong>: le specifiche USB HID predefinite prevedono sei tasti, quindi molte tastiere si fermano lì.</li>
+        <li><strong>Cerca una modalità NKRO</strong>: le tastiere da gioco spesso la attivano dal software o con una combinazione Fn.</li>
+        <li><strong>I modificatori contano a parte</strong>: Maiusc, Ctrl e Alt di solito vengono gestiti fuori dal conteggio del rollover.</li>
+        </ul>
+      </div>
+    </div>
+    </div>
+
+    <div class="other-tests">
+      <div class="label">Prova un altro test</div>
+      <div class="other-tests-links">
+        <a href="/it/tests/mouse-tester"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3a6 6 0 0 1 6 6v6a6 6 0 0 1-12 0V9a6 6 0 0 1 6-6zM12 3v7M6 10h12"></path></svg><span>Test del mouse</span></a>
+        <a href="/it/tests/monitor-hz"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 4h18v12H3zM8 20h8M12 16v4"></path></svg><span>Frequenza di aggiornamento</span></a>
+        <a href="/it/tests/spacebar-counter"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 9h18v6H3zM7 12h10"></path></svg><span>Barra spaziatrice</span></a>
+        <a href="/it/tests/apm"><svg class="ticon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 20V10M10 20V4M16 20V13M22 20V8"></path></svg><span>Test APM</span></a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <div class="fbrand"><span class="dot"></span>Test di Abilità</div>
+        <p class="fdesc">15 test gratuiti da lanciare direttamente nel browser. I risultati variano in base a dispositivo e browser e hanno scopo ludico e indicativo.</p>
+        <a class="fmail" href="mailto:yongju0002@gmail.com">Segnala un problema · proponi un test</a>
+      </div>
+      <div>
+        <div class="fhead">Reazione · precisione</div>
+        <div class="fcol">
+          <a href="/it/tests/reaction-time">Test del tempo di reazione</a>
+          <a href="/it/tests/aim-trainer">Test di mira</a>
+          <a href="/it/tests/dynamic-vision">Test di visione dinamica</a>
+          <a href="/it/tests/mouse-accuracy">Test di precisione del mouse</a>
+        </div>
+      </div>
+      <div>
+        <div class="fhead">Velocità · memoria</div>
+        <div class="fcol">
+          <a href="/it/tests/click-speed">Test di velocità di clic CPS</a>
+          <a href="/it/tests/spacebar-counter">Test della barra spaziatrice</a>
+          <a href="/it/tests/apm">Test APM</a>
+          <a href="/it/tests/visual-memory">Test di memoria visiva</a>
+          <a href="/it/tests/chimp-test">Test dello scimpanzé</a>
+        </div>
+      </div>
+      <div>
+        <div class="fhead">Sensi · hardware</div>
+        <div class="fcol">
+          <a href="/it/tests/hearing-age">Test dell'età uditiva</a>
+          <a href="/it/tests/time-stop">Ferma il cronometro</a>
+          <a href="/it/tests/time-perception">Test del senso del tempo</a>
+          <a href="/it/tests/monitor-hz">Test della frequenza di aggiornamento</a>
+          <a href="/it/tests/mouse-tester">Test del mouse</a>
+          <a href="/it/tests/keyboard-tester">Test della tastiera</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 MyAbilityTest</span>
+      <span class="links">
+        <a href="/it/">Home</a>
+        <a href="/it/privacy">Informativa sulla privacy</a>
+        <a href="/ko/">한국어</a>
+        <a href="/it/">English</a>
+        <a href="/ja/">日本語</a>
+        <a href="/zh/">中文</a>
+      </span>
+    </div>
+  </footer>
+
+<script src="/skill-test/common.js"></script>
+<script>
+  // Layout keyed on physical position (event.code) - independent of language or layout.
+  const LAYOUT = [
+    [['Escape','Esc'],['F1','F1'],['F2','F2'],['F3','F3'],['F4','F4'],['F5','F5'],['F6','F6'],['F7','F7'],['F8','F8'],['F9','F9'],['F10','F10'],['F11','F11'],['F12','F12']],
+    [['Backquote','`'],['Digit1','1'],['Digit2','2'],['Digit3','3'],['Digit4','4'],['Digit5','5'],['Digit6','6'],['Digit7','7'],['Digit8','8'],['Digit9','9'],['Digit0','0'],['Minus','-'],['Equal','='],['Backspace','⌫','w20']],
+    [['Tab','Tab','w15'],['KeyQ','Q'],['KeyW','W'],['KeyE','E'],['KeyR','R'],['KeyT','T'],['KeyY','Y'],['KeyU','U'],['KeyI','I'],['KeyO','O'],['KeyP','P'],['BracketLeft','['],['BracketRight',']'],['Backslash','\\','w15']],
+    [['CapsLock','Caps','w20'],['KeyA','A'],['KeyS','S'],['KeyD','D'],['KeyF','F'],['KeyG','G'],['KeyH','H'],['KeyJ','J'],['KeyK','K'],['KeyL','L'],['Semicolon',';'],['Quote','\''],['Enter','Enter','w20']],
+    [['ShiftLeft','Shift','w25'],['KeyZ','Z'],['KeyX','X'],['KeyC','C'],['KeyV','V'],['KeyB','B'],['KeyN','N'],['KeyM','M'],['Comma',','],['Period','.'],['Slash','/'],['ShiftRight','Shift','w25']],
+    [['ControlLeft','Ctrl','w15'],['MetaLeft','Win','w15'],['AltLeft','Alt','w15'],['Space','Space','w60'],['AltRight','Alt','w15'],['MetaRight','Win','w15'],['ControlRight','Ctrl','w15']],
+    [['ArrowUp','↑'],['ArrowLeft','←'],['ArrowDown','↓'],['ArrowRight','→'],['Insert','Ins'],['Delete','Del'],['Home','Home'],['End','End'],['PageUp','PgUp'],['PageDown','PgDn']],
+  ];
+
+  const kb = document.getElementById('kb');
+  const heldEl = document.getElementById('heldKeys');
+  const codeToEl = new Map();
+  const labelOf = new Map();
+
+  LAYOUT.forEach(row => {
+    const rowEl = document.createElement('div');
+    rowEl.className = 'kb-row';
+    row.forEach(([code, label, w]) => {
+      const el = document.createElement('div');
+      el.className = 'key' + (w ? ' ' + w : '');
+      el.textContent = label;
+      rowEl.appendChild(el);
+      codeToEl.set(code, el);
+      labelOf.set(code, label);
+    });
+    kb.appendChild(rowEl);
+  });
+
+  const held = new Set();
+  const used = new Set();
+  let totalPresses = 0;
+  let maxHeld = 0;
+
+  function render() {
+    document.getElementById('nowHeld').textContent = held.size;
+    document.getElementById('maxHeld').textContent = maxHeld;
+    document.getElementById('statUnique').textContent = used.size;
+    document.getElementById('statTotal').textContent = totalPresses;
+    const missing = [...codeToEl.keys()].filter(c => !used.has(c)).length;
+    document.getElementById('statMissing').textContent = used.size ? missing : '-';
+    heldEl.innerHTML = [...held].map(c => `<span>${labelOf.get(c) || c}</span>`).join('');
+
+    const v = document.getElementById('kroVerdict');
+    if (maxHeld === 0) { v.textContent = ''; return; }
+    if (maxHeld <= 2) { v.textContent = `${maxHeld} tasti premuti - premine altri per trovare il limite`; v.style.color = 'var(--text-dim)'; }
+    else if (maxHeld <= 5) { v.textContent = `${maxHeld} tasti premuti - questa combinazione potrebbe subire ghosting`; v.style.color = '#fbbf24'; }
+    else if (maxHeld === 6) { v.textContent = '6 tasti premuti - il valore standard delle specifiche USB predefinite (6KRO)'; v.style.color ='#35a35a'; }
+    else { v.textContent = `${maxHeld} tasti premuti - oltre sei, quindi funziona in NKRO`; v.style.color = '#35a35a'; }
+  }
+
+  window.addEventListener('keydown', (e) => {
+    // Leave default behaviour intact when a modifier is held, so browser shortcuts still work.
+    if (!e.ctrlKey && !e.metaKey && !e.altKey) e.preventDefault();
+    const code = e.code;
+    if (!e.repeat) {
+      totalPresses += 1;
+      held.add(code);
+      used.add(code);
+      if (held.size > maxHeld) maxHeld = held.size;
+    }
+    const el = codeToEl.get(code);
+    if (el) el.classList.add('down','used');
+    document.getElementById('lastKey').textContent = `${labelOf.get(code) || e.key} (${code})`;
+    render();
+  });
+
+  window.addEventListener('keyup', (e) => {
+    held.delete(e.code);
+    const el = codeToEl.get(e.code);
+    if (el) el.classList.remove('down');
+    render();
+  });
+
+  // Clear held state when the window loses focus
+  window.addEventListener('blur', () => {
+    held.clear();
+    document.querySelectorAll('.key.down').forEach(el => el.classList.remove('down'));
+    render();
+  });
+
+  document.getElementById('resetBtn').addEventListener('click', () => {
+    held.clear(); used.clear(); totalPresses = 0; maxHeld = 0;
+    document.querySelectorAll('.key').forEach(el => el.classList.remove('down','used'));
+    document.getElementById('lastKey').textContent ='-';
+    render();
+  });
+
+  render();
+</script>
+</body>
+</html>
